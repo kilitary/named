@@ -140,7 +140,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"excalidraw-iframe-theme\"]",
+                "query": "tag:#ai",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -173,8 +173,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -218,35 +217,12 @@
             }
           },
           {
-            "id": "408f418166af1fce",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
-            }
-          },
-          {
             "id": "4b8b7eab9a2a8c27",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
                 "file": "README.md"
-              }
-            }
-          },
-          {
-            "id": "80647946df64b14c",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
               }
             }
           },
@@ -264,16 +240,6 @@
             "state": {
               "type": "dictionary-view",
               "state": {}
-            }
-          },
-          {
-            "id": "dde49514ef20b517",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "README.md"
-              }
             }
           },
           {
@@ -325,7 +291,63 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 4
+      },
+      {
+        "id": "77f847cbcc6365f1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "408f418166af1fce",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "5f6904f0d7e0784d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "edbebe7c0b513400",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md"
+              }
+            }
+          },
+          {
+            "id": "80647946df64b14c",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              }
+            }
+          },
+          {
+            "id": "dde49514ef20b517",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "README.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -369,7 +391,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "c3abdeac6d12cbc1",
+  "active": "dde49514ef20b517",
   "lastOpenFiles": [
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "README.md",
