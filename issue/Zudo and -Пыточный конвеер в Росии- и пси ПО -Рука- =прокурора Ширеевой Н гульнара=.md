@@ -71,3 +71,51 @@ state: Drafting
 ======================================================================================================================================================================
 Просьба составить список вопросов, а точнее координат в формате X:Y где X - символ с начала строки Y - номер строки. 
 Форма т: %02d:%02d: %-20s . На пример: 21-31: какие звуки? после каких манипуляций? 
+> [!failure]- Failure 
+>   TypeError: Cannot read properties of undefined (reading 'map')
+>   
+>   
+>   
+>   - new Promise
+>   
+>   
+>   - plugin:obsidian-textgenerator-plugin:247827 runJSInSandbox
+>     plugin:obsidian-textgenerator-plugin:247827:21
+>   
+>   - plugin:obsidian-textgenerator-plugin:258834 _DefaultCustomProvider.request
+>     plugin:obsidian-textgenerator-plugin:258834:24
+>   
+>   - plugin:obsidian-textgenerator-plugin:258869 async eval
+>     plugin:obsidian-textgenerator-plugin:258869:21
+>   
+>  
+
+> [!failure]- Failure 
+>   TypeError: k2.text is not a function
+>   
+>   - plugin:obsidian-textgenerator-plugin:258821 _DefaultCustomProvider.request
+>     plugin:obsidian-textgenerator-plugin:258821:61
+>   
+>   - plugin:obsidian-textgenerator-plugin:258869 async eval
+>     plugin:obsidian-textgenerator-plugin:258869:21
+>   
+>  
+
+> [!failure]- Failure 
+>   TypeError: Cannot read properties of undefined (reading 'map')
+>   
+>   
+>   
+>   - new Promise
+>   
+>   
+>   - plugin:obsidian-textgenerator-plugin:247827 runJSInSandbox
+>     plugin:obsidian-textgenerator-plugin:247827:21
+>   
+>   - plugin:obsidian-textgenerator-plugin:258834 _DefaultCustomProvider.request
+>     plugin:obsidian-textgenerator-plugin:258834:24
+>   
+>   - plugin:obsidian-textgenerator-plugin:258869 async eval
+>     plugin:obsidian-textgenerator-plugin:258869:21
+>   
+>  

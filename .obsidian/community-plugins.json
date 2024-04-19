@@ -1,6 +1,4 @@
 [
-  "title-generator",
-  "quiz-generator",
   "obsidian-textgenerator-plugin",
   "obsidian-kanban",
   "card-board",
@@ -9,7 +7,6 @@
   "obsidian-tasks-plugin",
   "obsidian-day-planner",
   "project-browser",
-  "select-and-complete",
   "git-integration",
   "progress-clocks",
   "metadata-menu",
@@ -54,7 +51,5 @@
   "obsidian-pluck",
   "persistent-graph",
   "graph-analysis",
-  "new-tab-plus",
-  "gpt-assistant",
-  "gpt3-notes"
+  "new-tab-plus"
 ]

@@ -193,7 +193,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "object..md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -210,7 +210,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "object..md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -256,7 +256,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       },
       {
         "id": "77f847cbcc6365f1",
@@ -280,7 +281,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "object..md"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
               }
             }
           },
@@ -316,7 +317,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "object..md"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
               }
             }
           }
@@ -333,10 +334,8 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": true,
       "command-palette:Open command palette": true,
-      "quiz-generator:Open generator": true,
       "big-calendar:Big Calendar": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "select-and-complete:Select and Complete": true,
       "markdown-table-editor:Open Markdown Table Editor": false,
       "desk:Create new desk": false,
       "git-integration:Open git menu": true,
@@ -357,11 +356,27 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "5cea9c8b0834b0e0",
+  "active": "1951108fb370e0e7",
   "lastOpenFiles": [
+    "textgenerator/configs/llm",
+    "textgenerator/configs",
+    "textgenerator/templates/default/getIdeas.md",
+    "textgenerator/templates/default/getParagraph.md",
+    "textgenerator/templates/default/getTags.md",
+    "textgenerator/templates/default/getOutline.md",
+    "textgenerator/templates/default/rewrite.md",
+    "textgenerator/templates/default/getEmailPos.md",
+    "textgenerator/templates/default/summarize.md",
+    "textgenerator/templates/default/getTitles.md",
+    "textgenerator/templates/default/summarizeLarge.md",
+    "textgenerator/templates/default/simplify.md",
+    "textgenerator/templates/default/getEmailNeg.md",
+    "textgenerator/templates/default",
+    "textgenerator/templates",
+    "textgenerator",
+    "object..md",
     "vault14/alarm.png",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "object..md",
     "vault14/axis9/Мусорщик++.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
@@ -381,10 +396,6 @@
     "Images/ico/keymgr_3_100.ico",
     "Images/ico/keymgr_2_112.ico",
     "Images/ico/keymgr_2_100.ico",
-    "Images/ico/keymgr_1_112.ico",
-    "Images/ico/keymgr_1_100.ico",
-    "Images/ico/keymgr_112.ico",
-    "Images/ico/keymgr_100.ico",
     "Images/ico/Home.png",
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",
@@ -395,18 +406,7 @@
     "Images/ico/Contact.png",
     "README.md",
     "Untitled 3.canvas",
-    "2024-04-05.md",
-    "2024-04-03.md",
-    "vault14/copilot-conversations/Chat2.md",
-    "vault14/Untitled 1.md",
-    "vault14/setting things up.md",
-    "vault14/Quiz 1.md",
-    "AI Research Assistant/History/New Chat.md",
-    "Pros and Cons of [!работа.md",
-    "vault14/Untitled 3.md",
-    "vault14/README.md",
     "Untitled 2.canvas",
-    "vault14/RFC793.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]

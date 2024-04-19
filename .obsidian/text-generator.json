@@ -121,6 +121,92 @@
     }
   },
   "resources": {},
-  "installedPackagesHash": {},
+  "installedPackagesHash": {
+    "default": {
+      "packageId": "default",
+      "prompts": [
+        {
+          "promptId": "getEmailNeg"
+        },
+        {
+          "promptId": "getEmailPos"
+        },
+        {
+          "promptId": "getIdeas"
+        },
+        {
+          "promptId": "getOutline"
+        },
+        {
+          "promptId": "getParagraph"
+        },
+        {
+          "promptId": "getTags"
+        },
+        {
+          "promptId": "getTitles"
+        },
+        {
+          "promptId": "rewrite"
+        },
+        {
+          "promptId": "simplify"
+        },
+        {
+          "promptId": "summarize"
+        },
+        {
+          "promptId": "summarizeLarge"
+        }
+      ],
+      "installedPrompts": [
+        {
+          "promptId": "getEmailNeg",
+          "version": ""
+        },
+        {
+          "promptId": "simplify",
+          "version": ""
+        },
+        {
+          "promptId": "summarizeLarge",
+          "version": ""
+        },
+        {
+          "promptId": "getTitles",
+          "version": ""
+        },
+        {
+          "promptId": "summarize",
+          "version": ""
+        },
+        {
+          "promptId": "getEmailPos",
+          "version": ""
+        },
+        {
+          "promptId": "rewrite",
+          "version": ""
+        },
+        {
+          "promptId": "getOutline",
+          "version": ""
+        },
+        {
+          "promptId": "getTags",
+          "version": ""
+        },
+        {
+          "promptId": "getParagraph",
+          "version": ""
+        },
+        {
+          "promptId": "getIdeas",
+          "version": ""
+        }
+      ],
+      "version": "0.0.5"
+    }
+  },
   "subscriptions": []
 }

@@ -12,7 +12,7 @@
   "outputToBlockQuote": true,
   "freeCursorOnStreaming": true,
   "allowJavascriptRun": false,
-  "experiment": true,
+  "experiment": false,
   "promptsPath": "textgenerator/templates",
   "textGenPath": "textgenerator/",
   "prefix": "\n\n",
@@ -47,7 +47,7 @@
     "text-extractor-tool": true,
     "stop-stream": true,
     "custom-instruct": true,
-    "generate-in-right-click-menu": false,
+    "generate-in-right-click-menu": true,
     "batch-generate-in-right-click-files-menu": true,
     "tg-block-processor": true,
     "reload": true
