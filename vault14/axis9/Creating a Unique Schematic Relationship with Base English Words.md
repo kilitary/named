@@ -16,7 +16,7 @@ state: Idea
 > * select base verb words from english dictionary which identifies unique abstract base schematic relations between theoretical objects. Output all list. Exclude synonims
 
 For such words:
-1. Create
+1. Create[]()
 2. Analyze
 3. Combine
 4. Differentiate

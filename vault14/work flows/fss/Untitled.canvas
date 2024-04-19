@@ -1,10 +1,9 @@
 {
 	"nodes":[
-		{"id":"edf29b7c7120a27e","type":"text","text":"","x":-96,"y":-441,"width":250,"height":60},
+		{"id":"f875edcd7ca10238","x":219,"y":-227,"width":400,"height":400,"type":"file","file":"vault14/alarm.png"},
 		{"id":"37bb4181f4bf1bb3","type":"file","file":"axis9/Creating a Unique Schematic Relationship with Base English Words.md","x":-660,"y":-411,"width":515,"height":811},
-		{"id":"cc18ab6598f09b32","type":"text","text":"math is the best ","x":80,"y":160,"width":250,"height":60,"color":"#4e51a2"},
-		{"id":"bbadde0155ed4c80","type":"file","file":"Untitled 1.canvas","x":205,"y":-320,"width":475,"height":340},
-		{"id":"393e86c9f345eced","type":"text","text":"","x":-910,"y":-540,"width":250,"height":60}
+		{"id":"393e86c9f345eced","type":"text","text":"","x":-910,"y":-540,"width":250,"height":60,"color":"1"},
+		{"id":"cc18ab6598f09b32","type":"text","text":"math is the best ","x":-1280,"y":20,"width":250,"height":60,"color":"#343783"}
 	],
 	"edges":[
 		{"id":"63355b87348afd9d","fromNode":"37bb4181f4bf1bb3","fromSide":"bottom","toNode":"cc18ab6598f09b32","toSide":"top"}

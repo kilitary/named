@@ -41,6 +41,6 @@ trello_board_card_id: 5a4fbbfa9da9c4fb29d14497;5aa0d0de0bca42f09b3ae293
 
 %% kanban:settings
 ```
-{"kanban-plugin":"basic","new-line-trigger":"enter","new-note-folder":"axis9","lane-width":242,"show-checkboxes":true,"tag-colors":[{"tagKey":"","color":"","backgroundColor":""},{"tagKey":"","color":"","backgroundColor":""}],"date-trigger":"@dt","time-trigger":"@tt","show-relative-date":true,"date-colors":[],"link-date-to-daily-note":true,"archive-with-date":true,"append-archive-date":true,"archive-date-separator":"^","date-picker-week-start":1}
+{"kanban-plugin":"basic","new-line-trigger":"enter","new-note-folder":"axis9","lane-width":242,"show-checkboxes":true,"tag-colors":[{"tagKey":"","color":"","backgroundColor":""},{"tagKey":"","color":"","backgroundColor":""}],"date-trigger":"@dt","time-trigger":"@tt","show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after"}],"link-date-to-daily-note":true,"archive-with-date":true,"append-archive-date":true,"archive-date-separator":"^","date-picker-week-start":1,"new-card-insertion-method":"prepend-compact"}
 ```
 %%
