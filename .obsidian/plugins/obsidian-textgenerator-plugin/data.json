@@ -4,7 +4,7 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "Default (Custom)",
+  "selectedProvider": "Ollama (Langchain)",
   "max_tokens": 500,
   "temperature": 0.1,
   "frequency_penalty": 0.5,
@@ -101,7 +101,7 @@
       "model": "gpt-3.5-turbo-16k"
     },
     "Default (Custom)": {
-      "endpoint": "http://localhost:1234/v1/models",
+      "endpoint": "http://localhost:1234",
       "custom_header": "{\n    \"Content-Type\": \"application/json\",\n    authorization: \"Bearer {{api_key}}\"\n}",
       "custom_body": "{\n    model: \"{{model}}\",\n    temperature: {{temperature}},\n    top_p: {{top_p}},\n    frequency_penalty: {{frequency_penalty}},\n    presence_penalty: {{presence_penalty}},\n    max_tokens: {{max_tokens}},\n    n: {{n}},\n    stream: {{stream}},\n    stop: \"{{stop}}\",\n    messages: {{stringify messages}}\n}",
       "model": "gpt-3.5-turbo-16k",
@@ -126,7 +126,9 @@
       "model": "models/gemini-pro"
     },
     "Google Palm (Langchain)": {},
-    "Ollama (Langchain)": {},
+    "Ollama (Langchain)": {
+      "basePath": "http://localhost:1234/v1/models"
+    },
     "Huggingface (Langchain)": {},
     "MistralAI Chat (Langchain)": {
       "basePath": "https://api.mistral.ai/v1",

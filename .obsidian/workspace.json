@@ -54,7 +54,6 @@
             }
           }
         ],
-        "currentTab": 3,
         "stacked": true
       }
     ],
@@ -137,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/alarm.png",
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -154,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/alarm.png",
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -200,8 +199,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "77f847cbcc6365f1",
@@ -225,7 +223,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/alarm.png"
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
               }
             }
           },
@@ -253,7 +251,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/alarm.png"
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
               }
             }
           },
@@ -265,8 +263,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -301,10 +298,10 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "a6b127750a93b99c",
+  "active": "8151e40e18361b1f",
   "lastOpenFiles": [
-    "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "vault14/alarm.png",
+    "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "vault14/Untitled 2.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "vault14/disk_icon.gif",
