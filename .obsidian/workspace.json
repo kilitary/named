@@ -50,27 +50,9 @@
                       "type": "mindmap",
                       "state": {}
                     }
-                  },
-                  {
-                    "id": "8e0cfa096081b965",
-                    "type": "leaf",
-                    "dimension": 33.333333333333336,
-                    "state": {
-                      "type": "mindmap",
-                      "state": {}
-                    }
-                  },
-                  {
-                    "id": "94b7e29e031e1476",
-                    "type": "leaf",
-                    "dimension": 25,
-                    "state": {
-                      "type": "mindmap",
-                      "state": {}
-                    }
                   }
                 ],
-                "currentTab": 3
+                "currentTab": 1
               },
               {
                 "id": "23dc9e10a854ccda",
@@ -224,12 +206,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "section:()",
-                "matchingCase": false,
+                "query": "[\"tags\"]",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
-                "sortOrder": "alphabetical"
+                "sortOrder": "byModifiedTime"
               }
             }
           },
@@ -257,7 +239,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -277,7 +260,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "vault14/axis9/Мусорщик++.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -294,19 +277,9 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "vault14/axis9/Мусорщик++.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
-              }
-            }
-          },
-          {
-            "id": "4b8b7eab9a2a8c27",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
               }
             }
           },
@@ -375,7 +348,7 @@
             }
           }
         ],
-        "currentTab": 10
+        "currentTab": 1
       },
       {
         "id": "77f847cbcc6365f1",
@@ -404,7 +377,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+                "file": "vault14/axis9/Мусорщик++.md"
               }
             }
           },
@@ -426,12 +399,12 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+                "file": "vault14/axis9/Мусорщик++.md"
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -475,10 +448,10 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "8e0cfa096081b965",
+  "active": "1a05ec358086a368",
   "lastOpenFiles": [
-    "vault14/axis9/Мусорщик++.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "vault14/axis9/Мусорщик++.md",
     "README.md",
     "vault14/work flows/fss/Untitled.canvas",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
