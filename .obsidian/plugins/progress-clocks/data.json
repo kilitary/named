@@ -6,24 +6,19 @@
         "children": [
           {
             "type": "counter",
-            "name": "Counter 2",
-            "value": 7
-          },
-          {
-            "type": "counter",
             "name": "Counter 4",
-            "value": -3
+            "value": -8
           },
           {
             "type": "counter",
             "name": "Counter 5",
-            "value": 3
+            "value": 2
           },
           {
             "type": "stopwatch",
             "name": "Stopwatch 6",
-            "startMillis": 1713524836883,
-            "offsetMillis": 0,
+            "startMillis": 1713532909642,
+            "offsetMillis": 8072759,
             "showMillis": true,
             "isRunning": true,
             "lapTimes": [
@@ -33,47 +28,14 @@
           {
             "type": "stopwatch",
             "name": "Stopwatch 7",
-            "startMillis": 1713524343005,
-            "offsetMillis": 15461925,
+            "startMillis": 1713532877902,
+            "offsetMillis": 23996822,
             "showMillis": true,
             "isRunning": true,
             "lapTimes": [
               1139,
               15945036
             ]
-          },
-          {
-            "type": "counter",
-            "name": "Counter 6",
-            "value": 0
-          },
-          {
-            "type": "counter",
-            "name": "Counter 7",
-            "value": 0
-          },
-          {
-            "type": "stopwatch",
-            "name": "Stopwatch 8",
-            "startMillis": 1713524829269,
-            "offsetMillis": 2,
-            "showMillis": true,
-            "isRunning": true,
-            "lapTimes": []
-          }
-        ]
-      },
-      {
-        "name": "Section 2",
-        "children": [
-          {
-            "type": "stopwatch",
-            "name": "Stopwatch 1",
-            "startMillis": 1713524841989,
-            "offsetMillis": 1,
-            "showMillis": true,
-            "isRunning": true,
-            "lapTimes": []
           }
         ]
       }

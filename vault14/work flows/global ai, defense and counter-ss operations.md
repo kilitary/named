@@ -1,8 +1,10 @@
 ---
+
 kanban-plugin: basic
 trello_plugin_note_id: 8v8ijS_owXwtnMJgTdOL5
 trello_board_card_id: 5a4fbbfa9da9c4fb29d14497;5aa0d0de0bca42f09b3ae293
-excalidraw-plugin:
+excalidraw-plugin: 
+
 ---
 
 ## research

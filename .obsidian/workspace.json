@@ -43,9 +43,9 @@
                     }
                   },
                   {
-                    "id": "4df22cc58be4ce51",
+                    "id": "3c6b62956665b1cf",
                     "type": "leaf",
-                    "dimension": 50,
+                    "dimension": 33.333333333333336,
                     "state": {
                       "type": "mindmap",
                       "state": {}
@@ -58,19 +58,6 @@
                 "id": "23dc9e10a854ccda",
                 "type": "tabs",
                 "children": [
-                  {
-                    "id": "baf060152d9affd4",
-                    "type": "leaf",
-                    "state": {
-                      "type": "markdown",
-                      "state": {
-                        "file": "vault14/axis9/Мусорщик++.md",
-                        "mode": "preview",
-                        "backlinks": true,
-                        "source": false
-                      }
-                    }
-                  },
                   {
                     "id": "f873ff7e2f0b8bcb",
                     "type": "leaf",
@@ -85,9 +72,9 @@
                     }
                   },
                   {
-                    "id": "194f1ac89cf09342",
+                    "id": "21bd62873fa54aad",
                     "type": "leaf",
-                    "dimension": 33.333333333333336,
+                    "dimension": 25,
                     "state": {
                       "type": "mindmap",
                       "state": {}
@@ -96,7 +83,6 @@
                   {
                     "id": "b13cf057bfec6157",
                     "type": "leaf",
-                    "dimension": 25,
                     "state": {
                       "type": "markdown",
                       "state": {
@@ -108,7 +94,6 @@
                     }
                   }
                 ],
-                "currentTab": 1,
                 "stacked": true
               }
             ],
@@ -123,12 +108,9 @@
                 "id": "3481689f861765ca",
                 "type": "leaf",
                 "state": {
-                  "type": "markdown",
+                  "type": "kanban",
                   "state": {
-                    "file": "vault14/work flows/global ai, defense and counter-ss operations.md",
-                    "mode": "preview",
-                    "backlinks": true,
-                    "source": true
+                    "file": "vault14/work flows/global ai, defense and counter-ss operations.md"
                   }
                 }
               },
@@ -240,11 +222,11 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 353.5
+    "width": 250.5
   },
   "right": {
     "id": "04f9fc2d318d98b7",
@@ -260,7 +242,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -277,7 +259,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -377,7 +359,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
               }
             }
           },
@@ -399,7 +381,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
               }
             }
           }
@@ -448,8 +430,10 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "1a05ec358086a368",
+  "active": "f873ff7e2f0b8bcb",
   "lastOpenFiles": [
+    "vault14/axis9/Мусорщик++.md",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Kids.ico",
     "Images/ico/keymgr_3_112.ico",
@@ -460,7 +444,6 @@
     "Images/ico/keymgr_1_100.ico",
     "Images/ico/keymgr_112.ico",
     "Images/ico/keymgr_100.ico",
-    "Images/ico/Keyboard.ico",
     "Images/ico/Home.png",
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",
@@ -471,8 +454,6 @@
     "Images/ico/Contact.png",
     "Images/ico/Comments.png",
     "Images/ico/Calendar.png",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
-    "vault14/axis9/Мусорщик++.md",
     "README.md",
     "vault14/work flows/fss/Untitled.canvas",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
