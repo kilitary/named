@@ -59,26 +59,26 @@
                 "id": "3e8d5c9fb252e882",
                 "type": "leaf",
                 "state": {
-                  "type": "markdown",
+                  "type": "kanban",
                   "state": {
-                    "file": "textgenerator/templates/default/getIdeas.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
+                    "file": "Untitled Kanban.md"
                   }
                 }
               },
               {
-                "id": "123291a5d322883a",
+                "id": "8f8e74aa7d53e9e6",
                 "type": "leaf",
                 "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "textgenerator/templates/default/summarize.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
-                  }
+                  "type": "weekly",
+                  "state": {}
+                }
+              },
+              {
+                "id": "7759723882bacee3",
+                "type": "leaf",
+                "state": {
+                  "type": "card-board-view",
+                  "state": {}
                 }
               },
               {
@@ -124,28 +124,30 @@
                 "id": "33f6bbb587498aa4",
                 "type": "leaf",
                 "state": {
-                  "type": "diff-view",
+                  "type": "markdown",
                   "state": {
-                    "file": ".obsidian/workspace.json",
-                    "staged": false
+                    "file": "textgenerator/templates/default/simplify.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
                   }
                 }
-              }
-            ],
-            "currentTab": 9
-          },
-          {
-            "id": "b81cd429bf52c211",
-            "type": "tabs",
-            "children": [
+              },
               {
-                "id": "1951108fb370e0e7",
+                "id": "412460b784498eca",
                 "type": "leaf",
                 "state": {
                   "type": "big-calendar",
                   "state": {}
                 }
-              },
+              }
+            ],
+            "currentTab": 6
+          },
+          {
+            "id": "b81cd429bf52c211",
+            "type": "tabs",
+            "children": [
               {
                 "id": "8151e40e18361b1f",
                 "type": "leaf",
@@ -168,7 +170,8 @@
                 }
               }
             ],
-            "currentTab": 1
+            "currentTab": 1,
+            "stacked": true
           }
         ],
         "direction": "vertical"
@@ -200,8 +203,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#ai",
-                "matchingCase": true,
+                "query": "",
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -253,6 +256,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -269,6 +273,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -315,7 +320,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       },
       {
         "id": "77f847cbcc6365f1",
@@ -338,7 +343,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
+              }
             }
           },
           {
@@ -364,7 +371,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
+              }
             }
           },
           {
@@ -411,19 +420,21 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "33f6bbb587498aa4",
+  "active": "a6b127750a93b99c",
   "lastOpenFiles": [
+    "Untitled Kanban.md",
+    "textgenerator/templates/default/getIdeas.md",
+    "vault14/ccc-final-bios-amd.pdf",
+    "Excalidraw/Drawing 2024-04-19 19.25.49.excalidraw.md",
+    "textgenerator/templates/default/simplify.md",
+    "textgenerator/templates/default/summarize.md",
     "textgenerator/templates/default/getTags.md",
     "Untitled 2.canvas",
     "Untitled.loom",
     "vault14/axis9/Мусорщик++.md",
-    "textgenerator/templates/default/simplify.md",
     "textgenerator/templates/default/getOutline.md",
-    "textgenerator/templates/default/summarize.md",
-    "textgenerator/templates/default/getIdeas.md",
     "textgenerator/templates/default/rewrite.md",
     "README.md",
-    "Excalidraw/Drawing 2024-04-19 19.25.49.excalidraw.md",
     "Excalidraw",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
@@ -451,7 +462,6 @@
     "2024-04-16.md",
     "vault14/work flows/fss/Untitled.canvas",
     "Images/ico/Kinchaku (drawstring bag).ico",
-    "Images/ico/Kids.ico",
     "Images/ico/Home.png",
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",

@@ -18,14 +18,7 @@
             "data": {
               "collapsed": true,
               "name": "chatGPT",
-              "tag": ""
-            }
-          },
-          {
-            "tag": "otherTags",
-            "data": {
-              "collapsed": true,
-              "name": "Other Tags"
+              "tag": "ai"
             }
           },
           {
@@ -34,28 +27,23 @@
               "collapsed": true,
               "name": "Untagged"
             }
+          },
+          {
+            "tag": "otherTags",
+            "data": {
+              "collapsed": true,
+              "name": "Other Tags"
+            }
           }
         ],
         "filters": [
           {
-            "tag": "tagFilter",
-            "data": "ai/"
-          },
-          {
-            "tag": "tagFilter",
-            "data": "chatGPT"
+            "tag": "fileFilter",
+            "data": "2024-04-01.md"
           },
           {
             "tag": "pathFilter",
-            "data": "issue"
-          },
-          {
-            "tag": "pathFilter",
-            "data": "axis9"
-          },
-          {
-            "tag": "pathFilter",
-            "data": "AI Research Assistant/History"
+            "data": "/"
           },
           {
             "tag": "pathFilter",
@@ -63,11 +51,23 @@
           },
           {
             "tag": "pathFilter",
-            "data": "/"
+            "data": "AI Research Assistant/History"
           },
           {
-            "tag": "fileFilter",
-            "data": "2024-04-01.md"
+            "tag": "pathFilter",
+            "data": "axis9"
+          },
+          {
+            "tag": "pathFilter",
+            "data": "issue"
+          },
+          {
+            "tag": "tagFilter",
+            "data": "chatGPT"
+          },
+          {
+            "tag": "tagFilter",
+            "data": "ai/"
           }
         ],
         "filterPolarity": "Allow",
