@@ -4,35 +4,59 @@
     "type": "split",
     "children": [
       {
-        "id": "f0cfec984986f6bd",
-        "type": "tabs",
+        "id": "2e0f59e3a127f8b7",
+        "type": "split",
         "children": [
           {
-            "id": "a4a8cd1dcf2d2623",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-                "mode": "source",
-                "source": false
+            "id": "f0cfec984986f6bd",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "a4a8cd1dcf2d2623",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                    "mode": "source",
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "f8a48624d6d763e8",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
               }
-            }
+            ],
+            "currentTab": 1
           },
           {
-            "id": "f8a48624d6d763e8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-                "mode": "source",
-                "source": false
+            "id": "9466fc50a461d34c",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "dbfa2a0d762a4dfa",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "vault14/ccc-final-bios-amd.pdf"
+                  }
+                }
               }
-            }
+            ]
           }
         ],
-        "currentTab": 1
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -78,8 +102,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -99,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+                "file": "vault14/ccc-final-bios-amd.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+                "file": "vault14/ccc-final-bios-amd.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md"
+                "file": "vault14/ccc-final-bios-amd.pdf"
               }
             }
           },
@@ -217,18 +240,18 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "f8a48624d6d763e8",
+  "active": "dbfa2a0d762a4dfa",
   "lastOpenFiles": [
-    "vault14/39.gif",
+    "vault14/and how do you know what.md",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "AI Research Assistant/History/New Chat.md",
+    "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+    "vault14/39.gif",
     "AI Research Assistant/History",
     "AI Research Assistant",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "issue",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "vault14/test.md",
-    "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-    "vault14/and how do you know what.md",
     "vault14/work flows/fss/Untitled.canvas",
     "vault14/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
