@@ -10,7 +10,7 @@
           {
             "id": "23dc9e10a854ccda",
             "type": "tabs",
-            "dimension": 41.39626352015732,
+            "dimension": 62.37037037037036,
             "children": [
               {
                 "id": "418e55eae9e629e9",
@@ -19,40 +19,28 @@
                   "type": "big-calendar",
                   "state": {}
                 }
-              }
-            ],
-            "stacked": true
-          },
-          {
-            "id": "bafdc0f0176d3610",
-            "type": "tabs",
-            "dimension": 33.62831858407079,
-            "children": [
-              {
-                "id": "daf978af4743cdc8",
-                "type": "leaf",
-                "state": {
-                  "type": "desk-view",
-                  "state": {}
-                }
               },
               {
-                "id": "b18b9ae47321bf1f",
+                "id": "c1ee20584d385b30",
                 "type": "leaf",
                 "state": {
-                  "type": "image",
+                  "type": "markdown",
                   "state": {
-                    "file": "vault14/alarm.png"
+                    "file": "textgenerator/templates/default/summarize.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
                   }
                 }
               }
             ],
-            "currentTab": 1
+            "currentTab": 1,
+            "stacked": true
           },
           {
             "id": "06f9bb1eb170eae6",
             "type": "split",
-            "dimension": 24.97541789577188,
+            "dimension": 37.62962962962963,
             "children": [
               {
                 "id": "c27347b09fba9533",
@@ -329,7 +317,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": true,
+      "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": true,
@@ -358,6 +346,9 @@
   },
   "active": "1951108fb370e0e7",
   "lastOpenFiles": [
+    "object..md",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "textgenerator/templates/default/summarize.md",
     "textgenerator/configs/llm",
     "textgenerator/configs",
     "textgenerator/templates/default/getIdeas.md",
@@ -366,7 +357,6 @@
     "textgenerator/templates/default/getOutline.md",
     "textgenerator/templates/default/rewrite.md",
     "textgenerator/templates/default/getEmailPos.md",
-    "textgenerator/templates/default/summarize.md",
     "textgenerator/templates/default/getTitles.md",
     "textgenerator/templates/default/summarizeLarge.md",
     "textgenerator/templates/default/simplify.md",
@@ -374,14 +364,12 @@
     "textgenerator/templates/default",
     "textgenerator/templates",
     "textgenerator",
-    "object..md",
     "vault14/alarm.png",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/axis9/Мусорщик++.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "vault14/axis9/Drawing 2024-04-19 13.10.27.excalidraw.md",
     "alarm.png",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
@@ -395,7 +383,6 @@
     "Images/ico/keymgr_3_112.ico",
     "Images/ico/keymgr_3_100.ico",
     "Images/ico/keymgr_2_112.ico",
-    "Images/ico/keymgr_2_100.ico",
     "Images/ico/Home.png",
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",

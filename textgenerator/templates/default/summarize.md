@@ -10,3 +10,4 @@ content:
 {{context}}
 prompt:
 summarize the content
+

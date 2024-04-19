@@ -51,5 +51,7 @@
   "obsidian-pluck",
   "persistent-graph",
   "graph-analysis",
-  "new-tab-plus"
+  "new-tab-plus",
+  "mini-toolbar",
+  "ai_llm"
 ]

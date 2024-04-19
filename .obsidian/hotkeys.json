@@ -65,5 +65,37 @@
       ],
       "key": "O"
     }
+  ],
+  "ai_llm:continue-my-story": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "+"
+    }
+  ],
+  "ai_llm:summarize-my-text": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Insert"
+    }
+  ],
+  "ai_llm:make-a-story": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Clear"
+    }
+  ],
+  "ai_llm:send-request-to-llm": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Home"
+    }
   ]
 }
