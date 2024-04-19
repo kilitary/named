@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "vault14/skins.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -78,8 +78,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -99,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/skins.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/skins.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/skins.md"
+                "file": "README.md"
               }
             }
           },
@@ -217,11 +216,11 @@
       "git-integration:Open git menu": false
     }
   },
-  "active": "334497290506c02d",
+  "active": "f8a48624d6d763e8",
   "lastOpenFiles": [
+    "vault14/skins.md",
     "README.md",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "vault14/skins.md",
     "vault14/and how do you know what.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
