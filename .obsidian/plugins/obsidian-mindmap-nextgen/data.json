@@ -3,11 +3,27 @@
   "layout": [
     [
       [
-        null
+        null,
+        null,
+        {
+          "type": "pinned",
+          "path": "README.md"
+        },
+        {
+          "type": "pinned",
+          "path": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+        },
+        {
+          "type": "unpinned"
+        }
       ],
       [
         null,
         null,
+        {
+          "type": "pinned",
+          "path": "vault14/axis9/Мусорщик++.md"
+        },
         null
       ]
     ],
