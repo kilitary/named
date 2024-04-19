@@ -31,10 +31,10 @@
   "dateInHistoryView": true,
   "lineAuthor": {
     "show": false,
-    "followMovement": "inactive",
+    "followMovement": "same-commit",
     "authorDisplay": "initials",
-    "showCommitHash": false,
-    "dateTimeFormatOptions": "date",
+    "showCommitHash": true,
+    "dateTimeFormatOptions": "datetime",
     "dateTimeFormatCustomString": "YYYY-MM-DD HH:mm",
     "dateTimeTimezone": "viewer-local",
     "coloringMaxAge": "1y",
@@ -49,10 +49,10 @@
       "b": 255
     },
     "textColorCss": "var(--text-muted)",
-    "ignoreWhitespace": false,
-    "gutterSpacingFallbackLength": 12,
+    "ignoreWhitespace": true,
+    "gutterSpacingFallbackLength": 25,
     "lastShownAuthorDisplay": "initials",
-    "lastShownDateTimeFormatOptions": "date"
+    "lastShownDateTimeFormatOptions": "datetime"
   },
   "autoCommitMessage": "vaultek x-dump -> {{date}}"
 }

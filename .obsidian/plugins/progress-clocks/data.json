@@ -5,65 +5,37 @@
         "name": "Section 1",
         "children": [
           {
-            "type": "stopwatch",
-            "name": "Stopwatch 1",
-            "startMillis": 1713512706290,
-            "offsetMillis": 1408433605,
-            "showMillis": false,
-            "isRunning": true,
-            "lapTimes": [
-              1089,
-              2149,
-              2988,
-              3728,
-              1391435357,
-              1394093296,
-              1404570032,
-              1409196847
-            ]
-          },
-          {
             "type": "counter",
             "name": "Counter 2",
             "value": 7
           },
           {
-            "type": "stopwatch",
-            "name": "Stopwatch 3",
-            "startMillis": 1713512706290,
-            "offsetMillis": 1408445686,
-            "showMillis": true,
-            "isRunning": true,
-            "lapTimes": [
-              1404589353
-            ]
-          },
-          {
             "type": "counter",
             "name": "Counter 4",
-            "value": 0
+            "value": -3
           },
           {
             "type": "counter",
             "name": "Counter 5",
-            "value": 0
+            "value": 3
           },
           {
             "type": "stopwatch",
             "name": "Stopwatch 6",
-            "startMillis": 1713512706290,
-            "offsetMillis": 3842105,
+            "startMillis": 1713521308201,
+            "offsetMillis": 12444016,
             "showMillis": true,
             "isRunning": true,
             "lapTimes": [
-              1131
+              1131,
+              12434822
             ]
           },
           {
             "type": "stopwatch",
             "name": "Stopwatch 7",
-            "startMillis": 1713512706290,
-            "offsetMillis": 3825210,
+            "startMillis": 1713520695890,
+            "offsetMillis": 11814810,
             "showMillis": true,
             "isRunning": true,
             "lapTimes": [
