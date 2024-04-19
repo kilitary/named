@@ -1,6 +1,7 @@
 {
 	"nodes":[
-		{"id":"4e53addddaaa1329","type":"link","url":"http://kilitary.ru","x":-599,"y":-447,"width":329,"height":354,"color":"5"}
+		{"id":"7fbcce31ae9234dd","x":-395,"y":-303,"width":400,"height":400,"type":"file","file":"Untitled Kanban.md"},
+		{"id":"4e53addddaaa1329","type":"link","url":"http://kilitary.ru","x":-599,"y":-447,"width":329,"height":354,"color":"6"}
 	],
 	"edges":[]
 }

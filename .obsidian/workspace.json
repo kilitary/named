@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b81cd429bf52c211",
+        "id": "f76ce508164adcbb",
         "type": "tabs",
         "children": [
           {
-            "id": "8151e40e18361b1f",
+            "id": "5627250562792d67",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+                "file": "2024-04-02.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,12 +21,12 @@
             }
           },
           {
-            "id": "eb2ce9262953acd7",
+            "id": "cb10bb7f443ab9b1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
+                "file": "vault14/and how do you know what.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -34,26 +34,30 @@
             }
           },
           {
-            "id": "a04887416fa40932",
+            "id": "e320347cebaa1da1",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "vault14/disk_icon.gif"
+                "file": "vault14/and how do you know what.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
               }
             }
           },
           {
-            "id": "a6b127750a93b99c",
+            "id": "18852debe7eb1301",
             "type": "leaf",
             "state": {
               "type": "image",
               "state": {
-                "file": "vault14/alarm.png"
+                "file": "vault14/39.gif"
               }
             }
           }
         ],
+        "currentTab": 2,
         "stacked": true
       }
     ],
@@ -83,7 +87,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#communication",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -136,7 +140,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+                "file": "vault14/and how do you know what.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +157,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+                "file": "vault14/and how do you know what.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -199,7 +203,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       },
       {
         "id": "77f847cbcc6365f1",
@@ -223,7 +228,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
+                "file": "vault14/and how do you know what.md"
               }
             }
           },
@@ -251,7 +256,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
+                "file": "vault14/and how do you know what.md"
               }
             }
           },
@@ -263,7 +268,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -298,12 +304,18 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "8151e40e18361b1f",
+  "active": "e320347cebaa1da1",
   "lastOpenFiles": [
+    "vault14/39.gif",
+    "vault14/and how do you know what.md",
+    "2024-04-02.md",
+    "textgenerator/templates/default/getTags.md",
+    "Untitled.canvas",
     "vault14/alarm.png",
+    "Untitled 1.canvas",
+    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "vault14/Untitled 2.md",
-    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "vault14/disk_icon.gif",
     "Untitled Kanban.md",
     "textgenerator/templates/default/getIdeas.md",
@@ -311,7 +323,6 @@
     "Excalidraw/Drawing 2024-04-19 19.25.49.excalidraw.md",
     "textgenerator/templates/default/simplify.md",
     "textgenerator/templates/default/summarize.md",
-    "textgenerator/templates/default/getTags.md",
     "Untitled 2.canvas",
     "Untitled.loom",
     "vault14/axis9/Мусорщик++.md",
@@ -336,8 +347,6 @@
     "textgenerator/templates/default",
     "textgenerator/templates",
     "textgenerator",
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
-    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/work flows/fss/Untitled.canvas",
     "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Home.png",
@@ -347,8 +356,6 @@
     "Images/ico/Digg.png",
     "Images/ico/DesignFloat.png",
     "Images/ico/Delicious.png",
-    "Untitled 3.canvas",
-    "Untitled.canvas",
-    "Untitled 1.canvas"
+    "Untitled 3.canvas"
   ]
 }
