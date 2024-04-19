@@ -2,28 +2,10 @@
   "version": "2.0",
   "layout": [
     [
-      [
-        null,
-        null,
-        {
-          "type": "pinned",
-          "path": "README.md"
-        }
-      ],
-      [
-        null,
-        null,
-        null,
-        {
-          "type": "pinned",
-          "path": "vault14/axis9/Мусорщик++.md"
-        },
-        null
-      ]
+      null,
+      null
     ],
     [
-      null,
-      null,
       null,
       null
     ]
