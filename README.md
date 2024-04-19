@@ -1,13 +1,10 @@
 ![[alarm.png]]
 
 
-```markdown
 > [!TIP]
 > MELTDOWN CREATOR
-```
+``
 
-
-```markdown
 > [!TIP]
 > FAST
 ```
