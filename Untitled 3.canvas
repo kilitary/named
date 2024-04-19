@@ -1,1 +1,6 @@
-{}
+{
+	"nodes":[
+		{"id":"321c428220e88edb","x":180,"y":100,"width":67,"height":50,"type":"file","file":"vault14/disk_icon.gif"}
+	],
+	"edges":[]
+}

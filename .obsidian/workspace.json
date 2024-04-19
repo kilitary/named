@@ -24,88 +24,14 @@
                       "state": {
                         "file": "Untitled 3.canvas",
                         "viewState": {
-                          "x": 0,
-                          "y": 0,
+                          "x": 213.5,
+                          "y": -70.48421052631576,
                           "zoom": 0
                         }
                       }
                     }
-                  },
-                  {
-                    "id": "2bed726079c69ea0",
-                    "type": "leaf",
-                    "state": {
-                      "type": "markdown",
-                      "state": {
-                        "file": "2024-04-19.md",
-                        "mode": "source",
-                        "backlinks": true,
-                        "source": false
-                      }
-                    }
-                  },
-                  {
-                    "id": "0cb4dba5e33db8d2",
-                    "type": "leaf",
-                    "state": {
-                      "type": "markdown",
-                      "state": {
-                        "file": "2024-04-19.md",
-                        "mode": "source",
-                        "backlinks": true,
-                        "source": false
-                      }
-                    }
-                  },
-                  {
-                    "id": "c823a211df7114f1",
-                    "type": "leaf",
-                    "state": {
-                      "type": "markdown",
-                      "state": {
-                        "file": "2024-04-02.md",
-                        "mode": "source",
-                        "backlinks": true,
-                        "source": false
-                      }
-                    }
-                  },
-                  {
-                    "id": "e12d7597b983cfea",
-                    "type": "leaf",
-                    "state": {
-                      "type": "markdown",
-                      "state": {
-                        "file": "2024-04-03.md",
-                        "mode": "source",
-                        "backlinks": true,
-                        "source": false
-                      }
-                    }
-                  },
-                  {
-                    "id": "75b24cf1ef087e73",
-                    "type": "leaf",
-                    "state": {
-                      "type": "markdown",
-                      "state": {
-                        "file": "2024-04-05.md",
-                        "mode": "source",
-                        "backlinks": true,
-                        "source": false
-                      }
-                    }
-                  },
-                  {
-                    "id": "8178663ff4fd0131",
-                    "type": "leaf",
-                    "state": {
-                      "type": "graph",
-                      "state": {}
-                    }
                   }
-                ],
-                "currentTab": 6
+                ]
               },
               {
                 "id": "23dc9e10a854ccda",
@@ -166,9 +92,12 @@
                 "id": "3481689f861765ca",
                 "type": "leaf",
                 "state": {
-                  "type": "kanban",
+                  "type": "markdown",
                   "state": {
-                    "file": "vault14/work flows/global ai, defense and counter-ss operations.md"
+                    "file": "vault14/work flows/global ai, defense and counter-ss operations.md",
+                    "mode": "preview",
+                    "backlinks": true,
+                    "source": true
                   }
                 }
               },
@@ -180,9 +109,9 @@
                   "state": {
                     "file": "vault14/work flows/fss/Untitled.canvas",
                     "viewState": {
-                      "x": 4.4175056532477655,
-                      "y": -70.33192318392412,
-                      "zoom": -1.3795941500940085
+                      "x": 2062.561255446096,
+                      "y": -785.8686250714502,
+                      "zoom": -3.379594150094009
                     }
                   }
                 }
@@ -201,9 +130,19 @@
                     }
                   }
                 }
+              },
+              {
+                "id": "94deb9b9ca32c079",
+                "type": "leaf",
+                "state": {
+                  "type": "card-browser-view",
+                  "state": {
+                    "path": "/"
+                  }
+                }
               }
             ],
-            "currentTab": 1,
+            "currentTab": 3,
             "stacked": true
           }
         ],
@@ -289,6 +228,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "vault14/disk_icon.gif",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -305,6 +245,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "vault14/disk_icon.gif",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -315,7 +256,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "vault14/disk_icon.gif"
+              }
             }
           },
           {
@@ -411,7 +354,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "vault14/disk_icon.gif"
+              }
             }
           },
           {
@@ -431,10 +376,13 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "vault14/disk_icon.gif"
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -478,20 +426,20 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "3082f803f3ba694d",
+  "active": "5edcb28b2f33b65f",
   "lastOpenFiles": [
+    "vault14/work flows/global ai, defense and counter-ss operations.md",
+    "Untitled 3.canvas",
+    "vault14/work flows/fss/Untitled.canvas",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "2024-04-05.md",
     "2024-04-03.md",
     "2024-04-02.md",
     "2024-04-19.md",
-    "Untitled 3.canvas",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "vault14/work flows/fss/Untitled.canvas",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "axis9",
-    "vault14/work flows/global ai, defense and counter-ss operations.md",
     "README.md",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "vault14/axis9/Мусорщик++.md",
     "Pasted image 20240419070054.png",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
@@ -512,7 +460,6 @@
     "vault14/RFC793.md",
     "2024-04-01.md",
     "vault14/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "vault14/disk_icon.gif",
     "vault14/ccc-final-bios-amd.pdf",
     "vault14/39.gif",
