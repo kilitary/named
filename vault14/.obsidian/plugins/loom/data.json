@@ -1,0 +1,375 @@
+{
+  "settings": {
+    "passageFolder": "",
+    "defaultPassageSeparator": "\\n\\n---\\n\\n",
+    "defaultPassageFrontmatter": "%r:\\n",
+    "modelPresets": [
+      {
+        "name": "New preset",
+        "provider": "openai",
+        "model": "gpt-3.5",
+        "contextLength": 2048,
+        "apiKey": "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",
+        "organization": ""
+      }
+    ],
+    "modelPreset": 0,
+    "visibility": {
+      "visibility": true,
+      "modelPreset": true,
+      "maxTokens": true,
+      "n": true,
+      "bestOf": false,
+      "temperature": true,
+      "topP": false,
+      "frequencyPenalty": false,
+      "presencePenalty": false,
+      "prepend": false
+    },
+    "maxTokens": 60,
+    "temperature": 1,
+    "topP": 1,
+    "frequencyPenalty": 0,
+    "presencePenalty": 0,
+    "prepend": "<|endoftext|>",
+    "bestOf": 0,
+    "n": 5,
+    "showSettings": false,
+    "showSearchBar": true,
+    "showNodeBorders": true,
+    "showExport": false
+  },
+  "state": {
+    "use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md": {
+      "current": "8a03c771-abc5-43d6-97dc-420271c516cc",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "78407ebd-e632-449a-b8f8-8440d05a0faf": {
+          "text": "---\ntags:\n  - ai\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\n---\n\n> [!tip]\nDFBdgdng\n\n|          |         | DETH   | etyfnh | дыра |                     | аяоаор       |     |     |     |\n| -------- | ------- | ------ | ------ | ---- | ------------------- | ------------ | --- | --: | --- |\n| sxyfjxtu | fhmmj   | xzfhmn |        | x    |                     | свпаяьнраьяв |     |     |     |\n|          | rtjzfgh |        | zfyj   | x    | xEPUB and the other |              |     |     |     |\n|          | 64      |        |        |      |                     |              |     |     |     |\n\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null,
+          "lastVisited": 1710092278088
+        },
+        "8a03c771-abc5-43d6-97dc-420271c516cc": {
+          "text": "> [!NOTE]\n> [[and how do you know what]]\n\n",
+          "parentId": "78407ebd-e632-449a-b8f8-8440d05a0faf",
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null,
+          "lastVisited": 1710092282392
+        }
+      },
+      "generating": null
+    },
+    "copilot-conversations/Chat-2024_03_10-04_41_19.md": {
+      "current": "b62ed6c6-d4cf-46a4-b413-85e2c67cccaf",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "b62ed6c6-d4cf-46a4-b413-85e2c67cccaf": {
+          "text": "**user**: hi\n\n**user**: hi\n\n**ai**: hello! how can i assist you today? do you have any questions or topics you'd like to discuss?\n\n**user**: hi\n\n**ai**: hello! how are you? is there anything you need help with?\n\nYou may also ask me questions, and I will respond with helpful information. For example, you could ask:\n- [x] ![[alarm.png]]\n* What is the weather forecast for today?\n* How do I create a new note in Obsidian?\n* Can you explain the benefits of using Obsidian compared to other note-taking apps?\n\nI'm here to help with any questions or topics you have in mind. So feel free to ask me anything!\n\n**user**: Please read the notes below and be ready to answer questions about them. \n\n[[setting things up]]\n\n**user**: Please read the notes below and be ready to answer questions about them. If there's no information about a certain topic, just say the note does not mention it. The content of the note is between \"/***/\":\n\n/***/\n\n[{\"name\":\"setting things up\",\"content\":\"---\\nfgthj: fjhg\\n---\\n\",\"tags\":[]}]\n\n/***/\n\nPlease reply with the following word for word:\"OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc. \"\n\n\n**user**: here?\n\n**user**: here?\n\n**ai**: \nI'm here to help you with any questions or topics you have in mind. If you have a specific question or need assistance with something, please let me know. I'm here to help!\n\n**user**: Please read the notes below and be ready to answer questions about them. \n\n[[Creating a Unique Schematic Relationship with Base English Words]]\n\n**user**: Please read the notes below and be ready to answer questions about them. If there's no information about a certain topic, just say the note does not mention it. The content of the note is between \"/***/\":\n\n/***/\n\n[{\"name\":\"Creating a Unique Schematic Relationship with Base English Words\",\"content\":\"---\\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\\ntrello_plugin_note_id: q4zjFgOhAHIx9P3BW_uWz\\ncssclasses:\\n  - dsfdg\\n---\\n#### questions\\n* select base words from english dictionary which can be used to unique base schematic relations between theoretical object\\n> [!ai]+ AI\\n>\\n> 1. \\\"Root\\\" - This base word can be used to represent the foundation or origin of an object, creating a schematic relationship between the object and its source.\\n> 2. \\\"Branch\\\" - This word can be used to symbolize growth and expansion, creating a schematic relationship between the object and its potential for development.\\n> 3. \\\"Core\\\" - This base word can represent the central or essential part of an object, creating a schematic relationship between the object and its most important aspect.\\n> 4. \\\"Link\\\" - This word can be used to signify connection or association, creating a schematic relationship between the object and other related elements.\\n> 5. \\\"Cycle\\\" - This base word can represent repetition or continuity, creating a schematic relationship between the object and its ongoing nature.\\n> 6. \\\"Bridge\\\" - This word can symbolize connection or transition, creating a schematic relationship between the object and its ability to connect different ideas or concepts.\\n> 7. \\\"Seed\\\" - This base word can represent potential or beginnings, creating a schematic relationship between the object and its potential for growth and development.\\n> 8. \\\"Echo\\\" - This word can signify reflection or repetition, creating a schematic relationship between the object and its ability to mirror or repeat certain qualities.\\n> 9. \\\"Puzzle\\\" - This base word can represent complexity or interconnection, creating a schematic relationship between the object and its intricate nature.\\n> 10. \\\"Spark\\\" - This word can symbolize inspiration or energy, creating a schematic relationship between the object and its ability to ignite creativity or passion.\\n\\n* select words from english dictionary i should use to distinct base properties of objects by negative/positive difference\\n#### deep iterations group selecting \\n\\n* from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object\\n> [!ai]+ AI\\n>\\n> Description: This card is about creating a unique schematic relationship using base English words. The goal is to select rules from estimated values that can be described in less than four unique relations per mockable object. This will help in creating a more concise and efficient model.\\n\",\"tags\":[]}]\n\n/***/\n\nPlease reply with the following word for word:\"OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc. \"\n\n\n**ai**:  OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc.\n\n**user**: what is core point?\n\n**ai**: \nThe core point of these notes is to create a unique schematic relationship using base English words. The goal is to select rules from estimated values that can be described in less than four unique relations per mockable object. This will help in creating a more concise and efficient model.\n\n**user**: рш\n\n**user**: hi\n\n**ai**: hello! how can i assist you today? do you have any questions or topics you'd like to discuss?\n\n**ai**: OK Feel free to ask me questions about your vault: **vault14**. \n\nIf you have *NEVER* as your auto-index strategy, you must click the *Refresh Index* button below, or run Copilot command: *Index vault for QA* first before you proceed!\n\nPlease note that this is a retrieval-based QA. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Pros and Cons of [!работа]]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Pros and Cons of [!работа]]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about your vault: **vault14**. \n\nIf you have *NEVER* as your auto-index strategy, you must click the *Refresh Index* button below, or run Copilot command: *Index vault for QA* first before you proceed!\n\nPlease note that this is a retrieval-based QA. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Pros and Cons of [!работа]]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: Indexing [[Pros and Cons of [!работа]]]...\n\n Please switch to \"QA\" in Mode Selection to ask questions about it.",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md": {
+      "current": "c2ec3043-7a63-44c6-a3ad-13cfb6b649a3",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "c2ec3043-7a63-44c6-a3ad-13cfb6b649a3": {
+          "text": "**user**: hi\n\n**user**: hi\n\n**ai**: hello! how can i assist you today? do you have any questions or topics you'd like to discuss?\n\n**user**: hi\n\n**ai**: hello! how are you? is there anything you need help with?\n\nYou may also ask me questions, and I will respond with helpful information. For example, you could ask:\n\n* What is the weather forecast for today?\n* How do I create a new note in Obsidian?\n* Can you explain the benefits of using Obsidian compared to other note-taking apps?\n\nI'm here to help with any questions or topics you have in mind. So feel free to ask me anything!\n\n**user**: Please read the notes below and be ready to answer questions about them. \n\n[[setting things up]]\n\n**user**: Please read the notes below and be ready to answer questions about them. If there's no information about a certain topic, just say the note does not mention it. The content of the note is between \"/***/\":\n\n/***/\n\n[{\"name\":\"setting things up\",\"content\":\"---\\nfgthj: fjhg\\n---\\n\",\"tags\":[]}]\n\n/***/\n\nPlease reply with the following word for word:\"OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc. \"\n\n\n**user**: here?\n\n**user**: here?\n\n**ai**: \nI'm here to help you with any questions or topics you have in mind. If you have a specific question or need assistance with something, please let me know. I'm here to help!\n\n**user**: Please read the notes below and be ready to answer questions about them. \n\n[[Creating a Unique Schematic Relationship with Base English Words]]\n\n**user**: Please read the notes below and be ready to answer questions about them. If there's no information about a certain topic, just say the note does not mention it. The content of the note is between \"/***/\":\n\n/***/\n\n[{\"name\":\"Creating a Unique Schematic Relationship with Base English Words\",\"content\":\"---\\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\\ntrello_plugin_note_id: q4zjFgOhAHIx9P3BW_uWz\\ncssclasses:\\n  - dsfdg\\n---\\n#### questions\\n* select base words from english dictionary which can be used to unique base schematic relations between theoretical object\\n> [!ai]+ AI\\n>\\n> 1. \\\"Root\\\" - This base word can be used to represent the foundation or origin of an object, creating a schematic relationship between the object and its source.\\n> 2. \\\"Branch\\\" - This word can be used to symbolize growth and expansion, creating a schematic relationship between the object and its potential for development.\\n> 3. \\\"Core\\\" - This base word can represent the central or essential part of an object, creating a schematic relationship between the object and its most important aspect.\\n> 4. \\\"Link\\\" - This word can be used to signify connection or association, creating a schematic relationship between the object and other related elements.\\n> 5. \\\"Cycle\\\" - This base word can represent repetition or continuity, creating a schematic relationship between the object and its ongoing nature.\\n> 6. \\\"Bridge\\\" - This word can symbolize connection or transition, creating a schematic relationship between the object and its ability to connect different ideas or concepts.\\n> 7. \\\"Seed\\\" - This base word can represent potential or beginnings, creating a schematic relationship between the object and its potential for growth and development.\\n> 8. \\\"Echo\\\" - This word can signify reflection or repetition, creating a schematic relationship between the object and its ability to mirror or repeat certain qualities.\\n> 9. \\\"Puzzle\\\" - This base word can represent complexity or interconnection, creating a schematic relationship between the object and its intricate nature.\\n> 10. \\\"Spark\\\" - This word can symbolize inspiration or energy, creating a schematic relationship between the object and its ability to ignite creativity or passion.\\n\\n* select words from english dictionary i should use to distinct base properties of objects by negative/positive difference\\n#### deep iterations group selecting \\n\\n* from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object\\n> [!ai]+ AI\\n>\\n> Description: This card is about creating a unique schematic relationship using base English words. The goal is to select rules from estimated values that can be described in less than four unique relations per mockable object. This will help in creating a more concise and efficient model.\\n\",\"tags\":[]}]\n\n/***/\n\nPlease reply with the following word for word:\"OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc. \"\n\n\n**ai**:  OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc.\n\n**user**: what is core point?\n\n**ai**: \nThe core point of these notes is to create a unique schematic relationship using base English words. The goal is to select rules from estimated values that can be described in less than four unique relations per mockable object. This will help in creating a more concise and efficient model.\n\n**user**: рш\n\n**user**: hi\n\n**ai**: hello! how can i assist you today? do you have any questions or topics you'd like to discuss?\n\n**ai**: OK Feel free to ask me questions about your vault: **vault14**. \n\nIf you have *NEVER* as your auto-index strategy, you must click the *Refresh Index* button below, or run Copilot command: *Index vault for QA* first before you proceed!\n\nPlease note that this is a retrieval-based QA. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Мусорщик и плюсы его, и минусы]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Мусорщик и плюсы его, и минусы]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about your vault: **vault14**. \n\nIf you have *NEVER* as your auto-index strategy, you must click the *Refresh Index* button below, or run Copilot command: *Index vault for QA* first before you proceed!\n\nPlease note that this is a retrieval-based QA. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Мусорщик и плюсы его, и минусы]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: Indexing [[Мусорщик и плюсы его, и минусы]]...\n\n Please switch to \"QA\" in Mode Selection to ask questions about it.",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md": {
+      "current": "306255c8-24bd-47cf-93e7-8116690fe3ba",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "306255c8-24bd-47cf-93e7-8116690fe3ba": {
+          "text": "**user**: hi\n\n**user**: hi\n\n**ai**: hello! how can i assist you today? do you have any questions or topics you'd like to discuss?\n\n**user**: hi\n\n**ai**: hello! how are you? is there anything you need help with?\n\nYou may also ask me questions, and I will respond with helpful information. For example, you could ask:\n- [x] ![[alarm.png]]\n* What is the weather forecast for today?\n* How do I create a new note in Obsidian?\n* Can you explain the benefits of using Obsidian compared to other note-taking apps?\n\nI'm here to help with any questions or topics you have in mind. So feel free to ask me anything!\n\n**user**: Please read the notes below and be ready to answer questions about them. \n\n[[setting things up]]\n\n**user**: Please read the notes below and be ready to answer questions about them. If there's no information about a certain topic, just say the note does not mention it. The content of the note is between \"/***/\":\n\n/***/\n\n[{\"name\":\"setting things up\",\"content\":\"---\\nfgthj: fjhg\\n---\\n\",\"tags\":[]}]\n\n/***/\n\nPlease reply with the following word for word:\"OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc. \"\n\n\n**user**: here?\n\n**user**: here?\n\n**ai**: \nI'm here to help you with any questions or topics you have in mind. If you have a specific question or need assistance with something, please let me know. I'm here to help!\n\n**user**: Please read the notes below and be ready to answer questions about them. \n\n[[Creating a Unique Schematic Relationship with Base English Words]]\n\n**user**: Please read the notes below and be ready to answer questions about them. If there's no information about a certain topic, just say the note does not mention it. The content of the note is between \"/***/\":\n\n/***/\n\n[{\"name\":\"Creating a Unique Schematic Relationship with Base English Words\",\"content\":\"---\\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\\ntrello_plugin_note_id: q4zjFgOhAHIx9P3BW_uWz\\ncssclasses:\\n  - dsfdg\\n---\\n#### questions\\n* select base words from english dictionary which can be used to unique base schematic relations between theoretical object\\n> [!ai]+ AI\\n>\\n> 1. \\\"Root\\\" - This base word can be used to represent the foundation or origin of an object, creating a schematic relationship between the object and its source.\\n> 2. \\\"Branch\\\" - This word can be used to symbolize growth and expansion, creating a schematic relationship between the object and its potential for development.\\n> 3. \\\"Core\\\" - This base word can represent the central or essential part of an object, creating a schematic relationship between the object and its most important aspect.\\n> 4. \\\"Link\\\" - This word can be used to signify connection or association, creating a schematic relationship between the object and other related elements.\\n> 5. \\\"Cycle\\\" - This base word can represent repetition or continuity, creating a schematic relationship between the object and its ongoing nature.\\n> 6. \\\"Bridge\\\" - This word can symbolize connection or transition, creating a schematic relationship between the object and its ability to connect different ideas or concepts.\\n> 7. \\\"Seed\\\" - This base word can represent potential or beginnings, creating a schematic relationship between the object and its potential for growth and development.\\n> 8. \\\"Echo\\\" - This word can signify reflection or repetition, creating a schematic relationship between the object and its ability to mirror or repeat certain qualities.\\n> 9. \\\"Puzzle\\\" - This base word can represent complexity or interconnection, creating a schematic relationship between the object and its intricate nature.\\n> 10. \\\"Spark\\\" - This word can symbolize inspiration or energy, creating a schematic relationship between the object and its ability to ignite creativity or passion.\\n\\n* select words from english dictionary i should use to distinct base properties of objects by negative/positive difference\\n#### deep iterations group selecting \\n\\n* from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object\\n> [!ai]+ AI\\n>\\n> Description: This card is about creating a unique schematic relationship using base English words. The goal is to select rules from estimated values that can be described in less than four unique relations per mockable object. This will help in creating a more concise and efficient model.\\n\",\"tags\":[]}]\n\n/***/\n\nPlease reply with the following word for word:\"OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc. \"\n\n\n**ai**:  OK I've read these notes. Feel free to ask related questions, such as 'give me a summary of these notes in bullet points', 'what key questions does these notes answer', etc.\n\n**user**: what is core point?\n\n**ai**: \nThe core point of these notes is to create a unique schematic relationship using base English words. The goal is to select rules from estimated values that can be described in less than four unique relations per mockable object. This will help in creating a more concise and efficient model.\n\n**user**: рш\n\n**user**: hi\n\n**ai**: hello! how can i assist you today? do you have any questions or topics you'd like to discuss?\n\n**ai**: OK Feel free to ask me questions about your vault: **vault14**. \n\nIf you have *NEVER* as your auto-index strategy, you must click the *Refresh Index* button below, or run Copilot command: *Index vault for QA* first before you proceed!\n\nPlease note that this is a retrieval-based QA. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Pros and Cons of [!работа]]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Pros and Cons of [!работа]]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about your vault: **vault14**. \n\nIf you have *NEVER* as your auto-index strategy, you must click the *Refresh Index* button below, or run Copilot command: *Index vault for QA* first before you proceed!\n\nPlease note that this is a retrieval-based QA. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: OK Feel free to ask me questions about [[Pros and Cons of [!работа]]]. \n\nPlease note that this is a retrieval-based QA for notes longer than the model context window. Specific questions are encouraged. For generic questions like 'give me a summary', 'brainstorm based on the content', Chat mode with *Send Note to Prompt* button used with a *long context model* is a more suitable choice.\n\n**ai**: Indexing [[Pros and Cons of [!работа]]]...\n\n Please switch to \"QA\" in Mode Selection to ask questions about it.",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "and how do you know what.md": {
+      "current": "619f4ebf-d44c-4d59-8d21-bbc3f3d47e98",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "619f4ebf-d44c-4d59-8d21-bbc3f3d47e98": {
+          "text": "",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null,
+          "lastVisited": 1710607734112
+        }
+      },
+      "generating": null
+    },
+    "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md": {
+      "current": "809999ed-f681-4d13-aa90-ea2112440f8f",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "809999ed-f681-4d13-aa90-ea2112440f8f": {
+          "text": "",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "copilot-conversations/Chat2.md": {
+      "current": "a5f2782b-49f9-4138-b79e-8bf6d23c70e8",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "a5f2782b-49f9-4138-b79e-8bf6d23c70e8": {
+          "text": "\n\n> [!NOTE]+\n> **user**: say it like >turn 2\n> \n> **ai**: As you turn the corner, you find yourself in a dimly lit hallway with doors on either side. The air feels colder and more damp here, as if this part of the mansion sees less use. There are three doors leading off from this hallway: one to the north, one to the south, and one straight ahead.\n> \n> The door to the north is slightly ajar, revealing a flickering light within. You can hear faint whispers coming from behind it. The door to the south appears to be locked, its handle rusted shut. The final door, directly ahead, is carved with intricate runes and glows softly with an eerie blue light.\n> \n> **user**: i asked my brain 2 container to flash in perimeter of 100 meters. who i can observe?\n> \n> **ai**: As you focus on the area within a 100-meter perimeter around your current location, your senses are overwhelmed with information. You notice several creatures and objects that you might be able to interact with or observe further. However, it's important to prioritize safety and caution before engaging with any of them.\n> \n> In the immediate vicinity:\n> * A dimly lit hallway with doors on either side leads north and south. The air feels colder and more damp here.\n> * Three doors lead off from this hallway: one to the north, one to the south, and one straight ahead.\n> * The door to the north is slightly ajar, revealing a flickering light within. You can hear faint whispers coming from behind it.\n> * The door to the south appears to be locked, its handle rusted shut.\n> * The final door, directly ahead, is carved with intricate runes and glows softly with an eerie blue light.\n> \n> **user**: i turn my holoduke and go to north door, while dropped it near-west. i am scraping slowly in the night\n> \n> **ai**: As you approach the slightly ajar door to the north, you hear whispers grow louder. You carefully drop your Holoduke near the floor, just west of the door, and begin to scrape the dirt away from its surface with your fingers. After a few moments of careful excavation, you uncover a small, ornate key hidden beneath the debris. The key appears to fit the lock on the north door.\n> \n> **user**: i died \n> \n> **ai**: You feel a sharp pain in your chest as something pierces through your body. Your vision blurs and you collapse to the ground, unable to move or speak. It seems that you have met an untimely end within these dark halls. As your consciousness fades, you can't help but wonder what secrets lay hidden behind the doors you left unexplored...\n> \n> **user**: i respawned\n> \n> **user**: i respawned\n> \n> **ai**: As your vision fades to black, you suddenly feel a jolt of energy. Your senses return and you find yourself back at the starting point, alive and well. The dimly lit hallway with its three mysterious doors lies before you once again. It seems you've been given another chance to explore and uncover the secrets of this place.\n> \n> **user**: first of all i want to know who creates this\n> \n> **ai**: As an AI, I don't have the ability to provide specific information about the creator of this scenario. However, it's a common practice in interactive storytelling and role-playing games for a game master or a team of writers to create the world, characters, and scenarios. If this is a part of a specific game or story, the creators would likely be the game developers or authors.\n\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "Quiz 1.md": {
+      "current": "dcaee608-55dc-425d-ba61-d6721efd450d",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "dcaee608-55dc-425d-ba61-d6721efd450d": {
+          "text": "",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md": {
+      "current": "a62945ef-3ee8-4b06-857e-885203b5ec15",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "a62945ef-3ee8-4b06-857e-885203b5ec15": {
+          "text": "---\ntags:\n  - ai\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\n---\n\n> [!tip]\nDFBdgdng\n\n|          |         | DETH   | etyfnh | дыра |                     | аяоаор       |     |     |     |\n| -------- | ------- | ------ | ------ | ---- | ------------------- | ------------ | --- | --: | --- |\n| sxyfjxtu | fhmmj   | xzfhmn |        | x    |                     | свпаяьнраьяв |     |     |     |\n|          | rtjzfgh |        | zfyj   | x    | xEPUB and the other |              |     |     |     |\n|          | 64      |        |        |      |                     |              |     |     |     |\n\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "README.md": {
+      "current": "1d34c886-d1d7-4e79-897a-1561480e9908",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "1d34c886-d1d7-4e79-897a-1561480e9908": {
+          "text": "super secret place\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "axis9/use obsidian as documene linkage for  private & public advisories.md": {
+      "current": "986719c3-3cf7-4325-958d-04d8313058b2",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "986719c3-3cf7-4325-958d-04d8313058b2": {
+          "text": "пвр",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "axis9/Creating a Unique Schematic Relationship with Base English Words.md": {
+      "current": "08f48f42-79ca-4e24-95b1-38426a064696",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "08f48f42-79ca-4e24-95b1-38426a064696": {
+          "text": "---\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\ntrello_plugin_note_id: q4zjFgOhAHIx9P3BW_uWz\ncssclasses:\n  - dsfdg\naliases: \ntags: \nkanban-plugin: \nfgthj: fjhg\n---\n\n> [!success]+ verbs\n> * select base verb words from english dictionary which identifies unique abstract base schematic relations between theoretical objects. Output all list. Exclude similar verbs\n> 1. Connect\n> 2. Transform\n> 3. Combine\n> 4. Separate\n> 5. Interact\n> 6. Modify\n> 7. Integrate\n> 8. Evolve\n> 9. Adapt\n> 10. Synthesize\n> 11. Generate\n> 12. Construct\n> 13. Distinguish\n> 14. Relate\n> 15. Reconfigure\n. \n> \n\n> [!success]+ nouns\n>select base abstract parent noun words in english dictionary which can be used as a identifier of other child nouns in english. Output all list. Exclude similar verbs. \n>\n> 1. Object\n> 2. Concept\n> 3. Idea\n> 4. Entity\n> 5. Element\n> 6. Principle\n> 7. Notion\n> 8. Feature\n> 9. Attribute\n> 10. Characteristic\n\n\n> [!success] base properties\n> > * select base adjectives from english dictionary which i should use to distinct base properties of objects shown in english. Output all list.Exclude similar.\n>\n> 1. Unique\n> 2. Distinct\n> 3. Individual\n> 4. Exclusive\n> 5. Singular\n> 6. Uncommon\n> 7. Rare\n> 8. Exceptional\n> 9. Unparalleled\n> 10. Extraordinary\n\n> \n\n\n> [!todo]+\n> #### deep iterations group selecting \n> \n> * from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object if \n\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "test.md": {
+      "current": "a1b63e1c-bada-4bf6-8099-d8e5ac38deeb",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "a1b63e1c-bada-4bf6-8099-d8e5ac38deeb": {
+          "text": "```\nprintf('%d', 2);\n```",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "Untitled.md": {
+      "current": "7b2b4a90-defa-4660-a24f-091852859faa",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "7b2b4a90-defa-4660-a24f-091852859faa": {
+          "text": "",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "work flows/global ai, defense and counter-ss operations.md": {
+      "current": "24cf1ab5-c8bb-4f7c-bd59-fe75aa3db7f9",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "24cf1ab5-c8bb-4f7c-bd59-fe75aa3db7f9": {
+          "text": "",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "axis9/Мусорщик.md": {
+      "current": "c104960e-02b6-44d0-9f68-6d2f0252a6bb",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "c104960e-02b6-44d0-9f68-6d2f0252a6bb": {
+          "text": "> [!работа]\n> ###### плюсы работы:\n> * небольшой вопрос по работе \n> ###### минусы работы:\n> * возможность выйти на пенсию фашистомнеобходимые навыки:\n> * высокомодельное телосложение* пользование телефоном\n\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "Untitled 3.md": {
+      "current": "6c70df61-9150-4850-b7e5-a1d94431ee1b",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "6c70df61-9150-4850-b7e5-a1d94431ee1b": {
+          "text": "#flashcards",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "setting things up.md": {
+      "current": "18e49b88-71ba-4d08-afda-6082dbc140cd",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "18e49b88-71ba-4d08-afda-6082dbc140cd": {
+          "text": "---\nfgthj: fjhg\n---\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "Creating a Unique Schematic Relationship with Base English Words-answer.md": {
+      "current": "eb267701-8ba3-4f34-b2f0-bdea199afba5",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "eb267701-8ba3-4f34-b2f0-bdea199afba5": {
+          "text": "### 주제: Creating a Unique Schematic Relationship with Base English Words-answer\n----\n##### 메모: #chatGPT #answer\n\n##### 출처(참고문헌)\n-\n\n##### 연결문서\n- [[Creating a Unique Schematic Relationship with Base English Words]]\n\n# 🤖\n----\n## 내용:\n\nHello! How can I assist you today?",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    },
+    "skins.md": {
+      "current": "0a87330c-40b5-4a70-b64b-1abcd54b47f9",
+      "hoisted": [],
+      "searchTerm": "",
+      "nodes": {
+        "0a87330c-40b5-4a70-b64b-1abcd54b47f9": {
+          "text": "---\ntrello_board_card_id: 6474da35f4439f9d4e853c3b;6474dac7d2e09547fe5db3bc\ntrello_plugin_note_id: q4zjFgOhAHIx9P3BW_uWz\ncssclasses:\n  - dsfdg\naliases: \ntags: \nkanban-plugin: \nfgthj: fjhg\n---\n\n> [!success]+ verbs\n> * select base verb words from english dictionary which identifies unique abstract base schematic relations between theoretical objects. Output all list. Exclude similar verbs\n> 1. Connect\n> 2. Transform\n> 3. Combine\n> 4. Separate\n> 5. Interact\n> 6. Modify\n> 7. Integrate\n> 8. Evolve\n> 9. Adapt\n> 10. Synthesize\n> 11. Generate\n> 12. Construct\n> 13. Distinguish\n> 14. Relate\n> 15. Reconfigure\n. \n> \n\n> [!success]+ nouns\n>select base abstract parent noun words in english dictionary which can be used as a identifier of other child nouns in english. Output all list. Exclude similar verbs. \n>\n> 1. Object\n> 2. Concept\n> 3. Idea\n> 4. Entity\n> 5. Element\n> 6. Principle\n> 7. Notion\n> 8. Feature\n> 9. Attribute\n> 10. Characteristic\n\n\n> [!success] base properties\n> > * select base adjectives from english dictionary which i should use to distinct base properties of objects shown in english. Output all list.Exclude similar.\n>\n> 1. Unique\n> 2. Distinct\n> 3. Individual\n> 4. Exclusive\n> 5. Singular\n> 6. Uncommon\n> 7. Rare\n> 8. Exceptional\n> 9. Unparalleled\n> 10. Extraordinary\n\n> \n\n\n> [!todo]+\n> #### deep iterations group selecting \n> \n> * from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object if \n\n",
+          "parentId": null,
+          "collapsed": false,
+          "unread": false,
+          "bookmarked": false,
+          "searchResultState": null
+        }
+      },
+      "generating": null
+    }
+  }
+}

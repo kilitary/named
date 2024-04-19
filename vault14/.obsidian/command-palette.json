@@ -1,0 +1,13 @@
+{
+  "pinned": [
+    "gpt3-notes:create-gpt3-note",
+    "workspace:split-vertical",
+    "workspace:split-horizontal",
+    "obsidian-translator:translate",
+    "file-explorer:new-file",
+    "table-editor-obsidian:format-all-tables",
+    "obsidian-git:commit",
+    "table-editor-obsidian:table-control-bar",
+    "flashcard-gen:genquiz-modal"
+  ]
+}

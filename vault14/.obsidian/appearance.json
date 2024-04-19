@@ -1,0 +1,13 @@
+{
+  "accentColor": "#e1f480",
+  "theme": "moonstone",
+  "interfaceFontFamily": "Liberation Mono,Share,Brush Script MT,Barlow,Aharoni,Bahnschrift,Inter,Segoe UI,Consolas,Alef,JetBrains Mono,Lucida Console",
+  "textFontFamily": "Liberation Mono,Andale Mono,Bodoni 72,Cascadia Mono,Segoe UI,Lucida Console,JetBrains Mono,Share,Consolas",
+  "baseFontSize": 15,
+  "monospaceFontFamily": "Liberation Mono,Consolas",
+  "baseFontSizeAction": true,
+  "nativeMenus": false,
+  "translucency": false,
+  "cssTheme": "Material Gruvbox",
+  "showViewHeader": true
+}

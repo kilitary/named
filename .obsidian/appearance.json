@@ -1,0 +1,11 @@
+{
+  "accentColor": "#469dc8",
+  "cssTheme": "Material Gruvbox",
+  "interfaceFontFamily": "Share,Charter",
+  "theme": "moonstone",
+  "textFontFamily": "Liberation Mono",
+  "baseFontSize": 12,
+  "nativeMenus": false,
+  "translucency": false,
+  "baseFontSizeAction": true
+}
