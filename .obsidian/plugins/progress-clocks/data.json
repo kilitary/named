@@ -7,8 +7,8 @@
           {
             "type": "stopwatch",
             "name": "Stopwatch 1",
-            "startMillis": 1713498291817,
-            "offsetMillis": 1394019132,
+            "startMillis": 1713508758616,
+            "offsetMillis": 1404485931,
             "showMillis": false,
             "isRunning": true,
             "lapTimes": [
@@ -17,7 +17,8 @@
               2988,
               3728,
               1391435357,
-              1394093296
+              1394093296,
+              1404570032
             ]
           },
           {
@@ -28,16 +29,45 @@
           {
             "type": "stopwatch",
             "name": "Stopwatch 3",
-            "startMillis": 1713498291817,
-            "offsetMillis": 1394031213,
+            "startMillis": 1713508758616,
+            "offsetMillis": 1404498012,
             "showMillis": true,
             "isRunning": true,
-            "lapTimes": []
+            "lapTimes": [
+              1404589353
+            ]
           },
           {
             "type": "counter",
             "name": "Counter 4",
             "value": 0
+          },
+          {
+            "type": "counter",
+            "name": "Counter 5",
+            "value": 0
+          },
+          {
+            "type": "stopwatch",
+            "name": "Stopwatch 6",
+            "startMillis": 1713508865896,
+            "offsetMillis": 1711,
+            "showMillis": true,
+            "isRunning": true,
+            "lapTimes": [
+              1131
+            ]
+          },
+          {
+            "type": "stopwatch",
+            "name": "Stopwatch 7",
+            "startMillis": 1713508881080,
+            "offsetMillis": 0,
+            "showMillis": true,
+            "isRunning": true,
+            "lapTimes": [
+              1139
+            ]
           }
         ]
       }

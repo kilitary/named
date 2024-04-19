@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
                 "mode": "source",
                 "source": false
               }
@@ -61,11 +61,11 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"kanban-plugin\"]",
+                "query": "tag:#answer",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
-                "extraContext": false,
+                "extraContext": true,
                 "sortOrder": "alphabetical"
               }
             }
@@ -78,7 +78,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -98,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md"
               }
             }
           },
@@ -187,7 +188,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
@@ -212,30 +213,38 @@
       "gpt3-notes:GPT-3 Notes": false,
       "select-and-complete:Select and Complete": false,
       "desk:Create new desk": false,
-      "card-board:CardBoard": false,
-      "git-integration:Open git menu": false
+      "git-integration:Open git menu": false,
+      "card-board:CardBoard": false
     }
   },
   "active": "f8a48624d6d763e8",
   "lastOpenFiles": [
+    "vault14/39.gif",
+    "AI Research Assistant/History/New Chat.md",
+    "AI Research Assistant/History",
+    "AI Research Assistant",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "issue",
+    "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
+    "vault14/test.md",
+    "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+    "vault14/and how do you know what.md",
+    "vault14/work flows/fss/Untitled.canvas",
+    "vault14/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
+    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "vault14/axis9/Мусорщик++.md",
     "Pasted image 20240419070054.png",
+    "README.md",
     "cartesian.png",
     "button.png",
     "start.jpg",
     "alarm.png",
     "vault14/skins.md",
-    "README.md",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "vault14/and how do you know what.md",
-    "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
-    "vault14/work flows/fss/Untitled.canvas",
-    "vault14/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
     "vault14/copilot-conversations/Chat2.md",
     "vault14/copilot-conversations/Chat-2024_03_10-04_41_19.md",
-    "vault14/axis9/Мусорщик++.md",
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
-    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "vault14/setting things up.md",
     "Untitled.canvas",
     "Untitled 1.canvas",
@@ -247,14 +256,9 @@
     "2024-04-02.md",
     "2024-04-01.md",
     "2024-03-31.md",
-    "vault14/Untitled 3.md",
-    "vault14/Untitled 2.md",
-    "vault14/Untitled 1.md",
-    "vault14/Zudo and -Пыточный конвеер в Росии- и круговое ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "vault14/freebsd-check.jpg",
     "vault14/disk_icon.gif",
     "vault14/ccc-final-bios-amd.pdf",
-    "vault14/alarm.png",
-    "vault14/39.gif"
+    "vault14/alarm.png"
   ]
 }
