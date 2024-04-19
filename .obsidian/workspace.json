@@ -10,7 +10,7 @@
           {
             "id": "23dc9e10a854ccda",
             "type": "tabs",
-            "dimension": 71.33333333333333,
+            "dimension": 41.39626352015732,
             "children": [
               {
                 "id": "418e55eae9e629e9",
@@ -19,7 +19,15 @@
                   "type": "big-calendar",
                   "state": {}
                 }
-              },
+              }
+            ],
+            "stacked": true
+          },
+          {
+            "id": "bafdc0f0176d3610",
+            "type": "tabs",
+            "dimension": 33.62831858407079,
+            "children": [
               {
                 "id": "daf978af4743cdc8",
                 "type": "leaf",
@@ -27,27 +35,92 @@
                   "type": "desk-view",
                   "state": {}
                 }
-              }
-            ],
-            "stacked": true
-          },
-          {
-            "id": "fe4535f34ddf142c",
-            "type": "tabs",
-            "dimension": 28.666666666666664,
-            "children": [
+              },
               {
-                "id": "3481689f861765ca",
+                "id": "b18b9ae47321bf1f",
                 "type": "leaf",
                 "state": {
-                  "type": "image",
+                  "type": "markdown",
                   "state": {
-                    "file": "alarm.png"
+                    "file": "vault14/axis9/Мусорщик++.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
                   }
                 }
               }
             ],
-            "stacked": true
+            "currentTab": 1
+          },
+          {
+            "id": "06f9bb1eb170eae6",
+            "type": "split",
+            "dimension": 24.97541789577188,
+            "children": [
+              {
+                "id": "c27347b09fba9533",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "1574afc6defdfd8c",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  },
+                  {
+                    "id": "5cea9c8b0834b0e0",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "object..md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  },
+                  {
+                    "id": "7213b9fe88e8a6a3",
+                    "type": "leaf",
+                    "state": {
+                      "type": "image",
+                      "state": {
+                        "file": "vault14/alarm.png"
+                      }
+                    }
+                  }
+                ],
+                "currentTab": 1
+              },
+              {
+                "id": "b81cd429bf52c211",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "1951108fb370e0e7",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "direction": "vertical"
           }
         ],
         "direction": "horizontal"
@@ -133,7 +206,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "alarm.png",
+                "file": "vault14/axis9/Мусорщик++.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -150,7 +223,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "alarm.png",
+                "file": "vault14/axis9/Мусорщик++.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -205,7 +278,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 1
       },
       {
         "id": "77f847cbcc6365f1",
@@ -229,7 +302,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "alarm.png"
+                "file": "vault14/axis9/Мусорщик++.md"
               }
             }
           },
@@ -253,7 +326,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       },
       {
         "id": "5f6904f0d7e0784d",
@@ -265,7 +338,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "alarm.png"
+                "file": "vault14/axis9/Мусорщик++.md"
               }
             }
           }
@@ -306,18 +379,24 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "68ae1f1e3332b505",
+  "active": "b18b9ae47321bf1f",
   "lastOpenFiles": [
-    "vault14/work flows/global ai, defense and counter-ss operations.md",
+    "object..md",
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "vault14/alarm.png",
+    "vault14/axis9/Мусорщик++.md",
+    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "vault14/axis9/Drawing 2024-04-19 13.10.27.excalidraw.md",
+    "alarm.png",
+    "vault14/work flows/global ai, defense and counter-ss operations.md",
     "2024-04-16.md",
     "202404191642.md",
     "2024-04-19.md",
     "vault14/work flows/fss/Untitled.canvas",
     "2024-04-02.md",
-    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "object..md",
-    "vault14/axis9/Мусорщик++.md",
     "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Kids.ico",
     "Images/ico/keymgr_3_112.ico",
@@ -336,14 +415,10 @@
     "Images/ico/DesignFloat.png",
     "Images/ico/Delicious.png",
     "Images/ico/Contact.png",
-    "Images/ico/Comments.png",
-    "Images/ico/Calendar.png",
     "README.md",
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "Untitled 3.canvas",
     "2024-04-05.md",
     "2024-04-03.md",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/copilot-conversations/Chat2.md",
     "vault14/Untitled 1.md",
     "vault14/setting things up.md",
@@ -352,11 +427,8 @@
     "Pros and Cons of [!работа.md",
     "vault14/Untitled 3.md",
     "vault14/README.md",
-    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "vault14/axis9/Drawing 2024-04-19 13.10.27.excalidraw.md",
     "Untitled 2.canvas",
     "vault14/RFC793.md",
-    "2024-04-01.md",
     "Untitled.canvas",
     "Untitled 1.canvas"
   ]
