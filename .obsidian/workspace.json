@@ -10,26 +10,21 @@
           {
             "id": "23dc9e10a854ccda",
             "type": "tabs",
-            "dimension": 63.716814159292035,
+            "dimension": 71.33333333333333,
             "children": [
               {
-                "id": "f873ff7e2f0b8bcb",
+                "id": "418e55eae9e629e9",
                 "type": "leaf",
                 "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
-                    "mode": "preview",
-                    "backlinks": true,
-                    "source": false
-                  }
+                  "type": "big-calendar",
+                  "state": {}
                 }
               },
               {
-                "id": "2a3ced44519e2490",
+                "id": "daf978af4743cdc8",
                 "type": "leaf",
                 "state": {
-                  "type": "card-board-view",
+                  "type": "desk-view",
                   "state": {}
                 }
               }
@@ -39,25 +34,15 @@
           {
             "id": "fe4535f34ddf142c",
             "type": "tabs",
-            "dimension": 36.283185840707965,
+            "dimension": 28.666666666666664,
             "children": [
               {
                 "id": "3481689f861765ca",
                 "type": "leaf",
                 "state": {
-                  "type": "kanban",
+                  "type": "image",
                   "state": {
-                    "file": "vault14/work flows/global ai, defense and counter-ss operations.md"
-                  }
-                }
-              },
-              {
-                "id": "94deb9b9ca32c079",
-                "type": "leaf",
-                "state": {
-                  "type": "card-browser-view",
-                  "state": {
-                    "path": "/"
+                    "file": "alarm.png"
                   }
                 }
               }
@@ -128,21 +113,7 @@
             }
           }
         ],
-        "currentTab": 1
-      },
-      {
-        "id": "fe5b13938652ae46",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "70bdc9dbe52d8599",
-            "type": "leaf",
-            "state": {
-              "type": "timeline",
-              "state": {}
-            }
-          }
-        ]
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -162,7 +133,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "alarm.png",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -179,7 +150,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "alarm.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -208,9 +179,33 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "2d495139f5dedbe7",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {}
+            }
+          },
+          {
+            "id": "66a895a7075c133f",
+            "type": "leaf",
+            "state": {
+              "type": "ai-research-assistant",
+              "state": {}
+            }
+          },
+          {
+            "id": "9c48c8f85310942d",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 7
       },
       {
         "id": "77f847cbcc6365f1",
@@ -234,7 +229,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+                "file": "alarm.png"
               }
             }
           },
@@ -248,9 +243,17 @@
                 "useHierarchy": true
               }
             }
+          },
+          {
+            "id": "70bdc9dbe52d8599",
+            "type": "leaf",
+            "state": {
+              "type": "timeline",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       },
       {
         "id": "5f6904f0d7e0784d",
@@ -262,7 +265,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+                "file": "alarm.png"
               }
             }
           }
@@ -274,50 +277,46 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
+      "switcher:Open quick switcher": true,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "quiz-generator:Open generator": false,
-      "ai-research-assistant:AI Research Assistant": false,
+      "daily-notes:Open today's daily note": true,
+      "command-palette:Open command palette": true,
+      "quiz-generator:Open generator": true,
       "big-calendar:Big Calendar": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "gpt3-notes:GPT-3 Notes": false,
-      "select-and-complete:Select and Complete": false,
+      "select-and-complete:Select and Complete": true,
+      "markdown-table-editor:Open Markdown Table Editor": false,
       "desk:Create new desk": false,
-      "git-integration:Open git menu": false,
-      "companion:Toggle completion": false,
+      "git-integration:Open git menu": true,
       "markdown-importer:Open format converter": false,
       "zk-prefixer:Create new unique note": false,
-      "workspaces:Manage workspace layouts": false,
+      "obsidian-focus-mode:Toggle Focus Mode (Shift + Click to show active pane only)": false,
       "obsidian-day-planner:Timeline": false,
-      "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "obsidian-textgenerator-plugin:Generate Text!": true,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true,
       "obsidian-gallery:Gallery": false,
       "notion-like-tables:Create loom": false,
       "obsidian-projects:Open projects": false,
-      "markdown-table-editor:Open Markdown Table Editor": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
       "file-tree-alternative:File Tree Alternative Plugin": false,
-      "breadcrumbs:Breadcrumbs Visualisation": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-focus-mode:Toggle Focus Mode (Shift + Click to show active pane only)": false,
-      "advanced-random-note:Open random note modal": false,
-      "task-status:Change Checkbox Status": false,
+      "task-status:Change Checkbox Status": true,
       "card-board:CardBoard": false
     }
   },
-  "active": "f342cc04e3559737",
+  "active": "68ae1f1e3332b505",
   "lastOpenFiles": [
     "vault14/work flows/global ai, defense and counter-ss operations.md",
-    "vault14/work flows/fss/Untitled.canvas",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "2024-04-16.md",
+    "202404191642.md",
+    "2024-04-19.md",
+    "vault14/work flows/fss/Untitled.canvas",
+    "2024-04-02.md",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "object..md",
-    "2024-04-19.md",
     "vault14/axis9/Мусорщик++.md",
     "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Kids.ico",
@@ -344,14 +343,12 @@
     "Untitled 3.canvas",
     "2024-04-05.md",
     "2024-04-03.md",
-    "2024-04-02.md",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/copilot-conversations/Chat2.md",
     "vault14/Untitled 1.md",
     "vault14/setting things up.md",
     "vault14/Quiz 1.md",
     "AI Research Assistant/History/New Chat.md",
-    "2024-04-16.md",
     "Pros and Cons of [!работа.md",
     "vault14/Untitled 3.md",
     "vault14/README.md",

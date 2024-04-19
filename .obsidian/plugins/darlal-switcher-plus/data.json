@@ -32,7 +32,10 @@
     "backlink",
     "image",
     "markdown",
-    "pdf"
+    "pdf",
+    "png",
+    "gif",
+    "txt"
   ],
   "enabledSymbolTypes": {
     "1": true,
@@ -47,13 +50,13 @@
   "excludeRelatedFolders": [
     ""
   ],
-  "excludeOpenRelatedFiles": false,
+  "excludeOpenRelatedFiles": true,
   "excludeObsidianIgnoredFiles": false,
   "shouldSearchFilenames": true,
   "shouldSearchBookmarks": true,
   "shouldSearchRecentFiles": true,
-  "pathDisplayFormat": 1,
-  "hidePathIfRoot": true,
+  "pathDisplayFormat": 3,
+  "hidePathIfRoot": false,
   "enabledRelatedItems": [
     "disk-location",
     "backlink",
@@ -69,7 +72,7 @@
     "canvas"
   ],
   "matchPriorityAdjustments": {
-    "isEnabled": false,
+    "isEnabled": true,
     "adjustments": {
       "isOpenInEditor": {
         "value": 0,
@@ -287,10 +290,10 @@
     "shouldResetActiveFacets": false,
     "shouldShowFacetInstructions": true
   },
-  "preserveCommandPaletteLastInput": false,
+  "preserveCommandPaletteLastInput": true,
   "preserveQuickSwitcherLastInput": false,
   "shouldCloseModalOnBackspace": false,
-  "maxRecentFileSuggestionsOnInit": 25,
+  "maxRecentFileSuggestionsOnInit": 75,
   "orderEditorListByAccessTime": true,
   "insertLinkInEditor": {
     "isEnabled": true,

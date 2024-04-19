@@ -1,15 +1,20 @@
 {
   "pinned": [
-    "git-integration:sync",
     "table-editor-obsidian:table-control-bar",
     "obsidian-tasks-plugin:edit-task",
     "big-calendar:open-big-calendar",
-    "obsidian-tasks-plugin:toggle-done",
     "select-and-complete:complete_text",
     "progress-clocks:open-panel",
     "dataview:dataview-force-refresh-views",
     "dataview:dataview-rebuild-current-view",
     "desk:create-desk",
+    "obsidian-day-planner:show-day-planner-timeline",
+    "obsidian-day-planner:show-weekly-view",
+    "metadata-menu:fileClassAttr_options",
+    "metadata-menu:open_fileclass_view",
+    "obsidian-kanban:add-kanban-lane",
+    "obsidian-kanban:create-new-kanban-board",
+    "obsidian-git:backup-and-close",
     "obsidian-git:open-git-view"
   ]
 }

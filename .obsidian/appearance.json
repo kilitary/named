@@ -1,5 +1,5 @@
 {
-  "accentColor": "#d1bfe3",
+  "accentColor": "#d2ecac",
   "cssTheme": "Material Gruvbox",
   "interfaceFontFamily": "Franklin Gothic",
   "theme": "moonstone",
@@ -8,5 +8,5 @@
   "nativeMenus": false,
   "translucency": false,
   "baseFontSizeAction": true,
-  "monospaceFontFamily": ""
+  "monospaceFontFamily": "Liberation Mono"
 }

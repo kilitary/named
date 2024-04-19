@@ -5,10 +5,20 @@
       {
         "columns": [
           {
-            "tag": "untagged",
+            "tag": "completed",
             "data": {
               "collapsed": true,
-              "name": "Untagged"
+              "index": 0,
+              "limit": 10,
+              "name": "Completed"
+            }
+          },
+          {
+            "tag": "namedTag",
+            "data": {
+              "collapsed": true,
+              "name": "chatGPT",
+              "tag": ""
             }
           },
           {
@@ -19,23 +29,49 @@
             }
           },
           {
-            "tag": "completed",
+            "tag": "untagged",
             "data": {
-              "collapsed": false,
-              "index": 2,
-              "limit": 10,
-              "name": "Completed"
+              "collapsed": true,
+              "name": "Untagged"
             }
           }
         ],
         "filters": [
+          {
+            "tag": "tagFilter",
+            "data": "ai/"
+          },
+          {
+            "tag": "tagFilter",
+            "data": "chatGPT"
+          },
+          {
+            "tag": "pathFilter",
+            "data": "issue"
+          },
+          {
+            "tag": "pathFilter",
+            "data": "axis9"
+          },
+          {
+            "tag": "pathFilter",
+            "data": "AI Research Assistant/History"
+          },
+          {
+            "tag": "pathFilter",
+            "data": "AI Research Assistant"
+          },
+          {
+            "tag": "pathFilter",
+            "data": "/"
+          },
           {
             "tag": "fileFilter",
             "data": "2024-04-01.md"
           }
         ],
         "filterPolarity": "Allow",
-        "filterScope": "TopLevelOnly",
+        "filterScope": "Both",
         "name": "xfhj",
         "showColumnTags": true,
         "showFilteredTags": true
