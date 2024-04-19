@@ -72,6 +72,32 @@
                     }
                   },
                   {
+                    "id": "fafdfdec75850f27",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  },
+                  {
+                    "id": "f7dae58c8baea3b5",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "object..md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  },
+                  {
                     "id": "21bd62873fa54aad",
                     "type": "leaf",
                     "dimension": 25,
@@ -94,6 +120,7 @@
                     }
                   }
                 ],
+                "currentTab": 2,
                 "stacked": true
               }
             ],
@@ -221,8 +248,21 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
+      },
+      {
+        "id": "fe5b13938652ae46",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "70bdc9dbe52d8599",
+            "type": "leaf",
+            "state": {
+              "type": "timeline",
+              "state": {}
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
@@ -242,7 +282,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "object..md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -259,7 +299,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "object..md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -274,50 +314,10 @@
             }
           },
           {
-            "id": "cb4bab3070ab42e9",
-            "type": "leaf",
-            "state": {
-              "type": "dictionary-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "70bdc9dbe52d8599",
-            "type": "leaf",
-            "state": {
-              "type": "timeline",
-              "state": {}
-            }
-          },
-          {
             "id": "1a93ba2f5b4706b7",
             "type": "leaf",
             "state": {
               "type": "Timetable",
-              "state": {}
-            }
-          },
-          {
-            "id": "1fa2d5bfcb2037bb",
-            "type": "leaf",
-            "state": {
-              "type": "BC-matrix",
-              "state": {}
-            }
-          },
-          {
-            "id": "757564ca21322246",
-            "type": "leaf",
-            "state": {
-              "type": "BC-tree",
-              "state": {}
-            }
-          },
-          {
-            "id": "5b385eba0b4eeceb",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
               "state": {}
             }
           },
@@ -330,39 +330,12 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       },
       {
         "id": "77f847cbcc6365f1",
         "type": "tabs",
         "children": [
-          {
-            "id": "408f418166af1fce",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
-            }
-          }
-        ]
-      },
-      {
-        "id": "5f6904f0d7e0784d",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "edbebe7c0b513400",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
-              }
-            }
-          },
           {
             "id": "80647946df64b14c",
             "type": "leaf",
@@ -381,12 +354,39 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+                "file": "object..md"
+              }
+            }
+          },
+          {
+            "id": "408f418166af1fce",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
               }
             }
           }
         ],
         "currentTab": 1
+      },
+      {
+        "id": "5f6904f0d7e0784d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "edbebe7c0b513400",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "object..md"
+              }
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
@@ -430,10 +430,13 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "f873ff7e2f0b8bcb",
+  "active": "3082f803f3ba694d",
   "lastOpenFiles": [
-    "vault14/axis9/Мусорщик++.md",
+    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "object..md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "2024-04-19.md",
+    "vault14/axis9/Мусорщик++.md",
     "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Kids.ico",
     "Images/ico/keymgr_3_112.ico",
@@ -462,9 +465,7 @@
     "2024-04-05.md",
     "2024-04-03.md",
     "2024-04-02.md",
-    "2024-04-19.md",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/copilot-conversations/Chat2.md",
     "vault14/Untitled 1.md",
     "vault14/setting things up.md",

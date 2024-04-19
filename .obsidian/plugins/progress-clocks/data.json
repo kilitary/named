@@ -7,12 +7,12 @@
           {
             "type": "counter",
             "name": "Counter 4",
-            "value": -8
+            "value": -7
           },
           {
             "type": "counter",
             "name": "Counter 5",
-            "value": 2
+            "value": 4
           },
           {
             "type": "stopwatch",
