@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "REAL MELTDOWN FAST-SYNC.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "REAL MELTDOWN FAST-SYNC.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "REAL MELTDOWN FAST-SYNC.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "REAL MELTDOWN FAST-SYNC.md"
+                "file": "README.md"
               }
             }
           },
@@ -223,7 +223,7 @@
     "start.jpg",
     "alarm.png",
     "vault14/skins.md",
-    "REAL MELTDOWN FAST-SYNC.md",
+    "README.md",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/and how do you know what.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
