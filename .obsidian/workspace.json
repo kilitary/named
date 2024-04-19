@@ -137,12 +137,14 @@
                 "id": "248c7e661da42018",
                 "type": "leaf",
                 "state": {
-                  "type": "markdown",
+                  "type": "canvas",
                   "state": {
-                    "file": "vault14/axis9/Мусорщик++.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
+                    "file": "Untitled 2.canvas",
+                    "viewState": {
+                      "x": -100,
+                      "y": -51.5,
+                      "zoom": -0.21150410519371174
+                    }
                   }
                 }
               }
@@ -248,8 +250,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -269,7 +270,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md",
+                "file": "Untitled 2.canvas",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -286,7 +287,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md",
+                "file": "Untitled 2.canvas",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -357,7 +358,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md"
+                "file": "Untitled 2.canvas"
               }
             }
           },
@@ -385,7 +386,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md"
+                "file": "Untitled 2.canvas"
               }
             }
           },
@@ -435,6 +436,8 @@
   },
   "active": "248c7e661da42018",
   "lastOpenFiles": [
+    "Untitled.loom",
+    "vault14/axis9/Мусорщик++.md",
     "textgenerator/templates/default/getTags.md",
     "textgenerator/templates/default/simplify.md",
     "textgenerator/templates/default/getOutline.md",
@@ -444,7 +447,6 @@
     "README.md",
     "Excalidraw/Drawing 2024-04-19 19.25.49.excalidraw.md",
     "Excalidraw",
-    "Untitled.loom",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "alarm.png",
@@ -464,13 +466,11 @@
     "textgenerator/templates",
     "textgenerator",
     "vault14/alarm.png",
-    "vault14/axis9/Мусорщик++.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/axis9/Drawing 2024-04-19 13.10.27.excalidraw.md",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
     "2024-04-16.md",
-    "202404191642.md",
     "vault14/work flows/fss/Untitled.canvas",
     "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Kids.ico",
