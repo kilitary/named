@@ -8,38 +8,78 @@
         "type": "split",
         "children": [
           {
-            "id": "23dc9e10a854ccda",
-            "type": "tabs",
+            "id": "7f0ecb196886f0fe",
+            "type": "split",
             "dimension": 63.716814159292035,
             "children": [
               {
-                "id": "baf060152d9affd4",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "vault14/axis9/Мусорщик++.md",
-                    "mode": "preview",
-                    "backlinks": true,
-                    "source": false
+                "id": "3b450bc4672111d8",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "5edcb28b2f33b65f",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
                   }
-                }
+                ]
               },
               {
-                "id": "f873ff7e2f0b8bcb",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
+                "id": "23dc9e10a854ccda",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "baf060152d9affd4",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "vault14/axis9/Мусорщик++.md",
+                        "mode": "preview",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  },
+                  {
+                    "id": "f873ff7e2f0b8bcb",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                        "mode": "source",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
+                  },
+                  {
+                    "id": "c3abdeac6d12cbc1",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "README.md",
+                        "mode": "preview",
+                        "backlinks": true,
+                        "source": false
+                      }
+                    }
                   }
-                }
+                ],
+                "currentTab": 2,
+                "stacked": true
               }
             ],
-            "stacked": true
+            "direction": "vertical"
           },
           {
             "id": "fe4535f34ddf142c",
@@ -67,6 +107,7 @@
                 }
               }
             ],
+            "currentTab": 1,
             "stacked": true
           }
         ],
@@ -99,7 +140,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "git",
+                "query": "[\"excalidraw-iframe-theme\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -117,16 +158,11 @@
             }
           },
           {
-            "id": "5edcb28b2f33b65f",
+            "id": "c1d0a448154ce2c9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
+              "type": "todo",
+              "state": {}
             }
           },
           {
@@ -137,11 +173,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 353.5
   },
   "right": {
     "id": "04f9fc2d318d98b7",
@@ -157,7 +194,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md",
+                "file": "README.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -174,7 +211,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -197,7 +234,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md"
+                "file": "README.md"
               }
             }
           },
@@ -235,7 +272,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/axis9/Мусорщик++.md"
+                "file": "README.md"
               }
             }
           },
@@ -248,26 +285,10 @@
             }
           },
           {
-            "id": "c2f456ec74b9bd5b",
-            "type": "leaf",
-            "state": {
-              "type": "periodic-view",
-              "state": {}
-            }
-          },
-          {
             "id": "1a93ba2f5b4706b7",
             "type": "leaf",
             "state": {
               "type": "Timetable",
-              "state": {}
-            }
-          },
-          {
-            "id": "c1d0a448154ce2c9",
-            "type": "leaf",
-            "state": {
-              "type": "todo",
               "state": {}
             }
           },
@@ -304,7 +325,7 @@
             }
           }
         ],
-        "currentTab": 15
+        "currentTab": 9
       }
     ],
     "direction": "horizontal",
@@ -348,19 +369,20 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "baf060152d9affd4",
+  "active": "c3abdeac6d12cbc1",
   "lastOpenFiles": [
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
-    "vault14/axis9/Мусорщик++.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
-    "vault14/work flows/global ai, defense and counter-ss operations.md",
+    "README.md",
+    "vault14/axis9/Мусорщик++.md",
     "Pasted image 20240419070054.png",
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+    "vault14/work flows/global ai, defense and counter-ss operations.md",
     "vault14/copilot-conversations/Chat2.md",
     "vault14/work flows/fss/Untitled.canvas",
     "vault14/Untitled 1.md",
     "vault14/setting things up.md",
     "vault14/Quiz 1.md",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "AI Research Assistant/History/New Chat.md",
     "2024-04-16.md",
     "2024-04-19.md",
