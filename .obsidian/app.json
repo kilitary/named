@@ -3,5 +3,9 @@
   "foldHeading": false,
   "foldIndent": false,
   "spellcheck": false,
-  "propertiesInDocument": "hidden"
+  "propertiesInDocument": "hidden",
+  "livePreview": true,
+  "strictLineBreaks": false,
+  "showLineNumber": true,
+  "tabSize": 4
 }

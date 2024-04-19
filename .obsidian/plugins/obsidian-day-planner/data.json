@@ -1,8 +1,8 @@
 {
   "snapStepMinutes": 10,
   "progressIndicator": "bar",
-  "showTaskNotification": false,
-  "zoomLevel": 2,
+  "showTaskNotification": true,
+  "zoomLevel": 1,
   "timelineIcon": "calendar-with-checkmark",
   "endLabel": "All done",
   "startHour": 6,
@@ -23,11 +23,12 @@
   "showUnscheduledNestedTasks": true,
   "showNow": true,
   "showNext": true,
-  "pluginVersion": "0.20.0",
+  "pluginVersion": "0.20.3",
   "showCompletedTasks": true,
   "showSubtasksInTaskBlocks": true,
   "icals": [],
   "colorOverrides": [],
   "editMode": "simple",
-  "copyOnDrag": false
+  "copyOnDrag": false,
+  "releaseNotes": true
 }

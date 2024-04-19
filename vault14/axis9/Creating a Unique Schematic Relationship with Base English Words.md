@@ -4,9 +4,12 @@ trello_plugin_note_id: q4zjFgOhAHIx9P3BW_uWz
 cssclasses:
   - dsfdg
 aliases: 
-tags: 
+tags:
+  - ai
 kanban-plugin: 
 fgthj: fjhg
+state: Idea
+п рб:
 ---
 
 > [!success]+ verbs

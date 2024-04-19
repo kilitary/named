@@ -1,11 +1,12 @@
 {
-  "accentColor": "#469dc8",
+  "accentColor": "#34e5a1",
   "cssTheme": "Material Gruvbox",
-  "interfaceFontFamily": "Share,Charter",
+  "interfaceFontFamily": "Franklin Gothic,Share",
   "theme": "moonstone",
-  "textFontFamily": "Liberation Mono",
-  "baseFontSize": 12,
+  "textFontFamily": "04b03_COMP_MAT,Bookshelf Symbol 7,Cuprum,Alef,DokChampa,Liberation Mono",
+  "baseFontSize": 13,
   "nativeMenus": false,
   "translucency": false,
-  "baseFontSizeAction": true
+  "baseFontSizeAction": false,
+  "monospaceFontFamily": "Arial Nova,Alef"
 }

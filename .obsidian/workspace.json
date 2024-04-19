@@ -4,59 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "2e0f59e3a127f8b7",
-        "type": "split",
+        "id": "23dc9e10a854ccda",
+        "type": "tabs",
         "children": [
           {
-            "id": "f0cfec984986f6bd",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "a4a8cd1dcf2d2623",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-                    "mode": "source",
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "f8a48624d6d763e8",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
-                  }
-                }
+            "id": "a6825bd1d856ec6a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "mode": "source",
+                "source": true
               }
-            ],
-            "currentTab": 1
-          },
-          {
-            "id": "9466fc50a461d34c",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "dbfa2a0d762a4dfa",
-                "type": "leaf",
-                "state": {
-                  "type": "pdf",
-                  "state": {
-                    "file": "vault14/ccc-final-bios-amd.pdf"
-                  }
-                }
-              }
-            ]
+            }
           }
         ],
-        "direction": "horizontal"
+        "stacked": true
       }
     ],
     "direction": "vertical"
@@ -101,8 +65,21 @@
               "type": "bookmarks",
               "state": {}
             }
+          },
+          {
+            "id": "5edcb28b2f33b65f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -122,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/ccc-final-bios-amd.pdf",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,8 +116,8 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/ccc-final-bios-amd.pdf",
-                "linksCollapsed": false,
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
             }
@@ -162,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/ccc-final-bios-amd.pdf"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
               }
             }
           },
@@ -187,14 +164,6 @@
             }
           },
           {
-            "id": "0e3e66a751bdcecd",
-            "type": "leaf",
-            "state": {
-              "type": "ai-research-assistant",
-              "state": {}
-            }
-          },
-          {
             "id": "cb4bab3070ab42e9",
             "type": "leaf",
             "state": {
@@ -203,7 +172,17 @@
             }
           },
           {
-            "id": "334497290506c02d",
+            "id": "dde49514ef20b517",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+              }
+            }
+          },
+          {
+            "id": "70bdc9dbe52d8599",
             "type": "leaf",
             "state": {
               "type": "timeline",
@@ -211,11 +190,11 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 461.5
+    "width": 433.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -224,40 +203,58 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": true,
-      "companion:Toggle completion": false,
+      "command-palette:Open command palette": false,
       "quiz-generator:Open generator": false,
       "ai-research-assistant:AI Research Assistant": false,
-      "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "big-calendar:Big Calendar": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-day-planner:Timeline": false,
       "gpt3-notes:GPT-3 Notes": false,
       "select-and-complete:Select and Complete": false,
       "desk:Create new desk": false,
       "git-integration:Open git menu": false,
-      "card-board:CardBoard": false
+      "card-board:CardBoard": false,
+      "companion:Toggle completion": false,
+      "markdown-importer:Open format converter": false,
+      "zk-prefixer:Create new unique note": false,
+      "workspaces:Manage workspace layouts": false,
+      "obsidian-day-planner:Timeline": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "obsidian-gallery:Gallery": false,
+      "notion-like-tables:Create loom": false,
+      "obsidian-projects:Open projects": false
     }
   },
-  "active": "dbfa2a0d762a4dfa",
+  "active": "a6825bd1d856ec6a",
   "lastOpenFiles": [
-    "vault14/and how do you know what.md",
+    "2024-04-19.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+    "2024-04-16.md",
+    "2024-04-18.md",
+    "2024-04-15.md",
+    "vault14/axis9/Мусорщик++.md",
+    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "vault14/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "vault14/Untitled 1.md",
+    "vault14/RFC793.md",
+    "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
+    "object..md",
+    "vault14/Untitled 3.md",
+    "vault14/test.md",
+    "vault14/setting things up.md",
+    "vault14/freebsd-check.jpg",
+    "vault14/disk_icon.gif",
+    "vault14/ccc-final-bios-amd.pdf",
+    "vault14/and how do you know what.md",
     "AI Research Assistant/History/New Chat.md",
     "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
     "vault14/39.gif",
     "AI Research Assistant/History",
     "AI Research Assistant",
     "issue",
-    "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
-    "vault14/test.md",
     "vault14/work flows/fss/Untitled.canvas",
-    "vault14/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
-    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "vault14/axis9/Мусорщик++.md",
     "Pasted image 20240419070054.png",
     "README.md",
     "cartesian.png",
@@ -268,20 +265,9 @@
     "vault14/work flows/global ai, defense and counter-ss operations.md",
     "vault14/copilot-conversations/Chat2.md",
     "vault14/copilot-conversations/Chat-2024_03_10-04_41_19.md",
-    "vault14/setting things up.md",
     "Untitled.canvas",
     "Untitled 1.canvas",
     "related.md",
-    "Pros and Cons of [!работа.md",
-    "object..md",
-    "2024-04-04.md",
-    "2024-04-03.md",
-    "2024-04-02.md",
-    "2024-04-01.md",
-    "2024-03-31.md",
-    "vault14/freebsd-check.jpg",
-    "vault14/disk_icon.gif",
-    "vault14/ccc-final-bios-amd.pdf",
     "vault14/alarm.png"
   ]
 }

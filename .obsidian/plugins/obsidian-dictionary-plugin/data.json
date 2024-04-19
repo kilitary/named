@@ -1,7 +1,7 @@
 {
   "getLangFromFile": true,
-  "defaultLanguage": "en_US",
-  "normalLang": "en_US",
+  "defaultLanguage": "ru",
+  "normalLang": "ru",
   "shouldShowSynonymPopover": true,
   "shouldShowCustomContextMenu": false,
   "apiSettings": {
@@ -26,7 +26,7 @@
       "synonymApiName": null
     },
     "ru": {
-      "definitionApiName": "Free Dictionary API",
+      "definitionApiName": null,
       "synonymApiName": null
     },
     "en_GB": {

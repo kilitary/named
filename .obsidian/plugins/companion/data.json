@@ -1,10 +1,10 @@
 {
-  "provider": "openai-chatgpt",
-  "model": "gpt-3.5-turbo-1106",
-  "enable_by_default": false,
+  "provider": "openai",
+  "model": "text-davinci-003",
+  "enable_by_default": true,
   "keybind": "Tab",
-  "delay_ms": 2000,
-  "stream": true,
+  "delay_ms": 4500,
+  "stream": false,
   "accept": {
     "splitter_regex": " ",
     "display_splitter_regex": "[.?!:;]",
@@ -17,8 +17,20 @@
     "openai-chatgpt": {
       "settings": "{\"api_key\":\"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\"}",
       "models": {}
+    },
+    "openai": {
+      "settings": "{\"api_key\":\"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\"}",
+      "models": {}
     }
   },
-  "presets": [],
+  "presets": [
+    {
+      "name": "aa",
+      "provider": "openai",
+      "model": "text-davinci-003",
+      "provider_settings": "{\"api_key\":\"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\"}",
+      "enable_editor_command": false
+    }
+  ],
   "fallback": null
 }

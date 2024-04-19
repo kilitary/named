@@ -22,7 +22,14 @@
   "better-inline-fields",
   "run",
   "desk",
-  "moviegrabber",
   "meld-build",
-  "obsidian-git"
+  "obsidian-git",
+  "badges",
+  "obsidian-imgur-plugin",
+  "background-image",
+  "obsidian-image-gallery",
+  "image-window",
+  "obsidian-gallery",
+  "notion-like-tables",
+  "obsidian-projects"
 ]

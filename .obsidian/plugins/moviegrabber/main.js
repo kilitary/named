@@ -1700,7 +1700,9 @@ var DEFAULT_SETTINGS = {
   SeriesTemplatePath: "",
   PlotLength: "short",
   FilenameTemplateMovie: "{{Title}}",
-  FilenameTemplateSeries: "{{Title}}"
+  FilenameTemplateSeries: "{{Title}}",
+  enablePosterImageSave: false,
+  posterImagePath: ""
 };
 var DEFAULT_TEMPLATE = `---
 type: {{Type}}
@@ -1708,7 +1710,7 @@ country: {{Country}}
 title: {{Title}}
 year: {{Year}}
 director: {{Director}}
-actors: [{{Actors}}]
+actors: [{{Actors|"[[|]]"|<$w+$$>, <$^w+$>|@<$^w+$> <$w+$$>}}]
 genre: [{{Genre}}]
 length: {{Runtime}}
 seen:
@@ -1757,6 +1759,22 @@ var MoviegrabberSettingTab = class extends import_obsidian4.PluginSettingTab {
       this.plugin.settings.SwitchToCreatedNote = value;
       await this.plugin.saveSettings();
     }));
+    new import_obsidian4.Setting(containerEl).setName("Enable poster image saving").setDesc("Toggle to enable or disable saving movie poster images as files.").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.enablePosterImageSave).onChange(async (value) => {
+        this.plugin.settings.enablePosterImageSave = value;
+        await this.plugin.saveSettings();
+        this.display();
+      })
+    );
+    if (this.plugin.settings.enablePosterImageSave) {
+      new import_obsidian4.Setting(containerEl).setName("Poster image directory").setDesc("Specify the path where poster images should be saved.").addSearch((cb) => {
+        new FolderSuggest(cb.inputEl, this.plugin.app);
+        cb.setPlaceholder("Enter the path (e.g., Movies/Posters)").setValue(this.plugin.settings.posterImagePath).onChange(async (value) => {
+          this.plugin.settings.posterImagePath = value.trim();
+          await this.plugin.saveSettings();
+        });
+      });
+    }
     containerEl.createEl("h1", { text: "Templates" });
     new import_obsidian4.Setting(containerEl).setName("Movie template file path").setDesc("Path to the template file that is used to create notes for movies").addSearch((cb) => {
       new FileSuggest(cb.inputEl, this.plugin.app);
@@ -1836,6 +1854,7 @@ var MOVIE_DATA_LOWER = {
   "country": "Country",
   "awards": "Awards",
   "poster": "Poster",
+  "posterlocal": "PosterLocal",
   "ratings": "Ratings",
   "metascore": "Metascore",
   "imdbrating": "imdbRating",
@@ -2136,25 +2155,39 @@ retrying...`);
       n.noticeEl.addClass("notice_error");
       return;
     }
-    let titleTemplate = type == "movie" ? this.settings.FilenameTemplateMovie : this.settings.FilenameTemplateSeries;
-    let title = await this.FillTemplate(titleTemplate, itemData);
-    title = title == "" ? item.Title : title;
-    let path = `${dir}${title.replace(/[/\\?%*:|"<>]/g, "")}.md`;
+    let filenameTemplate = type == "movie" ? this.settings.FilenameTemplateMovie : this.settings.FilenameTemplateSeries;
+    let filename = await this.FillTemplate(filenameTemplate, itemData);
+    filename = filename == "" ? item.Title : filename;
+    const cleanedTitle = filename.replace(/[/\\?%*:|"<>]/g, "");
+    let path = `${dir}${cleanedTitle}.md`;
     let file = this.app.vault.getAbstractFileByPath(path);
     if (file != null && file instanceof import_obsidian10.TFile) {
       new ConfirmOverwriteModal(this.app, item, () => {
-        this.createNote(itemData, type, path, file);
+        this.createNote(itemData, type, path, cleanedTitle, file);
       }).open();
       return;
     }
-    this.createNote(itemData, type, path);
+    this.createNote(itemData, type, path, cleanedTitle);
   }
-  async createNote(item, type, path, tFile = null) {
+  async createNote(item, type, path, filename, tFile = null) {
     new import_obsidian10.Notice(`Creating Note for: ${item.Title} (${item.Year})`);
     item.Title = item.Title.replace(/[/\\?%*:|"<>]/g, "");
     item.Runtime = item.Runtime ? item.Runtime.split(" ")[0] : "";
     if (this.settings.YouTube_API_Key != "") {
       item.YoutubeEmbed = await this.getTrailerEmbed(item.Title, item.Year);
+    }
+    if (this.settings.enablePosterImageSave && item.Poster !== null && item.Poster !== "N/A") {
+      const imageName = `${filename}.jpg`;
+      const posterDirectory = this.settings.posterImagePath;
+      await this.downloadAndSavePoster(item.Poster, posterDirectory, imageName).then((posterLocalPath) => {
+        item.PosterLocal = imageName;
+        new import_obsidian10.Notice(`Saved poster for: ${item.Title} (${item.Year})`);
+      }).catch((error) => {
+        console.error("Failed to download and save the poster:", error);
+        let n = new import_obsidian10.Notice(`Failed to download and save the movie poster for: ${item.Title} (${item.Year})`);
+        n.noticeEl.addClass("notice_error");
+        item.PosterLocal = "null";
+      });
     }
     var template = await this.GetTemplate(type);
     if (template == null) {
@@ -2166,11 +2199,28 @@ retrying...`);
     } else {
       let oldContent = await this.app.vault.read(tFile);
       let toKeep = OVERWRITE_DELIMITER.exec(oldContent);
-      this.app.vault.modify(tFile, content + "\n" + (toKeep != null ? toKeep : ""));
+      let newContent = toKeep != null ? content.replace(OVERWRITE_DELIMITER, "\n") + toKeep : content;
+      this.app.vault.modify(tFile, newContent);
       this.app.vault.trigger("create", tFile);
     }
     if (this.settings.SwitchToCreatedNote) {
       this.app.workspace.getLeaf().openFile(tFile);
+    }
+  }
+  async downloadAndSavePoster(imageUrl, directory, imageName) {
+    if (!directory) {
+      console.error("Poster image directory is not specified.");
+      throw new Error("Poster image directory is not specified.");
+    }
+    const filePath = (0, import_obsidian10.normalizePath)(`${directory}/${imageName}`);
+    try {
+      const response = await (0, import_obsidian10.requestUrl)({ url: imageUrl, method: "GET" });
+      const imageData = response.arrayBuffer;
+      await this.app.vault.adapter.writeBinary(filePath, imageData);
+      return filePath;
+    } catch (error) {
+      console.error("Error downloading or saving poster image:", error);
+      throw error;
     }
   }
   async GetTemplate(type) {
@@ -2198,6 +2248,7 @@ retrying...`);
       const prefix = split.length >= 2 ? split[1].replace(/\\\|/, "|") : "";
       const suffix = split.length >= 3 ? split[2].replace(/\\\|/, "|") : "";
       const transformation = split.length >= 4 ? split[3].replace(/\\\|/, "|") : "";
+      const stringFunction = split.length >= 5 ? split[4].replace(/\\\|/, "|") : "";
       let result = "";
       let name = MOVIE_DATA_LOWER[split[0].trim().toLowerCase()];
       let rawData = data[name];
@@ -2213,6 +2264,17 @@ retrying...`);
       items = items.map((elem) => {
         return regexTransform(elem, transformation);
       });
+      if (stringFunction != "") {
+        items = items.map((elem) => {
+          try {
+            let str = elem[stringFunction]();
+            return str;
+          } catch (error) {
+            let n = new import_obsidian10.Notice(`${stringFunction} is not a valid string Function!`);
+          }
+          return elem;
+        });
+      }
       for (let i = 0; i < items.length; i++) {
         if (items[i] == "") {
           continue;
@@ -2230,7 +2292,7 @@ retrying...`);
     n.noticeEl.addClass("notice_error");
   }
   async CreateDefaultTemplateFile() {
-    var content = DEFAULT_TEMPLATE + "\n\n\n%%\nAvailable tags:\n----------------------\n{{Title}}\n{{Year}}\n{{Rated}}\n{{Runtime}}\n{{Genre}}\n{{Director}}\n{{Writer}}\n{{Actors}}\n{{Plot}}\n{{Language}}\n{{Country}}\n{{Awards}}\n{{Poster}}\n{{Ratings}}\n{{Metascore}}\n{{imdbRating}}\n{{imdbVotes}}\n{{imdbID}}\n{{Type}}\n{{DVD}}\n{{BoxOffice}}\n{{Production}}\n{{Website}}\n{{totalSeasons}}\n{{YoutubeEmbed}}\n%%";
+    var content = DEFAULT_TEMPLATE + "\n\n\n%%\nAvailable tags:\n----------------------\n{{Title}}\n{{Year}}\n{{Rated}}\n{{Runtime}}\n{{Genre}}\n{{Director}}\n{{Writer}}\n{{Actors}}\n{{Plot}}\n{{Language}}\n{{Country}}\n{{Awards}}\n{{Poster}}\n{{PosterLocal}}{{Ratings}}\n{{Metascore}}\n{{imdbRating}}\n{{imdbVotes}}\n{{imdbID}}\n{{Type}}\n{{DVD}}\n{{BoxOffice}}\n{{Production}}\n{{Website}}\n{{totalSeasons}}\n{{YoutubeEmbed}}\n%%";
     var tFile = await this.app.vault.create("/Moviegrabber-example-template.md", content);
     this.app.workspace.getLeaf().openFile(tFile);
   }
