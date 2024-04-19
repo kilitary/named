@@ -1,0 +1,4 @@
+1A24  hookex.dl: 23021 CallNamedPipe(\\.\pipe\wndmsgs): Все копии канала заняты.
+1A24  hookex.dl:  (231)
+1A24  hookex.dl: 30790 CallNamedPipe(\\.\pipe\wndmsgs): Все копии канала заняты.
+1A24  hookex.dl:  (231)
