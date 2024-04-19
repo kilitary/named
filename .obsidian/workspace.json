@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "vault14/Zudo and -Пыточный конвеер в Росии- и круговое ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "vault14/skins.md",
                 "mode": "source",
                 "source": false
               }
@@ -61,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"trello_board_card_id\"]",
+                "query": "[\"kanban-plugin\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/Zudo and -Пыточный конвеер в Росии- и круговое ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "vault14/skins.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/Zudo and -Пыточный конвеер в Росии- и круговое ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "vault14/skins.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/Zudo and -Пыточный конвеер в Росии- и круговое ПО -Рука- =прокурора Ширеевой Н гульнара=.md"
+                "file": "vault14/skins.md"
               }
             }
           },
@@ -153,14 +153,6 @@
                 "showSearch": false,
                 "searchQuery": ""
               }
-            }
-          },
-          {
-            "id": "5f6c2759abb13843",
-            "type": "leaf",
-            "state": {
-              "type": "timeline",
-              "state": {}
             }
           },
           {
@@ -186,9 +178,17 @@
               "type": "dictionary-view",
               "state": {}
             }
+          },
+          {
+            "id": "334497290506c02d",
+            "type": "leaf",
+            "state": {
+              "type": "timeline",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 8
       }
     ],
     "direction": "horizontal",
@@ -212,13 +212,15 @@
       "obsidian-day-planner:Timeline": false,
       "gpt3-notes:GPT-3 Notes": false,
       "select-and-complete:Select and Complete": false,
-      "git-integration:Open git menu": false,
       "desk:Create new desk": false,
-      "card-board:CardBoard": false
+      "card-board:CardBoard": false,
+      "git-integration:Open git menu": false
     }
   },
-  "active": "f342cc04e3559737",
+  "active": "334497290506c02d",
   "lastOpenFiles": [
+    "README.md",
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/skins.md",
     "vault14/and how do you know what.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
@@ -230,7 +232,6 @@
     "vault14/axis9/Мусорщик++.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "vault14/setting things up.md",
     "Untitled.canvas",
     "Untitled 1.canvas",
@@ -247,7 +248,6 @@
     "vault14/Untitled 1.md",
     "vault14/Zudo and -Пыточный конвеер в Росии- и круговое ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "vault14/test.md",
-    "vault14/RFC793.md",
     "vault14/freebsd-check.jpg",
     "vault14/disk_icon.gif",
     "vault14/ccc-final-bios-amd.pdf",
