@@ -4,9 +4,9 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "OpenAI Chat (Langchain)",
+  "selectedProvider": "Default (Custom)",
   "max_tokens": 500,
-  "temperature": 0.7,
+  "temperature": 0.1,
   "frequency_penalty": 0.5,
   "showStatusBar": true,
   "outputToBlockQuote": true,
@@ -67,8 +67,9 @@
     "stop": ".",
     "showStatus": true,
     "customProvider": false,
-    "inlineSuggestions": false,
-    "overrideTrigger": " "
+    "inlineSuggestions": true,
+    "overrideTrigger": " ",
+    "showInMarkdown": true
   },
   "slashSuggestOptions": {
     "isEnabled": false,
@@ -100,7 +101,7 @@
       "model": "gpt-3.5-turbo-16k"
     },
     "Default (Custom)": {
-      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "endpoint": "http://localhost:1234/v1/models",
       "custom_header": "{\n    \"Content-Type\": \"application/json\",\n    authorization: \"Bearer {{api_key}}\"\n}",
       "custom_body": "{\n    model: \"{{model}}\",\n    temperature: {{temperature}},\n    top_p: {{top_p}},\n    frequency_penalty: {{frequency_penalty}},\n    presence_penalty: {{presence_penalty}},\n    max_tokens: {{max_tokens}},\n    n: {{n}},\n    stream: {{stream}},\n    stop: \"{{stop}}\",\n    messages: {{stringify messages}}\n}",
       "model": "gpt-3.5-turbo-16k",
@@ -108,7 +109,8 @@
       "sanatization_response": "async (data, res)=>{\n  // catch error\n  if (res.status >= 300) {\n    const err = data?.error?.message || JSON.stringify(data);\n    throw err;\n  }\n\n  // get choices\n  const choices = data.choices.map(c=> c.message);\n\n  // the return object should be in the format of \n  // { content: string }[] \n  // if there's only one response, put it in the array of choices.\n  return choices;\n}",
       "frequency_penalty": 0,
       "presence_penalty": 0.5,
-      "top_p": 1
+      "top_p": 1,
+      "api_key": ""
     },
     "OpenAI Instruct (Langchain)": {
       "basePath": "https://api.openai.com/v1",
