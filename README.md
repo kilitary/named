@@ -21,7 +21,7 @@ information about experiments on humans of non-russia citizens is not researched
 > REALIFIER
 ```
 
-the content is updated in period of friday-sunday, but some weeks can left without updates, because content changes local reality and all internal jumps should be rewritten/rechecked
+Error: Request failed, status 500without updates, because content changes local reality and all internal jumps should be rewritten/rechecked
 ![[cartesian.png]]
 
 kilitary@x25.cc
