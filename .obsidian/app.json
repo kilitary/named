@@ -10,5 +10,6 @@
   "tabSize": 2,
   "showIndentGuide": false,
   "smartIndentList": true,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "showInlineTitle": false
 }

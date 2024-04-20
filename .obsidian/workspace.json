@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+                "file": "textgenerator/templates/default/simplify.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+                "file": "textgenerator/templates/default/simplify.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,7 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+                "file": "textgenerator/templates/default/simplify.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md"
+                "file": "textgenerator/templates/default/simplify.md"
               }
             }
           },
@@ -210,7 +210,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md"
+                "file": "textgenerator/templates/default/simplify.md"
               }
             }
           },
@@ -260,15 +260,16 @@
   },
   "active": "88b6fc9e9add94ca",
   "lastOpenFiles": [
+    "textgenerator/templates/default/rewrite.md",
+    "AI Research Assistant/History/New Chat.md",
+    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "textgenerator/templates/default/getEmailPos.md",
     "textgenerator/templates/default/getEmailNeg.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "AI Research Assistant/History/New Chat.md",
     "drafting starter exit.md",
     "vault14/disk_icon.gif",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
     "textgenerator/templates/default/getTitles.md",
     "README.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
@@ -292,7 +293,6 @@
     "Untitled Kanban.md",
     "textgenerator/templates/default/getIdeas.md",
     "vault14/ccc-final-bios-amd.pdf",
-    "Excalidraw/Drawing 2024-04-19 19.25.49.excalidraw.md",
     "Untitled 2.canvas",
     "Excalidraw",
     "alarm.png",
