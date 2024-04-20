@@ -7,6 +7,8 @@ Error: net::ERR_CONNECTION_REFUSED
 >
 
  [!ai]+ AI
+
+ask me 
 >
 
 
