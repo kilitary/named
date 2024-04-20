@@ -1,4 +1,4 @@
 {
-  "ollama_endpoint": "http://localhost:11434/api/generate",
+  "ollama_endpoint": "http://localhost:11434",
   "model": "llama2"
 }
