@@ -11,7 +11,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/gpt-3-prompt-templates",
       "installed": false,
-      "downloads": 101007
+      "downloads": 101040
     },
     "dalle": {
       "packageId": "dalle",
@@ -24,7 +24,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/tg-dalle-package",
       "installed": false,
-      "downloads": 100917
+      "downloads": 100950
     },
     "huggingface": {
       "packageId": "huggingface",
@@ -37,7 +37,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/huggingface",
       "installed": false,
-      "downloads": 101267
+      "downloads": 101300
     },
     "awesomePrompts": {
       "packageId": "awesomePrompts",
@@ -50,7 +50,7 @@
       "authorUrl": "https://github.com/f/awesome-chatgpt-prompts",
       "repo": "text-gen/awesome-tg-package",
       "installed": false,
-      "downloads": 6899
+      "downloads": 6932
     },
     "tts": {
       "packageId": "tts",
@@ -63,7 +63,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/TTS",
       "installed": false,
-      "downloads": 3242
+      "downloads": 3275
     },
     "vision": {
       "packageId": "vision",
@@ -76,7 +76,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/tg-vision",
       "installed": false,
-      "downloads": 3241
+      "downloads": 3274
     },
     "smartConnections": {
       "packageId": "smartConnections",
@@ -89,7 +89,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/tg-smartConnections",
       "installed": false,
-      "downloads": 3239
+      "downloads": 3272
     },
     "Experimental": {
       "packageId": "Experimental",
@@ -102,7 +102,7 @@
       "authorUrl": "https://www.buymeacoffee.com/haouarine",
       "repo": "text-gen/experimental-package",
       "installed": false,
-      "downloads": 3086
+      "downloads": 3119
     },
     "testExtension": {
       "core": true,

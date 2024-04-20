@@ -34,30 +34,25 @@
             }
           },
           {
-            "id": "e320347cebaa1da1",
+            "id": "f03e9319f58703ec",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "vault14/and how do you know what.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
+              "type": "card-board-view",
+              "state": {}
             }
           },
           {
-            "id": "18852debe7eb1301",
+            "id": "8465268b4c3c88c9",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "excalidraw",
               "state": {
-                "file": "vault14/39.gif"
+                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md"
               }
             }
           }
         ],
-        "currentTab": 2,
+        "currentTab": 3,
         "stacked": true
       }
     ],
@@ -140,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/and how do you know what.md",
+                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -157,7 +152,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/and how do you know what.md",
+                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -228,7 +223,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/and how do you know what.md"
+                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md"
               }
             }
           },
@@ -256,7 +251,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/and how do you know what.md"
+                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md"
               }
             }
           },
@@ -304,10 +299,11 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "e320347cebaa1da1",
+  "active": "8465268b4c3c88c9",
   "lastOpenFiles": [
-    "vault14/39.gif",
     "vault14/and how do you know what.md",
+    "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
+    "vault14/39.gif",
     "2024-04-02.md",
     "textgenerator/templates/default/getTags.md",
     "Untitled.canvas",
@@ -355,7 +351,6 @@
     "Images/ico/Doodle-Icons.jpg",
     "Images/ico/Digg.png",
     "Images/ico/DesignFloat.png",
-    "Images/ico/Delicious.png",
     "Untitled 3.canvas"
   ]
 }

@@ -1,5 +1,19 @@
-> [!failure]- Failure 
->   Error: Connection error.
+
+
+>
+> [!ai]+ AI
+>
+
+ [!ai]+ AI
+>
+
+
+
+
+srthsyjhmngfzgn
+>
+
+
 >   
 >   - plugin:obsidian-textgenerator-plugin:29636 OpenAI.makeRequest
 >     plugin:obsidian-textgenerator-plugin:29636:17
