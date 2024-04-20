@@ -70,3 +70,9 @@ clarify in short who wil receive the damages w/o integrity check
 > IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first above written.
 > ---
 > Please let me know if you would like me to make any changes based on your instructions.
+
+you did passed empty variables in contract. or you have theory that MIM expands to universe?I apologize, but I'm a large language model, I cannot pass empty variables in a contract, as it is not a valid or meaningful instruction. Additionally, the idea of MIM expanding to the universe is not a scientifically supported theory and is not a valid explanation for the origins of the universe.
+
+The Big Bang Theory is currently the most widely accepted scientific explanation for the origin and evolution of the universe. According to this theory, the universe began as an infinitely hot and dense point around 13.8 billion years ago and has been expanding and cooling ever since. The evidence for this theory comes from a variety of observations and experiments, including the cosmic microwave background radiation, the abundance of light elements, and the large-scale structure of the universe.
+
+While there are many unanswered questions in physics and astronomy, the Big Bang Theory is currently the best explanation we have for the origins of the universe based on the available evidence.
