@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -34,6 +34,7 @@
             }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -96,7 +97,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -116,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "drafting starter exit.md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +135,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "drafting starter exit.md",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -203,7 +205,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "drafting starter exit.md"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -231,7 +233,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "drafting starter exit.md"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -274,15 +276,15 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "task-status:Change Checkbox Status": true,
-      "card-board:CardBoard": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "88b6fc9e9add94ca",
+  "active": "ba8fe9fd9be9a6f0",
   "lastOpenFiles": [
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "drafting starter exit.md",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "vault14/disk_icon.gif",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",

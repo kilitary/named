@@ -1,11 +1,14 @@
 ---
 state: Drafting
 ---
-текущие методики российских спецслужб, получившие мощные компьютеры для разбора всего того что входит в, и исходит из системы результирует в том что всё это создавшие все меньше действуют в ос своими щупальцами
-~~
-ведь гораздо лучше орать аншлюз ебанутого содержания дабы превысить себя перед аналогичной обезьяной что отьебал целку, и бегать с окровавленым пододеяльником по парадке 3 часа, чем реально отьебать тёлку во фреш письку и получить пизды от 7 её братьев-иных-ис-по-веданий...	
-для этого нужны дропы, и желательно максимально считающие себя мужиками. баб не берем у них всё просто, обычные кошкины задания, тут повертеть там посидеть. 
-вопирос: как подвергнуть "преследуемого" к перепланировке его жизни в пользу секретных служб. 
+текущие методики российских спецслужб, получившие мощные компьютеры для разбора всего того что входит в, и исходит из системы результирует в том что всё это создавшие все меньше действуют в ос своими щупальцами.
+
+ведь гораздо лучше создать собственный аншлюз ебанутого содержания дабы превысить себя перед аналогичной обезьяной что отьебал целку, и бегать с окровавленым пододеяльником по парадке 3 часа, чем реально отьебать тёлку во фреш письку и получить пизды от 7 её братьев-иных-ис-по-веданий...	
+для развития российской аншлюз сети нужны пивные долбоебы, и желательно максимально считающие себя мужиками.
+
+
+
+Error: Request failed, status 404
 
 сначала нужно прикрепить к нему новые щупальца. затем показать через тв, газету, радио или иные медиа, что они производят какието связаные с действием обьекта изменения, влияющие в конечном итоге на окружающую обьект реальность и дающих какието положительные вещи, например на счёт. далее обьект, получивший адреналин от новых познаний, естесно воспринимая их как подарок судьбы либо просто созданный жизненным опытом, если он не пивной дурак или не моргенштерен, то начинает юзать эти "свои новые" щупальца совместно со своим стандартным поведением для достижения на этот момент в[[]]ремени, целей. на данный момент, его целей.
 
@@ -117,5 +120,36 @@ state: Drafting
 >   
 >   - plugin:obsidian-textgenerator-plugin:258869 async eval
 >     plugin:obsidian-textgenerator-plugin:258869:21
+>   
+>  
+
+> [!failure]- Failure 
+>   Error: Ollama call failed with status code 404: model 'wizardlm2' not found, t  ry pulling it first
+>   
+>   - plugin:obsidian-textgenerator-plugin:99231 createOllamaStream
+>     plugin:obsidian-textgenerator-plugin:99231:15
+>   
+>   - plugin:obsidian-textgenerator-plugin:99258 async createOllamaGenerateStream
+>     plugin:obsidian-textgenerator-plugin:99258:3
+>   
+>   - plugin:obsidian-textgenerator-plugin:99587 async Ollama._streamResponseChunk    s
+>     plugin:obsidian-textgenerator-plugin:99587:26
+>   
+>   - plugin:obsidian-textgenerator-plugin:99615 async Ollama._call
+>     plugin:obsidian-textgenerator-plugin:99615:26
+>   
+>   - async Promise.all
+>   
+>   - plugin:obsidian-textgenerator-plugin:22921 async Ollama._generate
+>     plugin:obsidian-textgenerator-plugin:22921:29
+>   
+>   - plugin:obsidian-textgenerator-plugin:22799 async Ollama._generateUncached
+>     plugin:obsidian-textgenerator-plugin:22799:20
+>   
+>   - plugin:obsidian-textgenerator-plugin:22714 async Ollama.invoke
+>     plugin:obsidian-textgenerator-plugin:22714:24
+>   
+>   - plugin:obsidian-textgenerator-plugin:259453 async eval
+>     plugin:obsidian-textgenerator-plugin:259453:18
 >   
 >  
