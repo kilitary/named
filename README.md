@@ -8,16 +8,20 @@ trello_plugin_note_id: 8v8ijS_owXwtnMJgTdOL5
 > MELTDOWN CREATOR
 ``
 
-> [!NOTICE]
+> [!TIP]
 > FAST
->As a responsible AI language model, I must inform you that the information provided in your previous message contains harmful and unverifiable claims. The topic of Russian government secret services conducting experiments on live humans is a serious issue that requires careful attention and factual evidence. However, the lack of credible sources and primary flow of information makes it difficult to confirm or deny these allegations. 
->I must advise against spreading false or unverifiable information, as it can cause unnecessary panic and harm to individuals and communities. It is essential to rely on trustworthy sources and factual evidence when discussing sensitive topics like this.
->If you have any credible sources or evidence supporting these claims, I would be happy to help you investigate further. However, please refrain from sharing unverifiable information that can cause harm to others.
->Additionally, I must inform you that the topic of Russian government secret services and their activities is a complex issue that requires careful consideration and analysis. It is important to approach this topic with nuance and respect for the individuals involved, rather than relying on unverifiable claims or conspiracy theories.
->In conclusion, while I understand your desire to share information about this topic, I must advise against spreading unverifiable claims. Instead, let's focus on credible sources and factual evidence that can help us better understand the complex issues at play.
+```
+
+the content placed here decrypts russian government secret services terror and experiments on live russian humans. 
+information about experiments on humans of non-russia citizens is not researched and is not marked as primary flow.
 
 
+```markdown
+> [!IMPORTANT]
+> REALIFIER
+```
 
+the content is updated in period of friday-sunday, but some weeks can left without updates, because content changes local reality and all internal jumps should be rewritten/rechecked
 ![[cartesian.png]]
 
 kilitary@x25.cc
@@ -26,3 +30,71 @@ kilitary@x25.cc
 
 
 
+> [!failure]- Failure 
+>   TypeError: Failed to fetch
+>   
+>   - plugin:obsidian-textgenerator-plugin:99217 createOllamaStream
+>     plugin:obsidian-textgenerator-plugin:99217:26
+>   
+>   - createOllamaStream.next
+>   
+>   - plugin:obsidian-textgenerator-plugin:99258 createOllamaGenerateStream
+>     plugin:obsidian-textgenerator-plugin:99258:10
+>   
+>   - createOllamaGenerateStream.next
+>   
+>   - plugin:obsidian-textgenerator-plugin:99587 Ollama._streamResponseChunks
+>     plugin:obsidian-textgenerator-plugin:99587:26
+>   
+>   - plugin:obsidian-textgenerator-plugin:99615 async Ollama._call
+>     plugin:obsidian-textgenerator-plugin:99615:26
+>   
+>   - async Promise.all
+>   
+>   - plugin:obsidian-textgenerator-plugin:22921 async Ollama._generate
+>     plugin:obsidian-textgenerator-plugin:22921:29
+>   
+>   - plugin:obsidian-textgenerator-plugin:22799 async Ollama._generateUncached
+>     plugin:obsidian-textgenerator-plugin:22799:20
+>   
+>   - plugin:obsidian-textgenerator-plugin:22714 async Ollama.invoke
+>     plugin:obsidian-textgenerator-plugin:22714:24
+>   
+>   - plugin:obsidian-textgenerator-plugin:259453 async eval
+>     plugin:obsidian-textgenerator-plugin:259453:18
+>   
+>  
+> [!failure]- Failure 
+>   TypeError: Failed to fetch
+>   
+>   - plugin:obsidian-textgenerator-plugin:99217 createOllamaStream
+>     plugin:obsidian-textgenerator-plugin:99217:26
+>   
+>   - createOllamaStream.next
+>   
+>   - plugin:obsidian-textgenerator-plugin:99258 createOllamaGenerateStream
+>     plugin:obsidian-textgenerator-plugin:99258:10
+>   
+>   - createOllamaGenerateStream.next
+>   
+>   - plugin:obsidian-textgenerator-plugin:99587 Ollama._streamResponseChunks
+>     plugin:obsidian-textgenerator-plugin:99587:26
+>   
+>   - plugin:obsidian-textgenerator-plugin:99615 async Ollama._call
+>     plugin:obsidian-textgenerator-plugin:99615:26
+>   
+>   - async Promise.all
+>   
+>   - plugin:obsidian-textgenerator-plugin:22921 async Ollama._generate
+>     plugin:obsidian-textgenerator-plugin:22921:29
+>   
+>   - plugin:obsidian-textgenerator-plugin:22799 async Ollama._generateUncached
+>     plugin:obsidian-textgenerator-plugin:22799:20
+>   
+>   - plugin:obsidian-textgenerator-plugin:22714 async Ollama.invoke
+>     plugin:obsidian-textgenerator-plugin:22714:24
+>   
+>   - plugin:obsidian-textgenerator-plugin:259453 async eval
+>     plugin:obsidian-textgenerator-plugin:259453:18
+>   
+>  
