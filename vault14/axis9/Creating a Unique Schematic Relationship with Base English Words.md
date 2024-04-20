@@ -20,14 +20,15 @@ For such words:
 2. Analyze
 3. Combine
 4. Differentiate
-5. Categorize
+5. Categorize  c 
 6. Integrate
 7. Visualize
-8. Evaluate
-9. Synthesize
+8. Evaluate   
+9. Synthesize    dvbdz    !!?>> ?>\';dx
 10. Interpret
 Find layer of parent linkage going from top abstract to bottom concrete. Print parents and childs only. 
 Look from distance of object of type atom and for each layer, print abstract rate in simple unicode picture. 
+	ask     
 Use 
 
 

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "textgenerator/templates/default/simplify.md",
+                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "textgenerator/templates/default/simplify.md",
+                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "textgenerator/templates/default/simplify.md",
+                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -167,7 +167,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       },
       {
         "id": "77f847cbcc6365f1",
@@ -191,7 +192,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "textgenerator/templates/default/simplify.md"
+                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md"
               }
             }
           },
@@ -219,7 +220,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "textgenerator/templates/default/simplify.md"
+                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md"
               }
             }
           },
@@ -263,15 +264,24 @@
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "task-status:Change Checkbox Status": true,
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "card-board:CardBoard": false
     }
   },
   "active": "88b6fc9e9add94ca",
   "lastOpenFiles": [
+    "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
+    "vault14/axis9/Мусорщик++.md",
+    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "textgenerator/templates/default/getTags.md",
+    "textgenerator/templates/default/summarizeLarge.md",
+    "textgenerator/templates/default/getEmailPos.md",
+    "textgenerator/templates/default/simplify.md",
     "textgenerator/templates/default/rewrite.md",
     "AI Research Assistant/History/New Chat.md",
     "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
-    "textgenerator/templates/default/getEmailPos.md",
     "textgenerator/templates/default/getEmailNeg.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
@@ -280,7 +290,6 @@
     "vault14/work flows/global ai, defense and counter-ss operations.md",
     "textgenerator/templates/default/getTitles.md",
     "README.md",
-    "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "2024-03-31.md",
     "vault14/test.md",
     "2024-04-01.md",
@@ -289,17 +298,10 @@
     "Untitled.loom",
     "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "vault14/and how do you know what.md",
-    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
     "vault14/39.gif",
-    "textgenerator/templates/default/getTags.md",
     "Untitled.canvas",
     "vault14/alarm.png",
     "Untitled 1.canvas",
-    "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
-    "vault14/Untitled 2.md",
-    "Untitled Kanban.md",
-    "textgenerator/templates/default/getIdeas.md",
     "vault14/ccc-final-bios-amd.pdf",
     "Untitled 2.canvas",
     "Excalidraw",

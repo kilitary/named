@@ -97,5 +97,21 @@
       ],
       "key": "Home"
     }
+  ],
+  "obsidian-textgenerator-plugin:text-extractor-tool": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "E"
+    }
+  ],
+  "obsidian-textgenerator-plugin:stop-stream": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "S"
+    }
   ]
 }
