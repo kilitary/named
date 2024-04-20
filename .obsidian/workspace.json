@@ -19,6 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ba8fe9fd9be9a6f0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
         ],
         "stacked": true
@@ -166,8 +179,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       },
       {
         "id": "77f847cbcc6365f1",
@@ -207,7 +219,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       },
       {
         "id": "5f6904f0d7e0784d",
@@ -262,13 +274,14 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "task-status:Change Checkbox Status": true,
+      "card-board:CardBoard": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "card-board:CardBoard": false
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
   "active": "88b6fc9e9add94ca",
   "lastOpenFiles": [
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "cccccc.md",
     "vault14/disk_icon.gif",
     "vault14/work flows/global ai, defense and counter-ss operations.md",
@@ -287,7 +300,6 @@
     "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "vault14/and how do you know what.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
     "vault14/39.gif",
     "textgenerator/templates/default/getTags.md",

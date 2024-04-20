@@ -1,5 +1,7 @@
 ---
 state: Drafting
+type: exchange
+object: computer-ai
 ---
 should we unload 'psychology' from special env's in short
 
@@ -118,4 +120,6 @@ Random number generators are algorithms that use various mathematical techniques
 
 In the case of the linear feedback shift register, for example, the seed can be any non-negative integer. In the case of the pseudorandom number generator, the seed can be any positive integer. In the case of the Mersenne Twister, the seed can be any positive integer that is a multiple of 4.
 
-In general, the seed used to initialize a random number generator does not have any special properties or significance beyond providing an initial state for the algorithm. The algorithm itself generates the random numbers using mathematical formulas and algorithms, rather than relying on any external source of randomness.
+  >[!failure]+ Failured info
+  >In general, the seed used to initialize a random number generator does not have any special properties or significance beyond providing an initial state for the algorithm. The algorithm itself generates the >random numbers using mathematical formulas and algorithms, rather than relying on any external source of randomness.
+
