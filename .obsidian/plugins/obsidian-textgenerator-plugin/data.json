@@ -12,7 +12,7 @@
   "outputToBlockQuote": true,
   "freeCursorOnStreaming": true,
   "allowJavascriptRun": false,
-  "experiment": false,
+  "experiment": true,
   "promptsPath": "textgenerator/templates",
   "textGenPath": "textgenerator/",
   "prefix": "\n\n",
@@ -29,10 +29,10 @@
     "generate-text": true,
     "generate-text-with-metadata": true,
     "insert-generated-text-From-template": true,
-    "create-generated-text-From-template": false,
+    "create-generated-text-From-template": true,
     "search-results-batch-generate-from-template": true,
-    "insert-text-From-template": false,
-    "create-text-From-template": false,
+    "insert-text-From-template": true,
+    "create-text-From-template": true,
     "show-modal-From-template": true,
     "open-template-as-tool": true,
     "open-playground": true,
@@ -41,7 +41,7 @@
     "packageManager": true,
     "create-template": false,
     "get-title": true,
-    "generated-text-to-clipboard-From-template": false,
+    "generated-text-to-clipboard-From-template": true,
     "calculate-tokens": true,
     "calculate-tokens-for-template": true,
     "text-extractor-tool": true,
@@ -59,21 +59,22 @@
   "autoSuggestOptions": {
     "customInstructEnabled": true,
     "customInstruct": "Continue the follwing text:\nTitle: {{title}}\n{{query}}",
-    "isEnabled": false,
-    "allowInNewLine": false,
-    "delay": 300,
-    "numberOfSuggestions": 5,
-    "triggerPhrase": "  ",
+    "isEnabled": true,
+    "allowInNewLine": true,
+    "delay": 488,
+    "numberOfSuggestions": 4,
+    "triggerPhrase": "  ??",
     "stop": ".",
     "showStatus": true,
     "customProvider": false,
     "inlineSuggestions": true,
     "overrideTrigger": " ",
-    "showInMarkdown": true
+    "showInMarkdown": true,
+    "selectedProvider": "Ollama (Langchain)"
   },
   "slashSuggestOptions": {
-    "isEnabled": false,
-    "triggerPhrase": "/"
+    "isEnabled": true,
+    "triggerPhrase": "!!"
   },
   "extractorsOptions": {
     "PDFExtractor": true,
@@ -127,7 +128,8 @@
     },
     "Google Palm (Langchain)": {},
     "Ollama (Langchain)": {
-      "basePath": "http://localhost:11434"
+      "basePath": "http://localhost:11434",
+      "model": "wizardlm2"
     },
     "Huggingface (Langchain)": {},
     "MistralAI Chat (Langchain)": {
