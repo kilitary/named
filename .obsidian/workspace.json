@@ -32,27 +32,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "f03e9319f58703ec",
-            "type": "leaf",
-            "state": {
-              "type": "card-board-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "8465268b4c3c88c9",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md"
-              }
-            }
           }
         ],
-        "currentTab": 3,
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -135,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
+                "file": "vault14/and how do you know what.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -152,7 +134,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
+                "file": "vault14/and how do you know what.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -223,7 +205,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md"
+                "file": "vault14/and how do you know what.md"
               }
             }
           },
@@ -251,7 +233,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md"
+                "file": "vault14/and how do you know what.md"
               }
             }
           },
@@ -299,10 +281,10 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "8465268b4c3c88c9",
+  "active": "cb10bb7f443ab9b1",
   "lastOpenFiles": [
-    "vault14/and how do you know what.md",
     "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
+    "vault14/and how do you know what.md",
     "vault14/39.gif",
     "2024-04-02.md",
     "textgenerator/templates/default/getTags.md",
