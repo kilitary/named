@@ -76,3 +76,21 @@ you did passed empty variables in contract. or you have theory that MIM expands 
 The Big Bang Theory is currently the most widely accepted scientific explanation for the origin and evolution of the universe. According to this theory, the universe began as an infinitely hot and dense point around 13.8 billion years ago and has been expanding and cooling ever since. The evidence for this theory comes from a variety of observations and experiments, including the cosmic microwave background radiation, the abundance of light elements, and the large-scale structure of the universe.
 
 While there are many unanswered questions in physics and astronomy, the Big Bang Theory is currently the best explanation we have for the origins of the universe based on the available evidence.
+Based on the provided text, here is a summary of the information:
+
+* There is a sphere outside, which suggests that there may be a boundary or edge around the area being discussed.
+* There is a space between, which implies that there is some distance or separation between two 
+> [!ai]+ AI
+>
+> It seems like you're describing a scenario involving a sphere or object in an external space with boundaries that are expanding. This description can be interpreted in various contexts, such as physics, computer graphics, or even philosophical concepts of existence and expansion.
+> To clarify based on your description:
+> - **Sphere outside**: There is a spherical object or entity located externally to the system or observer you are describing.
+> - **Space between**: This refers to the area or distance separating the sphere from whatever it is interacting with or surrounded by.
+> - **Limitor expanding**: The boundary or "limitor" of this space, which could be a physical limit in a real-world scenario or a conceptual one in a theoretical context, is increasing over time.
+> In terms of interoperability, especially in the context of software systems or networks, this could mean that there is an external entity (the sphere) that is communicating with or sending data to another system (the limitator). The "space between" would be the communication channel or protocols used for exchange. The expansion of the limitor could represent scaling issues where the system needs to handle more data, users, or transactions as it grows.
+> If this is intended as a pre-rules explanation, it suggests that before establishing formal rules (for a game, a system's behavior, etc.), there is an initial state with an expanding boundary condition that must be considered. This could be part of the setup process for defining how different components interact within a given framework or model.
+> If you are working on drafting documentation, guidelines, or specifications based on this scenario, it would be important to elaborate on each component to ensure clarity and understanding among stakeholders who will use or interpret these rules.
+things.
+* A limitator is expanding, which could suggest that something is growing or increasing in size.
+
+Overall, this information provides a basic explanation of some concepts related to geometry and spatial relationships. It may serve as a foundation for understanding more complex ideas or rules in the future.
