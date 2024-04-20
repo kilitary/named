@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b480cbd6cd531406",
+        "id": "930cdd2a9fde1c8a",
         "type": "tabs",
         "children": [
           {
-            "id": "9a435560b9c373cb",
+            "id": "88b6fc9e9add94ca",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "cccccc.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "cccccc.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "cccccc.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -191,7 +191,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "README.md"
+                "file": "cccccc.md"
               }
             }
           },
@@ -219,7 +219,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "cccccc.md"
               }
             }
           },
@@ -267,8 +267,16 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "9a435560b9c373cb",
+  "active": "88b6fc9e9add94ca",
   "lastOpenFiles": [
+    "cccccc.md",
+    "vault14/disk_icon.gif",
+    "vault14/work flows/global ai, defense and counter-ss operations.md",
+    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
+    "AI Research Assistant/History/New Chat.md",
+    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "textgenerator/templates/default/getTitles.md",
+    "README.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "2024-03-31.md",
     "vault14/test.md",
@@ -279,7 +287,6 @@
     "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "vault14/and how do you know what.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульнара=.md",
     "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
     "vault14/39.gif",
@@ -289,7 +296,6 @@
     "Untitled 1.canvas",
     "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "vault14/Untitled 2.md",
-    "vault14/disk_icon.gif",
     "Untitled Kanban.md",
     "textgenerator/templates/default/getIdeas.md",
     "vault14/ccc-final-bios-amd.pdf",
@@ -297,14 +303,8 @@
     "textgenerator/templates/default/simplify.md",
     "textgenerator/templates/default/summarize.md",
     "Untitled 2.canvas",
-    "vault14/axis9/Мусорщик++.md",
-    "textgenerator/templates/default/getOutline.md",
-    "textgenerator/templates/default/rewrite.md",
-    "README.md",
     "Excalidraw",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "alarm.png",
-    "object..md",
     "Untitled",
     "textgenerator/configs/llm",
     "textgenerator/configs",

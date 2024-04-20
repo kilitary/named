@@ -21,7 +21,7 @@ information about experiments on humans of non-russia citizens is not researched
 > REALIFIER
 ```
 
-Error: Request failed, status 500without updates, because content changes local reality and all internal jumps should be rewritten/rechecked
+without updates, because content changes local reality and all internal jumps yours b e rewritten/rechecked
 ![[cartesian.png]]
 
 kilitary@x25.cc
