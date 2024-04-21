@@ -110,7 +110,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -202,8 +203,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "77f847cbcc6365f1",
@@ -302,13 +302,14 @@
       "task-status:Change Checkbox Status": true,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "card-board:CardBoard": false,
       "smart-connections:Open: View Smart Connections": false,
-      "smart-connections:Open: Smart Chat Conversation": false
+      "smart-connections:Open: Smart Chat Conversation": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "d54c54655ce8ca53",
+  "active": "31f436909e274f22",
   "lastOpenFiles": [
+    "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
     "SKYNET/advisories/README.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
@@ -343,7 +344,6 @@
     "Red&Queen/research",
     "SKYNET/technology/Quiz 1.md",
     "SKYNET/technology/test.md",
-    "SKYNET/technology/Untitled 2.md",
     "SKYNET/technology/alarm.png",
     "SKYNET/research/textgenerator/configs/llm/Untitled.loom",
     "axis9/schedule",

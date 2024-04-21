@@ -11,7 +11,7 @@ Error: net::ERR_CONNECTION_REFUSED
 ask me 
 >
 
-
+*API Error. \Error: Request failed, status 404
 
 
 srthsyjhmngfzgn

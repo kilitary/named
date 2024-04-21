@@ -59,7 +59,7 @@
   "autoSuggestOptions": {
     "customInstructEnabled": true,
     "customInstruct": "Continue the follwing text:\nTitle: {{title}}\n{{query}}",
-    "isEnabled": true,
+    "isEnabled": false,
     "allowInNewLine": true,
     "delay": 0,
     "numberOfSuggestions": 4,
