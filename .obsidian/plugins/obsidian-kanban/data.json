@@ -1,4 +1,5 @@
 {
   "show-checkboxes": true,
-  "show-relative-date": true
+  "show-relative-date": true,
+  "time-format": "HH:mm:ss"
 }

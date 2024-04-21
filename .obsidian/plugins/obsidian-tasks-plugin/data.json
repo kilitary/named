@@ -3,7 +3,7 @@
   "globalFilter": "",
   "removeGlobalFilter": false,
   "taskFormat": "dataview",
-  "setCreatedDate": false,
+  "setCreatedDate": true,
   "setDoneDate": true,
   "setCancelledDate": true,
   "autoSuggestInEditor": true,
@@ -12,7 +12,7 @@
   "provideAccessKeys": true,
   "useFilenameAsScheduledDate": false,
   "filenameAsDateFolders": [],
-  "recurrenceOnNextLine": false,
+  "recurrenceOnNextLine": true,
   "statusSettings": {
     "coreStatuses": [
       {

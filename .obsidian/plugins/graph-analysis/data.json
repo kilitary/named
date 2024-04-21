@@ -5,7 +5,7 @@
   "showImgThumbnails": true,
   "addUnresolved": true,
   "coTags": true,
-  "defaultSubtypeType": "Otsuka-Chiai",
+  "defaultSubtypeType": "Label Propagation",
   "debugMode": false,
   "superDebugMode": false,
   "exclusionRegex": "",

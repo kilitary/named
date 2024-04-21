@@ -202,5 +202,13 @@
     {
         "role": "assistant",
         "content": "Here's an example formula you can use to calculate the area of a circle:\n```scss\narea = pi * radius**2\n```\nwhere `pi` is a mathematical constant approximately equal to 3.14, and `radius` is the distance from the center of the circle to any point on its circumference."
+    },
+    {
+        "role": "user",
+        "content": "print current time"
+    },
+    {
+        "role": "assistant",
+        "content": "Here's an example code snippet you can use to print the current time in Python:\n```python\nimport datetime\n\n# Get the current date and time\nnow = datetime.datetime.now()\n\n# Print the current time\nprint(\"Current time:\", now)\n```\nThis code uses the `datetime` module to get the current date and time, and then prints it to the console."
     }
 ]
