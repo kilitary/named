@@ -11,16 +11,29 @@
             "id": "2c47227766ba69ba",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "axis9/plans/Мусорщик++.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "913cbcee5816c367",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md"
               }
             }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -67,8 +80,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -100,26 +112,10 @@
             }
           },
           {
-            "id": "2d495139f5dedbe7",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
-              "state": {}
-            }
-          },
-          {
             "id": "9c48c8f85310942d",
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
-            }
-          },
-          {
-            "id": "7119b586d96d0a35",
-            "type": "leaf",
-            "state": {
-              "type": "smart-connections-chat-view",
               "state": {}
             }
           },
@@ -132,15 +128,15 @@
             }
           },
           {
-            "id": "976bab9373739e52",
+            "id": "edb01728083de3e7",
             "type": "leaf",
             "state": {
-              "type": "smart-connections-view",
+              "type": "grind-manager-view",
               "state": {}
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       },
       {
         "id": "77f847cbcc6365f1",
@@ -165,7 +161,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/plans/Мусорщик++.md"
+                "file": "Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md"
               }
             }
           },
@@ -189,7 +185,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -198,17 +194,14 @@
   "left-ribbon": {
     "hiddenItems": {
       "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "markdown-table-editor:Open Markdown Table Editor": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": true,
       "big-calendar:Big Calendar": false,
-      "markdown-table-editor:Open Markdown Table Editor": false,
       "git-integration:Open git menu": true,
-      "obsidian-focus-mode:Toggle Focus Mode (Shift + Click to show active pane only)": false,
       "obsidian-day-planner:Timeline": false,
-      "obsidian-gallery:Gallery": false,
       "notion-like-tables:Create loom": false,
-      "obsidian-projects:Open projects": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
@@ -216,15 +209,25 @@
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "bmo-chatbot:BMO Chatbot": false,
-      "smart-connections:Open: View Smart Connections": false,
-      "smart-connections:Open: Smart Chat Conversation": false,
       "card-board:CardBoard": false,
       "grind-manager:Show grind manager": false,
       "timeline-view:Open timeline view": false
     }
   },
-  "active": "f342cc04e3559737",
+  "active": "913cbcee5816c367",
   "lastOpenFiles": [
+    "Pasted Image 20240422002020_156.png",
+    "Pasted Image 20240422001935_106.png",
+    "Untitled.canvas",
+    "Untitled.loom",
+    "Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
+    "images/alarm.png",
+    "Excalidraw",
+    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+    "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
+    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
+    "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
+    "axis9/plans/Мусорщик++.md",
     "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
     "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/core  country planning.md",
@@ -243,25 +246,15 @@
     "!alarm.png.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 19 04 23.md",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "axis9/plans/Мусорщик++.md",
     "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "images/alarm.png",
     "images",
     "New folder",
     "SKYNET/technology",
     "axis9/CORE-SSE",
-    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "BMO/Profiles",
     "BMO",
     "textgenerator/configs/llm",
-    "textgenerator/configs",
-    "textgenerator",
-    "SKYNET/advisories/README.md",
-    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
-    "Red&Queen/research/story about 404 woman.md",
-    "SKYNET/For vacuum divider/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
-    "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/39.gif",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
@@ -273,7 +266,6 @@
     "button.png",
     "cartesian.png",
     "Pasted image 20240419070054.png",
-    "start.jpg",
     "Untitled 1.canvas",
     "Untitled 3.canvas"
   ]

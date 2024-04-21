@@ -14,6 +14,14 @@
 > In the immediate vicinity:
 > * A dimly lit hallway with doors on either side leads north and south. The air feels colder and more damp here.
 > * Three doors lead off from this hallway: one to the north, one to the south, and one straight ahead.
+
+> [!ai]+ AI
+>
+> Thank
+> you for the
+> clarification. Here
+> is some additional information
+> on the topic of
 > * The door to the north is slightly ajar, revealing a flickering light within. You can hear faint whispers coming from behind it.
 > * The door to the south appears to be locked, its handle rusted shut.
 > * The final door, directly ahead, is carved with intricate runes and glows softly with an eerie blue light.

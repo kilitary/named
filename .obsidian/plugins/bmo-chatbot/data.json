@@ -4,23 +4,23 @@
     "profileFolderPath": "BMO/Profiles"
   },
   "general": {
-    "model": "llama2-uncensored:latest",
+    "model": "codegemma:7b",
     "system_role": "You are a helpful assistant.",
-    "max_tokens": null,
-    "temperature": "0.10",
-    "allowReferenceCurrentNote": false
+    "max_tokens": "8192",
+    "temperature": "0.20",
+    "allowReferenceCurrentNote": true
   },
   "appearance": {
     "userName": "USER",
     "chatbotName": "BMO",
-    "chatbotContainerBackgroundColor": "#--background-secondary",
-    "messageContainerBackgroundColor": "#--background-secondary",
-    "userMessageFontColor": "#--text-normal",
+    "chatbotContainerBackgroundColor": "#ebdbb2",
+    "messageContainerBackgroundColor": "#ebdbb2",
+    "userMessageFontColor": "#4f6ee8",
     "userMessageBackgroundColor": "#--background-primary",
-    "botMessageFontColor": "#--text-normal",
-    "botMessageBackgroundColor": "#--background-secondary",
-    "chatBoxFontColor": "#--text-normal",
-    "chatBoxBackgroundColor": "#--interactive-accent",
+    "botMessageFontColor": "#ffffff",
+    "botMessageBackgroundColor": "#cb5d5d",
+    "chatBoxFontColor": "#2c97a5",
+    "chatBoxBackgroundColor": "#fffde5",
     "allowHeader": true
   },
   "prompts": {
@@ -33,15 +33,15 @@
   "chatHistory": {
     "chatHistoryPath": "BMO/History",
     "templateFilePath": "",
-    "allowRenameNoteTitle": false
+    "allowRenameNoteTitle": true
   },
   "OllamaConnection": {
     "RESTAPIURL": "http://localhost:11434",
-    "allowStream": true,
+    "allowStream": false,
     "ollamaParameters": {
       "keep_alive": "",
       "mirostat": "0",
-      "mirostat_eta": "0.10",
+      "mirostat_eta": "0.30",
       "mirostat_tau": "5.00",
       "num_ctx": "8192",
       "num_gqa": null,
@@ -55,6 +55,7 @@
       "top_p": "0.90"
     },
     "ollamaModels": [
+      "codegemma:7b",
       "everythinglm:latest",
       "llama2:latest",
       "llama2-uncensored:latest",
@@ -110,6 +111,7 @@
   "toggleOllamaSettings": true,
   "toggleAdvancedSettings": true,
   "allModels": [
+    "codegemma:7b",
     "everythinglm:latest",
     "llama2:latest",
     "llama2-uncensored:latest",
