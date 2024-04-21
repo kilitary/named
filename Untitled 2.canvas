@@ -1,8 +1,8 @@
 {
 	"nodes":[
 		{"id":"501cfea1c005c488","type":"text","text":"j","x":-420,"y":140,"width":250,"height":60,"color":"#43d08e"},
-		{"id":"c24c868f7bff62ab","type":"file","file":"issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md","x":-416,"y":-440,"width":492,"height":400,"color":"4"},
-		{"id":"d2537a7b1c5b78c8","type":"file","file":"vault14/39.gif","x":-124,"y":-240,"width":200,"height":200,"color":"1"}
+		{"id":"d2537a7b1c5b78c8","type":"file","file":"vault14/39.gif","x":-124,"y":-240,"width":200,"height":200,"color":"1"},
+		{"id":"c24c868f7bff62ab","type":"file","file":"issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md","x":-720,"y":-580,"width":492,"height":400,"color":"4"}
 	],
 	"edges":[]
 }
