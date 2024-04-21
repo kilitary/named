@@ -22,5 +22,9 @@
     {
         "role": "assistant",
         "content": "```python\n# Example code to print 'A' 6547645 times\n\nfor i in range(6547645):\n    print('A')\n```\nNote that this will take a very long time to run, as it involves printing a single character over a large number of iterations."
+    },
+    {
+        "role": "user",
+        "content": "how much cost the fish"
     }
 ]

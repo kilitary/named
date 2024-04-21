@@ -169,5 +169,23 @@
       ],
       "key": "S"
     }
-  ]
+  ],
+  "colored-text:color-text": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "0"
+    }
+  ],
+  "bmo-chatbot:open-bmo-chatbot": [],
+  "dynamic-timetable:toggle-timetable": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "8"
+    }
+  ],
+  "workspace:goto-tab-8": []
 }

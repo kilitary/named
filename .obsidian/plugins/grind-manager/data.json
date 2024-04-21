@@ -1,0 +1,14 @@
+{
+  "limit": 10,
+  "statusFilter": "all",
+  "isRecurTasks": false,
+  "pathToRewards": "rewards.md",
+  "pathToHistory": "history.md",
+  "pathToDaily": "",
+  "dailyFormat": "YYYY-MM-DD",
+  "ignoreList": [],
+  "tagFilter": "",
+  "onlyThisTags": false,
+  "noteFilter": "",
+  "fromCurrentNote": true
+}
