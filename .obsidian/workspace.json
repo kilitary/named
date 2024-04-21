@@ -11,14 +11,12 @@
             "id": "88b6fc9e9add94ca",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Untitled 2.canvas",
-                "viewState": {
-                  "x": -172,
-                  "y": -120,
-                  "zoom": 0
-                }
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -52,11 +50,11 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#communication",
+                "query": "[\"author\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
-                "extraContext": false,
+                "extraContext": true,
                 "sortOrder": "byModifiedTime"
               }
             }
@@ -85,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -106,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled 2.canvas",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled 2.canvas",
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -194,7 +191,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Untitled 2.canvas"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -209,8 +206,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "5f6904f0d7e0784d",
@@ -222,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled 2.canvas"
+                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -272,14 +268,30 @@
   },
   "active": "88b6fc9e9add94ca",
   "lastOpenFiles": [
+    "textgenerator/templates/default/getIdeas.md",
+    "textgenerator/templates/default/simplify.md",
+    "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
+    "cartesian.png",
+    "202404191923.md",
+    "2024-04-05.md",
+    "Untitled.canvas",
+    "2024-04-19.md",
+    "2024-04-02.md",
+    "README.md",
+    "drafting starter exit.md",
+    "Untitled 2.canvas",
+    "Pros and Cons of [!работа.md",
+    "related.md",
+    "2024-04-04.md",
+    "button.png",
     "vault14/and how do you know what.md",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
+    "textgenerator/configs/llm/Untitled.loom",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "AI Research Assistant/History/New Chat.md",
     "textgenerator/templates/default/getTitles.md",
-    "2024-04-05.md",
     "vault14/axis9/Drawing 2024-04-19 13.10.27.excalidraw.md",
-    "textgenerator/configs/llm/Untitled.loom",
     "cv.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "vault14/axis9/Мусорщик++.md",
@@ -287,26 +299,12 @@
     "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
     "textgenerator/templates/default/getTags.md",
     "textgenerator/templates/default/summarizeLarge.md",
-    "textgenerator/templates/default/getEmailPos.md",
-    "textgenerator/templates/default/simplify.md",
-    "textgenerator/templates/default/rewrite.md",
-    "vault14/axis9/use obsidian as documene linkage for  private & public advisories.md",
-    "textgenerator/templates/default/getEmailNeg.md",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "drafting starter exit.md",
     "vault14/disk_icon.gif",
-    "vault14/work flows/global ai, defense and counter-ss operations.md",
-    "README.md",
-    "2024-03-31.md",
-    "vault14/test.md",
     "Untitled.loom",
     "vault14/39.gif",
-    "Untitled.canvas",
     "vault14/alarm.png",
     "Untitled 1.canvas",
     "vault14/ccc-final-bios-amd.pdf",
-    "Untitled 2.canvas",
     "Excalidraw",
     "alarm.png",
     "Untitled",
@@ -320,8 +318,6 @@
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",
     "Images/ico/Doodle-Icons.jpg",
-    "Images/ico/Digg.png",
-    "Images/ico/DesignFloat.png",
     "Untitled 3.canvas"
   ]
 }

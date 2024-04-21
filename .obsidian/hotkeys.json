@@ -1,12 +1,5 @@
 {
-  "obsidian-textgenerator-plugin:generate-text": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "G"
-    }
-  ],
+  "obsidian-textgenerator-plugin:generate-text": [],
   "obsidian-textgenerator-plugin:generate-text-with-metadata": [
     {
       "modifiers": [
@@ -144,6 +137,14 @@
         "Alt"
       ],
       "key": "Insert"
+    }
+  ],
+  "zk-prefixer": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "-"
     }
   ]
 }
