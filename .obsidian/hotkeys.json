@@ -187,5 +187,13 @@
       "key": "8"
     }
   ],
-  "workspace:goto-tab-8": []
+  "workspace:goto-tab-8": [],
+  "semantic-canvas:append-canvas-to-note-properties": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "7"
+    }
+  ]
 }

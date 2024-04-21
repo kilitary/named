@@ -4,7 +4,7 @@
     "profileFolderPath": "BMO/Profiles"
   },
   "general": {
-    "model": "wizardlm-uncensored:latest",
+    "model": "llama2-uncensored:latest",
     "system_role": "You are a helpful assistant.",
     "max_tokens": null,
     "temperature": "0.10",

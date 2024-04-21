@@ -26,5 +26,25 @@
     {
         "role": "user",
         "content": "how much cost the fish"
+    },
+    {
+        "role": "assistant",
+        "content": "```python\n# Example code to calculate the cost of a fish\n\n# Assume the fish weighs 1 pound and costs $5 per pound\ncost_per_pound = 5\n\n# Calculate the total cost of the fish\ntotal_cost = weight * cost_per_pound\n\nprint(\"The cost of the fish is:\", total_cost)\n```\nNote that the actual cost of a fish can vary depending on various factors such as its size, quality, and market demand. This code only provides an example calculation based on a specific set of assumptions."
+    },
+    {
+        "role": "user",
+        "content": "here?"
+    },
+    {
+        "role": "assistant",
+        "content": "```python\n# Example code to calculate the average of a list of numbers\n\n# Assume we have a list of numbers [1, 2, 3]\naverage = sum(numbers) / len(numbers)\n\nprint(\"The average of the numbers is:\", average)\n```\nThis code calculates the average of a list of numbers by adding up all the elements in the list and dividing that total by the length of the list."
+    },
+    {
+        "role": "user",
+        "content": "can you write anwesrs without code?"
+    },
+    {
+        "role": "assistant",
+        "content": "Sure, here's an example answer to your question: \"Yes, I can definitely help you with that! Let me know what information you need and I will do my best to provide it for you.\""
     }
 ]

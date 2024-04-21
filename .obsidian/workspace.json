@@ -11,9 +11,12 @@
             "id": "2c47227766ba69ba",
             "type": "leaf",
             "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
+                "file": "axis9/plans/Мусорщик++.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -47,7 +50,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#ai",
+                "query": "[\"trello_plugin_note_id\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -57,34 +60,19 @@
             }
           },
           {
-            "id": "0a0a13b041a1b9f4",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {}
-            }
-          },
-          {
             "id": "c1d0a448154ce2c9",
             "type": "leaf",
             "state": {
               "type": "todo",
               "state": {}
             }
-          },
-          {
-            "id": "5a8c644355053c10",
-            "type": "leaf",
-            "state": {
-              "type": "file-tree-view",
-              "state": {}
-            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 328.5
+    "width": 233.5
   },
   "right": {
     "id": "04f9fc2d318d98b7",
@@ -93,37 +81,8 @@
       {
         "id": "0bcd4e39cb77ddac",
         "type": "tabs",
-        "dimension": 32.94001966568339,
+        "dimension": 56.286836935166995,
         "children": [
-          {
-            "id": "ae36d55c56c85f80",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
-                "collapseAll": true,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "d743e47a1491bd4d",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
-                "linksCollapsed": true,
-                "unlinkedCollapsed": false
-              }
-            }
-          },
           {
             "id": "d54c54655ce8ca53",
             "type": "leaf",
@@ -181,12 +140,12 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 5
       },
       {
         "id": "77f847cbcc6365f1",
         "type": "tabs",
-        "dimension": 33.726647000983284,
+        "dimension": 43.713163064833005,
         "children": [
           {
             "id": "80647946df64b14c",
@@ -206,7 +165,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
+                "file": "axis9/plans/Мусорщик++.md"
               }
             }
           },
@@ -218,24 +177,6 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
-            }
-          }
-        ],
-        "currentTab": 2
-      },
-      {
-        "id": "5f6904f0d7e0784d",
-        "type": "tabs",
-        "dimension": 33.33333333333333,
-        "children": [
-          {
-            "id": "edbebe7c0b513400",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
               }
             }
           },
@@ -257,24 +198,18 @@
   "left-ribbon": {
     "hiddenItems": {
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": true,
       "command-palette:Open command palette": true,
       "big-calendar:Big Calendar": false,
       "markdown-table-editor:Open Markdown Table Editor": false,
-      "desk:Create new desk": false,
       "git-integration:Open git menu": true,
-      "markdown-importer:Open format converter": false,
-      "zk-prefixer:Create new unique note": false,
       "obsidian-focus-mode:Toggle Focus Mode (Shift + Click to show active pane only)": false,
       "obsidian-day-planner:Timeline": false,
       "obsidian-gallery:Gallery": false,
       "notion-like-tables:Create loom": false,
       "obsidian-projects:Open projects": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "file-tree-alternative:File Tree Alternative Plugin": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "task-status:Change Checkbox Status": true,
@@ -284,16 +219,17 @@
       "smart-connections:Open: View Smart Connections": false,
       "smart-connections:Open: Smart Chat Conversation": false,
       "card-board:CardBoard": false,
-      "grind-manager:Show grind manager": false
+      "grind-manager:Show grind manager": false,
+      "timeline-view:Open timeline view": false
     }
   },
-  "active": "2c47227766ba69ba",
+  "active": "f342cc04e3559737",
   "lastOpenFiles": [
-    "Red&Queen/lingvistic/drafting starter exit.md",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/core  country planning.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
-    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "Red&Queen/lingvistic/drafting starter exit.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "SKYNET/technology/alarm.png.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 20 29 48.md",
