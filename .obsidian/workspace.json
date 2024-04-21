@@ -17,7 +17,8 @@
               }
             }
           }
-        ]
+        ],
+        "stacked": true
       },
       {
         "id": "46d100ee8e521baf",
@@ -29,14 +30,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/core  country planning.md",
+                "file": "axis9/plans/Мусорщик++.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "stacked": true
       }
     ],
     "direction": "vertical"
@@ -120,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/core  country planning.md",
+                "file": "axis9/plans/Мусорщик++.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/core  country planning.md",
+                "file": "axis9/plans/Мусорщик++.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -217,7 +219,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/core  country planning.md"
+                "file": "axis9/plans/Мусорщик++.md"
               }
             }
           },
@@ -246,7 +248,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/core  country planning.md"
+                "file": "axis9/plans/Мусорщик++.md"
               }
             }
           },
@@ -299,8 +301,14 @@
   },
   "active": "fd4f0c6d55cde22e",
   "lastOpenFiles": [
-    "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "SKYNET/technology/alarm.png.md",
+    "axis9/plans/Мусорщик++.md",
+    "SKYNET/technology",
     "axis9/core  country planning.md",
+    "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
+    "smart-chats/UNTITLED CHAT 2024-04-21 19 04 23.md",
+    "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "core",
     "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "BMO/Profiles/BMO.md",
@@ -309,11 +317,9 @@
     "textgenerator/configs/llm",
     "textgenerator/configs",
     "textgenerator",
-    "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
     "SKYNET/research/black holes",
     "SKYNET/advisories/README.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "smart-chats/UNTITLED CHAT 2024-04-21 19 04 23.md",
     "setting things up.md",
     "smart-chats",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
@@ -325,7 +331,6 @@
     "Red&Queen/research/story about 404 woman.md",
     "SKYNET/For vacuum divider/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-    "axis9/plans/Мусорщик++.md",
     "Untitled Kanban.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/39.gif",
@@ -333,13 +338,10 @@
     "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
     "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
-    "SKYNET/For vacuum divider/totally unsorted/New Chat.md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/For vacuum divider/freebsd-check.jpg",
-    "SKYNET/For vacuum divider/ccc-final-bios-amd.pdf",
     "SKYNET/For vacuum divider/disk_icon.gif",
-    "Red&Queen/research",
     "SKYNET/technology/alarm.png",
     "SKYNET/technology/work flows/fss/Untitled.canvas",
     "alarm.png",

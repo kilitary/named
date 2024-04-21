@@ -9,14 +9,14 @@ excalidraw-plugin:
 
 ## research
 
-- [ ] [[use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
+- [ ] [[core  country planning]]
+- [x] [[use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
 - [x] [[use obsidian as documene linkage for  private & public advisories]]
 
 
 ## timeplanning
 
-- [ ] [[core  country planning]]
-- [x] [[kilitary]] <br><br>[unload 'psychology' from special env's]
+- [ ] [[kilitary]] <br><br>[unload 'psychology' from special env's]
 
 
 ## in progress
