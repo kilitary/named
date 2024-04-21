@@ -53,13 +53,13 @@
     "reload": true
   },
   "advancedOptions": {
-    "generateTitleInstructEnabled": false,
+    "generateTitleInstructEnabled": true,
     "generateTitleInstruct": "Generate a title for the current document (do not use * \" \\ / < > : | ? .):\n{{substring content 0 255}}"
   },
   "autoSuggestOptions": {
     "customInstructEnabled": true,
     "customInstruct": "Continue the follwing text:\nTitle: {{title}}\n{{query}}",
-    "isEnabled": false,
+    "isEnabled": true,
     "allowInNewLine": true,
     "delay": 0,
     "numberOfSuggestions": 4,
