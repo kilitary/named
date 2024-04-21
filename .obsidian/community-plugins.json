@@ -55,5 +55,6 @@
   "ai_llm",
   "obsidian-enhancing-export",
   "smart-connections",
-  "bmo-chatbot"
+  "bmo-chatbot",
+  "ollama"
 ]

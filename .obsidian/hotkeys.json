@@ -153,5 +153,21 @@
       ],
       "key": "-"
     }
+  ],
+  "ollama:expand-selection": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "E"
+    }
+  ],
+  "ollama:rewrite-selection-formal-": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "F"
+    }
   ]
 }
