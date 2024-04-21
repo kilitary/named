@@ -4,7 +4,7 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "Default (Custom)",
+  "selectedProvider": "Ollama (Langchain)",
   "max_tokens": 150,
   "temperature": 0.2,
   "frequency_penalty": 0.5,
@@ -89,6 +89,10 @@
     "OpenAI Instruct (Langchain) 1": {
       "extends": "OpenAI Instruct (Langchain)",
       "name": "OpenAI Instruct 1"
+    },
+    "Default (Custom) 1": {
+      "extends": "Default (Custom)",
+      "name": "Default 1"
     }
   },
   "LLMProviderOptions": {
@@ -151,6 +155,18 @@
       "sanatization_response": "async (data, res)=>{\n    // catch error\n    if (res.status >= 300) {\n      const err = data?.error?.message || JSON.stringify(data);\n      throw err;\n    }\n  \n    // get choices\n    const choices = data.content.map(c=> ({role:\"assistant\", content:c.text}));\n  \n    // the return object should be in the format of \n    // { content: string }[] \n    // if there's only one response, put it in the array of choices.\n    return choices;\n  }",
       "CORSBypass": true,
       "streamable": false
+    },
+    "Default (Custom) 1": {
+      "endpoint": "http://localhost:11434",
+      "custom_header": "{\n    \"Content-Type\": \"application/json\",\n    authorization: \"Bearer {{api_key}}\"\n}",
+      "custom_body": "{\n    model: \"{{model}}\",\n    temperature: {{temperature}},\n    top_p: {{top_p}},\n    frequency_penalty: {{frequency_penalty}},\n    presence_penalty: {{presence_penalty}},\n    max_tokens: {{max_tokens}},\n    n: {{n}},\n    stream: {{stream}},\n    stop: \"{{stop}}\",\n    messages: {{stringify messages}}\n}",
+      "model": "gpt-3.5-turbo-16k",
+      "sanatization_streaming": "(chunk) => {\n    console.log({ chunk })\n    let resultText = \"\";\n    const lines = chunk.split(\"\ndata: \");\n\n    const parsedLines = lines\n        .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n        .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n        .map((line) => {\n            try {\n                return JSON.parse(line)\n            } catch { }\n        }) // Parse the JSON string\n        .filter(Boolean);\n\n    for (const parsedLine of parsedLines) {\n        const { choices } = parsedLine;\n        const { delta } = choices[0];\n        const { content } = delta;\n        // Update the UI with the new content\n        if (content) {\n            resultText += content;\n        }\n    }\n    return resultText;\n}",
+      "sanatization_response": "async (data, res)=>{\n  // catch error\n  if (res.status >= 300) {\n    const err = data?.error?.message || JSON.stringify(data);\n    throw err;\n  }\n\n  // get choices\n  const choices = data.choices.map(c=> c.message);\n\n  // the return object should be in the format of \n  // { content: string }[] \n  // if there's only one response, put it in the array of choices.\n  return choices;\n}",
+      "frequency_penalty": 0,
+      "presence_penalty": 0.5,
+      "top_p": 1,
+      "api_key": ""
     }
   },
   "LLMProviderOptionsKeysHashed": {
