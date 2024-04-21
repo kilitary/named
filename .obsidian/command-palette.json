@@ -15,6 +15,7 @@
     "obsidian-kanban:create-new-kanban-board",
     "obsidian-git:backup-and-close",
     "obsidian-git:open-git-view",
-    "obsidian-mindmap-nextgen:mindmapnextgen:pinned"
+    "obsidian-mindmap-nextgen:mindmapnextgen:pinned",
+    "obsidian-textgenerator-plugin:set_max_tokens"
   ]
 }

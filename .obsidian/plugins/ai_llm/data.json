@@ -1,4 +1,4 @@
 {
-  "ollama_endpoint": "http://localhost:11434",
+  "ollama_endpoint": "http://127.0.0.1:11434",
   "model": "llama2"
 }

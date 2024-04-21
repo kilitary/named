@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "99d273e4ede1bc37",
+        "id": "c11bfebe7d62ad99",
         "type": "tabs",
         "children": [
           {
-            "id": "aa7243888840a2f8",
+            "id": "39fd2fd8850fc75c",
             "type": "leaf",
             "state": {
-              "type": "kanban",
-              "state": {
-                "file": "axis9/global ai, defense and counter-ss operations plans.md"
-              }
+              "type": "graph",
+              "state": {}
             }
           }
         ]
@@ -92,6 +90,7 @@
       {
         "id": "0bcd4e39cb77ddac",
         "type": "tabs",
+        "dimension": 32.94001966568339,
         "children": [
           {
             "id": "ae36d55c56c85f80",
@@ -99,7 +98,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/global ai, defense and counter-ss operations plans.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +114,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/global ai, defense and counter-ss operations plans.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -163,11 +160,12 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       },
       {
         "id": "77f847cbcc6365f1",
         "type": "tabs",
+        "dimension": 33.726647000983284,
         "children": [
           {
             "id": "80647946df64b14c",
@@ -186,9 +184,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "axis9/global ai, defense and counter-ss operations plans.md"
-              }
+              "state": {}
             }
           },
           {
@@ -208,15 +204,14 @@
       {
         "id": "5f6904f0d7e0784d",
         "type": "tabs",
+        "dimension": 33.33333333333333,
         "children": [
           {
             "id": "edbebe7c0b513400",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "axis9/global ai, defense and counter-ss operations plans.md"
-              }
+              "state": {}
             }
           },
           {
@@ -263,57 +258,57 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "e8ab14f810b8b92a",
+  "active": "39fd2fd8850fc75c",
   "lastOpenFiles": [
-    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
-    "SKYNET/technology/work flows/fss/Untitled.canvas",
-    "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
-    "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
-    "2024-04-29.md",
-    "202404191923.md",
-    "2024-03-31.md",
-    "2024-04-01.md",
-    "SKYNET/unsorted/2024-04-02.md",
-    "SKYNET/unsorted",
-    "2024-04-03.md",
-    "2024-04-04.md",
-    "2024-04-05.md",
-    "2024-04-15.md",
-    "2024-04-16.md",
-    "2024-04-18.md",
-    "2024-04-19.md",
-    "2024-04-28.md",
-    "2024-05-01.md",
-    "2024-05-03.md",
-    "202404191642.md",
-    "alarm.png",
     "Red&Queen/lingvistic/drafting starter exit.md",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
+    "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "Red&Queen/research/story about 404 woman.md",
+    "SKYNET/For vacuum divider/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
+    "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
+    "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "axis9/plans/Мусорщик++.md",
+    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "Untitled Kanban.md",
+    "SKYNET/For vacuum divider/Untitled 2.canvas",
+    "SKYNET/For vacuum divider/39.gif",
+    "SKYNET/For vacuum divider/Untitled 3.md",
+    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+    "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
+    "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
+    "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
+    "SKYNET/For vacuum divider/totally unsorted/New Chat.md",
+    "SKYNET/For vacuum divider/object..md",
+    "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
+    "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
+    "SKYNET/research/AI Research Assistant/and how do you know what.md",
+    "SKYNET/advisories/README.md",
+    "SKYNET/For vacuum divider/freebsd-check.jpg",
+    "SKYNET/For vacuum divider/ccc-final-bios-amd.pdf",
+    "SKYNET/For vacuum divider/disk_icon.gif",
+    "Red&Queen/research",
+    "SKYNET/technology/Quiz 1.md",
+    "SKYNET/technology/test.md",
+    "SKYNET/technology/Untitled 2.md",
+    "SKYNET/technology/alarm.png",
+    "SKYNET/technology/README.md",
+    "SKYNET/research/textgenerator/configs/llm/Untitled.loom",
+    "axis9/schedule",
+    "SKYNET/technology/work flows/fss/Untitled.canvas",
+    "SKYNET/unsorted",
+    "alarm.png",
     "button.png",
     "cartesian.png",
     "Pasted image 20240419070054.png",
-    "Pros and Cons of [!работа.md",
-    "related.md",
     "start.jpg",
     "Red&Queen/biology",
     "Red&Queen/electronics",
     "Red&Queen/lingvistic",
     "Red&Queen",
-    "SKYNET/For vacuum divider/object..md",
-    "SKYNET/advisories/README.md",
-    "SKYNET/advisories",
-    "SKYNET/For vacuum divider/totally unsorted/Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
-    "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "Untitled 1.canvas",
-    "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "Untitled 3.canvas",
-    "SKYNET/For vacuum divider/Untitled 2.canvas",
-    "SKYNET/research",
-    "SKYNET",
-    "Untitled 2",
-    "SKYNET/technology/disk_icon.gif",
-    "SKYNET/technology/39.gif",
-    "SKYNET/technology/alarm.png",
-    "Images/ico/Home.png",
-    "Images/ico/Flickr.png"
+    "Images/ico/Home.png"
   ]
 }

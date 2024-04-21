@@ -17,19 +17,17 @@
           {
             "type": "stopwatch",
             "name": "Stopwatch 6",
-            "startMillis": 1713532909642,
-            "offsetMillis": 8072759,
-            "showMillis": true,
+            "startMillis": 1713725612839,
+            "offsetMillis": 0,
+            "showMillis": false,
             "isRunning": true,
-            "lapTimes": [
-              649
-            ]
+            "lapTimes": []
           },
           {
             "type": "stopwatch",
             "name": "Stopwatch 7",
-            "startMillis": 1713532877902,
-            "offsetMillis": 23996822,
+            "startMillis": 1713725615839,
+            "offsetMillis": 216732897,
             "showMillis": true,
             "isRunning": true,
             "lapTimes": [

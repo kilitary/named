@@ -3,7 +3,7 @@ state: Drafting
 type: exchange
 object: computer-ai
 ---
-should we unload 'psychology' from special env's in short
+Error: Request failed, status 404
 
 > [!ai]+ AI
 >

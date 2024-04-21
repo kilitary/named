@@ -10,7 +10,15 @@
 >   
 >  
 
-use GPT to analyze text, syntax, links, relations and sem
+use GPT to analyze text, syntax, links, relations and  relationship with the new not discussed anywhere things like using universes to run away from god state
+> [!ai]+ AI
+>
+> Sure! Can you please provide me with an example of a document that contains information about obsidian?
+
+> [!ai]+ AI
+>
+> Sure! I can help you with that. Please provide me with the obsidian document objects so that I can perform a thorough analysis for you.
+
 > [!ai]+ AI
 >
 
