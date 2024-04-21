@@ -1,1 +1,8 @@
-{}
+{
+	"nodes":[
+		{"id":"a4542cfa692ecfb1","x":-318,"y":-188,"width":552,"height":568,"type":"file","file":"axis9/plans/Мусорщик++.md"},
+		{"id":"d03299956ab02a38","x":-492,"y":-421,"width":298,"height":541,"type":"file","file":"axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"},
+		{"id":"25fd7ef08a8948bd","x":234,"y":-380,"width":324,"height":584,"type":"file","file":"axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"}
+	],
+	"edges":[]
+}

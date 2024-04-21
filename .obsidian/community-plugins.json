@@ -41,5 +41,9 @@
   "webpage-html-export",
   "code-emitter",
   "python-scripter",
-  "terminal"
+  "terminal",
+  "dataview",
+  "desk",
+  "obsidian-recall",
+  "memorization"
 ]

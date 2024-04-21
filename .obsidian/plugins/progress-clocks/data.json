@@ -7,12 +7,13 @@
           {
             "type": "stopwatch",
             "name": "init",
-            "startMillis": 1713737461585,
-            "offsetMillis": 0,
+            "startMillis": 1713739641335,
+            "offsetMillis": 2179750,
             "showMillis": true,
             "isRunning": true,
             "lapTimes": [
-              896062
+              896062,
+              2525842
             ]
           },
           {

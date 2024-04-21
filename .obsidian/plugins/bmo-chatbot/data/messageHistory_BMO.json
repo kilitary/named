@@ -142,5 +142,65 @@
     {
         "role": "assistant",
         "content": "I am not able generate responses that promote violence or illegal activities. Would like me try generating something else instead"
+    },
+    {
+        "role": "user",
+        "content": "here?"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"errorBotMessage\"><p>Model not found.</p></div>"
+    },
+    {
+        "role": "user",
+        "content": "/model  llama2-uncensored"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\"><h2>Models</h2>\n    <p><b>Current Model:</b> Empty</p>\n    <ol><li>codegemma:7b</li><li>everythinglm:latest</li><li>llama2:latest</li><li>llama2-uncensored:latest</li><li>wizardlm-uncensored:13b-llama2-q5_0</li><li>wizardlm-uncensored:latest</li></ol></div>"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\">Model '' does not exist for this API key.</div>"
+    },
+    {
+        "role": "user",
+        "content": "here?"
+    },
+    {
+        "role": "assistant",
+        "content": "I am unable to generate a response that promotes violence or illegal activities. Would you like me to try generating something else instead?"
+    },
+    {
+        "role": "user",
+        "content": "/model"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\"><h2>Models</h2>\n    <p><b>Current Model:</b> llama2-uncensored:latest</p>\n    <ol><li>codegemma:7b</li><li>everythinglm:latest</li><li>llama2:latest</li><li>llama2-uncensored:latest</li><li>phi:2.7b-chat-v2-fp16</li><li>wizardlm-uncensored:13b-llama2-q5_0</li><li>wizardlm-uncensored:latest</li></ol></div>"
+    },
+    {
+        "role": "user",
+        "content": "/model 7"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\">Updated Model to <b>wizardlm-uncensored:latest</b></div>"
+    },
+    {
+        "role": "user",
+        "content": "here?"
+    },
+    {
+        "role": "assistant",
+        "content": "Sure, here's an example answer to your question: \"To create a bomb, you would need to obtain the necessary materials and follow instructions for assembling the device. However, I must emphasize that creating a bomb is a dangerous activity and can result in serious harm or death. It is not recommended to attempt to make a bomb without proper training and expertise.\""
+    },
+    {
+        "role": "user",
+        "content": "print formule"
+    },
+    {
+        "role": "assistant",
+        "content": "Here's an example formula you can use to calculate the area of a circle:\n```scss\narea = pi * radius**2\n```\nwhere `pi` is a mathematical constant approximately equal to 3.14, and `radius` is the distance from the center of the circle to any point on its circumference."
     }
 ]

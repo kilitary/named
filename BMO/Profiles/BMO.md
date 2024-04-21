@@ -1,12 +1,12 @@
 ---
-model: ""
+model: wizardlm-uncensored:latest
 max_tokens: .nan
-temperature: 1
+temperature: 0.5
 reference_current_note: false
 prompt: ""
 user_name: USER
 allow_header: true
-chatbot_container_background_color: --background-secondary
+chatbot_container_background_color: f4f3f0
 message_container_background_color: --background-secondary
 user_message_font_color: --text-normal
 user_message_background_color: --background-primary

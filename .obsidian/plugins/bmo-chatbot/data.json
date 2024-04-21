@@ -4,16 +4,16 @@
     "profileFolderPath": "BMO/Profiles"
   },
   "general": {
-    "model": "",
+    "model": "wizardlm-uncensored:latest",
     "system_role": "You are a helpful assistant.",
     "max_tokens": "",
-    "temperature": "1.00",
+    "temperature": "0.50",
     "allowReferenceCurrentNote": false
   },
   "appearance": {
     "userName": "USER",
     "chatbotName": "BMO",
-    "chatbotContainerBackgroundColor": "--background-secondary",
+    "chatbotContainerBackgroundColor": "#f4f3f0",
     "messageContainerBackgroundColor": "--background-secondary",
     "userMessageFontColor": "--text-normal",
     "userMessageBackgroundColor": "--background-primary",
@@ -59,6 +59,7 @@
       "everythinglm:latest",
       "llama2:latest",
       "llama2-uncensored:latest",
+      "phi:2.7b-chat-v2-fp16",
       "wizardlm-uncensored:13b-llama2-q5_0",
       "wizardlm-uncensored:latest"
     ]
@@ -99,7 +100,7 @@
   "toggleAppearanceSettings": true,
   "togglePromptSettings": true,
   "toggleEditorSettings": true,
-  "toggleChatHistorySettings": true,
+  "toggleChatHistorySettings": false,
   "toggleProfileSettings": true,
   "toggleAPIConnectionSettings": false,
   "toggleOpenAISettings": false,
@@ -115,6 +116,7 @@
     "everythinglm:latest",
     "llama2:latest",
     "llama2-uncensored:latest",
+    "phi:2.7b-chat-v2-fp16",
     "wizardlm-uncensored:13b-llama2-q5_0",
     "wizardlm-uncensored:latest"
   ]

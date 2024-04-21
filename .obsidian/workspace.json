@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "axis9/issues/ss/Untitled.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -113,9 +113,17 @@
               "type": "grind-manager-view",
               "state": {}
             }
+          },
+          {
+            "id": "0e1fbcd12f813c52",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       },
       {
         "id": "77f847cbcc6365f1",
@@ -140,7 +148,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
+                "file": "axis9/issues/ss/Untitled.md"
               }
             }
           },
@@ -180,6 +188,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "desk:Create new desk": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "markdown-table-editor:Open Markdown Table Editor": false,
       "graph:Open graph view": false,
@@ -196,28 +205,33 @@
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "bmo-chatbot:BMO Chatbot": false,
-      "card-board:CardBoard": false,
       "grind-manager:Show grind manager": false,
       "timeline-view:Open timeline view": false,
       "obsidian-full-calendar:Open Full Calendar": false,
       "webpage-html-export:Export Vault to HTML": false,
-      "terminal:Open terminal": false
+      "terminal:Open terminal": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "913cbcee5816c367",
+  "active": "0e1fbcd12f813c52",
   "lastOpenFiles": [
+    "tracked_files.json",
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "axis9/issues/ss/Untitled.md",
+    "Untitled.canvas",
+    "axis9/issues/ss",
+    "Untitled.loom",
+    "Pasted Image 20240422001935_106.png",
+    "2024-04-17.md",
+    "2024-04-21.md",
+    "Pasted Image 20240422002020_156.png",
     "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
     "axis9/plans/Мусорщик++.md",
-    "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "Red&Queen/lingvistic/drafting starter exit.md",
     "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
-    "Pasted Image 20240422002020_156.png",
-    "Pasted Image 20240422001935_106.png",
-    "Untitled.canvas",
-    "Untitled.loom",
     "images/alarm.png",
     "Excalidraw",
     "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
@@ -228,24 +242,19 @@
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "SKYNET/technology/alarm.png.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 20 29 48.md",
-    "2024-04-21.md",
     "smart-chats",
-    "2024-04-17.md",
     "BMO/Profiles/BMO.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
     "Untitled Kanban.md",
     "setting things up.md",
     "!alarm.png.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 19 04 23.md",
-    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "images",
     "New folder",
     "SKYNET/technology",
     "axis9/CORE-SSE",
-    "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "BMO/Profiles",
     "BMO",
-    "textgenerator/configs/llm",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/39.gif",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
