@@ -22,6 +22,20 @@
           }
         ],
         "stacked": true
+      },
+      {
+        "id": "383886e04b587e7f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9f0baa03890b85fc",
+            "type": "leaf",
+            "state": {
+              "type": "mindmap",
+              "state": {}
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -267,7 +281,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "88b6fc9e9add94ca",
+  "active": "9f0baa03890b85fc",
   "lastOpenFiles": [
     "2024-03-31.md",
     "2024-04-03.md",
