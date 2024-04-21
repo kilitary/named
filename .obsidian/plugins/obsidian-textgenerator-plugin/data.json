@@ -4,7 +4,7 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "Ollama (Langchain)",
+  "selectedProvider": "Default (Custom)",
   "max_tokens": 150,
   "temperature": 0.2,
   "frequency_penalty": 0.5,
@@ -102,7 +102,7 @@
       "model": "gpt-3.5-turbo-16k"
     },
     "Default (Custom)": {
-      "endpoint": "http://localhost:1234",
+      "endpoint": "http://localhost:11434",
       "custom_header": "{\n    \"Content-Type\": \"application/json\",\n    authorization: \"Bearer {{api_key}}\"\n}",
       "custom_body": "{\n    model: \"{{model}}\",\n    temperature: {{temperature}},\n    top_p: {{top_p}},\n    frequency_penalty: {{frequency_penalty}},\n    presence_penalty: {{presence_penalty}},\n    max_tokens: {{max_tokens}},\n    n: {{n}},\n    stream: {{stream}},\n    stop: \"{{stop}}\",\n    messages: {{stringify messages}}\n}",
       "model": "gpt-3.5-turbo-16k",
