@@ -98,14 +98,6 @@
       "key": "Home"
     }
   ],
-  "obsidian-textgenerator-plugin:stop-stream": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "S"
-    }
-  ],
   "obsidian-textgenerator-plugin:set_max_tokens": [
     {
       "modifiers": [
@@ -168,6 +160,14 @@
         "Alt"
       ],
       "key": "F"
+    }
+  ],
+  "ollama:summarize-selection": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "S"
     }
   ]
 }

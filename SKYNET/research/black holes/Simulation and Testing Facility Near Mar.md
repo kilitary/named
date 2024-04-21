@@ -1,8 +1,2 @@
 1. perform unit category detection using harvested human research
-2. ✍️create rules of human possible simulation and testing facility near mars
-
-
-
-
-
-ask your name
+2. The study focuses on simulating and testing black hole properties near Mars

@@ -11,9 +11,25 @@
             "id": "d864f6011b24fd74",
             "type": "leaf",
             "state": {
+              "type": "kanban",
+              "state": {
+                "file": "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "46d100ee8e521baf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fd4f0c6d55cde22e",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+                "file": "axis9/core  country planning.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -104,7 +120,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+                "file": "axis9/core  country planning.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +137,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+                "file": "axis9/core  country planning.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -201,7 +217,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md"
+                "file": "axis9/core  country planning.md"
               }
             }
           },
@@ -230,7 +246,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md"
+                "file": "axis9/core  country planning.md"
               }
             }
           },
@@ -281,17 +297,19 @@
       "bmo-chatbot:BMO Chatbot": false
     }
   },
-  "active": "3082f803f3ba694d",
+  "active": "fd4f0c6d55cde22e",
   "lastOpenFiles": [
+    "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "axis9/core  country planning.md",
+    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+    "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "BMO/Profiles/BMO.md",
     "BMO/Profiles",
     "BMO",
     "textgenerator/configs/llm",
     "textgenerator/configs",
     "textgenerator",
-    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
-    "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "SKYNET/research/black holes",
     "SKYNET/advisories/README.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
@@ -301,7 +319,6 @@
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
-    "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
     "Red&Queen/lingvistic/drafting starter exit.md",
     "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
@@ -317,7 +334,6 @@
     "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
     "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "SKYNET/For vacuum divider/totally unsorted/New Chat.md",
-    "SKYNET/For vacuum divider/object..md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/For vacuum divider/freebsd-check.jpg",

@@ -15,6 +15,7 @@ excalidraw-plugin:
 
 ## timeplanning
 
+- [ ] [[core  country planning]]
 - [x] [[kilitary]] <br><br>[unload 'psychology' from special env's]
 
 
