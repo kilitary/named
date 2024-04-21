@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "2024-04-02.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "2024-04-02.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "2024-04-02.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -191,7 +191,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
+                "file": "2024-04-02.md"
               }
             }
           },
@@ -218,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
+                "file": "2024-04-02.md"
               }
             }
           },
@@ -268,9 +268,20 @@
   },
   "active": "88b6fc9e9add94ca",
   "lastOpenFiles": [
+    "2024-03-31.md",
+    "2024-04-03.md",
+    "related.md",
+    "2024-04-04.md",
+    "Untitled 1.canvas",
+    "start.jpg",
+    "2024-04-15.md",
+    "2024-04-16.md",
+    "202404191642.md",
+    "Pros and Cons of [!работа.md",
+    "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
+    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "textgenerator/templates/default/getIdeas.md",
     "textgenerator/templates/default/simplify.md",
-    "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "cartesian.png",
     "202404191923.md",
     "2024-04-05.md",
@@ -280,12 +291,8 @@
     "README.md",
     "drafting starter exit.md",
     "Untitled 2.canvas",
-    "Pros and Cons of [!работа.md",
-    "related.md",
-    "2024-04-04.md",
     "button.png",
     "vault14/and how do you know what.md",
-    "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
     "textgenerator/configs/llm/Untitled.loom",
     "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
@@ -294,16 +301,10 @@
     "vault14/axis9/Drawing 2024-04-19 13.10.27.excalidraw.md",
     "cv.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
-    "vault14/axis9/Мусорщик++.md",
-    "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-    "textgenerator/templates/default/getTags.md",
-    "textgenerator/templates/default/summarizeLarge.md",
     "vault14/disk_icon.gif",
     "Untitled.loom",
     "vault14/39.gif",
     "vault14/alarm.png",
-    "Untitled 1.canvas",
     "vault14/ccc-final-bios-amd.pdf",
     "Excalidraw",
     "alarm.png",
@@ -317,7 +318,6 @@
     "Images/ico/Home.png",
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",
-    "Images/ico/Doodle-Icons.jpg",
     "Untitled 3.canvas"
   ]
 }

@@ -66,8 +66,8 @@
     "triggerPhrase": "",
     "stop": ".",
     "showStatus": true,
-    "customProvider": false,
-    "inlineSuggestions": false,
+    "customProvider": true,
+    "inlineSuggestions": true,
     "overrideTrigger": " ",
     "showInMarkdown": true,
     "selectedProvider": "Ollama (Langchain)"
@@ -129,7 +129,7 @@
     "Google Palm (Langchain)": {},
     "Ollama (Langchain)": {
       "basePath": "http://localhost:11434",
-      "model": "wizardlm2"
+      "model": "llama2-uncensored"
     },
     "Huggingface (Langchain)": {},
     "MistralAI Chat (Langchain)": {
