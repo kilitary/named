@@ -4,10 +4,10 @@
     "profileFolderPath": "BMO/Profiles"
   },
   "general": {
-    "model": "",
+    "model": "wizardlm-uncensored:latest",
     "system_role": "You are a helpful assistant.",
     "max_tokens": null,
-    "temperature": "1.00",
+    "temperature": "0.10",
     "allowReferenceCurrentNote": false
   },
   "appearance": {
@@ -24,7 +24,7 @@
     "allowHeader": true
   },
   "prompts": {
-    "prompt": ".md",
+    "prompt": "",
     "promptFolderPath": "BMO/Prompts"
   },
   "editor": {
@@ -36,14 +36,14 @@
     "allowRenameNoteTitle": false
   },
   "OllamaConnection": {
-    "RESTAPIURL": "",
-    "allowStream": false,
+    "RESTAPIURL": "http://localhost:11434",
+    "allowStream": true,
     "ollamaParameters": {
       "keep_alive": "",
       "mirostat": "0",
       "mirostat_eta": "0.10",
       "mirostat_tau": "5.00",
-      "num_ctx": "2048",
+      "num_ctx": "8192",
       "num_gqa": null,
       "num_thread": null,
       "repeat_last_n": "64",
@@ -54,7 +54,13 @@
       "top_k": "40",
       "top_p": "0.90"
     },
-    "ollamaModels": []
+    "ollamaModels": [
+      "everythinglm:latest",
+      "llama2:latest",
+      "llama2-uncensored:latest",
+      "wizardlm-uncensored:13b-llama2-q5_0",
+      "wizardlm-uncensored:latest"
+    ]
   },
   "RESTAPIURLConnection": {
     "APIKey": "",
@@ -89,19 +95,25 @@
     }
   },
   "toggleGeneralSettings": true,
-  "toggleAppearanceSettings": false,
-  "togglePromptSettings": false,
-  "toggleEditorSettings": false,
-  "toggleChatHistorySettings": false,
-  "toggleProfileSettings": false,
-  "toggleAPIConnectionSettings": true,
+  "toggleAppearanceSettings": true,
+  "togglePromptSettings": true,
+  "toggleEditorSettings": true,
+  "toggleChatHistorySettings": true,
+  "toggleProfileSettings": true,
+  "toggleAPIConnectionSettings": false,
   "toggleOpenAISettings": false,
   "toggleMistralSettings": false,
   "toggleGoogleGeminiSettings": false,
   "toggleAnthropicSettings": false,
-  "toggleRESTAPIURLSettings": true,
+  "toggleRESTAPIURLSettings": false,
   "toggleOpenRouterSettings": false,
   "toggleOllamaSettings": true,
-  "toggleAdvancedSettings": false,
-  "allModels": []
+  "toggleAdvancedSettings": true,
+  "allModels": [
+    "everythinglm:latest",
+    "llama2:latest",
+    "llama2-uncensored:latest",
+    "wizardlm-uncensored:13b-llama2-q5_0",
+    "wizardlm-uncensored:latest"
+  ]
 }

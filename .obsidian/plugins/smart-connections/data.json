@@ -8,7 +8,7 @@
   "system_prompts_folder": "smart prompts",
   "smart_chat_folder": "smart-chats",
   "smart_chat_folder_last": "smart-chats",
-  "local_embedding_max_tokens": 2048,
+  "local_embedding_max_tokens": "8192",
   "embedding_file_per_note": false,
   "chat_model_platform_key": "custom_local",
   "open_router": {},
@@ -38,7 +38,7 @@
     "protocol": "http",
     "hostname": "127.0.0.1",
     "port": 11434,
-    "path": "/api/chat",
+    "path": "",
     "max_input_tokens": 997,
     "streaming": true
   },
