@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "type": "group",
+      "ctime": 1710018892569,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1710018888081,
+          "path": "work flows/global ai, defense and counter-ss operations.md"
+        }
+      ],
+      "title": "Untitled group"
+    },
+    {
+      "type": "file",
+      "ctime": 1710033065498,
+      "path": "axis9/Мусорщик.md"
+    },
+    {
+      "type": "group",
+      "ctime": 1710035266555,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1710035261614,
+          "path": "axis9/Мусорщик.md"
+        },
+        {
+          "type": "file",
+          "ctime": 1710035261614,
+          "path": "axis9/Creating a Unique Schematic Relationship with Base English Words.md"
+        },
+        {
+          "type": "file",
+          "ctime": 1710035261614,
+          "path": "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md"
+        }
+      ],
+      "title": "March 10, 2024 4:47 AM"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"363671a075ae163f","type":"text","text":"Стирочная. (c) 2024\n\n## Мусорщик.\n###### плюсы работы:\n* небольшой вопрос по работе \n###### минусы работы:\n* возможность выйти на пенсию фашистомнеобходимые навыки:\n* высокомодельное телосложение* пользование телефоном\"","x":-820,"y":-280,"width":654,"height":480,"color":"6"},
+		{"id":"08ec1be8ce82eaea","x":-40,"y":-220,"width":400,"height":400,"color":"1","type":"file","file":"axis9/global ai, defense and counter-ss operations.md"},
+		{"id":"3ce9687bef439e66","x":-493,"y":240,"width":250,"height":60,"type":"text","text":"temp\n"}
+	],
+	"edges":[
+		{"id":"7d2258d37a1120f4","fromNode":"3ce9687bef439e66","fromSide":"top","toNode":"363671a075ae163f","toSide":"bottom"},
+		{"id":"b34a847ca9c7fe49","fromNode":"3ce9687bef439e66","fromSide":"right","toNode":"08ec1be8ce82eaea","toSide":"bottom"}
+	]
+}

@@ -1,0 +1,16 @@
+{
+  "foldHeading": false,
+  "showLineNumber": false,
+  "spellcheck": false,
+  "tabSize": 2,
+  "showUnsupportedFiles": true,
+  "alwaysUpdateLinks": true,
+  "livePreview": true,
+  "strictLineBreaks": true,
+  "propertiesInDocument": "hidden",
+  "promptDelete": false,
+  "readableLineLength": false,
+  "foldIndent": false,
+  "showIndentGuide": false,
+  "showInlineTitle": true
+}

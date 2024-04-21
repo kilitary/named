@@ -1,8 +1,0 @@
-{
-	"nodes":[
-		{"id":"b0db70efc36df789","x":-99,"y":-70,"width":250,"height":60,"color":"3","type":"text","text":"sfdvf sdgfgh"},
-		{"id":"9314e1797ff0a689","x":-180,"y":60,"width":400,"height":400,"type":"file","file":"related.md"},
-		{"id":"a6cef553f3a0d11a","x":-349,"y":-200,"width":250,"height":60,"color":"5","type":"text","text":"sfv"}
-	],
-	"edges":[]
-}

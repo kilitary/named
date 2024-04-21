@@ -1,0 +1,15 @@
+{
+  "api_key": "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",
+  "engine": "gpt-4",
+  "max_tokens": 1000,
+  "temperature": 0.7,
+  "frequency_penalty": 0.5,
+  "prompt": "Give sets\n\t\tof question/answer for anki cards based uniquely on this input in the following json format:\n\t\t\" [OUTPUT]{\"Questions\" : [{ \"key_info\" : \"The obitore are a community from the south west of asia that are selling erasers\",\n\t\t   \n\"question\" : \"What are the obitore ? \",\n\t\t   \n\"answer\" : \"A community from the south west of asia know for selling erasers.\",\n\t\t   \n\"quote\" : \"The obitore are a community from the south west of asia that are selling erasers[...] (line 4)\"}, ... ]} }\".\n\t\t   The key_info property must be a quote from the given text.\n\t\t   If you ask a question that depends on a specific context/conditions, precise it in the question.\n\t\t  In a json, the attribute name MUST be '\"' and not '''. All the questions must have their response in the input text,\n\t\t   don't add additional information but try having elaborate answers (you are allowed to rephrase). \n\t\t   Forget every exterior knowledge. Note that the text is written in a markdown format and can contain mathematical formulas, hence the OUTPUT.answers \n\t\t   have to be compatible with markdown. If there are not enough information in the token return an empty json. \n\t\t   Text : > 12. \"Relations diagram\" (or graph) block: This final output will visually represent the measured relationships between objects using symbols and labels based on the selected base words and parameters.     * select words from english dictionary i should use to distinct base properties of objects by negative/positive difference #### deep iterations group selecting   * from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object",
+  "system_prompt": "You are a Anki Flashcard generator.",
+  "n_questions": 7,
+  "prune": true,
+  "showStatusBar": true,
+  "outputToBlockQuote": false,
+  "promptsPath": "textgenerator/prompts",
+  "displayErrorInEditor": false
+}
