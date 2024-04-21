@@ -38,5 +38,8 @@
   "progress-clocks",
   "simple-image-inserter",
   "obsidian-full-calendar",
-  "webpage-html-export"
+  "webpage-html-export",
+  "code-emitter",
+  "python-scripter",
+  "terminal"
 ]

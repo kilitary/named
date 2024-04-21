@@ -114,7 +114,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "77f847cbcc6365f1",
@@ -197,11 +198,20 @@
       "bmo-chatbot:BMO Chatbot": false,
       "card-board:CardBoard": false,
       "grind-manager:Show grind manager": false,
-      "timeline-view:Open timeline view": false
+      "timeline-view:Open timeline view": false,
+      "obsidian-full-calendar:Open Full Calendar": false,
+      "webpage-html-export:Export Vault to HTML": false,
+      "terminal:Open terminal": false
     }
   },
-  "active": "d54c54655ce8ca53",
+  "active": "913cbcee5816c367",
   "lastOpenFiles": [
+    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "axis9/plans/Мусорщик++.md",
+    "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "Red&Queen/lingvistic/drafting starter exit.md",
+    "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
     "Pasted Image 20240422002020_156.png",
@@ -214,11 +224,7 @@
     "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
     "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
-    "axis9/plans/Мусорщик++.md",
-    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
-    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/core  country planning.md",
-    "Red&Queen/lingvistic/drafting starter exit.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "SKYNET/technology/alarm.png.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 20 29 48.md",
@@ -232,7 +238,6 @@
     "!alarm.png.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 19 04 23.md",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "axis9/issues/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "images",
     "New folder",
     "SKYNET/technology",

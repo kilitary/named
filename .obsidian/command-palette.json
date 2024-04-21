@@ -4,9 +4,6 @@
     "obsidian-tasks-plugin:edit-task",
     "big-calendar:open-big-calendar",
     "progress-clocks:open-panel",
-    "dataview:dataview-force-refresh-views",
-    "dataview:dataview-rebuild-current-view",
-    "desk:create-desk",
     "obsidian-day-planner:show-day-planner-timeline",
     "obsidian-day-planner:show-weekly-view",
     "metadata-menu:fileClassAttr_options",
@@ -16,6 +13,7 @@
     "obsidian-git:backup-and-close",
     "obsidian-git:open-git-view",
     "obsidian-mindmap-nextgen:mindmapnextgen:pinned",
-    "obsidian-textgenerator-plugin:set_max_tokens"
+    "obsidian-textgenerator-plugin:set_max_tokens",
+    "terminal:open-terminal.select."
   ]
 }

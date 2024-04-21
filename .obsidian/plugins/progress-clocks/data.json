@@ -11,21 +11,14 @@
             "offsetMillis": 0,
             "showMillis": true,
             "isRunning": true,
-            "lapTimes": []
+            "lapTimes": [
+              896062
+            ]
           },
           {
             "type": "counter",
             "name": "Counter 2",
-            "value": 5
-          },
-          {
-            "type": "stopwatch",
-            "name": "Stopwatch 3",
-            "startMillis": 1713737495324,
-            "offsetMillis": 0,
-            "showMillis": true,
-            "isRunning": true,
-            "lapTimes": []
+            "value": 11
           }
         ]
       }

@@ -12,5 +12,6 @@
   "smartIndentList": true,
   "alwaysUpdateLinks": true,
   "showInlineTitle": false,
-  "promptDelete": false
+  "promptDelete": true,
+  "showUnsupportedFiles": true
 }
