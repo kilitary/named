@@ -1,3 +1,6 @@
+---
+state: Cancelled
+---
 # Generated Quiz
 
 #flashcards

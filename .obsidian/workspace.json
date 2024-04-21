@@ -4,22 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "930cdd2a9fde1c8a",
+        "id": "99d273e4ede1bc37",
         "type": "tabs",
         "children": [
           {
-            "id": "88b6fc9e9add94ca",
+            "id": "aa7243888840a2f8",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "2024-05-01.md",
-                "staged": true
+                "file": "textgenerator/templates/default/rewrite.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
-        ],
-        "stacked": true
+        ]
       }
     ],
     "direction": "vertical"
@@ -48,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"author\"]",
+                "query": "tag:#flashcards",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -102,6 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "textgenerator/templates/default/rewrite.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,6 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "textgenerator/templates/default/rewrite.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -187,7 +190,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "textgenerator/templates/default/rewrite.md"
+              }
             }
           },
           {
@@ -201,7 +206,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "5f6904f0d7e0784d",
@@ -212,7 +218,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "textgenerator/templates/default/rewrite.md"
+              }
             }
           },
           {
@@ -259,8 +267,18 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "88b6fc9e9add94ca",
+  "active": "aa7243888840a2f8",
   "lastOpenFiles": [
+    "textgenerator/templates/default/getParagraph.md",
+    "textgenerator/templates/default/simplify.md",
+    "button.png",
+    "Untitled/Untitled.md",
+    "textgenerator/templates/default/getEmailNeg.md",
+    "textgenerator/templates/default/rewrite.md",
+    "textgenerator/configs/llm/Untitled.loom",
+    "textgenerator/templates/default/summarize.md",
+    "textgenerator/templates/default/getTags.md",
+    "vault14/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "2024-04-28.md",
     "2024-04-29.md",
     "2024-05-01.md",
@@ -279,21 +297,11 @@
     "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "issue/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "textgenerator/templates/default/getIdeas.md",
-    "textgenerator/templates/default/simplify.md",
     "cartesian.png",
     "202404191923.md",
     "2024-04-05.md",
     "Untitled.canvas",
-    "2024-04-19.md",
-    "README.md",
-    "drafting starter exit.md",
     "Untitled 2.canvas",
-    "button.png",
-    "vault14/and how do you know what.md",
-    "Excalidraw/Drawing 2024-04-20 07.32.13.excalidraw.md",
-    "textgenerator/configs/llm/Untitled.loom",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
-    "AI Research Assistant/History/New Chat.md",
     "vault14/disk_icon.gif",
     "Untitled.loom",
     "vault14/39.gif",
