@@ -19,8 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "42bcfe92b99d30e3",
+            "type": "leaf",
+            "state": {
+              "type": "dataloom",
+              "state": {
+                "file": "textgenerator/configs/llm/Untitled.loom"
+              }
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -104,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                "file": "textgenerator/configs/llm/Untitled.loom",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +132,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+                "file": "textgenerator/configs/llm/Untitled.loom",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -192,7 +203,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md"
+                "file": "textgenerator/configs/llm/Untitled.loom"
               }
             }
           },
@@ -220,7 +231,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md"
+                "file": "textgenerator/configs/llm/Untitled.loom"
               }
             }
           },
@@ -268,13 +279,15 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "88b6fc9e9add94ca",
+  "active": "42bcfe92b99d30e3",
   "lastOpenFiles": [
+    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
+    "textgenerator/configs/llm/Untitled.loom",
+    "cv.md",
     "vault14/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "vault14/axis9/Мусорщик++.md",
     "vault14/axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "vault14/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-    "vault14/axis9/Creating a Unique Schematic Relationship with Base English Words.md",
     "textgenerator/templates/default/getTags.md",
     "textgenerator/templates/default/summarizeLarge.md",
     "textgenerator/templates/default/getEmailPos.md",
@@ -296,8 +309,6 @@
     "2024-04-04.md",
     "2024-04-02.md",
     "Untitled.loom",
-    "Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
-    "vault14/and how do you know what.md",
     "vault14/39.gif",
     "Untitled.canvas",
     "vault14/alarm.png",
@@ -313,7 +324,6 @@
     "textgenerator/templates",
     "textgenerator",
     "vault14/work flows/fss/Untitled.canvas",
-    "Images/ico/Kinchaku (drawstring bag).ico",
     "Images/ico/Home.png",
     "Images/ico/Flickr.png",
     "Images/ico/Facebook.png",

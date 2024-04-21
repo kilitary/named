@@ -98,20 +98,52 @@
       "key": "Home"
     }
   ],
-  "obsidian-textgenerator-plugin:text-extractor-tool": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "E"
-    }
-  ],
   "obsidian-textgenerator-plugin:stop-stream": [
     {
       "modifiers": [
         "Alt"
       ],
       "key": "S"
+    }
+  ],
+  "obsidian-textgenerator-plugin:set_max_tokens": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "O"
+    }
+  ],
+  "obsidian-textgenerator-plugin:open-playground": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "P"
+    }
+  ],
+  "obsidian-textgenerator-plugin:open-template-as-tool": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "A"
+    }
+  ],
+  "obsidian-textgenerator-plugin:calculate-tokens": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "C"
+    }
+  ],
+  "obsidian-textgenerator-plugin:create-template": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Insert"
     }
   ]
 }

@@ -11,5 +11,6 @@
   "showIndentGuide": false,
   "smartIndentList": true,
   "alwaysUpdateLinks": true,
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "promptDelete": false
 }
