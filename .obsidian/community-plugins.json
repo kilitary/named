@@ -36,5 +36,7 @@
   "semantic-canvas",
   "obsidian-emoji-toolbar",
   "progress-clocks",
-  "simple-image-inserter"
+  "simple-image-inserter",
+  "obsidian-full-calendar",
+  "webpage-html-export"
 ]

@@ -6,8 +6,22 @@
         "children": [
           {
             "type": "stopwatch",
-            "name": "Stopwatch 6",
-            "startMillis": 1713731034519,
+            "name": "init",
+            "startMillis": 1713737461585,
+            "offsetMillis": 0,
+            "showMillis": true,
+            "isRunning": true,
+            "lapTimes": []
+          },
+          {
+            "type": "counter",
+            "name": "Counter 2",
+            "value": 5
+          },
+          {
+            "type": "stopwatch",
+            "name": "Stopwatch 3",
+            "startMillis": 1713737495324,
             "offsetMillis": 0,
             "showMillis": true,
             "isRunning": true,
