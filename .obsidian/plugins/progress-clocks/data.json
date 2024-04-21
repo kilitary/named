@@ -5,35 +5,13 @@
         "name": "Section 1",
         "children": [
           {
-            "type": "counter",
-            "name": "Counter 4",
-            "value": -7
-          },
-          {
-            "type": "counter",
-            "name": "Counter 5",
-            "value": 4
-          },
-          {
             "type": "stopwatch",
             "name": "Stopwatch 6",
-            "startMillis": 1713725612839,
+            "startMillis": 1713731034519,
             "offsetMillis": 0,
-            "showMillis": false,
-            "isRunning": true,
-            "lapTimes": []
-          },
-          {
-            "type": "stopwatch",
-            "name": "Stopwatch 7",
-            "startMillis": 1713725615839,
-            "offsetMillis": 216732897,
             "showMillis": true,
             "isRunning": true,
-            "lapTimes": [
-              1139,
-              15945036
-            ]
+            "lapTimes": []
           }
         ]
       }

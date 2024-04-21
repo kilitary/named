@@ -1,7 +1,7 @@
 ---
 state: Drafting
 ---
-use obsidian as documene linkage for private & public advisories
+✍️**use obsidian as documene linkage for private & public advisories**
 > [!ai]+ AI
 >
 > Title: Utilizing Obsidian for Document Linkage in Private and Public Advisories
