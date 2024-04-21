@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/black holes/Untitled.md",
+                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/black holes/Untitled.md",
+                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/black holes/Untitled.md",
+                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -201,7 +201,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/black holes/Untitled.md"
+                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md"
               }
             }
           },
@@ -230,7 +230,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/black holes/Untitled.md"
+                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md"
               }
             }
           },
@@ -273,16 +273,23 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "task-status:Change Checkbox Status": true,
-      "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "smart-connections:Open: View Smart Connections": false,
       "smart-connections:Open: Smart Chat Conversation": false,
-      "card-board:CardBoard": false
+      "card-board:CardBoard": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "bmo-chatbot:BMO Chatbot": false
     }
   },
-  "active": "d864f6011b24fd74",
+  "active": "3082f803f3ba694d",
   "lastOpenFiles": [
-    "SKYNET/research/black holes/Untitled.md",
+    "BMO/Profiles/BMO.md",
+    "BMO/Profiles",
+    "BMO",
+    "textgenerator/configs/llm",
+    "textgenerator/configs",
+    "textgenerator",
+    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
     "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "SKYNET/research/black holes",
@@ -317,19 +324,13 @@
     "SKYNET/For vacuum divider/ccc-final-bios-amd.pdf",
     "SKYNET/For vacuum divider/disk_icon.gif",
     "Red&Queen/research",
-    "SKYNET/technology/Quiz 1.md",
     "SKYNET/technology/alarm.png",
-    "SKYNET/research/textgenerator/configs/llm/Untitled.loom",
-    "axis9/schedule",
     "SKYNET/technology/work flows/fss/Untitled.canvas",
-    "SKYNET/unsorted",
     "alarm.png",
     "button.png",
     "cartesian.png",
     "Pasted image 20240419070054.png",
     "start.jpg",
-    "Red&Queen/biology",
-    "Red&Queen/electronics",
     "Untitled 1.canvas",
     "Untitled 3.canvas",
     "Images/ico/Home.png"
