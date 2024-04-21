@@ -19,18 +19,32 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "31f436909e274f22",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/AI Research Assistant/and how do you know what.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
-        "id": "1fd75d82c44acf0a",
+        "id": "10df6341a9f0a8cb",
         "type": "tabs",
         "children": [
           {
-            "id": "2d87ee39bb8d54d1",
+            "id": "69dbceb7cb3ef09a",
             "type": "leaf",
             "state": {
-              "type": "markdown-table-editor-view",
+              "type": "smart-connections-view",
               "state": {}
             }
           }
@@ -117,7 +131,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "setting things up.md",
+                "file": "SKYNET/research/AI Research Assistant/and how do you know what.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -134,7 +148,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "setting things up.md",
+                "file": "SKYNET/research/AI Research Assistant/and how do you know what.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": false
               }
@@ -181,14 +195,6 @@
             }
           },
           {
-            "id": "69dbceb7cb3ef09a",
-            "type": "leaf",
-            "state": {
-              "type": "smart-connections-view",
-              "state": {}
-            }
-          },
-          {
             "id": "7119b586d96d0a35",
             "type": "leaf",
             "state": {
@@ -197,7 +203,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 2
       },
       {
         "id": "77f847cbcc6365f1",
@@ -222,7 +228,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "setting things up.md"
+                "file": "SKYNET/research/AI Research Assistant/and how do you know what.md"
               }
             }
           },
@@ -251,7 +257,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "setting things up.md"
+                "file": "SKYNET/research/AI Research Assistant/and how do you know what.md"
               }
             }
           },
@@ -268,7 +274,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 331.5
+    "width": 359.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -301,11 +307,15 @@
       "smart-connections:Open: Smart Chat Conversation": false
     }
   },
-  "active": "7119b586d96d0a35",
+  "active": "d54c54655ce8ca53",
   "lastOpenFiles": [
+    "SKYNET/advisories/README.md",
+    "SKYNET/research/AI Research Assistant/and how do you know what.md",
+    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+    "smart-chats/UNTITLED CHAT 2024-04-21 19 04 23.md",
+    "setting things up.md",
     "smart-chats",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "setting things up.md",
     "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
     "axis9/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
@@ -320,7 +330,6 @@
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/39.gif",
     "SKYNET/For vacuum divider/Untitled 3.md",
-    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
     "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
@@ -328,8 +337,6 @@
     "SKYNET/For vacuum divider/object..md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
-    "SKYNET/research/AI Research Assistant/and how do you know what.md",
-    "SKYNET/advisories/README.md",
     "SKYNET/For vacuum divider/freebsd-check.jpg",
     "SKYNET/For vacuum divider/ccc-final-bios-amd.pdf",
     "SKYNET/For vacuum divider/disk_icon.gif",
@@ -350,7 +357,6 @@
     "Red&Queen/biology",
     "Red&Queen/electronics",
     "Red&Queen/lingvistic",
-    "Red&Queen",
     "Untitled 1.canvas",
     "Untitled 3.canvas",
     "Images/ico/Home.png"

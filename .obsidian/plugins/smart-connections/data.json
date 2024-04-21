@@ -10,7 +10,7 @@
   "smart_chat_folder_last": "smart-chats",
   "local_embedding_max_tokens": 2048,
   "embedding_file_per_note": false,
-  "chat_model_platform_key": "custom_api",
+  "chat_model_platform_key": "custom_local",
   "open_router": {},
   "embed_input_min_chars": 50,
   "multi_heading_blocks": true,
@@ -18,8 +18,8 @@
   "excluded_headings": "",
   "file_exclusions": "",
   "folder_exclusions": "smart-chats",
-  "show_full_path": false,
-  "expanded_view": true,
+  "show_full_path": true,
+  "expanded_view": false,
   "language": "en",
   "log_render": false,
   "log_render_files": false,
@@ -29,6 +29,21 @@
     "model_name": "llama2-uncensored",
     "protocol": "http",
     "hostname": "127.0.0.1",
-    "path": "/"
+    "path": "/api/chat",
+    "streaming": true,
+    "max_input_tokens": 2000
+  },
+  "custom_local": {
+    "model_name": "llama2-uncensored",
+    "protocol": "http",
+    "hostname": "127.0.0.1",
+    "port": 11434,
+    "path": "/api/chat",
+    "max_input_tokens": 997,
+    "streaming": true
+  },
+  "muted_notices": {
+    "no smart connections found": true,
+    "Notice muted": true
   }
 }
