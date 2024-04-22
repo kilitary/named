@@ -202,5 +202,9 @@
     {
         "role": "user",
         "content": "print current time"
+    },
+    {
+        "role": "assistant",
+        "content": ""
     }
 ]
