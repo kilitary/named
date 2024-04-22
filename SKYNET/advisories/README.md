@@ -18,7 +18,7 @@ information about experiments on humans of non-russia citizens is not researched
 > REALIFIER
 ```
 
-without updates, because content changes local reality and all internal jumps yours b e rewritten/rechecked
+without updates, because content changes local reality and all internal jumps yours b e rewritten/rechecked️
 ![[cartesian.png]]
 
 kilitary@x25.cc

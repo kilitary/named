@@ -37,13 +37,13 @@
   },
   "OllamaConnection": {
     "RESTAPIURL": "http://localhost:11434",
-    "allowStream": false,
+    "allowStream": true,
     "ollamaParameters": {
-      "keep_alive": "",
+      "keep_alive": "0",
       "mirostat": "0",
       "mirostat_eta": "0.10",
       "mirostat_tau": "5.00",
-      "num_ctx": "2048",
+      "num_ctx": "8192",
       "num_gqa": "",
       "num_thread": "",
       "repeat_last_n": "64",
@@ -56,12 +56,19 @@
     },
     "ollamaModels": [
       "codegemma:7b",
+      "codegemma:latest",
+      "command-r:latest",
+      "dolphin-mistral:7b-v2.6-q6_K",
       "everythinglm:latest",
       "llama2:latest",
       "llama2-uncensored:latest",
+      "llama3:latest",
+      "mistral:latest",
       "phi:2.7b-chat-v2-fp16",
       "wizardlm-uncensored:13b-llama2-q5_0",
-      "wizardlm-uncensored:latest"
+      "wizardlm-uncensored:latest",
+      "wizardlm2:latest",
+      "mattw/dockerit:latest"
     ]
   },
   "RESTAPIURLConnection": {
@@ -113,11 +120,18 @@
   "toggleAdvancedSettings": true,
   "allModels": [
     "codegemma:7b",
+    "codegemma:latest",
+    "command-r:latest",
+    "dolphin-mistral:7b-v2.6-q6_K",
     "everythinglm:latest",
     "llama2:latest",
     "llama2-uncensored:latest",
+    "llama3:latest",
+    "mistral:latest",
     "phi:2.7b-chat-v2-fp16",
     "wizardlm-uncensored:13b-llama2-q5_0",
-    "wizardlm-uncensored:latest"
+    "wizardlm-uncensored:latest",
+    "wizardlm2:latest",
+    "mattw/dockerit:latest"
   ]
 }
