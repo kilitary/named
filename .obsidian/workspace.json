@@ -21,6 +21,45 @@
             }
           },
           {
+            "id": "9c04a1542e5e976b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f15b05a4a6e76721",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a45f8cb8164d9a31",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "2f078129bf1b7c33",
             "type": "leaf",
             "state": {
@@ -52,7 +91,33 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/advisories/README.md",
+                "file": "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "26c2b5c7571aa86e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/playground/Untitled.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4cb5695c04d51f60",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/playground/Untitled.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -146,7 +211,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/advisories/README.md"
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -183,7 +248,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/advisories/README.md",
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -200,7 +265,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/advisories/README.md",
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -212,7 +277,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/advisories/README.md"
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -302,16 +367,18 @@
       "quiz-generator:Open generator": false
     }
   },
-  "active": "2f078129bf1b7c33",
+  "active": "e8ab14f810b8b92a",
   "lastOpenFiles": [
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
+    "SKYNET/research/AI Research Assistant/and how do you know what.md",
+    "SKYNET/playground/Untitled.md",
+    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+    "SKYNET/advisories/README.md",
     "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
     "Red&Queen/research/story about 404 woman.md",
-    "SKYNET/research/AI Research Assistant/and how do you know what.md",
-    "SKYNET/advisories/README.md",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "SKYNET/playground/Untitled.md",
     "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
@@ -330,8 +397,6 @@
     "textgenerator/templates/awesomePrompts/webdesignconsultantAwesome.md",
     "textgenerator/templates/awesomePrompts/yogiAwesome.md",
     "textgenerator/templates/awesomePrompts/textbasedadventuregameAwesome.md",
-    "textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
-    "textgenerator/templates/awesomePrompts/socialmediamanagerAwesome.md",
     "textgenerator/templates/awesomePrompts",
     "textgenerator/templates",
     "textgenerator",

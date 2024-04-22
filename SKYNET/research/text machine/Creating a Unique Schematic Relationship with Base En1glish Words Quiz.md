@@ -38,7 +38,7 @@ test sample
 > The text suggests using the English dictionary to select words that can be used to distinguish base properties of objects by their negative/positive difference. *(Exact Quote : select words from english dictionary i should use to distinct base properties of objects by negative/positive difference*)
 
 
-What does the text sugge
+What does the text suggest
 > [!ai]+ AI
 >
 > st about the quiz?
