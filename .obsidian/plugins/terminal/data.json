@@ -7,16 +7,16 @@
   "focusOnNewInstance": true,
   "hideStatusBar": "focused",
   "language": "en",
-  "newInstanceBehavior": "newVerticalSplit",
+  "newInstanceBehavior": "newTab",
   "noticeTimeout": 15,
   "openChangelogOnUpdate": false,
-  "pinNewInstance": true,
-  "preferredRenderer": "webgl",
+  "pinNewInstance": false,
+  "preferredRenderer": "canvas",
   "profiles": {
-    "9e8eb26a-e983-4894-bf79-e29a0ded382d": {
+    "529dca54-09a2-4bc7-88b4-4cf235e1ccc6": {
       "args": [],
-      "executable": "C:\\Windows\\System32\\cmd.exe",
-      "name": "ms win",
+      "executable": "C:\\Windows\\System32\\wsl.exe",
+      "name": "kali",
       "platforms": {
         "win32": true
       },
@@ -27,14 +27,18 @@
         "SIGINT",
         "SIGTERM"
       ],
-      "terminalOptions": {},
+      "terminalOptions": {
+        "fontFamily": "liberation mono",
+        "fontSize": 11,
+        "fontWeight": "normal"
+      },
       "type": "integrated",
       "useWin32Conhost": true
     },
-    "529dca54-09a2-4bc7-88b4-4cf235e1ccc6": {
+    "9e8eb26a-e983-4894-bf79-e29a0ded382d": {
       "args": [],
-      "executable": "C:\\Windows\\System32\\wsl.exe",
-      "name": "kali",
+      "executable": "C:\\Windows\\System32\\cmd.exe",
+      "name": "ms win",
       "platforms": {
         "win32": true
       },

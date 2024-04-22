@@ -1,7 +1,6 @@
 {
   "version": "2.0",
   "layout": [
-    null,
     null
   ],
   "settings": {
@@ -15,7 +14,7 @@
     "colorFreezeLevel": 0,
     "animationDuration": 500,
     "maxWidth": 0,
-    "highlight": true,
+    "highlight": false,
     "coloring": "depth",
     "depth1Color": "#cb4b16",
     "depth1Thickness": "3",
@@ -29,7 +28,7 @@
     "screenshotBgStyle": "color",
     "screenshotTextColor": "#ffd152",
     "screenshotTextColorEnabled": true,
-    "titleAsRootNode": true,
+    "titleAsRootNode": false,
     "useThemeFont": false
   }
 }

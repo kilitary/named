@@ -4,32 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "139028055e19027f",
+        "id": "3992174518ee9396",
         "type": "tabs",
         "children": [
           {
-            "id": "63c8fa36826ca443",
+            "id": "893f3f34b90345e4",
             "type": "leaf",
             "state": {
-              "type": "card-browser-view",
+              "type": "markdown",
               "state": {
-                "path": "/"
-              }
-            }
-          },
-          {
-            "id": "4371a670372fef26",
-            "type": "leaf",
-            "state": {
-              "type": "diff-view",
-              "state": {
-                "file": ".obsidian/plugins/obsidian-tasks-plugin/data.json",
-                "staged": false
+                "file": "axis9/core  country planning.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -84,8 +75,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -96,56 +86,8 @@
     "type": "split",
     "children": [
       {
-        "id": "0bcd4e39cb77ddac",
-        "type": "tabs",
-        "dimension": 40.511307767944935,
-        "children": [
-          {
-            "id": "3082f803f3ba694d",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "9c48c8f85310942d",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
-            }
-          },
-          {
-            "id": "edb01728083de3e7",
-            "type": "leaf",
-            "state": {
-              "type": "grind-manager-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "0e1fbcd12f813c52",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
-              "state": {}
-            }
-          },
-          {
-            "id": "d54c54655ce8ca53",
-            "type": "leaf",
-            "state": {
-              "type": "PROGRESS_CLOCKS_VIEW",
-              "state": {}
-            }
-          }
-        ]
-      },
-      {
         "id": "77f847cbcc6365f1",
         "type": "tabs",
-        "dimension": 59.488692232055065,
         "children": [
           {
             "id": "80647946df64b14c",
@@ -164,7 +106,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "axis9/core  country planning.md"
+              }
             }
           },
           {
@@ -179,15 +123,37 @@
             }
           },
           {
-            "id": "c32a96d5bc5bcbb3",
+            "id": "03145daeda5b922f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "e4ac654490cf140a",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      },
+      {
+        "id": "35cae7f01046a12e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1c1e94c9ccaf3eea",
             "type": "leaf",
             "state": {
               "type": "chatbot-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -195,9 +161,9 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "markdown-table-editor:Open Markdown Table Editor": false,
       "desk:Create new desk": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "markdown-table-editor:Open Markdown Table Editor": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": true,
@@ -221,48 +187,48 @@
       "memorization:Memorize Notes": false
     }
   },
-  "active": "4371a670372fef26",
+  "active": "893f3f34b90345e4",
   "lastOpenFiles": [
-    "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
     "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
-    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "axis9/plans/Мусорщик++.md",
-    "Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
-    "2024-04-18.md",
-    "2024-04-17.md",
-    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
-    "axis9/issues/ss/Untitled.md",
-    "tracked_files.json",
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "Untitled.canvas",
-    "axis9/issues/ss",
-    "Untitled.loom",
-    "Pasted Image 20240422001935_106.png",
-    "2024-04-21.md",
+    "looms/Untitled.loom",
+    "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
+    "textgenerator/templates/Experimental/testContext.md",
+    "textgenerator/templates/Experimental/summary.md",
+    "textgenerator/templates/Experimental/testLangchainPull.md",
+    "textgenerator/templates/Experimental/testCustomForm.md",
+    "textgenerator/templates/Experimental/conceptLinker.md",
+    "textgenerator/templates/Experimental",
+    "textgenerator/templates/awesomePrompts/webdesignconsultantAwesome.md",
+    "textgenerator/templates/awesomePrompts/yogiAwesome.md",
+    "textgenerator/templates/awesomePrompts/textbasedadventuregameAwesome.md",
+    "textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
+    "textgenerator/templates/awesomePrompts/socialmediamanagerAwesome.md",
+    "textgenerator/templates/awesomePrompts/tictactoegameAwesome.md",
+    "textgenerator/templates/awesomePrompts/songrecommenderAwesome.md",
+    "textgenerator/templates/awesomePrompts/socialmediainfluencerAwesome.md",
+    "textgenerator/templates/awesomePrompts/technologytransfererAwesome.md",
+    "textgenerator/templates/awesomePrompts/techreviewerAwesome.md",
+    "textgenerator/templates/awesomePrompts/svgdesignerAwesome.md",
+    "textgenerator/templates/awesomePrompts/startupideageneratorAwesome.md",
+    "textgenerator/templates/awesomePrompts/techwriterAwesome.md",
+    "textgenerator/templates/awesomePrompts/speechlanguagepathologistslpAwesome.md",
+    "textgenerator/templates/awesomePrompts/recruiterAwesome.md",
+    "textgenerator/templates/awesomePrompts/rprogramminginterpreterAwesome.md",
+    "textgenerator/templates/awesomePrompts/stackoverflowpostAwesome.md",
+    "textgenerator/templates/awesomePrompts",
+    "textgenerator/templates",
+    "textgenerator",
+    "looms",
+    "BMO/History",
+    "BMO",
+    "garbage/Untitled.canvas",
     "Pasted Image 20240422002020_156.png",
-    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
-    "Red&Queen/lingvistic/drafting starter exit.md",
+    "Pasted Image 20240422001935_106.png",
+    "Red&Queen/playground",
+    "SKYNET/playground",
     "images/alarm.png",
-    "Excalidraw",
-    "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
-    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
-    "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
-    "axis9/core  country planning.md",
-    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "SKYNET/technology/alarm.png.md",
-    "smart-chats/UNTITLED CHAT 2024-04-21 20 29 48.md",
-    "smart-chats",
-    "BMO/Profiles/BMO.md",
-    "smart-chats/UNTITLED CHAT 2024-04-21 19 12 12.md",
-    "Untitled Kanban.md",
-    "setting things up.md",
-    "images",
-    "New folder",
-    "SKYNET/technology",
-    "axis9/CORE-SSE",
-    "BMO/Profiles",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/39.gif",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",

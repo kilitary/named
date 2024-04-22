@@ -23,7 +23,11 @@
     "excalidraw-autoexport": "text",
     "excalidraw-iframe-theme": "text",
     "excalidraw-open-md": "checkbox",
-    "markmap": "number",
-    "markamap": "text"
+    "markmap": "text",
+    "markamap": "text",
+    "startTime": "datetime",
+    "sections": "number",
+    "questions": "number",
+    "answers": "number"
   }
 }

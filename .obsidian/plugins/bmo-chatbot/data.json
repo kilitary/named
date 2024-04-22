@@ -6,9 +6,9 @@
   "general": {
     "model": "wizardlm-uncensored:latest",
     "system_role": "You are a helpful assistant.",
-    "max_tokens": "",
-    "temperature": "0.50",
-    "allowReferenceCurrentNote": false
+    "max_tokens": "2000",
+    "temperature": "0.30",
+    "allowReferenceCurrentNote": true
   },
   "appearance": {
     "userName": "USER",
