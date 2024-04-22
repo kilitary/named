@@ -28,6 +28,7 @@
     "startTime": "datetime",
     "sections": "number",
     "questions": "number",
-    "answers": "number"
+    "answers": "number",
+    "gjgj": "text"
   }
 }
