@@ -138,5 +138,17 @@
     {
         "role": "user",
         "content": "как думаеш сколько времени надо?"
+    },
+    {
+        "role": "assistant",
+        "content": "It is difficult for me to provide an exact estimate without more information about the specific task or project you are referring to. Can you please provide more details or clarify your question?"
+    },
+    {
+        "role": "user",
+        "content": "ты вообще по русскп умееш разговаривать? крым чей?"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"errorBotMessage\"><p>Error: net::ERR_NETWORK_IO_SUSPENDED</p></div>"
     }
 ]
