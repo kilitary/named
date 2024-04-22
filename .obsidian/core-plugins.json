@@ -2,9 +2,16 @@
   "file-explorer",
   "global-search",
   "graph",
+  "backlink",
   "canvas",
+  "outgoing-link",
   "tag-pane",
   "properties",
+  "templates",
   "command-palette",
-  "editor-status"
+  "slash-command",
+  "editor-status",
+  "markdown-importer",
+  "outline",
+  "slides"
 ]

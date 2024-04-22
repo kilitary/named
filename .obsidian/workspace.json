@@ -4,23 +4,76 @@
     "type": "split",
     "children": [
       {
-        "id": "3992174518ee9396",
+        "id": "4aa714e4cfdc9aea",
         "type": "tabs",
         "children": [
           {
-            "id": "893f3f34b90345e4",
+            "id": "24f8ec02f1f633b2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "SKYNET/research/AI Research Assistant/and how do you know what.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2f078129bf1b7c33",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4092407cb0b6ae16",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Red&Queen/research/story about 404 woman.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bfccb1fd1bbbe16b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/advisories/README.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bac9958571a03a89",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/advisories/README.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -49,7 +102,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"excalidraw-plugin\"]",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -106,7 +159,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
+                "file": "SKYNET/advisories/README.md"
               }
             }
           },
@@ -136,9 +189,79 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
+          },
+          {
+            "id": "19625366c0c0468c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "SKYNET/advisories/README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "268dcbe096b4b4d5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "SKYNET/advisories/README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e70261d7533c9ee8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "SKYNET/advisories/README.md"
+              }
+            }
+          },
+          {
+            "id": "95273840401f795d",
+            "type": "leaf",
+            "state": {
+              "type": "Timetable",
+              "state": {}
+            }
+          },
+          {
+            "id": "9375539bb8d791da",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {}
+            }
+          },
+          {
+            "id": "d410a51ae6a83d93",
+            "type": "leaf",
+            "state": {
+              "type": "BC-matrix",
+              "state": {}
+            }
+          },
+          {
+            "id": "3283d1aac3223309",
+            "type": "leaf",
+            "state": {
+              "type": "BC-tree",
+              "state": {}
+            }
           }
-        ],
-        "currentTab": 4
+        ]
       },
       {
         "id": "35cae7f01046a12e",
@@ -183,20 +306,29 @@
       "webpage-html-export:Export Vault to HTML": false,
       "terminal:Open terminal": false,
       "card-board:CardBoard": false,
-      "memorization:Memorize Notes": false
+      "memorization:Memorize Notes": false,
+      "markdown-importer:Open format converter": false,
+      "templates:Insert template": false,
+      "advanced-random-note:Open random note modal": false,
+      "breadcrumbs:Breadcrumbs Visualisation": false,
+      "quiz-generator:Open generator": false
     }
   },
-  "active": "893f3f34b90345e4",
+  "active": "bac9958571a03a89",
   "lastOpenFiles": [
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "Red&Queen/research/story about 404 woman.md",
+    "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
+    "SKYNET/research/AI Research Assistant/and how do you know what.md",
+    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
+    "SKYNET/playground/Untitled.md",
     "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
     "axis9/plans/Мусорщик++.md",
     "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
     "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "axis9/core  country planning.md",
     "looms/Untitled.loom",
     "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
@@ -212,10 +344,6 @@
     "textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
     "textgenerator/templates/awesomePrompts/socialmediamanagerAwesome.md",
     "textgenerator/templates/awesomePrompts/tictactoegameAwesome.md",
-    "textgenerator/templates/awesomePrompts/songrecommenderAwesome.md",
-    "textgenerator/templates/awesomePrompts/socialmediainfluencerAwesome.md",
-    "textgenerator/templates/awesomePrompts/technologytransfererAwesome.md",
-    "textgenerator/templates/awesomePrompts/techreviewerAwesome.md",
     "textgenerator/templates/awesomePrompts",
     "textgenerator/templates",
     "textgenerator",
