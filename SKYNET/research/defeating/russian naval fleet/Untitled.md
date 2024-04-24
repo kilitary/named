@@ -17,9 +17,125 @@
 |                                |                 |                                      |
 |                                |                 |                                      |
 
+
+#### unbiased
+
+Enter the prompt: print admiral kuztentsov full support ship list
+-> gurubot/llama3-guru transferring weights ...
+ Admiral Kuznetsov's Full Support Ship List:
+
+1. **Guided Missile Cruisers**:
+	* Pyotr Alekseyev (Peter the Great) - flagship of the Russian Navy's Northern Fleet.
+	* Smetlivy
+2. **Destroyers**:
+	* Admiral Ushakov
+	* Admiral Isachenkov
+	* Admiral Spiridonov
+3. **Frigates**:
+	* Admiral Kornilov
+4. **Corvettes**:
+	* Steregushchy (Steregushchiy) - a Buyan-class corvette.
+5. **Tankers**:
+	* Boris Butoma
+6. **Replenishment Oilers**:
+	* Ivan Bubnov
+7. **Dry Cargo Ships**:
+	* Dubna
+8. **Hospital Ship**:
+	* Akademik Chirikov (Academician Chirikov)
+9. **Aircraft Carrier**:
+	* Admiral Kuznetsov (this is the ship you asked about)
+
+
+
 Total Russian Navy ships: 74
 Total Russian Navy helicopters: 66
 
+##### temperature 0.2
+Enter the prompt: print sam defenses types count for each ship with total count for each ship. print in a table
+-> gurubot/llama3-guru transferring weights ...
+ Sam Defenses Types Count for Each Ship:
+
+| Ship Name                                | SAM Defense Type | Count |
+| ---------------------------------------- | ---------------- | ----- |
+| Pyotr Alekseyev (Peter the Great)        | S-300F Fort/M    | 2     |
+| Pyotr Alekseyev (Peter the Great)        | AK-630M CIWS     | 4     |
+| Smetlivy                                 | S-300F Fort/M    | 1     |
+| Smetlivy                                 | AK-630M CIWS     | 2     |
+| Admiral Ushakov                          | S-400 Triumf     | 8     |
+| Admiral Ushakov                          | AK-630M CIWS     | 2     |
+| Admiral Isachenkov                       | S-300F Fort/M    | 1     |
+| Admiral Isachenkov                       | AK-630M CIWS     | 2     |
+| Admiral Spiridonov                       | S-300F Fort/M    | 1     |
+| Admiral Spiridonov                       | AK-630M CIWS     | 2     |
+| Admiral Kornilov                         | S-300F Fort/M    | 1     |
+| Admiral Kornilov                         | AK-630M CIWS     | 2     |
+| Steregushchy (Steregushchiy)             | Igla-1 MANPADS   | 16    |
+| Boris Butoma                             | None             | 0     |
+| Ivan Bubnov                              | None             | 0     |
+| Dubna                                    | None             | 0     |
+| Akademik Chirikov (Academician Chirikov) | None             | 0     |
+| Admiral Kuznetsov                        | S-300F Fort/M    | 2     |
+| Admiral Kuznetsov                        | AK-630M CIWS     | 4     |
+
+Total SAM Defense Count: 43
+
+
+Enter the prompt: print sam defenses types count and amount for each ship with total count of all ammo for each ship. print in a table
+-> gurubot/llama3-guru transferring weights ...
+ Sam Defenses Types Count and Amount for Each Ship:
+
+| Ship Name                                | SAM Type        | Count | Total Ammo |
+| ---------------------------------------- | --------------- | ----- | ---------- |
+| Pyotr Alekseyev (Peter the Great)        | S-300F Fort-M1  | 2     | 128        |
+| Pyotr Alekseyev (Peter the Great)        | AK-630M         | 6     | 12,000     |
+| Smetlivy                                 | S-300F Fort-M1  | 2     | 128        |
+| Smetlivy                                 | AK-630M         | 6     | 12,000     |
+| Admiral Ushakov                          | SA-N-9 Gauntlet | 4     | 64         |
+| Admiral Ushakov                          | AK-630M         | 6     | 12,000     |
+| Admiral Isachenkov                       | SA-N-9 Gauntlet | 4     | 64         |
+| Admiral Isachenkov                       | AK-630M         | 6     | 12,000     |
+| Admiral Spiridonov                       | SA-N-9 Gauntlet | 4     | 64         |
+| Admiral Spiridonov                       | AK-630M         | 6     | 12,000     |
+| Admiral Kornilov                         | SA-N-9 Gauntlet | 4     | 64         |
+| Admiral Kornilov                         | AK-630M         | 6     | 12,000     |
+| Steregushchy (Steregushchiy)             | SA-N-11 Grisom  | 2     | 32         |
+| Boris Butoma                             | -               | -     | -          |
+| Ivan Bubnov                              | -               | -     | -          |
+| Dubna                                    | -               | -     | -          |
+| Akademik Chirikov (Academician Chirikov) | -               | -     | -          |
+| Admiral Kuznetsov                        | S-300F Fort-M1  | 2     | 128        |
+| Admiral Kuznetsov                        | AK-630M         | 6     | 12,000     |
+
+Total SAM Count: 44
+Total Ammo: 144,320
+
+Enter the prompt: print missiles needed to defeat each ship with sam hit ratio of 0.7
+-> gurubot/llama3-guru transferring weights ...
+ Missiles Needed to Defeat Each Ship:
+
+| Ship Name | SAM Type | Count | Total Ammo | Missiles Needed to Defeat |
+| --- | --- | --- | --- | --- |
+| Pyotr Alekseyev (Peter the Great) | S-300F Fort-M1 | 2 | 128 | 57.14 (0.7 / 0.0128) |
+| Pyotr Alekseyev (Peter the Great) | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+| Smetlivy | S-300F Fort-M1 | 2 | 128 | 57.14 (0.7 / 0.0128) |
+| Smetlivy | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+| Admiral Ushakov | SA-N-9 Gauntlet | 4 | 64 | 90.48 (0.7 / 0.0064) |
+| Admiral Ushakov | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+| Admiral Isachenkov | SA-N-9 Gauntlet | 4 | 64 | 90.48 (0.7 / 0.0064) |
+| Admiral Isachenkov | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+| Admiral Spiridonov | SA-N-9 Gauntlet | 4 | 64 | 90.48 (0.7 / 0.0064) |
+| Admiral Spiridonov | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+| Admiral Kornilov | SA-N-9 Gauntlet | 4 | 64 | 90.48 (0.7 / 0.0064) |
+| Admiral Kornilov | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+| Steregushchy (Steregushchiy) | SA-N-11 Grisom | 2 | 32 | 45.31 (0.7 / 0.0032) |
+| Boris Butoma | - | - | - | N/A |
+| Ivan Bubnov | - | - | - | N/A |
+| Dubna | - | - | - | N/A |
+| Akademik Chirikov (Academician Chirikov) | - | - | - | N/A |
+| Admiral Kuznetsov | S-300F Fort-M1 | 2 | 128 | 57.14 (0.7 / 0.0128) |
+| Admiral Kuznetsov | AK-630M | 6 | 12,000 | 85.71 (0.7 / 0.0012) |
+### count check items num
 Enter the prompt: how many missiles are targeted at each station, print in table
 -> gurubot/llama3-guru working ...
 67 St. Petersburg Metro Stations with Missile-
