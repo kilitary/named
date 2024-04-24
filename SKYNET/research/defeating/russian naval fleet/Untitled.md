@@ -16,6 +16,18 @@
 | Typhoon-class submarine        | 3               | No helicopters                       |
 |                                |                 |                                      |
 |                                |                 |                                      |
+-> gurubot/llama3-guru transferring weights ...
+ **SAM Defense Types and Summary Ammo Count for Each Ship**:
+
+| Ship                              | SAM System(s)           | Summary Ammo Count                                     |
+| --------------------------------- | ----------------------- | ------------------------------------------------------ |
+| Admiral Kuznetsov (CVN)           | S-300F Fort/M Fort-Me   | 120 x SA-N-6 Grumble, 48 x R-3 (AA-10 Alamo)           |
+| Peter the Great (PG) Frigate      | Kashtan CIWS            | 1,200 x 9M33M3 (SA-N-8 Gecko)                          |
+| Vice-Admiral Kulakov (PK) Cruiser | S-300F Fort/M Fort-Me   | 120 x SA-N-6 Grumble, 48 x R-3 (AA-10 Alamo)           |
+| Smetlivy (F124) Frigate           | Kashtan CIWS, Redut SAM | 1,200 x 9M33M3 (SA-N-8 Gecko), 24 x 3R66 (AA-17 Alamo) |
+| Kilinskiy (F123) Frigate          | Kashtan CIWS, Redut SAM | 1,200 x 9M33M3 (SA-N-8 Gecko), 24 x 3R66 (AA-17 Alamo) |
+| Ivan Gren (MKB-317) Landing Ship  | None                    | N/A                                                    |
+| Kapitan Manakov (F124) Frigate    | Kashtan CIWS, Redut SAM | 1,200 x 9M33M3 (SA-N-8 Gecko), 24 x 3R66 (AA-17 Alamo) |
 
 
 #### unbiased
