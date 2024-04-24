@@ -60,6 +60,19 @@
             }
           },
           {
+            "id": "7d83b3c92c60f03e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/Untitled.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "2f078129bf1b7c33",
             "type": "leaf",
             "state": {
@@ -125,7 +138,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -211,7 +224,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/Untitled.md"
               }
             }
           },
@@ -248,7 +261,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -265,7 +278,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -277,7 +290,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/Untitled.md"
               }
             }
           },
@@ -363,11 +376,16 @@
       "templates:Insert template": false,
       "advanced-random-note:Open random note modal": false,
       "breadcrumbs:Breadcrumbs Visualisation": false,
-      "quiz-generator:Open generator": false
+      "quiz-generator:Open generator": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "e8ab14f810b8b92a",
+  "active": "7d83b3c92c60f03e",
   "lastOpenFiles": [
+    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "SKYNET/research/defeating/russian naval fleet/Untitled.md",
+    "SKYNET/research/defeating/russian naval fleet",
+    "SKYNET/research/defeating",
     "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
@@ -377,7 +395,6 @@
     "SKYNET/research/black holes/Simulation and Testing Facility Near Mar.md",
     "Red&Queen/research/story about 404 woman.md",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
@@ -395,7 +412,6 @@
     "textgenerator/templates/Experimental",
     "textgenerator/templates/awesomePrompts/webdesignconsultantAwesome.md",
     "textgenerator/templates/awesomePrompts/yogiAwesome.md",
-    "textgenerator/templates/awesomePrompts/textbasedadventuregameAwesome.md",
     "textgenerator/templates/awesomePrompts",
     "textgenerator/templates",
     "textgenerator",
@@ -405,8 +421,6 @@
     "garbage/Untitled.canvas",
     "Pasted Image 20240422002020_156.png",
     "Pasted Image 20240422001935_106.png",
-    "Red&Queen/playground",
-    "SKYNET/playground",
     "images/alarm.png",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/39.gif",
