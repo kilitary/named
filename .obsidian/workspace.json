@@ -73,12 +73,25 @@
             }
           },
           {
+            "id": "9af36c70438a6fb4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "dc8fee8dbaa8a442",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -91,7 +104,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3f242c8396fcfb34",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -130,7 +156,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -156,7 +182,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "be78a66e736da425",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -195,7 +234,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -268,7 +307,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -354,7 +393,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md"
               }
             }
           },
@@ -391,7 +430,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -408,7 +447,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -420,7 +459,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md"
               }
             }
           },
@@ -457,7 +496,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       },
       {
         "id": "35cae7f01046a12e",
@@ -510,17 +549,17 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "eb2ffb0a14e01a44",
+  "active": "7d83b3c92c60f03e",
   "lastOpenFiles": [
-    "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
-    "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
-    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
-    "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
-    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+    "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
+    "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
+    "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
+    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+    "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
+    "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
+    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",

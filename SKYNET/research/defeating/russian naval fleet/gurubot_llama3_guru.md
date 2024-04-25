@@ -8,13 +8,13 @@ model: gurubot/llama3-guru
 -> gurubot/llama3-guru transferring weights ...
  Admiral Kuznetsov Aircraft Carrier Support Ships:
 
-| Ship Name | Commissioned | Role |
-| --- | --- | --- |
-| Marshal Ustinov (DDG-613) | 1981 | Guided Missile Destroyer, Anti-Air Warfare Commander |
-| Admiral Butakov (DDG-608) | 1982 | Guided Missile Destroyer, Anti-Surface Warfare Commander |
-| Retvizanee (AS-43) | 1977 | Rescue Ship, Aviation Support Vessel |
-| Viktor Konstantinov (A-864) | 1981 | Fleet Replenishment Oiler, Aviation Fuel Supply |
-| Ivan Bubnov (A-841) | 1979 | Fleet Replenishment Oiler, Aviation Fuel Supply |
+| Ship Name                   | Commissioned | Role                                                     |
+| --------------------------- | ------------ | -------------------------------------------------------- |
+| Marshal Ustinov (DDG-613)   | 1981         | Guided Missile Destroyer, Anti-Air Warfare Commander     |
+| Admiral Butakov (DDG-608)   | 1982         | Guided Missile Destroyer, Anti-Surface Warfare Commander |
+| Retvizanee (AS-43)          | 1977         | Rescue Ship, Aviation Support Vessel                     |
+| Viktor Konstantinov (A-864) | 1981         | Fleet Replenishment Oiler, Aviation Fuel Supply          |
+| Ivan Bubnov (A-841)         | 1979         | Fleet Replenishment Oiler, Aviation Fuel Supply          |
 
 Please note that the information provided is accurate as of my knowledge cutoff date. If you need more recent or updated information, please let me know!
 -> context 1349 bytes auto-added

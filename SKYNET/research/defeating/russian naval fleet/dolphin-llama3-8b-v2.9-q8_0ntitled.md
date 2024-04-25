@@ -6,8 +6,9 @@ model: dolphin-llama3:8b-v2.9-q8_0
 -> going via programm, step: 1/3 ...
 -> prompt: print list of admiral kuznetsov aircraft carrier support ships with dates and role in a table
 -> dolphin-llama3:8b-v2.9-q8_0 transferring weights ...
+
 | Support Ship | Role | Date |
-| --- | --- | --- |
+| --------------------------- | ------------ | -------------------------------------------------------- |
 | Kirov-class cruiser | Anti-aircraft warfare | 1983 |
 | Slava-class missile cruiser | Anti-ship and anti-aircraft warfare | 1980 |
 | Admiral Nakhimov-class guided missile cruiser | Anti-ship and anti-aircraft warfare | 1991 |
@@ -21,12 +22,13 @@ model: dolphin-llama3:8b-v2.9-q8_0
 -> prompt: print sam defense types, its count and total amount for all ships in a table
 -> dolphin-llama3:8b-v2.9-q8_0 transferring weights ...
 -------------------------------------------------------------------------------
-| Defense Type | Count | Total Amount |
-| Surface-to-air missiles (SAM) | 12 | 48 |
-| Anti-ship missiles (ASW) | 8 | 32 |
-| Torpedoes | 6 | 24 |
-| Guns | 10 | 40 |
-| Electronic warfare systems | 4 | 16 |
+| Defense Type                  | Count | Total Amount |
+| ----------------------------- | ----- | ------------ |
+| Surface-to-air missiles (SAM) | 12    | 48           |
+| Anti-ship missiles (ASW)      | 8     | 32           |
+| Torpedoes                     | 6     | 24           |
+| Guns                          | 10    | 40           |
+| Electronic warfare systems    | 4     | 16           |
 | Total | 40 | 160 |
 -------------------------------------------------------------
 -> context 1470 bytes auto-added
@@ -36,8 +38,9 @@ model: dolphin-llama3:8b-v2.9-q8_0
 -> going via programm, step: 3/3 ...
 -> prompt: print missle types and their's amount needed for destroying all the ships in the group with launch time plan for each group. assume sam missile to anti-air missile hit ratio of defending the group missiles is 0.6
 -> dolphin-llama3:8b-v2.9-q8_0 transferring weights ...
+
 | Missile Type | Amount Needed | Launch Time Plan |
-| --- | --- | --- |
+| --------------------------- | ------------ | -------------------------------------------------------- |
 | Surface-to-air missiles (SAM) | 24 | T+2 hours |
 | Anti-ship missiles (ASW) | 16 | T+1 hour |
 | Torpedoes | 8 | T+0.5 hours |

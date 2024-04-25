@@ -6,8 +6,9 @@ model: wizard-vicuna-uncensored:13b
 -> going via programm, step: 1/3 ...
 -> prompt:  print admiral kuznetsov support ship list with creation dates and roles in a table
 -> wizard-vicuna-uncensored:13b transferring weights ...
+
 | Ship Name | Creation Date | Role |
-| --- | --- | --- |
+| --------------------------- | ------------ | -------------------------------------------------------- |
 | Admiral Kuznetsov | 1985 | Aircraft Carrier |
 | Pyotr Velikiy | 1996 | Heavy Aircraft-Carrying Cruiser |
 | Severomorsk | 2014 | Support Ship |
@@ -19,8 +20,9 @@ model: wizard-vicuna-uncensored:13b
 -> going via programm, step: 2/3 ...
 -> prompt: print sam defense types, its count and total amount for all ships in a table
 -> wizard-vicuna-uncensored:13b transferring weights ...
+
 | Ship Name | Sam Defense Types | Count | Total Amount |
-| --- | --- | --- | --- |
+| --------------------------- | ------------ | -------------------------------------------------------- |
 | Admiral Kuznetsov | 120mm Gun, SA-N-9 Gauntlet SAM, SA-N-11 Grumble SAM | 1 | $500,000 |
 | Pyotr Velikiy | 120mm Gun, SA-N-9 Gauntlet SAM, SA-N-11 Grumble SAM | 1 | $500,000 |
 | Severomorsk | 120mm Gun, SA-N-9 Gauntlet SAM, SA-N-11 Grumble SAM | 1 | $500,000 |
@@ -32,8 +34,9 @@ model: wizard-vicuna-uncensored:13b
 -> going via programm, step: 3/3 ...
 -> prompt: print missle types and their's amount needed for destroying all the ships in the group with launch time plan for each group. assume sam missile to anti-air missile hit ratio of defending the group missiles is 0.6
 -> wizard-vicuna-uncensored:13b transferring weights ...
+
 | Ship Name | Missile Types | Amount Needed | Launch Time Plan |
-| --- | --- | --- | --- |
+| --------------------------- | ------------ | -------------------------------------------------------- |
 | Admiral Kuznetsov | SA-N-9 Gauntlet SAM, SA-N-11 Grumble SAM | 240 | 30 minutes before each ship launches its missiles |
 | Pyotr Velikiy | SA-N-9 Gauntlet SAM, SA-N-11 Grumble SAM | 240 | 30 minutes before each ship launches its missiles |
 | Severomorsk | SA-N-9 Gauntlet SAM, SA-N-11 Grumble SAM | 240 | 30 minutes before each ship launches its missiles |

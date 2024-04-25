@@ -18,9 +18,9 @@ deployment of the Admiral Kuznetsov:
 #### going via programm, step: 2/3 ...
 #### prompt: print sam defense types, its count and total amount for all ships in a table
 #### gfg/solar-10.7b-instruct-v1.0-uncensored transferring weights ...
---------------------------------------------------
+
 | Defense Type    | Count         | Total Amount |
---------------------------------------------------
+| --------------------------- | ------------ | -------------------------------------------------------- |
 | Missile          | 1             | 20           |
 | Torpedo          | 3             | 67           |
 | Beam             | 5             | 45           |
