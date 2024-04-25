@@ -39,6 +39,45 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "57260918c863abd7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e50b27e5b6bbb504",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3e5d5546e5cfabf1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "mode": "source",
                 "backlinks": false,
@@ -65,7 +104,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -393,7 +432,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md"
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -430,7 +469,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -447,7 +486,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -459,7 +498,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md"
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md"
               }
             }
           },
@@ -549,10 +588,12 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "7d83b3c92c60f03e",
+  "active": "57260918c863abd7",
   "lastOpenFiles": [
-    "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+    "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
     "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
     "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
@@ -560,10 +601,8 @@
     "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
-    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
     "SKYNET/playground/Untitled.md",
