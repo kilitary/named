@@ -65,6 +65,32 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "dc8fee8dbaa8a442",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3978bc5cb2e515ee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "SKYNET/research/defeating/russian naval fleet/Untitled.md",
                 "mode": "source",
                 "backlinks": false,
@@ -138,7 +164,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -380,10 +406,12 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "7d83b3c92c60f03e",
+  "active": "3978bc5cb2e515ee",
   "lastOpenFiles": [
-    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/Untitled.md",
+    "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",
     "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
@@ -410,8 +438,6 @@
     "textgenerator/templates/Experimental/testCustomForm.md",
     "textgenerator/templates/Experimental/conceptLinker.md",
     "textgenerator/templates/Experimental",
-    "textgenerator/templates/awesomePrompts/webdesignconsultantAwesome.md",
-    "textgenerator/templates/awesomePrompts/yogiAwesome.md",
     "textgenerator/templates/awesomePrompts",
     "textgenerator/templates",
     "textgenerator",
