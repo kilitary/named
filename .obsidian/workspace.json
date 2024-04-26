@@ -623,8 +623,7 @@
       "templates:Insert template": false,
       "advanced-random-note:Open random note modal": false,
       "breadcrumbs:Breadcrumbs Visualisation": false,
-      "quiz-generator:Open generator": false,
-      "card-board:CardBoard": false
+      "quiz-generator:Open generator": false
     }
   },
   "active": "9117ebbeeb8d069d",
