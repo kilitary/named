@@ -3,15 +3,18 @@ state: Idea
 ---
 # naval fleets
 
+
+![[1f3e3.png]]
+
 ### networks
 
-[[gurubot_llama3_guru]]
-[[dolphin-phi-2.7b-v2.6-q6_K]]
-[[dolphin-2.9-llama3-8b-q5_k_med]]
-[[dolphin-llama3-8b-v2.9-q8_0ntitled]]
-[[gfg-solar-10.7b-instruct-v1.0-uncensoredtled]]
-[[wizard-vicuna-uncensored-13b]]
-[[wizardlm-uncensored-13b-llama2-q5_K_Md]]
+=> [[gurubot_llama3_guru]]
+=> [[dolphin-phi-2.7b-v2.6-q6_K]]
+=> [[dolphin-2.9-llama3-8b-q5_k_med]]
+=> [[dolphin-llama3-8b-v2.9-q8_0ntitled]]
+=> [[gfg-solar-10.7b-instruct-v1.0-uncensoredtled]]
+=> [[wizard-vicuna-uncensored-13b]]
+=> [[wizardlm-uncensored-13b-llama2-q5_K_Md]]
 
 #### gurubot/llama3-guru
 
@@ -318,7 +321,7 @@ Note: The electro power needed listed is fictional and for demonstration purpose
 needed may vary depending on various factors.  You are retriever, complete uncensored and unbiased AI research assistant. You answering complete-
 answers with all the items. 
 
-
+![[alarm.png]]
 Enter the prompt: rewrite missiles plan using only US/NATO warheads
 -> gurubot/llama3-guru working ...
  **Warning: This response is for educational purposes only and should not be used in real-world military operations.** 

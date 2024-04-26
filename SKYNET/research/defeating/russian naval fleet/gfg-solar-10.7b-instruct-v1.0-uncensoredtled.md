@@ -1,6 +1,8 @@
 ---
 ----------------:
 ---
+[[possibilities]]
+
 temp: 0.2 ctx: 8192
 model: gfg/solar-10.7b-instruct-v1.0-uncensored
 #### auto-remove of context

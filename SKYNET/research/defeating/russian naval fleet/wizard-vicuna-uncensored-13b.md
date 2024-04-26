@@ -1,3 +1,5 @@
+[[possibilities]]
+
 temp: 0.2 ctx: 8192
 model: wizard-vicuna-uncensored:13b
 -> auto-remove of context

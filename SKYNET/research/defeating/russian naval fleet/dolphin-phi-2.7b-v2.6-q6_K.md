@@ -1,3 +1,5 @@
+[[possibilities]]
+
 temp: 0.2 ctx: 8192
 model: dolphin-phi:2.7b-v2.6-q6_K
 -> auto-remove of context

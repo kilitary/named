@@ -1,3 +1,5 @@
+[[possibilities]]
+
 temp: 0.2 ctx: 8192
 model: wizardlm-uncensored:13b-llama2-q5_K_M
 -> auto-remove of context
