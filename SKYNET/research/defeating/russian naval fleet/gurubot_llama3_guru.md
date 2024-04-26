@@ -1,5 +1,8 @@
+---
+state: Idea
+---
 temp: 0.15 ctx: 8192
-model: gurubot/llama3-guru
+model: мать/llama3-guru
 -> auto-remove of context
 -> new context
 

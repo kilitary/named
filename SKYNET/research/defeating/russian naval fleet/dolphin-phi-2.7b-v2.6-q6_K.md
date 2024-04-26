@@ -11,6 +11,8 @@ this information.
 
 For example:
 
+> в чём дело мать
+
 1. Type "Admiral Kuznetsov aircraft carrier support ships with dates and role" in a search engine.
 2. Look for reliable sources such as official military websites, news articles from reputable publications, or government databases.
 3. Extract the required information into a table format. 
