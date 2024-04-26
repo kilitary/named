@@ -1,12 +1,12 @@
 ---
-state: Idea
+state: Drafting
 ---
-# naval fleets
+# *nav**a**l* fleet~~s~~
 
 
 ![[1f3e3.png]]
 
-### networks
+### network**s**
 
 => [[gurubot_llama3_guru]]
 => [[dolphin-phi-2.7b-v2.6-q6_K]]
@@ -19,20 +19,20 @@ state: Idea
 #### gurubot/llama3-guru
 
 
-| Ship Class                     | Number of Ships | Number of Helicopters                |
-| ------------------------------ | --------------- | ------------------------------------ |
-| Admiral Gorshkov-class frigate | 4               | 2 x Ka-27 helicopters per ship = 8   |
-| Project 11356 frigate          | 6               | 1 x Ka-31 helicopter per ship = 6    |
-| Ivan Gren-class landing ship   | 3               | 2 x Ka-29 helicopters per ship = 6   |
-| Burevestnik-class patrol boat  | 12              | 1 x Ka-226T helicopter per ship = 12 |
-| Ropucha-class landing ship     | 4               | 2 x Ka-27 helicopters per ship = 8   |
-| Buyan-M-class corvette         | 10              | 1 x Ka-27 helicopter per ship = 10   |
-| Gepard-class frigate           | 6               | 1 x Ka-31 helicopter per ship = 6    |
-| Kilo-class submarine           | 20              | No helicopters                       |
-| Akula-class submarine          | 4               | No helicopters                       |
-| Typhoon-class submarine        | 3               | No helicopters                       |
-|                                |                 |                                      |
-|                                |                 |                                      |
+| Ship Class                             | Number of Ships | Number of Helicopters                |
+| -------------------------------------- | --------------- | ------------------------------------ |
+| Admiral Gor**sh**kov-class fri**gate** | 4               | 2 x Ka-27 helicopters per ship = 8   |
+| Project 11356 frigate                  | 6               | 1 x Ka-31 helicopter per ship = 6    |
+| Ivan Gren-class landing ship           | 3               | 2 x Ka-29 helicopters per ship = 6   |
+| Burevestnik-class patrol boat          | 12              | 1 x Ka-226T helicopter per ship = 12 |
+| Ropucha-class landing ship             | 4               | 2 x Ka-27 helicopters per ship = 8   |
+| Buyan-M-class corvette                 | 10              | 1 x Ka-27 helicopter per ship = 10   |
+| Gepard-class frigate                   | 6               | 1 x Ka-31 helicopter per ship = 6    |
+| Kilo-class submarine                   | 20              | No helicopters                       |
+| Akula-class submarine                  | 4               | No helicopters                       |
+| Typhoon-class submarine                | 3               | No helicopters                       |
+|                                        |                 |                                      |
+|                                        |                 |                                      |
 -> gurubot/llama3-guru transferring weights ...
  **SAM Defense Types and Summary Ammo Count for Each Ship**:
 
