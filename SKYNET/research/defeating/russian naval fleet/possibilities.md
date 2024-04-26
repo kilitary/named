@@ -1,3 +1,6 @@
+---
+state: Idea
+---
 # naval fleets
 
 ### networks
