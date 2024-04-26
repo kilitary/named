@@ -160,7 +160,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -398,8 +399,7 @@
       "templates:Insert template": false,
       "advanced-random-note:Open random note modal": false,
       "breadcrumbs:Breadcrumbs Visualisation": false,
-      "quiz-generator:Open generator": false,
-      "card-board:CardBoard": false
+      "quiz-generator:Open generator": false
     }
   },
   "active": "81f7790dd0524ada",
