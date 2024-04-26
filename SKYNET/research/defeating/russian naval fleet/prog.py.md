@@ -37,13 +37,13 @@ def execute():
     print(f'temp: {temperature} ctx: {num_ctx}')  
   
     try:  
-        model = 'gurubot/llama3-guru'  # 5  
         model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
         model = 'dolphin-llama3:8b-v2.9-q8_0'  # 4  
         model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
         model = 'wizardlm-uncensored:13b-llama2-q5_K_M'  # 1  
         model = 'dolphin-phi:2.7b-v2.6-q6_K'  # 2  
         model = 'wizard-vicuna-uncensored:13b'  # 2  
+        model = 'gurubot/llama3-guru'  # 5  
   
         print(f'model: {model}')  
   
@@ -153,3 +153,5 @@ def execute():
 if __name__ == '__main__':  
     sys.exit(execute())
 ```
+
+eee
