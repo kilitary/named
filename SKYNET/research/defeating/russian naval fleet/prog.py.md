@@ -10,7 +10,7 @@ from ollama import Client
   
 # print detailed plan about how to defeat Kuznetsov carrier with its defense group ships using long range missiles while not entering into its surface-to-air range. Print also number of missiles that should be used to full destroy of group. Print full launch time plan. Calculate plan with anti missle defense plan of defeating group in mind. Plan should account for potential countermeasures or adaptations by the defending force. Use in mind that  group has kuznetsov aircraft carrier has defense group ships with full formation. calculate plan attacking each of target group ships. Use only US/NATO warheads and hardware. Research what hardware can be used to disrupt group control/operation. Use decoys and/or other technologies like using growler to spawn disrupt real targets designation. output detailed plan of destroying each of ship.  
 programmed = True  
-programm_list = [" print admiral kuznetsov support ship list with creation dates and roles in a table",  
+programm_list = ["print admiral kuznetsov support ship list with creation dates and roles in a table",  
                  "print sam defense types, its count and total amount for all ships in a table",  
                  "print missle types and their's amount needed for destroying all the ships in the group with launch time plan for each group. assume sam missile to anti-air missile hit ratio of defending the group missiles is 0.6"]  
 programm_current_inst = 0  

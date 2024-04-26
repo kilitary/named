@@ -26,7 +26,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "eafdc4f1d7b61a9e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -148,7 +161,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -234,7 +247,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -271,7 +284,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -288,7 +301,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -300,7 +313,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -390,10 +403,10 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "95a90191149d252d",
+  "active": "eafdc4f1d7b61a9e",
   "lastOpenFiles": [
-    "images/1f3e3.png",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+    "images/1f3e3.png",
     "images/1f4d9.png",
     "images/1f4d8.png",
     "images/1f4d7.png",
