@@ -99,4 +99,4 @@ state: Final
 >  
 
 Cgroup: n10s
-wWw: [http://kilitary.ru?laterst](kilitary)
+wWw: [http://kilitary.ru](kilitary)
