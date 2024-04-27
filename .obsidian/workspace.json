@@ -138,6 +138,19 @@
             }
           },
           {
+            "id": "ea31e3117db33500",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "readme.md.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "36eae31c31b0e941",
             "type": "leaf",
             "state": {
@@ -291,7 +304,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -377,7 +390,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/README.MD.md"
+                "file": "readme.md.md"
               }
             }
           },
@@ -414,7 +427,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/README.MD.md",
+                "file": "readme.md.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -431,7 +444,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/README.MD.md",
+                "file": "readme.md.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -443,7 +456,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/README.MD.md"
+                "file": "readme.md.md"
               }
             }
           },
@@ -533,10 +546,11 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "e6d8d1cd7f4382c5",
+  "active": "ea31e3117db33500",
   "lastOpenFiles": [
-    "SKYNET/advisories/README.md",
     "SKYNET/README.MD.md",
+    "readme.md.md",
+    "SKYNET/advisories/README.md",
     "kilitary.ru.md",
     "kilitary.md",
     "textgenerator/templates/Experimental/summary.md",
@@ -575,7 +589,6 @@
     "SKYNET/research/defeating",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
     "SKYNET/research/AI Research Assistant/and how do you know what.md",
-    "SKYNET/playground/Untitled.md",
     "looms/Untitled.loom",
     "textgenerator/templates/Experimental",
     "textgenerator/templates/awesomePrompts",
