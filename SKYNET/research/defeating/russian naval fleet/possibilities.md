@@ -16,6 +16,7 @@ state: Drafting
 => [[wizard-vicuna-uncensored-13b]]
 => [[wizardlm-uncensored-13b-llama2-q5_K_Md]]
 
+### **scenarior** => [[prog.py]]
 #### gurubot/llama3-guru
 
 
