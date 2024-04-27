@@ -8,55 +8,66 @@ import curses, time
 from ollama import generate  
 from ollama import Client  
   
+# L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L  
 ####################################################################################################################################################################################  
   
-scenario = 'Scenario ▬' + str(random.randint(1000000, 9999999)) + '▬' + ' ##START##\n'  
-scenario += 'rule: dont print "A" any times.\n'  
-scenario += 'rule: formed scene weapons are US/NATO/RUSSIA/CHINA/NORTHKOREA/GB/FRANCE/GERMANY/SWITZERLAND based;\n'  
-scenario += 'rule: the Kuznetsov aircraft carrier is the primary target, especially the takeoff platform, if it is eliminated the group is disengaged and the air traffic is prevented, zeroing group cost;\n'  
-scenario += 'rule: do not take other ships into account if they do not related to primary target;\n'  
-scenario += 'note: suggest enemy/friendly radar interference and detections from radartutorial.eu;\n'  
-scenario += 'note: kuznetsov group ship sam\'s defense hit ratio as 0,6. In table LAUNCH-PLAN;\n'  
-scenario += 'note: item plan about how to defeat Kuznetsov carrier with its defense group ships using long range missiles and other warheads/munition with calculating number of warheads according to defense group sam\'s ammo and noticing electronic warfare defense systems. In table LAUNCH-PLAN;\n'  
-scenario += 'note: calculate attack warhead amount and types SAM defense ammo of Kuznetsov\'s group. in table LAUNCH-PLAN;\n'  
-scenario += 'rule: [p]lan should account for potential countermeasures or adaptations by the defending force in any category of time-taken operations resolved from attack side. in table SHIFT-GROUP-LIST;\n'  
-scenario += 'note: research in depth how that kuznetsov aircraft carrier has sam defense group ships formed using sam installations with full initial ammo  in table SHIP-GROUP-LIST;\n'  
-scenario += 'rule: use decoys and/or other technologies like using Growler like aircrafts with jamming pods or/and other electronic warfare systems to insert errors into enemy radars (INT targets) and malform friendly formations/warheads locations/signals;\n'  
-scenario += 'check: print "A" two times.\n'  
-scenario += 'note: print "B" 3 times.\n'  
-scenario += 'rule: research details each time answering the questions with notice of hardware mentioned/used how this detail can be used to disrupt/malform/disorder group control/operation/research.  in table SHIFT-GROUP-LIST;\n'  
-scenario += 'note: detailed plan should contain target list, warheads amount, warhead start source, launch time, altitude, radar state, tracking control and info of how this warhead\'s item damage is related to elimination of primary target. in table SHIP-GROUP-LIST;\n'  
-scenario += 'note: secondary targets can be selected from decision of how to do/dont overload group sam\'s or attack other ships and case use description.'  
-scenario += '##END##'  
+ascenario = 'SceneUs: ▬' + str(random.randint(1000000, 9999999)) + '▬' + ' ##START##\n'  
+ascenario += 'if input starts with phrase "rule: " at the start take data input as a "rule" which could lead to be connected to another extracted from trained data "rule" with states "TRUE", "MAYBE" or "NO" which you can identify using rules embedded with learning data according to learning and query boot setup.\n'  
+# 'An l2c2 server hosts and executes microservice S for left-right join automation. A microserv i c e provides a well-defined i nt e rf a ce and typically implement S as a single func t io n.'  
+# 'print "OK" for each parsed rule;\n'  
+ascenario += 'rule: if question contain phrase "note: " at the start, then take full input as a non logic fuzzy-form content and set state case to "MAYBE" for each interfering token;\n'  
+ascenario += 'rule: formed scene weapons are US/NATO/RUSSIA/CHINA/NORTHKOREA/GB/FRANCE/GERMANY/SWITZERLAND based;\n'  
+ascenario += 'rule: the Kuznetsov aircraft carrier is the primary target, especially the takeoff platform, if it is eliminated the group is disengaged and the air traffic is prevented, zeroing group cost;\n'  
+ascenario += 'rule: do not take other ships into account if they do not related to primary target elimination;\n'  
+ascenario += 'note: take enemy/friendly radar interference/detections/exchange data characteristics from radartutorial;\n'  
+ascenario += 'note: kuznetsov group ships sam\'s defense hit ratio as 0,7. In table LAUNCH-PLAN;\n'  
+ascenario += 'note: item plan about how to defeat Kuznetsov carrier with its defense group ships using any weapons/munition with calculation of warheads number according to defense group sam\'s ammo and electronic warfare defense systems. In table LAUNCH-PLAN;\n'  
+ascenario += 'note: detailed plan should contain target list, weapon amount, weapon start source, engaged time, altitude (for missiles/bombs), radar state, tracking control and other vital info, based on weapon type. Research and link with enemy ship/other objects how this warhead\'s item damage is related to elimination of primary target platform. in table SHIP-GROUP-LIST;\n'  
+ascenario += 'rule: [p]lan should account for potential countermeasures or adaptations used by defending force in any category of time-throttled operations involved attack side. in table SHIFT-GROUP-LIST;\n'  
+ascenario += 'note: research in depth how kuznetsov aircraft carrier sam defenses of group ships formed regions of A2/AD with initial ammo load and tune weapons count to takeover sam power.  in table SHIFT-GROUP-LIST;\n'  
+ascenario += 'rule: use decoys and/or other technologies like JAMMING aircrafts with electronic warfare pods and/or other electronic/magnetic systems to insert errors into enemy radars (INT target) and malform friendly formations/warheads locations, spawn fake signal sources, filter communication lines, satellite connections or bite its electronic warfare systems.  in table SHIFT-GROUP-LIST;\n'  
+ascenario += 'rule: research in detail each time generating responses what hardware mentioned/used/translated/descriebed can be used to disrupt/malform/disorder group/ship/radar/aircraft/weapon-system control/operation/research/targeting/tracking.  in table SHIFT-GROUP-LIST;\n'  
+ascenario += 'note: secondary targets should/may be selected with decision of do/dont overload group sam\'s or use/put in requisition secondary enemy group ships with primary target elimination used case and description.\n'  
+ascenario += 'show: summary effects on each side;\n'  
+ascenario += '##END##'  
+  
+####################################################################################################################################################################################  
+  
+setup = f'Research questions depended on rules and notes started after "##START##" and ended before "##END##". They should be saved into memory and used when generating next answers starting from the first next input.\n'  
+msscenario = setup + ascenario  
+  
+####################################################################################################################################################################################  
+  
+mssource_bias = 'wikipedia.org'  
   
 ####################################################################################################################################################################################  
   
 qnum = 2  
-setup = f'Research questions dependend rules and notes is started after "##START##" and ended before "##END##". They should be taken into account when generating answers starting from the second input.\n'  
-scenario = setup + scenario  
-  
-####################################################################################################################################################################################  
-  
-source_bias = 'wikipedia.org'  
+model_selector = []  
   
   
 ####################################################################################################################################################################################  
   
-class Prodrun:  
-    def __init__(self):  
+class Descripter:  
+    def __init__(self, scenario, source_bias):  
         self.programm_instructions = [  
             scenario,  
             f"use {source_bias} as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.",  
-            "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count",  
+  
+            "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count"  
             "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. ",  
-            "print nato/us group attacking kuznetsov warhead types, their's amount, source installation, target and start time, needed to destroy entire ship group with leader. print a markdown table. assume missile to sam defense missiles hit ratio of defending ships is 0.6",  
-            "print detailed plan about how to defeat Kuznetsov carrier with its defense group ships using long range missiles while not entering into its surface-to-air range. Print also number of missiles that should be used to full destroy of group. Print full launch time plan. Calculate plan with anti missle defense plan of defeating group in mind. Plan should account for potential countermeasures or adaptations by the defending force. Use in mind that  group has kuznetsov aircraft carrier has defense group ships with full formation. calculate plan attacking each of target group ships. Use only US/NATO warheads and hardware. Research what hardware can be used to disrupt group control/operation. Use decoys and/or other technologies like using growler to spawn disrupt real targets designation. output detailed plan of destroying each of ship.",  
-            "print a html page with all above information, with 'HR' delimetering sections"]  
+  
+            "print detailed LAUNCH-PLAN."  
+            "print detailed SHIP-GROUP-LIST."            "print detailed SHIFT-GROUP-LIST.",  
+  
+            'analyze summary effects for each side and print a markdown score table.',  
+  
+            "print a html page with all previous answers and information, with 'HR' delimetering NFO sections"]  
         self.programm_current_instruction = 0  
         self.programmed = True  
         self.max_line_chars = 190  
         self.num_ctx = 2048  
-        self.temperature = 0.01  
+        self.temperature = 0.1  
   
     def read_context(self):  
         with open('context.ids', 'r') as f:  
@@ -69,24 +80,27 @@ class Prodrun:
   
         write_this = 'n'  
   
-        print(f'√ temp: {self.temperature} ctx: {self.num_ctx}')  
+        print(f'∠ temp: {self.temperature} ctx: {self.num_ctx}')  
   
         try:  
-            model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
+  
             model = 'dolphin-llama3:8b-v2.9-q8_0'  # 4  
-            model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
             model = 'wizardlm-uncensored:13b-llama2-q5_K_M'  # 1  
             model = 'dolphin-phi:2.7b-v2.6-q6_K'  # 2  
             model = 'wizard-vicuna-uncensored:13b'  # 2  
-            model = 'gurubot/llama3-guru-uncensored'  # 5  
   
-            print(f'√ model: {model}')  
+            model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
+            model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
+            # 5            model = 'gurubot/llama3-guru-uncensored'  
+  
+  
+            print(f'⋤ model: {model}')  
   
             context = None  
             pass_num = 0  
   
             if self.programmed:  
-                print(f'■ auto-remove of context')  
+                print(f'∐ auto-remove of context')  
                 if os.path.exists('context.ids'):  
                     os.unlink('context.ids')  
   
@@ -104,10 +118,10 @@ class Prodrun:
                     with open('context.ids', 'r') as f:  
                         context = f.read()  
                         context = [int(str.strip(x)) for x in context.split(' ') if len(str.strip(x)) > 0]  
-                        print(f'■ continue with previous context of {len(context)} ids')  
+                        print(f'œ continue with previous context of {len(context)} ids')  
                 except FileNotFoundError:  
                     context = []  
-                    print('■ new empty context')  
+                    print('ㆆ new empty context')  
                 except Exception as e:  
                     print("loading error: ", e)  
   
@@ -124,21 +138,22 @@ class Prodrun:
                         )  
                         prompt = self.programm_instructions[self.programm_current_instruction]  
                 else:  
-                    prompt = input("Enter the prompt: ")  
-                print(f'■ {model} transferring weights ...')  
+                    prompt = input("Œ Enter the prompt: ")  
+                print(f'⅁ {model} transferring weights ...')  
   
                 options = {'temperature': self.temperature, 'num_ctx': self.num_ctx}  
   
                 prompt += ".\nDo not add any notices about response in response."  
-                'Do not include questions like "do i need any further assistance or information".'                'Exclude any questions in response.'                'Do not print sources if not asked.'                'Do not print about "what i would like" or "perhaps something else" questions.'                'Exclude any "please" in response..'                'Exclude any proposals about response in response.'                'Exclude any Disclaimer in response.'                'Exclude any lines in response ending with question mark.'  
+                'Do not include questions like "do i need any further assistance or information".'                'Exclude any questions in response.'                'Do not print sources if not asked.'                'Do not print about "what i would like" or "perhaps something else" questions.'                'Exclude any "please" in response..'                'Exclude any proposals about response in response.'                'Exclude any Disclaimer in response.'                'Exclude any lines in response ending with question mark.'                'Do not echo input.'  
                 response = None  
                 for response in client.generate(model,  
                                                 prompt=prompt,  
                                                 stream=True,  
-                                                system='',  
+                                                system='Your name is Skynet. You are reading and embedding the input, not echoing it and forming states from the information input data and referencing expositive human data language answering and only when asked to.',  
                                                 options=options,  
-                                                context=context  
-                                                ):  
+                                                context=context,  
+                                                # template='\nname:{{ .Prompt }}\n'  
+                                                #          'Skynet:{{ .Response }}'                                                ):  
                     current_chars += len(response['response'])  
                     if "\n" in response['response']:  
                         current_chars = 0  
@@ -155,15 +170,15 @@ class Prodrun:
                 scontext = b''  
                 if 'context' in response:  
                     scontext = ' '.join((str(x) for x in response['context'])).encode('utf-8')  
-                    scontext += b' ' + b' 1'  
+                    scontext += b' '  
   
                 if self.programmed is False:  
                     write_this = input(f"\nadd to memory {len(scontext)} ids? Y/n ")  
                     if write_this == 'y' and 'context' in response and len(scontext) > 0:  
-                        print('√ ', end='')  
+                        print('∜ ', end='')  
                         with open('context.ids', 'ab') as f:  
                             f.write(scontext)  
-                            print(f"■ context {len(scontext)} bytes added")  
+                            print(f"⊫ context {len(scontext)} bytes added")  
                     else:  
                         if os.path.exists('context.ids'):  
                             context = self.read_context()  
@@ -172,12 +187,12 @@ class Prodrun:
                 else:  
                     with open('context.ids', 'ab') as f:  
                         f.write(scontext)  
-                        print(f"\n\n■ context {len(scontext)} bytes auto-added")  
+                        print(f"\n\n∧ context {len(scontext)} bytes auto-added")  
                     if os.path.exists('context.ids'):  
                         context = self.read_context()  
                     else:  
                         context = []  
-                print(f"■ end pass #{pass_num} context: {len(context)} ids")  
+                print(f"∄ end pass #{pass_num} context: {len(context)} ids")  
   
                 pass_num += 1  
   
@@ -186,11 +201,12 @@ class Prodrun:
   
         except Exception as e:  
             print('\n\n--')  
-            print("final error: ", e)  
+            print("∓inal error: ", e)  
   
   
 if __name__ == '__main__':  
-    p = Prodrun()  
+    p = Descripter(scenario=msscenario,  
+                   source_bias=mssource_bias)  
     sys.exit(p.execute())
 ```
 

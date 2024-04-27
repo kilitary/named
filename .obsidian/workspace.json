@@ -156,7 +156,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "readme.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -317,7 +317,7 @@
             }
           }
         ],
-        "currentTab": 11
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -403,7 +403,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "readme.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -440,7 +440,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "readme.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -457,7 +457,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "readme.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -469,7 +469,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "readme.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -561,8 +561,8 @@
   },
   "active": "8447670b2fbd1fa0",
   "lastOpenFiles": [
-    "Untitled.loom",
     "readme.md",
+    "Untitled.loom",
     "2024-04-17.md",
     "kilitary.ru.md",
     "kilitary.md",
