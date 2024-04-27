@@ -8,7 +8,7 @@ state: Drafting
 
 ### network**s**
 
-=> [[gurubot_llama3_guru]]
+=> [[gurubot_llama3_guru]] ([[grut]])
 => [[dolphin-phi-2.7b-v2.6-q6_K]]
 => [[dolphin-2.9-llama3-8b-q5_k_med]]
 => [[dolphin-llama3-8b-v2.9-q8_0ntitled]]

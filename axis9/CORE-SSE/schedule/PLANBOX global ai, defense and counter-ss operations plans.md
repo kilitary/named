@@ -9,15 +9,15 @@ excalidraw-plugin:
 
 ## research
 
-- [ ] russian army news intelligent derandomization
+- [x] [[axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
 - [ ] [[core  country planning]]
-- [x] [[use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
 - [x] [[use obsidian as documene linkage for  private & public advisories]]
 
 
 ## timeplanning
 
-- [ ] [[kilitary]] <br><br>[unload 'psychology' from special env's]
+- [x] [[kilitary]] <br><br>[unload 'psychology' from special env's]
+- [ ] russian army news intelligent derandomization
 
 
 ## in progress
