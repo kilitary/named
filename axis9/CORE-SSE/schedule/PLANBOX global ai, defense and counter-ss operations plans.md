@@ -9,6 +9,7 @@ excalidraw-plugin:
 
 ## research
 
+- [ ] russian army news intelligent derandomization
 - [ ] [[core  country planning]]
 - [x] [[use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
 - [x] [[use obsidian as documene linkage for  private & public advisories]]

@@ -26,6 +26,19 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e622b43cad6b5cca",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
                 "mode": "source",
                 "backlinks": false,
@@ -37,9 +50,9 @@
             "id": "0423bbc585a86059",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "kanban",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md"
+                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
               }
             }
           },
@@ -70,6 +83,19 @@
             }
           },
           {
+            "id": "2bc52f4e519242f9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "7f3de814affbbacd",
             "type": "leaf",
             "state": {
@@ -85,7 +111,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -184,7 +210,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -270,7 +296,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md"
+                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
               }
             }
           },
@@ -307,7 +333,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
+                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -324,7 +350,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
+                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -336,7 +362,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md"
+                "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
               }
             }
           },
@@ -422,16 +448,19 @@
       "templates:Insert template": false,
       "advanced-random-note:Open random note modal": false,
       "breadcrumbs:Breadcrumbs Visualisation": false,
-      "quiz-generator:Open generator": false
+      "quiz-generator:Open generator": false,
+      "card-board:CardBoard": false
     }
   },
   "active": "0423bbc585a86059",
   "lastOpenFiles": [
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
-    "SKYNET/research/defeating/russian naval fleet/grut.md",
-    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+    "SKYNET/research/defeating/russian naval fleet/grut.md",
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
     "desktop.ini",
     "images/2.png",
     "images/1.png",
@@ -453,7 +482,6 @@
     "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
-    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
@@ -467,7 +495,6 @@
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "axis9/CORE-SSE/schedule/2024-04-22 eat.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
-    "axis9/plans/Мусорщик++.md",
     "looms/Untitled.loom",
     "textgenerator/templates/Experimental",
     "textgenerator/templates/awesomePrompts",
