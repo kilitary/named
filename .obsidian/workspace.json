@@ -21,12 +21,25 @@
             }
           },
           {
+            "id": "eff29b88d8b58486",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "95a90191149d252d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -246,9 +259,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
-              }
+              "state": {}
             }
           },
           {
@@ -284,7 +295,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -301,7 +311,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -312,9 +321,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
-              }
+              "state": {}
             }
           },
           {
@@ -403,11 +410,68 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "95a90191149d252d",
+  "floating": {
+    "id": "333f9a42204233a3",
+    "type": "floating",
+    "children": [
+      {
+        "id": "992458e1c7e1c180",
+        "type": "window",
+        "children": [
+          {
+            "id": "8274479c7a932669",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "11415e9a12bd13fc",
+                "type": "leaf",
+                "state": {
+                  "type": "card-browser-view",
+                  "state": {
+                    "path": "/"
+                  }
+                }
+              },
+              {
+                "id": "502ca417dece77c6",
+                "type": "leaf",
+                "state": {
+                  "type": "card-browser-view",
+                  "state": {
+                    "path": "/"
+                  }
+                }
+              },
+              {
+                "id": "b62ae7f678e4b423",
+                "type": "leaf",
+                "state": {
+                  "type": "card-browser-view",
+                  "state": {
+                    "path": "/"
+                  }
+                }
+              }
+            ],
+            "currentTab": 2
+          }
+        ],
+        "direction": "vertical",
+        "x": 503,
+        "y": 351,
+        "width": 900,
+        "height": 500,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "b62ae7f678e4b423",
   "lastOpenFiles": [
+    "SKYNET/research/defeating/russian naval fleet/grut.md",
     "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
-    "SKYNET/research/defeating/russian naval fleet/possibilities.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+    "SKYNET/research/defeating/russian naval fleet/possibilities.md",
     "desktop.ini",
     "images/2.png",
     "images/1.png",

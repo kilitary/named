@@ -7,7 +7,9 @@
       "name": "Markdown (Hugo)"
     },
     {
-      "name": "Html"
+      "name": "Html",
+      "openExportedFileLocation": true,
+      "runCommand": false
     },
     {
       "name": "TextBundle"
@@ -49,12 +51,15 @@
       "name": "Bibliography"
     }
   ],
-  "defaultExportDirectoryMode": "Auto",
+  "defaultExportDirectoryMode": "Same",
   "openExportedFile": true,
   "env": {},
   "showExportProgressBar": true,
   "lastExportDirectory": {
-    "win32": "H:\\ai"
+    "win32": "H:\\research-html\\kuznetsov"
   },
-  "lastExportType": "Media Wiki"
+  "lastExportType": "Bibliography",
+  "showOverwriteConfirmation": true,
+  "openExportedFileLocation": true,
+  "lastEditName": "Html"
 }
