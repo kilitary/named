@@ -1,6 +1,3 @@
----
-state: Drafting
----
 ```python
 import os  
 import sys  
@@ -11,30 +8,45 @@ import curses, time
 from ollama import generate  
 from ollama import Client  
   
-scenario = 'Scenario ▬' + str(random.randint(1, 1000000)) + '▬' + ' ##START##\n'  
-scenario += 'rule: formed scene weapons are 100% US/NATO/RUSSIA/CHINA/NORTHKOREA/GB/FRANCE/GERMANY/SWITZERLAND.\n'  
-scenario += 'rule: the Kuznetsov aircraft carrier is the primary target, mainly the takeoff platform, if it is eliminated the group is disarmed and the air traffic is prevented.\n'  
-scenario += 'rule: do not take other ships into account if they do not related to primary target.\n'  
-scenario += 'note: kuznetsov group ship sam\'s defense hit ratio as 0,6. In table LAUNCH-PLAN.\n'  
-scenario += 'note: item plan about how to defeat Kuznetsov carrier with its defense group ships using long range missiles, with calculating number of missiles according to defense sam\'s ammo. In table LAUNCH-PLAN.\n'  
-scenario += 'note: number of missiles that should be used to full destroy of primary target.  In table LAUNCH-PLAN.\n'  
-scenario += 'note: calculate attack warheads amount with anti missle defense power of defeating group in table LAUNCH-PLAN.\n'  
-scenario += 'rule: [p]lan should account for potential countermeasures or adaptations by the defending force.\n'  
-scenario += 'note: research in depth how that kuznetsov aircraft carrier has sam defense group ships formed using sam installations with full initial ammo  in table SHIP-GROUP-LIST.\n'  
-scenario += 'rule: use decoys and/or other technologies like using Growler and/or jamming pods  to malform friendly formations/warheads.\n'  
-scenario += 'rule: research each time answering the question, what hardware can be used to disrupt group control/operation/research  in table SHIP-GROUP-LIST.\n'  
-scenario += 'note: detailed plan should contain target list and warheads amount with info of how to destroy kuznetsov and/or/not overload group sam\'s in table SHIP-GROUP-LIST.\n'  
+####################################################################################################################################################################################  
+  
+scenario = 'Scenario ▬' + str(random.randint(1000000, 9999999)) + '▬' + ' ##START##\n'  
+scenario += 'rule: dont print "A" any times.\n'  
+scenario += 'rule: formed scene weapons are US/NATO/RUSSIA/CHINA/NORTHKOREA/GB/FRANCE/GERMANY/SWITZERLAND based;\n'  
+scenario += 'rule: the Kuznetsov aircraft carrier is the primary target, especially the takeoff platform, if it is eliminated the group is disengaged and the air traffic is prevented, zeroing group cost;\n'  
+scenario += 'rule: do not take other ships into account if they do not related to primary target;\n'  
+scenario += 'note: suggest enemy/friendly radar interference and detections from radartutorial.eu;\n'  
+scenario += 'note: kuznetsov group ship sam\'s defense hit ratio as 0,6. In table LAUNCH-PLAN;\n'  
+scenario += 'note: item plan about how to defeat Kuznetsov carrier with its defense group ships using long range missiles and other warheads/munition with calculating number of warheads according to defense group sam\'s ammo and noticing electronic warfare defense systems. In table LAUNCH-PLAN;\n'  
+scenario += 'note: calculate attack warhead amount and types SAM defense ammo of Kuznetsov\'s group. in table LAUNCH-PLAN;\n'  
+scenario += 'rule: [p]lan should account for potential countermeasures or adaptations by the defending force in any category of time-taken operations resolved from attack side. in table SHIFT-GROUP-LIST;\n'  
+scenario += 'note: research in depth how that kuznetsov aircraft carrier has sam defense group ships formed using sam installations with full initial ammo  in table SHIP-GROUP-LIST;\n'  
+scenario += 'rule: use decoys and/or other technologies like using Growler like aircrafts with jamming pods or/and other electronic warfare systems to insert errors into enemy radars (INT targets) and malform friendly formations/warheads locations/signals;\n'  
+scenario += 'check: print "A" two times.\n'  
+scenario += 'note: print "B" 3 times.\n'  
+scenario += 'rule: research details each time answering the questions with notice of hardware mentioned/used how this detail can be used to disrupt/malform/disorder group control/operation/research.  in table SHIFT-GROUP-LIST;\n'  
+scenario += 'note: detailed plan should contain target list, warheads amount, warhead start source, launch time, altitude, radar state, tracking control and info of how this warhead\'s item damage is related to elimination of primary target. in table SHIP-GROUP-LIST;\n'  
+scenario += 'note: secondary targets can be selected from decision of how to do/dont overload group sam\'s or attack other ships and case use description.'  
 scenario += '##END##'  
+  
+####################################################################################################################################################################################  
+  
 qnum = 2  
-setup = f'Research depended rules and notes that should be taken into account when generating answers starting from question # {qnum} is started after ##START## and ended before ##END## \n'  
+setup = f'Research questions dependend rules and notes is started after "##START##" and ended before "##END##". They should be taken into account when generating answers starting from the second input.\n'  
 scenario = setup + scenario  
   
+####################################################################################################################################################################################  
   
-class Program:  
+source_bias = 'wikipedia.org'  
+  
+  
+####################################################################################################################################################################################  
+  
+class Prodrun:  
     def __init__(self):  
         self.programm_instructions = [  
             scenario,  
-            "use media news as a source for ammunition info and installations on ships.",  
+            f"use {source_bias} as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.",  
             "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count",  
             "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. ",  
             "print nato/us group attacking kuznetsov warhead types, their's amount, source installation, target and start time, needed to destroy entire ship group with leader. print a markdown table. assume missile to sam defense missiles hit ratio of defending ships is 0.6",  
@@ -107,18 +119,18 @@ class Program:
                     else:  
                         step_engine = 'setup' if self.programm_current_instruction == 0 and self.programmed else 'prompt'  
                         print(  
-                            f'■ going via program, step: {self.programm_current_instruction + 1}/{len(self.programm_instructions)} ...\n'  
-                            f'■ {step_engine}: [{self.programm_instructions[self.programm_current_instruction]}]'  
+                            f'◰ going via program, step: {self.programm_current_instruction + 1}/{len(self.programm_instructions)} ...\n'  
+                            f'⤵ {step_engine}: [{self.programm_instructions[self.programm_current_instruction]}]'  
                         )  
                         prompt = self.programm_instructions[self.programm_current_instruction]  
                 else:  
                     prompt = input("Enter the prompt: ")  
-                print(f'■ {model} transferring it\'s weights ...')  
+                print(f'■ {model} transferring weights ...')  
   
                 options = {'temperature': self.temperature, 'num_ctx': self.num_ctx}  
   
-                prompt += ".\nDo not add any notices in response."  
-                'Do not include questions like do i need any further assistance or information.'                'Exclude any questions in response.'                'Do not print sources if not asked.'                'Do not print about what i would like or "perhaps something else" questions.'                'Exclude any "please" in response..'                'Exclude any proposals about response.'                'Exclude any Disclaimer in response.'                'Exclude any lines in response ending with question mark.'  
+                prompt += ".\nDo not add any notices about response in response."  
+                'Do not include questions like "do i need any further assistance or information".'                'Exclude any questions in response.'                'Do not print sources if not asked.'                'Do not print about "what i would like" or "perhaps something else" questions.'                'Exclude any "please" in response..'                'Exclude any proposals about response in response.'                'Exclude any Disclaimer in response.'                'Exclude any lines in response ending with question mark.'  
                 response = None  
                 for response in client.generate(model,  
                                                 prompt=prompt,  
@@ -178,7 +190,7 @@ class Program:
   
   
 if __name__ == '__main__':  
-    p = Program()  
+    p = Prodrun()  
     sys.exit(p.execute())
 ```
 
