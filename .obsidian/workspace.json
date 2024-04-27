@@ -26,10 +26,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
+                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "0423bbc585a86059",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md"
               }
             }
           },
@@ -174,7 +184,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -259,7 +269,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md"
+              }
             }
           },
           {
@@ -295,6 +307,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -311,6 +324,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -321,7 +335,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md"
+              }
             }
           },
           {
@@ -386,7 +402,6 @@
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": true,
       "big-calendar:Big Calendar": false,
-      "git-integration:Open git menu": true,
       "obsidian-day-planner:Timeline": false,
       "notion-like-tables:Create loom": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
@@ -410,64 +425,9 @@
       "card-board:CardBoard": false
     }
   },
-  "floating": {
-    "id": "333f9a42204233a3",
-    "type": "floating",
-    "children": [
-      {
-        "id": "992458e1c7e1c180",
-        "type": "window",
-        "children": [
-          {
-            "id": "8274479c7a932669",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "11415e9a12bd13fc",
-                "type": "leaf",
-                "state": {
-                  "type": "card-browser-view",
-                  "state": {
-                    "path": "/"
-                  }
-                }
-              },
-              {
-                "id": "502ca417dece77c6",
-                "type": "leaf",
-                "state": {
-                  "type": "card-browser-view",
-                  "state": {
-                    "path": "/"
-                  }
-                }
-              },
-              {
-                "id": "b62ae7f678e4b423",
-                "type": "leaf",
-                "state": {
-                  "type": "card-browser-view",
-                  "state": {
-                    "path": "/"
-                  }
-                }
-              }
-            ],
-            "currentTab": 2
-          }
-        ],
-        "direction": "vertical",
-        "x": 503,
-        "y": 351,
-        "width": 900,
-        "height": 500,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "b62ae7f678e4b423",
+  "active": "0423bbc585a86059",
   "lastOpenFiles": [
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
     "SKYNET/research/defeating/russian naval fleet/grut.md",
     "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
@@ -494,7 +454,6 @@
     "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
     "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",
     "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
