@@ -1,3 +1,6 @@
+---
+state: Drafting
+---
 F:\ollama-python\venv\Scripts\python.exe F:\ollama-python\ask.py 
 √ temp: 0.01 ctx: 8192
 √ model: gurubot/llama3-guru-uncensored
