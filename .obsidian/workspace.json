@@ -143,7 +143,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "readme.md.md",
+                "file": "readme.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -390,7 +390,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "readme.md.md"
+                "file": "readme.md"
               }
             }
           },
@@ -427,7 +427,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "readme.md.md",
+                "file": "readme.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -444,7 +444,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "readme.md.md",
+                "file": "readme.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -456,7 +456,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "readme.md.md"
+                "file": "readme.md"
               }
             }
           },
@@ -549,7 +549,7 @@
   "active": "ea31e3117db33500",
   "lastOpenFiles": [
     "SKYNET/README.MD.md",
-    "readme.md.md",
+    "readme.md",
     "SKYNET/advisories/README.md",
     "kilitary.ru.md",
     "kilitary.md",
