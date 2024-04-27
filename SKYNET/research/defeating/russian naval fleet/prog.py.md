@@ -10,9 +10,9 @@ from ollama import Client
   
 # print detailed plan about how to defeat Kuznetsov carrier with its defense group ships using long range missiles while not entering into its surface-to-air range. Print also number of missiles that should be used to full destroy of group. Print full launch time plan. Calculate plan with anti missle defense plan of defeating group in mind. Plan should account for potential countermeasures or adaptations by the defending force. Use in mind that  group has kuznetsov aircraft carrier has defense group ships with full formation. calculate plan attacking each of target group ships. Use only US/NATO warheads and hardware. Research what hardware can be used to disrupt group control/operation. Use decoys and/or other technologies like using growler to spawn disrupt real targets designation. output detailed plan of destroying each of ship.  
 programmed = True  
-programm_list = ["print admiral kuznetsov support ship list with creation dates and roles in a table",  
-                 "print sam defense types, its count and total amount for all ships in a table",  
-                 "print missle types and their's amount needed for destroying all the ships in the group with launch time plan for each group. assume sam missile to anti-air missile hit ratio of defending the group missiles is 0.6"]  
+programm_list = ["print admiral kuznetsov group, with aircraft carrier and it support ship formation full list, with creation datetimestamps and their role in a group. print a table. add column 'cavitation' with ship cavitation counting using 'x' char, pad with '_'",  
+                 "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a table. ",  
+                 "print nato/us group attacking kuznetsov warhead types, their's amount and start time, needed to destroy entire ship group with leader. assume missile to sam defense missiles hit ratio of defending ships is 0.6"]  
 programm_current_inst = 0  
   
   
@@ -28,13 +28,13 @@ def execute():
     global programm_current_inst  
     global programm_list  
   
-    max_chars = 190  
-    num_ctx = 8192  
-    temperature = 0.2  
+    max_line_chars = 190  
+    num_ctx = 2048  
+    temperature = 0.01  
   
     client = Client(host='127.0.0.1')  
     write_this = 'n'  
-    print(f'temp: {temperature} ctx: {num_ctx}')  
+    print(f' √ temp: {temperature} ctx: {num_ctx}')  
   
     try:  
         model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
@@ -45,13 +45,13 @@ def execute():
         model = 'wizard-vicuna-uncensored:13b'  # 2  
         model = 'gurubot/llama3-guru'  # 5  
   
-        print(f'model: {model}')  
+        print(f' √ model: {model}')  
   
         context = None  
         pass_num = 0  
   
         if programmed:  
-            print(f'-> auto-remove of context')  
+            print(f'=> auto-remove of context')  
             if os.path.exists('context.ids'):  
                 os.unlink('context.ids')  
   
@@ -62,33 +62,35 @@ def execute():
                 if programmed is False:  
                     delete = input(f'delete context? ({len(context)} ids) Y/n ')  
                     if delete == 'y':  
+                        print('√ ', end='')  
                         os.unlink('context.ids')  
   
             try:  
                 with open('context.ids', 'r') as f:  
                     context = f.read()  
                     context = [int(str.strip(x)) for x in context.split(' ') if len(str.strip(x)) > 0]  
-                    print(f'-> continue with previous context of {len(context)} ids')  
+                    print(f'=> continue with previous context of {len(context)} ids')  
             except FileNotFoundError:  
                 context = []  
-                print('-> new context\n')  
+                print('=> new context')  
             except Exception as e:  
                 print("loading error: ", e)  
   
             if programmed:  
                 if programm_current_inst > len(programm_list) - 1:  
                     programmed = False  
-                    print(f'-> programm ended')  
+                    print(f'=> programm ended')  
                     return  
                 else:  
                     print(  
-                        f'-> going via programm, step: {programm_current_inst + 1}/{len(programm_list)} ...\n-> prompt: {programm_list[programm_current_inst]}')  
+                        f'=> going via programm, step: {programm_current_inst + 1}/{len(programm_list)} ...\n=> prompt: {programm_list[programm_current_inst]}')  
                     prompt = programm_list[programm_current_inst]  
             else:  
                 prompt = input("Enter the prompt: ")  
-            print(f'-> {model} transferring weights ...')  
+            print(f'=> {model} transferring weights ...')  
   
             options = {'temperature': temperature, 'num_ctx': num_ctx}  
+  
             prompt += ".\nDo not add any notices in response."  
             'Do not include questions like do i need any further assistance or information.'            'Exclude any questions in response.'            'Do not print sources if not asked.'            'Do not print about what i would like or "perhaps something else" questions.'            'Exclude any "please" in response..'            'Exclude any proposals in response.'            'Exclude any Disclaimer in response.'            'Exclude any lines in response ending with question mark.'  
             response = None  
@@ -105,7 +107,7 @@ def execute():
                 if "\n" in response['response']:  
                     current_chars = 0  
                     print(response['response'], end='', flush=True)  
-                elif current_chars >= max_chars:  
+                elif current_chars >= max_line_chars:  
                     print("-")  
                     current_chars = 0  
                     print(str.strip(response['response']), end='', flush=True)  
@@ -117,14 +119,15 @@ def execute():
             scontext = b''  
             if 'context' in response:  
                 scontext = ' '.join((str(x) for x in response['context'])).encode('utf-8')  
-                scontext += b' '  
+                scontext += b' ' + b' 1'  
   
             if programmed is False:  
                 write_this = input(f"\nadd to memory {len(scontext)} ids? Y/n ")  
                 if write_this == 'y' and 'context' in response and len(scontext) > 0:  
+                    print('√ ', end='')  
                     with open('context.ids', 'ab') as f:  
                         f.write(scontext)  
-                        print(f"-> context {len(scontext)} bytes added")  
+                        print(f"=> context {len(scontext)} bytes added")  
                 else:  
                     if os.path.exists('context.ids'):  
                         context = read_context()  
@@ -133,12 +136,12 @@ def execute():
             else:  
                 with open('context.ids', 'ab') as f:  
                     f.write(scontext)  
-                    print(f"\n-> context {len(scontext)} bytes auto-added")  
+                    print(f"\n\n=> context {len(scontext)} bytes auto-added")  
                 if os.path.exists('context.ids'):  
                     context = read_context()  
                 else:  
                     context = []  
-            print(f"\n-> end pass #{pass_num} context: {len(context)} ids")  
+            print(f"=> end pass #{pass_num} context: {len(context)} ids")  
   
             pass_num += 1  
   

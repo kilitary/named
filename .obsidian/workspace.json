@@ -62,7 +62,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -161,7 +161,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -247,7 +247,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -284,7 +284,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -301,7 +301,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -313,7 +313,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -399,11 +399,13 @@
       "templates:Insert template": false,
       "advanced-random-note:Open random note modal": false,
       "breadcrumbs:Breadcrumbs Visualisation": false,
-      "quiz-generator:Open generator": false
+      "quiz-generator:Open generator": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "81f7790dd0524ada",
+  "active": "95a90191149d252d",
   "lastOpenFiles": [
+    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "desktop.ini",
@@ -421,7 +423,6 @@
     "New folder",
     "SKYNET/technology.md",
     "SKYNET/technology/aaa.md",
-    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
     "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
     "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
