@@ -91,7 +91,8 @@ class Descripter:
   
             model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
             model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
-            # 5            model = 'gurubot/llama3-guru-uncensored'  
+
+						model = 'gurubot/llama3-guru-uncensored'  
   
   
             print(f'⋤ model: {model}')  
