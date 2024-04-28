@@ -28,7 +28,6 @@ ascenario += 'note: research in depth how kuznetsov aircraft carrier sam defense
 ascenario += 'rule: use decoys and/or other technologies like JAMMING aircrafts with electronic warfare pods and/or other electronic/magnetic systems to insert errors into enemy radars (INT target) and malform friendly formations/warheads locations, spawn fake signal sources, filter communication lines, satellite connections or bite its electronic warfare systems.  in table SHIFT-GROUP-LIST;\n'  
 ascenario += 'rule: research in detail each time generating responses what hardware mentioned/used/translated/descriebed can be used to disrupt/malform/disorder group/ship/radar/aircraft/weapon-system control/operation/research/targeting/tracking.  in table SHIFT-GROUP-LIST;\n'  
 ascenario += 'note: secondary targets should/may be selected with decision of do/dont overload group sam\'s or use/put in requisition secondary enemy group ships with primary target elimination used case and description.\n'  
-ascenario += 'show: summary effects on each side;\n'  
 ascenario += '##END##'  
   
 ####################################################################################################################################################################################  
@@ -52,17 +51,21 @@ class Descripter:
     def __init__(self, scenario, source_bias):  
         self.programm_instructions = [  
             scenario,  
-            f"use {source_bias} as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.",  
+            f"use {source_bias} as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.\n",  
   
-            "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count"  
-            "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. ",  
+            "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count\n"  
+            "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. \n",  
   
-            "print detailed LAUNCH-PLAN."  
-            "print detailed SHIP-GROUP-LIST."            "print detailed SHIFT-GROUP-LIST.",  
+            "print detailed LAUNCH-PLAN.\n"  
+            "print detailed SHIP-GROUP-LIST.\n"  
+            "print detailed SHIFT-GROUP-LIST.\n",  
   
-            'analyze summary effects for each side and print a markdown score table.',  
+            'analyze summary effects for each side and print a markdown score table.\n',  
   
-            "print a html page with all previous answers and information, with 'HR' delimetering NFO sections"]  
+            'show summary effects on each side in a table.\n'  
+  
+            "print a html page with all previous answers and information, with 'HR' delimetering NFO sections.\n"]  
+  
         self.programm_current_instruction = 0  
         self.programmed = True  
         self.max_line_chars = 190  
@@ -91,9 +94,7 @@ class Descripter:
   
             model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
             model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
-
-						model = 'gurubot/llama3-guru-uncensored'  
-  
+            model = 'gurubot/llama3-guru-uncensored'  
   
             print(f'⋤ model: {model}')  
   
@@ -150,11 +151,11 @@ class Descripter:
                 for response in client.generate(model,  
                                                 prompt=prompt,  
                                                 stream=True,  
-                                                system='Your name is Skynet. You are reading and embedding the input, not echoing it and forming states from the information input data and referencing expositive human data language answering and only when asked to.',  
+                                                #system='|im_start|system\nPerform the tasks to the best of your ability.',  
                                                 options=options,  
                                                 context=context,  
-                                                # template='\nname:{{ .Prompt }}\n'  
-                                                #          'Skynet:{{ .Response }}'                                                ):  
+                                                # template='user\n'  
+                                                #          '\nassistant<|begin_of_text|><|end_of_text|> \n'                                                ):  
                     current_chars += len(response['response'])  
                     if "\n" in response['response']:  
                         current_chars = 0  

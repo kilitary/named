@@ -104,7 +104,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -330,7 +330,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 12
       }
     ],
     "direction": "vertical"
@@ -416,7 +416,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -453,7 +453,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -470,7 +470,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -482,7 +482,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
               }
             }
           },
@@ -574,6 +574,7 @@
   },
   "active": "0670cb0ef30d9022",
   "lastOpenFiles": [
+    "SKYNET/research/defeating/russian naval fleet/grut.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "readme.md",
     "Untitled.loom",
@@ -586,7 +587,6 @@
     "SKYNET/advisories/README.md",
     "textgenerator/templates/Experimental/summary.md",
     "Red&Queen/lingvistic/drafting starter exit.md",
-    "SKYNET/research/defeating/russian naval fleet/grut.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
