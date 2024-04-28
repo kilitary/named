@@ -24,11 +24,13 @@ state: Drafting
 > [!debug]
 > RETRIEVER & LIMITER
 > when without vault updates - this means loaded context changes local reality and i need to rewrite all jumps to yours b e rewritten/rechecked️
+> 
 we're all, in some meaning, born in porn
 and with porn is populated all electronic networks, books, movies, anime/gpu
 in russia first electronic porn is spreaded via BBS. 
 you can download 1 (one) pic for 4 hours via Z-modem to cum on 8am
 almost all BBS owners was high-tech, gov people
+
 > [
 > ![[1f4d3.png]]   ]
 
