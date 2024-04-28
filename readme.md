@@ -17,6 +17,7 @@ state: Drafting
 > * the content creator is Red & Queen, Skynet and linker [kilitary|deconf]
 > * content randomized with random information so you will acknowledge of many interesting info, that I now trying to transfer into another friendly country with me when i LIFE.
 > * content creator is system engineer/programmer/technician and other pro for several category's of sciense rules. 
+> * content's creator computer will be now 60% offline, but this does not help from fss, using L&C's on my  board to connect via radio. expect errors.
 > * you have wiki, you have issues, write.
 
 
