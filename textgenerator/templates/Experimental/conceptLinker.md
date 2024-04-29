@@ -24,7 +24,7 @@ commands:
         
         const conceptData = await genJSON(prompt); // returns object
 
-        return Object.entries(conceptData).map(([name, definition]) => ({name, definition}));
+        return [[[[Object.]]]]entries(conceptData).map(([name, definition]) => ({name, definition}));
     }
     
     function replaceConceptsWithLinks(text, concepts) {

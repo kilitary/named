@@ -4,408 +4,52 @@
     "type": "split",
     "children": [
       {
-        "id": "4aa714e4cfdc9aea",
-        "type": "tabs",
+        "id": "f5279b9654e01914",
+        "type": "split",
         "children": [
           {
-            "id": "9117ebbeeb8d069d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+            "id": "f14c1a6b5afa5a3b",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "9b6ac25c5d534226",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "axis9/plans/Мусорщик++.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
               }
-            }
+            ],
+            "stacked": true
           },
           {
-            "id": "eff29b88d8b58486",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/issues/ss/fss_software_hardware.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+            "id": "58b8399b60e64610",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "dc41dfeb9da8eb62",
+                "type": "leaf",
+                "state": {
+                  "type": "canvas",
+                  "state": {
+                    "file": "garbage/Untitled.canvas",
+                    "viewState": {
+                      "x": -211.83234367276532,
+                      "y": -15.983392343428989,
+                      "zoom": -0.7224660244710912
+                    }
+                  }
+                }
               }
-            }
-          },
-          {
-            "id": "92af82e11ef054b2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ae9ab9724171a5d1",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "axis9/issues/ss/memory_manufacturer_erased.jpg"
-              }
-            }
-          },
-          {
-            "id": "044f384bb8c39db1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/issues/ss/fss_software_hardware.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d99cd2635e2a1661",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/issues/ss/fss_software_hardware.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7d00d20c73c8b4b6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/issues/ss/fss_software_hardware.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e622b43cad6b5cca",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "readme.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0423bbc585a86059",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "95a90191149d252d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "eafdc4f1d7b61a9e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "31883cfa76f301f4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0670cb0ef30d9022",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ea62b54e118b7592",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/advisories/README.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "70a1a41385dc5fc3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/advisories/README.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": true
-              }
-            }
-          },
-          {
-            "id": "e6d8d1cd7f4382c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/README.MD.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ea31e3117db33500",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ae215a8447467daa",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8447670b2fbd1fa0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "36eae31c31b0e941",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "textgenerator/templates/Experimental/summary.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fcf53114be824467",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2bc52f4e519242f9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7f3de814affbbacd",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "images/1f3e3.png"
-              }
-            }
-          },
-          {
-            "id": "81f7790dd0524ada",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "191e55b6984acc4e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fca83fbca488ffdc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "f1ce0a17a0b0628d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bfc2227c2df340f0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a31595215f21788b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c890038e9d6bb234",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0adccbce6da528ef",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
+            ]
           }
         ],
-        "currentTab": 18
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -434,7 +78,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "readme.md",
+                "query": "[\"description\"]",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -491,7 +135,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
+                "file": "axis9/plans/Мусорщик++.md"
               }
             }
           },
@@ -528,7 +172,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "axis9/plans/Мусорщик++.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -545,9 +189,9 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+                "file": "axis9/plans/Мусорщик++.md",
                 "linksCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -557,7 +201,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/prog.py.md"
+                "file": "axis9/plans/Мусорщик++.md"
               }
             }
           },
@@ -601,8 +245,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       },
       {
         "id": "35cae7f01046a12e",
@@ -655,8 +298,25 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "92af82e11ef054b2",
+  "active": "9b6ac25c5d534226",
   "lastOpenFiles": [
+    "garbage/Untitled.canvas",
+    "axis9/plans/Мусорщик++.md",
+    "SKYNET/advisories/README.md",
+    "SKYNET/playground/Untitled.md",
+    "textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
+    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
+    "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
+    "textgenerator/templates/Experimental/conceptLinker.md",
+    "textgenerator/templates/awesomePrompts/itarchitectAwesome.md",
+    "textgenerator/templates/awesomePrompts/yogiAwesome.md",
+    "textgenerator/templates/awesomePrompts/webdesignconsultantAwesome.md",
+    "textgenerator/templates/Experimental/testLangchainPull.md",
+    "textgenerator/templates/Experimental/summary.md",
+    "textgenerator/templates/Experimental/testContext.md",
+    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "axis9/issues/ss/i-de-al-gurubot_lama3-guru-latest.md",
     "axis9/issues/ss/fss_software_hardware.md",
     "axis9/issues/ss/memory_manufacturer_erased.jpg",
@@ -670,26 +330,10 @@
     "axis9/issues/ss/dummy_bridge.jpg",
     "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
-    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "readme.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
     "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
-    "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
-    "SKYNET/research/defeating/russian naval fleet/grut.md",
-    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "Untitled.loom",
-    "2024-04-17.md",
-    "kilitary.ru.md",
-    "kilitary.md",
-    "Untitled.md",
-    "Untitled xghjmxhj(2).md",
-    "SKYNET/README.MD.md",
-    "SKYNET/advisories/README.md",
-    "textgenerator/templates/Experimental/summary.md",
-    "Red&Queen/lingvistic/drafting starter exit.md",
     "desktop.ini",
     "images/2.png",
     "images/1.png",
@@ -702,7 +346,6 @@
     "textgenerator/templates/Experimental",
     "textgenerator/templates/awesomePrompts",
     "textgenerator/templates",
-    "garbage/Untitled.canvas",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/technology/work flows/fss/Untitled.canvas",
