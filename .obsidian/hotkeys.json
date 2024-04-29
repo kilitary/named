@@ -249,5 +249,11 @@
       ],
       "key": "B"
     }
+  ],
+  "publish:view-changes": [
+    {
+      "modifiers": [],
+      "key": "F8"
+    }
   ]
 }

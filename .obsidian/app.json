@@ -11,7 +11,7 @@
   "showIndentGuide": false,
   "smartIndentList": true,
   "alwaysUpdateLinks": true,
-  "showInlineTitle": false,
+  "showInlineTitle": true,
   "promptDelete": true,
   "showUnsupportedFiles": true,
   "pdfExportSettings": {
@@ -20,5 +20,10 @@
     "landscape": true,
     "margin": "2",
     "downscalePercent": 100
-  }
+  },
+  "trashOption": "local",
+  "newFileLocation": "current",
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": true,
+  "attachmentFolderPath": "./"
 }

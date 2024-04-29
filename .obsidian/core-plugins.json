@@ -7,11 +7,14 @@
   "outgoing-link",
   "tag-pane",
   "properties",
+  "page-preview",
   "templates",
   "command-palette",
   "slash-command",
   "editor-status",
   "markdown-importer",
+  "zk-prefixer",
   "outline",
-  "slides"
+  "slides",
+  "publish"
 ]
