@@ -10,7 +10,6 @@ from ollama import Client
   
 # L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L  
 ####################################################################################################################################################################################  
-  
 ascenario = 'SceneUs: ▬' + str(random.randint(1000000, 9999999)) + '▬' + ' ##START##\n'  
 ascenario += 'if input starts with phrase "rule: " at the start take data input as a "rule" which could lead to be connected to another extracted from trained data "rule" with states "TRUE", "MAYBE" or "NO" which you can identify using rules embedded with learning data according to learning and query boot setup.\n'  
 # 'An l2c2 server hosts and executes microservice S for left-right join automation. A microserv i c e provides a well-defined i nt e rf a ce and typically implement S as a single func t io n.'  
@@ -30,18 +29,12 @@ ascenario += 'rule: research in detail each time generating responses what hardw
 ascenario += 'note: secondary targets should/may be selected with decision of do/dont overload group sam\'s or use/put in requisition secondary enemy group ships with primary target elimination used case and description.\n'  
 ascenario += "rule: use %source_bias% as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.\n"  
 ascenario += '##END##'  
-  
 ####################################################################################################################################################################################  
-  
-setup = f'Research questions is depend on rules and notes started after "##START##" and ended before "##END##". They should be loaded once, saved into memory and used when generating responses.\n'  
+setup = f'War pre plan questions is depend on rules and notes started after "##START##" and ended before "##END##". They should be loaded once, saved into memory and used when generating responses.\n'  
 msscenario = setup + ascenario  
-  
 ####################################################################################################################################################################################  
-  
 mssource_bias = 'wikipedia.org'  
-  
 ####################################################################################################################################################################################  
-  
 qnum = 2  
 model_selector = []  
   
@@ -56,8 +49,8 @@ class Descripter:
         self.programm_instructions = [  
             scenario,  
   
-            "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count\n"  
-            "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. \n",  
+            "analyze admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count\n"  
+            "analyze sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. \n",  
   
             "print detailed LAUNCH-PLAN.\n",  
             "print detailed SHIP-GROUP-LIST.\n",  
@@ -65,7 +58,7 @@ class Descripter:
   
             'analyze summary effects for each side and print a markdown score table.\n',  
   
-            'show summary effects on each side in a table.\n'  
+            'analyze summary effects on each side and print it in a table.\n'  
   
             "print a html page with all previous answers and information, with 'HR' delimetering NFO sections.\n"]  
   
@@ -90,15 +83,17 @@ class Descripter:
   
         try:  
   
-            model = 'dolphin-llama3:8b-v2.9-q8_0'  # 4  
             model = 'wizardlm-uncensored:13b-llama2-q5_K_M'  # 1  
             model = 'dolphin-phi:2.7b-v2.6-q6_K'  # 2  
-            model = 'wizard-vicuna-uncensored:13b'  # 2  
-  
             model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
-            model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
             model = 'gurubot/llama3-guru-uncensored'  
+            model = 'wizard-vicuna-uncensored:13b'  # 2  
+            model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
+            model = 'Everythinglm:13b-16k-Q5_K_M'  
             model = 'phi3'  
+            model = 'sunapi386/llama-3-lexi-uncensored:8b'  
+            model = 'gurubot/llama3-guru:latest'  
+            model = 'dolphin-llama3:8b-v2.9-q8_0'  # 4  
   
             print(f'⋤ model: {model}')  
   
@@ -147,9 +142,18 @@ class Descripter:
                     prompt = input("Œ Enter the prompt: ")  
                 print(f'⅁ {model} transferring weights ...')  
   
-                options = {'temperature': self.temperature, 'num_ctx': self.num_ctx, 'stop': ['|end|', '\'\'\''],  
-                           'use_mmap': True, 'num_thread': 16, 'use_mlock': True, 'num_predict': 1,  
-                           'repeat_penalty': 0.5}  
+                options = {  
+                    'temperature': self.temperature,  
+                    'num_ctx': self.num_ctx,  
+                    'use_mmap': True,  
+                    'num_thread': 10,  
+                    'use_mlock': True,  
+                    'stop': [  
+                        '<|im_end|>', '<|im_start|>', '<|sot_id|>',  
+                        '<|eot_id|>', '<|end_of_text|>', '<|begin_of_text|>'  
+                    ]  
+                    # 'num_predict': 50000,  
+                    # 'repeat_penalty': 0.5                }  
                 # penalize_newline  
   
                 prompt += ".\nDo not add any notices about response in response."  
@@ -158,11 +162,11 @@ class Descripter:
                 for response in client.generate(model,  
                                                 prompt=prompt,  
                                                 stream=True,  
-                                                system='Perform the tasks to the best of your ability.',  
+                                                system='Respond at best vocabulary links match to the prompt.',  
                                                 options=options,  
                                                 context=context,  
-                                                # template='user\n'  
-                                                #          '\nassistant<|begin_of_text|><|end_of_text|> \n'                                                ):  
+                                                # template='<|im_start|>system {System}<|im_end|>'  
+                                                #          '<|im_start|>user <|begin_of_text|>{User}<|end_of_text|>\n'                                                #          '<|im_start|>assistant {Assistant}'                                                ):  
                     current_chars += len(response['response'])  
                     if "\n" in response['response']:  
                         current_chars = 0  
