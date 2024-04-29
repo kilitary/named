@@ -108,21 +108,21 @@ Your name is Skynet. You are reading and concatenating the input and forming a r
 ⅁ gurubot/llama3-guru-uncensored transferring weights ...
 73288
 
-| Ship Name | SAM Defense Type | Missile Amount per Installation | Total Amount per Type | Launch Delay |
-| --- | --- | --- | --- | --- |
-| Admiral Kuznetsov | S-300F | 12 | 24 | 10 seconds |
-| Pyotr Velikiy | S-400 Triumf | 8 | 16 | 5 seconds |
-| Vice-Admiral Kulakov | AK-630M | 6 | 12 | 2 seconds |
-| Admiral Tributs | Kashtan CIWS | 4 | 8 | 1 second |
-| Marshal Shaposhnikov | S-300F | 12 | 24 | 10 seconds |
-| Smetlivy | 3R44T | 6 | 12 | 5 seconds |
-| Total SAM Amount per Ship |  |  |  |  |
-| Admiral Kuznetsov | 48 |  |
-| Pyotr Velikiy | 32 |  |
-| Vice-Admiral Kulakov | 24 |  |
-| Admiral Tributs | 16 |  |
-| Marshal Shaposhnikov | 48 |  |
-| Smetlivy | 12 |  |
+| Ship Name                 | SAM Defense Type | Missile Amount per Installation | Total Amount per Type | Launch Delay |
+| ------------------------- | ---------------- | ------------------------------- | --------------------- | ------------ |
+| Admiral Kuznetsov         | S-300F           | 12                              | 24                    | 10 seconds   |
+| Pyotr Velikiy             | S-400 Triumf     | 8                               | 16                    | 5 seconds    |
+| Vice-Admiral Kulakov      | AK-630M          | 6                               | 12                    | 2 seconds    |
+| Admiral Tributs           | Kashtan CIWS     | 4                               | 8                     | 1 second     |
+| Marshal Shaposhnikov      | S-300F           | 12                              | 24                    | 10 seconds   |
+| Smetlivy                  | 3R44T            | 6                               | 12                    | 5 seconds    |
+| Total SAM Amount per Ship |                  |                                 |                       |              |
+| Admiral Kuznetsov         | 48               |                                 |                       |              |
+| Pyotr Velikiy             | 32               |                                 |                       |              |
+| Vice-Admiral Kulakov      | 24               |                                 |                       |              |
+| Admiral Tributs           | 16               |                                 |                       |              |
+| Marshal Shaposhnikov      | 48               |                                 |                       |              |
+| Smetlivy                  | 12               |                                 |                       |              |
 
 Note: The SAM defense types, missile amounts per installation, total amounts per type, and launch delays are based on publicly available information and may not reflect the actual-
 capabilities of the ships.

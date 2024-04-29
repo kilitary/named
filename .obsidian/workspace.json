@@ -17,14 +17,26 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "axis9/plans/Мусорщик++.md",
+                    "file": "SKYNET/research/defeating/russian naval fleet/grut.md",
                     "mode": "source",
                     "backlinks": false,
                     "source": false
                   }
                 }
+              },
+              {
+                "id": "fb8463050561fac4",
+                "type": "leaf",
+                "state": {
+                  "type": "diff-view",
+                  "state": {
+                    "file": ".obsidian/plugins/obsidian-mindmap-nextgen/data.json",
+                    "staged": false
+                  }
+                }
               }
             ],
+            "currentTab": 1,
             "stacked": true
           },
           {
@@ -134,9 +146,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "axis9/plans/Мусорщик++.md"
-              }
+              "state": {}
             }
           },
           {
@@ -172,7 +182,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/plans/Мусорщик++.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -189,7 +198,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/plans/Мусорщик++.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -200,9 +208,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "axis9/plans/Мусорщик++.md"
-              }
+              "state": {}
             }
           },
           {
@@ -245,7 +251,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       },
       {
         "id": "35cae7f01046a12e",
@@ -298,10 +305,12 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "9b6ac25c5d534226",
+  "active": "03145daeda5b922f",
   "lastOpenFiles": [
-    "garbage/Untitled.canvas",
+    "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
+    "SKYNET/research/defeating/russian naval fleet/grut.md",
     "axis9/plans/Мусорщик++.md",
+    "garbage/Untitled.canvas",
     "SKYNET/advisories/README.md",
     "SKYNET/playground/Untitled.md",
     "textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
@@ -332,7 +341,6 @@
     "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
     "readme.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "Untitled.loom",
     "desktop.ini",
     "images/2.png",

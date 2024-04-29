@@ -38,7 +38,8 @@ and amounts. If you need assistance with this task, it would be best to consult 
 -> dolphin-phi:2.7b-v2.6-q6_K transferring weights ...
 To calculate the number of Missiles needed, you can use the following formula:
 
-Missile_count = (Total_ships / Anti_air_missile_hit_ratio) + 1
+> Missile_count = (Total_ships / Anti_air_missile_hit_ratio) + 1
+
 
 However, without specific information about the total number of ships and their types, its impossible to provide an accurate answer. Please provide the necessary details for a more precise-
 calculation.
