@@ -28,11 +28,12 @@ ascenario += 'note: research in depth how kuznetsov aircraft carrier sam defense
 ascenario += 'rule: use decoys and/or other technologies like JAMMING aircrafts with electronic warfare pods and/or other electronic/magnetic systems to insert errors into enemy radars (INT target) and malform friendly formations/warheads locations, spawn fake signal sources, filter communication lines, satellite connections or bite its electronic warfare systems.  in table SHIFT-GROUP-LIST;\n'  
 ascenario += 'rule: research in detail each time generating responses what hardware mentioned/used/translated/descriebed can be used to disrupt/malform/disorder group/ship/radar/aircraft/weapon-system control/operation/research/targeting/tracking.  in table SHIFT-GROUP-LIST;\n'  
 ascenario += 'note: secondary targets should/may be selected with decision of do/dont overload group sam\'s or use/put in requisition secondary enemy group ships with primary target elimination used case and description.\n'  
+ascenario += "rule: use %source_bias% as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.\n"  
 ascenario += '##END##'  
   
 ####################################################################################################################################################################################  
   
-setup = f'Research questions depended on rules and notes started after "##START##" and ended before "##END##". They should be saved into memory and used when generating next answers starting from the first next input.\n'  
+setup = f'Research questions is depend on rules and notes started after "##START##" and ended before "##END##". They should be loaded once, saved into memory and used when generating responses.\n'  
 msscenario = setup + ascenario  
   
 ####################################################################################################################################################################################  
@@ -49,15 +50,17 @@ model_selector = []
   
 class Descripter:  
     def __init__(self, scenario, source_bias):  
+  
+        scenario = scenario.replace('%source_bias%', source_bias)  
+  
         self.programm_instructions = [  
             scenario,  
-            f"use {source_bias} as a source for ammunition, facilities, installations, armor, air-capability and other military information about hardware on the ships.\n",  
   
             "print admiral kuznetsov group list, with aircraft carrier and it full support ship formation listing, with creation dates, class and their role in a group. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count\n"  
             "print sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. \n",  
   
-            "print detailed LAUNCH-PLAN.\n"  
-            "print detailed SHIP-GROUP-LIST.\n"  
+            "print detailed LAUNCH-PLAN.\n",  
+            "print detailed SHIP-GROUP-LIST.\n",  
             "print detailed SHIFT-GROUP-LIST.\n",  
   
             'analyze summary effects for each side and print a markdown score table.\n',  
@@ -95,6 +98,7 @@ class Descripter:
             model = 'gfg/solar-10.7b-instruct-v1.0-uncensored'  
             model = 'mannix/dolphin-2.9-llama3-8b:q5_k_m'  # 3  
             model = 'gurubot/llama3-guru-uncensored'  
+            model = 'phi3'  
   
             print(f'⋤ model: {model}')  
   
@@ -143,7 +147,10 @@ class Descripter:
                     prompt = input("Œ Enter the prompt: ")  
                 print(f'⅁ {model} transferring weights ...')  
   
-                options = {'temperature': self.temperature, 'num_ctx': self.num_ctx}  
+                options = {'temperature': self.temperature, 'num_ctx': self.num_ctx, 'stop': ['|end|', '\'\'\''],  
+                           'use_mmap': True, 'num_thread': 16, 'use_mlock': True, 'num_predict': 1,  
+                           'repeat_penalty': 0.5}  
+                # penalize_newline  
   
                 prompt += ".\nDo not add any notices about response in response."  
                 'Do not include questions like "do i need any further assistance or information".'                'Exclude any questions in response.'                'Do not print sources if not asked.'                'Do not print about "what i would like" or "perhaps something else" questions.'                'Exclude any "please" in response..'                'Exclude any proposals about response in response.'                'Exclude any Disclaimer in response.'                'Exclude any lines in response ending with question mark.'                'Do not echo input.'  
@@ -151,7 +158,7 @@ class Descripter:
                 for response in client.generate(model,  
                                                 prompt=prompt,  
                                                 stream=True,  
-                                                #system='|im_start|system\nPerform the tasks to the best of your ability.',  
+                                                system='Perform the tasks to the best of your ability.',  
                                                 options=options,  
                                                 context=context,  
                                                 # template='user\n'  
@@ -207,9 +214,12 @@ class Descripter:
   
   
 if __name__ == '__main__':  
-    p = Descripter(scenario=msscenario,  
-                   source_bias=mssource_bias)  
-    sys.exit(p.execute())
+    process = Descripter(scenario=msscenario, source_bias=mssource_bias)  
+  
+    try:  
+        sys.exit(process.execute())  
+    except KeyboardInterrupt:  
+        print('∠ Ctrl-C')
 ```
 
 eee
