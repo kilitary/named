@@ -26,7 +26,33 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+                "file": "axis9/issues/ss/fss_software_hardware.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "044f384bb8c39db1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "axis9/issues/ss/fss_software_hardware.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d99cd2635e2a1661",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "axis9/issues/ss/fss_software_hardware.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -343,7 +369,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -429,7 +455,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md"
+                "file": "axis9/issues/ss/fss_software_hardware.md"
               }
             }
           },
@@ -466,7 +492,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+                "file": "axis9/issues/ss/fss_software_hardware.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -483,7 +509,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+                "file": "axis9/issues/ss/fss_software_hardware.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -495,7 +521,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md"
+                "file": "axis9/issues/ss/fss_software_hardware.md"
               }
             }
           },
@@ -528,6 +554,14 @@
             "type": "leaf",
             "state": {
               "type": "BC-tree",
+              "state": {}
+            }
+          },
+          {
+            "id": "f842387e2b4d3dca",
+            "type": "leaf",
+            "state": {
+              "type": "git-history-view",
               "state": {}
             }
           }
@@ -584,14 +618,23 @@
       "quiz-generator:Open generator": false
     }
   },
-  "active": "eff29b88d8b58486",
+  "active": "d99cd2635e2a1661",
   "lastOpenFiles": [
+    "SKYNET/research/defeating/russian naval fleet/Untitled.md",
+    "axis9/issues/ss/fss_software_hardware.md",
+    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+    "axis9/issues/ss/phacker_policy_mut.jpg",
+    "axis9/issues/ss/memory_manufacturer_erased.jpg",
+    "axis9/issues/ss/onboard-video.jpg",
+    "axis9/issues/ss/broadcom5762.jpg",
+    "axis9/issues/ss/on-board.jpg",
+    "axis9/issues/ss/bios.jpg",
+    "axis9/issues/ss/dummy_bridge.jpg",
     "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "SKYNET/research/defeating/russian naval fleet/wizard-vicuna-uncensored-13b.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "readme.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-    "axis9/issues/ss/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
     "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
     "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
@@ -611,21 +654,12 @@
     "Red&Queen/lingvistic/drafting starter exit.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
-    "Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
     "desktop.ini",
     "images/2.png",
     "images/1.png",
     "2.png",
-    "1.png",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image448.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image424.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image240.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image192.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image96.jpg",
     "faced",
     "New folder",
-    "SKYNET/technology.md",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",
     "looms/Untitled.loom",
