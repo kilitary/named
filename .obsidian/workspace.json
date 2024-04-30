@@ -231,7 +231,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276.5
+    "width": 305.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -269,8 +269,12 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
-    "axis9/issues/ss/psy_operators.md",
+    "SKYNET/research/forcing/russian naval fleet/simulations/zdfh.md",
+    "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
+    "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "programs/main.py.md",
     "axis9/issues/ss/automated_psy_machine.md",
+    "axis9/issues/ss/psy_operators.md",
     "axis9/issues/ss.md",
     "axis9/issues/ss/final_destination_result_of_ss.mp4",
     "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
@@ -294,7 +298,6 @@
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "SKYNET/research/forcing/russian naval fleet/simulations/sdg.md",
     "axis9/issues/ss/draft",
-    "programs/main.py.md",
     "axis9/issues/ss/dummy_bridge.jpg",
     "axis9/issues/ss/bios.jpg",
     "axis9/issues/ss/on-board.jpg",
@@ -306,10 +309,7 @@
     "programs/python",
     "programs",
     "SKYNET/research/forcing/russian naval fleet/repeater.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/temp12.md",
     "SKYNET/research/forcing/russian naval fleet/simulations",
-    "SKYNET/research/forcing/russian naval fleet/simulations/sfsdg.md",
-    "indirect/textgenerator/templates/Experimental/summary.md",
     "indirect/garbage/Untitled.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "assets",
