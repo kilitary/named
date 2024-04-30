@@ -11,10 +11,9 @@
             "id": "fc411f48cc0442e7",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "dataloom",
               "state": {
-                "file": ".obsidian/workspace.json",
-                "staged": false
+                "file": "Untitled.loom"
               }
             }
           }
@@ -113,7 +112,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "Untitled.loom"
+              }
             }
           },
           {
@@ -149,6 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Untitled.loom",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -165,6 +167,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Untitled.loom",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -175,7 +178,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Untitled.loom"
+              }
             }
           },
           {
@@ -276,6 +281,7 @@
   },
   "active": "fc411f48cc0442e7",
   "lastOpenFiles": [
+    "readme.md",
     "SKYNET/research/forcing/russian naval fleet/wizard-vicuna-uncensored-13b.md",
     "SKYNET/research/forcing/russian naval fleet/temp russian naval fleet.md",
     "SKYNET/research/forcing/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
@@ -310,7 +316,6 @@
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
     "aXis9/core  country planning.md",
     "aXis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "aXis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "assets/images/1f3ab.png",
     "assets/images/1f3e3.png",
     "assets/images/1f3e4.png",

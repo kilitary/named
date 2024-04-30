@@ -10,7 +10,7 @@
         "numberPrefix": "",
         "numberSuffix": "",
         "numberSeparator": "",
-        "content": "New Column",
+        "content": "Column",
         "numberFormat": "number",
         "currencyType": "USD",
         "dateFormat": "mmddyyyy",
@@ -34,7 +34,7 @@
         "numberPrefix": "",
         "numberSuffix": "",
         "numberSeparator": "",
-        "content": "New Column",
+        "content": "WC",
         "numberFormat": "number",
         "currencyType": "USD",
         "dateFormat": "mmddyyyy",
@@ -44,6 +44,30 @@
         "shouldWrapOverflow": true,
         "tags": [],
         "calculationType": "count-all",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      },
+      {
+        "id": "f9d0a074-66b7-46be-9bf0-9e0e2abb9f11",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "New ",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
         "aspectRatio": "unset",
         "horizontalPadding": "unset",
         "verticalPadding": "unset",
@@ -69,6 +93,12 @@
             "columnId": "e52f8ab5-4c60-45d1-9846-225d6a5d65ff",
             "content": "60",
             "hasValidFrontmatter": null
+          },
+          {
+            "id": "145376af-30f7-4a65-9442-08efa715a540",
+            "columnId": "f9d0a074-66b7-46be-9bf0-9e0e2abb9f11",
+            "content": "",
+            "hasValidFrontmatter": null
           }
         ]
       },
@@ -90,6 +120,12 @@
             "columnId": "e52f8ab5-4c60-45d1-9846-225d6a5d65ff",
             "content": "3",
             "hasValidFrontmatter": null
+          },
+          {
+            "id": "73d1ba16-a4fc-40a3-aa09-05a9c74304d6",
+            "columnId": "f9d0a074-66b7-46be-9bf0-9e0e2abb9f11",
+            "content": "",
+            "hasValidFrontmatter": null
           }
         ]
       },
@@ -110,6 +146,12 @@
             "id": "11408f66-29c0-4bba-b6d3-27c9f7177f61",
             "columnId": "e52f8ab5-4c60-45d1-9846-225d6a5d65ff",
             "content": "100",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "22ee6a35-3b00-468c-adec-a48d159291f7",
+            "columnId": "f9d0a074-66b7-46be-9bf0-9e0e2abb9f11",
+            "content": "",
             "hasValidFrontmatter": null
           }
         ]
