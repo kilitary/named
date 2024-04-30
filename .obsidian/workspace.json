@@ -11,9 +11,12 @@
             "id": "fc411f48cc0442e7",
             "type": "leaf",
             "state": {
-              "type": "dataloom",
+              "type": "markdown",
               "state": {
-                "file": "Untitled.loom"
+                "file": "SKYNET/research/forcing/russian naval fleet/sfsdg.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -113,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Untitled.loom"
+                "file": "SKYNET/research/forcing/russian naval fleet/sfsdg.md"
               }
             }
           },
@@ -150,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.loom",
+                "file": "SKYNET/research/forcing/russian naval fleet/sfsdg.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -167,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.loom",
+                "file": "SKYNET/research/forcing/russian naval fleet/sfsdg.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -179,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.loom"
+                "file": "SKYNET/research/forcing/russian naval fleet/sfsdg.md"
               }
             }
           },
@@ -280,10 +283,16 @@
   },
   "active": "fc411f48cc0442e7",
   "lastOpenFiles": [
-    "readme.md",
-    "Untitled.loom",
-    "indirect/garbage/Untitled.canvas",
+    "SKYNET/research/forcing/russian naval fleet/temp12.md",
+    "SKYNET/research/forcing/russian naval fleet/sfsdg.md",
     "SKYNET/research/forcing/russian naval fleet/prog.py.md",
+    "indirect/textgenerator/templates/Experimental/summary.md",
+    "aXis9/issues/ss/memory_manufacturer_erased.jpg",
+    "aXis9/issues/ss/phacker_policy_mut.jpg",
+    "aXis9/issues/ss/dummy_bridge.jpg",
+    "Untitled.loom",
+    "readme.md",
+    "indirect/garbage/Untitled.canvas",
     "SKYNET/technology.md",
     "SKYNET/research/forcing/russian naval fleet/wizard-vicuna-uncensored-13b.md",
     "SKYNET/research/forcing/russian naval fleet/temp russian naval fleet.md",
@@ -305,14 +314,10 @@
     "SKYNET/advisories/README.md",
     "SKYNET/README.MD.md",
     "assets",
-    "aXis9/issues/ss/memory_manufacturer_erased.jpg",
     "indirect",
-    "aXis9/issues/ss/phacker_policy_mut.jpg",
     "aXis9/issues/ss/fss_software_hardware.md",
     "aXis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
-    "aXis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
     "aXis9/issues/ss/advanced",
-    "SKYNET/research/forcing/russian naval fleet/gurubot_llama3_guru.md",
     "aXis9/issues/ss/on-board.jpg",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
     "assets/images/1f3ab.png",
@@ -320,7 +325,6 @@
     "assets/images/1f3e4.png",
     "assets/images/1.png",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image1080.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image240.jpg",
     "desktop.ini",
     "faced",
     "New folder",

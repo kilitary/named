@@ -222,3 +222,10 @@ if __name__ == '__main__':
         print('∠ Ctrl-C')
 ```
 
+```python
+import time
+
+for i in range(10000):
+	print(f'{i} ', end='')
+	time.sleep(1)
+```
