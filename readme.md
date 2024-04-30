@@ -4,7 +4,7 @@ state: Drafting
 ![[alarm.png]]
 
 > updates:
-> russian SS: [russian government secret services crime index  RU](aXis9/issues/ss/russian%20government%20secret%20services%20crime%20index%20%20RU.md)
+> russian SS: [russian government secret services crime index  RU](/aXis9/issues/ss/russian%20government%20secret%20services%20crime%20index%20%20RU.md)
 
 > [!warning]
 > MELtDOWN  PHASE

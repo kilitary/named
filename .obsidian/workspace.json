@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aXis9/issues/ss/russian government secret services crime index  RU.md",
+                "file": "readme.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -115,7 +115,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "aXis9/issues/ss/russian government secret services crime index  RU.md"
+                "file": "readme.md"
               }
             }
           },
@@ -152,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "aXis9/issues/ss/russian government secret services crime index  RU.md",
+                "file": "readme.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -169,7 +169,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "aXis9/issues/ss/russian government secret services crime index  RU.md",
+                "file": "readme.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -181,7 +181,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "aXis9/issues/ss/russian government secret services crime index  RU.md"
+                "file": "readme.md"
               }
             }
           },
@@ -268,9 +268,9 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
+    "aXis9/issues/ss/russian government secret services crime index  RU.md",
     "readme.md",
     "Untitled.loom",
-    "aXis9/issues/ss/russian government secret services crime index  RU.md",
     "aXis9/issues/ss/automated_psy_machine.md",
     "aXis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "aXis9/issues/ss/putin.md",
