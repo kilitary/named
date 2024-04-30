@@ -8,38 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "fc411f48cc0442e7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "aXis9/issues/ss/fss_software_hardware.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "6369a49f4ecf5970",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aXis9/issues/ss/automated_psy_machine.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "365a319f2f49bae4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "aXis9/issues/ss/russian government secret services crime index  RU.md",
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -47,7 +21,6 @@
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -143,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "aXis9/issues/ss/automated_psy_machine.md"
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md"
               }
             }
           },
@@ -180,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "aXis9/issues/ss/automated_psy_machine.md",
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -197,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "aXis9/issues/ss/automated_psy_machine.md",
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -209,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "aXis9/issues/ss/automated_psy_machine.md"
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md"
               }
             }
           },
@@ -296,8 +269,9 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
-    "aXis9/issues/ss/russian government secret services crime index  RU.md",
     "aXis9/issues/ss/automated_psy_machine.md",
+    "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md",
+    "aXis9/issues/ss/russian government secret services crime index  RU.md",
     "aXis9/issues/ss/russian government secret services crime index EN.md",
     "aXis9/issues/ss/draft/Untitled.md",
     "aXis9/issues/ss/fss_software_hardware.md",
@@ -334,7 +308,6 @@
     "SKYNET/research/forcing/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
     "SKYNET/research/forcing/russian naval fleet/ff.md",
     "SKYNET/research/forcing/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
-    "SKYNET/research/forcing/russian naval fleet/grut.md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "assets",
     "indirect",
