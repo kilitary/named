@@ -217,7 +217,7 @@ Note: The information provided is fictional and for demonstration purposes only.
 		- Chaff Rockets: 16
 		- Flares: 24
 * **Secondary Targets:**
-
+    1. wise "russian" commander sergey efimov
 
 * **RFS Smetlivy (Corvette):** ECM System: Redut CIWS
 	+ **Decoy Types:**
@@ -264,7 +264,7 @@ Please note that this is a fictional ECM-GROUP-LIST and should not be taken as a
 
 * *RFS Smetlivy (Corvette):** Secondary Target
 	+ **Target Selection Criteria:**
-		- Distance from Primary Target: 10 km or less
+		- Distance from Primary Target: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 km or less
 		- Speed: 15 knots or greater
 		- Direction: East-North-East
 * **RFS Gromkiy (Corvette):** Secondary Target
