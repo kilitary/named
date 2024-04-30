@@ -6,7 +6,7 @@
 -
 
 ##### 연결문서
-- [[aXis9/research/Creating a Unique Schematic Relationship with Base English Words]]
+- [[axis9/research/Creating a Unique Schematic Relationship with Base English Words]]
 
 # 🤖
 ----

@@ -33,32 +33,32 @@ state: Drafting
           2. настройки, галки, селекты и прочие элементы везде внутри секурити скачут/появляюца/исчезают
           3. антивирус сканирует 1000 файлов за 1 сек.
           4. модифицированный на лету process hacker и пиздецово сгенеренные полисисы:
-              ![[aXis9/issues/ss/phacker_policy_mut.jpg|1200]]
+              ![[axis9/issues/ss/phacker_policy_mut.jpg|1200]]
 
 >  ***hard-to-route systems*** : удаленка по радио
 >  *возможно наводки на L+C которых на матери много*, мать gigabyte B450M S2H 
 
 0.  биос
-			![[aXis9/issues/ss/bios.jpg|400]]
+			![[axis9/issues/ss/bios.jpg|400]]
 1. подключение к матери через сеть/мать или иной девайс с фулл контролом и шиной 
 		(проверена модификация стэка и других изменений в биосе и реестре винды после отключения сети от питания, загрузки с usb в winpe. программа могла быть экстренной автоматической, но проявлялись модификации без сигнатур)
     был обнаружен девайс broadcom / j-7
     из acpi бреда:
-         ![[aXis9/issues/ss/dummy_bridge.jpg|500]]
+         ![[axis9/issues/ss/dummy_bridge.jpg|500]]
          
 > _"on-board"_ devices (без дров)
-![[aXis9/issues/ss/on-board.jpg]]
+![[axis9/issues/ss/on-board.jpg]]
 
 
 > oem
-![[aXis9/issues/ss/onboard-video.jpg]]
+![[axis9/issues/ss/onboard-video.jpg]]
 
 > "broadcom 5762" (possible internet history rewrite detected)
-![[aXis9/issues/ss/broadcom5762.jpg]]
+![[axis9/issues/ss/broadcom5762.jpg]]
 
 > memory manufacturer erased
 
-![[aXis9/issues/ss/memory_manufacturer_erased.jpg]]
+![[axis9/issues/ss/memory_manufacturer_erased.jpg]]
 
 > _опыты над населением в россии и время_
 > 
