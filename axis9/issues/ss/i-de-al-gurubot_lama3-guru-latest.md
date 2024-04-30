@@ -1,5 +1,7 @@
 ---
-state: Idea
+state: resolving
+math: not needed
+destination: defeating rules
 ---
 F:\ollama-python\venv\Scripts\python.exe F:\ollama-python\ask.py 
 ∠ temp: 0.1 ctx: 2048
@@ -51,13 +53,15 @@ analyze sam defense types, missile amount for each sam installation, total amoun
 ]
 ⅁ gurubot/llama3-guru:latest transferring weights ...
 76 words
-| Ship Name | Creation Date | Class | Role in Group | Cavitation Level |
-| --- | --- | --- | --- | --- |
-| Admiral Kuznetsov | 1985 | Project 11430 | Aircraft Carrier | xxxxxxxx |
-| Pyotr Velikiy | 1998 | Slava-class cruiser | Guided Missile Cruiser | xxxxx |
-| Smetliviy | 1982 | Krivak-class frigate | Anti-Submarine Warfare Frigate | xxxx |
-| Vice-Admiral Kulakov | 1979 | Ivan Gren-class landing ship | Amphibious Transport Ship | xxxxxx |
-| Admiral Panteleyev | 1981 | Kresta II-class destroyer | Guided Missile Destroyer | xxxxx |
+
+| Ship Name            | Creation Date | Class                        | Role in Group                  | Cavitation Level |
+| -------------------- | ------------- | ---------------------------- | ------------------------------ | ---------------- |
+| Admiral Kuznetsov    | 1985          | Project 11430                | Aircraft Carrier               | xxxxxxxx         |
+| Pyotr Velikiy        | 1998          | Slava-class cruiser          | Guided Missile Cruiser         | xxxxx            |
+| Smetliviy            | 1982          | Krivak-class frigate         | Anti-Submarine Warfare Frigate | xxxx             |
+| Vice-Admiral Kulakov | 1979          | Ivan Gren-class landing ship | Amphibious Transport Ship      | xxxxxx           |
+| Admiral Panteleyev   | 1981          | Kresta II-class destroyer    | Guided Missile Destroyer       | xxxxx            |
+| SS machine           | 1601          | Kresta I-class destroyer     | M iss il e Destroyer           | xxx              |
 
 | SAM Defense Type | Missile Amount per Installation | Total Amount for SAM Type Installations | Launch Delay (s) | Total SAM Amount per Ship |
 | --- | --- | --- | --- | --- |
