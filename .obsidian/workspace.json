@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aXis9/issues/ss/psy_operators.md",
+                "file": "aXis9/issues/ss/automated_psy_machine.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -116,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "aXis9/issues/ss/psy_operators.md"
+                "file": "aXis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "aXis9/issues/ss/psy_operators.md",
+                "file": "aXis9/issues/ss/automated_psy_machine.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "aXis9/issues/ss/psy_operators.md",
+                "file": "aXis9/issues/ss/automated_psy_machine.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "aXis9/issues/ss/psy_operators.md"
+                "file": "aXis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -269,11 +269,12 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
+    "aXis9/issues/ss/psy_operators.md",
+    "aXis9/issues/ss/putin.md",
     "aXis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+    "aXis9/issues/ss/automated_psy_machine.md",
     "aXis9/issues/fss_psy_attacks_on_countrys.md",
     "aXis9/issues/ss/fss_software_hardware.md",
-    "aXis9/issues/ss/automated_psy_machine.md",
-    "aXis9/issues/ss/psy_operators.md",
     "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md",
     "aXis9/issues/ss/russian government secret services crime index  RU.md",
     "aXis9/issues/ss/russian government secret services crime index EN.md",
@@ -307,7 +308,6 @@
     "SKYNET/technology.md",
     "SKYNET/research/forcing/russian naval fleet/wizard-vicuna-uncensored-13b.md",
     "SKYNET/research/forcing/russian naval fleet/temp russian naval fleet.md",
-    "SKYNET/research/forcing/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "assets",
     "indirect",
