@@ -8,98 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "dc41dfeb9da8eb62",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/core  country planning.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a85b975ec23e0079",
-            "type": "leaf",
-            "state": {
-              "type": "desk-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "f42b18c2b70ca035",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/core  country planning.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "53941f4e4e0f6689",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "30514a248d682eb2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/core  country planning.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "b00c4cd6cc241608",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/core  country planning.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "09fc0a29752d35c6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/core  country planning.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "fc411f48cc0442e7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/i-de-al-gurubot_lama3-guru-latest.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -107,7 +21,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "stacked": true
       }
     ],
     "direction": "vertical"
@@ -161,8 +75,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -194,7 +107,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/i-de-al-gurubot_lama3-guru-latest.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md"
               }
             }
           },
@@ -231,7 +144,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/i-de-al-gurubot_lama3-guru-latest.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -248,7 +161,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/i-de-al-gurubot_lama3-guru-latest.md",
+                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -260,7 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/i-de-al-gurubot_lama3-guru-latest.md"
+                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md"
               }
             }
           },
@@ -304,7 +217,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 12
       },
       {
         "id": "35cae7f01046a12e",
@@ -359,8 +273,15 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "f342cc04e3559737",
+  "active": "e8ab14f810b8b92a",
   "lastOpenFiles": [
+    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
+    "SKYNET/research/defeating/russian naval fleet/grut.md",
+    "SKYNET/research/defeating/russian naval fleet/possibilities.md",
+    "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
+    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
+    "SKYNET/research/defeating/russian naval fleet/repeater.md",
+    "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
     "axis9/issues/ss/memory_manufacturer_erased.jpg",
     "axis9/issues/ss/fss_software_hardware.md",
     "axis9/issues/ss/on-board.jpg",
@@ -377,8 +298,6 @@
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image1080.jpg",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image240.jpg",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image48.jpg",
-    "images/1f3ea.png",
-    "SKYNET/research/defeating/russian naval fleet/grut.md",
     "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
@@ -393,11 +312,6 @@
     "textgenerator/templates/Experimental/conceptLinker.md",
     "textgenerator/templates/awesomePrompts/itarchitectAwesome.md",
     "textgenerator/templates/awesomePrompts/yogiAwesome.md",
-    "textgenerator/templates/awesomePrompts/webdesignconsultantAwesome.md",
-    "textgenerator/templates/Experimental/testLangchainPull.md",
-    "textgenerator/templates/Experimental/summary.md",
-    "textgenerator/templates/Experimental/testContext.md",
-    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "Untitled.loom",
     "desktop.ini",
     "faced",

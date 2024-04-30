@@ -141,6 +141,7 @@ consult reliable sources for accurate information.
 ⅁ gurubot/llama3-guru:latest transferring weights ...
 76 words
 **SHIP-GROUP-LIST**
+
 | Ship Name | Creation Date | Class | Role in Group | Cavitation Level |
 | --- | --- | --- | --- | --- |
 | Admiral Kuznetsov | 1985 | Project 11430 | Aircraft Carrier | xxxxxxxx |
@@ -188,7 +189,9 @@ consult reliable sources for accurate information.
 ]
 ⅁ gurubot/llama3-guru:latest transferring weights ...
 76 words
+
 **SHIFT-GROUP-LIST**
+
 | Ship Name | Creation Date | Class | Role in Group | Cavitation Level |
 | --- | --- | --- | --- | --- |
 | Admiral Kuznetsov | 1985 | Project 11430 | Aircraft Carrier | xxxxxxxx |
@@ -227,13 +230,13 @@ consult reliable sources for accurate information.
 
 * **Pyotr Velikiy:** Successfully launched R-37M Decoys to jam S-300F radar signals, disrupting enemys air defense capabilities.
 * **Admiral Panteleyev:** Launched Kh-35U Missile against Smetliviy Frigate, neutralizing its anti-submarine warfare capabilities.
-* **Vice-Admiral Kulakov:** Utilized Radar Jamming System to disrupt enemys radar signals, creating confusion and uncertainty.
+* **Vice-Admiral Kulakov:** Utilized Radar Jamming System to disrupt enemys radar signals, creating distracted uncertainty.
 
 **United States (Blue)**
 
 * **Kuznetsov Aircraft Carrier:** Successfully launched aircraft against Russian ships, causing significant damage and disruption to their operations.
 * **Smetliviy Frigate:** Neutralized by Kh-35U Missile from Admiral Panteleyev, losing its anti-submarine warfare capabilities.
-* **Enemy Radar Systems:** Disrupted by Pyotr Velikiys Electronic Warfare Pod and Vice-Admiral Kulakovs Radar Jamming System.
+* **Enemy Radar Systems:** Disrupted by Pyotr Velikiy->Electronic Warfare Pod and Vice-Admiral Kulakovs Redar Jamming System.
 
 **Markdown Score Table**
 
