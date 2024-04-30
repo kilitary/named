@@ -38,7 +38,6 @@
   "obsidian-full-calendar",
   "webpage-html-export",
   "code-emitter",
-  "python-scripter",
   "terminal",
   "dataview",
   "desk",
@@ -64,5 +63,6 @@
   "obsidian-dictionary-plugin",
   "obsidian-gallery",
   "quickadd",
-  "file-tree-alternative"
+  "file-tree-alternative",
+  "python-scripter"
 ]
