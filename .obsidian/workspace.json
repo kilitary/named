@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aXis9/issues/ss/Untitled.md",
-                "mode": "preview",
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -115,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "aXis9/issues/ss/Untitled.md"
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md"
               }
             }
           },
@@ -152,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "aXis9/issues/ss/Untitled.md",
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -169,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "aXis9/issues/ss/Untitled.md",
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -181,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "aXis9/issues/ss/Untitled.md"
+                "file": "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md"
               }
             }
           },
@@ -268,11 +269,14 @@
   },
   "active": "fc411f48cc0442e7",
   "lastOpenFiles": [
-    "aXis9/issues/ss/russian government secret services crime index EN.md",
+    "SKYNET/research/forcing/russian naval fleet/simulations/sdg.md",
+    "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md",
     "aXis9/issues/ss/russian government secret services crime index  RU.md",
+    "aXis9/issues/ss/russian government secret services crime index EN.md",
+    "aXis9/issues/ss/draft/Untitled.md",
+    "aXis9/issues/ss/draft",
     "aXis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
     "aXis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "aXis9/issues/ss/Untitled.md",
     "programs/main.py.md",
     "aXis9/issues/ss/fss_software_hardware.md",
     "aXis9/issues/ss/dummy_bridge.jpg",
@@ -304,8 +308,6 @@
     "SKYNET/research/forcing/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
     "SKYNET/research/forcing/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
     "SKYNET/research/forcing/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
-    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "SKYNET/research/forcing/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "assets",
     "indirect",
@@ -314,7 +316,6 @@
     "assets/images/1f3ab.png",
     "assets/images/1f3e3.png",
     "desktop.ini",
-    "faced",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/technology/work flows/fss/Untitled.canvas",
