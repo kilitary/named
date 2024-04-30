@@ -189,11 +189,12 @@ Note: The information provided is fictional and for demonstration purposes only.
 
 ⅁ war-resolver transferring weights ...
  I will generate information based on your input. Heres the detailed SHIFT-GROUP-LIST:
-```markdown
+
 **SHIFT-GROUP-LIST**
-| Ship Name | Class | Role | Creation Date | Cavitation Level |
-| --- | --- | --- | --- | --- |
-| Admiral Kuznetsov | Project 11430 | Aircraft Carrier | 19
+
+| Ship Name         | Class         | Role             | Creation Date | Cavitation Level |
+| ----------------- | ------------- | ---------------- | ------------- | ---------------- |
+| Admiral Kuznetsov | Project 11430 | Aircraft Carrier | 1809          |                  |
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ∧ context 0 bytes auto-added
