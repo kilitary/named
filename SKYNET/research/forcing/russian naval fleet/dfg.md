@@ -102,7 +102,6 @@ Note: The information provided is fictional and for demonstration purposes only.
 
 ⅁ war-resolver transferring weights ...
  I will generate information based on your input.
-```
 **LAUNCH-PLAN**
 
 **Target List:**
@@ -155,21 +154,21 @@ Note: The information provided is fictional and for demonstration purposes only.
 
 ⅁ war-resolver transferring weights ...
  I will generate information based on your input. Heres the detailed SHIP-GROUP-LIST:
-```markdown
 **SHIP-GROUP-LIST**
-| Ship Name | Class | Role | Creation Date | Cavitation Level |
-| --- | --- | --- | --- | --- |
-| Admiral Kuznetsov | Project 11430 | Aircraft Carrier | 1990 | xxxxxxxx |
-| Pyotr Velikiy | Slava-class cruiser | Guided Missile Cruiser | 1989 | xxxxxx |
-| Vasily Chapaev | Slava-class cruiser | Guided Missile Cruiser | 1988 | xxxxxx |
-| Admiral Panteleyev | Udaloy-class destroyer | Destroyer | 1982 | xxxxx |
-| Admiral Tributs | Udaloy-class destroyer | Destroyer | 1981 | xxxxx |
-| Smetlivy | Buyan-M-class corvette | Corvettes | 2013 | xxxx |
-| Gromkiy | Buyan-M-class corvette | Corvettes | 2012 | xxxx |
-| Viktor Konovalov | Buyan-M-class corvette | Corvettes | 2011 | xxxx |
-| RFS Smetlivy | Buyan-M-class corvette | Corvettes | 2013 | xxxx |
-| RFS Gromkiy | Buyan-M-class corvette | Corvettes | 2012 | xxxx |
-| RFS Viktor Konovalov | Buyan-M-class corvette | Corvettes | 2011 | xxxx |
+
+| Ship Name            | Class                  | Role                   | Creation Date | Cavitation Level |
+| -------------------- | ---------------------- | ---------------------- | ------------- | ---------------- |
+| Admiral Kuznetsov    | Project 11430          | Aircraft Carrier       | 1990          | xxxxxxxx         |
+| Pyotr Velikiy        | Slava-class cruiser    | Guided Missile Cruiser | 1989          | xxxxxx           |
+| Vasily Chapaev       | Slava-class cruiser    | Guided Missile Cruiser | 1988          | xxxxxx           |
+| Admiral Panteleyev   | Udaloy-class destroyer | Destroyer              | 1982          | xxxxx            |
+| Admiral Tributs      | Udaloy-class destroyer | Destroyer              | 1981          | xxxxx            |
+| Smetlivy             | Buyan-M-class corvette | Corvettes              | 2013          | xxxx             |
+| Gromkiy              | Buyan-M-class corvette | Corvettes              | 2012          | xxxx             |
+| Viktor Konovalov     | Buyan-M-class corvette | Corvettes              | 2011          | xxxx             |
+| RFS Smetlivy         | Buyan-M-class corvette | Corvettes              | 2013          | xxxxxx           |
+| RFS Gromkiy          | Buyan-M-class corvette | Corvettes              | 2012          | xxxxxxxxxx       |
+| RFS Viktor Konovalov | Buyan-M-class corvette | Corvettes              | 2011          | xx               |
 
 **Target List:**
 * Primary Target: Admiral Kuznetsov Aircraft Carrier
