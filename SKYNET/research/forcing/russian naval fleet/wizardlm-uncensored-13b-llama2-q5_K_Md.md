@@ -1,4 +1,4 @@
-[[possibilities]]
+[[SKYNET/research/forcing/russian naval fleet/possibilities]]
 
 temp: 0.2 ctx: 8192
 model: wizardlm-uncensored:13b-llama2-q5_K_M

@@ -9,9 +9,9 @@ excalidraw-plugin:
 
 ## research
 
-- [x] [[axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
-- [ ] [[core  country planning]]
-- [x] [[use obsidian as documene linkage for  private & public advisories]]
+- [x] [[aXis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
+- [ ] [[aXis9/core  country planning]]
+- [x] [[aXis9/plans/use obsidian as documene linkage for  private & public advisories]]
 
 
 ## timeplanning
@@ -22,7 +22,7 @@ excalidraw-plugin:
 
 ## in progress
 
-- [x] [[Creating a Unique Schematic Relationship with Base English Words]]
+- [x] [[aXis9/research/Creating a Unique Schematic Relationship with Base English Words]]
 
 
 ## experiments-ongoing

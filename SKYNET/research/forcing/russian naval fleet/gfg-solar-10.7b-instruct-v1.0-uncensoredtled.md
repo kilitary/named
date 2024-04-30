@@ -1,7 +1,7 @@
 ---
 ----------------:
 ---
-[[possibilities]]
+[[SKYNET/research/forcing/russian naval fleet/possibilities]]
 
 temp: 0.2 ctx: 8192
 model: gfg/solar-10.7b-instruct-v1.0-uncensored

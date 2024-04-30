@@ -1,7 +1,7 @@
 ---
 state: Idea
 ---
-=> [[possibilities]]
+=> [[SKYNET/research/forcing/russian naval fleet/possibilities]]
 
 temp: 0.15 ctx: 8192
 model: мать/llama3-guru

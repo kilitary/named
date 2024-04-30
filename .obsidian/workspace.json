@@ -11,14 +11,10 @@
             "id": "fc411f48cc0442e7",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "diff-view",
               "state": {
-                "file": "garbage/Untitled.canvas",
-                "viewState": {
-                  "x": -48,
-                  "y": 21.5,
-                  "zoom": -0.41602026160628064
-                }
+                "file": ".obsidian/workspace.json",
+                "staged": false
               }
             }
           }
@@ -78,7 +74,7 @@
             }
           },
           {
-            "id": "2c48153f3011b543",
+            "id": "d7c627305c36ce93",
             "type": "leaf",
             "state": {
               "type": "file-tree-view",
@@ -90,7 +86,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 302.5
+    "width": 464.5
   },
   "right": {
     "id": "04f9fc2d318d98b7",
@@ -117,9 +113,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "garbage/Untitled.canvas"
-              }
+              "state": {}
             }
           },
           {
@@ -155,7 +149,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "garbage/Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -172,7 +165,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "garbage/Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -183,9 +175,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "garbage/Untitled.canvas"
-              }
+              "state": {}
             }
           },
           {
@@ -228,7 +218,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       },
       {
         "id": "35cae7f01046a12e",
@@ -246,11 +237,10 @@
       }
     ],
     "direction": "horizontal",
-    "width": 359.5
+    "width": 276.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "git-integration:Open git menu": false,
       "markdown-table-editor:Open Markdown Table Editor": false,
       "desk:Create new desk": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
@@ -280,59 +270,59 @@
       "obsidian-gallery:Gallery": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "card-board:CardBoard": false,
-      "file-tree-alternative:File Tree Alternative Plugin": false
+      "file-tree-alternative:File Tree Alternative Plugin": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "2c48153f3011b543",
+  "active": "fc411f48cc0442e7",
   "lastOpenFiles": [
-    "assets",
-    "axis9/issues/ss/memory_manufacturer_erased.jpg",
-    "indirect",
-    "axis9/issues/ss/phacker_policy_mut.jpg",
-    "axis9/issues/ss/fss_software_hardware.md",
-    "axis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
-    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
-    "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
-    "axis9/issues/ss/advanced",
-    "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
-    "SKYNET/research/defeating/russian naval fleet/grut.md",
-    "SKYNET/research/defeating/russian naval fleet/possibilities.md",
-    "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
-    "SKYNET/research/defeating/russian naval fleet/prog.py.md",
-    "SKYNET/research/defeating/russian naval fleet/repeater.md",
-    "axis9/issues/ss/on-board.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
-    "axis9/core  country planning.md",
-    "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
+    "SKYNET/research/forcing/russian naval fleet/wizard-vicuna-uncensored-13b.md",
+    "SKYNET/research/forcing/russian naval fleet/temp russian naval fleet.md",
+    "SKYNET/research/forcing/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
+    "SKYNET/research/forcing/russian naval fleet/ff.md",
+    "SKYNET/research/forcing/russian naval fleet/possibilities.md",
+    "SKYNET/research/forcing/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
+    "SKYNET/research/forcing/russian naval fleet/repeater.md",
+    "SKYNET/research/forcing/russian naval fleet/grut.md",
+    "SKYNET/research/forcing/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
+    "SKYNET/research/forcing/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
+    "SKYNET/research/forcing/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
+    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+    "SKYNET/research/forcing/russian naval fleet/prog.py.md",
+    "SKYNET/research/forcing/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
     "garbage/Untitled.canvas",
-    "indirect/BMO/Profiles/BMO.md",
+    "SKYNET/For vacuum divider/object..md",
+    "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
+    "SKYNET/For vacuum divider/Untitled 3.md",
+    "SKYNET/technology/alarm.png.md",
+    "SKYNET/advisories/README.md",
+    "SKYNET/README.MD.md",
+    "assets",
+    "aXis9/issues/ss/memory_manufacturer_erased.jpg",
+    "indirect",
+    "aXis9/issues/ss/phacker_policy_mut.jpg",
+    "aXis9/issues/ss/fss_software_hardware.md",
+    "aXis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+    "aXis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "aXis9/issues/ss/advanced",
+    "SKYNET/research/forcing/russian naval fleet/gurubot_llama3_guru.md",
+    "aXis9/issues/ss/on-board.jpg",
+    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
+    "aXis9/core  country planning.md",
+    "aXis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "aXis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "assets/images/1f3ab.png",
     "assets/images/1f3e3.png",
     "assets/images/1f3e4.png",
     "assets/images/1.png",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image1080.jpg",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image240.jpg",
-    "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
-    "SKYNET/research/defeating/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
-    "axis9/plans/Мусорщик++.md",
-    "SKYNET/advisories/README.md",
-    "SKYNET/playground/Untitled.md",
-    "indirect/textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
-    "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
-    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
-    "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
     "Untitled.loom",
     "desktop.ini",
     "faced",
     "New folder",
-    "SKYNET/research/defeating/russian naval fleet",
-    "SKYNET/research/defeating",
-    "indirect/looms/Untitled.loom",
-    "indirect/textgenerator/templates/Experimental",
+    "SKYNET/research/forcing/russian naval fleet",
+    "SKYNET/research/forcing",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/technology/work flows/fss/Untitled.canvas",

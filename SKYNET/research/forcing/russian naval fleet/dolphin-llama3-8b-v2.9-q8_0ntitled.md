@@ -1,4 +1,4 @@
-[[possibilities]]
+[[SKYNET/research/forcing/russian naval fleet/possibilities]]
 
 temp: 0.2 ctx: 8192
 model: dolphin-llama3:8b-v2.9-q8_0

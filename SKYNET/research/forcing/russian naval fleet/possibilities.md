@@ -8,15 +8,15 @@ state: Drafting
 
 ### network**s**
 
-=> [[gurubot_llama3_guru]] ([[grut]])
-=> [[dolphin-phi-2.7b-v2.6-q6_K]]
-=> [[dolphin-2.9-llama3-8b-q5_k_med]]
-=> [[dolphin-llama3-8b-v2.9-q8_0ntitled]]
-=> [[gfg-solar-10.7b-instruct-v1.0-uncensoredtled]]
-=> [[wizard-vicuna-uncensored-13b]]
-=> [[wizardlm-uncensored-13b-llama2-q5_K_Md]]
+=> [[SKYNET/research/forcing/russian naval fleet/gurubot_llama3_guru]] ([[SKYNET/research/forcing/russian naval fleet/grut]])
+=> [[SKYNET/research/forcing/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K]]
+=> [[SKYNET/research/forcing/russian naval fleet/dolphin-2.9-llama3-8b-q5_k_med]]
+=> [[SKYNET/research/forcing/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled]]
+=> [[SKYNET/research/forcing/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled]]
+=> [[SKYNET/research/forcing/russian naval fleet/wizard-vicuna-uncensored-13b]]
+=> [[SKYNET/research/forcing/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md]]
 
-### **scenarior** => [[prog.py]]
+### **scenarior** => [[SKYNET/research/forcing/russian naval fleet/prog.py]]
 #### gurubot/llama3-guru
 
 

@@ -92,8 +92,9 @@ class Descripter:
             model = 'Everythinglm:13b-16k-Q5_K_M'  
             model = 'phi3'  
             model = 'sunapi386/llama-3-lexi-uncensored:8b'  
-            model = 'gurubot/llama3-guru:latest'  
             model = 'dolphin-llama3:8b-v2.9-q8_0'  # 4  
+            model = 'gurubot/llama3-guru:latest'  
+            model = 'war-resolver'  
   
             print(f'⋤ model: {model}')  
   
@@ -147,26 +148,21 @@ class Descripter:
                     'num_ctx': self.num_ctx,  
                     'use_mmap': True,  
                     'num_thread': 10,  
-                    'use_mlock': True,  
-                    'stop': [  
-                        '<|im_end|>', '<|im_start|>', '<|sot_id|>',  
-                        '<|eot_id|>', '<|end_of_text|>', '<|begin_of_text|>'  
-                    ]  
-                    # 'num_predict': 50000,  
-                    # 'repeat_penalty': 0.5                }  
-                # penalize_newline  
-  
+                    'use_mlock': True  
+                }  
+                # 'num_predict': 50000,  
+                # 'repeat_penalty': 0.5                # penalize_newline  
                 prompt += ".\nDo not add any notices about response in response."  
                 'Do not include questions like "do i need any further assistance or information".'                'Exclude any questions in response.'                'Do not print sources if not asked.'                'Do not print about "what i would like" or "perhaps something else" questions.'                'Exclude any "please" in response..'                'Exclude any proposals about response in response.'                'Exclude any Disclaimer in response.'                'Exclude any lines in response ending with question mark.'                'Do not echo input.'  
                 response = None  
-                for response in client.generate(model,  
-                                                prompt=prompt,  
-                                                stream=True,  
-                                                system='Respond at best vocabulary links match to the prompt.',  
-                                                options=options,  
-                                                context=context,  
-                                                # template='<|im_start|>system {System}<|im_end|>'  
-                                                #          '<|im_start|>user <|begin_of_text|>{User}<|end_of_text|>\n'                                                #          '<|im_start|>assistant {Assistant}'                                                ):  
+                for response in client.generate(  
+                        model=model,  
+                        prompt=prompt,  
+                        stream=True,  
+                        system='You are assistant that answers with best vocabulary links match to the query.',  
+                        options=options,  
+                        context=context,  
+                ):  
                     current_chars += len(response['response'])  
                     if "\n" in response['response']:  
                         current_chars = 0  

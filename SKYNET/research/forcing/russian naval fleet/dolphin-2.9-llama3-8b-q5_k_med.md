@@ -1,4 +1,4 @@
-[[possibilities]]
+[[SKYNET/research/forcing/russian naval fleet/possibilities]]
 
 temp: 0.2 ctx: 8192
 model: mannix/dolphin-2.9-llama3-8b:q5_k_m
