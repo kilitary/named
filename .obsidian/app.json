@@ -11,7 +11,7 @@
   "showIndentGuide": false,
   "smartIndentList": true,
   "alwaysUpdateLinks": true,
-  "showInlineTitle": true,
+  "showInlineTitle": false,
   "promptDelete": true,
   "showUnsupportedFiles": true,
   "pdfExportSettings": {
