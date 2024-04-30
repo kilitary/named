@@ -6,7 +6,7 @@
   "propertiesInDocument": "hidden",
   "livePreview": true,
   "strictLineBreaks": false,
-  "showLineNumber": false,
+  "showLineNumber": true,
   "tabSize": 2,
   "showIndentGuide": false,
   "smartIndentList": true,
