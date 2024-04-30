@@ -11,12 +11,14 @@
             "id": "fc411f48cc0442e7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "garbage/Untitled.canvas",
+                "viewState": {
+                  "x": -48,
+                  "y": 21.5,
+                  "zoom": -0.41602026160628064
+                }
               }
             }
           }
@@ -40,7 +42,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "byModifiedTime"
               }
             }
           },
@@ -50,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"disableProvider\"]",
+                "query": "[\"description\"]",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,8 +76,17 @@
               "type": "timeline",
               "state": {}
             }
+          },
+          {
+            "id": "2c48153f3011b543",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -107,7 +118,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md"
+                "file": "garbage/Untitled.canvas"
               }
             }
           },
@@ -144,7 +155,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
+                "file": "garbage/Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -161,7 +172,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
+                "file": "garbage/Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -173,7 +184,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md"
+                "file": "garbage/Untitled.canvas"
               }
             }
           },
@@ -217,8 +228,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 12
+        ]
       },
       {
         "id": "35cae7f01046a12e",
@@ -270,34 +280,40 @@
       "obsidian-gallery:Gallery": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "card-board:CardBoard": false
+      "card-board:CardBoard": false,
+      "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "e8ab14f810b8b92a",
+  "active": "2c48153f3011b543",
   "lastOpenFiles": [
+    "assets",
+    "axis9/issues/ss/memory_manufacturer_erased.jpg",
+    "indirect",
+    "axis9/issues/ss/phacker_policy_mut.jpg",
+    "axis9/issues/ss/fss_software_hardware.md",
+    "axis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
+    "axis9/issues/ss/Zudo and -Пыточный конвеер в Росии- и пси ПО -Рука- =прокурора Ширеевой Н гульниры=.md",
+    "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
+    "axis9/issues/ss/advanced",
     "SKYNET/research/defeating/russian naval fleet/gurubot_llama3_guru.md",
     "SKYNET/research/defeating/russian naval fleet/grut.md",
     "SKYNET/research/defeating/russian naval fleet/possibilities.md",
     "SKYNET/research/defeating/russian naval fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
     "SKYNET/research/defeating/russian naval fleet/prog.py.md",
     "SKYNET/research/defeating/russian naval fleet/repeater.md",
-    "SKYNET/research/defeating/russian naval fleet/i-de-al-gurubot_lama3-guru-latest.md",
-    "axis9/issues/ss/memory_manufacturer_erased.jpg",
-    "axis9/issues/ss/fss_software_hardware.md",
     "axis9/issues/ss/on-board.jpg",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
     "axis9/core  country planning.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "garbage/Untitled.canvas",
-    "BMO/Profiles/BMO.md",
-    "images/1f3ab.png",
-    "images/1f3e3.png",
-    "images/1f3e4.png",
-    "images/1.png",
+    "indirect/BMO/Profiles/BMO.md",
+    "assets/images/1f3ab.png",
+    "assets/images/1f3e3.png",
+    "assets/images/1f3e4.png",
+    "assets/images/1.png",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image1080.jpg",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image240.jpg",
-    "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image48.jpg",
     "SKYNET/research/defeating/russian naval fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-phi-2.7b-v2.6-q6_K.md",
     "SKYNET/research/defeating/russian naval fleet/dolphin-llama3-8b-v2.9-q8_0ntitled.md",
@@ -305,23 +321,18 @@
     "axis9/plans/Мусорщик++.md",
     "SKYNET/advisories/README.md",
     "SKYNET/playground/Untitled.md",
-    "textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/uxuideveloperAwesome.md",
     "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
     "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
     "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-    "textgenerator/templates/Experimental/conceptLinker.md",
-    "textgenerator/templates/awesomePrompts/itarchitectAwesome.md",
-    "textgenerator/templates/awesomePrompts/yogiAwesome.md",
     "Untitled.loom",
     "desktop.ini",
     "faced",
     "New folder",
     "SKYNET/research/defeating/russian naval fleet",
     "SKYNET/research/defeating",
-    "looms/Untitled.loom",
-    "textgenerator/templates/Experimental",
-    "textgenerator/templates/awesomePrompts",
-    "textgenerator/templates",
+    "indirect/looms/Untitled.loom",
+    "indirect/textgenerator/templates/Experimental",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/technology/work flows/fss/Untitled.canvas",

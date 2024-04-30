@@ -23,7 +23,7 @@
   },
   "trashOption": "local",
   "newFileLocation": "current",
-  "newLinkFormat": "shortest",
+  "newLinkFormat": "absolute",
   "useMarkdownLinks": true,
   "attachmentFolderPath": "./"
 }

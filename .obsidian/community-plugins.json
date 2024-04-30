@@ -7,7 +7,6 @@
   "obsidian-tasks-plugin",
   "obsidian-day-planner",
   "project-browser",
-  "git-integration",
   "metadata-menu",
   "better-inline-fields",
   "obsidian-git",
@@ -65,5 +64,6 @@
   "obsidian-chartsview-plugin",
   "obsidian-dictionary-plugin",
   "obsidian-gallery",
-  "quickadd"
+  "quickadd",
+  "file-tree-alternative"
 ]
