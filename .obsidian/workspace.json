@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/putin.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -116,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/putin.md"
+                "file": "axis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/putin.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/putin.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/putin.md"
+                "file": "axis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -269,15 +269,15 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "axis9/issues/ss/automated_psy_machine.md",
-    "axis9/issues/ss/putin.md",
-    "axis9/issues/ss/inter_fss_hate.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714552050299323300.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+    "axis9/issues/ss/putin.md",
+    "axis9/issues/ss/automated_psy_machine.md",
+    "axis9/issues/ss/inter_fss_hate.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551964149437100.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838066425500.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551805151465100.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838020755800.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551548354582100.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551311660152500.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551548313584500.md",
