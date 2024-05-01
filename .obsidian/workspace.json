@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -268,8 +269,9 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
-    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
+    "SKYNET/research/forcing/russian naval fleet/simulations/выа.md",
     "axis9/issues/ss/automated_psy_machine.md",
+    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "axis9/issues/ss/inter_fss_hate.md",
     "readme.md",
     "SKYNET/research/forcing/russian naval fleet/simulations/zdfh.md",
@@ -305,7 +307,6 @@
     "axis9/issues/ss/onboard-video.jpg",
     "axis9/issues/ss/memory_manufacturer_erased.jpg",
     "axis9/issues/ss/phacker_policy_mut.jpg",
-    "SKYNET/research/forcing/russian naval fleet/prog.py.md",
     "programs/python",
     "programs",
     "SKYNET/research/forcing/russian naval fleet/simulations",
