@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -115,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md"
               }
             }
           },
@@ -152,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -169,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -181,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md"
               }
             }
           },
@@ -268,36 +269,40 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "axis9/issues/ss/putin.md",
+    "SKYNET/research/forcing/russian_naval_fleet/prog.py.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549484092403200.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549366160415400.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549429717489600.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549447038095700.md",
     "axis9/issues/ss/automated_psy_machine.md",
-    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
-    "axis9/issues/ss/inter_fss_hate.md",
-    "axis9/issues/ss/Zudo_and_psych_facility.md",
-    "axis9/issues/ss/ss_sbor_programm.md",
-    "axis9/issues/ss/russian_government_secret_services_crime_index_RU.md",
-    "axis9/issues/ss/russian government secret services crime index EN.md",
-    "axis9/issues/ss/[.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/выа.md",
-    "readme.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/zdfh.md",
-    "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
-    "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
-    "programs/main.py.md",
-    "axis9/issues/ss/psy_operators.md",
-    "axis9/issues/ss.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549440482833000.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549393536789100.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/ыва.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/выа.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/zdfh.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/temp12.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sfsdg.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sdg.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/dfs.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/dfg.md",
+    "SKYNET/research/forcing/russian_naval_fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
+    "SKYNET/research/forcing/russian_naval_fleet/wizard-vicuna-uncensored-13b.md",
+    "SKYNET/research/forcing/russian_naval_fleet/temp russian naval fleet.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations",
+    "SKYNET/research/forcing/russian_naval_fleet/repeater.md",
+    "SKYNET/research/forcing/russian_naval_fleet/possibilities.md",
+    "SKYNET/research/forcing/russian_naval_fleet/i-de-al-gurubot_lama3-guru-latest.md",
+    "SKYNET/research/forcing/russian_naval_fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
+    "SKYNET/research/forcing/russian_naval_fleet/gurubot_llama3_guru.md",
+    "SKYNET/research/forcing/russian_naval_fleet/grut.md",
+    "SKYNET/research/forcing/russian_naval_fleet",
+    "SKYNET/research/forcing/russiannaval_fleet/simulations",
+    "SKYNET/research/forcing/russiannaval_fleet",
     "axis9/issues/ss/final_destination_result_of_ss.mp4",
-    "axis9/issues/ss/advanced/EXT Zudo and -Пыточный конвеер в Росии- и циничная игра псиопа-  пидора.md",
-    "axis9/issues/ss/fss_software_hardware.md",
-    "axis9/issues/ss/draft/Untitled.md",
     "Untitled.loom",
     "aXis9/issues/final_destination.mp4",
     "final_destination.mp4",
-    "SKYNET/research/forcing/russian naval fleet/dfg.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/dfg.md",
-    "aXis9/issues/fss_psy_attacks_on_countrys.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/ыва.md",
-    "indirect/textgenerator/templates/Experimental/testContext.md",
-    "SKYNET/research/forcing/russian naval fleet/possibilities.md",
     "axis9/issues/ss/draft",
     "axis9/issues/ss/dummy_bridge.jpg",
     "axis9/issues/ss/bios.jpg",
@@ -307,11 +312,7 @@
     "axis9/issues/ss/memory_manufacturer_erased.jpg",
     "axis9/issues/ss/phacker_policy_mut.jpg",
     "programs/python",
-    "programs",
-    "SKYNET/research/forcing/russian naval fleet/simulations",
     "indirect/garbage/Untitled.canvas",
-    "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
-    "assets",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
     "assets/images/1f3ab.png",
     "assets/images/1f3e3.png",
