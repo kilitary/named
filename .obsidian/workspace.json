@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -83,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -116,7 +115,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md"
+                "file": "axis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -153,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +169,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +181,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md"
+                "file": "axis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -269,8 +268,8 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/prog.py.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+    "SKYNET/research/forcing/russian_naval_fleet/prog.py.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549484092403200.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549366160415400.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549429717489600.md",
