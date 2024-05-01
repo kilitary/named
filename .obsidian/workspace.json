@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/putin.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -115,7 +115,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "axis9/issues/ss/putin.md"
               }
             }
           },
@@ -152,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/putin.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -169,7 +169,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/putin.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -181,7 +181,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "axis9/issues/ss/putin.md"
               }
             }
           },
@@ -268,8 +268,8 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "axis9/issues/ss/automated_psy_machine.md",
+    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "axis9/issues/ss/inter_fss_hate.md",
     "axis9/issues/ss/Zudo_and_psych_facility.md",
     "axis9/issues/ss/ss_sbor_programm.md",
