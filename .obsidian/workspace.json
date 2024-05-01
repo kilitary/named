@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/sbor.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -116,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "axis9/issues/ss/sbor.md"
               }
             }
           },
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/sbor.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/sbor.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "axis9/issues/ss/sbor.md"
               }
             }
           },
@@ -269,10 +269,11 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
-    "axis9/issues/ss/inter_fss_hate.md",
     "axis9/issues/ss/automated_psy_machine.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/выа.md",
+    "axis9/issues/ss/sbor.md",
     "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
+    "axis9/issues/ss/inter_fss_hate.md",
+    "SKYNET/research/forcing/russian naval fleet/simulations/выа.md",
     "readme.md",
     "SKYNET/research/forcing/russian naval fleet/simulations/zdfh.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
@@ -298,7 +299,6 @@
     "indirect/textgenerator/templates/Experimental/testContext.md",
     "SKYNET/research/forcing/russian naval fleet/possibilities.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "SKYNET/research/forcing/russian naval fleet/simulations/sdg.md",
     "axis9/issues/ss/draft",
     "axis9/issues/ss/dummy_bridge.jpg",
     "axis9/issues/ss/bios.jpg",
