@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+                "file": "axis9/issues/ss/putin.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -83,11 +83,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 464.5
+    "width": 363.5
   },
   "right": {
     "id": "04f9fc2d318d98b7",
@@ -115,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md"
+                "file": "axis9/issues/ss/putin.md"
               }
             }
           },
@@ -152,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+                "file": "axis9/issues/ss/putin.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -169,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+                "file": "axis9/issues/ss/putin.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -181,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md"
+                "file": "axis9/issues/ss/putin.md"
               }
             }
           },
@@ -268,9 +269,20 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551067724371000.md",
-    "axis9/issues/ss/automated_psy_machine.md",
+    "axis9/issues/ss/inter_fss_hate.md",
+    "axis9/issues/ss/putin.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714552050299323300.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551964149437100.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838066425500.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551805151465100.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838020755800.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551548354582100.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551311660152500.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551548313584500.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551067724371000.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551311609152200.md",
+    "axis9/issues/ss/automated_psy_machine.md",
     "SKYNET/research/forcing/russian_naval_fleet/prog.py.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549484092403200.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549366160415400.md",
@@ -283,18 +295,7 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/zdfh.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/temp12.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sfsdg.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sdg.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/dfs.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/dfg.md",
-    "SKYNET/research/forcing/russian_naval_fleet/wizardlm-uncensored-13b-llama2-q5_K_Md.md",
-    "SKYNET/research/forcing/russian_naval_fleet/wizard-vicuna-uncensored-13b.md",
-    "SKYNET/research/forcing/russian_naval_fleet/temp russian naval fleet.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations",
-    "SKYNET/research/forcing/russian_naval_fleet/repeater.md",
-    "SKYNET/research/forcing/russian_naval_fleet/possibilities.md",
-    "SKYNET/research/forcing/russian_naval_fleet/i-de-al-gurubot_lama3-guru-latest.md",
-    "SKYNET/research/forcing/russian_naval_fleet/gfg-solar-10.7b-instruct-v1.0-uncensoredtled.md",
-    "SKYNET/research/forcing/russian_naval_fleet/gurubot_llama3_guru.md",
     "SKYNET/research/forcing/russian_naval_fleet",
     "SKYNET/research/forcing/russiannaval_fleet/simulations",
     "SKYNET/research/forcing/russiannaval_fleet",
