@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/spart.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -116,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "axis9/issues/ss/spart.md"
               }
             }
           },
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/spart.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "axis9/issues/ss/spart.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "axis9/issues/ss/spart.md"
               }
             }
           },
@@ -269,6 +269,10 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
+    "axis9/issues/ss/automated_psy_machine.md",
+    "axis9/issues/ss/spart.md",
+    "axis9/issues/ss/history_russia_kills.md",
+    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551964149437100.md",
@@ -276,9 +280,6 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554021452332300.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554140613783700_000046b0.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327784661700_00001548.md",
-    "axis9/issues/ss/automated_psy_machine.md",
-    "axis9/issues/ss/history_russia_kills.md",
-    "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "axis9/issues/ss/putin.md",
     "axis9/issues/ss/inter_fss_hate.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838066425500.md",
@@ -294,7 +295,6 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549366160415400.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549429717489600.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549447038095700.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549440482833000.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations",
     "SKYNET/research/forcing/russian_naval_fleet",
     "SKYNET/research/forcing/russiannaval_fleet/simulations",
