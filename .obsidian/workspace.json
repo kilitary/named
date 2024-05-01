@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -116,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md"
+                "file": "axis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md",
+                "file": "axis9/issues/ss/automated_psy_machine.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md"
+                "file": "axis9/issues/ss/automated_psy_machine.md"
               }
             }
           },
@@ -269,8 +269,8 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "axis9/issues/ss/automated_psy_machine.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md",
+    "axis9/issues/ss/automated_psy_machine.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554140613783700_000046b0.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327784661700_00001548.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554021452332300.md",
