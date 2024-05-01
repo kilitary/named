@@ -4,7 +4,7 @@ state: Drafting
 
 # psycho experiments
 
-  1. [Zudo_and_Пыточный_конвеер_в_Росии_и_пси_ПО_Рука](Zudo_and_Пыточный_конвеер_в_Росии_и_пси_ПО_Рука.md)
+  1. [Zudo_and_psych_facility](Zudo_and_psych_facility.md)
 
 ## silent technicians research ability elimination
 
