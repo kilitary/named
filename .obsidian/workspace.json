@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "readme.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -83,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -116,7 +115,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "readme.md"
               }
             }
           },
@@ -153,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "readme.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +169,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md",
+                "file": "readme.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +181,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/automated_psy_machine.md"
+                "file": "readme.md"
               }
             }
           },
@@ -269,11 +268,11 @@
   },
   "active": "6369a49f4ecf5970",
   "lastOpenFiles": [
+    "axis9/issues/ss/automated_psy_machine.md",
     "SKYNET/research/forcing/russian naval fleet/simulations/zdfh.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
     "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
     "programs/main.py.md",
-    "axis9/issues/ss/automated_psy_machine.md",
     "axis9/issues/ss/psy_operators.md",
     "axis9/issues/ss.md",
     "axis9/issues/ss/final_destination_result_of_ss.mp4",
