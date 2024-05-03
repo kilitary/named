@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/spart.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/sd.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -40,7 +40,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byModifiedTime"
+                "sortOrder": "byModifiedTimeReverse"
               }
             }
           },
@@ -88,7 +88,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 363.5
+    "width": 395.5
   },
   "right": {
     "id": "04f9fc2d318d98b7",
@@ -116,7 +116,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/spart.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/sd.md"
               }
             }
           },
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/spart.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/sd.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/spart.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/sd.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/spart.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/sd.md"
               }
             }
           },
@@ -269,32 +269,33 @@
   },
   "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "axis9/issues/ss/automated_psy_machine.md",
+    "programs/main.py.md",
+    "SKYNET/research/forcing/russian_naval_fleet/sd.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714757962348985300_000027a0.md",
+    "SKYNET/research/forcing/black holes",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756575220852100_00000dfc.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756875750754000_00002c5c.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756826611815600_00005040.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756797787258500_00004be0.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756775391318800_00003714.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551805151465100.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756145755992900_00003b50.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714754942453095400_00001e00.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714755953153721600_00002750.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714755899780337900_00003d18.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714754919028871400_00003da8.md",
     "axis9/issues/ss/spart.md",
+    "axis9/issues/ss/automated_psy_machine.md",
     "axis9/issues/ss/history_russia_kills.md",
     "axis9/issues/ss/fss_psy_attacks_on_countrys.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327873256200_00002a64.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549493239850200.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551964149437100.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714552050299323300.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554021452332300.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554140613783700_000046b0.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714554327784661700_00001548.md",
     "axis9/issues/ss/putin.md",
-    "axis9/issues/ss/inter_fss_hate.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838066425500.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551805151465100.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551838020755800.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551548354582100.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551311660152500.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551548313584500.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551067724371000.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551311609152200.md",
-    "SKYNET/research/forcing/russian_naval_fleet/prog.py.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549484092403200.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549366160415400.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549429717489600.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714549447038095700.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations",
     "SKYNET/research/forcing/russian_naval_fleet",
     "SKYNET/research/forcing/russiannaval_fleet/simulations",
@@ -311,7 +312,6 @@
     "axis9/issues/ss/onboard-video.jpg",
     "axis9/issues/ss/memory_manufacturer_erased.jpg",
     "axis9/issues/ss/phacker_policy_mut.jpg",
-    "programs/python",
     "indirect/garbage/Untitled.canvas",
     "faced/{F335C7A3-1832-4367-AE92-90780DE09E5F}-Image208.jpg",
     "assets/images/1f3ab.png",
