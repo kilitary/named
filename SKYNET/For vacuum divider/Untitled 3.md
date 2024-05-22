@@ -1,3 +1,6 @@
+---
+tags: []
+---
 > [!question]
 > This paragraph of the first footnote will contain the date on which you
 > 

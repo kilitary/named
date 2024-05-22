@@ -12,8 +12,8 @@ temperature: 0.35
 completed: "false"
 destination: be legal, unload notes, defeat terror rules
 ---
-1. [ ] perform unit category detection using harvested human research
-2. [ ] The study where ai should descriebe f oc uses simulating gravity on system alteration and testing black hole simulated properties near Mars (which does not help priority:: fastest-growing prio (2024, thx for innovative scaring super technology's )
+1. [ ] perform unit category detection using harvested human research about black holes structure, evidance and formation 
+2. [ ] in This study ai should descriebe os uses simulating gravity on solar internal objects with alteration by gravity of black holes and their near environment, ai should simulate black hole properties near Mars (which does not help priority:: fastest-growing prio (2024, thx for innovative scaring super technology's )
 3. [ ] choose next racoon step to disengage hostile environment
 	         1. **silence** @ ru/us environment s
 	         2. continue fss **psy** successfull terrorism **leakage**
@@ -24,5 +24,5 @@ destination: be legal, unload notes, defeat terror rules
 	             1. illegal narcotraff 'student' (+clown)
 	             2. full gov clown (do all the titles on ria news page, take fss signs) (+us/eu clown)
 	         7. w**hat** c~~a~~**ses** can us e trigger in g *a* to wake the**ir** start d**e**sync cod**e**?
-	             1.  apply bottle in moscow on putin'a head
-	             2. throw banana under putin's legs in moscow (+clowns)
+	             1. apply bottle in moscow on putin'a head
+	             2. throw banana under putin's legs in moscow (=clown)

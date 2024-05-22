@@ -1,5 +1,6 @@
 ---
 state: Idea
+tags: []
 ---
 => [[SKYNET/research/forcing/russian naval fleet/possibilities]]
 

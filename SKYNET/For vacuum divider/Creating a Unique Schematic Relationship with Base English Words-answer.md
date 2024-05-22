@@ -1,8 +1,11 @@
+---
+tags: []
+---
 ### 주제: Creating a Unique Schematic Relationship with Base English Words-answer
 ----
 ##### 메모: #chatGPT #answer
 
-##### 출처(참고문헌)
+##### 출처(참고문헌)️
 -
 
 ##### 연결문서

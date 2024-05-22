@@ -1,5 +1,6 @@
 ---
 state: Idea
+tags: []
 ---
 ∠ temp: 0.2 ctx: 8192
 ⋤ model: Everythinglm:13b-16k-Q5_K_M

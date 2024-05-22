@@ -1,3 +1,6 @@
+---
+tags: []
+---
 ∠ temp: 0.0 ctx: 2048 sim_id: 1716382110761989300_000029b4
 ∠ models:
  [ 0] solar:latest                                                llama 5.66G 11B         

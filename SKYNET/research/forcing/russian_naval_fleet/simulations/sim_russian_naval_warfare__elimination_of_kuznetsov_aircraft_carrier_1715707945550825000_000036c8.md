@@ -1,3 +1,6 @@
+---
+tags: []
+---
 ∠ temp: 0.2 ctx: 2048 war_id: 1715707945550825000_000036c8
  [ 0] dolphin-phi:2.7b-v2.6-q6_K
  [ 1] gfg/solar-10.7b-instruct-v1.0-uncensored

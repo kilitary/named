@@ -1,3 +1,6 @@
+---
+tags: []
+---
 F:\ollama-python\venv\Scripts\python.exe F:\ollama-python\ask.py 
 ∠ temp: 0.1 ctx: 8192
 ⋤ model: war-resolver

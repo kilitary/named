@@ -1,3 +1,6 @@
+---
+tags: []
+---
 ### Generated Quiz
 
 test sample

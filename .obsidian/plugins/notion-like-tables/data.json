@@ -2,12 +2,12 @@
   "logLevel": "off",
   "createAtObsidianAttachmentFolder": false,
   "customFolderForNewFiles": "looms",
-  "removeMarkdownOnExport": true,
+  "removeMarkdownOnExport": false,
   "defaultEmbedWidth": "100%",
   "defaultEmbedHeight": "340px",
   "hasMigratedTo800": true,
   "showWelcomeModal": false,
-  "showWhatsNewModal": true,
+  "showWhatsNewModal": false,
   "defaultFrozenColumnCount": 1,
   "pluginVersion": "8.15.12"
 }

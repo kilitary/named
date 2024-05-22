@@ -51,7 +51,7 @@
       "name": "Bibliography"
     }
   ],
-  "defaultExportDirectoryMode": "Same",
+  "defaultExportDirectoryMode": "Auto",
   "openExportedFile": true,
   "env": {},
   "showExportProgressBar": true,

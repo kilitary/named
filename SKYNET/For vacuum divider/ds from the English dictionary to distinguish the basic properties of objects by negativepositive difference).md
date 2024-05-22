@@ -1,5 +1,6 @@
 ---
 state: Cancelled
+tags: []
 ---
 # Generated Quiz
 

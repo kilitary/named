@@ -1,11 +1,12 @@
 {
   "limit": 10,
   "statusFilter": "all",
-  "isRecurTasks": false,
+  "isRecurTasks": true,
   "pathToRewards": "rewards.md",
   "pathToHistory": "history.md",
   "pathToDaily": "",
   "dailyFormat": "YYYY-MM-DD",
+  "useMarkdownLinks": true,
   "ignoreList": [],
   "tagFilter": "",
   "onlyThisTags": false,

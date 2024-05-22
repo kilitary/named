@@ -1,3 +1,6 @@
+---
+tags: []
+---
 ∠ temp: 0.2 ctx: 2048 war_id: 1715706193420174100_00003e84
 ⋤ model: impulse2000/dolphincoder-starcoder2-7b:q8_0 [selected]
 ∐ auto-remove of context

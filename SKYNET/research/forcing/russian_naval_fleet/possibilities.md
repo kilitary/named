@@ -1,5 +1,6 @@
 ---
 state: Drafting
+tags: []
 ---
 # *nav**a**l* fleet~~s~~
 

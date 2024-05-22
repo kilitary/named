@@ -23,8 +23,8 @@
   "fixedHeaderInFileList": true,
   "createdYaml": false,
   "fileNameIsHeader": false,
-  "folderNote": false,
+  "folderNote": true,
   "deleteFileOption": "trash",
   "showFileNameAsFullPath": false,
-  "bookmarksEvents": false
+  "bookmarksEvents": true
 }

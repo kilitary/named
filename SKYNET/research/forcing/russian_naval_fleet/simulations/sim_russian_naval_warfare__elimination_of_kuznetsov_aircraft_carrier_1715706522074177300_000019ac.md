@@ -1,3 +1,6 @@
+---
+tags: []
+---
 ∠ temp: 0.2 ctx: 2048 war_id: 1715706522074177300_000019ac
 ⋤ model: phi3 [selected]
 ∐ auto-remove of context
