@@ -1,0 +1,23 @@
+> temp: 0.0 ctx: 8192 sim_id: 1716399820865742400_000046ec
+∠ models:
+ [ 0] 5.66G solar:latest---------------------------------------- 11B                 llama
+ [ 1] 4.67G gemma:7b-------------------------------------------- 9B                  gemma
+ [ 2] 1.56G gemma:2b-------------------------------------------- 3B                  gemma
+ [ 3] 4.41G llava:latest---------------------------------------- 7B                  llama
+ [ 4] 3.56G codellama:latest------------------------------------ 7B                  llama
+ [ 5] 3.83G starling-lm:latest---------------------------------- 7B                  llama
+ [ 6] 3.83G neural-chat:latest---------------------------------- 7B                  llama
+ [ 7] 7.95G llama3:8b-text-q8_0--------------------------------- 8B                  llama
+ [ 8] 3.83G wizardlm2:latest------------------------------------ 7B                  llama
+ [ 9] 4.58G war-resolver:latest--------------------------------- 8B                  llama
+ [10] 7.33G impulse2000/dolphincoder-starcoder2-7b:q8_0--------- 7B             starcoder2
+ [11] 4.58G sunapi386/llama-3-lexi-uncensored:8b---------------- 8B                  llama
+ [12] 2.75G dolphin-phi:2.7b-v2.6-q8_0-------------------------- 3B                   phi2
+ [13] 2.16G phi3:latest----------------------------------------- 4B                  llama
+ [14] 3.83G mistral:7b------------------------------------------ 7B                  llama
+ [15] 5.69G gfg/solar-10.7b-instruct-v1.0-uncensored:latest----- 11B                 llama
+ [16] 5.34G mannix/dolphin-2.9-llama3-8b:q5_k_m----------------- 8B                  llama
+ [17] 8.60G wizardlm-uncensored:13b-llama2-q5_K_M--------------- 13B                 llama
+ [18] 6.86G wizard-vicuna-uncensored:13b------------------------ 13B                 llama
+ [19] 4.58G gurubot/llama3-guru:latest-------------------------- 8B                  llama
+√ Ctrl-∠

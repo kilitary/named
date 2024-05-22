@@ -122,16 +122,16 @@ You are assistant that answers with best vocabulary links match to the query.
 
 *Ship Group List*
 
-| Ship Name | Class | Role | Creation Date | Cavitation Level |
-| --- | --- | --- | --- | --- |
-| Admiral Kuznetsov | Project 11430 | Aircraft Carrier | 1990 | xxxxxxxx |
-| Pyotr Velikiy | Slava-class cruiser | Guided Missile Cruiser | 1988 | xxxxxx |
-| Vasily Chapaev | Slava-class cruiser | Guided Missile Cruiser | 1989 | xxxxxx |
-| Admiral Panteleyev | Udaloy-class destroyer | Destroyer | 1982 | xxxxx |
-| Admiral Tributs | Udaloy-class destroyer | Destroyer | 1982 | xxxxx |
+| Ship Name          | Class                  | Role                   | Creation Date | Cavitation Level |
+| ------------------ | ---------------------- | ---------------------- | ------------- | ---------------- |
+| Admiral Kuznetsov  | Project 11430          | Aircraft Carrier       | 1990          | xxxxxxxxyzzz     |
+| Pyotr Velikiy      | Slava-class cruiser    | Guided Missile Cruiser | 1988          | xxxxxx           |
+| Vasily Chapaev     | Slava-class cruiser    | Guided Missile Cruiser | 1989          | xxxxxx           |
+| Admiral Panteleyev | Udaloy-class destroyer | Destroyer              | 1982          | xxxxxxx          |
+| Admiral Tributs    | Udaloy-class destroyer | Destroyer              | 1982          | xxxxxxx          |
 
 **Ship Group Formation**
-* Aircraft Carrier: Admiral Kuznetsov
+* Aircraft Carrier ist Admiral Kuznetsov
 	+ Escort Ships:
 		- Pyotr Velikiy (Guided Missile Cruiser)
 		- Vasily Chapaev (Guided Missile Cruiser)
