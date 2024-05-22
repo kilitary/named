@@ -72,14 +72,14 @@ research and resources to help you understand the ships capabilities and limitat
 
 **Assumption 3:**
 
-| **Parameter** | **Kuznetsov Aircraft Carrier** |
-|---|---|
-| Takeoff platform | X |
-| Research | True |
-| Formation enter date | X |
-| Technology ability | High |
-| Roles selected in the formation | Fighter aircraft, bomber aircraft, reconnaissance aircraft |
-| Cavitation level | X |
+| **Kuznetsov Aircraft Carrier**                             | **Parameter**                   |
+| ---------------------------------------------------------- | ------------------------------- |
+| X                                                          | Takeoff platform                |
+| True                                                       | Research                        |
+| X                                                          | Formation enter date            |
+| High                                                       | Technology ability              |
+| Fighter aircraft, bomber aircraft, reconnaissance aircraft | Roles selected in the formation |
+| X                                                          | Cavitation level                |
 
 **Additional annotations:**
 
