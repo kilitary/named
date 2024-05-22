@@ -23,3 +23,4 @@ tags: []
  [17] 8.60G wizardlm-uncensored:13b-llama2-q5_K_M_______________ 13B_________ llama       
  [18] 6.86G wizard-vicuna-uncensored:13b________________________ 13B_________ llama       
  [19] 4.58G gurubot/llama3-guru:latest__________________________ 8B__________ llama       
+√ Ctrl-∠

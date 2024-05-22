@@ -17,7 +17,7 @@
   "evernoteView": "Horizontal",
   "filePreviewOnHover": false,
   "iconBeforeFileName": true,
-  "sortFilesBy": "file-size",
+  "sortFilesBy": "last-update",
   "sortReverse": false,
   "sortFoldersBy": "item-number",
   "fixedHeaderInFileList": true,
