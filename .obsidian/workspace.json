@@ -11,12 +11,10 @@
             "id": "8ab1e7191908d7a3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
                 "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382492865112000_00004bc8.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "staged": false
               }
             }
           }
@@ -115,9 +113,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382492865112000_00004bc8.md"
-              }
+              "state": {}
             }
           },
           {
@@ -153,7 +149,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382492865112000_00004bc8.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -170,7 +165,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382492865112000_00004bc8.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -181,9 +175,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382492865112000_00004bc8.md"
-              }
+              "state": {}
             }
           },
           {
@@ -267,10 +259,12 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "d7c627305c36ce93",
+  "active": "8ab1e7191908d7a3",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382371937678300_00005760.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716382681501648600_00002d6c.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716382580841759300_00003f44.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382492865112000_00004bc8.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382371937678300_00005760.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382201927718600_000057f0.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382110761989300_000029b4.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1716382082523010700_000056f8.md",
@@ -295,8 +289,6 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756797787258500_00004be0.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756775391318800_00003714.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714551805151465100.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714756145755992900_00003b50.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1714754942453095400_00001e00.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations",
     "SKYNET/research/forcing/russian_naval_fleet",
     "SKYNET/research/forcing/russiannaval_fleet/simulations",
