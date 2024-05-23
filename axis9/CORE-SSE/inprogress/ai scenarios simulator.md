@@ -2,7 +2,6 @@
 state: Drafting
 ---
 ##### purpose
-
  1. generating possibly dangerous experiments, that could be killorious for earth
 ##### usage
 1. setup intro rules (configure tags)

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -34,6 +34,7 @@
             }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -129,7 +130,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md"
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
               }
             }
           },
@@ -166,7 +167,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -183,7 +184,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -195,7 +196,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md"
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
               }
             }
           },
@@ -280,7 +281,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "8ab1e7191908d7a3",
+  "active": "3773f8e90a4af32a",
   "lastOpenFiles": [
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
     "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
