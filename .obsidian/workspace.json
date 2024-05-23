@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8ab1e7191908d7a3",
+            "id": "3773f8e90a4af32a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -21,12 +21,25 @@
             }
           },
           {
-            "id": "3773f8e90a4af32a",
+            "id": "907b1d693fd2fb37",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
+                "file": "programs/main.py.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "8ab1e7191908d7a3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -130,7 +143,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
+                "file": "programs/main.py.md"
               }
             }
           },
@@ -167,7 +180,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
+                "file": "programs/main.py.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -184,7 +197,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
+                "file": "programs/main.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -196,7 +209,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
+                "file": "programs/main.py.md"
               }
             }
           },
@@ -241,7 +254,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -281,13 +294,13 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "3773f8e90a4af32a",
+  "active": "907b1d693fd2fb37",
   "lastOpenFiles": [
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
     "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
     "SKYNET/research/forcing/russian_naval_fleet/notes",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716422750316788600_00004258.md",
-    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "axis9/CORE-SSE/inprogress",
     "textgenerator/configs/llm",
     "textgenerator/configs",
