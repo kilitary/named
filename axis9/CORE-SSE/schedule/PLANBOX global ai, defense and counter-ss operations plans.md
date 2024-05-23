@@ -9,7 +9,7 @@ excalidraw-plugin:
 
 ## experiments-ongoing
 
-- [ ] [ai scenarios simulator](../../ai%20scenarios%20simulator.md)
+- [ ] [ai scenarios simulator](../inprogress/ai%20scenarios%20simulator.md)
 - [ ] ir scanner
 
 

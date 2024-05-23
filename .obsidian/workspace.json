@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/ai scenarios simulator.md",
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -97,8 +97,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -130,7 +129,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/ai scenarios simulator.md"
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
               }
             }
           },
@@ -167,7 +166,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/ai scenarios simulator.md",
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -184,7 +183,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/ai scenarios simulator.md",
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -196,7 +195,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/ai scenarios simulator.md"
+                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
               }
             }
           },
@@ -281,10 +280,11 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "3773f8e90a4af32a",
+  "active": "e8ab14f810b8b92a",
   "lastOpenFiles": [
+    "axis9/CORE-SSE/inprogress",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
-    "axis9/ai scenarios simulator.md",
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "textgenerator/configs/llm",
     "textgenerator/configs",
     "textgenerator",
