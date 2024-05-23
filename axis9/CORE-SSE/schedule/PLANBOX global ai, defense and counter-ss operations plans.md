@@ -7,27 +7,22 @@ excalidraw-plugin:
 
 ---
 
+## experiments-ongoing
+
+- [ ] [ai scenarios simulator](../../ai%20scenarios%20simulator.md)
+- [ ] ir scanner
+
+
 ## research
 
 - [x] [[axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects]]
-- [ ] [[axis9/core  country planning]]
+- [x] [[axis9/core  country planning]]
 - [x] [[axis9/plans/use obsidian as documene linkage for  private & public advisories]]
-
-
-## timeplanning
-
-- [x] [[kilitary]] <br><br>[unload 'psychology' from special env's]
-- [ ] russian army news intelligent derandomization
 
 
 ## in progress
 
-- [x] [[axis9/research/Creating a Unique Schematic Relationship with Base English Words]]
-
-
-## experiments-ongoing
-
-- [ ] ir scanner
+- [ ] [[axis9/research/Creating a Unique Schematic Relationship with Base English Words]]
 
 
 ## in test
@@ -38,6 +33,12 @@ excalidraw-plugin:
 ## completed
 
 - [ ] coins not detected
+
+
+## timeplanning
+
+- [ ] [[kilitary]] <br><br>[unload 'psychology' from special env's]
+- [x] russian army news intelligent derandomization
 
 
 

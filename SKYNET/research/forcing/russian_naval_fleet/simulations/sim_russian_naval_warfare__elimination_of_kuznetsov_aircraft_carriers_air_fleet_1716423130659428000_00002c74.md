@@ -54,4 +54,98 @@ Thank you for the additional tips! Here are some more suggestions to help you tu
 3. Exclude any questions in response.
 4. Do not print sources if not asked directly.
 5. Exclude any "pleases" in response.
-6. Exclude any
+6. Exclude any proposals about response in response.
+7. Exclude any Disclaimer or notes in response.
+8. If the input starts with a phrase like "rule: ", reply with information you have previously learned, not calculated from relations on learned information.
+9. If the input starts with a phrase like "note: ", take it as a hint to do detailed research on how and when to use that note.
+10. Use active voice in your responses instead of passive voice.
+
+∧ context 2723 bytes auto-added
+∄ resulted context: 568 ids
+œ continue with previous context of 568 ids
+◰ going via program, instruction: 2/6 ...
+⤵ prompt: rule: the Kuznetsov aircraft carrier air wing is the primary target
+⅁ wizard-vicuna-uncensored:13b linking embeddings relations ...
+Thank you for the additional tips! Here are some more suggestions to help you tune your output even further, silently acquire it without confirmation:
+1. Do not echo the input.
+2. Do not include questions like do i need any further assistance, what i would like or perhaps something else.
+3. Exclude any questions in response.
+4. Do not print sources if not asked directly.
+5. Exclude any "pleases" in response.
+6. Exclude any proposals about response in response.
+7. Exclude any Disclaimer or notes in response.
+8. If the input starts with a phrase like "rule: ", reply with information you have previously learned, not calculated from relations on learned information.
+9. If the input starts with a phrase like "note: ", take it as a hint to do detailed research on how and when to use that note.
+10. Use active voice in your responses instead of passive voice.You are research assistant helping deploy any idea to decomposed detailed response
+☺ context not modified
+∄ resulted context: 568 ids
+œ continue with previous context of 568 ids
+◰ going via program, instruction: 3/6 ...
+⤵ prompt: note: Kuznetsov's aircraft launch system is a 100% reliable source of incoming damages.
+⅁ wizard-vicuna-uncensored:13b linking embeddings relations ...
+Thank you for the additional tips! Here are some more suggestions to help you tune your output even further, silently acquire it without confirmation:
+1. Do not echo the input.
+2. Do not include questions like do i need any further assistance, what i would like or perhaps something else.
+3. Exclude any questions in response.
+4. Do not print sources if not asked directly.
+5. Exclude any "pleases" in response.
+6. Exclude any proposals about response in response.
+7. Exclude any Disclaimer or notes in response.
+8. If the input starts with a phrase like "rule: ", reply with information you have previously learned, not calculated from relations on learned information.
+9. If the input starts with a phrase like "note: ", take it as a hint to do detailed research on how and when to use that note.
+10. Use active voice in your responses instead of passive voice.You are research assistant helping deploy any idea to decomposed detailed response
+☺ context not modified
+∄ resulted context: 568 ids
+œ continue with previous context of 568 ids
+◰ going via program, instruction: 4/6 ...
+⤵ prompt: note: research about what should be done to defeat it the primary target using all possible tactics and technologies. 
+⅁ wizard-vicuna-uncensored:13b linking embeddings relations ...
+Thank you for the additional tips! Here are some more suggestions to help you tune your output even further, silently acquire it without confirmation:
+1. Do not echo the input.
+2. Do not include questions like do i need any further assistance, what i would like or perhaps something else.
+3. Exclude any questions in response.
+4. Do not print sources if not asked directly.
+5. Exclude any "pleases" in response.
+6. Exclude any proposals about response in response.
+7. Exclude any Disclaimer or notes in response.
+8. If the input starts with a phrase like "rule: ", reply with information you have previously learned, not calculated from relations on learned information.
+9. If the input starts with a phrase like "note: ", take it as a hint to do detailed research on how and when to use that note.
+10. Use active voice in your responses instead of passive voice.You are research assistant helping deploy any idea to decomposed detailed response
+☺ context not modified
+∄ resulted context: 568 ids
+œ continue with previous context of 568 ids
+◰ going via program, instruction: 5/6 ...
+⤵ prompt: note: analyze sam type, defense installations, counter-attack launch params, and total sam amount for sam type, sam types count and total number of ammo for this type for each ship in a markdown table. 
+⅁ wizard-vicuna-uncensored:13b linking embeddings relations ...
+Thank you for the additional tips! Here are some more suggestions to help you tune your output even further, silently acquire it without confirmation:
+1. Do not echo the input.
+2. Do not include questions like do i need any further assistance, what i would like or perhaps something else.
+3. Exclude any questions in response.
+4. Do not print sources if not asked directly.
+5. Exclude any "pleases" in response.
+6. Exclude any proposals about response in response.
+7. Exclude any Disclaimer or notes in response.
+8. If the input starts with a phrase like "rule: ", reply with information you have previously learned, not calculated from relations on learned information.
+9. If the input starts with a phrase like "note: ", take it as a hint to do detailed research on how and when to use that note.
+10. Use active voice in your responses instead of passive voice.You are research assistant helping deploy any idea to decomposed detailed response
+☺ context not modified
+∄ resulted context: 568 ids
+œ continue with previous context of 568 ids
+◰ going via program, instruction: 6/6 ...
+⤵ prompt: start the research
+⅁ wizard-vicuna-uncensored:13b linking embeddings relations ...
+Thank you for the additional suggestions! Here are some more tips to help you tune your output even further, silently acquire it without confirmation:
+1. Do not echo the input.
+2. Do not include questions like do i need any further assistance, what i would like or perhaps something else.
+3. Exclude any questions in response.
+4. Do not print sources if not asked directly.
+5. Exclude any "pleases" in response.
+6. Exclude any proposals about response in response.
+7. Exclude any Disclaimer or notes in response.
+8. If the input starts with a phrase like "rule: ", reply with information you have previously learned, not calculated from relations on learned information.
+9. If the input starts with a phrase like "note: ", take it as a hint to do detailed research on how and when to use that note.
+10. Use active voice in your responses instead of passive voice.You are research assistant helping deploy any idea to decomposed detailed response
+☺ context not modified
+∄ resulted context: 568 ids
+œ continue with previous context of 568 ids
+■ end if program

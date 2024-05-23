@@ -132,8 +132,8 @@
     },
     "Google Palm (Langchain)": {},
     "Ollama (Langchain)": {
-      "basePath": "http://localhost:11434",
-      "model": "gurubot/llama3-guru:latest"
+      "basePath": "http://0.0.0.0:11434",
+      "model": "llama3"
     },
     "Huggingface (Langchain)": {},
     "MistralAI Chat (Langchain)": {

@@ -1,0 +1,6 @@
+{
+  "showEmptyProps": false,
+  "parseTags": true,
+  "tagPrefix": "slurp/",
+  "tagCase": "kebab-case"
+}

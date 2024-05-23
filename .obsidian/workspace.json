@@ -4,35 +4,73 @@
     "type": "split",
     "children": [
       {
-        "id": "51b90877d371c8c6",
-        "type": "tabs",
+        "id": "0ff63ecd21df036e",
+        "type": "split",
         "children": [
           {
-            "id": "8ab1e7191908d7a3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+            "id": "51b90877d371c8c6",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "8ab1e7191908d7a3",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
               }
-            }
+            ],
+            "stacked": true
           },
           {
-            "id": "2fed80cec37dc24e",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
+            "id": "c8cbdf502b7bd33d",
+            "type": "split",
+            "children": [
+              {
+                "id": "89b306e97c07057f",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "8f9c85e19cc945ac",
+                    "type": "leaf",
+                    "state": {
+                      "type": "kanban",
+                      "state": {
+                        "file": "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "3ae3bb7813679bd5",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "15b3e1b5c7647862",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "axis9/ai scenarios simulator.md",
+                        "mode": "source",
+                        "backlinks": false,
+                        "source": false
+                      }
+                    }
+                  }
+                ]
               }
-            }
+            ],
+            "direction": "vertical"
           }
         ],
-        "currentTab": 1,
-        "stacked": true
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -127,7 +165,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
+                "file": "axis9/ai scenarios simulator.md"
               }
             }
           },
@@ -164,7 +202,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
+                "file": "axis9/ai scenarios simulator.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -181,7 +219,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
+                "file": "axis9/ai scenarios simulator.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -193,7 +231,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
+                "file": "axis9/ai scenarios simulator.md"
               }
             }
           },
@@ -278,8 +316,10 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "2fed80cec37dc24e",
+  "active": "15b3e1b5c7647862",
   "lastOpenFiles": [
+    "axis9/CORE-SSE/schedule/PLANBOX global ai, defense and counter-ss operations plans.md",
+    "axis9/ai scenarios simulator.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716422750316788600_00004258.md",
@@ -309,8 +349,6 @@
     "SKYNET/For vacuum divider/totally unsorted/Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716400592529683400_00004db4.md",
     "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
-    "readme.md",
-    "indirect/BMO/Profiles/BMO.md",
     "SKYNET/research/forcing/environment",
     "assets/images/alarm.png",
     "assets/images/1f4d3.png",
