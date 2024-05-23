@@ -26,7 +26,9 @@ What should be used to distinguish the basic properties of objects?
 > 9. **Motion**: Observe how an object moves or reacts when manipulated.
 > 10. **Context**: Consider the context in which you encounter the object, such as its location, purpose, and function.
 > These methods can help you distinguish basic properties of objects by highlighting their differences through negative-positive comparisons.
-> Would you like me to elaborate on any specific method?  -  -
+> Would you like me to elaborate on any specific method?  
+
+> What kind of rules should be selected from the estimated combination of senses values?
 
 > [!error]+ AI
 >
@@ -52,13 +54,16 @@ What should be used to distinguish the basic properties of objects?
 > 5. Cultural significance: The cultural significance of an object can also be used to distinguish it from others. For example, a wedding dress can be distinguished from a funeral dress based on their cultural significance and symbolism. Similarly, a work of art can be distinguished from a craft based on their cultural context and historical significance.
 > In conclusion, there are several ways to distinguish the basic properties of objects, including negative and positive differences, physical properties, chemical composition, function, and cultural significance. By observing these differences, we can identify and classify objects into different categories.
 
+What kind of rules should be selected from the estimated combination of senses values?
+
+
+
+
+
+
 ?
 Words from the English dictionary should be used to distinguish the basic properties of objects by negative/positive difference. *(Exact Quote : select words from english dictionary i should use to distinct base properties of objects by negative/positive difference*)
 
-
-What kind of rules should be selected from the estimated distinct source values?
-> [!ai]+ AI
->
 
 
 
