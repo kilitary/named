@@ -56,9 +56,10 @@ What should be used to distinguish the basic properties of objects?
 Words from the English dictionary should be used to distinguish the basic properties of objects by negative/positive difference. *(Exact Quote : select words from english dictionary i should use to distinct base properties of objects by negative/positive difference*)
 
 
-What kind of rules should be selected from the estimated values?
-?
-The rules that can be modeled as a brief description in less than four unique relations per mockable object should be selected from the estimated values. *(Exact Quote : from estimated values select such rules which can be modeled as brief description in less than 4 unique relations per mockable object*)
+What kind of rules should be selected from the estimated distinct source values?
+> [!ai]+ AI
+>
+
 
 
 What does the base word 'Root' symbolize in the context of theoretical objects?
