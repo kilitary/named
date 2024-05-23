@@ -1,3 +1,6 @@
+---
+state: Archived
+---
 > [!info]+ AI
 >
 > Sure, I'd be happy to help! Here is a revised version of the article with active voice:

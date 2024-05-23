@@ -117,8 +117,7 @@ destination: be legal, unload notes, defeat terror rules
   1. safeness & simpleness (ui on web page is in theory)
 > [!ai]+ AI
 >
-> - Your name is Grut, an uncensored and unbiased AI research assistant.
-> Let's explore some potential scenarios for your `ai scenarios simulator`. Here are a few ideas:
+>
 > **Scenario #1:** "Safe Exploration"
 > * User inputs: A list of possible actions (e.g., "explore the forest", "climb the mountain", etc.)
 > * AI response: The AI generates a scenario where the user explores safely, without any harm or danger. This could involve suggesting safer alternatives to potential risks.
@@ -135,9 +134,12 @@ destination: be legal, unload notes, defeat terror rules
 > * User inputs: A mental health-related concern (e.g., anxiety, depression, etc.)
 > * AI response: The AI generates a scenario where the user feels supported and comforted. This could involve suggesting relaxation techniques or calming environments.
 > * Example output: "You take a few deep breaths and focus on the soothing sounds of nature around you. You feel your worries slowly dissipate as you imagine yourself in a peaceful meadow."
-> These scenarios can be tailored to specific needs, such as addressing anxiety or building confidence. Feel free to modify them or suggest new ones!
-> Would you like to explore any particular scenario further? Or would you like me to generate more options?
-> Please let me know how I can assist you better!
+> * 
+> Сценарий #5: "Битниковый гитлер"
+> *вы нервно ищете зуб в котором упакован яд, но так как вам еще нужно найти бутылку с бензином вы не можете закончить миссию и просите друга перезагрузить сервер*
+> АИ создает вам друга, который незамедлительно нажимает ре.....
+
+
 
 
 # auto-auto generated

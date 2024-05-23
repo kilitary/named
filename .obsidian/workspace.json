@@ -13,20 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "907b1d693fd2fb37",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "programs/main.py.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -47,7 +34,6 @@
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -143,7 +129,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "programs/main.py.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md"
               }
             }
           },
@@ -180,7 +166,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "programs/main.py.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -197,7 +183,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "programs/main.py.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -209,7 +195,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "programs/main.py.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md"
               }
             }
           },
@@ -254,7 +240,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -294,11 +280,14 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "907b1d693fd2fb37",
+  "active": "3773f8e90a4af32a",
   "lastOpenFiles": [
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716427716745910300_000021a4.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716427582714005600_0000473c.md",
+    "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
     "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716423130659428000_00002c74.md",
-    "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
+    "programs/main.py.md",
     "SKYNET/research/forcing/russian_naval_fleet/notes",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716422750316788600_00004258.md",
     "axis9/CORE-SSE/inprogress",
@@ -327,11 +316,8 @@
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1715672110758018100_000038fc.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1715707671168431000_00003d78.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716399964153152700_000043fc.md",
     "SKYNET/For vacuum divider/freebsd-check.jpg",
     "SKYNET/For vacuum divider/ccc-final-bios-amd.pdf",
-    "SKYNET/For vacuum divider/totally unsorted/Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1716400592529683400_00004db4.md",
     "SKYNET/research/forcing/environment",
     "assets/images/alarm.png",
     "assets/images/1f4d3.png",
