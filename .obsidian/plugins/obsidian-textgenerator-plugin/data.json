@@ -4,7 +4,7 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "Ollama (Langchain)",
+  "selectedProvider": "Ollama (Langchain) 1 2 3 4 5",
   "max_tokens": 2500,
   "temperature": 0.2,
   "frequency_penalty": 0.5,
@@ -93,6 +93,26 @@
     "Default (Custom) 1": {
       "extends": "Default (Custom)",
       "name": "Default 1"
+    },
+    "Ollama (Langchain) 1": {
+      "extends": "Ollama (Langchain)",
+      "name": "ollama2-uncensored"
+    },
+    "Ollama (Langchain) 1 2": {
+      "extends": "Ollama (Langchain)",
+      "name": "war-resolver"
+    },
+    "Ollama (Langchain) 1 2 3": {
+      "extends": "Ollama (Langchain)",
+      "name": "phi3"
+    },
+    "Ollama (Langchain) 1 2 3 4": {
+      "extends": "Ollama (Langchain)",
+      "name": "phi"
+    },
+    "Ollama (Langchain) 1 2 3 4 5": {
+      "extends": "Ollama (Langchain)",
+      "name": "wizardlm-uncensored:13b-llama2-q5_K_M"
     }
   },
   "LLMProviderOptions": {
@@ -133,7 +153,7 @@
     "Google Palm (Langchain)": {},
     "Ollama (Langchain)": {
       "basePath": "http://localhost:11434",
-      "model": "llama2"
+      "model": "llama3"
     },
     "Huggingface (Langchain)": {},
     "MistralAI Chat (Langchain)": {
@@ -167,6 +187,26 @@
       "presence_penalty": 0.5,
       "top_p": 1,
       "api_key": ""
+    },
+    "Ollama (Langchain) 1": {
+      "basePath": "http://localhost:11434",
+      "model": "ollama2-uncensored"
+    },
+    "Ollama (Langchain) 1 2": {
+      "basePath": "http://localhost:11434",
+      "model": "war-resolver"
+    },
+    "Ollama (Langchain) 1 2 3": {
+      "basePath": "http://localhost:11434",
+      "model": "phi3"
+    },
+    "Ollama (Langchain) 1 2 3 4": {
+      "basePath": "http://localhost:11434",
+      "model": "phi"
+    },
+    "Ollama (Langchain) 1 2 3 4 5": {
+      "basePath": "http://localhost:11434",
+      "model": "wizardlm-uncensored:13b-llama2-q5_K_M"
     }
   },
   "LLMProviderOptionsKeysHashed": {

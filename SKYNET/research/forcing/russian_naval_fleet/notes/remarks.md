@@ -1,5 +1,13 @@
 ---
 state: Archived
+object: computer-ai
+model: 
+temperature: 
+user_name: USER
+completed: "false"
+allow_header: true
+system: qnx
+math: not needed
 ---
 > [!info]+ AI
 >

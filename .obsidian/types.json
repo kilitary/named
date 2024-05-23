@@ -29,6 +29,8 @@
     "sections": "number",
     "questions": "number",
     "answers": "number",
-    "gjgj": "text"
+    "gjgj": "text",
+    "fgh": "checkbox",
+    "finished": "checkbox"
   }
 }
