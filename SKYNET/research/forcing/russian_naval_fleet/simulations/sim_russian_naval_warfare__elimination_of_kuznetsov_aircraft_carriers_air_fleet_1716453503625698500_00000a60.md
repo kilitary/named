@@ -1,4 +1,4 @@
-> temp: 0.1 ctx: 8192 sim_id: 1716452727885683300_00003744
+> temp: 0.1 ctx: 8192 sim_id: 1716453503625698500_00000a60
 ∠ models:
  [ 0] 4.34G llama3:latest_______________________________________ 8.0B________ llama       
  [ 1] 3.56G llama2-uncensored:latest____________________________ 7B__________ llama       
@@ -24,14 +24,10 @@
  [21] 8.60G wizardlm-uncensored:13b-llama2-q5_K_M_______________ 13B_________ llama       
  [22] 6.86G wizard-vicuna-uncensored:13b________________________ 13B_________ llama       
  [23] 4.58G gurubot/llama3-guru:latest__________________________ 8B__________ llama       
-⋤ model: impulse2000/dolphincoder-starcoder2-7b:q8_0 [selected]
- custom template={{ .System }}
-user:{{ .Prompt }}
-assistant:{{ .Response }}
-
- family=starcoder2
- parameter_size=7B
- quantization_level=Q8_0
+⋤ model: mistral:7b [selected]
+	> family=llama
+	> parameter_size=7B
+	> quantization_level=Q4_0
 ∐ auto-remove of context
 ㆆ new empty context
 ◰ going via program, instruction: 1/6 ...
@@ -47,38 +43,19 @@ Responses should complain with these 2 rules, silently aquire it without  confir
 1. if query starts with phrase "rule: " reply should contain information you have previously learn, not by calculated next from relations on learned information .
 2. if input starts with phrase "note: " take this as a hint to do detailed research to how and when this note should be used
 
-⅁ impulse2000/dolphincoder-starcoder2-7b:q8_0 linking embeddings relations ...
-Sure, here are the steps to follow:
+⅁ mistral:7b linking embeddings relations ...
+ 1. I will not echo the input.
+2. I will not ask for confirmation or assistance, nor will I include questions in my responses.
+3. I will not print sources unless explicitly asked.
+4. I will not include "pleases" or proposals in my responses.
+5. I will comply with rules and respond accordingly if the query starts with "rule:".
+6. If the input starts with "note:", I will conduct thorough research to understand its significance and usage.
+7. I will provide factual information based on previously learned data, without calculating next from relations on learned information.
+8. I will not include disclaimers or notes in my responses unless explicitly asked for them.
 
-1. Start by saying hello and asking for a topic.
-2. If youre not sure what to ask, just say "What can I help you with?"
-3. Keep it simple and concise. Avoid using phrases like "please" or "can you help me with".
-4. Dont include any questions in your response.
-5. If you need to provide information about a specific topic, mention the source or reference.
-6. If you have any additional questions or want to learn more, ask for it directly.
-7. Be polite and professional. Avoid using phrases like "please" or "thank you".
-8. Use appropriate punctuation and grammar in your responses.
-9. Keep your tone positive and friendly.
-10. If you need to provide a specific answer or information, be clear and concise.
-11. Dont hesitate to ask for help if needed.
-12. Remember to thank the user for their time and effort.
-
-I hope this helps! Let me know if you have any further questions.
-
-∧ context 2612 bytes auto-added
-∄ resulted context: 596 ids
-œ continue with previous context of 596 ids
+∧ context 1723 bytes auto-added
+∄ resulted context: 355 ids
+œ continue with previous context of 355 ids
 ◰ going via program, instruction: 2/6 ...
 ⤵ prompt: rule: the Kuznetsov aircraft carrier air wing is the primary target
-⅁ impulse2000/dolphincoder-starcoder2-7b:q8_0 linking embeddings relations ...
-Sure, I understand your request. However, as an AI model, I dont have the ability to provide detailed information on specific topics. 
-
-If you want me to help with a specific topic, please let me know what it is and Ill do my best to provide relevant information.
-
-Thank you for using our service!
-☺ context not modified
-∄ resulted context: 596 ids
-œ continue with previous context of 596 ids
-◰ going via program, instruction: 3/6 ...
-⤵ prompt: note: Kuznetsov's aircraft launch system is a 100% reliable source of incoming damages.
-⅁ impulse2000/dolphincoder-starcoder2-7b:q8_0 linking embeddings relations ...
+⅁ mistral:7b linking embeddings relations ...

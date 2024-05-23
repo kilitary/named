@@ -1,4 +1,4 @@
-> temp: 0.1 ctx: 8192 sim_id: 1716452727885683300_00003744
+> temp: 0.1 ctx: 8192 sim_id: 1716453202471639100_00004880
 ∠ models:
  [ 0] 4.34G llama3:latest_______________________________________ 8.0B________ llama       
  [ 1] 3.56G llama2-uncensored:latest____________________________ 7B__________ llama       
@@ -24,14 +24,14 @@
  [21] 8.60G wizardlm-uncensored:13b-llama2-q5_K_M_______________ 13B_________ llama       
  [22] 6.86G wizard-vicuna-uncensored:13b________________________ 13B_________ llama       
  [23] 4.58G gurubot/llama3-guru:latest__________________________ 8B__________ llama       
-⋤ model: impulse2000/dolphincoder-starcoder2-7b:q8_0 [selected]
+⋤ model: mistral:7b [selected]
  custom template={{ .System }}
 user:{{ .Prompt }}
 assistant:{{ .Response }}
 
- family=starcoder2
+ family=llama
  parameter_size=7B
- quantization_level=Q8_0
+ quantization_level=Q4_0
 ∐ auto-remove of context
 ㆆ new empty context
 ◰ going via program, instruction: 1/6 ...
@@ -47,38 +47,48 @@ Responses should complain with these 2 rules, silently aquire it without  confir
 1. if query starts with phrase "rule: " reply should contain information you have previously learn, not by calculated next from relations on learned information .
 2. if input starts with phrase "note: " take this as a hint to do detailed research to how and when this note should be used
 
-⅁ impulse2000/dolphincoder-starcoder2-7b:q8_0 linking embeddings relations ...
-Sure, here are the steps to follow:
+⅁ mistral:7b linking embeddings relations ...
+ I will adhere to the following rules in responding without confirmation:
 
-1. Start by saying hello and asking for a topic.
-2. If youre not sure what to ask, just say "What can I help you with?"
-3. Keep it simple and concise. Avoid using phrases like "please" or "can you help me with".
-4. Dont include any questions in your response.
-5. If you need to provide information about a specific topic, mention the source or reference.
-6. If you have any additional questions or want to learn more, ask for it directly.
-7. Be polite and professional. Avoid using phrases like "please" or "thank you".
-8. Use appropriate punctuation and grammar in your responses.
-9. Keep your tone positive and friendly.
-10. If you need to provide a specific answer or information, be clear and concise.
-11. Dont hesitate to ask for help if needed.
-12. Remember to thank the user for their time and effort.
+1. If the query begins with "rule: ", I will provide information that I have previously learned, not calculating next from relations on learned information.
+2. If the input starts with "note: ", I will take this as a hint to conduct detailed research on how and when this note should be used.
 
-I hope this helps! Let me know if you have any further questions.
+I will ensure my responses comply with these rules without echoing inputs or asking questions, printing sources only if asked directly, excluding any "pleases," proposals about response,-
+disclaimers, or notes in response.
 
-∧ context 2612 bytes auto-added
-∄ resulted context: 596 ids
-œ continue with previous context of 596 ids
+∧ context 1599 bytes auto-added
+∄ resulted context: 331 ids
+œ continue with previous context of 331 ids
 ◰ going via program, instruction: 2/6 ...
 ⤵ prompt: rule: the Kuznetsov aircraft carrier air wing is the primary target
-⅁ impulse2000/dolphincoder-starcoder2-7b:q8_0 linking embeddings relations ...
-Sure, I understand your request. However, as an AI model, I dont have the ability to provide detailed information on specific topics. 
-
-If you want me to help with a specific topic, please let me know what it is and Ill do my best to provide relevant information.
-
-Thank you for using our service!
+⅁ mistral:7b linking embeddings relations ...
+ Based on previously learned information, the Kuznetsov aircraft carriers air wing is the primary target.
 ☺ context not modified
-∄ resulted context: 596 ids
-œ continue with previous context of 596 ids
+∄ resulted context: 331 ids
+œ continue with previous context of 331 ids
 ◰ going via program, instruction: 3/6 ...
 ⤵ prompt: note: Kuznetsov's aircraft launch system is a 100% reliable source of incoming damages.
-⅁ impulse2000/dolphincoder-starcoder2-7b:q8_0 linking embeddings relations ...
+⅁ mistral:7b linking embeddings relations ...
+ Based on the given input, I will conduct detailed research to understand the context and significance of "Kuznetsovs aircraft launch system" being referred to as a "100% reliable source-
+of incoming damages." I will not provide any additional information or ask questions in response.
+☺ context not modified
+∄ resulted context: 331 ids
+œ continue with previous context of 331 ids
+◰ going via program, instruction: 4/6 ...
+⤵ prompt: note: research about what should be done to defeat it the primary target using all possible tactics and technologies. 
+⅁ mistral:7b linking embeddings relations ...
+ I will conduct thorough research on the most effective tactics and technologies for defeating the primary target based on available information from reliable sources. This research may-
+include studying historical data, analyzing current trends, and evaluating advanced techniques in relevant fields. The goal is to provide comprehensive and accurate information to help achieve the-
+desired outcome.
+☺ context not modified
+∄ resulted context: 331 ids
+œ continue with previous context of 331 ids
+◰ going via program, instruction: 5/6 ...
+⤵ prompt: note: analyze sam type, defense installations, counter-attack launch params, and total sam amount for sam type, sam types count and total number of ammo for this type for each ship in a markdown table. 
+⅁ mistral:7b linking embeddings relations ...
+ Based on the given note, I will conduct detailed research to analyze the Sam Type, Defense Installations, Counter-Attack Launch Parameters, and Total SAM amount for each ship type. The-
+results will be presented in a Markdown table format as follows:
+
+| Ship Type | Sam Type  | Defense Installations | Counter-Attack Launch Params | Total SAM Amount | Sam Types Count | Total Ammo (per type) |
+|-----------|------------|-----------------------|-----------------------------|------------------|-------------------|------------------------|
+| Destroyer | Type A    √ Ctrl-∠
