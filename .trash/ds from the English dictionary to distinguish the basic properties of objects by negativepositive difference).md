@@ -1,12 +1,18 @@
 ---
-state: analyze
-tags:
-  - ai
-  - brainStorming
-  - linking
-model: wizardlm-uncensored:13b-llama2-q5_K_M
-finished: false
+promptId: ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference)
+name: "🗞️ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference) "
+description: ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference)
+author: ""
+tags: ""
+version: 0.0.1
+disableProvider: false
+
 ---
+```handlebars
+
+```
+***
+
 # Generated Quiz
 
 #flashcards
@@ -28,12 +34,12 @@ What should be used to distinguish the basic properties of objects?
 > These methods can help you distinguish basic properties of objects by highlighting their differences through negative-positive comparisons.
 > Would you like me to elaborate on any specific method?  
 
-> What kind of rules should be selected from the estimated combination of senses?
-> What are some ways to distinguish the basic properties of objects? is it just matter of physics?
+> What kind of rules should be selected from the estimated combination of senses values?
 > [!ai]+ AI
->
-> What are some ways to distinguish the basic properties of objects without relying on physical methods?
-
+> 
+> 
+> What are some ways to distinguish the basic properties of objects?
+> matter of physics
 > 
 
 
@@ -98,3 +104,6 @@ How does the word 'Spark' create a schematic relationship with theoretical objec
 ?
 'Spark' symbolizes inspiration or energy, creating a schematic relationship between the object and its ability to ignite creativity or passion. *(Exact Quote : Spark - This word can symbolize inspiration or energy, creating a schematic relationship between the object and its ability to ignite creativity or passion.*)
 
+
+***
+{{output}}

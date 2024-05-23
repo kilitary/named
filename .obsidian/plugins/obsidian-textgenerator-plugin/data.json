@@ -5,7 +5,7 @@
   "api_key": "",
   "encrypt_keys": false,
   "selectedProvider": "Ollama (Langchain) 1 2 3 4 5",
-  "max_tokens": 2500,
+  "max_tokens": 5500,
   "temperature": 0.2,
   "frequency_penalty": 0.5,
   "showStatusBar": true,
