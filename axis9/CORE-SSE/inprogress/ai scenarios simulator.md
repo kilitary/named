@@ -1,5 +1,17 @@
 ---
 state: Drafting
+type: exchange
+tags:
+  - ai
+  - brainStorming
+  - answer
+object: remote
+model: gurubot/llama3-guru:latest
+temperature: 
+completed: "false"
+math: not needed
+prompt: 
+destination: be legal, unload notes, defeat terror rules
 ---
 ##### purpose
  1. generating possibly dangerous experiments, that could be killorious for earth
