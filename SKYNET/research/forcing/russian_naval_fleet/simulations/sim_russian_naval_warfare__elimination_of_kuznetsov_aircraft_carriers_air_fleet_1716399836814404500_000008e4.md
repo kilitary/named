@@ -1,5 +1,7 @@
 ---
 tags: []
+commands:
+  - gfdh
 ---
 > temp: 0.0 ctx: 8192 sim_id: 1716399836814404500_000008e4
 ∠ models:

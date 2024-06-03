@@ -1,6 +1,7 @@
 ---
 state: Drafting
 tags: []
+commands: []
 ---
 F:\ollama-python\venv\Scripts\python.exe F:\ollama-python\ask.py 
 √ temp: 0.01 ctx: 8192

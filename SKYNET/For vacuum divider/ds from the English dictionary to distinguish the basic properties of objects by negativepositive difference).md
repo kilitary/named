@@ -6,6 +6,7 @@ tags:
   - linking
 model: wizardlm-uncensored:13b-llama2-q5_K_M
 finished: false
+commands: []
 ---
 # Generated Quiz
 

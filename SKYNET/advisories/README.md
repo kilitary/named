@@ -1,6 +1,7 @@
 ---
 state: Final
 tags: []
+commands: []
 ---
 ![[alarm.png]]
 

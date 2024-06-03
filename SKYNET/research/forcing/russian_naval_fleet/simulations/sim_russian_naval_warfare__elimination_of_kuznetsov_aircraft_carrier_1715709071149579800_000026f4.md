@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 <Response should complain with these assumptions:
 1. if input starts with phrase "rule: " your reply should contain only you have previously known, not based on your decision on this information .

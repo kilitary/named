@@ -4,13 +4,13 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "Ollama (Langchain) 1 2 3 4 5",
+  "selectedProvider": "Ollama (Langchain)",
   "max_tokens": 5500,
-  "temperature": 0.2,
+  "temperature": 0.7,
   "frequency_penalty": 0.5,
   "showStatusBar": true,
-  "outputToBlockQuote": true,
-  "freeCursorOnStreaming": true,
+  "outputToBlockQuote": false,
+  "freeCursorOnStreaming": false,
   "allowJavascriptRun": false,
   "experiment": false,
   "promptsPath": "textgenerator/templates",
@@ -24,57 +24,55 @@
     "customInstruct": "Title: {{title}}\n  \nStarred Blocks: {{starredBlocks}}\n\t  \n{{tg_selection}}",
     "contextTemplate": "Title: {{title}}\n\t\nStarred Blocks: {{starredBlocks}}\n\t  \n{{tg_selection}}"
   },
-  "requestTimeout": 16000,
+  "requestTimeout": 300000,
   "options": {
     "generate-text": true,
     "generate-text-with-metadata": true,
     "insert-generated-text-From-template": true,
-    "create-generated-text-From-template": true,
+    "create-generated-text-From-template": false,
     "search-results-batch-generate-from-template": true,
-    "insert-text-From-template": true,
-    "create-text-From-template": true,
+    "insert-text-From-template": false,
+    "create-text-From-template": false,
     "show-modal-From-template": true,
     "open-template-as-tool": true,
     "open-playground": true,
     "set_max_tokens": true,
     "set-llm": true,
     "packageManager": true,
-    "create-template": true,
+    "create-template": false,
     "get-title": true,
-    "generated-text-to-clipboard-From-template": true,
+    "generated-text-to-clipboard-From-template": false,
     "calculate-tokens": true,
     "calculate-tokens-for-template": true,
-    "text-extractor-tool": false,
+    "text-extractor-tool": true,
     "stop-stream": true,
     "custom-instruct": true,
-    "generate-in-right-click-menu": true,
+    "generate-in-right-click-menu": false,
     "batch-generate-in-right-click-files-menu": true,
-    "tg-block-processor": false,
+    "tg-block-processor": true,
     "reload": true
   },
   "advancedOptions": {
-    "generateTitleInstructEnabled": true,
+    "generateTitleInstructEnabled": false,
     "generateTitleInstruct": "Generate a title for the current document (do not use * \" \\ / < > : | ? .):\n{{substring content 0 255}}"
   },
   "autoSuggestOptions": {
     "customInstructEnabled": true,
     "customInstruct": "Continue the follwing text:\nTitle: {{title}}\n{{query}}",
     "isEnabled": false,
-    "allowInNewLine": true,
-    "delay": 0,
-    "numberOfSuggestions": 4,
-    "triggerPhrase": "",
+    "allowInNewLine": false,
+    "delay": 300,
+    "numberOfSuggestions": 5,
+    "triggerPhrase": "  ",
     "stop": ".",
     "showStatus": true,
-    "customProvider": true,
-    "inlineSuggestions": true,
-    "overrideTrigger": " ",
-    "showInMarkdown": true,
-    "selectedProvider": "Ollama (Langchain)"
+    "customProvider": false,
+    "inlineSuggestions": false,
+    "overrideTrigger": " "
   },
   "slashSuggestOptions": {
     "isEnabled": false,
-    "triggerPhrase": "!!"
+    "triggerPhrase": "/"
   },
   "extractorsOptions": {
     "PDFExtractor": true,
@@ -84,134 +82,24 @@
     "ImageExtractorEmbded": true,
     "ImageExtractor": true
   },
-  "displayErrorInEditor": true,
-  "LLMProviderProfiles": {
-    "OpenAI Instruct (Langchain) 1": {
-      "extends": "OpenAI Instruct (Langchain)",
-      "name": "OpenAI Instruct 1"
-    },
-    "Default (Custom) 1": {
-      "extends": "Default (Custom)",
-      "name": "Default 1"
-    },
-    "Ollama (Langchain) 1": {
-      "extends": "Ollama (Langchain)",
-      "name": "ollama2-uncensored"
-    },
-    "Ollama (Langchain) 1 2": {
-      "extends": "Ollama (Langchain)",
-      "name": "war-resolver"
-    },
-    "Ollama (Langchain) 1 2 3": {
-      "extends": "Ollama (Langchain)",
-      "name": "phi3"
-    },
-    "Ollama (Langchain) 1 2 3 4": {
-      "extends": "Ollama (Langchain)",
-      "name": "phi"
-    },
-    "Ollama (Langchain) 1 2 3 4 5": {
-      "extends": "Ollama (Langchain)",
-      "name": "wizardlm-uncensored:13b-llama2-q5_K_M"
-    }
-  },
+  "displayErrorInEditor": false,
+  "LLMProviderProfiles": {},
   "LLMProviderOptions": {
     "whisper": {
       "base_path": "https://api.openai.com/v1",
       "model": "whisper-1"
     },
     "OpenAI Chat (Langchain)": {
-      "basePath": "https://api.openai.com/v1",
-      "api_key": "",
-      "model": "gpt-3.5-turbo-16k"
+      "basePath": "https://api.openai.com/v1"
     },
-    "Default (Custom)": {
-      "endpoint": "http://localhost:11434",
-      "custom_header": "{\n    \"Content-Type\": \"application/json\",\n    authorization: \"Bearer {{api_key}}\"\n}",
-      "custom_body": "{\n    model: \"{{model}}\",\n    temperature: {{temperature}},\n    top_p: {{top_p}},\n    frequency_penalty: {{frequency_penalty}},\n    presence_penalty: {{presence_penalty}},\n    max_tokens: {{max_tokens}},\n    n: {{n}},\n    stream: {{stream}},\n    stop: \"{{stop}}\",\n    messages: {{stringify messages}}\n}",
-      "model": "gpt-3.5-turbo-16k",
-      "sanatization_streaming": "(chunk) => {\n    console.log({ chunk })\n    let resultText = \"\";\n    const lines = chunk.split(\"\ndata: \");\n\n    const parsedLines = lines\n        .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n        .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n        .map((line) => {\n            try {\n                return JSON.parse(line)\n            } catch { }\n        }) // Parse the JSON string\n        .filter(Boolean);\n\n    for (const parsedLine of parsedLines) {\n        const { choices } = parsedLine;\n        const { delta } = choices[0];\n        const { content } = delta;\n        // Update the UI with the new content\n        if (content) {\n            resultText += content;\n        }\n    }\n    return resultText;\n}",
-      "sanatization_response": "async (data, res)=>{\n  // catch error\n  if (res.status >= 300) {\n    const err = data?.error?.message || JSON.stringify(data);\n    throw err;\n  }\n\n  // get choices\n  const choices = data.choices.map(c=> c.message);\n\n  // the return object should be in the format of \n  // { content: string }[] \n  // if there's only one response, put it in the array of choices.\n  return choices;\n}",
-      "frequency_penalty": 0,
-      "presence_penalty": 0.5,
-      "top_p": 1,
-      "api_key": ""
+    "Ollama (Langchain)": {
+      "model": "llama3",
+      "basePath": "http://localhost:11434"
     },
     "OpenAI Instruct (Langchain)": {
       "basePath": "https://api.openai.com/v1",
-      "model": "gpt-3.5-turbo-instruct",
-      "api_key": ""
-    },
-    "OpenAI Instruct (Langchain) 1": {
-      "basePath": "https://api.openai.com/v1",
-      "model": "gpt-3.5-turbo-instruct",
-      "api_key": ""
-    },
-    "Google GenerativeAI (Langchain)": {
-      "model": "models/gemini-pro"
-    },
-    "Google Palm (Langchain)": {},
-    "Ollama (Langchain)": {
-      "basePath": "http://localhost:11434",
-      "model": "llama3"
-    },
-    "Huggingface (Langchain)": {},
-    "MistralAI Chat (Langchain)": {
-      "basePath": "https://api.mistral.ai/v1",
-      "model": "mistral-tiny"
-    },
-    "Chat Anthropic (Langchain)": {
-      "model": "claude-2"
-    },
-    "Azure OpenAI Chat (Langchain)": {},
-    "Azure OpenAI Instruct (Langchain)": {},
-    "Anthropic Legacy (Custom)": {
-      "endpoint": "https://api.anthropic.com/v1/messages",
-      "custom_header": "{\n    \"anthropic-version\": \"2023-06-01\",\n    \"Content-Type\": \"application/json\",\n    \"x-api-key\":  \"{{api_key}}\"\n}",
-      "custom_body": "{\n    model: \"{{model}}\",\n    stream: {{stream}},\n    max_tokens: {{max_tokens}},\n    messages: {{stringify messages}}\n}",
-      "model": "claude-2.1",
-      "n": 1,
-      "sanatization_streaming": "(chunk) => {\n    console.log({ chunk })\n    let resultText = \"\";\n    const lines = chunk.split(\"\ndata: \");\n\n    const parsedLines = lines\n        .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n        .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n        .map((line) => {\n            try {\n                return JSON.parse(line)\n            } catch { }\n        }) // Parse the JSON string\n        .filter(Boolean);\n\n    for (const parsedLine of parsedLines) {\n        const { choices } = parsedLine;\n        const { delta } = choices[0];\n        const { content } = delta;\n        // Update the UI with the new content\n        if (content) {\n            resultText += content;\n        }\n    }\n    return resultText;\n}",
-      "sanatization_response": "async (data, res)=>{\n    // catch error\n    if (res.status >= 300) {\n      const err = data?.error?.message || JSON.stringify(data);\n      throw err;\n    }\n  \n    // get choices\n    const choices = data.content.map(c=> ({role:\"assistant\", content:c.text}));\n  \n    // the return object should be in the format of \n    // { content: string }[] \n    // if there's only one response, put it in the array of choices.\n    return choices;\n  }",
-      "CORSBypass": true,
-      "streamable": false
-    },
-    "Default (Custom) 1": {
-      "endpoint": "http://localhost:11434",
-      "custom_header": "{\n    \"Content-Type\": \"application/json\",\n    authorization: \"Bearer {{api_key}}\"\n}",
-      "custom_body": "{\n    model: \"{{model}}\",\n    temperature: {{temperature}},\n    top_p: {{top_p}},\n    frequency_penalty: {{frequency_penalty}},\n    presence_penalty: {{presence_penalty}},\n    max_tokens: {{max_tokens}},\n    n: {{n}},\n    stream: {{stream}},\n    stop: \"{{stop}}\",\n    messages: {{stringify messages}}\n}",
-      "model": "gpt-3.5-turbo-16k",
-      "sanatization_streaming": "(chunk) => {\n    console.log({ chunk })\n    let resultText = \"\";\n    const lines = chunk.split(\"\ndata: \");\n\n    const parsedLines = lines\n        .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n        .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n        .map((line) => {\n            try {\n                return JSON.parse(line)\n            } catch { }\n        }) // Parse the JSON string\n        .filter(Boolean);\n\n    for (const parsedLine of parsedLines) {\n        const { choices } = parsedLine;\n        const { delta } = choices[0];\n        const { content } = delta;\n        // Update the UI with the new content\n        if (content) {\n            resultText += content;\n        }\n    }\n    return resultText;\n}",
-      "sanatization_response": "async (data, res)=>{\n  // catch error\n  if (res.status >= 300) {\n    const err = data?.error?.message || JSON.stringify(data);\n    throw err;\n  }\n\n  // get choices\n  const choices = data.choices.map(c=> c.message);\n\n  // the return object should be in the format of \n  // { content: string }[] \n  // if there's only one response, put it in the array of choices.\n  return choices;\n}",
-      "frequency_penalty": 0,
-      "presence_penalty": 0.5,
-      "top_p": 1,
-      "api_key": ""
-    },
-    "Ollama (Langchain) 1": {
-      "basePath": "http://localhost:11434",
-      "model": "ollama2-uncensored"
-    },
-    "Ollama (Langchain) 1 2": {
-      "basePath": "http://localhost:11434",
-      "model": "war-resolver"
-    },
-    "Ollama (Langchain) 1 2 3": {
-      "basePath": "http://localhost:11434",
-      "model": "phi3"
-    },
-    "Ollama (Langchain) 1 2 3 4": {
-      "basePath": "http://localhost:11434",
-      "model": "phi"
-    },
-    "Ollama (Langchain) 1 2 3 4 5": {
-      "basePath": "http://localhost:11434",
-      "model": "wizardlm-uncensored:13b-llama2-q5_K_M"
+      "model": "gpt-3.5-turbo-instruct"
     }
   },
-  "LLMProviderOptionsKeysHashed": {
-    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-NXgLa8BWjeP5hgwEPGT5T3BlbkFJieR00eg5xsb0aRyeOB1x",
-    "OpenAI Instruct (Langchain).api_key": "__@#key_prefix#@__sk-NXgLa8BWjeP5hgwEPGT5T3BlbkFJieR00eg5xsb0aRyeOB1x"
-  },
-  "api_key_encrypted": "__@#key_prefix#@__sk-NXgLa8BWjeP5hgwEPGT5T3BlbkFJieR00eg5xsb0aRyeOB1x"
+  "LLMProviderOptionsKeysHashed": {}
 }

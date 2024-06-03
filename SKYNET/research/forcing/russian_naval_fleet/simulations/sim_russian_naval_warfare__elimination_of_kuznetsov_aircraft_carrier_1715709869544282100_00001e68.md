@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 <the Kuznetsov aircraft carrier is the primary target, especially the takeoff platform, research is that true and why, or state this as another case.
 analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count>

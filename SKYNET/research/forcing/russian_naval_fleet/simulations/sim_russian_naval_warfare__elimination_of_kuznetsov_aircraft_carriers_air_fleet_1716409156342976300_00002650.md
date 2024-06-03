@@ -1,3 +1,7 @@
+---
+tags: []
+commands: []
+---
 > temp: 0.0 ctx: 8192 sim_id: 1716409156342976300_00002650
 ∠ models:
  [ 0] 3.56G llama2-uncensored:latest____________________________ 7B__________ llama       

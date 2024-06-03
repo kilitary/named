@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 `F:\ollama-dev\venv\Scripts\python.exe F:\ollama-dev\ask.py 
 ∠ temp: 0.1 ctx: 2048 war_id: 1714759254000965100_00000fd8

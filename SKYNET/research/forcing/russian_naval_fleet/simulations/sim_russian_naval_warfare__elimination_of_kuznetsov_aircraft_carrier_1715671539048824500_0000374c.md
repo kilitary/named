@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 ∠ temp: 0.1 ctx: 2048 war_id: 1715671539048824500_0000374c
  [ 0] dolphin-phi:2.7b-v2.6-q6_K

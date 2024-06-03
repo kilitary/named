@@ -1,31 +1,5 @@
 {
   "state": {
-    "sections": [
-      {
-        "name": "Section 1",
-        "children": [
-          {
-            "type": "stopwatch",
-            "name": "init",
-            "startMillis": 1713739641335,
-            "offsetMillis": 2179750,
-            "showMillis": true,
-            "isRunning": true,
-            "lapTimes": [
-              896062,
-              2525842,
-              3732011,
-              4698569,
-              4749689
-            ]
-          },
-          {
-            "type": "counter",
-            "name": "Counter 2",
-            "value": 17
-          }
-        ]
-      }
-    ]
+    "sections": []
   }
 }

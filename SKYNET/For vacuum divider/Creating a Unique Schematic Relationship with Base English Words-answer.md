@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 ### 주제: Creating a Unique Schematic Relationship with Base English Words-answer
 ----

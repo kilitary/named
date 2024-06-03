@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 ∠ temp: 0.2 ctx: 2048 war_id: 1715706860527108900_00004a70
 ⋤ model: phi3 [selected]

@@ -8,8 +8,10 @@ completed: "false"
 allow_header: true
 system: qnx
 math: not needed
+tags: []
+commands: []
 ---
-> [!info]+ AI
+> [!tip]+ AI
 >
 > Sure, I'd be happy to help! Here is a revised version of the article with active voice:
 > Title: Simulating Russian Naval Warfare: Elimination of Kuznetsov Aircraft Carriers & Air Fleet (1716423130659428000_00002c74)

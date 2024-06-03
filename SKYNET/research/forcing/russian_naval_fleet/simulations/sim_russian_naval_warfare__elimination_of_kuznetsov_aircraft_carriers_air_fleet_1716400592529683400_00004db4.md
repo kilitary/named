@@ -1,5 +1,6 @@
 ---
 tags: []
+commands: []
 ---
 > temp: 0.0 ctx: 8192 sim_id: 1716400592529683400_00004db4
 ∠ models:

@@ -3,6 +3,7 @@ state: resolving
 math: not needed
 destination: defeating rules
 tags: []
+commands: []
 ---
 F:\ollama-python\venv\Scripts\python.exe F:\ollama-python\ask.py 
 ∠ temp: 0.1 ctx: 2048

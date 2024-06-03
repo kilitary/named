@@ -1,5 +1,7 @@
 ---
 state: Archived
+tags: []
+commands: []
 ---
 > temp: 0.1 ctx: 8192 sim_id: 1716423130659428000_00002c74
 ∠ models:
