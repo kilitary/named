@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/scanning/RF_microwave_scan.md",
+                "file": "SKYNET/research/scanning/wirescan_navscan/simulations/sim_3d_wire_connections_mapper_using_remote_light-powered_resistance-bias_RF_laser_transmitter-_receiver_diff_scan_1717460546315220700_00002ba8.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -108,7 +108,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/scanning/RF_microwave_scan.md"
+                "file": "SKYNET/research/scanning/wirescan_navscan/simulations/sim_3d_wire_connections_mapper_using_remote_light-powered_resistance-bias_RF_laser_transmitter-_receiver_diff_scan_1717460546315220700_00002ba8.md"
               }
             }
           },
@@ -145,7 +145,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/scanning/RF_microwave_scan.md",
+                "file": "SKYNET/research/scanning/wirescan_navscan/simulations/sim_3d_wire_connections_mapper_using_remote_light-powered_resistance-bias_RF_laser_transmitter-_receiver_diff_scan_1717460546315220700_00002ba8.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -162,7 +162,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/scanning/RF_microwave_scan.md",
+                "file": "SKYNET/research/scanning/wirescan_navscan/simulations/sim_3d_wire_connections_mapper_using_remote_light-powered_resistance-bias_RF_laser_transmitter-_receiver_diff_scan_1717460546315220700_00002ba8.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -174,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/scanning/RF_microwave_scan.md"
+                "file": "SKYNET/research/scanning/wirescan_navscan/simulations/sim_3d_wire_connections_mapper_using_remote_light-powered_resistance-bias_RF_laser_transmitter-_receiver_diff_scan_1717460546315220700_00002ba8.md"
               }
             }
           },
@@ -244,11 +244,13 @@
   },
   "active": "3773f8e90a4af32a",
   "lastOpenFiles": [
-    "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
-    "SKYNET/research/scanning/RF_microwave_scan.md",
-    "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
     "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
+    "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
     "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+    "SKYNET/research/scanning/RF_microwave_scan.md",
+    "SKYNET/research/scanning/wirescan_navscan/simulations/sim_3d_wire_connections_mapper_using_remote_light-powered_resistance-bias_RF_laser_transmitter-_receiver_diff_scan_1717460546315220700_00002ba8.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717460522430643100_00003a30.md",
+    "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
     "assets/images/1f3e3.png",
     "assets/images/1f3e6.png",
     "SKYNET/research/Research Assistant/and how do you know what.md",
@@ -273,8 +275,6 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717389737889698700_00004ccc.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717389431330435600_000039e0.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638225190735900_00001264.md",
-    "SKYNET/research/forcing/russian_naval_fleet/temp russian naval fleet.md",
     "indirect/garbage/Untitled.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
