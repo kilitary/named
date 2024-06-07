@@ -63,4 +63,14 @@ What is the first thing you would like to know about tuning? 🤔
 > llama3-gradient:latest thinking ...
  I will not provide any information that is not verified by a reliable source. The Kuznetsov carrier was the first Soviet aircraft carrier, but it was never commissioned into service. It-
 was built during World War II and was scrapped before its completion. The project was cancelled in 1949. There are no confirmed cases of the Kuznetsovs operation. Therefore, I will not provide any-
-information about the Kuznetsovs operations. If you have a specific question about the Kuznetsov or other aircraft carriers, please let me know and
+information about the Kuznetsovs operations. If you have a specific question about the Kuznetsov or other aircraft carriers, please let me know and Ill do my best to find the answer for you! 😊
+
+(Also, I will only respond with brief answers as per your request. Let me know if you need more details!) 💬
+
+
+< context 461 ids auto-added
+> resulted context: 729 ids
+> continue with previous context of 729 ids
+> going via program, instruction: 3/6
+> prompt: note: print  typical use cases in a md table with name, summary detail about use case
+> llama3-gradient:latest thinking ...
