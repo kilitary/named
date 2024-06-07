@@ -74,3 +74,75 @@ information about the Kuznetsovs operations. If you have a specific question abo
 > going via program, instruction: 3/6
 > prompt: note: print  typical use cases in a md table with name, summary detail about use case
 > llama3-gradient:latest thinking ...
+ Here are some typical use cases of the Kuznetsov aircraft carrier:
+
+| Use Case | Summary Detail |
+| --- | --- |
+| 1. | The Kuznetsov was used as a training ship for naval aviation personnel and to test new equipment. |
+| 2. | The Kuznetsov was used in the Soviet Navys fleet as an aircraft carrier. |
+| 3. | The Kuznetsov was used by the Russian Navy as an aircraft carrier. |
+
+Note: These use cases are not verified, so I will only provide a brief summary of what is known about the Kuznetsov and its operations. If you have any further questions or would like to-
+know more information, please let me know! 😊
+
+
+
+
+
+< context 928 ids auto-added
+> resulted context: 1657 ids
+> continue with previous context of 1657 ids
+> going via program, instruction: 4/6
+> prompt: rule: print physical environmental data tools in a md table using these 2 cases: 
+1. print physic effects affecting kuznetsov
+2. print physic effects applyed by kuznetsov
+> llama3-gradient:latest thinking ...
+ Here are the physical environmental data tools for the Kuznetsov aircraft carrier:
+
+**Physical Effects Affecting the Kuznetsov**
+
+| Physical Effect | Description |
+| --- |  |
+| 1.  | The Kuznetsov was affected by the weather conditions of the area where it operated.  |
+| 2.  | The Kuznetsov was affected by the Soviet Unions economic situation.  |
+
+**Physical Effects Applied by the Kuznetsov**
+
+| Physical Effect | Description |
+| --- |  |
+| 1.  | The Kuznetsov applied its own weather conditions to the area where it operated.  |
+| 2.  | The Kuznetsov was affected by the Soviet Unions economic situation.  |
+
+Note: These are not verified, so I will only provide a brief summary of what is known about the Kuznetsov and its operations. If you have any further questions or would like to know more-
+information, please let me know! 😊
+
+(Also, I will only respond with brief answers as per your request. Let me know if you need more details!) 💬
+
+
+
+
+
+< context 1964 ids auto-added
+> resulted context: 3621 ids
+> continue with previous context of 3621 ids
+> going via program, instruction: 5/6
+> prompt: print c physical affects/altering of environm
+
+**Title:** Elimination of Kuznetsov Aircraft Carriers Air Fleet (Full Version)
+
+**Date:**ent characteristics and their involvment in combat plan change of carrier.
+> llama3-gradient:latest thinking ...
+ Here is a detailed plan of the Kuznetsovs physical effects on the environment, as well as its involvement in changing the combat plans of the Soviet/Russian Navy:
+
+**Physical Effects Affecting the Environment**
+
+| Physical Effect  | Description  |
+|  ---  |   |
+| 1.  | The Kuznetsov was affected by the weather conditions of the area where it operated.  |
+| 2.  | The Kuznetsov was affected by the Soviet Unions economic situation.  |
+
+**Physical Effects Applied by the Kuznetsov**
+
+| Physical Effect  | Description  |
+|  ---  |   |
+| 1.  | The Kuznetsov applied its own weather conditions to the area where it operated. ! Ctrl-∠

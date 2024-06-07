@@ -93,7 +93,7 @@
       "basePath": "https://api.openai.com/v1"
     },
     "Ollama (Langchain)": {
-      "model": "llama3",
+      "model": "llama3-gradient",
       "basePath": "http://localhost:11434"
     },
     "OpenAI Instruct (Langchain)": {
