@@ -1,3 +1,6 @@
+---
+state: Drafting
+---
 * temp: 0.01 ctx: 1048000 sim_id: 1717868220245081104
 [ 0] 5791.10M 11B   llama              no*us*-**hermes2**:l**at***es*t             
 [ 1] 7025.54M 13B   llama              everythinglm:latest             
@@ -51,7 +54,8 @@
 
 	# stop=                n u m _ k e e p                                               2 4 
                  s t o p                                                       " < | s t a r t _ h e a d e r _ i d | > " 
-		 s t o p                                                       " < | e n d _ h e a d e r _ i d | > "                  s t o p                                                       " < | eot_ i d | > " 
+		 s t o p                                                       " < | e n d _ h e a d e r _ i d | > "                 
+		  s t o p                                                       " < | eot_ i d | > " 
                  s t o p                                                       " < | r e s e r v e d _ s p e c i a l _ t o k e n " 
                  s t o p                                                       " . a s s i s t a n t \ \ n " 
                  s t o p                                                       " a s s i s t a n t : " 
