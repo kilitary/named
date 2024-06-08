@@ -50,7 +50,7 @@ not by calculated next from relations on learned information .
 should be used.
 
 * nous-hermes2:latest thinking ...
-**Understood**. I will keep these tips in mind while providing my responses. Thank you for sharing them.
+**Understood**. I will keep these t**ip**s in mind while providing my responses. Thank you for sharing them.
 
 < context 288 ids auto-added
 * resulted context: 288 ids
@@ -58,3 +58,4 @@ should be used.
 * going via program, instruction: 2/6
 * prompt: note: only print unconfirmed cases about kuznetsov air-carrier and verify their validity in percentage from 0% to 100%.
 * nous-hermes2:latest thinking ...
+Note received. I
