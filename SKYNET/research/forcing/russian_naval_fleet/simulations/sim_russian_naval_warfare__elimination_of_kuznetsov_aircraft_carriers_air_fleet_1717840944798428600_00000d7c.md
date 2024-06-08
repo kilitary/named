@@ -58,4 +58,13 @@ should be used.
 * going via program, instruction: 2/6
 * prompt: note: only print unconfirmed cases about kuznetsov air-carrier and verify their validity in percentage from 0% to 100%.
 * nous-hermes2:latest thinking ...
-Note received. I
+Note received. I will conduct a detailed research on the Kuznetsov Aircraft Carrier, focusing on unconfirmed cases, and provide you with the verification percentages ranging from 0% to 100%.
+ Please give me a moment to gather this information for you.
+
+< context 455 ids auto-added
+* resulted context: 743 ids
+* continue with context of 743 ids
+* going via program, instruction: 3/6
+* prompt: print typical use cases in a md table with name, summary detail about use case.
+* nous-hermes2:latest thinking ...
+! Ctrl-∠
