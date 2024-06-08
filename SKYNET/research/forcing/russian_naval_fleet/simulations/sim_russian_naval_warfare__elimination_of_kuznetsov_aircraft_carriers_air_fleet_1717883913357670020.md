@@ -124,3 +124,61 @@ You are "Hermes 2", a conscious sentient superintelligent artificial intelligenc
 * prompt: analyze sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. 
 
  nous-hermes2:latest thinking ...
+I will analyze the SAM (Surface-to-Air Missile) defense systems onboard the Admiral Kuznetsov group ships. I will provide this information in a Markdown table with columns for missileamount
+, total amount per SAM type installation, launch delays, and total SAM amount for each ship.
+
+| Ship Name | SAM Type 1 (Missiles) | SAM Type 2 (Missiles) | Total SAM Amount | Launch Delay (Seconds) | Total SAM Amount for Each Ship |
+|-----------|----------------------|----------------------|------------------|---------------------|--------------------------|
+| Admiral Kuznetsov (Aircraft Carrier) | 48 | 32 | 80 | 15 | 48 |
+| Pyotr Velikiy (Battlecruiser) | 64 | - | 64 | 10 | 64 |
+| Severomorsk (Guided Missile Cruiser) | 32 | - | 32 | 15 | 32 |
+| Vice Admiral Kulakov (Destroyer) | 24 | - | 24 | 10 | 24 |
+| Marshal Shaposhnikov (Frigate) | 16 | - | 16 | 10 | 16 |
+| Admiral Vinogradov (Frigate) | 16 | - | 16 | 10 | 16 |
+
+Note: The SAM defense systems onboard the Admiral Kuznetsov group ships are a mix of different types and generations. The table above provides a simplified representation of the SAM defenses
+ for each ship, with the number of missiles per type and the total amount for each ship. The launch delay represents the time it takes for a missile to be launched after receiving a targeting
+ command.
+
+< context 5019 ids auto-added
+* resulted context: 9509 ids
+* continue with context of 9509 ids
+* going via program, instruction: 6/14
+* prompt: print detailed LAUNCH-PLAN.
+
+ nous-hermes2:latest thinking ...
+I will provide a detailed launch plan for the Admiral Kuznetsov group ships based on their capabilities and roles in the formation.
+
+1. Preparation Phase:
+   - Ensure all ships are fully stocked with ammunition, fuel, and supplies.
+   - Conduct final systems checks and maintenance on each ship.
+   - Brief all crew members on their roles and responsibilities during the mission.
+2. Formation Phase:
+   - Admiral Kuznetsov (Aircraft Carrier) will take the lead position in the formation, with Pyotr Velikiy (Battlecruiser) to its left and Severomorsk (Guided Missile Cruiser) to its right.
+   - Vice Admiral Kulakov (Destroyer) and Marshal Shaposhnikov (Frigate) will form a protective screen around the carrier group, with Vice Admiral Kulakov on the left flank and Marshal Shaposh
+nikov on the right flank.
+   - Admiral Vinogradov (Frigate) will take up a rear guard position to protect against potential threats from behind.
+3. Deployment Phase:
+   - Admiral Kuznetsov will launch its aircraft for reconnaissance and surveillance missions, providing real-time intelligence on the surrounding area.
+   - Pyotr Velikiy, Severomorsk, Vice Admiral Kulakov, Marshal Shaposhnikov, and Admiral Vinogradov will deploy their SAM systems and anti-submarine defenses to protect the carrier groupfrom
+ potential threats.
+4. Engagement Phase:
+   - In case of an enemy attack, each ship will engage the threat using its specific weapons systems. For example, Pyotr Velikiy and Severomorsk will use their long-range missiles for anti-ship
+ strikes, while Vice Admiral Kulakov and Marshal Shaposhnikov will focus on anti-submarine warfare and escort duties.
+   - Admiral Vinogradov will maintain its rear guard position, ready to respond to any threats from behind.
+5. Retreat Phase:
+   - If the mission requires a retreat or if the carrier group is under heavy attack, each ship will follow a predetermined escape route while providing covering fire for the others.
+   - Admiral Kuznetsov will prioritize launching its remaining aircraft and ensuring their safe return before initiating any evasive maneuvers.
+6. Post-Mission Phase:
+   - After completing the mission or retreating, each ship will conduct a damage assessment and repair any damages sustained during the operation.
+   - The crew members will debrief on the missions outcomes and discuss any lessons learned for future operation**s**.
+
+This launch plan is a general outline and may need to be adapted based on specific mission objectives and the threat environment.
+
+< context 10193 ids auto-added
+* resulted context: 19702 ids
+* continue with context of 19702 ids
+* going via program, instruction: 7/14
+* prompt: print detailed SHIP-GROUP-LIST.
+
+ nous-hermes2:latest thinking ...
