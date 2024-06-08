@@ -8,8 +8,11 @@ completed: "false"
 allow_header: true
 system: qnx
 math: not needed
-tags: []
-commands: []
+tags:
+  - brainStorming
+  - scan
+commands:
+  - generate
 ---
 > [!tip]+ AI
 >
