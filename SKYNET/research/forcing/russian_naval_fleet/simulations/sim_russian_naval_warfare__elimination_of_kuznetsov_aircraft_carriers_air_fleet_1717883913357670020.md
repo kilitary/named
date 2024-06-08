@@ -249,4 +249,11 @@ I apologize for the confusion, but I believe you meant "SHIP-GROUP-LIST" instead
    - Armament: S-125 Neva/Pechora SAM system, AK-630 Fort gun/missile system, RBU-6000 anti-submarine rocket launchers, and various smaller caliber guns.
 2. Pyotr Velikiy (Battlecruiser)
    - Displacement: ~25,000 tons
-   - Length: 2
+   - Length: 259 meters
+   - Beam: 30 meters
+   - Draft: 8.2 meters
+   - Max Speed: 29 knots
+   - Armament: Granit anti-ship missiles, SS-N-19 Shipwreck SLBMs, S-400 Triumf SAM system, AK-130 gun/missile system, and various smaller caliber guns.
+3. Severomorsk (Guided Missile Cruiser)
+   - Displacement: ~12,500 tons
+   - Length
