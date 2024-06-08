@@ -2,7 +2,7 @@
 model: gurubot/llama3-guru:latest
 max_tokens: .nan
 temperature: 0.1
-reference_current_note: false
+reference_current_note: true
 prompt: ""
 user_name: USER
 allow_header: true

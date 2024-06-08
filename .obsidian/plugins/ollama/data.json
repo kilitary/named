@@ -52,6 +52,12 @@
       "prompt": "Answer paragraph, capital letter fist, take into account previous messages, max 150 words",
       "model": "llama2-uncensored",
       "temperature": 0.05
+    },
+    {
+      "name": "Explain in detail",
+      "prompt": "Explain in detail",
+      "model": "llama3-gradient",
+      "temperature": 0
     }
   ]
 }

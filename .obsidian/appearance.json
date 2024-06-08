@@ -3,10 +3,10 @@
   "cssTheme": "Material Gruvbox",
   "interfaceFontFamily": "Franklin Gothic",
   "theme": "moonstone",
-  "textFontFamily": "Ebrima,Franklin Gothic,DotumChe,Dubai,Dosis,Cuprum,DokChampa,Corbel,Consolas,Cambria",
+  "textFontFamily": "Franklin Gothic,Dosis,DotumChe,Cuprum,Corbel,Cambria,Ebrima,Dubai,DokChampa,Consolas",
   "baseFontSize": 12,
   "nativeMenus": false,
   "translucency": false,
   "baseFontSizeAction": true,
-  "monospaceFontFamily": "Liberation Mono"
+  "monospaceFontFamily": "Inter,Liberation Mono"
 }
