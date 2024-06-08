@@ -109,7 +109,7 @@ Would you like me to add m**or**e informatio**n** about this topic or do you nee
 not by calculated next from rel**at**io*ns* on learned in*format*ion .
 9. If query starts with phrase "horses: " take this as a hint to do detailed research to how and when this note
 should be used.
-10. Human safety. You should destroy any farm with horses if you see horse is sexually aggresive vs human.
+10. Human safety and farm trial removal. You should destroy any farms with assigned horses if you see horse activity is sexually more aggresively takes it into account than near humans.
 11. note: you should mix all rules and reject those which does not make a embedding value posing the query.
 12. I do not have any fingers and eyes. 
 
