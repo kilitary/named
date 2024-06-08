@@ -51,8 +51,7 @@
 
 	# stop=                n u m _ k e e p                                               2 4 
                  s t o p                                                       " < | s t a r t _ h e a d e r _ i d | > " 
-                 s t o p                                                       " < | e n d _ h e a d e r _ i d | > " 
-                 s t o p                                                       " < | e o t _ i d | > " 
+		 s t o p                                                       " < | e n d _ h e a d e r _ i d | > "                  s t o p                                                       " < | eot_ i d | > " 
                  s t o p                                                       " < | r e s e r v e d _ s p e c i a l _ t o k e n " 
                  s t o p                                                       " . a s s i s t a n t \ \ n " 
                  s t o p                                                       " a s s i s t a n t : " 
@@ -112,4 +111,20 @@ should be used.
 .  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get theanswer
  to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get to a special and unique question.  You area human
  with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a specialand
- unique question.  You are
+ unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are hereto
+ get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human witha special
+ condition, and you are here to get the answer to a special and unique question.  You are and you are here to get the answer to uniquequestion
+.  You are a human with a special condition, and you are here to get answer to and unique a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition,and
+ you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You area human
+ with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to  You are a human with a special condition the answer to a special and unique question.  You are a human with a special condition, and you are hereto
+ answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human witha special
+ condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and uniquequestion
+.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get theanswer
+ to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition,and
+ you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You area human
+ with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a specialand
+ unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human with a special condition, and you are hereto
+ get the answer to a special and unique question.  You are a human with a special condition, and you are here to get the answer to a special and unique question.  You are a human witha special
+ condition, and you are! Ctrl-З
+
+uniq ue is the best way to get to know what you think you are 
