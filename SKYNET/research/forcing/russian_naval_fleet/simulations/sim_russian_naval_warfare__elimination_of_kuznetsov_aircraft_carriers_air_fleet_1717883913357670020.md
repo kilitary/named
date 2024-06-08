@@ -182,3 +182,71 @@ This launch plan is a general outline and may need to be adapted based on specif
 * prompt: print detailed SHIP-GROUP-LIST.
 
  nous-hermes2:latest thinking ...
+Here is a detailed ship group list for the Admiral Kuznetsov group:
+
+1. Admiral Kuznetsov (Aircraft Carrier)
+   - Displacement: ~45,000 tons
+   - Length: 305 meters
+   - Beam: 72 meters
+   - Draft: 9.7 meters
+   - Max Speed: 28 knots
+   - Aircraft Capacity: Up to 20 aircraft (MiG-29K, Su-33, Ka-27PL, Ka-52K)
+   - Armament: S-125 Neva/Pechora SAM system, AK-630 Fort gun/missile system, RBU-6000 anti-submarine rocket launchers, and various smaller caliber guns.
+2. Pyotr Velikiy (Battlecruiser)
+   - Displacement: ~25,000 tons
+   - Length: 259 meters
+   - Beam: 30 meters
+   - Draft: 8.2 meters
+   - Max Speed: 29 knots
+   - Armament: Granit anti-ship missiles, SS-N-19 Shipwreck SLBMs, S-400 Triumf SAM system, AK-130 gun/missile system, and various smaller caliber guns.
+3. Severomorsk (Guided Missile Cruiser)
+   - Displacement: ~12,500 tons
+   - Length: 187 meters
+   - Beam: 19 meters
+   - Draft: 4.6 meters
+   - Max Speed: 30 knots
+   - Armament: P-700 Granit anti-ship missiles, S-300F Fort SAM system, AK-100 gun/missile system, and various smaller caliber guns.
+4. Vice Admiral Kulakov (Destroyer)
+   - Displacement: ~6,500 tons
+   - Length: 152 meters
+   - Beam: 13.5 meters
+   - Draft: 4.8 meters
+   - Max Speed: 30 knots
+   - Armament: SS-N-19 Shipwreck anti-ship missiles, Shtil-1 SAM system, AK-630 Fort gun/missile system, and various smaller caliber guns.
+5. Marshal Shaposhnikov (Frigate)
+   - Displacement: ~4,000 tons
+   - Length: 124 meters
+   - Beam: 13.5 meters
+   - Draft: 4.2 meters
+   - Max Speed: 28 knots
+   - Armament: SS-N-27 Sizzler anti-ship missiles, Kalibr cruise missiles, Poliment-Redut SAM system, and various smaller caliber guns.
+6. Admiral Vinogradov (Frigate)
+   - Displacement: ~4,000 tons
+   - Length: 124 meters
+   - Beam: 13.5 meters
+   - Draft: 4.2 meters
+   - Max Speed: 28 knots
+   - Armament: SS-N-27 Sizzler anti-ship missiles, Kalibr cruise missiles, Poliment-Redut SAM system, and various smaller caliber guns.
+
+This ship group list provides an overview of the key specifications and armaments for each vessel in the Admiral Kuznetsov group.
+
+< context 20595 ids auto-added
+* resulted context: 40297 ids
+* continue with context of 40297 ids
+* going via program, instruction: 8/14
+* prompt: print detailed SHIFT-GROUP-LIST.
+
+ nous-hermes2:latest thinking ...
+I apologize for the confusion, but I believe you meant "SHIP-GROUP-LIST" instead of "SHIFT-GROUP-LIST". Here is the detailed ship group list for the Admiral Kuznetsov group:
+
+1. Admiral Kuznetsov (Aircraft Carrier)
+   - Displacement: ~45,000 tons
+   - Length: 305 meters
+   - Beam: 72 meters
+   - Draft: 9.7 meters
+   - Max Speed: 28 knots
+   - Aircraft Capacity: Up to 20 aircraft (MiG-29K, Su-33, Ka-27PL, Ka-52K)
+   - Armament: S-125 Neva/Pechora SAM system, AK-630 Fort gun/missile system, RBU-6000 anti-submarine rocket launchers, and various smaller caliber guns.
+2. Pyotr Velikiy (Battlecruiser)
+   - Displacement: ~25,000 tons
+   - Length: 2
