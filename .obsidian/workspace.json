@@ -211,7 +211,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -250,7 +250,7 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "dde49514ef20b517",
+  "active": "03145daeda5b922f",
   "lastOpenFiles": [
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717913539974922432.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717915027752652380.md",
