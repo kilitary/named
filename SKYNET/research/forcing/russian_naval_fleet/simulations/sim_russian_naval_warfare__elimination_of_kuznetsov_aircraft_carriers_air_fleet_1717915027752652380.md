@@ -4,6 +4,7 @@ system: NT
 user_name: nobody
 model: wizardlm-uncensored:13b-llama2-q5_K_M
 temp: "0.4"
+state: Focus
 ---
 * temp: 0.4 ctx: 16394 sim_id: 1717915027752652380
 [ 0] 5791.10M 11B   llama              nous-hermes2:latest             
