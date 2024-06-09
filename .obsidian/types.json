@@ -32,6 +32,7 @@
     "gjgj": "text",
     "fgh": "checkbox",
     "finished": "checkbox",
-    "excalidraw-embeddable-theme": "text"
+    "excalidraw-embeddable-theme": "text",
+    "title": "multitext"
   }
 }
