@@ -11,12 +11,10 @@
             "id": "11cd138b560bef3f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "SKYNET/technology.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": ".makemd/fileCache.mdc",
+                "staged": false
               }
             }
           },
@@ -124,7 +122,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/technology.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -141,7 +138,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/technology.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -175,9 +171,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "SKYNET/technology.md"
-              }
+              "state": {}
             }
           },
           {
@@ -303,8 +297,9 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "11cd138b560bef3f",
   "lastOpenFiles": [
+    "SKYNET/technology.md",
     "SKYNET/research/forcing/russian_naval_fleet/dfg.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
     "SKYNET/research/forcing/russian naval fleet/prog.py.md",
@@ -332,7 +327,6 @@
     "axis9/issues/ss/Untitled Kanban.md",
     "axis9/issues/ss/ss_sbor_programm.md",
     "axis9/issues/ss/spart.md",
-    "axis9/issues/ss/russian_government_secret_services_crime_index_RU.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "Untitled.loom",
