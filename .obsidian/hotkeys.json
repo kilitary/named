@@ -253,7 +253,7 @@
       "modifiers": [
         "Mod"
       ],
-      "key": "P"
+      "key": "`"
     }
   ],
   "random-names:real-nepaleses": [
@@ -271,5 +271,6 @@
       ],
       "key": "U"
     }
-  ]
+  ],
+  "editing-toolbar:header0-text": []
 }

@@ -2,7 +2,7 @@
 tags: []
 commands: []
 ---
-# Review and check your Statuses
+Review and check your Statuses
 
 ## About this file
 
