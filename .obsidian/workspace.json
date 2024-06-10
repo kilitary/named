@@ -35,11 +35,12 @@
                 "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md",
                 "mode": "source",
                 "backlinks": false,
-                "source": true
+                "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -122,6 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,6 +140,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -171,7 +174,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md"
+              }
             }
           },
           {
@@ -297,8 +302,9 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "11cd138b560bef3f",
+  "active": "5d1206eff7ec2c78",
   "lastOpenFiles": [
+    "SKYNET/research/forcing/russian naval fleet/0ohdJD26frA.jpg",
     "SKYNET/technology.md",
     "SKYNET/research/forcing/russian_naval_fleet/dfg.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
@@ -326,7 +332,6 @@
     "axis9/issues/ss/Zudo_and_psych_facility.md",
     "axis9/issues/ss/Untitled Kanban.md",
     "axis9/issues/ss/ss_sbor_programm.md",
-    "axis9/issues/ss/spart.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "Untitled.loom",
