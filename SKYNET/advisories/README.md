@@ -1,6 +1,9 @@
 ---
-state: Final
-tags: []
+state: Focus
+tags:
+  - ai
+  - answer
+  - remote
 commands: []
 ---
 ![[alarm.png]]

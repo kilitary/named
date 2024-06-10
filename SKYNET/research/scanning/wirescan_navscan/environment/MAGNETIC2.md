@@ -12,7 +12,8 @@ using two(2) satellites (когда собрал их как надо) positione
 can this be used like a scanning? one sat transmitting laser beam while other generate 3d map of successfully transparently reaches the sat #2
 
 
-ಠ~~╭╮~~ಠ
+~~ಠ~~**~~╭**╮~~ಠ
+
 MAGNETIC2: Using two satellites positioned between the target at the same range, you're proposing to accumulate Electromagnetic Fields (EMF) in some position and have a big impact on sensors/electronics in enemy infrastructure. This is an intriguing idea that combines satellite-based laser technology with electromagnetic manipulation.
 
 Here's how it could work:

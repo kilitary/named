@@ -32,10 +32,12 @@
             "id": "62776c2af95c0d55",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
-                "staged": true
+                "file": "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -123,6 +125,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,6 +142,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -172,7 +176,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md"
+              }
             }
           },
           {
@@ -244,7 +250,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md"
+              }
             }
           }
         ],
@@ -306,8 +314,21 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "62776c2af95c0d55",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
+    "SKYNET/research/scanning/wirescan_navscan/environment/environment.md",
+    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
+    "SKYNET/research/scanning/RF_microwave_scan.md",
+    "SKYNET/research/scanning/scanning.md",
+    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+    "SKYNET/research/text machine/text machine.md",
+    "SKYNET/research/research.md",
+    "SKYNET/technology.md",
+    "SKYNET/playground/Untitled.md",
+    "SKYNET/playground/playground.md",
+    "SKYNET/advisories/README.md",
+    "SKYNET/advisories/advisories.md",
     "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "axis9/CORE-SSE/CORE-SSE.md",
     "axis9/axis9.md",
@@ -321,20 +342,7 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638225190735900_00001264.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim__russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1715670951719101100_00004498.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim__russian_naval_warfare__elimination_of_kuznetsov_aircraft_carrier_1715649859423750400_00002014.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim__russian_naval_warfare___elimination_of_kuznetsov_aircraft_carrier_1715649549533412400_00000884.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim___r_u_s_s_i_a_n__n_a_v_a_l__w_a_r_f_a_r_e__e_l_i_m_i_n_a_t_i_o_n__o_f__k_u_z_n_e_t_s_o_v__a_i_r_c_r_a_f_t__c_a_r_r_i_e_r__1715649491980659500_00000850.md",
-    "SKYNET/research/forcing/russian_naval_fleet/notes/sonars.md",
-    "SKYNET/research/forcing/russian_naval_fleet/notes/remarks.md",
-    "SKYNET/research/forcing/russian_naval_fleet/notes/radars.md",
-    "SKYNET/research/forcing/russian naval fleet/russian naval fleet.md",
-    "SKYNET/research/forcing/russian naval fleet/prog.py.md",
-    "SKYNET/playground/Untitled.md",
-    "SKYNET/For vacuum divider/use GPT to analyze text, syntax, links, relations and semantics between obsidian document.md",
-    "SKYNET/For vacuum divider/Untitled 3.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
-    "SKYNET/For vacuum divider/object..md",
-    "SKYNET/For vacuum divider/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
     "SKYNET/research/forcing/russian naval fleet/0ohdJD26frA.jpg",

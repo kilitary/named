@@ -46,7 +46,13 @@
     "SKYNET/SKYNET/technology",
     "SKYNET/SKYNET/research",
     "SKYNET/SKYNET/research/SKYNET/research/forcing",
-    "SKYNET/SKYNET/research/SKYNET/research/forcing/SKYNET/research/forcing/russian_naval_fleet"
+    "SKYNET/SKYNET/research/SKYNET/research/forcing/SKYNET/research/forcing/russian_naval_fleet",
+    "SKYNET/SKYNET/advisories",
+    "SKYNET/SKYNET/playground",
+    "SKYNET/SKYNET/research/SKYNET/research/text machine",
+    "SKYNET/SKYNET/research/SKYNET/research/scanning",
+    "SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan",
+    "SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan/SKYNET/research/scanning/wirescan_navscan/environment"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
