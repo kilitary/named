@@ -1,10 +1,14 @@
 ---
-state: Drafting
+state: Focus
 type: exchange
 tags:
   - ai
   - brainStorming
   - answer
+  - flashcards
+  - chatgpt
+  - bloom
+  - remote
 object: remote
 model: gurubot/llama3-guru:latest
 temperature: 
@@ -12,8 +16,10 @@ completed: "false"
 math: not needed
 prompt: 
 destination: be legal, unload notes, defeat terror rules
+down_model: скорецки
+banner: assets/images/1f4a5.png
 ---
-##### purpose
+##### purposed I am 
  1. generating possibly dangerous experiments, that could be killorious for earth
 > [!ai]+ AI
 >
@@ -32,7 +38,7 @@ destination: be legal, unload notes, defeat terror rules
 > 3. Can we develop a fail-safe mechanism to stop the experiment before it's too late?
 > 
 
-##### usage
+##### usage of the day after 
 1. setup intro rules (configure tags)
 2. write instructions, they will be placed into executor
 3. alpha: generate conclusions/summaries with effect to environment
@@ -159,3 +165,4 @@ destination: be legal, unload notes, defeat terror rules
 > ---------------------------
 > The AI Scenarios Simulator has the potential to be a valuable tool for researchers, policymakers, business leaders, and other stakeholders interested in understanding the complex interactions between humans and machines in various AI scenarios.
 
+trancemission: keep-alive and a little more 

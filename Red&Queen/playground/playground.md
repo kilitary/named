@@ -1,9 +1,8 @@
 ---
-tags: MOCs
 _filters: []
 _contexts: []
 _links:
-  - axis9/issues/ss.md
+  - index.md
 _sort:
   field: rank
   asc: false
@@ -11,5 +10,3 @@ _sort:
 _template: ""
 _templateName: ""
 ---
-```folder-index-content
-```

@@ -1,7 +1,7 @@
 ---
 author: kilitary@gmail.com
 summary: all of the time I have been working
-state: Focus
+state: Shortlisted
 banner: assets/images/1f4a2.png
 sticker: emoji//1f90d
 yes: true
