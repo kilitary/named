@@ -1,5 +1,6 @@
 ---
-state: Drafting
+state: Focus
+banner: SKYNET/For vacuum divider/39.gif
 ---
 ![[alarm.png]]
 

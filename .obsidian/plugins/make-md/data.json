@@ -40,8 +40,13 @@
   "showRibbon": true,
   "deleteFileOption": "trash",
   "expandedSpaces": [
-    "/",
-    "spaces://#brainStorming"
+    "SKYNET",
+    "Red&Queen",
+    "spaces://#brainStorming",
+    "SKYNET/SKYNET/technology",
+    "SKYNET/SKYNET/research",
+    "SKYNET/SKYNET/research/SKYNET/research/forcing",
+    "SKYNET/SKYNET/research/SKYNET/research/forcing/SKYNET/research/forcing/russian_naval_fleet"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -50,7 +55,9 @@
   "folderContextFile": "context",
   "folderFrameFile": "frames",
   "spacesFolder": "Tags",
-  "hiddenFiles": [],
+  "hiddenFiles": [
+    "SKYNET/For vacuum divider"
+  ],
   "hiddenExtensions": [
     ".mdb",
     "_assets",

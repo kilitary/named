@@ -2,6 +2,9 @@
 state: Drafting
 ---
 
+> [!tip] Title
+> under construction
+
 # psycho experiments
 
   1. [Zudo_and_psych_facility](Zudo_and_psych_facility.md)
