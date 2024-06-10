@@ -3,10 +3,10 @@ state: Drafting
 tags: []
 commands: []
 ---
-# *nav**a**l* fleet~~s~~
+# *nav**a**l* f*leet~~*s~~
 
 
-![[1f3e3.png]]
+**![[1f3e3.png]]**
 
 ### network**s**
 

@@ -1,0 +1,1 @@
+![grut](../russian_naval_fleet/grut.md)
