@@ -32,14 +32,6 @@
       "key": "T"
     }
   ],
-  "command-palette:open": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "`"
-    }
-  ],
   "switcher:open": [
     {
       "modifiers": [
@@ -254,6 +246,14 @@
     {
       "modifiers": [],
       "key": "F8"
+    }
+  ],
+  "command-palette:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "`"
     }
   ]
 }

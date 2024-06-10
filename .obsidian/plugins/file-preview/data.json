@@ -1,0 +1,17 @@
+{
+  "showpreview": true,
+  "lineClamp": 2,
+  "indents": 0,
+  "previewcontentslength": "50",
+  "ispreview": false,
+  "format": {
+    "frontmatter": true,
+    "bolditalic": true,
+    "highlight": true,
+    "codeblock": true,
+    "quote": true,
+    "blankline": true,
+    "title": true
+  },
+  "showImg": true
+}

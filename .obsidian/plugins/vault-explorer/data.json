@@ -1,0 +1,38 @@
+{
+  "logLevel": "warn",
+  "properties": {
+    "favorite": "",
+    "url": "",
+    "custom1": "",
+    "custom2": "",
+    "custom3": ""
+  },
+  "filters": {
+    "folder": "/",
+    "search": "",
+    "onlyFavorites": false,
+    "timestamp": "all",
+    "sort": "file-name-asc",
+    "properties": {
+      "selectedGroupId": "f51EMXCGy9ZznByp",
+      "groups": [
+        {
+          "id": "f51EMXCGy9ZznByp",
+          "name": "Group 1",
+          "filters": [],
+          "isEnabled": true
+        }
+      ]
+    }
+  },
+  "views": {
+    "currentView": "grid",
+    "order": [
+      "grid",
+      "list"
+    ],
+    "titleWrapping": "normal"
+  },
+  "pageSize": 50,
+  "pluginVersion": "1.5.0"
+}
