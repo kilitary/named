@@ -32,12 +32,10 @@
             "id": "62776c2af95c0d55",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
                 "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "staged": true
               }
             }
           }
@@ -125,7 +123,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,7 +139,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -176,9 +172,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
-              }
+              "state": {}
             }
           },
           {
@@ -250,9 +244,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "axis9/CORE-SSE/inprogress/ai scenarios simulator.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -316,6 +308,7 @@
   },
   "active": "62776c2af95c0d55",
   "lastOpenFiles": [
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "axis9/CORE-SSE/CORE-SSE.md",
     "axis9/axis9.md",
     "textgenerator/templates/huggingface/completeTextBloom.md",
@@ -342,7 +335,6 @@
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/object..md",
     "SKYNET/For vacuum divider/ds from the English dictionary to distinguish the basic properties of objects by negativepositive difference).md",
-    "SKYNET/For vacuum divider/Creating a Unique Schematic Relationship with Base English Words-answer.md",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
     "SKYNET/research/forcing/russian naval fleet/0ohdJD26frA.jpg",
