@@ -1,3 +1,7 @@
+---
+sticker: emoji//1f9b4
+src: assets/images/1f4a5.png
+---
 * temp: 0.9 ctx: 16394 sim_id: 1717949557912573764
 [ 0] 5791.10M 11B   llama              nous-hermes2:latest             
 [ 1] 7025.54M 13B   llama              everythinglm:latest             
