@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
+                "file": "SKYNET/technology.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -41,8 +41,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -105,7 +104,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -125,7 +124,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md",
+                "file": "SKYNET/technology.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,7 +141,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md",
+                "file": "SKYNET/technology.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,7 +176,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian naval fleet/prog.py.md"
+                "file": "SKYNET/technology.md"
               }
             }
           },
@@ -304,18 +303,18 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "5d1206eff7ec2c78",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/possibilities.md",
+    "SKYNET/research/forcing/russian_naval_fleet/dfg.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
     "SKYNET/research/forcing/russian naval fleet/prog.py.md",
+    "SKYNET/research/forcing/russian_naval_fleet/possibilities.md",
     "SKYNET/research/forcing/russian naval fleet/russian naval fleet.md",
     "SKYNET/research/forcing/russian naval fleet",
     "SKYNET/research/forcing/russian_naval_fleet/grut.md",
     "SKYNET/research/forcing/russian_naval_fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
-    "SKYNET/research/forcing/russian_naval_fleet/dfg.md",
     "SKYNET/research/forcing/russian_naval_fleet/repeater.md",
     "SKYNET/technology/aaa.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
     "indirect/garbage/Untitled.canvas",
     "indirect/Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
     "indirect/Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
