@@ -272,5 +272,14 @@
       "key": "U"
     }
   ],
-  "editing-toolbar:header0-text": []
+  "editing-toolbar:header0-text": [],
+  "webpage-html-export:export-html-vault": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "E"
+    }
+  ]
 }

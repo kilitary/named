@@ -13,14 +13,36 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2e9e28e84fa53b3e",
+            "type": "leaf",
+            "state": {
+              "type": "desk-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "5d1206eff7ec2c78",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/forcing/russian_naval_fleet/grut.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -103,7 +125,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/grut.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +142,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/grut.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -155,7 +177,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/grut.md"
               }
             }
           },
@@ -214,9 +236,17 @@
               "type": "PROGRESS_CLOCKS_VIEW",
               "state": {}
             }
+          },
+          {
+            "id": "a63878197af399a4",
+            "type": "leaf",
+            "state": {
+              "type": "timeline",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 12
       }
     ],
     "direction": "horizontal",
@@ -270,40 +300,41 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "card-board:CardBoard": false,
+      "periodic-notes:Open today": false
     }
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_1715638093206574000_00004794.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/simulations.md",
-    "textgenerator/textgenerator.md",
-    "textgenerator/templates/local/local.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717954904843258236.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717955138372339316.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717381443265867800_00004de8.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717957132525710548.md",
-    "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
-    "SKYNET/research/research.md",
-    "SKYNET/research/forcing/russian_naval_fleet/i-de-al-gurubot_lama3-guru-latest.md",
+    "SKYNET/research/forcing/russian_naval_fleet/dolphin-2.9-llama3-8b-q5_k_med.md",
+    "SKYNET/research/forcing/russian_naval_fleet/dfg.md",
+    "SKYNET/research/forcing/russian_naval_fleet/repeater.md",
     "SKYNET/technology/aaa.md",
-    "SKYNET/For vacuum divider/totally unsorted/Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
-    "SKYNET/For vacuum divider/copilot-conversations/ways in front of you, each one leading to a different room Which one will you choose.md",
-    "SKYNET/For vacuum divider/copilot-conversations/Chat2.md",
-    "SKYNET/For vacuum divider/copilot-conversations/Chat-2024_03_10-04_41_19.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/Untitled.md",
+    "indirect/garbage/Untitled.canvas",
+    "indirect/Excalidraw/Drawing 2024-04-22 03.18.23.excalidraw.md",
+    "indirect/Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
+    "indirect/BMO 1/Profiles/BMO.md",
+    "indirect/BMO/Profiles/BMO.md",
+    "BMO/Profiles/BMO.md",
+    "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "axis9/core  country planning.md",
+    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
+    "axis9/issues/ss.md",
     "axis9/issues/ss/Мусорщик++.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717811839834298700_000007d8.md",
-    "Untitled.md",
-    "Tags/$tags/$tags.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717811816813964500_00003b34.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717811754977398700_00002484.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717811634639437600_000041f8.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717811526933021200_00002144.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717811502595934700_000023ac.md",
+    "axis9/issues/ss/Zudo_and_psych_facility.md",
+    "axis9/issues/ss/Untitled Kanban.md",
+    "axis9/issues/ss/ss_sbor_programm.md",
+    "axis9/issues/ss/spart.md",
+    "axis9/issues/ss/russian_government_secret_services_crime_index_RU.md",
+    "axis9/issues/ss/russian government secret services crime index EN.md",
+    "axis9/issues/ss/putin.md",
+    "axis9/issues/ss/psy_operators.md",
+    "axis9/issues/ss/inter_fss_hate.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
-    "indirect/garbage/Untitled.canvas",
     "Untitled.loom",
     "looms/Untitled.loom",
     "Tags/$tags",

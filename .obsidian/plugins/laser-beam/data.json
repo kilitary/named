@@ -1,0 +1,11 @@
+{
+  "isLaserActive": true,
+  "laserMovement": "static",
+  "laserType": "line",
+  "laserColor": "pink",
+  "laserWidth": 0.8,
+  "laserIntensity": 0.4,
+  "laserArea": 179,
+  "laserMarginLeft": 341,
+  "laserMarginRight": 341
+}
