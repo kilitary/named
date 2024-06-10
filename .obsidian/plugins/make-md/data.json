@@ -27,7 +27,7 @@
   "spacesEnabled": true,
   "syncFormulaToFrontmatter": true,
   "spacesPerformance": false,
-  "currentWaypoint": 0,
+  "currentWaypoint": 1,
   "enableFolderNote": true,
   "folderIndentationLines": true,
   "revealActiveFile": false,
@@ -40,7 +40,8 @@
   "showRibbon": true,
   "deleteFileOption": "trash",
   "expandedSpaces": [
-    "/"
+    "/",
+    "spaces://#brainStorming"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
@@ -88,7 +89,7 @@
   "showSpacePinIcon": true,
   "minimalFix": false,
   "experimental": false,
-  "systemName": "vault14.2",
+  "systemName": "gtasystem",
   "defaultSpaceTemplate": "",
   "selectedKit": "default",
   "actionMaxSteps": 100

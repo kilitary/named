@@ -1,5 +1,25 @@
 {
   "state": {
-    "sections": []
+    "sections": [
+      {
+        "name": "Section 1",
+        "children": [
+          {
+            "type": "counter",
+            "name": "Counter 1",
+            "value": 0
+          },
+          {
+            "type": "stopwatch",
+            "name": "Stopwatch 2",
+            "startMillis": 1717995364998,
+            "offsetMillis": 3,
+            "showMillis": false,
+            "isRunning": true,
+            "lapTimes": []
+          }
+        ]
+      }
+    ]
   }
 }
