@@ -1,5 +1,9 @@
 ---
 state: Focus
+number: 3
+used: fss
+sticker: emoji//2620-fe0f
+banner: assets/images/1f4a5.png
 ---
 1. Элементарная чпокерия. (с) 2024 Бизминский СимПай Вцентрсрирующи. (c 2049)
 2. 

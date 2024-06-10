@@ -52,7 +52,8 @@
     "SKYNET/SKYNET/research/SKYNET/research/text machine",
     "SKYNET/SKYNET/research/SKYNET/research/scanning",
     "SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan",
-    "SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan/SKYNET/research/scanning/wirescan_navscan/environment"
+    "SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan/SKYNET/research/scanning/wirescan_navscan/environment",
+    "SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan/SKYNET/research/scanning/wirescan_navscan/simulations"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
