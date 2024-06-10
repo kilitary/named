@@ -14,7 +14,7 @@
   "folderIcon": "box-folder",
   "folderCount": true,
   "folderCountOption": "files",
-  "evernoteView": "Horizontal",
+  "evernoteView": "Vertical",
   "filePreviewOnHover": false,
   "iconBeforeFileName": true,
   "sortFilesBy": "last-update",

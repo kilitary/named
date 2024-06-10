@@ -226,5 +226,33 @@
     {
         "role": "assistant",
         "content": " As an AI, I don't have personal opinions or feelings, but I'm here to provide information, answer questions, and assist with a wide range of topics to the best of my abilities based on the data and programming I have. If you have a specific question or need assistance with something, feel free to ask, and I'll do my best to help you!"
+    },
+    {
+        "role": "user",
+        "content": "/model     // Uses an external function 'gen' to generate concepts and their definitions\n    async function extractAndDefineConcepts(text) {\n        const prompt = `Extract concepts from the following content and define them. Do not refer to the current note. do not refer to already refered concepts(contained in []). Return a json Record<name, definition>. Ensure the 'name' is exactly as it appears in the text, without any modifications: \\n${text.replace(/\\[\\[.*?\\]\\]/g, '')}`;\n        \n        const conceptData = await genJSON(prompt); // returns object\n\n        return [[[[Object.]]]]entries(conceptData).map(([name, definition]) => ({name, definition}));\n    }\n    \n    function replaceConceptsWithLinks(text, concepts) {\n        let modifiedText = text;\n        concepts.forEach(concept => {\n            modifiedText = modifiedText.replace(new RegExp(concept.name, 'g'), `[[${concept.name}]]`);\n        });\n        return modifiedText;\n    }\n     \n    async function createConceptPages(concepts) {\n        const currentFolder = app.workspace.getActiveFile().parent.path;\n        for (const concept of concepts) {\n            const conceptFilePath = `${currentFolder}/${concept.name}.md`;\n            if (!await app.vault.exists(conceptFilePath)) {\n                await app.vault.create(conceptFilePath, `# ${concept.name}\\n\\n${concept.definition}`);\n            }\n        }\n    }\n\n    async function extractConcepts() {\n            const activeFile = app.workspace.getActiveFile();\n            if (!activeFile) return;\n\n            const fileContent = (\"\"+await app.vault.read(activeFile))\n            \n            const concepts = await extractAndDefineConcepts(fileContent);\n\n            const modifiedContent = replaceConceptsWithLinks(fileContent, concepts);\n            console.log({modifiedContent})\n            await app.vault.modify(activeFile, modifiedContent);\n\n            await createConceptPages(concepts);\n        }\n\n await extractConcepts();\n return \"\";"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\"><h2>Models</h2>\n    <p><b>Current Model:</b> wizardlm2:latest</p>\n    <ol><li>phi3:latest</li><li>dolphin-phi:2.7b-v2.6-q8_0</li><li>sunapi386/llama-3-lexi-uncensored:8b</li><li>impulse2000/dolphincoder-starcoder2-7b:q8_0</li><li>wizardlm2:latest</li><li>llama3:8b-text-q8_0</li><li>llama3-gradient:latest</li><li>starling-lm:latest</li><li>codellama:latest</li><li>llava:latest</li><li>gemma:latest</li><li>llama2:latest</li><li>llama2-uncensored:latest</li><li>solar:latest</li><li>llama3:latest</li><li>neural-chat:latest</li><li>phi:latest</li><li>gemma:7b</li><li>gemma:2b</li><li>gurubot/llama3-guru-uncensored:latest</li><li>war-resolver:latest</li><li>mistral:7b</li><li>gfg/solar-10.7b-instruct-v1.0-uncensored:latest</li><li>mannix/dolphin-2.9-llama3-8b:q5_k_m</li><li>wizardlm-uncensored:13b-llama2-q5_K_M</li><li>wizard-vicuna-uncensored:13b</li><li>gurubot/llama3-guru:latest</li></ol></div>"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\">Model '' does not exist for this API key.</div>"
+    },
+    {
+        "role": "user",
+        "content": "/model wizardlm-uncensored:13b-llama2-q5_K_M"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\">Updated Model to <b>wizardlm-uncensored:13b-llama2-q5_K_M</b></div>"
+    },
+    {
+        "role": "user",
+        "content": "краткое содержание"
+    },
+    {
+        "role": "assistant",
+        "content": "\n* 1:50:00 - 2:00:00: What are the potential consequences of using psychotronic weapons on a person?\n* 2:00:00 - 2:05:00: How does the \"Ru"
     }
 ]

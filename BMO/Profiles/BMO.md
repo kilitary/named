@@ -1,5 +1,5 @@
 ---
-model: wizardlm2:latest
+model: wizardlm-uncensored:13b-llama2-q5_K_M
 max_tokens: .nan
 temperature: 0.1
 reference_current_note: true
