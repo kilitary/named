@@ -1,5 +1,5 @@
 ---
-model: gurubot/llama3-guru:latest
+model: wizardlm2:latest
 max_tokens: .nan
 temperature: 0.1
 reference_current_note: true

@@ -210,5 +210,21 @@
     {
         "role": "assistant",
         "content": "<div class=\"commandBotMessage\"><h2>Models</h2>\n    <p><b>Current Model:</b> Empty</p>\n    <ol><li>codegemma:7b</li><li>codegemma:latest</li><li>command-r:latest</li><li>dolphin-mistral:7b-v2.6-q6_K</li><li>everythinglm:latest</li><li>llama2:latest</li><li>llama2-uncensored:latest</li><li>llama3:latest</li><li>mistral:latest</li><li>phi:2.7b-chat-v2-fp16</li><li>wizardlm-uncensored:13b-llama2-q5_0</li><li>wizardlm-uncensored:latest</li><li>wizardlm2:latest</li><li>mattw/dockerit:latest</li></ol></div>"
+    },
+    {
+        "role": "user",
+        "content": "/model 5"
+    },
+    {
+        "role": "assistant",
+        "content": "<div class=\"commandBotMessage\">Updated Model to <b>wizardlm2:latest</b></div>"
+    },
+    {
+        "role": "user",
+        "content": "here?"
+    },
+    {
+        "role": "assistant",
+        "content": " As an AI, I don't have personal opinions or feelings, but I'm here to provide information, answer questions, and assist with a wide range of topics to the best of my abilities based on the data and programming I have. If you have a specific question or need assistance with something, feel free to ask, and I'll do my best to help you!"
     }
 ]

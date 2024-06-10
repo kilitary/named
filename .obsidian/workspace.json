@@ -1,19 +1,29 @@
 {
   "main": {
-    "id": "5c04643aa10cf69b",
+    "id": "1263d740ad1132b2",
     "type": "split",
     "children": [
       {
-        "id": "897c0a924d05e6f7",
+        "id": "5ef17edd70622170",
         "type": "tabs",
         "children": [
           {
-            "id": "6ec46a3b863acddd",
+            "id": "4210b9098ec845ef",
+            "type": "leaf",
+            "state": {
+              "type": "card-browser-view",
+              "state": {
+                "path": "/"
+              }
+            }
+          },
+          {
+            "id": "13a3d9f7a0c887ea",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md",
+                "file": "index.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -21,54 +31,46 @@
             }
           }
         ],
-        "stacked": true
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "d93c9ec04906117f",
+    "id": "a6f9ef9bfe2fbe39",
     "type": "split",
     "children": [
       {
-        "id": "d39147fdf452733e",
+        "id": "8fa39834a5fd1de9",
         "type": "tabs",
         "children": [
           {
-            "id": "e8ab14f810b8b92a",
+            "id": "b3abf9847077278d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byModifiedTimeReverse"
+                "sortOrder": "alphabetical"
               }
             }
           },
           {
-            "id": "f342cc04e3559737",
+            "id": "7159c0f1a241fbc5",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"state\"]",
-                "matchingCase": true,
+                "query": "",
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
-                "extraContext": true,
-                "sortOrder": "byModifiedTime"
+                "extraContext": false,
+                "sortOrder": "alphabetical"
               }
             }
           },
           {
-            "id": "c1d0a448154ce2c9",
-            "type": "leaf",
-            "state": {
-              "type": "todo",
-              "state": {}
-            }
-          },
-          {
-            "id": "a95fe5a40ad96983",
+            "id": "96bacd13db98a42d",
             "type": "leaf",
             "state": {
               "type": "file-tree-view",
@@ -76,22 +78,62 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 476.5
+    "width": 300
   },
   "right": {
-    "id": "04f9fc2d318d98b7",
+    "id": "408649d3315332a4",
     "type": "split",
     "children": [
       {
-        "id": "77f847cbcc6365f1",
+        "id": "56fbae64882ee30f",
         "type": "tabs",
         "children": [
           {
-            "id": "80647946df64b14c",
+            "id": "5dec391b5b2e20a5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "19a00b5adac00249",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "88969aac9d72bf4c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "fbd44891b607249d",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -103,107 +145,25 @@
             }
           },
           {
-            "id": "dde49514ef20b517",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md"
-              }
-            }
-          },
-          {
-            "id": "408f418166af1fce",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
-            }
-          },
-          {
-            "id": "03145daeda5b922f",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "e4ac654490cf140a",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
-            }
-          },
-          {
-            "id": "19625366c0c0468c",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md",
-                "collapseAll": false,
-                "extraContext": true,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
-              }
-            }
-          },
-          {
-            "id": "268dcbe096b4b4d5",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": false
-              }
-            }
-          },
-          {
-            "id": "e70261d7533c9ee8",
+            "id": "cc3503629e2dd966",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md"
+                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
               }
             }
           },
           {
-            "id": "9375539bb8d791da",
+            "id": "5a8ed2578ceabb73",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "todo",
               "state": {}
             }
           },
           {
-            "id": "f842387e2b4d3dca",
-            "type": "leaf",
-            "state": {
-              "type": "git-history-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "20db1421de6a4563",
-            "type": "leaf",
-            "state": {
-              "type": "PROGRESS_CLOCKS_VIEW",
-              "state": {}
-            }
-          },
-          {
-            "id": "ecd9ded3a69c4cd1",
+            "id": "39c4a2ab69f6d4cf",
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
@@ -211,21 +171,17 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "command-palette:Open command palette": true,
-      "markdown-importer:Open format converter": false,
-      "templates:Insert template": false,
-      "publish:Publish changes...": false,
-      "zk-prefixer:Create new unique note": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "big-calendar:Big Calendar": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "project-browser:Open project browser": false,
@@ -246,63 +202,80 @@
       "file-tree-alternative:File Tree Alternative Plugin": false,
       "memorization:Memorize Notes": false,
       "select-and-complete:Select and Complete": false,
-      "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "zk-prefixer:Create new unique note": false,
+      "publish:Publish changes...": false
     }
   },
-  "active": "6ec46a3b863acddd",
+  "floating": {
+    "id": "d341fb5f0bc66ff1",
+    "type": "floating",
+    "children": [
+      {
+        "id": "573fc5fbe4b14128",
+        "type": "window",
+        "children": [
+          {
+            "id": "2c91d2ced9ab1179",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "392e21866c1d6a63",
+                "type": "leaf",
+                "state": {
+                  "type": "excalidraw",
+                  "state": {
+                    "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 542,
+        "y": 278,
+        "width": 900,
+        "height": 500,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "392e21866c1d6a63",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/ The Kuznetsov aircraft carrier is indeed a significant target for many air carriers, especially during takeoff and landing operations. This is due to its unique design and capabilities as a hybrid aircraft carrier.md",
-    "SKYNET/For vacuum divider/totally unsorted/Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717955138372339316.md",
-    "SKYNET/For vacuum divider/totally unsorted/New Chat.md",
-    "kilitary.md",
-    "axis9/issues/ss/automated_psy_machine.md",
-    "axis9/issues/ss.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717954904843258236.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717915027752652380.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717945811755874540.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717947993232701596.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717913539974922432.md",
-    "SKYNET/research/forcing/russian_naval_fleet/notes/sonars.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717913534898382576.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717913388767505668.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717913305637416320.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717913003090797348.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717910372987090836.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717890399993554500.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717889514376068460.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717889670947973984.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717886610329739392.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717885907138380388.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717886521587817200.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717883913357670020.md",
-    "assets/images/1f3e3.png",
-    "assets/images/1f3e6.png",
-    "SKYNET/research/scanning/wirescan_navscan/simulations",
-    "SKYNET/research/scanning/wirescan_navscan",
-    "SKYNET/research/scanning",
-    "indirect/garbage/Untitled.canvas",
-    "SKYNET/For vacuum divider/totally unsorted/Untitled.loom",
-    "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
-    "SKYNET/For vacuum divider/freebsd-check.jpg",
+    "index.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717840605017558700_00004e9c.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717840509989989600_00000b44.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838795319521600_000012e4.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838770685585400_00002b90.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838744207664100_00003570.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838710614676600_000005b0.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838647755452600_00004710.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838570538673600_00001920.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838471708926100_00003a94.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838412442150600_00003e98.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838335379604400_00005078.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838167506929900_00005588.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838096295642600_00003a70.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838021103439500_0000078c.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838012928393200_00002cc0.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717838004609046300_00003468.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837987986761000_000028f0.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837917308146600_00002da4.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837813555968800_00004c48.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837790747262800_000034ac.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837562726809400_00000a54.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837517826893000_00003a2c.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717837297803672100_00004a64.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717835354729343200_00006a80.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717828638149549400_00005c58.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
-    "SKYNET/For vacuum divider/ccc-final-bios-amd.pdf",
-    "assets/images/1f4bd.png",
-    "assets/images/1f4ca.png",
-    "assets/images/1f4a1.png",
-    "BMO/Profiles",
-    "BMO",
-    "Red&Queen/research/black-holes/notes",
-    "textgenerator/templates/local",
-    "textgenerator/templates",
-    "SKYNET/For vacuum divider/disk_icon.gif",
-    "SKYNET/For vacuum divider/39.gif",
-    "assets/images/alarm.png",
-    "assets/images/1f4d3.png",
-    "SKYNET/technology/work flows/fss/Untitled.canvas",
-    "Untitled 1.canvas",
-    "Untitled 3.canvas"
+    "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
+    "indirect/garbage/Untitled.canvas"
   ]
 }

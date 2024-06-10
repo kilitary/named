@@ -4,7 +4,7 @@
     "profileFolderPath": "BMO/Profiles"
   },
   "general": {
-    "model": "gurubot/llama3-guru:latest",
+    "model": "wizardlm2:latest",
     "system_role": "You are a helpful assistant.",
     "max_tokens": "",
     "temperature": "0.10",
