@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
+                "file": "axis9/issues/ss/twitter-sign.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
+                "file": "axis9/issues/ss/twitter-sign.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
+                "file": "axis9/issues/ss/twitter-sign.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md"
+                "file": "axis9/issues/ss/twitter-sign.md"
               }
             }
           },
@@ -222,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md"
+                "file": "axis9/issues/ss/twitter-sign.md"
               }
             }
           },
@@ -303,76 +303,36 @@
       "card-board:CardBoard": false
     }
   },
-  "floating": {
-    "id": "776068dd1a3d8557",
-    "type": "floating",
-    "children": [
-      {
-        "id": "2abe239e840cba22",
-        "type": "window",
-        "children": [
-          {
-            "id": "f55adf2dd96c29a1",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "1843c9adc1c4e3d2",
-                "type": "leaf",
-                "state": {
-                  "type": "canvas",
-                  "state": {
-                    "file": "indirect/garbage/Untitled.canvas",
-                    "viewState": {
-                      "x": 0,
-                      "y": 0,
-                      "zoom": 0
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 519,
-        "y": 274,
-        "width": 900,
-        "height": 500,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "axis9/issues/ss/ss.md",
+    "axis9/issues/ss/twitter-sign.md",
+    "axis9/issues/ss/draft/draft.md",
+    "axis9/issues/ss/advanced/advanced.md",
+    "axis9/axis9.md",
+    "SKYNET/research/forcing/russian naval fleet/prog.py.md",
+    "SKYNET/advisories/README.md",
+    "SKYNET/SKYNET.md",
+    "indirect/Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
+    "indirect/garbage/Untitled.canvas",
+    "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "axis9/research/research.md",
     "Red&Queen/biology/biology.md",
     "Red&Queen/biology/Untitled.md",
     "Red&Queen/biology/Untitled 1.md",
-    "axis9/axis9.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/issues/ss.md",
     "axis9/core  country planning.md",
     "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
     "axis9/issues/ss/dummy_bridge.jpg",
-    "indirect/garbage/Untitled.canvas",
-    "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
     "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
     "SKYNET/research/research.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1715623709952563700_00003c1c.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim___r_u_s_s_i_a_n__n_a_v_a_l__w_a_r_f_a_r_e__e_l_i_m_i_n_a_t_i_o_n__o_f__k_u_z_n_e_t_s_o_v__a_i_r_c_r_a_f_t__c_a_r_r_i_e_r__1715649491980659500_00000850.md",
     "axis9/issues/ss/Мусорщик++.md",
     "axis9/issues/ss/Zudo_and_psych_facility.md",
-    "axis9/issues/ss/Untitled Kanban.md",
-    "axis9/issues/ss/ss_sbor_programm.md",
-    "axis9/issues/ss/spart.md",
-    "axis9/issues/ss/russian_government_secret_services_crime_index_RU.md",
-    "axis9/issues/ss/russian government secret services crime index EN.md",
-    "axis9/issues/ss/putin.md",
-    "axis9/issues/ss/psy_operators.md",
-    "axis9/issues/ss/inter_fss_hate.md",
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_316.jpg",
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_118.jpg",
     "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.svg",
