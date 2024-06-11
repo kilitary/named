@@ -5,7 +5,10 @@
     "url": "",
     "custom1": "",
     "custom2": "",
-    "custom3": ""
+    "custom3": "",
+    "creationDate": "",
+    "modifiedDate": "",
+    "createdDate": ""
   },
   "filters": {
     "folder": "/",
@@ -34,5 +37,5 @@
     "titleWrapping": "normal"
   },
   "pageSize": 50,
-  "pluginVersion": "1.5.0"
+  "pluginVersion": "1.7.0"
 }

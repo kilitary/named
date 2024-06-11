@@ -45,8 +45,8 @@ var require_logger = __commonJS({
   "node_modules/js-logger/src/logger.js"(exports, module2) {
     (function(global2) {
       "use strict";
-      var Logger5 = {};
-      Logger5.VERSION = "1.6.1";
+      var Logger6 = {};
+      Logger6.VERSION = "1.6.1";
       var logHandler;
       var contextualLoggersByNameMap = {};
       var bind = function(scope, func) {
@@ -68,13 +68,13 @@ var require_logger = __commonJS({
       var defineLogLevel = function(value, name) {
         return { value, name };
       };
-      Logger5.TRACE = defineLogLevel(1, "TRACE");
-      Logger5.DEBUG = defineLogLevel(2, "DEBUG");
-      Logger5.INFO = defineLogLevel(3, "INFO");
-      Logger5.TIME = defineLogLevel(4, "TIME");
-      Logger5.WARN = defineLogLevel(5, "WARN");
-      Logger5.ERROR = defineLogLevel(8, "ERROR");
-      Logger5.OFF = defineLogLevel(99, "OFF");
+      Logger6.TRACE = defineLogLevel(1, "TRACE");
+      Logger6.DEBUG = defineLogLevel(2, "DEBUG");
+      Logger6.INFO = defineLogLevel(3, "INFO");
+      Logger6.TIME = defineLogLevel(4, "TIME");
+      Logger6.WARN = defineLogLevel(5, "WARN");
+      Logger6.ERROR = defineLogLevel(8, "ERROR");
+      Logger6.OFF = defineLogLevel(99, "OFF");
       var ContextualLogger = function(defaultContext) {
         this.context = defaultContext;
         this.setLevel(defaultContext.filterLevel);
@@ -97,28 +97,28 @@ var require_logger = __commonJS({
           return lvl.value >= filterLevel.value;
         },
         trace: function() {
-          this.invoke(Logger5.TRACE, arguments);
+          this.invoke(Logger6.TRACE, arguments);
         },
         debug: function() {
-          this.invoke(Logger5.DEBUG, arguments);
+          this.invoke(Logger6.DEBUG, arguments);
         },
         info: function() {
-          this.invoke(Logger5.INFO, arguments);
+          this.invoke(Logger6.INFO, arguments);
         },
         warn: function() {
-          this.invoke(Logger5.WARN, arguments);
+          this.invoke(Logger6.WARN, arguments);
         },
         error: function() {
-          this.invoke(Logger5.ERROR, arguments);
+          this.invoke(Logger6.ERROR, arguments);
         },
         time: function(label) {
           if (typeof label === "string" && label.length > 0) {
-            this.invoke(Logger5.TIME, [label, "start"]);
+            this.invoke(Logger6.TIME, [label, "start"]);
           }
         },
         timeEnd: function(label) {
           if (typeof label === "string" && label.length > 0) {
-            this.invoke(Logger5.TIME, [label, "end"]);
+            this.invoke(Logger6.TIME, [label, "end"]);
           }
         },
         // Invokes the logger callback if it's not being filtered.
@@ -128,9 +128,9 @@ var require_logger = __commonJS({
           }
         }
       };
-      var globalLogger = new ContextualLogger({ filterLevel: Logger5.OFF });
+      var globalLogger = new ContextualLogger({ filterLevel: Logger6.OFF });
       (function() {
-        var L = Logger5;
+        var L = Logger6;
         L.enabledFor = bind(globalLogger, globalLogger.enabledFor);
         L.trace = bind(globalLogger, globalLogger.trace);
         L.debug = bind(globalLogger, globalLogger.debug);
@@ -141,10 +141,10 @@ var require_logger = __commonJS({
         L.error = bind(globalLogger, globalLogger.error);
         L.log = L.info;
       })();
-      Logger5.setHandler = function(func) {
+      Logger6.setHandler = function(func) {
         logHandler = func;
       };
-      Logger5.setLevel = function(level) {
+      Logger6.setLevel = function(level) {
         globalLogger.setLevel(level);
         for (var key in contextualLoggersByNameMap) {
           if (contextualLoggersByNameMap.hasOwnProperty(key)) {
@@ -152,13 +152,13 @@ var require_logger = __commonJS({
           }
         }
       };
-      Logger5.getLevel = function() {
+      Logger6.getLevel = function() {
         return globalLogger.getLevel();
       };
-      Logger5.get = function(name) {
+      Logger6.get = function(name) {
         return contextualLoggersByNameMap[name] || (contextualLoggersByNameMap[name] = new ContextualLogger(merge({ name }, globalLogger.context)));
       };
-      Logger5.createDefaultHandler = function(options) {
+      Logger6.createDefaultHandler = function(options) {
         options = options || {};
         options.formatter = options.formatter || function defaultMessageFormatter(messages, context) {
           if (context.name) {
@@ -177,7 +177,7 @@ var require_logger = __commonJS({
           messages = Array.prototype.slice.call(messages);
           var hdlr = console.log;
           var timerLabel;
-          if (context.level === Logger5.TIME) {
+          if (context.level === Logger6.TIME) {
             timerLabel = (context.name ? "[" + context.name + "] " : "") + messages[0];
             if (messages[1] === "start") {
               if (console.time) {
@@ -193,15 +193,15 @@ var require_logger = __commonJS({
               }
             }
           } else {
-            if (context.level === Logger5.WARN && console.warn) {
+            if (context.level === Logger6.WARN && console.warn) {
               hdlr = console.warn;
-            } else if (context.level === Logger5.ERROR && console.error) {
+            } else if (context.level === Logger6.ERROR && console.error) {
               hdlr = console.error;
-            } else if (context.level === Logger5.INFO && console.info) {
+            } else if (context.level === Logger6.INFO && console.info) {
               hdlr = console.info;
-            } else if (context.level === Logger5.DEBUG && console.debug) {
+            } else if (context.level === Logger6.DEBUG && console.debug) {
               hdlr = console.debug;
-            } else if (context.level === Logger5.TRACE && console.trace) {
+            } else if (context.level === Logger6.TRACE && console.trace) {
               hdlr = console.trace;
             }
             options.formatter(messages, context);
@@ -209,22 +209,22 @@ var require_logger = __commonJS({
           }
         };
       };
-      Logger5.useDefaults = function(options) {
-        Logger5.setLevel(options && options.defaultLevel || Logger5.DEBUG);
-        Logger5.setHandler(Logger5.createDefaultHandler(options));
+      Logger6.useDefaults = function(options) {
+        Logger6.setLevel(options && options.defaultLevel || Logger6.DEBUG);
+        Logger6.setHandler(Logger6.createDefaultHandler(options));
       };
-      Logger5.setDefaults = Logger5.useDefaults;
+      Logger6.setDefaults = Logger6.useDefaults;
       if (typeof define === "function" && define.amd) {
-        define(Logger5);
+        define(Logger6);
       } else if (typeof module2 !== "undefined" && module2.exports) {
-        module2.exports = Logger5;
+        module2.exports = Logger6;
       } else {
-        Logger5._prevLogger = global2.Logger;
-        Logger5.noConflict = function() {
-          global2.Logger = Logger5._prevLogger;
-          return Logger5;
+        Logger6._prevLogger = global2.Logger;
+        Logger6.noConflict = function() {
+          global2.Logger = Logger6._prevLogger;
+          return Logger6;
         };
-        global2.Logger = Logger5;
+        global2.Logger = Logger6;
       }
     })(exports);
   }
@@ -5811,6 +5811,8 @@ var DEFAULT_SETTINGS = {
   properties: {
     favorite: "",
     url: "",
+    createdDate: "",
+    modifiedDate: "",
     custom1: "",
     custom2: "",
     custom3: ""
@@ -7847,6 +7849,7 @@ var import_obsidian6 = require("obsidian");
 var import_obsidian2 = require("obsidian");
 
 // src/event/event-manager.ts
+var import_js_logger = __toESM(require_logger());
 var EventManager = class {
   constructor() {
     this.eventListeners = {};
@@ -7876,9 +7879,11 @@ var EventManager = class {
   }
   // Method to trigger all callbacks associated with an event
   emit(eventName, ...data) {
+    import_js_logger.default.trace({ fileName: "event-manager.ts", functionName: "emit", message: "called" });
     if (!this.eventListeners[eventName]) {
       return;
     }
+    import_js_logger.default.debug({ fileName: "event-manager.ts", functionName: "emit", message: "emiting event" }, eventName);
     this.eventListeners[eventName].forEach((callback) => {
       callback(...data);
     });
@@ -12297,6 +12302,15 @@ function instance19($$self, $$props, $$invalidate) {
     $$invalidate(9, plugin2 = p);
     $$invalidate(8, wordBreak = plugin2.settings.views.titleWrapping);
   });
+  onMount(() => {
+    function handleTitleWrappingSettingChange() {
+      $$invalidate(8, wordBreak = plugin2.settings.views.titleWrapping);
+    }
+    EventManager.getInstance().on("title-wrapping-setting-change", handleTitleWrappingSettingChange);
+    return () => {
+      EventManager.getInstance().off("title-wrapping-setting-change", handleTitleWrappingSettingChange);
+    };
+  });
   function handleTitleClick() {
     const leaves = plugin2.app.workspace.getLeavesOfType("markdown");
     const leaf = leaves.find((leaf2) => {
@@ -12977,51 +12991,56 @@ var filterBySearch = (file, search) => {
 };
 
 // src/svelte/app/services/filters/timestamp-filter.ts
-var filterByTimestamp = (file, timestampFilter, {
-  midnightToday,
-  midnightThisWeek,
-  midnightLastWeek
+var filterByTimestamp = ({
+  timestampFilter,
+  createdMillis,
+  modifiedMillis,
+  startOfTodayMillis,
+  startOfThisWeekMillis,
+  startOfLastWeekMillis
 }) => {
-  const { mtime, ctime } = file.stat;
   if (timestampFilter === "modified-this-week") {
-    return mtime > midnightThisWeek;
+    return modifiedMillis > startOfThisWeekMillis;
   } else if (timestampFilter === "created-this-week") {
-    return ctime > midnightThisWeek;
+    return createdMillis > startOfThisWeekMillis;
   } else if (timestampFilter === "modified-2-weeks") {
-    return mtime > midnightLastWeek;
+    return modifiedMillis > startOfLastWeekMillis;
   } else if (timestampFilter === "created-2-weeks") {
-    return ctime > midnightLastWeek;
+    return createdMillis > startOfLastWeekMillis;
   } else if (timestampFilter === "modified-today") {
-    return mtime > midnightToday;
+    return modifiedMillis > startOfTodayMillis;
   } else if (timestampFilter === "created-today") {
-    return ctime > midnightToday;
+    return createdMillis > startOfTodayMillis;
   }
   return true;
 };
 
+// src/svelte/app/services/filters/property-groups-filter.ts
+var import_js_logger2 = __toESM(require_logger());
+
 // src/svelte/app/services/time-utils.ts
 var import_obsidian5 = require("obsidian");
-var getMidnightToday = () => {
-  const midnightToday = (0, import_obsidian5.moment)().startOf("day").valueOf();
-  return midnightToday;
+var getStartOfTodayMillis = () => {
+  return (0, import_obsidian5.moment)().startOf("day").valueOf();
 };
-var getMidnightThisWeek = () => {
-  const midnightThisWeek = (0, import_obsidian5.moment)().startOf("week").valueOf();
-  return midnightThisWeek;
+var getStartOfDayMillis = (date) => {
+  return (0, import_obsidian5.moment)(date).startOf("day").valueOf();
 };
-var getMidnightLastWeek = () => {
-  const midnightLastWeek = (0, import_obsidian5.moment)().subtract(1, "weeks").startOf("week").valueOf();
-  return midnightLastWeek;
+var getStartOfThisWeekMillis = () => {
+  return (0, import_obsidian5.moment)().startOf("week").valueOf();
 };
-var getMidnightMillis = (date) => {
-  const midnight = (0, import_obsidian5.moment)(date).startOf("day").valueOf();
-  return midnight;
+var getStartOfLastWeekMillis = () => {
+  return (0, import_obsidian5.moment)().subtract(1, "weeks").startOf("week").valueOf();
 };
-var getMillis = (date) => {
-  const time = (0, import_obsidian5.moment)(date).valueOf();
-  return time;
+var getTimeMillis = (date) => {
+  const formats = ["YYYY-MM-DDTHH:mm:ss", "YYYY-MM-DD"];
+  const momentDate = (0, import_obsidian5.moment)(date, formats, true);
+  if (!momentDate.isValid()) {
+    throw new Error("Invalid date format");
+  }
+  return momentDate.valueOf();
 };
-var getBeforeMidnightMillis = (date) => {
+var getEndOfDayMillis = (date) => {
   const day = (0, import_obsidian5.moment)(date);
   day.set({
     hour: 23,
@@ -13033,7 +13052,6 @@ var getBeforeMidnightMillis = (date) => {
 };
 
 // src/svelte/app/services/filters/property-groups-filter.ts
-var import_js_logger = __toESM(require_logger());
 var filterByPropertyGroups = (frontmatter, groups) => {
   return groups.every((group) => {
     if (!group.isEnabled)
@@ -13067,14 +13085,14 @@ var filterByProperty = (frontmatter, filter) => {
   let propertyValue = (_a = frontmatter == null ? void 0 : frontmatter[propertyName]) != null ? _a : null;
   if (type === "text") {
     if (propertyValue !== null && typeof propertyValue !== "string") {
-      import_js_logger.default.warn(`Property value is not a string: ${propertyValue}`);
+      import_js_logger2.default.warn(`Property value is not a string: ${propertyValue}`);
       return true;
     }
     const doesMatch = doesTextMatchFilter(propertyValue, value, condition, matchWhenPropertyDNE);
     return doesMatch;
   } else if (type === "list") {
     if (propertyValue !== null && !Array.isArray(propertyValue)) {
-      import_js_logger.default.warn(`Property value is not an array: ${propertyValue}`);
+      import_js_logger2.default.warn(`Property value is not an array: ${propertyValue}`);
       return true;
     }
     const compare = value.split(",").map((v) => v.trim()).filter((v) => v !== "");
@@ -13082,7 +13100,7 @@ var filterByProperty = (frontmatter, filter) => {
     return doesMatch;
   } else if (type === "number") {
     if (propertyValue !== null && typeof propertyValue !== "number") {
-      import_js_logger.default.warn(`Property value is not a number: ${propertyValue}`);
+      import_js_logger2.default.warn(`Property value is not a number: ${propertyValue}`);
       return true;
     }
     const compare = parseFloat(value);
@@ -13090,7 +13108,7 @@ var filterByProperty = (frontmatter, filter) => {
     return doesMatch;
   } else if (type === "checkbox") {
     if (propertyValue !== null && typeof propertyValue !== "boolean") {
-      import_js_logger.default.warn(`Property value is not a boolean: ${propertyValue}`);
+      import_js_logger2.default.warn(`Property value is not a boolean: ${propertyValue}`);
       return true;
     }
     const compare = value === "true";
@@ -13098,7 +13116,7 @@ var filterByProperty = (frontmatter, filter) => {
     return doesMatch;
   } else if (type === "date" || type === "datetime") {
     if (propertyValue !== null && typeof propertyValue !== "string") {
-      import_js_logger.default.warn(`Property value is not a string: ${propertyValue}`);
+      import_js_logger2.default.warn(`Property value is not a string: ${propertyValue}`);
       return true;
     }
     const doesMatch = doesDateMatchFilter(condition, propertyValue, value, matchWhenPropertyDNE);
@@ -13177,9 +13195,9 @@ var doesDateMatchFilter = (condition, propertyValue, compare, matchIfNull) => {
         return matchIfNull;
       if (compare === null)
         return false;
-      const propertyValueTime = getMillis(propertyValue);
-      const dayStartTime = getMidnightMillis(compare);
-      const dayEndTime = getBeforeMidnightMillis(compare);
+      const propertyValueTime = getTimeMillis(propertyValue);
+      const dayStartTime = getStartOfDayMillis(compare);
+      const dayEndTime = getEndOfDayMillis(compare);
       return propertyValueTime >= dayStartTime && propertyValueTime <= dayEndTime;
     }
     case "is-after" /* IS_AFTER */: {
@@ -13187,8 +13205,8 @@ var doesDateMatchFilter = (condition, propertyValue, compare, matchIfNull) => {
         return matchIfNull;
       if (compare === null)
         return false;
-      const propertyValueTime = getMillis(propertyValue);
-      const dayEndTime = getBeforeMidnightMillis(compare);
+      const propertyValueTime = getTimeMillis(propertyValue);
+      const dayEndTime = getEndOfDayMillis(compare);
       return propertyValueTime > dayEndTime;
     }
     case "is-before" /* IS_BEFORE */: {
@@ -13196,8 +13214,8 @@ var doesDateMatchFilter = (condition, propertyValue, compare, matchIfNull) => {
         return matchIfNull;
       if (compare === null)
         return false;
-      const propertyValueTime = getMillis(propertyValue);
-      const dayStartTime = getMidnightMillis(compare);
+      const propertyValueTime = getTimeMillis(propertyValue);
+      const dayStartTime = getStartOfDayMillis(compare);
       return propertyValueTime < dayStartTime;
     }
     case "exists" /* EXISTS */:
@@ -13265,6 +13283,8 @@ var doesCheckboxMatchFilter = (propertyValue, compare, condition, matchIfNull) =
 var formatFileDataForRender = (settings, file, frontmatter) => {
   const tags = loadPropertyValue(frontmatter, "tags", true);
   const {
+    createdDate: createdDateProp,
+    modifiedDate: modifiedDateProp,
     url: urlProp,
     favorite: favoriteProp,
     custom1: custom1Prop,
@@ -13273,15 +13293,21 @@ var formatFileDataForRender = (settings, file, frontmatter) => {
   } = settings.properties;
   const url = loadPropertyValue(frontmatter, urlProp);
   const favorite = loadPropertyValue(frontmatter, favoriteProp);
+  const creationDate = loadPropertyValue(frontmatter, createdDateProp);
+  const modifiedDate = loadPropertyValue(frontmatter, modifiedDateProp);
   const custom1 = loadPropertyValue(frontmatter, custom1Prop);
   const custom2 = loadPropertyValue(frontmatter, custom2Prop);
   const custom3 = loadPropertyValue(frontmatter, custom3Prop);
+  const createdMillis = creationDate != null ? getTimeMillis(creationDate) : file.stat.ctime;
+  const modifiedMillis = modifiedDate != null ? getTimeMillis(modifiedDate) : file.stat.mtime;
   return {
     name: file.basename,
     path: file.path,
     tags,
     favorite,
     url,
+    createdMillis,
+    modifiedMillis,
     custom1,
     custom2,
     custom3
@@ -13713,7 +13739,7 @@ var getDisplayNameForViewType = (viewType) => {
 // src/svelte/app/index.svelte
 function get_each_context8(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[53] = list[i];
+  child_ctx[54] = list[i];
   return child_ctx;
 }
 function create_if_block_32(ctx) {
@@ -13961,7 +13987,7 @@ function create_default_slot_10(ctx) {
       checkbox.$set(checkbox_changes);
       const flex_changes = {};
       if (dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         flex_changes.$$scope = { dirty, ctx: ctx2 };
       }
       flex.$set(flex_changes);
@@ -14009,7 +14035,7 @@ function create_default_slot_9(ctx) {
       const stack_changes = {};
       if (dirty[0] & /*onlyFavorites*/
       2 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack.$set(stack_changes);
@@ -14243,14 +14269,14 @@ function create_default_slot_7(ctx) {
       const flex_changes = {};
       if (dirty[0] & /*onlyFavorites*/
       2 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         flex_changes.$$scope = { dirty, ctx: ctx2 };
       }
       flex.$set(flex_changes);
       const stack_changes = {};
       if (dirty[0] & /*propertyFilterGroups*/
       16 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack.$set(stack_changes);
@@ -14279,7 +14305,7 @@ function create_default_slot_7(ctx) {
 function create_default_slot_6(ctx) {
   let t_value = getDisplayNameForViewType(
     /*view*/
-    ctx[53]
+    ctx[54]
   ) + "";
   let t;
   return {
@@ -14293,7 +14319,7 @@ function create_default_slot_6(ctx) {
       if (dirty[0] & /*viewOrder*/
       4 && t_value !== (t_value = getDisplayNameForViewType(
         /*view*/
-        ctx2[53]
+        ctx2[54]
       ) + ""))
         set_data(t, t_value);
     },
@@ -14312,7 +14338,7 @@ function create_each_block8(ctx) {
       /*click_handler_1*/
       ctx[41](
         /*view*/
-        ctx[53]
+        ctx[54]
       )
     );
   }
@@ -14321,7 +14347,7 @@ function create_each_block8(ctx) {
       /*dragstart_handler*/
       ctx[42](
         /*view*/
-        ctx[53],
+        ctx[54],
         ...args
       )
     );
@@ -14331,7 +14357,7 @@ function create_each_block8(ctx) {
       /*drop_handler*/
       ctx[43](
         /*view*/
-        ctx[53],
+        ctx[54],
         ...args
       )
     );
@@ -14360,7 +14386,7 @@ function create_each_block8(ctx) {
       const tab_changes = {};
       if (dirty[0] & /*viewOrder*/
       4 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         tab_changes.$$scope = { dirty, ctx };
       }
       tab.$set(tab_changes);
@@ -14561,7 +14587,7 @@ function create_default_slot_3(ctx) {
       const stack_changes = {};
       if (dirty[0] & /*endIndex, startIndex*/
       640 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack.$set(stack_changes);
@@ -14751,14 +14777,14 @@ function create_default_slot_14(ctx) {
       const stack_changes = {};
       if (dirty[0] & /*renderData, endIndex, startIndex*/
       896 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack.$set(stack_changes);
       const flex_changes = {};
       if (dirty[0] & /*totalPages, currentPage*/
       1056 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         flex_changes.$$scope = { dirty, ctx: ctx2 };
       }
       flex.$set(flex_changes);
@@ -14833,14 +14859,14 @@ function create_default_slot9(ctx) {
         );
       if (dirty[0] & /*viewOrder, currentView*/
       12 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         tablist_changes.$$scope = { dirty, ctx: ctx2 };
       }
       tablist.$set(tablist_changes);
       const stack_changes = {};
       if (dirty[0] & /*totalPages, currentPage, renderData, endIndex, startIndex*/
       1952 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack.$set(stack_changes);
@@ -15057,21 +15083,21 @@ function create_fragment25(ctx) {
       const stack0_changes = {};
       if (dirty[0] & /*searchFilter*/
       1 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack0_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack0.$set(stack0_changes);
       const stack1_changes = {};
       if (dirty[0] & /*propertyFilterGroups, onlyFavorites*/
       18 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         stack1_changes.$$scope = { dirty, ctx: ctx2 };
       }
       stack1.$set(stack1_changes);
       const flex_changes = {};
       if (dirty[0] & /*totalPages, currentPage, renderData, endIndex, startIndex, viewOrder, currentView*/
       1964 | dirty[1] & /*$$scope*/
-      33554432) {
+      67108864) {
         flex_changes.$$scope = { dirty, ctx: ctx2 };
       }
       flex.$set(flex_changes);
@@ -15152,12 +15178,12 @@ function handleGroupDragStart2(e) {
   });
 }
 function instance25($$self, $$props, $$invalidate) {
-  let sorted;
-  let filteredTimestamp;
   let filteredProperty;
   let filteredFolder;
   let formatted;
-  let filterSearch;
+  let filteredSearch;
+  let filteredFavorites;
+  let filteredTimestamp;
   let renderData;
   let totalItems;
   let totalPages;
@@ -15165,13 +15191,13 @@ function instance25($$self, $$props, $$invalidate) {
   let pageLength;
   let endIndex;
   let plugin2;
-  let midnightToday;
-  let midnightThisWeek;
-  let midnightLastWeek;
+  let startOfTodayMillis;
+  let startOfThisWeekMillis;
+  let startOfLastWeekMillis;
   function updateTimeValues() {
-    $$invalidate(22, midnightToday = getMidnightToday());
-    $$invalidate(23, midnightThisWeek = getMidnightThisWeek());
-    $$invalidate(24, midnightLastWeek = getMidnightLastWeek());
+    $$invalidate(22, startOfTodayMillis = getStartOfTodayMillis());
+    $$invalidate(23, startOfThisWeekMillis = getStartOfThisWeekMillis());
+    $$invalidate(24, startOfLastWeekMillis = getStartOfLastWeekMillis());
   }
   onMount(() => {
     updateTimeValues();
@@ -15205,12 +15231,7 @@ function instance25($$self, $$props, $$invalidate) {
     },
     300
   );
-  store_default.plugin.subscribe((p) => {
-    $$invalidate(21, plugin2 = p);
-    const allFiles = plugin2.app.vault.getAllLoadedFiles();
-    folders = allFiles.filter((file) => file instanceof import_obsidian6.TFolder).map((folder) => folder.path);
-    $$invalidate(31, markdownFiles = plugin2.app.vault.getMarkdownFiles());
-    $$invalidate(25, pageSize = plugin2.settings.pageSize);
+  function updateFrontmatterCache() {
     let localCache = {};
     markdownFiles.forEach((file) => {
       var _a;
@@ -15218,6 +15239,14 @@ function instance25($$self, $$props, $$invalidate) {
       localCache[file.path] = frontmatter;
     });
     $$invalidate(30, frontmatterCache = localCache);
+  }
+  store_default.plugin.subscribe((p) => {
+    $$invalidate(21, plugin2 = p);
+    const allFiles = plugin2.app.vault.getAllLoadedFiles();
+    folders = allFiles.filter((file) => file instanceof import_obsidian6.TFolder).map((folder) => folder.path);
+    $$invalidate(31, markdownFiles = plugin2.app.vault.getMarkdownFiles());
+    updateFrontmatterCache();
+    $$invalidate(25, pageSize = plugin2.settings.pageSize);
     $$invalidate(0, searchFilter = plugin2.settings.filters.search);
     $$invalidate(26, folderFilter = plugin2.settings.filters.folder);
     $$invalidate(27, sortFilter = plugin2.settings.filters.sort);
@@ -15350,6 +15379,24 @@ function instance25($$self, $$props, $$invalidate) {
     EventManager.getInstance().on("metadata-change", handleMetadataChange);
     return () => {
       EventManager.getInstance().off("metadata-change", handleMetadataChange);
+    };
+  });
+  onMount(() => {
+    function handlePageSizeChange() {
+      $$invalidate(25, pageSize = plugin2.settings.pageSize);
+    }
+    EventManager.getInstance().on("page-size-setting-change", handlePageSizeChange);
+    return () => {
+      EventManager.getInstance().off("page-size-setting-change", handlePageSizeChange);
+    };
+  });
+  onMount(() => {
+    function handlePropertyChange() {
+      updateFrontmatterCache();
+    }
+    EventManager.getInstance().on("property-setting-change", handlePropertyChange);
+    return () => {
+      EventManager.getInstance().off("property-setting-change", handlePropertyChange);
     };
   });
   function saveSettings() {
@@ -15512,68 +15559,74 @@ function instance25($$self, $$props, $$invalidate) {
   const click_handler_4 = () => changePage(currentPage + 1);
   const click_handler_5 = () => changePage(totalPages);
   $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*sortFilter*/
-    134217728 | $$self.$$.dirty[1] & /*markdownFiles*/
+    if ($$self.$$.dirty[0] & /*frontmatterCache, propertyFilterGroups*/
+    1073741840 | $$self.$$.dirty[1] & /*markdownFiles*/
     1) {
       $:
-        $$invalidate(38, sorted = [...markdownFiles].sort((a, b) => {
-          if (sortFilter === "file-name-asc") {
-            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-          } else if (sortFilter === "file-name-desc") {
-            return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
-          } else if (sortFilter === "modified-asc") {
-            return a.stat.mtime - b.stat.mtime;
-          } else if (sortFilter === "modified-desc") {
-            return b.stat.mtime - a.stat.mtime;
-          }
-          return 0;
-        }));
-    }
-    if ($$self.$$.dirty[0] & /*timestampFilter, midnightToday, midnightThisWeek, midnightLastWeek*/
-    297795584 | $$self.$$.dirty[1] & /*sorted*/
-    128) {
-      $:
-        $$invalidate(37, filteredTimestamp = sorted.filter((file) => filterByTimestamp(file, timestampFilter, {
-          midnightToday,
-          midnightThisWeek,
-          midnightLastWeek
-        })));
-    }
-    if ($$self.$$.dirty[0] & /*frontmatterCache, propertyFilterGroups*/
-    1073741840 | $$self.$$.dirty[1] & /*filteredTimestamp*/
-    64) {
-      $:
-        $$invalidate(36, filteredProperty = filteredTimestamp.filter((file) => {
+        $$invalidate(38, filteredProperty = [...markdownFiles].filter((file) => {
           const frontmatter = frontmatterCache[file.path];
           return filterByPropertyGroups(frontmatter, propertyFilterGroups);
         }));
     }
     if ($$self.$$.dirty[0] & /*folderFilter*/
     67108864 | $$self.$$.dirty[1] & /*filteredProperty*/
-    32) {
+    128) {
       $:
-        $$invalidate(35, filteredFolder = filteredProperty.filter((file) => filterByFolder(file, folderFilter)));
+        $$invalidate(37, filteredFolder = filteredProperty.filter((file) => filterByFolder(file, folderFilter)));
     }
     if ($$self.$$.dirty[0] & /*frontmatterCache, plugin*/
     1075838976 | $$self.$$.dirty[1] & /*filteredFolder*/
-    16) {
+    64) {
       $:
-        $$invalidate(34, formatted = filteredFolder.map((file) => {
+        $$invalidate(36, formatted = filteredFolder.map((file) => {
           const frontmatter = frontmatterCache[file.path];
           return formatFileDataForRender(plugin2.settings, file, frontmatter);
         }));
     }
     if ($$self.$$.dirty[0] & /*searchFilter*/
     1 | $$self.$$.dirty[1] & /*formatted*/
-    8) {
+    32) {
       $:
-        $$invalidate(33, filterSearch = formatted.filter((file) => filterBySearch(file, searchFilter)));
+        $$invalidate(35, filteredSearch = formatted.filter((file) => filterBySearch(file, searchFilter)));
     }
     if ($$self.$$.dirty[0] & /*onlyFavorites*/
-    2 | $$self.$$.dirty[1] & /*filterSearch*/
+    2 | $$self.$$.dirty[1] & /*filteredSearch*/
+    16) {
+      $:
+        $$invalidate(34, filteredFavorites = filteredSearch.filter((file) => filterByFavorites(file, onlyFavorites)));
+    }
+    if ($$self.$$.dirty[0] & /*timestampFilter, startOfTodayMillis, startOfThisWeekMillis, startOfLastWeekMillis*/
+    297795584 | $$self.$$.dirty[1] & /*filteredFavorites*/
+    8) {
+      $:
+        $$invalidate(33, filteredTimestamp = filteredFavorites.filter((file) => {
+          const { modifiedMillis, createdMillis } = file;
+          return filterByTimestamp({
+            createdMillis,
+            modifiedMillis,
+            timestampFilter,
+            startOfTodayMillis,
+            startOfThisWeekMillis,
+            startOfLastWeekMillis
+          });
+        }));
+    }
+    if ($$self.$$.dirty[0] & /*sortFilter*/
+    134217728 | $$self.$$.dirty[1] & /*filteredTimestamp*/
     4) {
       $:
-        $$invalidate(8, renderData = filterSearch.filter((file) => filterByFavorites(file, onlyFavorites)));
+        $$invalidate(8, renderData = [...filteredTimestamp].sort((a, b) => {
+          if (sortFilter === "file-name-asc") {
+            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+          } else if (sortFilter === "file-name-desc") {
+            return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+          } else if (sortFilter === "modified-asc") {
+            return a.modifiedMillis - b.modifiedMillis;
+          } else if (sortFilter === "modified-desc") {
+            return b.modifiedMillis - a.modifiedMillis;
+          }
+          return 0;
+        }));
     }
     if ($$self.$$.dirty[0] & /*searchFilter, folderFilter, sortFilter, timestampFilter, onlyFavorites, currentView, viewOrder, propertyFilterGroups, selectedPropertyFilterGroupId*/
     1006632991) {
@@ -15630,9 +15683,9 @@ function instance25($$self, $$props, $$invalidate) {
     handleOnlyFavoritesChange,
     changePage,
     plugin2,
-    midnightToday,
-    midnightThisWeek,
-    midnightLastWeek,
+    startOfTodayMillis,
+    startOfThisWeekMillis,
+    startOfLastWeekMillis,
     pageSize,
     folderFilter,
     sortFilter,
@@ -15641,12 +15694,12 @@ function instance25($$self, $$props, $$invalidate) {
     frontmatterCache,
     markdownFiles,
     totalItems,
-    filterSearch,
+    filteredTimestamp,
+    filteredFavorites,
+    filteredSearch,
     formatted,
     filteredFolder,
     filteredProperty,
-    filteredTimestamp,
-    sorted,
     click_handler,
     keydown_handler,
     click_handler_1,
@@ -15684,6 +15737,11 @@ var VaultExplorerView = class extends import_obsidian7.ItemView {
     return "Vault Explorer";
   }
   async onOpen() {
+    this.addAction("settings", "Settings", () => {
+      const app = this.plugin.app;
+      app.setting.open();
+      app.setting.openTabById(this.plugin.manifest.id);
+    });
     const containerEl = this.containerEl.children[1];
     store_default.plugin.set(this.plugin);
     this.component = new app_default({
@@ -15698,24 +15756,24 @@ var VaultExplorerView = class extends import_obsidian7.ItemView {
 
 // src/obsidian/vault-explorer-settings-tab.ts
 var import_obsidian8 = require("obsidian");
-var import_js_logger3 = __toESM(require_logger());
+var import_js_logger4 = __toESM(require_logger());
 
 // src/logger/index.ts
-var import_js_logger2 = __toESM(require_logger());
+var import_js_logger3 = __toESM(require_logger());
 var stringToLogLevel = (value) => {
   switch (value) {
     case LOG_LEVEL_OFF:
-      return import_js_logger2.default.OFF;
+      return import_js_logger3.default.OFF;
     case LOG_LEVEL_ERROR:
-      return import_js_logger2.default.ERROR;
+      return import_js_logger3.default.ERROR;
     case LOG_LEVEL_WARN:
-      return import_js_logger2.default.WARN;
+      return import_js_logger3.default.WARN;
     case LOG_LEVEL_INFO:
-      return import_js_logger2.default.INFO;
+      return import_js_logger3.default.INFO;
     case LOG_LEVEL_DEBUG:
-      return import_js_logger2.default.DEBUG;
+      return import_js_logger3.default.DEBUG;
     case LOG_LEVEL_TRACE:
-      return import_js_logger2.default.TRACE;
+      return import_js_logger3.default.TRACE;
     default:
       throw new Error(`Unhandled log level: ${value}`);
   }
@@ -15742,6 +15800,8 @@ var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
     const textProperties = getObsidianPropertiesByType(this.app, "text");
+    const dateProperties = getObsidianPropertiesByType(this.app, "date");
+    const dateTimeProperties = getObsidianPropertiesByType(this.app, "datetime");
     const checkboxProperties = getObsidianPropertiesByType(this.app, "checkbox");
     new import_obsidian8.Setting(containerEl).setName("Views").setHeading();
     new import_obsidian8.Setting(containerEl).setName("Page size").setDesc("The number of items to display per page.").addDropdown((dropdown) => dropdown.addOptions({
@@ -15754,6 +15814,7 @@ var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
     }).setValue(this.plugin.settings.pageSize.toString()).onChange(async (value) => {
       this.plugin.settings.pageSize = parseInt(value);
       await this.plugin.saveSettings();
+      EventManager.getInstance().emit("page-size-setting-change");
     }));
     new import_obsidian8.Setting(containerEl).setName("Title wrapping").setDesc(
       "Sets the wrapping style for the title."
@@ -15766,6 +15827,7 @@ var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
         async (value) => {
           this.plugin.settings.views.titleWrapping = value;
           await this.plugin.saveSettings();
+          EventManager.getInstance().emit("title-wrapping-setting-change");
         }
       );
     });
@@ -15773,23 +15835,52 @@ var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
     new import_obsidian8.Setting(containerEl).setName("Favorite property").setDesc("The property used to mark a note as a favorite. This must be a checkbox property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(checkboxProperties)).setValue(this.plugin.settings.properties.favorite).onChange(async (value) => {
       this.plugin.settings.properties.favorite = value;
       await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
     }));
     new import_obsidian8.Setting(containerEl).setName("URL property").setDesc("The property used to store the URL of the content. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.url).onChange(async (value) => {
       this.plugin.settings.properties.url = value;
       await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
+    }));
+    const createdDateDesc = new DocumentFragment();
+    createdDateDesc.createDiv({
+      text: "The property containing the creation date. This must be a date or datetime property."
+    });
+    createdDateDesc.createDiv({
+      text: "If set to 'Select a property', the file's created at date will be used."
+    });
+    new import_obsidian8.Setting(containerEl).setName("Created date property").setDesc(createdDateDesc).addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties([...dateProperties, ...dateTimeProperties])).setValue(this.plugin.settings.properties.createdDate).onChange(async (value) => {
+      this.plugin.settings.properties.createdDate = value;
+      await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
+    }));
+    const modifiedDateDesc = new DocumentFragment();
+    modifiedDateDesc.createDiv({
+      text: "The property containing the modification date. This must be a date or datetime property."
+    });
+    modifiedDateDesc.createDiv({
+      text: "If set to 'Select a property', the file's modified at date will be used."
+    });
+    new import_obsidian8.Setting(containerEl).setName("Modified date property").setDesc(modifiedDateDesc).addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties([...dateProperties, ...dateTimeProperties])).setValue(this.plugin.settings.properties.modifiedDate).onChange(async (value) => {
+      this.plugin.settings.properties.modifiedDate = value;
+      await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
     }));
     new import_obsidian8.Setting(containerEl).setName("Custom properties").setHeading();
     new import_obsidian8.Setting(containerEl).setName("Custom property 1").setDesc("The first custom property. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom1).onChange(async (value) => {
       this.plugin.settings.properties.custom1 = value;
       await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
     }));
     new import_obsidian8.Setting(containerEl).setName("Custom property 2").setDesc("The second custom property. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom2).onChange(async (value) => {
       this.plugin.settings.properties.custom2 = value;
       await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
     }));
     new import_obsidian8.Setting(containerEl).setName("Custom property 3").setDesc("The third custom property. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom3).onChange(async (value) => {
       this.plugin.settings.properties.custom3 = value;
       await this.plugin.saveSettings();
+      EventManager.getInstance().emit("property-setting-change");
     }));
     new import_obsidian8.Setting(containerEl).setName("Debugging").setHeading();
     new import_obsidian8.Setting(containerEl).setName("Log level").setDesc(
@@ -15807,7 +15898,7 @@ var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
         async (value) => {
           this.plugin.settings.logLevel = value;
           await this.plugin.saveSettings();
-          import_js_logger3.default.setLevel(stringToLogLevel(value));
+          import_js_logger4.default.setLevel(stringToLogLevel(value));
         }
       );
     });
@@ -15832,7 +15923,7 @@ var isVersionLessThan = (oldVersion, newVersion) => {
 };
 
 // src/main.ts
-var import_js_logger4 = __toESM(require_logger());
+var import_js_logger5 = __toESM(require_logger());
 
 // src/focus-utils.ts
 var moveFocus = (direction) => {
@@ -15866,8 +15957,8 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
   }
   async onload() {
     await this.loadSettings();
-    import_js_logger4.default.useDefaults();
-    import_js_logger4.default.setHandler(function(messages) {
+    import_js_logger5.default.useDefaults();
+    import_js_logger5.default.setHandler(function(messages) {
       const { message, data } = formatMessageForLogger(...messages);
       console.log(message);
       if (data) {
@@ -15875,21 +15966,19 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
       }
     });
     const logLevel = stringToLogLevel(this.settings.logLevel);
-    import_js_logger4.default.setLevel(logLevel);
+    import_js_logger5.default.setLevel(logLevel);
     this.registerView(
       VAULT_EXPLORER_VIEW,
       (leaf) => new VaultExplorerView(leaf, this)
     );
     this.addRibbonIcon("compass", "Open vault explorer", async () => {
-      const leaves = this.app.workspace.getLeavesOfType(VAULT_EXPLORER_VIEW);
-      if (leaves.length !== 0) {
-        const leaf = leaves[0];
-        this.app.workspace.revealLeaf(leaf);
-      } else {
-        this.app.workspace.getLeaf().setViewState({
-          type: VAULT_EXPLORER_VIEW,
-          active: true
-        });
+      this.openVaultExplorerView();
+    });
+    this.addCommand({
+      id: "open",
+      name: "Open vault explorer view",
+      callback: async () => {
+        this.openVaultExplorerView();
       }
     });
     this.registerEvents();
@@ -16044,6 +16133,32 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
           };
           data = newData;
         }
+        if (isVersionLessThan(settingsVersion, "1.6.0")) {
+          console.log("Upgrading settings from version 1.5.0 to 1.6.0");
+          const typedData = data;
+          const newData = {
+            ...typedData,
+            properties: {
+              ...typedData.properties,
+              creationDate: "",
+              modifiedDate: ""
+            }
+          };
+          data = newData;
+        }
+        if (isVersionLessThan(settingsVersion, "1.6.1")) {
+          console.log("Upgrading settings from version 1.6.0 to 1.6.1");
+          const typedData = data;
+          const newData = {
+            ...typedData,
+            properties: {
+              ...typedData.properties,
+              createdDate: "",
+              modifiedDate: ""
+            }
+          };
+          data = newData;
+        }
       }
     }
     this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
@@ -16051,9 +16166,21 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
     await this.saveSettings();
   }
   async saveSettings() {
-    import_js_logger4.default.trace({ fileName: "main.ts", functionName: "saveSettings", message: "called" });
-    import_js_logger4.default.debug({ fileName: "main.ts", functionName: "saveSettings", message: "Saving settings" }, this.settings);
+    import_js_logger5.default.trace({ fileName: "main.ts", functionName: "saveSettings", message: "called" });
+    import_js_logger5.default.debug({ fileName: "main.ts", functionName: "saveSettings", message: "saving settings" }, this.settings);
     await this.saveData(this.settings);
+  }
+  openVaultExplorerView() {
+    const leaves = this.app.workspace.getLeavesOfType(VAULT_EXPLORER_VIEW);
+    if (leaves.length !== 0) {
+      const leaf = leaves[0];
+      this.app.workspace.revealLeaf(leaf);
+    } else {
+      this.app.workspace.getLeaf().setViewState({
+        type: VAULT_EXPLORER_VIEW,
+        active: true
+      });
+    }
   }
 };
 /*! Bundled license information:

@@ -97,5 +97,17 @@
   "canvas-mindmap",
   "contribution-graph",
   "note-gallery",
-  "codeblock-customizer"
+  "codeblock-customizer",
+  "badges",
+  "better-inline-fields",
+  "daily-note-navbar",
+  "obsidian-emoji-toolbar",
+  "gene-ai",
+  "heatmap-calendar",
+  "json-table",
+  "metadata-menu",
+  "persistent-graph",
+  "obsidian-projects",
+  "obsidian-recall",
+  "obsidian-plugin-toc"
 ]
