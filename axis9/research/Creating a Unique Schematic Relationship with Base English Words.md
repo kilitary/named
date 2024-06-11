@@ -9,7 +9,9 @@ tags:
 kanban-plugin: 
 fgthj: fjhg
 state: Idea
-п рб:
+п рб: 
+sticker: emoji//1f636-200d-1f32b-fe0f
+banner: axis9/issues/ss/broadcom5762.jpg
 ---
 
 > [!success]+ verbs

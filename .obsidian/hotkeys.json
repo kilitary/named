@@ -248,6 +248,16 @@
       "key": "F8"
     }
   ],
+  "editing-toolbar:header0-text": [],
+  "webpage-html-export:export-html-vault": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "E"
+    }
+  ],
   "command-palette:open": [
     {
       "modifiers": [
@@ -261,7 +271,7 @@
       "modifiers": [
         "Mod"
       ],
-      "key": "Y"
+      "key": "R"
     }
   ],
   "colored-text:alter-color-palette": [
@@ -269,17 +279,7 @@
       "modifiers": [
         "Mod"
       ],
-      "key": "U"
-    }
-  ],
-  "editing-toolbar:header0-text": [],
-  "webpage-html-export:export-html-vault": [
-    {
-      "modifiers": [
-        "Alt",
-        "Mod"
-      ],
-      "key": "E"
+      "key": "Y"
     }
   ]
 }
