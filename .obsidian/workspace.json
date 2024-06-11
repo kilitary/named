@@ -4,71 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "7a2f695f0a5984c7",
-        "type": "split",
+        "id": "5ef17edd70622170",
+        "type": "tabs",
         "children": [
           {
-            "id": "7575c1db41e1b542",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "40a6ec63e12bfea4",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
-                  }
-                }
+            "id": "40a6ec63e12bfea4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
               }
-            ]
-          },
-          {
-            "id": "5ef17edd70622170",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "2e9e28e84fa53b3e",
-                "type": "leaf",
-                "state": {
-                  "type": "desk-view",
-                  "state": {}
-                }
-              },
-              {
-                "id": "5d1206eff7ec2c78",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "textgenerator/templates/huggingface/completeTextBloom.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "62776c2af95c0d55",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
-                  }
-                }
-              }
-            ],
-            "currentTab": 1
+            }
           }
         ],
-        "direction": "horizontal"
+        "stacked": true
       }
     ],
     "direction": "vertical"
@@ -97,12 +50,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#bloom",
+                "query": "tag:#excalidraw",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical"
+                "extraContext": true,
+                "sortOrder": "byModifiedTimeReverse"
               }
             }
           },
@@ -151,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -168,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -203,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md"
+                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md"
               }
             }
           },
@@ -269,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md"
+                "file": "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md"
               }
             }
           },
@@ -290,7 +243,7 @@
             }
           }
         ],
-        "currentTab": 13
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -351,45 +304,54 @@
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "SKYNET/research/forcing/russian_naval_fleet/repeater.md",
-    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-    "textgenerator/templates/huggingface/completeTextBloom.md",
-    "tracked_files.json",
+    "Tags/$tags/$tags.md",
+    "SKYNET/research/forcing/russian_naval_fleet/russian_naval_fleet.md",
+    "SKYNET/technology/technology.md",
     "2024-06-11.md",
+    "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
+    "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_316.jpg",
+    "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_118.jpg",
+    "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.svg",
+    "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.md",
+    "Excalidraw/Scripts/Downloaded/Set Link Alias.svg",
+    "Excalidraw/Scripts/Downloaded/Set Link Alias.md",
+    "Excalidraw/Scripts/Downloaded/Set Dimensions.svg",
+    "Excalidraw/Scripts/Downloaded/Set Dimensions.md",
+    "Excalidraw/Scripts/Downloaded/Repeat Texts.svg",
+    "Excalidraw/Scripts/Downloaded/Repeat Texts.md",
+    "Excalidraw/Scripts/Downloaded/Repeat Elements.svg",
+    "Excalidraw/Scripts/Downloaded/Repeat Elements.md",
+    "Excalidraw/Scripts/Downloaded/Organic Line.svg",
+    "Excalidraw/Scripts/Downloaded/Organic Line.md",
+    "Excalidraw/Scripts/Downloaded/Normalize Selected Arrows.svg",
+    "Excalidraw/Scripts/Downloaded/Normalize Selected Arrows.md",
+    "Excalidraw/Scripts/Downloaded/Mindmap format.svg",
+    "Excalidraw/Scripts/Downloaded/Mindmap format.md",
+    "Excalidraw/Scripts/Downloaded/Mindmap connector.md",
+    "Excalidraw/Scripts/Downloaded/Downloaded.md",
+    "Excalidraw/Scripts/Scripts.md",
+    "Excalidraw/Excalidraw.md",
+    "Excalidraw/Scripts/Downloaded",
+    "Excalidraw/Scripts",
+    "Excalidraw",
+    "axis9/axis9.md",
+    "textgenerator/templates/huggingface/completeTextBloom.md",
+    "2024-06-12.md",
+    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+    "axis9/issues/ss/fss_software_hardware.md",
+    "SKYNET/research/forcing/russian_naval_fleet/repeater.md",
+    "tracked_files.json",
     "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
     "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
     "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
-    "SKYNET/research/scanning/wirescan_navscan/environment/environment.md",
-    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
-    "SKYNET/research/scanning/RF_microwave_scan.md",
-    "SKYNET/research/scanning/scanning.md",
-    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "SKYNET/research/text machine/text machine.md",
-    "SKYNET/research/research.md",
-    "SKYNET/technology.md",
-    "SKYNET/playground/Untitled.md",
-    "SKYNET/playground/playground.md",
-    "SKYNET/advisories/README.md",
-    "SKYNET/advisories/advisories.md",
-    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
-    "axis9/CORE-SSE/CORE-SSE.md",
-    "axis9/axis9.md",
-    "axis9/issues/ss.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1717949557912573764.md",
-    "index.md",
-    "Red&Queen/playground/playground.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
-    "SKYNET/research/forcing/russian naval fleet/0ohdJD26frA.jpg",
     "SKYNET/research/forcing/russian naval fleet",
     "Untitled.loom",
     "looms/Untitled.loom",
     "Tags/$tags",
-    "assets/images/1f3e6.png",
-    "axis9/issues/ss/0W0Ob2EyJcs.jpg",
     "Tags",
-    "assets/images/1f1f7-1f1fa.png",
     "Untitled.canvas"
   ]
 }

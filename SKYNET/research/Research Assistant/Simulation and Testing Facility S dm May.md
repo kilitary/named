@@ -15,7 +15,7 @@ commands: []
 ---
 1. [ ] perform unit category detection using harvested human research about black holes structure, evidance and formation 
 2. [ ] in This study ai should descriebe os uses simulating gravity on solar internal objects with alteration by gravity of black holes and their near environment, ai should simulate black hole properties near Mars (which does not help priority:: fastest-growing prio (2024, thx for innovative scaring super technology's )
-3. [ ] choose next racoon step to disengage hostile environment
+3. [ ] choose next racoon step to disengage hostile environment  [id:: l0thay]
 	         1. **silence** @ ru/us environment s
 	         2. continue fss **psy** successfull terrorism **leakage**
 	         3. take legal psych's into fss articles + hardware/software possibilities
