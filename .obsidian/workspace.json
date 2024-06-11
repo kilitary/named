@@ -83,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -235,7 +234,7 @@
             }
           },
           {
-            "id": "2c5faa3bb35ce381",
+            "id": "cd3566ea99656ba3",
             "type": "leaf",
             "state": {
               "type": "timeline",
@@ -265,8 +264,6 @@
       "project-browser:Open project browser": false,
       "markdown-table-editor:Open Markdown Table Editor": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "darlal-switcher-plus:Open in Headings Mode": false,
-      "darlal-switcher-plus:Open Symbols for the active editor": false,
       "grind-manager:Show grind manager": false,
       "timeline-view:Open timeline view": false,
       "obsidian-full-calendar:Open Full Calendar": false,
@@ -282,7 +279,6 @@
       "select-and-complete:Select and Complete": false,
       "card-board:CardBoard": false,
       "desk:Create new desk": false,
-      "obsidian-day-planner:Timeline": false,
       "task-status:Change Checkbox Status": false,
       "homework-manager:Open homework": false,
       "file-preview:Refresh preview contents": false,
@@ -299,10 +295,13 @@
       "map-of-content:Update Map of Content": false,
       "obsidian-contacts:Contacts": false,
       "obsidian-projects:Open projects": false,
-      "vault-explorer:Open vault explorer": false
+      "vault-explorer:Open vault explorer": false,
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
+      "obsidian-day-planner:Timeline": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "b3abf9847077278d",
   "lastOpenFiles": [
     "Tags/$tags/$tags.md",
     "SKYNET/research/forcing/russian_naval_fleet/russian_naval_fleet.md",

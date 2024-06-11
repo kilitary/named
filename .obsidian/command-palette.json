@@ -14,6 +14,6 @@
     "obsidian-git:open-git-view",
     "obsidian-mindmap-nextgen:mindmapnextgen:pinned",
     "obsidian-textgenerator-plugin:set_max_tokens",
-    "terminal:open-terminal.select."
+    "webpage-html-export:export-html-vault"
   ]
 }
