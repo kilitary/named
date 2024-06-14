@@ -52,7 +52,8 @@
       "stop": [],
       "tfs_z": "1.00",
       "top_k": "40",
-      "top_p": "0.90"
+      "top_p": "0.90",
+      "min_p": "0.00"
     },
     "ollamaModels": [
       "phi3:latest",

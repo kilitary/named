@@ -13,14 +13,25 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/ss/twitter-sign.md",
+                "file": "indirect/garbage/garbage.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
+          },
+          {
+            "id": "9beafde53dc27d5d",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.3"
+              }
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -83,8 +94,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -104,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/ss/twitter-sign.md",
+                "file": "indirect/garbage/garbage.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +131,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/ss/twitter-sign.md",
+                "file": "indirect/garbage/garbage.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +166,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/ss/twitter-sign.md"
+                "file": "indirect/garbage/garbage.md"
               }
             }
           },
@@ -222,7 +232,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/ss/twitter-sign.md"
+                "file": "indirect/garbage/garbage.md"
               }
             }
           },
@@ -241,9 +251,17 @@
               "type": "timeline",
               "state": {}
             }
+          },
+          {
+            "id": "b844f21cbb5ea2fd",
+            "type": "leaf",
+            "state": {
+              "type": "chatbot-view",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 15
       }
     ],
     "direction": "horizontal",
@@ -295,44 +313,41 @@
       "vault-explorer:Open vault explorer": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false,
-      "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false,
-      "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "obsidian-day-planner:Timeline": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "9beafde53dc27d5d",
   "lastOpenFiles": [
-    "axis9/issues/ss/ss.md",
-    "axis9/issues/ss/twitter-sign.md",
-    "axis9/issues/ss/draft/draft.md",
-    "axis9/issues/ss/advanced/advanced.md",
-    "axis9/axis9.md",
-    "SKYNET/research/forcing/russian naval fleet/prog.py.md",
-    "SKYNET/advisories/README.md",
-    "SKYNET/SKYNET.md",
-    "indirect/Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
-    "indirect/garbage/Untitled.canvas",
-    "SKYNET/research/Research Assistant/Simulation and Testing Facility S dm May.md",
+    "Untitled.md",
+    "readme.md",
+    "index.md",
+    "Dashboard.md",
+    "2024-06-12.md",
+    "2024-06-11.md",
+    "textgenerator/textgenerator.md",
+    "textgenerator/templates/local/local.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
-    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
-    "axis9/research/research.md",
-    "Red&Queen/biology/biology.md",
-    "Red&Queen/biology/Untitled.md",
-    "Red&Queen/biology/Untitled 1.md",
-    "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
-    "axis9/issues/ss.md",
-    "axis9/core  country planning.md",
-    "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md",
-    "axis9/issues/ss/dummy_bridge.jpg",
-    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+    "textgenerator/templates/huggingface/completeTextBloom.md",
+    "textgenerator/templates/huggingface/classify-bart-large-mnli.md",
+    "Tags/$tags/$tags.md",
+    "SKYNET/technology.md",
+    "SKYNET/SKYNET.md",
+    "SKYNET/technology/technology.md",
+    "SKYNET/technology/alarm.png.md",
+    "SKYNET/technology/aaa.md",
     "SKYNET/research/research.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/war_1715623709952563700_00003c1c.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim___r_u_s_s_i_a_n__n_a_v_a_l__w_a_r_f_a_r_e__e_l_i_m_i_n_a_t_i_o_n__o_f__k_u_z_n_e_t_s_o_v__a_i_r_c_r_a_f_t__c_a_r_r_i_e_r__1715649491980659500_00000850.md",
-    "axis9/issues/ss/Мусорщик++.md",
-    "axis9/issues/ss/Zudo_and_psych_facility.md",
+    "SKYNET/research/text machine/text machine.md",
+    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
+    "SKYNET/research/scanning/scanning.md",
+    "SKYNET/research/scanning/RF_microwave_scan.md",
+    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
+    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+    "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
+    "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
+    "SKYNET/For vacuum divider/Untitled 2.canvas",
+    "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
+    "indirect/garbage/Untitled.canvas",
+    "axis9/issues/ss/dummy_bridge.jpg",
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_316.jpg",
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_118.jpg",
     "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.svg",
@@ -346,8 +361,6 @@
     "Excalidraw/Scripts",
     "Excalidraw",
     "tracked_files.json",
-    "SKYNET/For vacuum divider/Untitled 2.canvas",
-    "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "SKYNET/research/forcing/russian naval fleet",
     "Untitled.loom",
     "looms/Untitled.loom",
