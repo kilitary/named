@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/issues/issues.md",
+                "file": "aggresive_embeddings.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -103,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/issues/issues.md",
+                "file": "aggresive_embeddings.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/issues/issues.md",
+                "file": "aggresive_embeddings.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -155,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/issues/issues.md"
+                "file": "aggresive_embeddings.md"
               }
             }
           },
@@ -221,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/issues/issues.md"
+                "file": "aggresive_embeddings.md"
               }
             }
           },
@@ -307,15 +308,24 @@
   },
   "active": "9beafde53dc27d5d",
   "lastOpenFiles": [
+    "axis9/issues/ss/automated_psy_machine.md",
+    "aggresive_embeddings.md",
     "axis9/axis9.md",
+    "textgenerator/textgenerator.md",
+    "Tags/Tags.md",
+    "Red&Queen/Red&Queen.md",
+    "looms/Untitled.loom",
+    "looms/looms.md",
+    "assets/images/images.md",
+    "assets/assets.md",
+    "programs/programs.md",
+    "readme.md",
+    "Dashboard.md",
     "axis9/issues/issues.md",
     "Untitled.md",
-    "readme.md",
     "index.md",
-    "Dashboard.md",
     "2024-06-12.md",
     "2024-06-11.md",
-    "textgenerator/textgenerator.md",
     "textgenerator/templates/local/local.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
     "textgenerator/templates/huggingface/completeTextBloom.md",
@@ -325,14 +335,6 @@
     "SKYNET/SKYNET.md",
     "SKYNET/technology/technology.md",
     "SKYNET/technology/alarm.png.md",
-    "SKYNET/technology/aaa.md",
-    "SKYNET/research/research.md",
-    "SKYNET/research/text machine/text machine.md",
-    "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
-    "SKYNET/research/scanning/scanning.md",
-    "SKYNET/research/scanning/RF_microwave_scan.md",
-    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
-    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
@@ -352,7 +354,6 @@
     "tracked_files.json",
     "SKYNET/research/forcing/russian naval fleet",
     "Untitled.loom",
-    "looms/Untitled.loom",
     "Tags/$tags",
     "Tags",
     "Untitled.canvas"
