@@ -16,7 +16,7 @@
   "showUnsupportedFiles": true,
   "pdfExportSettings": {
     "includeName": true,
-    "pageSize": "A4",
+    "pageSize": "Tabloid",
     "landscape": true,
     "margin": "2",
     "downscalePercent": 100
