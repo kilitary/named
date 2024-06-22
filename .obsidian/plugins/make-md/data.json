@@ -47,7 +47,11 @@
     "//Red&Queen",
     "//Tags",
     "//textgenerator",
-    "//axis9"
+    "//axis9",
+    "//axis9/axis9/issues",
+    "//SKYNET",
+    "//SKYNET/SKYNET/research",
+    "//axis9/axis9/issues/axis9/issues/ss"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

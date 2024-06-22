@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aggresive_embeddings.md",
+                "file": "axis9/issues/ss/aggresive_embeddings.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -84,7 +84,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "aggresive_embeddings.md",
+                "file": "axis9/issues/ss/aggresive_embeddings.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "aggresive_embeddings.md",
+                "file": "axis9/issues/ss/aggresive_embeddings.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "aggresive_embeddings.md"
+                "file": "axis9/issues/ss/aggresive_embeddings.md"
               }
             }
           },
@@ -222,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "aggresive_embeddings.md"
+                "file": "axis9/issues/ss/aggresive_embeddings.md"
               }
             }
           },
@@ -303,13 +303,21 @@
       "vault-explorer:Open vault explorer": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false
+      "obsidian-day-planner:Timeline": false,
+      "html-server:Turn Http Server On": false,
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "9beafde53dc27d5d",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "axis9/issues/ss/ss.md",
+    "axis9/issues/ss.md",
+    "Vault.md",
+    "axis9/issues/ss/aggresive_embeddings.md",
     "axis9/issues/ss/automated_psy_machine.md",
-    "aggresive_embeddings.md",
     "axis9/axis9.md",
     "textgenerator/textgenerator.md",
     "Tags/Tags.md",
@@ -332,9 +340,6 @@
     "textgenerator/templates/huggingface/classify-bart-large-mnli.md",
     "Tags/$tags/$tags.md",
     "SKYNET/technology.md",
-    "SKYNET/SKYNET.md",
-    "SKYNET/technology/technology.md",
-    "SKYNET/technology/alarm.png.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
