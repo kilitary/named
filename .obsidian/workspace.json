@@ -8,30 +8,19 @@
         "type": "tabs",
         "children": [
           {
-            "id": "40a6ec63e12bfea4",
+            "id": "9beafde53dc27d5d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "indirect/garbage/garbage.md",
+                "file": "axis9/issues/issues.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
-          },
-          {
-            "id": "9beafde53dc27d5d",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.3"
-              }
-            }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -94,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -115,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "indirect/garbage/garbage.md",
+                "file": "axis9/issues/issues.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -132,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "indirect/garbage/garbage.md",
+                "file": "axis9/issues/issues.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -167,7 +155,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "indirect/garbage/garbage.md"
+                "file": "axis9/issues/issues.md"
               }
             }
           },
@@ -233,7 +221,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "indirect/garbage/garbage.md"
+                "file": "axis9/issues/issues.md"
               }
             }
           },
@@ -319,6 +307,8 @@
   },
   "active": "9beafde53dc27d5d",
   "lastOpenFiles": [
+    "axis9/axis9.md",
+    "axis9/issues/issues.md",
     "Untitled.md",
     "readme.md",
     "index.md",
@@ -343,8 +333,6 @@
     "SKYNET/research/scanning/RF_microwave_scan.md",
     "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
     "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-    "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
-    "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
