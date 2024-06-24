@@ -4,16 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "5ef17edd70622170",
+        "id": "334f23b252f768d8",
         "type": "tabs",
         "children": [
           {
-            "id": "9beafde53dc27d5d",
+            "id": "abdf27c7eb1797e6",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "psy-references/Free-Culture-simplified-8000-version.pdf"
+                "file": "psy-references/notes-girl.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
               }
             }
           }
@@ -101,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "psy-references/Free-Culture-simplified-8000-version.pdf",
+                "file": "psy-references/notes-girl.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "psy-references/Free-Culture-simplified-8000-version.pdf",
+                "file": "psy-references/notes-girl.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -153,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "psy-references/Free-Culture-simplified-8000-version.pdf"
+                "file": "psy-references/notes-girl.md"
               }
             }
           },
@@ -219,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "psy-references/Free-Culture-simplified-8000-version.pdf"
+                "file": "psy-references/notes-girl.md"
               }
             }
           },
@@ -240,7 +243,7 @@
             }
           },
           {
-            "id": "b844f21cbb5ea2fd",
+            "id": "26170cfbec21e1d2",
             "type": "leaf",
             "state": {
               "type": "chatbot-view",
@@ -310,6 +313,11 @@
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "psy-references/psy-references.md",
+    "psy-references/notes-girl.md",
+    "SKYNET/playground/playground.md",
+    "psy-references/Militarygrade.pdf",
+    "psy-references/Free-Culture-simplified-8000-version.pdf",
     "psy-references/fneur-scales-rf.jpg",
     "psy-references/From Psyops to Neurowar.pdf",
     "psy-references/day.pdf",
@@ -317,7 +325,6 @@
     "psy-references/fake/Apparatus for and method of sensing brain waves.pdf",
     "psy-references/fake/fake.md",
     "psy-references/electromagnetic-spectrum.png",
-    "psy-references/psy-references.md",
     "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
     "SKYNET/SKYNET.md",
     "SKYNET/technology.md",
@@ -340,7 +347,6 @@
     "SKYNET/research/research.md",
     "SKYNET/research/forcing/forcing.md",
     "SKYNET/research/forcing/russian naval fleet/russian naval fleet.md",
-    "axis9/issues/ss/aggresive_embeddings.md",
     "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
@@ -353,12 +359,9 @@
     "Excalidraw/Scripts/Downloaded/Set Dimensions.svg",
     "Excalidraw/Scripts/Downloaded/Repeat Texts.svg",
     "Excalidraw/Scripts/Downloaded/Repeat Elements.svg",
-    "Excalidraw/Scripts/Downloaded/Organic Line.svg",
     "Excalidraw/Scripts/Downloaded",
     "Excalidraw/Scripts",
     "Excalidraw",
-    "tracked_files.json",
-    "SKYNET/research/forcing/russian naval fleet",
     "Untitled.canvas"
   ]
 }
