@@ -11,12 +11,9 @@
             "id": "9beafde53dc27d5d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
+                "file": "psy-references/Free-Culture-simplified-8000-version.pdf"
               }
             }
           }
@@ -84,7 +81,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -104,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+                "file": "psy-references/Free-Culture-simplified-8000-version.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+                "file": "psy-references/Free-Culture-simplified-8000-version.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +153,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md"
+                "file": "psy-references/Free-Culture-simplified-8000-version.pdf"
               }
             }
           },
@@ -222,7 +219,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md"
+                "file": "psy-references/Free-Culture-simplified-8000-version.pdf"
               }
             }
           },
@@ -303,11 +300,25 @@
       "vault-explorer:Open vault explorer": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false
+      "obsidian-day-planner:Timeline": false,
+      "html-server:Turn Http Server On": false,
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "9beafde53dc27d5d",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "psy-references/fneur-scales-rf.jpg",
+    "psy-references/From Psyops to Neurowar.pdf",
+    "psy-references/day.pdf",
+    "psy-references/fake/Scalar-Wave-Theory-And-Experiments.pdf",
+    "psy-references/fake/Apparatus for and method of sensing brain waves.pdf",
+    "psy-references/fake/fake.md",
+    "psy-references/electromagnetic-spectrum.png",
+    "psy-references/psy-references.md",
+    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
     "SKYNET/SKYNET.md",
     "SKYNET/technology.md",
     "Red&Queen/research/black-holes/simulation/sim_bh_research_project_via_local_current_data_set_1717370041703676300_00004934.md",
@@ -320,7 +331,6 @@
     "SKYNET/research/scanning/wirescan_navscan/environment/environment.md",
     "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
     "SKYNET/research/scanning/RF_microwave_scan.md",
-    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
     "SKYNET/research/scanning/scanning.md",
     "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
     "axis9/axis9.md",
@@ -331,9 +341,6 @@
     "SKYNET/research/forcing/forcing.md",
     "SKYNET/research/forcing/russian naval fleet/russian naval fleet.md",
     "axis9/issues/ss/aggresive_embeddings.md",
-    "axis9/issues/ss/ss.md",
-    "axis9/issues/ss.md",
-    "Vault.md",
     "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
@@ -347,15 +354,11 @@
     "Excalidraw/Scripts/Downloaded/Repeat Texts.svg",
     "Excalidraw/Scripts/Downloaded/Repeat Elements.svg",
     "Excalidraw/Scripts/Downloaded/Organic Line.svg",
-    "Excalidraw/Scripts/Downloaded/Normalize Selected Arrows.svg",
     "Excalidraw/Scripts/Downloaded",
     "Excalidraw/Scripts",
     "Excalidraw",
     "tracked_files.json",
     "SKYNET/research/forcing/russian naval fleet",
-    "Untitled.loom",
-    "Tags/$tags",
-    "Tags",
     "Untitled.canvas"
   ]
 }
