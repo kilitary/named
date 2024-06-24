@@ -51,7 +51,14 @@
     "//axis9/axis9/issues",
     "//SKYNET",
     "//SKYNET/SKYNET/research",
-    "//axis9/axis9/issues/axis9/issues/ss"
+    "//axis9/axis9/issues/axis9/issues/ss",
+    "//SKYNET/SKYNET/research/SKYNET/research/scanning",
+    "//SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan",
+    "//SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan/SKYNET/research/scanning/wirescan_navscan/simulations",
+    "//SKYNET/SKYNET/research/SKYNET/research/scanning/SKYNET/research/scanning/wirescan_navscan/SKYNET/research/scanning/wirescan_navscan/environment",
+    "//SKYNET/SKYNET/advisories",
+    "//Red&Queen/Red&Queen/electronics",
+    "//Red&Queen/Red&Queen/biology"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

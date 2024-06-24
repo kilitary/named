@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/axis9.md",
+                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "axis9/axis9.md",
+                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "axis9/axis9.md",
+                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "axis9/axis9.md"
+                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md"
               }
             }
           },
@@ -222,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/axis9.md"
+                "file": "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md"
               }
             }
           },
@@ -303,17 +303,29 @@
       "vault-explorer:Open vault explorer": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false,
-      "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "obsidian-day-planner:Timeline": false
     }
   },
   "active": "9beafde53dc27d5d",
   "lastOpenFiles": [
-    "indirect/indirect.md",
+    "SKYNET/SKYNET.md",
+    "SKYNET/technology.md",
+    "Red&Queen/research/black-holes/simulation/sim_bh_research_project_via_local_current_data_set_1717370041703676300_00004934.md",
     "Red&Queen/Red&Queen.md",
-    "SKYNET/technology/technology.md",
+    "Red&Queen/biology/biology.md",
+    "Red&Queen/electronics/electronics.md",
     "SKYNET/advisories/advisories.md",
+    "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
+    "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
+    "SKYNET/research/scanning/wirescan_navscan/environment/environment.md",
+    "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
+    "SKYNET/research/scanning/RF_microwave_scan.md",
+    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
+    "SKYNET/research/scanning/scanning.md",
+    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
+    "axis9/axis9.md",
+    "indirect/indirect.md",
+    "SKYNET/technology/technology.md",
     "SKYNET/For vacuum divider/For vacuum divider.md",
     "SKYNET/research/research.md",
     "SKYNET/research/forcing/forcing.md",
@@ -322,21 +334,7 @@
     "axis9/issues/ss/ss.md",
     "axis9/issues/ss.md",
     "Vault.md",
-    "axis9/issues/ss/automated_psy_machine.md",
-    "axis9/axis9.md",
-    "textgenerator/textgenerator.md",
-    "Tags/Tags.md",
     "looms/Untitled.loom",
-    "looms/looms.md",
-    "assets/images/images.md",
-    "assets/assets.md",
-    "programs/programs.md",
-    "readme.md",
-    "Dashboard.md",
-    "axis9/issues/issues.md",
-    "Untitled.md",
-    "index.md",
-    "2024-06-12.md",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",

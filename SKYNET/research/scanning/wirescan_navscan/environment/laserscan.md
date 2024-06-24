@@ -1,5 +1,5 @@
 ---
-title: remote scan
+title: laser scan
 state: Drafting
 finished: false
 model: wizardlm-uncensored:13b-llama2-q5_K_M
@@ -9,6 +9,7 @@ tags:
   - brainStorming
   - remote
   - scan
+sticker: emoji//1f4b2
 ---
  structure electronic wires configuration scanning using laser wave generator on sat1 transiever and sat2 receiver placed at same range to a target.
  while the laser goes thowards the target the resistance of material takes different values which is received on sat2, so full 3d map of physical infrastructure is scanned in a loop
