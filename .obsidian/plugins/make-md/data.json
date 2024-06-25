@@ -53,7 +53,8 @@
     "//Red&Queen/Red&Queen/electronics",
     "//Red&Queen/Red&Queen/biology",
     "//psy-references",
-    "//psy-references/psy-references/fake"
+    "//psy-references/psy-references/fake",
+    "//indirect/indirect/BMO 1"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",

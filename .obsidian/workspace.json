@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "psy-references/notes-girl.md",
+                "file": "psy-references/psy-references.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -84,7 +84,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "psy-references/notes-girl.md",
+                "file": "psy-references/psy-references.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "psy-references/notes-girl.md",
+                "file": "psy-references/psy-references.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "psy-references/notes-girl.md"
+                "file": "psy-references/psy-references.md"
               }
             }
           },
@@ -222,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "psy-references/notes-girl.md"
+                "file": "psy-references/psy-references.md"
               }
             }
           },
@@ -311,8 +311,10 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "abdf27c7eb1797e6",
   "lastOpenFiles": [
+    "indirect/BMO 1/BMO 1.md",
+    "indirect/indirect.md",
     "psy-references/psy-references.md",
     "psy-references/notes-girl.md",
     "SKYNET/playground/playground.md",
@@ -341,12 +343,10 @@
     "SKYNET/research/scanning/scanning.md",
     "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
     "axis9/axis9.md",
-    "indirect/indirect.md",
     "SKYNET/technology/technology.md",
     "SKYNET/For vacuum divider/For vacuum divider.md",
     "SKYNET/research/research.md",
     "SKYNET/research/forcing/forcing.md",
-    "SKYNET/research/forcing/russian naval fleet/russian naval fleet.md",
     "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
