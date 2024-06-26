@@ -13,14 +13,25 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "psy-references/psy-references.md",
+                "file": "2024-06-11.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
+          },
+          {
+            "id": "2c0d5d038c6db159",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.5"
+              }
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -104,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "psy-references/psy-references.md",
+                "file": "2024-06-11.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +132,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "psy-references/psy-references.md",
+                "file": "2024-06-11.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +167,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "psy-references/psy-references.md"
+                "file": "2024-06-11.md"
               }
             }
           },
@@ -222,7 +233,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "psy-references/psy-references.md"
+                "file": "2024-06-11.md"
               }
             }
           },
@@ -303,19 +314,21 @@
       "vault-explorer:Open vault explorer": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false,
-      "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false,
-      "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "obsidian-day-planner:Timeline": false
     }
   },
-  "active": "abdf27c7eb1797e6",
+  "active": "2c0d5d038c6db159",
   "lastOpenFiles": [
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719322090443961832.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719320207014366928.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719320044137210652.md",
+    "2024-06-12.md",
+    "2024-06-11.md",
+    "axis9/axis9.md",
+    "index.md",
+    "psy-references/psy-references.md",
     "indirect/BMO 1/BMO 1.md",
     "indirect/indirect.md",
-    "psy-references/psy-references.md",
     "psy-references/notes-girl.md",
     "SKYNET/playground/playground.md",
     "psy-references/Militarygrade.pdf",
@@ -340,13 +353,6 @@
     "SKYNET/research/scanning/wirescan_navscan/environment/environment.md",
     "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
     "SKYNET/research/scanning/RF_microwave_scan.md",
-    "SKYNET/research/scanning/scanning.md",
-    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
-    "axis9/axis9.md",
-    "SKYNET/technology/technology.md",
-    "SKYNET/For vacuum divider/For vacuum divider.md",
-    "SKYNET/research/research.md",
-    "SKYNET/research/forcing/forcing.md",
     "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
