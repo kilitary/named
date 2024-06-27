@@ -1,11 +1,11 @@
 {
   "isLaserActive": false,
   "laserMovement": "dynamic",
-  "laserType": "area",
+  "laserType": "line",
   "laserColor": "green",
-  "laserWidth": 2.4,
-  "laserIntensity": 0.7,
-  "laserArea": 38,
-  "laserMarginLeft": 500,
-  "laserMarginRight": 500
+  "laserWidth": 0.3,
+  "laserIntensity": 0.8,
+  "laserArea": 30,
+  "laserMarginLeft": 0,
+  "laserMarginRight": 0
 }

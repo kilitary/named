@@ -1,8 +1,8 @@
 {
   "shakeScreen": {
-    "enable": true,
-    "intensity": 5,
-    "recoverTime": 300,
+    "enable": false,
+    "intensity": 2,
+    "recoverTime": 0,
     "shakeWindow": false
   },
   "combo": {

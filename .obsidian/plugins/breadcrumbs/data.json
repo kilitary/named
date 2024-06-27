@@ -16,7 +16,7 @@
   "dendronNoteDelimiter": ".",
   "dendronNoteField": "up",
   "dvWaitTime": 5000,
-  "enableAlphaSort": true,
+  "enableAlphaSort": false,
   "enableRelationSuggestor": true,
   "fieldSuggestor": true,
   "filterImpliedSiblingsOfDifferentTypes": false,
@@ -36,7 +36,7 @@
   "namingSystemRegex": "",
   "namingSystemSplit": ".",
   "namingSystemEndsWithDelimiter": false,
-  "refreshOnNoteChange": true,
+  "refreshOnNoteChange": false,
   "useAllMetadata": true,
   "openMatrixOnLoad": false,
   "openDuckOnLoad": false,
@@ -48,10 +48,10 @@
   "relSuggestorTrigger": "\\",
   "rlLeaf": true,
   "showAllPathsIfNoneToIndexNote": false,
-  "showAllAliases": true,
+  "showAllAliases": false,
   "showBCs": false,
   "showBCsInEditLPMode": true,
-  "showRefreshNotice": false,
+  "showRefreshNotice": true,
   "showImpliedRelations": true,
   "showTrail": true,
   "showGrid": true,
@@ -125,6 +125,6 @@
     "parentsParentsIsParent": false,
     "cousinsIsSibling": false
   },
-  "refreshOnNoteSave": false,
+  "refreshOnNoteSave": true,
   "showUpInJuggl": false
 }

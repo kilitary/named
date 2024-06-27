@@ -8,5 +8,6 @@
   "nativeMenus": false,
   "translucency": false,
   "baseFontSizeAction": true,
-  "monospaceFontFamily": "Inter,Liberation Mono"
+  "monospaceFontFamily": "Inter,Liberation Mono",
+  "showViewHeader": true
 }

@@ -4,7 +4,7 @@
   "exluded_filename_components": [],
   "settings_version": "1.4.0",
   "do_show_update_notice": false,
-  "auto_update_on_file_change": true,
+  "auto_update_on_file_change": false,
   "do_remember_expanded": false,
   "MOC_path_starts_at_CN": false,
   "file_descendants_expanded": {},
