@@ -119,3 +119,20 @@ should be used.
 [cyan]analyze sam defense types, missile amount for each sam installation, total amount for sam type installations, launch delays, and finally the total sam amount for each ship. print a markdown table. 
 [/cyan]
 [red]llama2-uncensored:latest[/red] thinking ...
+[magenta] "[/magenta][magenta] [/magenta][magenta]"[/magenta][magenta] "[/magenta][magenta] in[/magenta][magenta] **[/magenta][magenta] [[/magenta][magenta]R[/magenta][magenta],"[/magenta][magenta] "[/magenta][magenta]A[/magenta][magenta]".[/magenta][magenta]a",[/magenta][magenta] "[/magenta][magenta] [/magenta][magenta]h[/magenta][magenta] in[/magenta][magenta] [[/magenta][magenta]s[/magenta][magenta]"[/magenta][magenta] [[/magenta][magenta]en[/magenta][magenta]# ## "[/magenta][magenta]Please[/magenta][magenta].[/magenta][magenta] "[/magenta][magenta]Log[/magenta][magenta]."[/magenta][magenta] [/magenta][magenta]# **[/magenta][magenta] "[/magenta][magenta] [[/magenta][magenta] [/magenta][magenta]S[/magenta][magenta],[/magenta][magenta] "[/magenta][magenta]Can[/magenta][magenta] "[/magenta][magenta]R[/magenta][magenta] "[/magenta][magenta]Do[/magenta][magenta]## [[/magenta]### a
+[magenta] a [[/magenta][magenta] [[/magenta][magenta]re[/magenta]
+[magenta] ## [[/magenta][magenta] a [[/magenta][magenta]can[/magenta][magenta] [[/magenta]
+[magenta] [[/magenta][magenta]a.[/magenta][magenta] when[/magenta][magenta] the[/magenta][magenta] [[/magenta][magenta]## and[/magenta][magenta] its[/magenta][magenta].[/magenta][magenta] [[/magenta][magenta] [/magenta][magenta] [[/magenta]
+[magenta] [[/magenta][magenta] [[/magenta]
+[magenta] [[/magenta][magenta]# [[/magenta][magenta]v[/magenta][magenta],[/magenta][magenta] [[/magenta][magenta]O[/magenta][magenta] in[/magenta][magenta] # [[/magenta]
+[magenta] [[/magenta][magenta]a in[/magenta][magenta] [[/magenta][magenta]h[/magenta][magenta].[/magenta][magenta]S[/magenta][magenta].[/magenta][magenta] **[/magenta][magenta]A[/magenta][magenta] for[/magenta][magenta] [/magenta][magenta]## [[/magenta][magenta]# "[/magenta][magenta]Q[/magenta][magenta].[/magenta]
+[magenta]## [/magenta]
+[magenta] in[/magenta][magenta] [[/magenta][magenta]in[/magenta][magenta].[/magenta][magenta] "[/magenta][magenta]C[/magenta][magenta].[/magenta][magenta] [[/magenta][magenta]s[/magenta][magenta].[/magenta][magenta] [[/magenta][magenta]A[/magenta][magenta].[/magenta][magenta] [/magenta][magenta]S[/magenta][magenta] [[/magenta][magenta] [/magenta][magenta]A[/magenta][magenta]# [[/magenta][magenta]Do[/magenta][magenta] [[/magenta][magenta] [[/magenta][magenta]S[/magenta][magenta] [[/magenta][magenta] [/magenta][magenta]P[/magenta][magenta] [[/magenta][magenta]R[/magenta][magenta] [[/magenta][magenta] [[/magenta][magenta] [/magenta][magenta] [/magenta][magenta]I[/magenta][magenta] in[/magenta][magenta] a "[/magenta][magenta]Can[/magenta][magenta].[/magenta][magenta] [[/magenta][magenta]ch[/magenta][magenta] request[/magenta][magenta] in[/magenta][magenta] "[/magenta][magenta]If[/magenta][magenta] "[/magenta][magenta]## [[/magenta][magenta] [[/magenta][magenta]A[/magenta][magenta] [[/magenta][magenta]re[/magenta][magenta] [[/magenta][magenta]S[/magenta][magenta] [[/magenta][magenta]a [[/magenta][magenta] [[/magenta][magenta]# "[/magenta][magenta]R[/magenta][magenta] [[/magenta][magenta]# [[/magenta][magenta]# [[/magenta][magenta]Ch[/magenta] #
+
+
+< context 6000 ids auto-added
+* continue with context of 11761 ids
+* going via program, instruction: 6/13
+[cyan]print detailed LAUNCH-PLAN.
+[/cyan]
+[red]llama2-uncensored:latest[/red] thinking ...

@@ -4,7 +4,7 @@
   "interfaceFontFamily": "Franklin Gothic",
   "theme": "moonstone",
   "textFontFamily": "Franklin Gothic,Dosis,DotumChe,Cuprum,Corbel,Cambria,Ebrima,Dubai,DokChampa,Consolas",
-  "baseFontSize": 13,
+  "baseFontSize": 12,
   "nativeMenus": false,
   "translucency": false,
   "baseFontSizeAction": true,

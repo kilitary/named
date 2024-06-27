@@ -13,25 +13,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-06-11.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
-          },
-          {
-            "id": "2c0d5d038c6db159",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.5"
-              }
-            }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -51,7 +40,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "byModifiedTime"
               }
             }
           },
@@ -61,7 +50,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#excalidraw",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -95,7 +84,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -115,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2024-06-11.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -132,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2024-06-11.md",
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -167,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2024-06-11.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md"
               }
             }
           },
@@ -233,7 +222,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "2024-06-11.md"
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md"
               }
             }
           },
@@ -262,7 +251,7 @@
             }
           }
         ],
-        "currentTab": 15
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -314,16 +303,25 @@
       "vault-explorer:Open vault explorer": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false
+      "obsidian-day-planner:Timeline": false,
+      "html-server:Turn Http Server On": false,
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "2c0d5d038c6db159",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719432574997874232.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719431690829261512.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719431168342344152.md",
+    "SKYNET/SKYNET.md",
+    "2024-06-11.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719322090443961832.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719320207014366928.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719320044137210652.md",
     "2024-06-12.md",
-    "2024-06-11.md",
     "axis9/axis9.md",
     "index.md",
     "psy-references/psy-references.md",
@@ -341,7 +339,6 @@
     "psy-references/fake/fake.md",
     "psy-references/electromagnetic-spectrum.png",
     "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-    "SKYNET/SKYNET.md",
     "SKYNET/technology.md",
     "Red&Queen/research/black-holes/simulation/sim_bh_research_project_via_local_current_data_set_1717370041703676300_00004934.md",
     "Red&Queen/Red&Queen.md",
@@ -350,9 +347,6 @@
     "SKYNET/advisories/advisories.md",
     "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
     "SKYNET/research/scanning/wirescan_navscan/environment/MAGNETIC2.md",
-    "SKYNET/research/scanning/wirescan_navscan/environment/environment.md",
-    "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
-    "SKYNET/research/scanning/RF_microwave_scan.md",
     "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",

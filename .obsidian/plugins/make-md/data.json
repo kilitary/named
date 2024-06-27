@@ -53,7 +53,11 @@
     "//Red&Queen/Red&Queen/biology",
     "//psy-references/psy-references/fake",
     "//indirect/indirect/BMO 1",
-    "//axis9"
+    "//SKYNET",
+    "//SKYNET/SKYNET/research/SKYNET/research/forcing",
+    "//SKYNET/SKYNET/research/SKYNET/research/forcing/SKYNET/research/forcing/russian naval fleet",
+    "//SKYNET/SKYNET/research/SKYNET/research/forcing/SKYNET/research/forcing/russian_naval_fleet",
+    "//SKYNET/SKYNET/research/SKYNET/research/forcing/SKYNET/research/forcing/russian_naval_fleet/SKYNET/research/forcing/russian_naval_fleet/simulations"
   ],
   "expandFolderOnClick": true,
   "menuTriggerChar": "/",
