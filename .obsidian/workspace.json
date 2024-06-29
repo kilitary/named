@@ -11,10 +11,12 @@
             "id": "abdf27c7eb1797e6",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": ".makemd/superstate.mdc",
-                "staged": false
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719490069800725568.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
               }
             }
           }
@@ -82,7 +84,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -180,7 +182,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719490069800725568.md"
+              }
             }
           },
           {
@@ -262,8 +266,14 @@
   },
   "active": "abdf27c7eb1797e6",
   "lastOpenFiles": [
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719496103677832768.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719496055887231452.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719492762747268716.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md",
+    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719490069800725568.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/simulations.md",
+    "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
+    "SKYNET/research/forcing/russian_naval_fleet/russian_naval_fleet.md",
     "axis9/issues/ss/aggresive_embeddings.md",
     "2024-06-27.md",
     "looms/Untitled 2.loom",
@@ -284,7 +294,6 @@
     "indirect/BMO 1/BMO 1.md",
     "indirect/indirect.md",
     "psy-references/notes-girl.md",
-    "SKYNET/playground/playground.md",
     "psy-references/Militarygrade.pdf",
     "psy-references/Free-Culture-simplified-8000-version.pdf",
     "psy-references/fneur-scales-rf.jpg",
@@ -292,12 +301,7 @@
     "psy-references/day.pdf",
     "psy-references/fake/Scalar-Wave-Theory-And-Experiments.pdf",
     "psy-references/fake/Apparatus for and method of sensing brain waves.pdf",
-    "psy-references/fake/fake.md",
     "psy-references/electromagnetic-spectrum.png",
-    "SKYNET/research/scanning/wirescan_navscan/RF_microwave_scan_tutorial.md",
-    "SKYNET/technology.md",
-    "Red&Queen/research/black-holes/simulation/sim_bh_research_project_via_local_current_data_set_1717370041703676300_00004934.md",
-    "Red&Queen/Red&Queen.md",
     "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",

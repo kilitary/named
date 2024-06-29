@@ -1,6 +1,7 @@
 ---
 model: wizardlm2
 state: Focus
+sticker: emoji//1f374
 ---
 * temp: 0.6 ctx: 16394 sim_id: 1719483361255440976
  5791.10M 11B   llama              nous-hermes2:latest             
