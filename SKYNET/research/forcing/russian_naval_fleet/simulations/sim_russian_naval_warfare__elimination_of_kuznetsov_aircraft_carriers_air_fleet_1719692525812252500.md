@@ -144,6 +144,7 @@ Its important to note that modern defenses such as radar, electronic warfare sys
 analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count
 
 qwen2:7b-instruct-q8_0 thinking ...
+
 | Parameter                    | Information                                                                                                         |
 |------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | Formation Date               | The Admiral Kuznetsov entered service in the Soviet Navy on December 30, 1985. It was finally integrated into Russian Service on November 14, 2017.                                  |

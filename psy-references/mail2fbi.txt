@@ -1,0 +1,30 @@
+Hi,
+
+I am 42 years old PHP programmer from Russia. Since 201x, when i uploaded information about russian federal security services using random people to act as terrorists using hate & agent plays, i have assigned as targeted by them. Ironically they started that, but that is a point - they doing that massively here. Since then all my servers, work servers, projects and working computer is infected by very smart rootkit to disrupt my work and fire me from any job.
+I've created a system backups using AOMEI Backupper, which is ios of 3 partitions on ssd disk.
+This rootkit (real official russian secret services made) can:
+  - hide from process
+  - hide from drivers
+  - hide from ring0 requests
+  - create random menus in any program
+  - hide menus from any program in different places
+  - modify lists/windows properties on the fly
+  - hide from systeminformer
+  - hide from sysinternals
+  - hide from wktools
+  - create random registry keys using strings mutation
+  - create random empty/non-empy directories by pattern
+  - slow down computer via IRP-storm (when cpu usage is 0, io usage is 0, but the computer is not-responsive)
+  - hide any packets from firewall/wireshark
+  - out hate speech via speakes (mostly in music, not synth, recorded man/woman voices)
+  - flicker windows/mouse randomly
+
+
+  I have setup web server on my home computer with an ssl letsencrypt certificate, but the rootkit or FSS can takeover the connection, in that case please provide me with ftp/other instructions how i can uploaded infected system to your research, as this can takeover all infected by russian secret services  machines in the world, and it will take fss down for some time.
+
+  url: https://entry.kilitary.ru/System_Backup/System_Backup_aomei_backupper.adi
+  size: 54.6GB
+  working time: 26 jun 01 am - 26 jun 10 am
+
+  Sergey Efimov,
+  7-904-6492454

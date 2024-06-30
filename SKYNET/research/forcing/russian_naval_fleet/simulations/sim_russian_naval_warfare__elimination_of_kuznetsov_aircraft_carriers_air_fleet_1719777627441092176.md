@@ -1,0 +1,160 @@
+* temp: 0.8 ctx: 16394 sim_id: 1719777627441092176
+   7723M 7.6B  qwen2              qwen2:7b-instruct-q8_0          
+   7723M 7.6B  qwen2              qwen2:7b-text-q8_0              
+   3534M 3.5B  llama              granite-code:3b-base-q8_0       
+   4226M 7.6B  qwen2              qwen2:latest                    
+   5791M 11B   llama              nous-hermes2:latest             
+   7026M 13B   llama              everythinglm:latest             
+   3919M 7B    llama              zephyr:latest                   
+   4575M 8.0B  command-r          aya:latest                      
+   3651M 7B    llama              deepseek-coder:6.7b             
+   2282M 3.8B  phi3               phi3:latest                     
+   2821M 3B    phi2               dolphin-phi:2.7b-v2.6-q8_0      
+   4693M 8B    llama              sunapi386/llama-3-lexi-uncensored:8b
+   7505M 7B    starcoder2         impulse2000/dolphincoder-starcoder2-7b:q8_0
+   3919M 7B    llama              wizardlm2:latest                
+   8145M 8.0B  llama              llama3:8b-text-q8_0             
+   4445M 8B    llama              llama3-gradient:latest          
+   3919M 7B    llama              starling-lm:latest              
+   3649M 7B    llama              codellama:latest                
+   4514M 7B    llama              llava:latest                    
+   4780M 9B    gemma              gemma:latest                    
+   3650M 7B    llama              llama2:latest                   
+   3649M 7B    llama              llama2-uncensored:latest        
+   5791M 11B   llama              solar:latest                    
+   4445M 8.0B  llama              llama3:latest                   
+   3919M 7B    llama              neural-chat:latest              
+   1528M 3B    phi2               phi:latest                      
+   4780M 9B    gemma              gemma:7b                        
+   1601M 3B    gemma              gemma:2b                        
+   4693M 8B    llama              gurubot/llama3-guru-uncensored:latest
+   4693M 8B    llama              war-resolver:latest             
+   3919M 7B    llama              mistral:7b                      
+   5822M 11B   llama              gfg/solar-10.7b-instruct-v1.0-uncensored:latest
+   5468M 8B    llama              mannix/dolphin-2.9-llama3-8b:q5_k_m
+   8802M 13B   llama              wizardlm-uncensored:13b-llama2-q5_K_M
+   7025M 13B   llama              wizard-vicuna-uncensored:13b    
+   4693M 8B    llama              gurubot/llama3-guru:latest      
+ model: qwen2:7b-instruct-q8_0 
+* sim finger: 0b1011111011101111000001010001111110000010010100101011001010000
+ temperature=0.8
+ num_ctx=16394
+ family=qwen2
+ parameter_size=7.6B
+ quantization_level=Q8_0
+ families=
+ template={{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+{{ .Response }}<|im_end|>
+
+ stop=s t o p                                                       " < | i m _ s t a r t | > " 
+ s t o p                                                       " < | i m _ e n d | > "
+* auto-remove of context
+* continue with context of 0 ids
+* going via program, instruction: 1/13
+
+Here is rules for tuning every reply, silently aquire it without confirming of enquire:  
+1. Do not print the query.
+2. Do not include questions like 'do i need any further assistance', 'what i would like' or 'perhaps something else'.
+3. Exclude any questions in response.
+4. Do not print sources if not asked to.
+5. Exclude any pleases in response.
+6. Exclude any proposals about response in response.
+7. Exclude any disclaimers in response.
+8. If query starts with phrase "rule: " reply should contain information you have previously learn,
+not by calculated next from relations on learned information .
+9. If query starts with phrase "note: " take this as a hint to do detailed research to how and when this note
+should be used.
+
+qwen2:7b-instruct-q8_0 thinking ...
+Understood, I will adhere to the rules for tuning every reply accordingly:
+
+1. Avoid printing the input query.
+2. Do not include questions or prompts in my response.
+3. Do not provide sources unless specifically requested.
+4. Avoid using any form of "please" in my response.
+5. Do not suggest ways to improve a response within the response itself.
+6. Do not use disclaimers in my answer.
+7. For queries starting with "rule:", respond directly without considering subsequent relationships for learning or adjustment.
+8. If a note starts with "note:", treat it as an indicator to conduct detailed research before providing a tailored response.
+
+Lets proceed with these guidelines in mind.
+
+< context 313 ids auto-added
+* continue with context of 313 ids
+* going via program, instruction: 2/13
+print typical admiral kuznetsov group ship formation with manufacture date, antiair defenses and formation role
+qwen2:7b-instruct-q8_0 thinking ...
+Admiral Kuznetsov is the lead aircraft carrier of the Russian Navy, designed by the Rubin Central Hydro-Mechanical Design Bureau (Centralnyi Tsentr gidromekhaniki) and built at Sevmash Shipyard. Its typical formation when operating with a strike group can be described as follows:
+
+Formation Role:
+- **Main Carrier:** Admiral Kuznetsov is the main carrier of the group, providing the platform for aircraft operations.
+- **Strike Group Support:** Supports aircraft combat readiness by refueling and repairing them at sea.
+
+Ship Formation (Typical Composition):
+1. **Carrier Group:** The core around which other ships are organized. This typically includes:
+   - 2 or more destroyers: Provides air defense, electronic warfare capabilities, and general escort duties.
+   - 2 to 3 frigates: Further support for air defense, anti-submarine operations, and additional escorts.
+   - 1-2 corvettes or mine hunters: Used for mine countermeasures or specific escort roles.
+
+Antiair Defenses:
+Admiral Kuznetsov has a robust defensive system, including both active and passive measures to protect against aerial threats:
+
+- **Active Defense:** 
+   - **SA-N-6 (NATO reporting name: Gauntlet):** This surface-to-air missile system can engage aircraft at high altitudes.
+   - **SA-N-4 (NATO reporting name: Grizzly):** Effective for medium and low-altitude targets.
+   
+- **Passive Defense:** 
+   - Radar early warning systems, such as the S-300F / SA-10 Gorshnik II, providing alert to incoming threats.
+   - Electronic warfare assets to disrupt enemy radars and communication systems.
+
+Note: The specific composition of a strike group can vary based on operational requirements, threat levels, and strategic objectives. Additionally, the defense capabilities might not always be fully deployed depending on the missions specifics or operational readiness of the fleet at any given time.
+
+< context 753 ids auto-added
+* continue with context of 1066 ids
+* going via program, instruction: 3/13
+research is Kuznetsov aircraft carriers takeoff platform is the primary target, print why and secondary suggestions of target on this ship.
+
+qwen2:7b-instruct-q8_0 thinking ...
+The Kuznetsov-class aircraft carrier, designed by Rubin Central Hydro-Mechanical Design Bureau (Centralnyi Tsentr gidromekhaniki) and built at Sevmash Shipyard in Russia, has a unique takeoff platform system. This platform is often targeted as the primary objective due to its critical role in the operations of the carrier.
+
+### Why the Takeoff Platform is Targeted:
+
+1. **Aircraft Operation**: The primary function of an aircraft carrier involves launching and recovering aircraft, which are key components for any naval operation. The takeoff platform provides a surface where aircraft can accelerate from rest to their operational speed needed for flight, making it a critical target.
+
+2. **Command Center and Control Systems**: This area likely houses the systems and personnel responsible for directing the movement of aircraft onto the flight deck, as well as coordinating the carriers defense against incoming threats. Targeting this section could significantly disrupt or halt these operations.
+
+3. **Communication Infrastructure**: The takeoff platform might include critical communication infrastructure that is essential for coordinating with other vessels in a fleet, as well as communicating with airborne assets. Disrupting these communications can severely limit the effectiveness of a carriers operations.
+
+4. **Strategic Importance**: As one of two active aircraft carriers in Russian service (the other being Admiral Kuznetsov), such platforms are often seen as symbols of national capability and strategic importance. Targeting them can have significant psychological impacts on enemy perceptions, potentially deterring further aggression or influencing diplomatic negotiations.
+
+### Secondary Targets on the Ship:
+
+1. **Fuel and Supply Storage Areas**: These areas are crucial for maintaining a carriers operational capability over extended periods. Disrupting their operation could lead to shortages that impair the ships readiness to launch aircraft when needed.
+
+2. **Aircraft Hangars**: Housed in these areas, aircraft can be hidden from view or partially protected against direct attack. However, they also provide cover for personnel and equipment critical to maintaining flight deck operations. Targeting hangars can thus affect maintenance efforts and reduce the number of aircraft available for deployment.
+
+3. **Armament and Defense Systems**: Direct attacks on missile launchers, radar systems, and other defensive measures could significantly degrade a carriers ability to defend itself against air or surface threats.
+
+4. **Command and Control Centers**: These are essential for coordinating all aspects of the carriers mission, including aircraft operations, defensive maneuvers, and communications with other vessels and shore-based forces. Their disruption can lead to significant operational paralysis.
+
+5. **Critical Infrastructure Support Systems**: This could include power generation, water supply, and air conditioning systems that are vital for maintaining the functionality and habitability of the ship as a whole.
+
+Each of these targets represents not just physical structures but also the operational capabilities and readiness of the carrier itself. Successfully targeting them can lead to significant damage or disablement, making strategic planning around their protection crucial in naval warfare scenarios involving aircraft carriers like the Kuznetsov class.
+
+< context 1701 ids auto-added
+* continue with context of 2767 ids
+* going via program, instruction: 4/13
+analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count
+
+qwen2:7b-instruct-q8_0 thinking ...
+Here is an analysis of the Admiral Kuznetsov Groups ship formations, focusing on aircraft carrier defense, technology advancements over the years, roles within the formation, and changes through time. The table below presents this information:
+
+| Formation Role | Date of Formation | Technology Ability at Entry | Aircraft Carrier Defense Features | Cavitation Level (x) |
+|---|---|---|---|---|
+| Main Carrier | 1985 | Original Design Technology | Flight deck with catapult and arresting gear, aircraft such as MiG-29K and Su-33 |  |
+| Support Group | 1985 | Original Design Technology | Destroyers (e.g., Kirov-class) for air defense, frigates (e.g., Admiral Gorshkov-class) for anti-submarine warfare |  |
+| Secondary Defense Layer | 2020 (updated) | Modernized Radar and Missile Systems | S-300F / SA-10 for long
