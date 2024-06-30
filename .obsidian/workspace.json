@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -253,10 +254,7 @@
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "obsidian-day-planner:Timeline": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false,
-      "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "html-server:Turn Http Server Off": false
     }
   },
   "active": "abdf27c7eb1797e6",
