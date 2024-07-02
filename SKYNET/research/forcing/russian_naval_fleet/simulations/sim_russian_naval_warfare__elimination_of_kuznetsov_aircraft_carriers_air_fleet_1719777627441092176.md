@@ -271,3 +271,51 @@ Remember, each step in this process can have its own level of detail based on th
 print detailed SHIP-GROUP-LIST.
 
 qwen2:7b-instruct-q8_0 thinking ...
+Certainly, to provide a detailed list of ship-group formations can be extensive and dependent on various factors such as mission requirements, operational contexts, naval strategies, and the specific capabilities of each vessel involved. Below is an illustrative example that might give you an idea about how different types of ships could form groups based on their roles:
+
+**1. Group:**
+- **Carrier**: USS Abraham Lincoln (CVN 72)
+    - Air wing aircraft carriers for air superiority, power projection, and carrier strike operations.
+-Destroyers**: USS Cole (DDG 67), USS Gettysburg (CG 60)
+    - Provide anti-air warfare, surface combat capabilities, and escort to the Carrier.
+- **Frigates**: USS John Paul Jones (FFG 31)
+    - Offer more tactical flexibility with advanced sensor suites and weapons systems area defense.
+- **Submarine**: USS Michigan (SSGN 727)
+    - For stealthy operations to provide intelligence, surveillance, reconnaissance (ISR), and anti-submarine warfare support.
+
+**2. Amphibious Ready Group:**
+- **LHD/Amphibious Transport Dock**: USS America (LHD 8)
+    - Provides a flexible platform for landing troops or equipment from the sea.
+- **LPD/Landing Helicopter Dock**: USS Anchorage (LPD 23) 
+    - For carrying and launching amphibious vehicles, tanks, and personnel to shore via LCACs.
+- **LCU/Amphibious Combat Vehicle**: USS Whidbey Island (LSD 4)
+    - Provides additional landing craft for troops or equipment in a variety of sizes.
+
+**3. Reconnaissance Group:**
+- **E-2D Advanced Hawkeye**: US Navy 
+    - Primary airborne early warning aircraft.
+- **P-8A Poseidon**: US Navy
+    - A long-range maritime patrol aircraft capable of anti-submarine warfare (ASW), anti-surface ship warfare (ASuW) and intelligence, surveillance, and reconnaissance (ISR).
+- **MQ-4C Triton UAV**: US Navy 
+    - Unmanned aerial vehicle for extensive range, endurance, and persistent ISR.
+
+**4. Escort Group:**
+- **DDG 51 Destroyers**: USS Kidd (DDG 99), USS Shoup (DDG 86)
+    - Provide anti-air warfare, surface combat capabilities.
+- **FFG/Flexibility Frigates**: USS Dewey (FFG 34)
+    - Offer advanced sensors and weapons systems for area defense while being flexible in mission type.
+
+**5. Surface Action Group:**
+- **DDG 1000 Destroyer**: USS Zumwalt (DDG 1000)
+    - High-tech, stealthy destroyer with advanced capabilities including cruise missile launchers.
+- **Destroyers and Frigates**: USS Sterett (DDG 104), USS McFaul (DDG 107) 
+    - Supporting the primary mission with anti-air warfare and surface combat capabilities.
+
+Please note that this list is illustrative in nature, as real-world naval formations are highly dependent on the specific mission requirements, available resources, and strategic considerations. The composition of each group can vary widely based on these factors.
+
+< context 17099 ids auto-added
+* continue with context of 16395 ids
+* going via program, instruction: 8/13
+print detailed ECM-GROUP-LIST.
+
+qwen2:7b-instruct-q8_0 thinking ...
