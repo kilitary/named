@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719777627441092176.md",
-                "mode": "preview",
+                "file": "Red&Queen/playground/models_queryer/sim_log.md",
+                "mode": "source",
                 "backlinks": true,
                 "source": false
               }
@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -182,7 +183,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719777627441092176.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log.md"
               }
             }
           },
@@ -259,9 +260,16 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "abdf27c7eb1797e6",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/models_queryer.md",
+    "Red&Queen/playground/models_queryer/sim_log.md",
+    "Red&Queen/playground/playground.md",
+    "Red&Queen/Red&Queen.md",
     "psy-references/psy-references.md",
+    "axis9/research/research.md",
+    "SKYNET/playground/Untitled.md",
+    "SKYNET/playground/playground.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719777627441092176.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719692525812252500.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719706262260182636.md",
@@ -280,15 +288,8 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/simulations.md",
     "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
     "SKYNET/research/forcing/russian_naval_fleet/russian_naval_fleet.md",
-    "axis9/issues/ss/aggresive_embeddings.md",
-    "2024-06-27.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719482700725555556.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719432574997874232.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719431690829261512.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719431168342344152.md",
-    "SKYNET/SKYNET.md",
     "psy-references/Militarygrade.pdf",
     "psy-references/Free-Culture-simplified-8000-version.pdf",
     "psy-references/fneur-scales-rf.jpg",
