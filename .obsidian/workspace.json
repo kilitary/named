@@ -256,8 +256,7 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "map-of-content:Update Map of Content": false
     }
   },
   "active": "218e7e8cf09e66ae",
