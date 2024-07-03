@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_4666890000000.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -83,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -183,7 +182,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_4666890000000.md"
               }
             }
           },
@@ -256,12 +255,20 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "abdf27c7eb1797e6",
   "lastOpenFiles": [
     "Red&Queen/playground/models_queryer/models_queryer.md",
+    "Red&Queen/playground/models_queryer/sim_log_4666890000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_4621750000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_4596671000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_000000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_4540937000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_4540750000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_4540734000000.md",
     "Red&Queen/playground/models_queryer/sim_log.md",
     "Red&Queen/playground/playground.md",
     "Red&Queen/Red&Queen.md",
@@ -280,13 +287,6 @@
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719655053719286132.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719668723297177016.md",
     "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719490069800725568.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719496103677832768.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719496055887231452.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719492762747268716.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719483361255440976.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/simulations.md",
-    "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
-    "SKYNET/research/forcing/russian_naval_fleet/russian_naval_fleet.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
     "psy-references/Militarygrade.pdf",
