@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_37226140000000.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -182,7 +183,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_37226140000000.md"
               }
             }
           },
@@ -259,34 +260,34 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "abdf27c7eb1797e6",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "Red&Queen/playground/models_queryer/sim_log_4666890000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_54440703000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35764828000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_37226140000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_37202343000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_37115703000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_37097625000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36475531000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36432140000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36140234000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36118265000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36105046000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36098562000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36090406000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36079500000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35924203000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35896546000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35862296000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35738125000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35268171000000.md",
     "Red&Queen/playground/models_queryer/models_queryer.md",
-    "Red&Queen/playground/models_queryer/sim_log_4621750000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_4596671000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_000000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_4540937000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_4540750000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_4540734000000.md",
-    "Red&Queen/playground/models_queryer/sim_log.md",
-    "Red&Queen/playground/playground.md",
-    "Red&Queen/Red&Queen.md",
-    "psy-references/psy-references.md",
-    "axis9/research/research.md",
-    "SKYNET/playground/Untitled.md",
-    "SKYNET/playground/playground.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719777627441092176.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719692525812252500.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719706262260182636.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719692220141246816.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719691430265535468.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719691981982246420.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719668897862776188.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719691412723030808.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719655053719286132.md",
-    "SKYNET/research/forcing/russian_naval_fleet/simulations/sim_russian_naval_warfare__elimination_of_kuznetsov_aircraft_carriers_air_fleet_1719668723297177016.md",
+    "Red&Queen/playground/models_queryer/sim_log_34662078000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35250140000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35093359000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35086921000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35081484000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_35039812000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_31338046000000.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
     "psy-references/Militarygrade.pdf",
