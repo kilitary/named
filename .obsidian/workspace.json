@@ -11,10 +11,12 @@
             "id": "087de985b5af7f10",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_12861859000000.md",
-                "staged": false
+                "file": "Red&Queen/playground/models_queryer/sim_log_17864906000000.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -81,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -180,7 +181,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {}
+              "state": {
+                "file": "Red&Queen/playground/models_queryer/sim_log_17864906000000.md"
+              }
             }
           },
           {
