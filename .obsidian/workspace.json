@@ -83,7 +83,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -261,6 +262,7 @@
   },
   "active": "087de985b5af7f10",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/sim_log_29184328000000.md",
     "Red&Queen/playground/models_queryer/sim_log_17864906000000.md",
     "Red&Queen/playground/models_queryer/sim_log_16828328000000.md",
     "Red&Queen/playground/models_queryer/sim_log_17751250000000.md",
@@ -286,7 +288,6 @@
     "Red&Queen/playground/models_queryer/sim_log_11603218000000.md",
     "Red&Queen/playground/models_queryer/sim_log_11629875000000.md",
     "Red&Queen/playground/models_queryer/sim_log_11645484000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_6949890000000.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
     "psy-references/Militarygrade.pdf",
