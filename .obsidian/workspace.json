@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_6608546000000.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_12861859000000.md",
                 "mode": "source",
-                "backlinks": true,
+                "backlinks": false,
                 "source": false
               }
             }
@@ -83,8 +83,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -183,7 +182,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_6608546000000.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_12861859000000.md"
               }
             }
           },
@@ -262,32 +261,32 @@
   },
   "active": "abdf27c7eb1797e6",
   "lastOpenFiles": [
-    "Red&Queen/playground/models_queryer/sim_log_37613734000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37602171000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37596703000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37436546000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_7445921000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37226140000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
-    "Red&Queen/playground/models_queryer/sim_log_35764828000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37202343000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37115703000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_37097625000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36475531000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36432140000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36140234000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36118265000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36105046000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36098562000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36090406000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36079500000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_35924203000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_35896546000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_35862296000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_35738125000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_35268171000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_34662078000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_35250140000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12788609000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12861859000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11446031000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12745062000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12640515000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12561828000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12399031000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12337343000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12220046000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12209265000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12202593000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11937375000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11835468000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11487968000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11524859000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11586359000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11603218000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11629875000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11645484000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_6949890000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11440843000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11434515000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11429765000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11419796000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11404781000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11365203000000.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
     "psy-references/Militarygrade.pdf",
