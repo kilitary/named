@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_48694046000000.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_15519203000000.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -41,6 +41,16 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "byModifiedTime"
+              }
+            }
+          },
+          {
+            "id": "85428a7b72a74fb7",
+            "type": "leaf",
+            "state": {
+              "type": "mk-space",
+              "state": {
+                "path": "Red&Queen/playground/models_queryer"
               }
             }
           },
@@ -182,7 +192,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_48694046000000.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_15519203000000.md"
               }
             }
           },
@@ -203,7 +213,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -261,6 +271,17 @@
   },
   "active": "087de985b5af7f10",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/sim_log_16282312000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_16042015000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_15509265000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_15519203000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_15492609000000.md",
+    "Red&Queen/research/black-holes/simulation/sim_bh_research_project_via_local_current_data_set_1717349227500375900_00001748.md",
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
+    "axis9/CORE-SSE/inprogress/Untitled.md",
+    "Red&Queen/playground/models_queryer/sim_log_12823156000000.md",
+    "axis9/CORE-SSE/inprogress/inprogress.md",
+    "Red&Queen/playground/models_queryer/sim_log_48694046000000.md",
     "Red&Queen/playground/models_queryer/sim_log_70011468000000.md",
     "Red&Queen/playground/models_queryer/sim_log_70000843000000.md",
     "Red&Queen/playground/models_queryer/sim_log_69927187000000.md",
@@ -268,7 +289,6 @@
     "Red&Queen/playground/models_queryer/sim_log_69819593000000.md",
     "Red&Queen/playground/models_queryer/sim_log_39337000000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
-    "Red&Queen/playground/models_queryer/sim_log_48694046000000.md",
     "Red&Queen/playground/models_queryer/sim_log_48650484000000.md",
     "Red&Queen/playground/models_queryer/sim_log_29801718000000.md",
     "psy-references/banda_place4work..jpeg",
@@ -280,16 +300,6 @@
     "Red&Queen/playground/models_queryer/sim_log_29585828000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13192546000000.md",
     "Red&Queen/playground/models_queryer/sim_log_21288296000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27809781000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27729687000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27672781000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27325906000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27222843000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27128171000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27121937000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27107578000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27099562000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_27041484000000.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
     "psy-references/Militarygrade.pdf",
