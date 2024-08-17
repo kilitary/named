@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_15519203000000.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_3608250000000.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -193,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_3608250000000.md"
               }
             }
           },
@@ -266,11 +266,13 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "f7433afe971469e7",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_15519203000000.md",
     "Red&Queen/playground/models_queryer/sim_log_16282312000000.md",
     "Red&Queen/playground/models_queryer/sim_log_16042015000000.md",
@@ -299,7 +301,6 @@
     "Red&Queen/playground/models_queryer/sim_log_29729093000000.md",
     "Red&Queen/playground/models_queryer/sim_log_29585828000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13192546000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_21288296000000.md",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
     "psy-references/Militarygrade.pdf",
