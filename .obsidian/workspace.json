@@ -93,7 +93,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -285,7 +286,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "087de985b5af7f10",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
     "Red&Queen/playground/models_queryer/sim_log_13443765000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13468828000000.md",
