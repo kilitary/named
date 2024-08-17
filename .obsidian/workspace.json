@@ -93,7 +93,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -192,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_15519203000000.md"
+                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
               }
             }
           },
@@ -265,16 +266,15 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "map-of-content:Update Map of Content": false
     }
   },
-  "active": "087de985b5af7f10",
+  "active": "f7433afe971469e7",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/sim_log_15519203000000.md",
     "Red&Queen/playground/models_queryer/sim_log_16282312000000.md",
     "Red&Queen/playground/models_queryer/sim_log_16042015000000.md",
     "Red&Queen/playground/models_queryer/sim_log_15509265000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_15519203000000.md",
     "Red&Queen/playground/models_queryer/sim_log_15492609000000.md",
     "Red&Queen/research/black-holes/simulation/sim_bh_research_project_via_local_current_data_set_1717349227500375900_00001748.md",
     "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
