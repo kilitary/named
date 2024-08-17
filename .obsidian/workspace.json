@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_23096375000000.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_3606046000000.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -93,7 +93,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -192,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_23096375000000.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_3606046000000.md"
               }
             }
           },
@@ -285,11 +286,12 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "087de985b5af7f10",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "Red&Queen/playground/models_queryer/sim_log_21522765000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_23096375000000.md",
     "Red&Queen/playground/models_queryer/models_queryer.md",
+    "Red&Queen/playground/models_queryer/sim_log_3606046000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_23096375000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_21522765000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13300375000000.md",
     "Red&Queen/lingvistic/drafting starter exit.md",
     "Red&Queen/lingvistic/lingvistic.md",
@@ -312,7 +314,6 @@
     "Red&Queen/playground/models_queryer/sim_log_10097437000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13131125000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13054937000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_13043250000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
