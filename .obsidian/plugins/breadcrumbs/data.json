@@ -111,7 +111,7 @@
   ],
   "writeBCsInline": false,
   "showWriteAllBCsCmd": false,
-  "visGraph": "Tree Map",
+  "visGraph": "Tidy Tree",
   "visRelation": "Parent",
   "visClosed": "Real",
   "visAll": "All",

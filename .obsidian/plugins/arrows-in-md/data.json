@@ -1,5 +1,5 @@
 {
   "defaultArrowColor": "var(--text-normal)",
-  "diagonalArrowStyle": "arc",
+  "diagonalArrowStyle": "fluid",
   "userDefinedColors": ""
 }
