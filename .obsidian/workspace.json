@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_7648875000000.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_11228578000000.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -93,8 +93,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
@@ -193,7 +192,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_11228578000000.md"
               }
             }
           },
@@ -286,12 +285,13 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "087de985b5af7f10",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/models_queryer.md",
+    "Red&Queen/playground/models_queryer/sim_log_11228578000000.md",
     "Red&Queen/playground/models_queryer/sim_log_7648875000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25495031000000.md",
     "Red&Queen/playground/models_queryer/sim_log_24567937000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_3978078000000.md",
     "Red&Queen/playground/models_queryer/sim_log_4885046000000.md",
     "Red&Queen/playground/models_queryer/sim_log_3171421000000.md",
@@ -313,7 +313,6 @@
     "Red&Queen/playground/models_queryer/sim_log_23096375000000.md",
     "Red&Queen/playground/models_queryer/sim_log_21522765000000.md",
     "Red&Queen/playground/models_queryer/sim_log_13300375000000.md",
-    "Red&Queen/lingvistic/drafting starter exit.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
