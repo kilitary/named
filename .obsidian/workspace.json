@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_36074750000000.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -192,7 +192,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_36074750000000.md"
+                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
               }
             }
           },
@@ -280,17 +280,18 @@
       "obsidian-day-planner:Timeline": false,
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
+      "card-board:CardBoard": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "map-of-content:Update Map of Content": false
     }
   },
-  "active": "087de985b5af7f10",
+  "active": "dde2f813006ae34d",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_36074750000000.md",
     "Red&Queen/playground/models_queryer/sim_log_31913437000000.md",
     "Red&Queen/playground/models_queryer/sim_log_29454812000000.md",
     "Red&Queen/playground/models_queryer/sim_log_29442250000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_36074750000000.md",
     "Red&Queen/playground/models_queryer/sim_log_36068078000000.md",
     "Red&Queen/playground/models_queryer/sim_log_28881562000000.md",
     "Red&Queen/playground/models_queryer/sim_log_31824015000000.md",
@@ -312,7 +313,6 @@
     "Red&Queen/playground/models_queryer/sim_log_22152421000000.md",
     "Red&Queen/playground/models_queryer/sim_log_22048625000000.md",
     "Red&Queen/playground/models_queryer/sim_log_21959281000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_20975406000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
