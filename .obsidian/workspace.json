@@ -11,12 +11,10 @@
             "id": "087de985b5af7f10",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
+                "file": "Red&Queen/playground/models_queryer/sim_log_2752421000000.md",
+                "staged": false
               }
             }
           }
@@ -93,7 +91,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -191,9 +190,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_24085781000000.md"
-              }
+              "state": {}
             }
           },
           {
@@ -280,13 +277,15 @@
       "obsidian-day-planner:Timeline": false,
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
-      "card-board:CardBoard": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
   "active": "087de985b5af7f10",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/models_queryer.md",
+    "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25789593000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25747000000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25741531000000.md",
@@ -302,8 +301,6 @@
     "Red&Queen/playground/models_queryer/sim_log_25463265000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25428171000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25352984000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_36074750000000.md",
     "Red&Queen/playground/models_queryer/sim_log_31913437000000.md",
     "Red&Queen/playground/models_queryer/sim_log_29454812000000.md",
