@@ -19,8 +19,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "99c72882d0480149",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.7"
+              }
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -94,7 +105,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -193,7 +204,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_9363937000000.md"
+                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
               }
             }
           },
@@ -279,14 +290,12 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "obsidian-day-planner:Timeline": false,
+      "card-board:CardBoard": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false,
-      "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "html-server:Turn Http Server Off": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "3e9b28d315f28ef3",
   "lastOpenFiles": [
     "Red&Queen/playground/models_queryer/sim_log_2752421000000.md",
     "Red&Queen/playground/models_queryer/sim_log_9363937000000.md",
