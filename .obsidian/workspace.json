@@ -13,25 +13,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_9363937000000.md",
+                "file": "axis9/CORE-SSE/inprogress/Untitled.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
             }
-          },
-          {
-            "id": "99c72882d0480149",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.7"
-              }
-            }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -204,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
+                "file": "axis9/CORE-SSE/inprogress/Untitled.md"
               }
             }
           },
@@ -290,15 +279,19 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "obsidian-day-planner:Timeline": false,
-      "card-board:CardBoard": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "3e9b28d315f28ef3",
+  "active": "087de985b5af7f10",
   "lastOpenFiles": [
-    "Red&Queen/playground/models_queryer/sim_log_2752421000000.md",
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "Red&Queen/playground/models_queryer/sim_log_9363937000000.md",
+    "Red&Queen/playground/models_queryer/models_queryer.md",
+    "Red&Queen/playground/models_queryer/sim_log_2752421000000.md",
     "Red&Queen/playground/models_queryer/sim_log_9088765000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8801312000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8601703000000.md",
@@ -309,7 +302,6 @@
     "Red&Queen/playground/models_queryer/sim_log_8105000000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8092937000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8018375000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25789593000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25747000000000.md",
@@ -322,7 +314,6 @@
     "Red&Queen/playground/models_queryer/sim_log_25545203000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25538546000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25533203000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25477031000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
