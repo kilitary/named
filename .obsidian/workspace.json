@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/CORE-SSE/inprogress/Untitled.md",
+                "file": "Red&Queen/playground/models_queryer/sim_log_3734640000000.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -193,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
+                "file": "Red&Queen/playground/models_queryer/sim_log_3734640000000.md"
               }
             }
           },
@@ -279,17 +279,21 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "obsidian-day-planner:Timeline": false,
-      "card-board:CardBoard": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "3e14a1cd305545a1",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "axis9/core  country planning.md",
+    "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/CORE-SSE/inprogress/Untitled.md",
+    "Red&Queen/playground/models_queryer/models_queryer.md",
     "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
     "Red&Queen/playground/models_queryer/sim_log_9363937000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_2752421000000.md",
     "Red&Queen/playground/models_queryer/sim_log_9088765000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8801312000000.md",
@@ -310,8 +314,6 @@
     "Red&Queen/playground/models_queryer/sim_log_25596968000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25592343000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25587546000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25545203000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25538546000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
