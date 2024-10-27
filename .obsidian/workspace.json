@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/plans/Untitled/Untitled 1.md",
+                "file": "axis9/plans/media_receivers/Untitled 1.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -193,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "axis9/plans/Untitled/Untitled 1.md"
+                "file": "axis9/plans/media_receivers/Untitled 1.md"
               }
             }
           },
@@ -288,11 +288,11 @@
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "axis9/plans/Untitled/Untitled.md",
-    "axis9/plans/Untitled/Untitled 1.md",
+    "axis9/plans/media_receivers/media_receivers.md",
+    "axis9/plans/media_receivers/Untitled 1.md",
     "axis9/plans/plans.md",
     "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
-    "axis9/plans/Untitled",
+    "axis9/plans/media_receivers",
     "Red&Queen/playground/models_queryer/sim_log_3734640000000.md",
     "axis9/core  country planning.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
