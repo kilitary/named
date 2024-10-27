@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_3734640000000.md",
-                "mode": "preview",
+                "file": "axis9/plans/Untitled/Untitled 1.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -193,7 +193,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_3734640000000.md"
+                "file": "axis9/plans/Untitled/Untitled 1.md"
               }
             }
           },
@@ -288,6 +288,12 @@
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "axis9/plans/Untitled/Untitled.md",
+    "axis9/plans/Untitled/Untitled 1.md",
+    "axis9/plans/plans.md",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+    "axis9/plans/Untitled",
+    "Red&Queen/playground/models_queryer/sim_log_3734640000000.md",
     "axis9/core  country planning.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/CORE-SSE/inprogress/Untitled.md",
@@ -309,11 +315,6 @@
     "Red&Queen/playground/models_queryer/sim_log_25789593000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25747000000000.md",
     "Red&Queen/playground/models_queryer/sim_log_25741531000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25683343000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25621828000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25596968000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25592343000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25587546000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
@@ -327,7 +328,6 @@
     "psy-references/fake/Scalar-Wave-Theory-And-Experiments.pdf",
     "psy-references/fake/Apparatus for and method of sensing brain waves.pdf",
     "psy-references/electromagnetic-spectrum.png",
-    "looms/Untitled.loom",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
     "indirect/garbage/Untitled.canvas",
