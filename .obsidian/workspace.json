@@ -21,6 +21,16 @@
             }
           },
           {
+            "id": "884b4ee460cd8361",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.7"
+              }
+            }
+          },
+          {
             "id": "21d8312a0f63ebc4",
             "type": "leaf",
             "state": {
@@ -203,9 +213,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
-              }
+              "state": {}
             }
           },
           {
@@ -290,16 +298,18 @@
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "obsidian-day-planner:Timeline": false,
-      "card-board:CardBoard": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "9b8750a6a861200a",
+  "active": "884b4ee460cd8361",
   "lastOpenFiles": [
+    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_3125562000000.md",
     "Red&Queen/playground/models_queryer/sim_log_19289187000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
     "axis9/plans/media_receivers/Untitled 1.md",
     "axis9/plans/media_receivers/media_receivers.md",
     "axis9/plans/plans.md",
