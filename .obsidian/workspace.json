@@ -11,47 +11,18 @@
             "id": "087de985b5af7f10",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_7627328000000.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "884b4ee460cd8361",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.7"
-              }
-            }
-          },
-          {
-            "id": "68b81d73d1fd9934",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.7"
-              }
-            }
-          },
-          {
-            "id": "21d8312a0f63ebc4",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.7"
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               }
             }
           }
         ],
-        "currentTab": 2,
         "stacked": true
       }
     ],
@@ -91,7 +62,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"_filters\"]",
+                "query": "tag:#MOCs",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -101,7 +72,15 @@
             }
           },
           {
-            "id": "96bacd13db98a42d",
+            "id": "218e7e8cf09e66ae",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "732214be9396e61d",
             "type": "leaf",
             "state": {
               "type": "file-tree-view",
@@ -109,23 +88,15 @@
             }
           },
           {
-            "id": "4e431657c46e8aaf",
+            "id": "d80bd939e0eee1fc",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
               "state": {}
             }
-          },
-          {
-            "id": "218e7e8cf09e66ae",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -224,7 +195,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/models_queryer.md"
+                "file": "Untitled.canvas"
               }
             }
           },
@@ -233,14 +204,6 @@
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
-              "state": {}
-            }
-          },
-          {
-            "id": "cd3566ea99656ba3",
-            "type": "leaf",
-            "state": {
-              "type": "timeline",
               "state": {}
             }
           },
@@ -259,6 +222,14 @@
               "type": "example-view",
               "state": {}
             }
+          },
+          {
+            "id": "7652e524d4a71dfc",
+            "type": "leaf",
+            "state": {
+              "type": "timeline",
+              "state": {}
+            }
           }
         ],
         "currentTab": 9
@@ -269,54 +240,64 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-kanban:Create new board": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": false,
       "markdown-importer:Open format converter": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "obsidian-kanban:Create new board": false,
       "big-calendar:Big Calendar": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "project-browser:Open project browser": false,
       "markdown-table-editor:Open Markdown Table Editor": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
       "grind-manager:Show grind manager": false,
       "timeline-view:Open timeline view": false,
       "obsidian-full-calendar:Open Full Calendar": false,
       "quiz-generator:Open generator": false,
       "obsidian-gallery:Gallery": false,
       "ai_llm:Local LLM Chat": false,
-      "webpage-html-export:Export Vault to HTML": false,
       "breadcrumbs:Breadcrumbs Visualisation": false,
       "notion-like-tables:Create loom": false,
       "file-tree-alternative:File Tree Alternative Plugin": false,
       "memorization:Memorize Notes": false,
       "select-and-complete:Select and Complete": false,
       "desk:Create new desk": false,
+      "obsidian-day-planner:Timeline": false,
+      "card-board:CardBoard": false,
       "task-status:Change Checkbox Status": false,
       "homework-manager:Open homework": false,
       "file-preview:Refresh preview contents": false,
       "file-preview:Delete preview contents": false,
       "notes2tweets:Open Notes2Tweets": false,
+      "html-server:Turn Http Server On": false,
+      "html-server:Turn Http Server Off": false,
       "timethings:Activate view": false,
       "laser-beam:Laser beam": false,
+      "vault-explorer:Open vault explorer": false,
       "obsidian-tweet-to-markdown:Tweet to Markdown": false,
+      "periodic-notes:Open today": false,
       "quick-tagger:Add tag to current note": false,
       "quick-tagger:Remove tag from current note": false,
+      "map-of-content:Update Map of Content": false,
       "obsidian-contacts:Contacts": false,
-      "obsidian-projects:Open projects": false,
-      "vault-explorer:Open vault explorer": false,
-      "darlal-switcher-plus:Open in Headings Mode": false,
-      "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-day-planner:Timeline": false,
-      "card-board:CardBoard": false,
-      "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "obsidian-projects:Open projects": false
     }
   },
-  "active": "31327ecda0f7e9b0",
+  "active": "087de985b5af7f10",
   "lastOpenFiles": [
+    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
+    "Untitled.canvas",
+    "SKYNET/playground/playground.md",
+    "SKYNET/research/text machine/text machine.md",
+    "axis9/CORE-SSE/CORE-SSE.md",
+    "axis9/issues/ss.md",
+    "Tags/$tags/$tags.md",
+    "Untitled 1.md",
+    "Red&Queen/playground/models_queryer/sim_log_7627328000000.md",
     "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_3125562000000.md",
     "Red&Queen/playground/models_queryer/sim_log_19289187000000.md",
@@ -336,14 +317,6 @@
     "Red&Queen/playground/models_queryer/sim_log_8801312000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8601703000000.md",
     "Red&Queen/playground/models_queryer/sim_log_8596734000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8585125000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8393937000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8323890000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8105000000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8092937000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8018375000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_24085781000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_25789593000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
@@ -365,7 +338,6 @@
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_118.jpg",
     "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.svg",
     "Excalidraw/Scripts/Downloaded/Set Link Alias.svg",
-    "Excalidraw/Scripts/Downloaded/Set Dimensions.svg",
-    "Untitled.canvas"
+    "Excalidraw/Scripts/Downloaded/Set Dimensions.svg"
   ]
 }

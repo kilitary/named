@@ -1,7 +1,7 @@
 ---
-state: Archived
+state: waiting for time slot arrival (EST: 4months)
 object: computer-ai
-model: 
+model: ?
 temperature: 
 user_name: USER
 completed: "false"
