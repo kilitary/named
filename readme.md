@@ -44,4 +44,4 @@ cat /var/www/index.asp|mail kilitary@x25.cc
 async eval(!!!!!!this)
 
 Cgroup: n10s
-wWw: <a href='http://kilitary.ru'>kilitary.ru</a>
+wWw: <a disabled href='http://kilitary.ru'>kilitary.ru</a> [temp down]
