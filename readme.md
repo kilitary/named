@@ -5,7 +5,7 @@ banner: SKYNET/For vacuum divider/39.gif
 ![[alarm.png]]
 
 updates:
-1-may-2024:russian SS: [russian_government_secret_services_crime_index_RU](axis9/issues/ss/russian_government_secret_services_crime_index_RU.md)
+1-may-2024:russian SS цру wh update s: [russian_government_secret_services_crime_index_RU](axis9/issues/ss/russian_government_secret_services_crime_index_RU.md)
 
 [!warning]
 MELtDOWN  PHASE
