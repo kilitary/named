@@ -1,5 +1,5 @@
 
-ad min s update: [theprinceputin.ru](prince.nfo)
+ad min s update: [theprinceputin.ru](/prince.nfo)
 ---
 state: Focused 
 banner: [SKYNET](/)For vacuum divider/39.gif
