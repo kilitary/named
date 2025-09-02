@@ -1,5 +1,5 @@
 
-ad min s update: [theprinceputin.ru](https://github.com/kilitary/nnamed/blob/main/prince.nfo)
+ad min s update: [theprinceputin.ru](https://github.com/kilitary/nnamed/blob/main/ru.nfo)
 
 ----
 state: Focused 
