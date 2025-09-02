@@ -1,10 +1,12 @@
 
-ad min s update: [theprinceputin.ru](/prince.nfo)
----
+ad min s update: [theprinceputin.ru](https://github.com/kilitary/nnamed/prince.nfo)
+
+----
 state: Focused 
-banner: [SKYNET](/)For vacuum divider/39.gif
+banner: [SKYNET]0/For vacuum divider/39.gif
 dosus: GOP asked weinsteind how many linux oses do you collect, vveinsteyn drops into window with papers about his new bathroom randomized design witch
----
+-------
+
 ![[alarm.png]]
 
 updates:
