@@ -1,6 +1,6 @@
 
 ad min s update: [theprinceputin.ru](https://github.com/kilitary/nnamed/blob/main/ru.nfo)
-
+admin*s* update: [princed.c](https://github.com/kilitary/nnamed/blob/main/expandor.c)
 ----
 state: Focused 
 banner: [SKYNET]0/For vacuum divider/39.gif
