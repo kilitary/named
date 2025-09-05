@@ -1,0 +1,133 @@
+# NNAMED - Comprehensive Research & Documentation Repository
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./version)
+
+## Overview
+
+NNAMED is an extensive research and documentation repository organized as an Obsidian vault, containing interdisciplinary research, analysis, and documentation across multiple domains including technology, linguistics, biology, intelligence analysis, and systems research.
+
+## Repository Structure
+
+### Core Sections
+
+#### 📊 **axis9/** - Core Research & Analysis
+Central hub for strategic research, core issues, and planning documentation:
+- **CORE-SSE/**: Core system security evaluations
+- **issues/**: Critical issue documentation and analysis
+- **plans/**: Strategic planning and roadmaps  
+- **research/**: Primary research documentation and findings
+
+#### 🤖 **SKYNET/** - Technology & Systems Research
+Advanced technology research and system analysis:
+- **advisories/**: Security advisories and technical notices
+- **research/**: Technology research and development
+- **technology/**: Technical documentation and specifications
+- **playground/**: Experimental and prototype work
+
+#### 👑 **Red&Queen/** - Interdisciplinary Research
+Multi-domain research covering biological, electronic, and linguistic systems:
+- **biology/**: Biological systems and research
+- **electronics/**: Electronic systems and hardware research
+- **lingvistic/**: Linguistic analysis and natural language processing
+- **research/**: Cross-domain research and analysis
+- **playground/**: Experimental models and simulations
+
+#### 🎯 **BMO/** - Profiles & Configuration
+System profiles and configuration management:
+- **Profiles/**: User and system profiles
+
+#### 🎨 **Excalidraw/** - Visualization & Diagrams
+Drawing tools and visual documentation:
+- **Scripts/**: Automation scripts for diagram generation
+
+### Supporting Sections
+
+- **assets/**: Media files, images, and resources
+- **indirect/**: Indirect references and linked content  
+- **looms/**: Loom recordings and video documentation
+- **programs/**: Software tools and utilities
+- **psy-references/**: Psychological and social research references
+- **textgenerator/**: AI text generation tools and templates
+- **Tags/**: Organizational tags and metadata
+
+## Key Features
+
+- **1,842+ Markdown Files**: Comprehensive documentation across all domains
+- **Obsidian Vault Structure**: Advanced linking, tagging, and organization
+- **Multi-language Support**: English and Russian documentation variants
+- **Cross-referenced Content**: Extensive internal linking and relationship mapping
+- **Research Integration**: Combines theoretical research with practical applications
+- **Modular Organization**: Clear separation of concerns across domain areas
+
+## Getting Started
+
+### Prerequisites
+
+- [Obsidian](https://obsidian.md/) (recommended for full functionality)
+- Any markdown editor for basic access
+- Git for version control
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/kilitary/nnamed.git
+cd nnamed
+```
+
+2. Open in Obsidian:
+   - Launch Obsidian
+   - Select "Open folder as vault"
+   - Choose the cloned directory
+
+3. For basic markdown access, navigate through the directory structure using any text editor.
+
+## Usage
+
+### Navigation
+
+- **Start with**: [index.md](./index.md) for comprehensive navigation
+- **Core Research**: Begin with [axis9/axis9.md](./axis9/axis9.md)
+- **Technology Focus**: Explore [SKYNET/SKYNET.md](./SKYNET/SKYNET.md)
+- **Interdisciplinary**: Check [Red&Queen/Red&Queen.md](./Red&Queen/Red&Queen.md)
+
+### Key Entry Points
+
+1. **Research Overview**: Start with the research sections in each major domain
+2. **Issue Tracking**: Review axis9/issues/ for current analytical focuses
+3. **Technical Documentation**: Explore SKYNET/technology/ for technical specs
+4. **Cross-domain Analysis**: Red&Queen sections for interdisciplinary insights
+
+## Documentation Languages
+
+- **English**: Primary documentation language
+- **Russian**: Alternative documentation available (see [README_ru.md](./README_ru.md))
+- **Mixed Content**: Some files contain bilingual content for accessibility
+
+## Contributing
+
+1. Follow the existing organizational structure
+2. Use proper markdown formatting and Obsidian conventions
+3. Add appropriate tags and metadata to new files
+4. Cross-reference related content using wiki-style links
+5. Update relevant index files when adding new sections
+
+## Structure Navigation
+
+For detailed navigation and content summaries, see:
+- **English**: [index.md](./index.md)
+- **Russian**: [index_ru.md](./index_ru.md)
+
+## Contact
+
+- **Repository**: [https://github.com/kilitary/nnamed](https://github.com/kilitary/nnamed)
+- **Issues**: Use GitHub Issues for questions and feedback
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+*This repository represents ongoing research and documentation efforts across multiple scientific and technical domains. Content is continuously updated and expanded based on research findings and analytical developments.*
