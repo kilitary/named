@@ -19,19 +19,36 @@ Central hub for strategic research, core issues, and planning documentation:
 - **research/**: Primary research documentation and findings
 
 #### 🤖 **SKYNET/** - Technology & Systems Research
-Advanced technology research and system analysis:
-- **advisories/**: Security advisories and technical notices
-- **research/**: Technology research and development
-- **technology/**: Technical documentation and specifications
-- **playground/**: Experimental and prototype work
+Advanced technology research and system analysis with focus on autonomous systems, scanning technologies, and AI-driven analysis:
+
+**Core Research Areas:**
+- **RF & Microwave Scanning Systems**: Advanced electromagnetic frequency scanning research (50-200 GHz range)
+- **Text Machine Intelligence**: Unique schematic relationship mapping with base English words and linguistic pattern analysis
+- **Navigation & Wireless Scanning**: Comprehensive wirescan and navscan simulation systems for environmental analysis
+- **Autonomous System Simulations**: Multi-layered simulation frameworks for system behavior prediction
+
+**Repository Structure:**
+- **advisories/**: Security advisories and technical notices for emerging technologies
+- **research/**: Technology research including scanning systems, text machines, and autonomous behavior models
+- **technology/**: Technical documentation, specifications, and implementation guides
+- **playground/**: Experimental prototypes and real-time simulation environments
 
 #### 👑 **Red&Queen/** - Interdisciplinary Research
-Multi-domain research covering biological, electronic, and linguistic systems:
-- **biology/**: Biological systems and research
-- **electronics/**: Electronic systems and hardware research
-- **lingvistic/**: Linguistic analysis and natural language processing
-- **research/**: Cross-domain research and analysis
-- **playground/**: Experimental models and simulations
+Multi-domain research combining biological, electronic, and linguistic systems with extensive simulation capabilities:
+
+**Simulation & Research Focus:**
+- **Model Query Simulations**: Large-scale multi-model analysis systems with automated parameter testing and result validation
+- **Biological Systems Modeling**: Research into biological processes, evolutionary patterns, and bio-inspired computational models
+- **Electronic Systems Analysis**: Hardware research, circuit analysis, and electronic system behavior modeling
+- **Linguistic Pattern Analysis**: Natural language processing, semantic relationship mapping, and linguistic evolution studies
+- **Cross-Domain Integration**: Interdisciplinary simulations connecting biological, electronic, and linguistic systems
+
+**Repository Structure:**
+- **biology/**: Biological systems research and bio-computational models
+- **electronics/**: Electronic systems, hardware research, and circuit analysis
+- **lingvistic/**: Linguistic analysis, NLP research, and semantic processing
+- **research/**: Cross-domain research projects and analytical frameworks
+- **playground/**: Active simulation environments including extensive model_queryer simulation logs with timestamped results
 
 #### 🎯 **BMO/** - Profiles & Configuration
 System profiles and configuration management:
@@ -59,6 +76,23 @@ Drawing tools and visual documentation:
 - **Cross-referenced Content**: Extensive internal linking and relationship mapping
 - **Research Integration**: Combines theoretical research with practical applications
 - **Modular Organization**: Clear separation of concerns across domain areas
+
+## Research & Simulation Capabilities
+
+### SKYNET Simulations
+The SKYNET research division focuses on advanced technological simulations and autonomous system modeling:
+- **RF/Microwave Analysis**: Frequency scanning simulations in the 50-200 GHz range for advanced electromagnetic analysis
+- **Navigation Systems**: Comprehensive wirescan and navscan simulation environments for spatial and wireless network analysis
+- **Text Machine Learning**: Experimental linguistic relationship mapping using base English word schemes and parameter optimization
+- **Security Research**: Ongoing analysis of emerging technological threats and system vulnerabilities
+
+### Red&Queen Simulations  
+The Red&Queen division conducts interdisciplinary simulations spanning multiple scientific domains:
+- **Multi-Model Query Systems**: Extensive simulation logging with automated model analysis (36+ models tested with temperature and context parameter optimization)
+- **Biological System Modeling**: Computational biology research including evolutionary pattern analysis and bio-inspired algorithms  
+- **Electronic Circuit Analysis**: Hardware simulation and electronic system behavior prediction
+- **Linguistic Evolution Studies**: Cross-linguistic pattern analysis and semantic relationship modeling
+- **Integrated Cross-Domain Research**: Simulations that bridge biological, electronic, and linguistic systems for comprehensive analysis
 
 ## Getting Started
 
