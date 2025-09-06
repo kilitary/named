@@ -103,6 +103,19 @@ The textgenerator directory provides advanced AI-powered text generation capabil
 3. **Workflow Integration**: Integrate with existing research and documentation workflows
 4. **Quality Settings**: Configure quality control and output parameters
 
+## 🔗 Integration Points
+
+### Research Integration
+- **[SKYNET Text Machine](../SKYNET/research/text%20machine/text%20machine.md)** - Advanced text processing and linguistic analysis
+- **[axis9 Research](../axis9/research/research.md)** - Strategic research methodology and analysis
+- **[Red&Queen Linguistics](../Red&Queen/lingvistic/lingvistic.md)** - Cross-domain linguistic analysis
+- **[programs](../programs/programs.md)** - Development tools and automation utilities
+
+### AI Infrastructure
+- **[.obsidian/plugins/obsidian-textgenerator-plugin](../.obsidian/plugins/obsidian-textgenerator-plugin/main.js)** - Obsidian text generation integration
+- **[.obsidian/plugins/gpt3-notes](../.obsidian/plugins/gpt3-notes/main.js)** - GPT integration tools
+- **[.obsidian/plugins/ai_llm](../.obsidian/plugins/ai_llm/main.js)** - LLM integration plugins
+
 ## 🛡️ Best Practices
 
 ### Template Development

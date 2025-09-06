@@ -103,6 +103,48 @@ Centralized storage system for all organizational tags and metadata structures u
 3. **Deprecation Process**: Systematic approach to retiring unused tags
 4. **Documentation**: Comprehensive tag documentation and usage guidelines
 
+## 🗺️ Tagged Content Map
+
+### 🎯 MOCs (Maps of Content)
+- **[axis9/axis9.md](../axis9/axis9.md)** - Strategic research hub with MOC tag
+- **[SKYNET/SKYNET.md](../SKYNET/SKYNET.md)** - Technology systems with MOC organization
+- **[Red&Queen/Red&Queen.md](../Red&Queen/Red&Queen.md)** - Interdisciplinary research MOC
+- **[programs/programs.md](../programs/programs.md)** - Development tools organization
+- **[Dashboard.md](../Dashboard.md)** - Central navigation MOC
+
+### 🔬 Research Domain Tags
+**axis9** - Strategic Research:
+- **[axis9/issues/issues.md](../axis9/issues/issues.md)** - Critical analysis and issue tracking
+- **[axis9/research/research.md](../axis9/research/research.md)** - Research coordination
+
+**skynet** - Technology Research:  
+- **[SKYNET/research/research.md](../SKYNET/research/research.md)** - Technology research coordination
+- **[SKYNET/advisories/advisories.md](../SKYNET/advisories/advisories.md)** - Security advisories
+
+**red-queen** - Interdisciplinary Research:
+- **[Red&Queen/biology/biology.md](../Red&Queen/biology/biology.md)** - Biological systems research
+- **[Red&Queen/electronics/electronics.md](../Red&Queen/electronics/electronics.md)** - Electronic systems analysis
+- **[Red&Queen/lingvistic/lingvistic.md](../Red&Queen/lingvistic/lingvistic.md)** - Linguistic analysis
+
+### 💻 Technical Tags
+**programs** - Development Tools:
+- **[programs/programs.md](../programs/programs.md)** - Software tools and utilities
+- **[expandor.c](../expandor.c)** - Core system implementation
+
+**textgenerator** - AI Tools:
+- **[textgenerator/textgenerator.md](../textgenerator/textgenerator.md)** - AI text generation tools
+
+**assets** - Media Resources:
+- **[assets/assets.md](../assets/assets.md)** - Media resources and visual elements
+
+### 🧪 Specialized Tags
+**simulations** - Experimental Work:
+- **[Red&Queen/playground/playground.md](../Red&Queen/playground/playground.md)** - Advanced simulation environment
+
+**security-studies** - Security Research:
+- **[axis9/issues/issues.md](../axis9/issues/issues.md)** - Security and intelligence analysis
+- **[axis9/CORE-SSE/CORE-SSE.md](../axis9/CORE-SSE/CORE-SSE.md)** - Core security evaluations
+
 ---
 
 ```folder-index-content

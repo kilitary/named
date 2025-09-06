@@ -159,6 +159,9 @@ Welcome to the NNAMED repository index. This document provides structured naviga
 - Technology specs: [SKYNET/technology/](SKYNET/technology/)
 - System configuration: [BMO/](BMO/)
 - Development tools: [programs/](programs/)
+- **Core Code**: [expandor.c](expandor.c) - System expander implementation
+- **Python Scripts**: [.obsidian/scripts/python/](/.obsidian/scripts/python/) - Automation tools
+- **AI Tools**: [textgenerator/](textgenerator/) - Text generation utilities
 
 ---
 
@@ -180,6 +183,20 @@ Welcome to the NNAMED repository index. This document provides structured naviga
 3. **Check Cross-references**: Follow wiki-style links between documents
 4. **Start with Section READMEs**: Each major section has overview documentation
 5. **Use Search**: Full-text search across all documentation
+
+---
+
+## 📊 Data & Metadata Files
+
+### System Configuration
+- **[tracked_files.json](tracked_files.json)** - File tracking and version management
+- **[desktop.ini](desktop.ini)** - Windows desktop configuration
+- **[Vault.md](Vault.md)** - Vault configuration metadata
+
+### Content Data
+- **[ru.nfo](ru.nfo)** - Russian content information file
+- **Timeline entries**: [2024-06-11.md](2024-06-11.md), [2024-06-12.md](2024-06-12.md), [2024-06-27.md](2024-06-27.md)
+- **Canvas files**: [Untitled.canvas](Untitled.canvas), [Untitled 1.canvas](Untitled%201.canvas)
 
 ---
 

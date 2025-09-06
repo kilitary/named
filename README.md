@@ -158,6 +158,28 @@ For detailed navigation and content summaries, see:
 - **Repository**: [https://github.com/kilitary/nnamed](https://github.com/kilitary/nnamed)
 - **Issues**: Use GitHub Issues for questions and feedback
 
+## Quick Access Links
+
+### 🎯 Core Sections
+- **[Dashboard](Dashboard.md)** - Central navigation hub
+- **[axis9](axis9/axis9.md)** - Strategic research & analysis
+- **[SKYNET](SKYNET/SKYNET.md)** - Technology & systems research  
+- **[Red&Queen](Red&Queen/Red&Queen.md)** - Interdisciplinary research
+
+### 💻 Development
+- **[programs](programs/programs.md)** - Software tools & utilities
+- **[expandor.c](expandor.c)** - Core system expander (C code)
+- **[textgenerator](textgenerator/textgenerator.md)** - AI text generation tools
+
+### 🎨 Resources
+- **[Excalidraw](Excalidraw/Excalidraw.md)** - Visual documentation tools
+- **[assets](assets/assets.md)** - Media resources & images
+- **[psy-references](psy-references/psy-references.md)** - Research references
+
+### 🏷️ Organization
+- **[Tags](Tags/Tags.md)** - Content organization system
+- **[tracked_files.json](tracked_files.json)** - File tracking metadata
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

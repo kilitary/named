@@ -29,15 +29,16 @@ Located in the repository root, this C program provides core system expansion fu
 
 ### 🐍 Python Development Tools
 Located in `.obsidian/scripts/python/`:
-- **main2.py** - Primary Python automation script for Obsidian integration
+- **[main2.py](../.obsidian/scripts/python/main2.py)** - Primary Python automation script for Obsidian integration
 
 ### ⚙️ Development Infrastructure
 
 #### Obsidian Plugin Ecosystem
 Supporting JavaScript development tools:
-- **Image Management**: obsidian-imgur-plugin for image handling
-- **UI Enhancement**: obsidian-focus-mode, editing-toolbar for interface improvements  
-- **Visualization**: semantic-canvas, multi-column-markdown for content presentation
+- **Image Management**: [obsidian-imgur-plugin](../.obsidian/plugins/obsidian-imgur-plugin/main.js) for image handling
+- **UI Enhancement**: [obsidian-focus-mode](../.obsidian/plugins/obsidian-focus-mode/main.js), [editing-toolbar](../.obsidian/plugins/editing-toolbar/main.js) for interface improvements  
+- **Visualization**: [semantic-canvas](../.obsidian/plugins/semantic-canvas/main.js), [multi-column-markdown](../.obsidian/plugins/multi-column-markdown/main.js) for content presentation
+- **Intelligence**: [smart-connections](../.obsidian/plugins/smart-connections/main.js) for content analysis and relationship mapping
 - **Intelligence**: smart-connections for content analysis and relationship mapping
 - **Organization**: obsidian-contacts, janitor for content organization
 - **Navigation**: new-tab-plus for enhanced workspace management
