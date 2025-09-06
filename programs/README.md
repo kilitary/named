@@ -17,7 +17,7 @@ The programs directory coordinates:
 
 ## 🔧 Key Programs
 
-- **expandor.c** (in repository root) - Core system expander with node management
+- **[expandor.c](../expandor.c)** (in repository root) - Core system expander with node management
 - **Python Scripts** (.obsidian/scripts/) - Research automation utilities
 - **JavaScript Plugins** (.obsidian/plugins/) - Obsidian integration tools
 

@@ -42,7 +42,7 @@ The NNAMED repository represents a comprehensive research and documentation syst
 
 #### **[programs/](programs/programs.md)** - Development Tools
 - **Purpose**: Software tools, utilities, and development resources
-- **Content**: C programs, Python scripts, JavaScript plugins
+- **Content**: C programs ([expandor.c](expandor.c)), Python scripts, JavaScript plugins
 - **Integration**: Repository-wide tool support and automation
 
 #### **[assets/](assets/assets.md)** - Media Resources
