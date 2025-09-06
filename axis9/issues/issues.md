@@ -81,6 +81,8 @@ Specialized analysis of security services, intelligence organizations, and relat
 - **[../../axis9/CORE-SSE/](../../axis9/CORE-SSE/CORE-SSE.md)** - Core system security evaluations
 - **[../../SKYNET/advisories/](../../SKYNET/advisories/advisories.md)** - Technology security advisories
 - **[../../psy-references/](../../psy-references/psy-references.md)** - Psychological and intelligence research references
+- **[../../programs/](../../programs/programs.md)** - Development tools and analysis utilities
+- **[../../expandor.c](../../expandor.c)** - Core system expander for technical analysis
 
 ### Research Coordination
 - **Strategic Analysis**: Integration with strategic research and planning

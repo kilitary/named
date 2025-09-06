@@ -92,6 +92,24 @@ sticker: emoji//1f4a2
 3. **Integration**: Use in frontmatter for banners and stickers
 4. **Reference**: Link directly in documentation content
 
+## 🔗 Asset Usage Across Repository
+
+### Documentation Enhancement
+- **[Dashboard](../Dashboard.md)** - Uses emoji stickers and banner images for visual hierarchy
+- **[README](../README.md)** - Incorporates visual elements for enhanced navigation
+- **[index](../index.md)** - Features banner and visual organization elements
+
+### Section Branding  
+- **[axis9](../axis9/axis9.md)** - Strategic research visual identity
+- **[SKYNET](../SKYNET/SKYNET.md)** - Technology section visual branding
+- **[Red&Queen](../Red&Queen/Red&Queen.md)** - Interdisciplinary research visual elements
+- **[Excalidraw](../Excalidraw/Excalidraw.md)** - Visual documentation and diagram tools
+
+### Integration Tools
+- **[.obsidian/plugins](../.obsidian/plugins/)** - Plugin system visual elements
+- **[textgenerator](../textgenerator/textgenerator.md)** - AI tools visual integration
+- **[programs](../programs/programs.md)** - Development tools visual identity
+
 ---
 
 ```folder-index-content
