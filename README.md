@@ -1,4 +1,4 @@
-# NNAMED - Comprehensive Research & Documentation Repository
+# NAMED - Comprehensive Research & Documentation Repository
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./version)
