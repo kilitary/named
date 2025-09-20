@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+.coverage
+.tox/
+.cache
+nosetests.xml
+.idea/
+*.swp
+*.swo
+.DS_Store
+*.tmp

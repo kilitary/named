@@ -16,6 +16,19 @@ banner: assets/images/red-queen.png
 
 The Red&Queen division represents the pinnacle of interdisciplinary research within the NNAMED repository. Named after the evolutionary principle, this section focuses on the dynamic interactions between biological systems, electronic circuits, and linguistic patterns, creating comprehensive models that bridge multiple scientific domains.
 
+## 🆕 Latest Addition: Compact Evolution Resource Principles
+
+**NEW**: Implementation of Compact Evolution Resource Principles system that takes English technical words from the same categories and splits them into sub-words matching computer IA architecture to define logic circuits for request processing.
+
+### Key Features:
+- **8 Technical Categories**: Physical Properties, Computer Verbs, IA Architecture, Circuit Components, Data Structures, Algorithms, Network Protocols, Security Concepts
+- **Sub-word Decomposition**: Breaks complex terms into manageable components
+- **Compact Representation**: Single-letter labels with mathematical operations
+- **Logic Circuit Generation**: Creates processing circuits for requests
+- **Simulation Log Integration**: Compatible with existing playground patterns
+
+**Files**: `compact_evolution.py`, `compact_evolution_demo.py`, `test_integration.py`, `README_compact_evolution.md`, `INTEGRATION_GUIDE.md`
+
 ## 📂 Directory Structure
 
 ### 🧬 **biology/** - Biological Systems Research
