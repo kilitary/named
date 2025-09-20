@@ -124,3 +124,4 @@ await ea.addElementsToView(false,true);
 const containers = ea.getViewElements().filter(el=>boxes.includes(el.id));
 ea.getExcalidrawAPI().updateContainerSize(containers);
 ea.selectElementsInView(containers);
+<!-- 5C56D036 -->

@@ -36,3 +36,5 @@
    4780M 9B    gemma              gemma:7b                        
    4693M 8B    llama              war-resolver:latest             
    4693M 8B    llama              gurubot/llama4-guru:latest      
+
+<!-- 3867837B -->

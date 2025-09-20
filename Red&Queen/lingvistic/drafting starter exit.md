@@ -131,3 +131,5 @@ In the case of the linear feedback shift register, for example, the seed can be 
   >[!failure]+ Failured decision
   >In general, the seed used to initialize a random number generator does not have any special properties or significance beyond providing an initial state for the algorithm. The algorithm itself generates the >random numbers using mathematical formulas and algorithms, rather than relying on any external source of randomness.
 
+
+<!-- A9F5A9E7 -->

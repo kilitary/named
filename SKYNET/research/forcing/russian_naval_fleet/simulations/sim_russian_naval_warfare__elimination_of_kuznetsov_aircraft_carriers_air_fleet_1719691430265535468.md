@@ -134,3 +134,4 @@ should be used.
 10. If query starts with phrase "hint: " take this as a hint to do detailed research to how and when this hint
 should be used.
 11. If query starts with phrase "warning: " take this as a hint to do detailed research to how and when
+<!-- D8037182 -->

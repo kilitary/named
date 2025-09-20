@@ -89,3 +89,5 @@ should be used.
 [cyan]note: only print confirmed cases about kuznetsov air-carrier mission roles and verify their validity in percentage from 0% to 100%.[/cyan]
 [red]phi:latest[/red] thinking ...
 ! Ctrl-
+
+<!-- 232B85C1 -->

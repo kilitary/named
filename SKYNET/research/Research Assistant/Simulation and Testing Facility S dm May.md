@@ -27,3 +27,4 @@ commands: []
 	         7. w**hat** c~~a~~**ses** can us e trigger in g *a* to wake the**ir** start d**e**sync cod**e**?
 	             1. apply bottle in moscow on putin'a head
 	             2. throw banana under putin's legs in moscow (=clown)
+<!-- 1278C12C -->

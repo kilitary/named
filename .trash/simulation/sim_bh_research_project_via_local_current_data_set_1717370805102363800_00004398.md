@@ -144,3 +144,5 @@ rule: print black holes environmental data using these 2 cases:
 1. print physic effects affecting black hole
 2. print physic effects applyed by black hole
 > llama3:latest linking embeddings relations ...
+
+<!-- 0280ACD0 -->

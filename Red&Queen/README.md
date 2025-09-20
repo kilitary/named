@@ -29,3 +29,4 @@ This directory integrates with:
 - **[psy-references/](../psy-references/)** for psychological research foundations
 
 For complete interdisciplinary research overview and simulation data, see **[Red&Queen.md](Red&Queen.md)**.
+<!-- 95231541 -->

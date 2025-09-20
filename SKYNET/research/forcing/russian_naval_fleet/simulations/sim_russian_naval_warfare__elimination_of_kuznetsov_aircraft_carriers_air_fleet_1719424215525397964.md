@@ -101,3 +101,5 @@ Begin by applying the property of transitivity to statements 1 and 5. If system 
 
 Lets apply inductive logic for statement 2: If System B isnt successful, then system C is successful. Since we know at least one of the systems is unsuccessful, this means either system Aor
  system B must have failed. But if system A has failed! Ctrl-
+
+<!-- 87677FF2 -->

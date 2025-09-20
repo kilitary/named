@@ -57,3 +57,4 @@ Here is a summary of the Admiral Kuznetsov air carrier Radar Systems:
 2. **MRK-100**: Rotor antenna, navigation, unknown introduction year.
 
 Please note that the Western systems were not actually installed on the Admiral Kuznetsov, but rather for use by the US Navy while training Soviet/Russian personnel.
+<!-- D02F9A81 -->

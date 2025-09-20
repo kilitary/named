@@ -9,3 +9,4 @@ banner: assets/images/1f4ca.png
 5. [ ] f<span style="color:#000000">inal decision</span>  [created:: 2024-04-22]
 6. [ ] decisions and how much is going to have a great time to do this for a while  [created:: 2024-04-22]
 7. [ ] research&coding!  [created:: 2024-04-22]
+<!-- F9B4E9EF -->

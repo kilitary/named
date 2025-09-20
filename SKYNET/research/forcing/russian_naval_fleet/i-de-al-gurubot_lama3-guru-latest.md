@@ -248,3 +248,4 @@ consult reliable sources for accurate information.
 | United States (Blue) | 6/10 |
 
 Note: The score table is based on the summary effects analysis and represents a subjective assessment of each sides performance. 
+<!-- 235DEBDB -->

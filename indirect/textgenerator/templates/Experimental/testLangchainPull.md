@@ -31,3 +31,5 @@ This is the output of {{name}} template.
 {{get "simpleGen"}}
 
 
+
+<!-- 0361D6A8 -->

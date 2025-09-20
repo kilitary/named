@@ -148,3 +148,5 @@ The only. The pilot, can not be.
 analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count
 
  phi:latest thinking ...
+
+<!-- B9331878 -->

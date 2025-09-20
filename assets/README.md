@@ -31,3 +31,4 @@ Assets are referenced throughout the repository in:
 - Cross-referencing and navigation aids
 
 For complete asset catalog and usage examples, see **[assets.md](assets.md)**.
+<!-- 890F4EEE -->

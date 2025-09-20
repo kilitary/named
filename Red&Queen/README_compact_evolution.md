@@ -122,3 +122,4 @@ The system uses:
 - **Regular expressions** for sub-word splitting
 - **Mathematical operations** for ratio and weight calculations
 - **JSON serialization** for data export and integration
+<!-- D48614B9 -->

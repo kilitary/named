@@ -113,3 +113,5 @@ should be used.
 * continue with context of 980 ids
 * going via program, instruction: 2/13
 [36mnote: only print confirmed cases about kuznetsov air-carrier mission roles and verify their validity in percentage from 0% to 100%.[0m
+
+<!-- B9DE4EFB -->

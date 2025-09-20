@@ -27,3 +27,4 @@ This directory integrates with:
 - **[psy-references/](../psy-references/)** for psychological research context
 
 For complete navigation and detailed information, see **[axis9.md](axis9.md)**.
+<!-- D278878D -->

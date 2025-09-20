@@ -28,3 +28,4 @@ This directory integrates with:
 - **[programs/](../programs/)** for development tools and utilities
 
 For complete technical documentation and research overview, see **[SKYNET.md](SKYNET.md)**.
+<!-- D96857BE -->
