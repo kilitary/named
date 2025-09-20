@@ -140,3 +140,5 @@ should be used.
 [36mthe Kuznetsov aircraft carrier is the primary target, especially the takeoff platform, research is that true and why, or state this as indeterminent case.
 [0m
 [magenta] I[/magenta][magenta]m[/magenta][magenta] sorry[/magenta][magenta],[/magenta][magenta] but[/magenta][magenta] I[/magenta][magenta] don[/magenta][magenta]t[/magenta][magenta] have[/magenta][magenta] any[/magenta][magenta] information[/magenta][magenta] about[/magenta][magenta] the[/magenta][magenta] K[/magenta][magenta]uz[/magenta][magenta]net[/magenta][magenta]sov[/magenta][magenta] aircraft[/magenta][magenta] carrier[/magenta][magenta].[/magenta][magenta] Could[/magenta]! Ctrl-
+
+<!-- 22B63A08 -->

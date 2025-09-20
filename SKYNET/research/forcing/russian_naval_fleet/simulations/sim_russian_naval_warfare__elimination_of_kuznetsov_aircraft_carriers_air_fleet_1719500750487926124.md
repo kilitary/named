@@ -64,3 +64,5 @@ should be used.
 
 wizardlm2:latest thinking ...
 unable to start server fork/exec C:\Users\check\AppData\Local\Programs\Ollama\ollama_runners\cpu_avx2\ollama_llama_server.exe: Access is denied..  C:\Users\check\AppData\Local\Programs\Ollama\ollama_runners\cpu_avx2 may have noexec set.  Set OLLAMA_TMPDIR for server to a writable executable directory
+
+<!-- 4797D62F -->

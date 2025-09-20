@@ -53,3 +53,5 @@ Responses should complain with these 2 rules, silently aquire it without  confir
 ⤵ prompt: 
 rule: print black holes environmental data
 > wizardlm-uncensored:13b-llama2-q5_K_M linking embeddings relations ...
+
+<!-- 653084E9 -->

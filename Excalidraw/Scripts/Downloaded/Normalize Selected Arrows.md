@@ -89,3 +89,4 @@ function recalculateEndPointOfLine(line, el, elB, gapValue) {
     	line.points[line.points.length - 1] = [intersectA[0][0] - line.x, intersectA[0][1] - line.y];
 	}
 }
+<!-- 5BC16AB6 -->

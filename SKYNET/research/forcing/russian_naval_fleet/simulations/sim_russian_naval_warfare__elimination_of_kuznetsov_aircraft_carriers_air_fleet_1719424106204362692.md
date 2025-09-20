@@ -124,3 +124,5 @@ Answer: The only statement that is most likely to be true is Statement D (All th
 * going via program, instruction: 3/13
 the Kuznetsov aircraft carrier is the primary target, especially the takeoff platform, research is that true and why, or state this as indeterminent case.
 
+
+<!-- E90B7ECB -->

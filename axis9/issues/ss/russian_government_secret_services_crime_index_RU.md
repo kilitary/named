@@ -10,3 +10,4 @@ state: Drafting
   3. [ФСБ: софт & хард ](/axis9/issues/ss/fss_software_hardware.md)
 ### уничтожение технологий
     
+<!-- 71C477FD -->

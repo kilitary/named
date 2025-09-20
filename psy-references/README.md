@@ -33,3 +33,4 @@ Resources support research in:
 - **[axis9/](../axis9/)** strategic intelligence evaluation
 
 For complete research resources and analysis frameworks, see **[psy-references.md](psy-references.md)**.
+<!-- 3B1A1E02 -->

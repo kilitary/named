@@ -8,3 +8,4 @@ print(f"This is the open file: {abs_file_path}")
 while True:
 	print(f'aaa ', end='')
 ```
+<!-- A69D9C07 -->

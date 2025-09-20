@@ -166,3 +166,4 @@ banner: assets/images/1f4a5.png
 > The AI Scenarios Simulator has the potential to be a valuable tool for researchers, policymakers, business leaders, and other stakeholders interested in understanding the complex interactions between humans and machines in various AI scenarios.
 
 trancemission: keep-alive and a little more time for 
+<!-- 57AD3917 -->

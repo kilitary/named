@@ -40,3 +40,4 @@ Visual documentation supports:
 - **Presentation Support**: Professional diagram creation for documentation
 
 For complete drawing tools and automation scripts, see **[Excalidraw.md](Excalidraw.md)** and explore the **[Scripts/](Scripts/)** directory.
+<!-- 568A6A06 -->

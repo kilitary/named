@@ -251,3 +251,4 @@ ${result.relevantPolls.map(poll =>
 ***
 # Output:
 {{get "script"}}
+<!-- 04B8943C -->

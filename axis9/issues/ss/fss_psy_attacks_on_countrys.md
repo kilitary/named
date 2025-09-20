@@ -6,3 +6,4 @@ state: Drafting
 
  1. [Пыточный конвеер в Росии и циничная игра руководиьтеля псиопов-пидоров](/axis9/issues/ss/Zudo_and_psych_facility.md)
  2. ...
+<!-- 3A825967 -->

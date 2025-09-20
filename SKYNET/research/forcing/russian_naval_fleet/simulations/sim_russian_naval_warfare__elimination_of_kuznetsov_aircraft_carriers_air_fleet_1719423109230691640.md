@@ -74,3 +74,5 @@ I understand your rules for tuning my responses. Heres how Ill respond:
 3. I will exclude any questions in response to avoid repetition and redundancy.
 4. If asked, I may provide sources to support my responses.
 5. I will not express any pleas or! Ctrl-
+
+<!-- 2808F7F6 -->

@@ -88,3 +88,4 @@ Run any of the templates without selection to check:
 - Available polls for linking
 
 This completely resolves the original issue by providing a comprehensive poll creation, discovery, and linking system.
+<!-- C2E9FA8B -->

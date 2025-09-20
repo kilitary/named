@@ -30,3 +30,4 @@ Programs support research across:
 - **[textgenerator/](../textgenerator/)** text processing tools
 
 For complete program documentation and development guidelines, see **[programs.md](programs.md)**.
+<!-- 76CF9F1F -->

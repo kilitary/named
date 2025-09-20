@@ -64,3 +64,5 @@ should be used.
 
 wizardlm2:latest thinking ...
 Understood. I will follow the rules youve outlined for providing replies to your queries. If you have any questions or need assistance, feel free to ask, and I will respond accordinglyerror reading llm response: read tcp 127.0.0.1:32255->127.0.0.1:30827: wsarecv: An existing connection was forcibly closed by the remote host.
+
+<!-- 1EFB7FBE -->

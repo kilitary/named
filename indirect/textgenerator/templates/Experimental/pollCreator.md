@@ -247,3 +247,4 @@ Option 3`;
 ***
 # Output:
 {{get "script"}}
+<!-- 40A640EB -->

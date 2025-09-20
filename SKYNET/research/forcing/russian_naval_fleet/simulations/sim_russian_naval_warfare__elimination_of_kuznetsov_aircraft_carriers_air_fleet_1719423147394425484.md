@@ -154,3 +154,5 @@ Answer: Yes, these rules are applicable to each topic. The rules that apply to e
 * prompt: analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count
 
  phi:latest thinking ...
+
+<!-- 3C066FC7 -->
