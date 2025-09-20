@@ -147,6 +147,7 @@ cd nnamed
 3. Add appropriate tags and metadata to new files
 4. Cross-reference related content using wiki-style links
 5. Update relevant index files when adding new sections
+6. **Review and comply with the [Discussion Policy](.github/DISCUSSION_POLICY.md)** - poll links are strictly prohibited
 
 ## Structure Navigation
 
