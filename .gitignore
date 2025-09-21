@@ -898,3 +898,4 @@ fabric.properties
 !/.idea/
 /.idea/
 /.github/
+__pycache__/
