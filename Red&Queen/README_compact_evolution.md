@@ -2,26 +2,34 @@
 
 ## Overview
 
-This system implements the "Compact Evolution Resource Principles" by taking English technical words from the same categories and splitting them into sub-words that match computer IA (Intelligence Architecture) concepts to define logic circuits for request processing.
+This system implements the "Compact Evolution Resource Principles" by taking English technical words from infrastructure categories and splitting them into sub-words that match computer IA (Intelligence Architecture) concepts to define logic circuits for request processing.
+
+The system now includes comprehensive infrastructure terminology with over 199 technical terms spanning hardware, networking, security, and cloud computing domains. Infrastructure abbreviations are intelligently split into 2-4 character meaningful components for enhanced processing.
 
 ## Core Concepts
 
 ### 1. Categorization System
-The system categorizes English technical words into 8 main categories:
-- **Physical Properties**: Memory, Bandwidth, Latency, etc.
-- **Computer Verbs**: Execute, Process, Compile, etc.  
-- **IA Architecture**: NeuralNetwork, Transformer, Encoder, etc.
-- **Circuit Components**: LogicGate, FlipFlop, Multiplexer, etc.
-- **Data Structures**: Array, LinkedList, Stack, etc.
-- **Algorithms**: BinarySearch, QuickSort, etc.
-- **Network Protocols**: TCP, HTTP, DNS, etc.
-- **Security Concepts**: Encryption, Authentication, etc.
+The system categorizes English technical words into 9 main categories with infrastructure focus:
+- **Physical Properties**: Memory, Bandwidth, Latency, CPU, GPU, RAM, SSD, etc.
+- **Computer Verbs**: Execute, Process, Compile, Deploy, Scale, Monitor, etc.  
+- **IA Architecture**: NeuralNetwork, Transformer, CNN, RNN, API, SDK, etc.
+- **Circuit Components**: LogicGate, FlipFlop, Multiplexer, IC, ROM, ALU, etc.
+- **Data Structures**: Array, LinkedList, Stack, JSON, XML, CSV, SQL, etc.
+- **Algorithms**: BinarySearch, QuickSort, Hash, AES, RSA, SHA, etc.
+- **Network Protocols**: TCP, HTTP, DNS, MQTT, REST, IPV4, CLI, etc.
+- **Security Concepts**: Encryption, Authentication, IAM, MFA, SSO, RBAC, etc.
+- **Threading Concepts**: Thread, Process, Parallelism, SMP, NUMA, SIMD, etc.
 
-### 2. Sub-word Decomposition
-Words are split into meaningful sub-components:
+### 2. Sub-word Decomposition with Infrastructure Abbreviations
+Words are split into meaningful sub-components with special focus on infrastructure abbreviations:
 - `NeuralNetwork` → `["Neural", "Network"]`
 - `ConvolutionalLayer` → `["Convolutional", "Layer"]`
 - `BinarySearch` → `["Binary", "Search"]`
+- `TCP` → `["Trans", "Ctrl", "Proto"]` (infrastructure abbreviation)
+- `HTTP` → `["Hyper", "Text", "Trans", "Proto"]` (infrastructure abbreviation)
+- `CPU` → `["Central", "Proc", "Unit"]` (infrastructure abbreviation)
+- `API` → `["App", "Program", "Inter"]` (infrastructure abbreviation)
+- `JSON` → `["Java", "Script", "Object", "Not"]` (infrastructure abbreviation)
 
 ### 3. Compact Representation
 Each word gets a compact single-letter label with associated properties:
