@@ -23,14 +23,13 @@ from typing import Dict, List, Set, Optional, Tuple
 from dataclasses import dataclass
 from enum import Enum
 
-
 from enum import Enum
 
 
 class VerbCategory(Enum):
     """Categories for verb-logic analysis in security response systems"""
     SYSTEM_OPERATIONS = "system_operations"
-    SECURITY_ACTIONS = "security_actions" 
+    SECURITY_ACTIONS = "security_actions"
     COMMUNICATION_VERBS = "communication_verbs"
     TECHNICAL_PROCESSES = "technical_processes"
     THREAT_INDICATORS = "threat_indicators"
@@ -66,11 +65,11 @@ class ResponseProverMock:
         self.mail_content = self._load_mail2fbi()
         self.simulation_patterns = self._analyze_simulation_logs()
         self.repository_context = self._extract_repository_context()
-        
+
         # Initialize verb-logic analysis system
         self.verb_categories = {
             VerbCategory.SYSTEM_OPERATIONS: [
-                "backup", "restore", "setup", "configure", "install", "run", "execute", 
+                "backup", "restore", "setup", "configure", "install", "run", "execute",
                 "create", "delete", "modify", "update", "system", "computer", "server",
                 "machine", "work", "working"
             ],
@@ -79,7 +78,7 @@ class ResponseProverMock:
                 "block", "allow", "filter", "scan", "detect", "prevent", "monitor"
             ],
             VerbCategory.COMMUNICATION_VERBS: [
-                "transmit", "receive", "send", "connect", "disconnect", "upload", 
+                "transmit", "receive", "send", "connect", "disconnect", "upload",
                 "download", "share", "publish", "broadcast", "communicate"
             ],
             VerbCategory.TECHNICAL_PROCESSES: [
@@ -135,19 +134,23 @@ class ResponseProverMock:
                     content = f.read()
 
                 # Extract FSB/FSS response patterns
-                fsb_matches = re.findall(r'(FSB|FSS).*?response.*?english.*?[\n\r]*(.*?)(?=\n\n|\n\w+:|\nresult:|$)',
-                                         content, re.DOTALL | re.IGNORECASE)
+                fsb_matches = re.findall(
+                    r'(FSB|FSS).*?response.*?english.*?[\n\r]*(.*?)(?=\n\n|\n\w+:|\nresult:|$)',
+                    content, re.DOTALL | re.IGNORECASE
+                )
                 for match in fsb_matches:
                     if len(match) > 1 and len(match[1].strip()) > 50:
                         patterns["fsb_responses"].append(match[1].strip())
 
                 # Extract technical patterns
-                tech_patterns = re.findall(r'(parameter|scheme|label|ratio|weight).*?', content, re.IGNORECASE)
+                tech_patterns = re.findall(
+                    r'(parameter|scheme|label|ratio|weight).*?', content, re.IGNORECASE)
                 patterns["technical_patterns"].extend(tech_patterns[:5])
 
                 # Extract security-related keywords
-                security_words = re.findall(r'\b(civilian|suicide|experiment|secret|service|security|target|harm|operation)\b',
-                                            content, re.IGNORECASE)
+                security_words = re.findall(
+                    r'\b(civilian|suicide|experiment|secret|service|security|target|harm|operation)\b',
+                    content, re.IGNORECASE)
                 patterns["security_keywords"].update(security_words)
 
                 # Extract grouped node patterns
@@ -231,29 +234,30 @@ Generate an official response based on repository analysis and simulation patter
         """Analyze content using verb-logic system to detect error artifacts"""
         results = []
         words = re.findall(r'\b\w+\b', content.lower())
-        
+
         for word in set(words):  # Remove duplicates
             categories_found = []
-            
+
             # Check which categories this word belongs to
             for category, category_words in self.verb_categories.items():
                 if any(word in cat_word.lower() or cat_word.lower() in word for cat_word in category_words):
                     categories_found.append(category)
-            
+
             # Determine error type based on category membership
             if len(categories_found) == 0:
                 error_type = "zero_category"
                 confidence = 0.1
                 artifacts = [f"unrecognized_verb:{word}"]
             elif len(categories_found) >= 2:
-                error_type = "multi_category"  
+                error_type = "multi_category"
                 confidence = 0.9
                 artifacts = [f"cross_category:{word}:{cat.value}" for cat in categories_found]
             elif len(categories_found) == 1:
                 # Check for dimension expansion (technical terms expanding to security/infrastructure)
                 cat = categories_found[0]
-                if (cat in [VerbCategory.THREAT_INDICATORS, VerbCategory.INFRASTRUCTURE_TERMS] and 
-                    any(other_cat in categories_found for other_cat in [VerbCategory.SYSTEM_OPERATIONS, VerbCategory.TECHNICAL_PROCESSES])):
+                if (cat in [VerbCategory.THREAT_INDICATORS, VerbCategory.INFRASTRUCTURE_TERMS] and
+                        any(other_cat in categories_found for other_cat in
+                            [VerbCategory.SYSTEM_OPERATIONS, VerbCategory.TECHNICAL_PROCESSES])):
                     error_type = "dimension_expansion"
                     confidence = 0.8
                     artifacts = [f"dimension_expansion:{word}:{cat.value}"]
@@ -261,7 +265,7 @@ Generate an official response based on repository analysis and simulation patter
                     error_type = "normal"
                     confidence = 0.7
                     artifacts = []
-            
+
             if error_type != "normal" or categories_found:  # Only include significant verbs
                 results.append(VerbAnalysisResult(
                     verb=word,
@@ -270,52 +274,52 @@ Generate an official response based on repository analysis and simulation patter
                     confidence=confidence,
                     artifacts=artifacts
                 ))
-        
+
         return results
 
     def _detect_grouped_nodes_scenario(self) -> bool:
         """Detect 0 level counter-error grouped nodes using verb-logic analysis"""
         if not self.mail_content:
             return False
-        
+
         verb_analysis = self._analyze_verbs_logic(self.mail_content)
-        
+
         # Look for error artifacts indicating grouped nodes scenario
         grouped_indicators = 0
         level_zero_indicators = 0
         error_artifacts = 0
-        
+
         for result in verb_analysis:
             # Count infrastructure/grouping indicators
             if VerbCategory.INFRASTRUCTURE_TERMS in result.categories:
                 grouped_indicators += 1
-                
+
             # Count threat/system level indicators  
-            if (VerbCategory.THREAT_INDICATORS in result.categories or 
-                VerbCategory.SYSTEM_OPERATIONS in result.categories):
+            if (VerbCategory.THREAT_INDICATORS in result.categories or
+                    VerbCategory.SYSTEM_OPERATIONS in result.categories):
                 level_zero_indicators += 1
-                
+
             # Count error artifacts (multi-category, dimension expansion)
             if result.error_type in ["multi_category", "dimension_expansion"]:
                 error_artifacts += 1
-        
+
         # 0 level counter-error grouped nodes detected when:
         # 1. Infrastructure/grouping verbs present (grouped nodes)
         # 2. Threat/system verbs present (0 level)  
         # 3. Error artifacts indicate counter-error conditions
-        return (grouped_indicators >= 1 and 
-                level_zero_indicators >= 1 and 
+        return (grouped_indicators >= 1 and
+                level_zero_indicators >= 1 and
                 error_artifacts >= 1)
 
     def _generate_grouped_nodes_response(self) -> str:
         """Generate response for 0 level counter-error grouped nodes scenario using verb-logic analysis"""
         verb_analysis = self._analyze_verbs_logic(self.mail_content)
-        
+
         # Extract error artifacts for detailed response
         error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
         multi_category_verbs = [r for r in error_artifacts if r.error_type == "multi_category"]
         dimension_expansion_verbs = [r for r in error_artifacts if r.error_type == "dimension_expansion"]
-        
+
         return f"""0 LEVEL COUNTER-ERROR GROUPED NODES DETECTED
 
 CLASSIFICATION: FSB-TECH-GROUPED-NODES-L0
@@ -426,7 +430,7 @@ Note: All civilian reports regarding security concerns are handled according to 
         # Add technical processing indicators with verb-logic analysis
         verb_analysis = self._analyze_verbs_logic(self.mail_content) if self.mail_content else []
         error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
-        
+
         processing_notes = f"""
 › processing mail2fbi.txt: {len(self.mail_content)} characters analyzed
 › repository context: {len(self.repository_context)} domain areas evaluated  
@@ -453,7 +457,7 @@ security_classification: UNCLASSIFIED//FOR SIMULATION USE ONLY
         """Generate and save the response to a file"""
         if output_path is None:
             timestamp = int(time.time())
-            output_path = os.path.join(self.repo_path, f"response_prover_output_{timestamp}.md")
+            output_path = os.path.join(self.repo_path, f"tmp/response_prover_output_{timestamp}.md")
 
         response = self.generate_mock_response()
 
@@ -493,7 +497,7 @@ def main():
     # Summary with verb-logic analysis
     verb_analysis = prover._analyze_verbs_logic(prover.mail_content) if prover.mail_content else []
     error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
-    
+
     print("\n📊 Analysis Summary:")
     print(f"  • Mail content: {len(prover.mail_content)} characters")
     print(f"  • FSB response patterns: {len(prover.simulation_patterns.get('fsb_responses', []))}")
