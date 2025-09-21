@@ -92,8 +92,48 @@ class ResponseProverMock:
                 "hide", "steal", "disrupt", "harm", "target"
             ],
             VerbCategory.INFRASTRUCTURE_TERMS: [
+                # Core infrastructure concepts
                 "network", "node", "cluster", "group", "multiple", "all", "collective",
-                "distributed", "parallel", "concurrent", "synchronized", "coordinated"
+                "distributed", "parallel", "concurrent", "synchronized", "coordinated",
+                "infrastructure", "architecture", "topology", "deployment", "configuration",
+                "orchestration", "provisioning", "scaling", "federation", "replication",
+                "synchronization", "load", "balance", "redundancy", "failover", "backup",
+                
+                # Cloud and virtualization
+                "cloud", "virtual", "container", "microservice", "serverless", "lambda",
+                "elastic", "auto", "scale", "instance", "compute", "storage", "database",
+                "cache", "queue", "stream", "pipeline", "workflow", "orchestrator",
+                "scheduler", "registry", "repository", "artifact", "image", "template",
+                
+                # Networking infrastructure
+                "router", "switch", "gateway", "firewall", "proxy", "tunnel", "bridge",
+                "mesh", "fabric", "overlay", "underlay", "segment", "subnet", "vlan",
+                "wan", "lan", "vpn", "cdn", "dns", "dhcp", "nat", "bgp", "ospf", "mpls",
+                "sdn", "nfv", "bandwidth", "latency", "throughput", "packet", "frame",
+                
+                # Security infrastructure
+                "certificate", "encryption", "authentication", "authorization", "identity",
+                "access", "privilege", "role", "policy", "compliance", "audit", "logging",
+                "monitoring", "alerting", "incident", "vulnerability", "threat", "defense",
+                "detection", "prevention", "response", "forensics", "baseline", "hardening",
+                
+                # Data infrastructure
+                "datastore", "warehouse", "lake", "mart", "pipeline", "ingestion", "processing",
+                "transformation", "aggregation", "indexing", "partitioning", "sharding",
+                "replication", "consistency", "availability", "durability", "transaction",
+                "schema", "metadata", "catalog", "lineage", "governance", "quality",
+                
+                # DevOps infrastructure
+                "deployment", "release", "build", "test", "integration", "delivery", "pipeline",
+                "automation", "orchestration", "configuration", "management", "provisioning",
+                "monitoring", "observability", "telemetry", "metrics", "tracing", "logging",
+                "alerting", "dashboard", "visualization", "reporting", "analytics",
+                
+                # System administration
+                "server", "host", "machine", "resource", "capacity", "utilization", "performance",
+                "optimization", "tuning", "maintenance", "patching", "upgrade", "migration",
+                "disaster", "recovery", "continuity", "availability", "reliability", "stability",
+                "maintenance", "operation", "administration", "management", "governance"
             ]
         }
 

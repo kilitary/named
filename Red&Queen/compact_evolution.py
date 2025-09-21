@@ -548,7 +548,123 @@ class CompactEvolutionSystem:
             "RDS": ["Relational", "Database", "Service"],
             "ECS": ["Elastic", "Container", "Service"],
             "EKS": ["Elastic", "Kubernetes", "Service"],
-            "CDN": ["Content", "Delivery", "Network"]
+            "CDN": ["Content", "Delivery", "Network"],
+            "VPC": ["Virtual", "Private", "Cloud"],
+            "IAC": ["Infra", "As", "Code"],
+            "CI": ["Continuous", "Integ"],
+            "CD": ["Continuous", "Deploy"],
+            "VM": ["Virtual", "Machine"],
+            "LB": ["Load", "Balancer"],
+            "DNS": ["Domain", "Name", "System"],
+            "NAT": ["Net", "Address", "Trans"],
+            "VPN": ["Virtual", "Private", "Net"],
+            "WAF": ["Web", "App", "Firewall"],
+            "ALB": ["App", "Load", "Balancer"],
+            "NLB": ["Net", "Load", "Balancer"],
+            "ELB": ["Elastic", "Load", "Balancer"],
+            
+            # Container orchestration
+            "K8S": ["Kubernetes"],
+            "OCI": ["Open", "Container", "Init"],
+            "CNCF": ["Cloud", "Native", "Comp", "Found"],
+            "CRI": ["Container", "Runtime", "Inter"],
+            "CNI": ["Container", "Net", "Inter"],
+            "CSI": ["Container", "Storage", "Inter"],
+            
+            # DevOps and CI/CD
+            "CICD": ["CI", "CD"],
+            "SCM": ["Source", "Code", "Mgmt"],
+            "VCS": ["Version", "Ctrl", "System"],
+            "IDE": ["Integ", "Dev", "Env"],
+            "SRE": ["Site", "Rel", "Eng"],
+            "MTTR": ["Mean", "Time", "To", "Repair"],
+            "MTBF": ["Mean", "Time", "Between", "Fail"],
+            "SLA": ["Service", "Level", "Agree"],
+            "SLO": ["Service", "Level", "Obj"],
+            "SLI": ["Service", "Level", "Indic"],
+            
+            # Monitoring and observability
+            "APM": ["App", "Perf", "Monitor"],
+            "SIEM": ["Security", "Info", "Event", "Mgmt"],
+            "SOC": ["Security", "Ops", "Center"],
+            "SOAR": ["Security", "Orch", "Auto", "Resp"],
+            "IOC": ["Indicator", "Of", "Comp"],
+            "MITRE": ["MITRE"],
+            "NIST": ["NIST"],
+            "OWASP": ["Open", "Web", "App", "Sec", "Proj"],
+            
+            # Enterprise infrastructure
+            "ERP": ["Enter", "Resource", "Plan"],
+            "CRM": ["Customer", "Rel", "Mgmt"],
+            "LDAP": ["Light", "Dir", "Access", "Proto"],
+            "SAML": ["Security", "Assert", "Markup", "Lang"],
+            "OIDC": ["Open", "ID", "Connect"],
+            "OAuth": ["Open", "Auth"],
+            "OAUTH": ["Open", "Auth"],
+            "JWT": ["JSON", "Web", "Token"],
+            "PKCS": ["Public", "Key", "Crypto", "Std"],
+            "X509": ["X509"],
+            
+            # Network infrastructure
+            "SDN": ["Soft", "Defined", "Net"],
+            "NFV": ["Net", "Function", "Virtual"],
+            "BGP": ["Border", "Gateway", "Proto"],
+            "OSPF": ["Open", "Shortest", "Path", "First"],
+            "EIGRP": ["Enhanced", "Interior", "Gateway", "Route", "Proto"],
+            "RIP": ["Route", "Info", "Proto"],
+            "VLAN": ["Virtual", "LAN"],
+            "VXLAN": ["Virtual", "Extend", "LAN"],
+            "MPLS": ["Multi", "Proto", "Label", "Switch"],
+            "QOS": ["Quality", "Of", "Service"],
+            "WAN": ["Wide", "Area", "Net"],
+            "LAN": ["Local", "Area", "Net"],
+            "MAN": ["Metro", "Area", "Net"],
+            "PAN": ["Personal", "Area", "Net"],
+            "SAN": ["Storage", "Area", "Net"],
+            "NAS": ["Net", "Attached", "Storage"],
+            
+            # Database infrastructure
+            "RDBMS": ["Rel", "DB", "Mgmt", "System"],
+            "OLTP": ["Online", "Trans", "Proc"],
+            "OLAP": ["Online", "Analyt", "Proc"],
+            "ETL": ["Extract", "Trans", "Load"],
+            "ELT": ["Extract", "Load", "Trans"],
+            "DML": ["Data", "Manip", "Lang"],
+            "DDL": ["Data", "Def", "Lang"],
+            "DCL": ["Data", "Ctrl", "Lang"],
+            "ACID": ["Atomic", "Consist", "Isol", "Durable"],
+            "CAP": ["Consist", "Avail", "Partition"],
+            "CRUD": ["Create", "Read", "Update", "Delete"],
+            
+            # Storage technologies
+            "SAS": ["Serial", "Attached", "SCSI"],
+            "SATA": ["Serial", "ATA"],
+            "NVME": ["Non", "Volatile", "Mem", "Express"],
+            "ISCSI": ["Internet", "Small", "Comp", "System", "Inter"],
+            "FC": ["Fibre", "Channel"],
+            "FCOE": ["FC", "Over", "Ethernet"],
+            
+            # Virtualization
+            "ESX": ["ESX"],
+            "ESXI": ["ESXi"],
+            "KVM": ["Kernel", "Virtual", "Machine"],
+            "XEN": ["Xen"],
+            "QEMU": ["Quick", "Emulator"],
+            "LXC": ["Linux", "Container"],
+            "DOCKER": ["Docker"],
+            "VAGRANT": ["Vagrant"],
+            
+            # Mobile and IoT
+            "IOT": ["Internet", "Of", "Things"],
+            "M2M": ["Machine", "To", "Machine"],
+            "BLE": ["Bluetooth", "Low", "Energy"],
+            "NFC": ["Near", "Field", "Comm"],
+            "RFID": ["Radio", "Freq", "ID"],
+            "GPS": ["Global", "Position", "System"],
+            "GPRS": ["General", "Packet", "Radio", "Service"],
+            "LTE": ["Long", "Term", "Evol"],
+            "5G": ["Fifth", "Gen"],
+            "EDGE": ["Enhanced", "Data", "Rates", "GSM", "Evol"]
         }
         
         # Check if word is a known infrastructure abbreviation
@@ -565,7 +681,7 @@ class CompactEvolutionSystem:
         result = []
         for sub_word in sub_words:
             if len(sub_word) > 8:  # Split long compound words
-                # Simple rule-based splitting for technical terms
+                # Enhanced rule-based splitting for technical terms
                 if 'Network' in sub_word:
                     result.extend(['Net', 'Work'])
                 elif 'Algorithm' in sub_word:
@@ -580,6 +696,60 @@ class CompactEvolutionSystem:
                     result.extend(['Config', 'uration'])
                 elif 'Management' in sub_word:
                     result.extend(['Mgmt'])
+                elif 'Authentication' in sub_word:
+                    result.extend(['Auth', 'entication'])
+                elif 'Authorization' in sub_word:
+                    result.extend(['Author', 'ization'])
+                elif 'Orchestration' in sub_word:
+                    result.extend(['Orch', 'estration'])
+                elif 'Virtualization' in sub_word:
+                    result.extend(['Virtual', 'ization'])
+                elif 'Container' in sub_word:
+                    result.extend(['Container'])
+                elif 'Microservice' in sub_word:
+                    result.extend(['Micro', 'service'])
+                elif 'Database' in sub_word:
+                    result.extend(['Data', 'base'])
+                elif 'Monitoring' in sub_word:
+                    result.extend(['Monitor', 'ing'])
+                elif 'Deployment' in sub_word:
+                    result.extend(['Deploy', 'ment'])
+                elif 'Security' in sub_word:
+                    result.extend(['Secure', 'ity'])
+                elif 'Performance' in sub_word:
+                    result.extend(['Perform', 'ance'])
+                elif 'Bandwidth' in sub_word:
+                    result.extend(['Band', 'width'])
+                elif 'Throughput' in sub_word:
+                    result.extend(['Through', 'put'])
+                elif 'Firewall' in sub_word:
+                    result.extend(['Fire', 'wall'])
+                elif 'Gateway' in sub_word:
+                    result.extend(['Gate', 'way'])
+                elif 'Encryption' in sub_word:
+                    result.extend(['Encrypt', 'ion'])
+                elif 'Kubernetes' in sub_word:
+                    result.extend(['Kube', 'rnetes'])
+                elif 'Elasticsearch' in sub_word:
+                    result.extend(['Elastic', 'search'])
+                elif 'Serverless' in sub_word:
+                    result.extend(['Server', 'less'])
+                elif 'Distributed' in sub_word:
+                    result.extend(['Distrib', 'uted'])
+                elif 'Synchronization' in sub_word:
+                    result.extend(['Sync', 'hronization'])
+                elif 'Replication' in sub_word:
+                    result.extend(['Replic', 'ation'])
+                elif 'Provisioning' in sub_word:
+                    result.extend(['Provision', 'ing'])
+                elif 'Scalability' in sub_word:
+                    result.extend(['Scale', 'ability'])
+                elif 'Availability' in sub_word:
+                    result.extend(['Avail', 'ability'])
+                elif 'Reliability' in sub_word:
+                    result.extend(['Reli', 'ability'])
+                elif 'Observability' in sub_word:
+                    result.extend(['Observe', 'ability'])
                 else:
                     result.append(sub_word)
             else:

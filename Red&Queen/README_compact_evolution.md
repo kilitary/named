@@ -4,7 +4,7 @@
 
 This system implements the "Compact Evolution Resource Principles" by taking English technical words from infrastructure categories and splitting them into sub-words that match computer IA (Intelligence Architecture) concepts to define logic circuits for request processing.
 
-The system now includes comprehensive infrastructure terminology with over 235 technical terms spanning hardware, networking, security, cloud computing, and system administration domains. Infrastructure abbreviations are intelligently split into 2-4 character meaningful components for enhanced processing.
+The system now includes comprehensive infrastructure terminology with over 325 technical terms spanning hardware, networking, security, cloud computing, containerization, DevOps, and system administration domains. Infrastructure abbreviations are intelligently split into 2-4 character meaningful components for enhanced processing.
 
 ## Core Concepts
 
@@ -34,6 +34,16 @@ Words are split into meaningful sub-components with special focus on infrastruct
 - `AWS` → `["Amazon", "Web", "Services"]` (cloud service abbreviation)
 - `GCP` → `["Google", "Cloud", "Platform"]` (cloud service abbreviation)
 - `IAM` → `["Identity", "Access", "Mgmt"]` (security abbreviation)
+- `K8S` → `["Kubernetes"]` (container orchestration abbreviation)
+- `CICD` → `["CI", "CD"]` (DevOps pipeline abbreviation)
+- `VPC` → `["Virtual", "Private", "Cloud"]` (cloud networking abbreviation)
+- `SDN` → `["Soft", "Defined", "Net"]` (network architecture abbreviation)
+- `IOT` → `["Internet", "Of", "Things"]` (IoT infrastructure abbreviation)
+- `RDBMS` → `["Rel", "DB", "Mgmt", "System"]` (database infrastructure abbreviation)
+- `Kubernetes` → `["Kube", "rnetes"]` (compound word splitting)
+- `Microservice` → `["Micro", "service"]` (architecture pattern splitting)
+- `Authentication` → `["Auth", "entication"]` (security concept splitting)
+- `Orchestration` → `["Orch", "estration"]` (system management splitting)
 
 ### 3. Compact Representation
 Each word gets a compact single-letter label with associated properties:
