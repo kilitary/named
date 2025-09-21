@@ -9,6 +9,104 @@ matching computer IA architecture to define logic circuits for requests.
 This system implements categorization of technical terms and their compact
 representation for logical circuit processing, following patterns observed
 in the simulation logs.
+
+DETAILED VERB SELECTION AND CATEGORIZATION FLOW
+================================================
+
+The system uses a multi-stage process to select, categorize, and process verbs:
+
+1. CATEGORY DEFINITION STAGE
+   - Computer verbs are predefined in CategoryType.COMPUTER_VERBS
+   - Current verbs: Execute, Process, Compile, Debug, Optimize, Parse, Validate,
+     Transform, Encrypt, Decode, Transmit, Receive, Store, Retrieve, Calculate, Compare
+   - Each verb gets assigned a unique compact label (A-Z, then AA, AB, etc.)
+   - Verbs are weighted lower (0.8x) than other categories to reflect their operational nature
+
+2. REQUEST PARSING STAGE (process_request method)
+   - Input: Natural language request string
+   - Process: Substring matching against all category vocabularies
+   - For each category (including COMPUTER_VERBS):
+     * Iterate through all words in that category
+     * Check if word.lower() appears in request.lower()
+     * If match found, add (word, category) tuple to items list
+   - Result: List of (word, CategoryType) pairs representing detected technical terms
+
+3. VERB-SPECIFIC DETECTION LOGIC
+   - Computer verbs are detected using case-insensitive substring matching
+   - Examples:
+     * "process data" → detects ("Process", COMPUTER_VERBS)
+     * "execute algorithm" → detects ("Execute", COMPUTER_VERBS)
+     * "encryption" → detects both ("Encrypt", COMPUTER_VERBS) and ("Encryption", SECURITY_CONCEPTS)
+   - Multiple category matches are preserved as separate items
+
+4. DECAY-BASED PARALLELISM INJECTION
+   - Tracks total character length of Computer Verbs across sequential requests
+   - If current_verb_length / previous_verb_length > 2.348:
+     * Auto-injects ("Parallelism", THREADING_CONCEPTS) into the items list
+     * Records trigger information with decay factor
+   - Purpose: Automatically add parallel processing semantics when verb complexity decreases
+
+5. COMPACT REPRESENTATION GENERATION
+   - Each detected verb gets mapped to its compact label via category-specific mappings
+   - Verbs maintain their category association to avoid label collisions
+   - Mathematical expression: concatenates labels with " + " notation
+   - Parameters extracted: ["input", "output", "complexity", "side_effects"]
+
+6. LOGIC CIRCUIT CONSTRUCTION
+   - Computer verbs become operations with format: "{label}: {original_word}"
+   - Example: "P: Process", "O: Execute"
+   - Other categories use different formats (IA_PROCESS, CIRCUIT, etc.)
+   - Operation categories tracked parallel to operations list
+
+7. EXECUTION PLANNING (HYPERTHREADING STAGE)
+   - Identifies verb operations by scanning operation_categories for COMPUTER_VERBS
+   - If hyperthreading enabled or threading keywords detected:
+     * Verb operations distributed round-robin across available threads
+     * Non-verb operations serialized on primary thread (C0_T0)
+   - Thread assignment: C{core}_T{thread} format
+   - Load balancing: Each thread gets roughly equal number of verb operations
+
+8. TIME AXIS INTEGRATION
+   - Computer verbs process entire dataset in time-sliced chunks
+   - Each verb operation generates multiple timeline segments:
+     * One segment per dataset chunk per assigned thread
+     * Timeline format: {"op": operation, "start_ms": X, "end_ms": Y, "items": [start, end]}
+   - Non-verb operations get single setup timeline segment
+   - Dataset processing: chunk_size items per timeslice_ms interval
+
+9. EXECUTION RESULT COMPILATION
+   - Returns execution_plan with thread assignments
+   - Returns time_axis_plan with per-thread timelines
+   - Includes parallel_trigger info if decay rule fired
+   - Mathematical operations computed from compact labels
+
+VERB SELECTION CRITERIA
+=======================
+
+Computer verbs are selected based on:
+- Operational semantics (actions that can be performed)
+- Computational relevance (processing, transformation, I/O operations)
+- Parallelizability (operations that benefit from concurrent execution)
+- Common usage in technical contexts
+
+CATEGORIZATION PRIORITIES
+=========================
+
+When a word appears in multiple categories:
+- Each category match creates a separate (word, category) item
+- Category-specific compact mappings prevent label conflicts
+- Operations generated according to each category's semantics
+- Execution planning considers only COMPUTER_VERBS for threading
+
+THREADING SELECTION LOGIC
+==========================
+
+Verbs selected for hyperthreading when:
+- System hyperthreading explicitly enabled, OR
+- Request contains threading keywords: "hyperthread", "hyperthreading",
+  "parallel", "parallelism", "concurrency", "thread"
+- Only COMPUTER_VERBS operations distributed across threads
+- Load balancing via round-robin assignment
 """
 
 import re
