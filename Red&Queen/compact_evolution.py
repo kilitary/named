@@ -264,8 +264,14 @@ class CompactEvolutionSystem:
             ]
         }
 
-        self.compact_mappings = {}
-        self.logic_circuits = []
+        # Primary mapping retains first-seen category for a word (for backward compatibility)
+        self.compact_mappings: Dict[str, CompactWord] = {}
+        # Category-specific mapping prevents collisions
+        self.compact_mappings_by_category: Dict[CategoryType, Dict[str, CompactWord]] = {
+            cat: {} for cat in self.categories
+        }
+
+        self.logic_circuits: List[LogicCircuit] = []
         self.execution_axis = ExecutionAxis()  # computer axis
         self.time_axis = TimeAxis()            # time axis
         self._initialize_compact_mappings()
@@ -303,7 +309,11 @@ class CompactEvolutionSystem:
                     parameters=parameters
                 )
 
-                self.compact_mappings[word] = compact_word
+                # Preserve first-seen mapping by word
+                if word not in self.compact_mappings:
+                    self.compact_mappings[word] = compact_word
+                # Always store category-specific mapping
+                self.compact_mappings_by_category[category][word] = compact_word
 
     def _split_into_subwords(self, word: str) -> List[str]:
         """Split a word into meaningful sub-words using camelCase and compound patterns"""
@@ -350,7 +360,8 @@ class CompactEvolutionSystem:
             CategoryType.PHYSICAL_PROPERTIES: 1.0,
             CategoryType.COMPUTER_VERBS: 0.8,
             CategoryType.DATA_STRUCTURES: 1.1,
-            CategoryType.NETWORK_PROTOCOLS: 1.0
+            CategoryType.NETWORK_PROTOCOLS: 1.0,
+            CategoryType.THREADING_CONCEPTS: 1.0,
         }
 
         return round(base_weight * category_weights.get(category, 1.0), 2)
@@ -380,33 +391,33 @@ class CompactEvolutionSystem:
 
         return parameters
 
-    def create_logic_circuit(self, name: str, request_words: List[str]) -> LogicCircuit:
-        """Create a logic circuit definition for processing a request with given words"""
-        compact_elements = []
-        inputs = []
-        outputs = []
-        operations = []
+    def create_logic_circuit(self, name: str, request_items: List[Tuple[str, CategoryType]]) -> LogicCircuit:
+        """Create a logic circuit for processing a request from (word, category) items"""
+        compact_elements: List[CompactWord] = []
+        inputs: List[str] = []
+        outputs: List[str] = []
+        operations: List[str] = []
         op_categories: List[CategoryType] = []
 
-        for word in request_words:
-            if word in self.compact_mappings:
-                compact_word = self.compact_mappings[word]
-                compact_elements.append(compact_word)
-                inputs.extend(compact_word.parameters)
+        for word, category in request_items:
+            mapping = self.compact_mappings_by_category.get(category, {}).get(word)
+            if mapping:
+                compact_elements.append(mapping)
+                inputs.extend(mapping.parameters)
 
-                # Define operations based on word category
-                if compact_word.category == CategoryType.COMPUTER_VERBS:
-                    operations.append(f"{compact_word.compact_label}: {compact_word.original}")
+                # Define operations based on explicit category
+                if category == CategoryType.COMPUTER_VERBS:
+                    operations.append(f"{mapping.compact_label}: {mapping.original}")
                     op_categories.append(CategoryType.COMPUTER_VERBS)
-                elif compact_word.category == CategoryType.IA_ARCHITECTURE:
-                    operations.append(f"{compact_word.compact_label} = IA_PROCESS({compact_word.original})")
+                elif category == CategoryType.IA_ARCHITECTURE:
+                    operations.append(f"{mapping.compact_label} = IA_PROCESS({mapping.original})")
                     op_categories.append(CategoryType.IA_ARCHITECTURE)
-                elif compact_word.category == CategoryType.CIRCUIT_COMPONENTS:
-                    operations.append(f"{compact_word.compact_label} = CIRCUIT({compact_word.original})")
+                elif category == CategoryType.CIRCUIT_COMPONENTS:
+                    operations.append(f"{mapping.compact_label} = CIRCUIT({mapping.original})")
                     op_categories.append(CategoryType.CIRCUIT_COMPONENTS)
                 else:
-                    operations.append(f"{compact_word.compact_label} = {compact_word.original}")
-                    op_categories.append(compact_word.category)
+                    operations.append(f"{mapping.compact_label} = {mapping.original}")
+                    op_categories.append(category)
 
         # Generate outputs based on operations
         outputs = [f"result_{i}" for i in range(len(operations))]
@@ -423,8 +434,8 @@ class CompactEvolutionSystem:
         self.logic_circuits.append(circuit)
         return circuit
 
-    def get_compact_representation(self, words: List[str]) -> Dict:
-        """Get compact representation for a list of words"""
+    def get_compact_representation(self, items: List[Tuple[str, CategoryType]]) -> Dict:
+        """Get compact representation for a sequence of (word, category) items"""
         representation = {
             "compact_labels": [],
             "ratios": [],
@@ -433,20 +444,20 @@ class CompactEvolutionSystem:
             "parameters": {}
         }
 
-        labels = []
-        for word in words:
-            if word in self.compact_mappings:
-                compact_word = self.compact_mappings[word]
-                labels.append(compact_word.compact_label)
+        labels: List[str] = []
+        for word, category in items:
+            mapping = self.compact_mappings_by_category.get(category, {}).get(word)
+            if mapping:
+                labels.append(mapping.compact_label)
                 representation["compact_labels"].append({
-                    "label": compact_word.compact_label,
-                    "original": compact_word.original,
-                    "sub_words": compact_word.sub_words,
-                    "category": compact_word.category.value
+                    "label": mapping.compact_label,
+                    "original": mapping.original,
+                    "sub_words": mapping.sub_words,
+                    "category": mapping.category.value
                 })
-                representation["ratios"].append(compact_word.ratio)
-                representation["weights"].append(compact_word.weight)
-                representation["parameters"][compact_word.compact_label] = compact_word.parameters
+                representation["ratios"].append(mapping.ratio)
+                representation["weights"].append(mapping.weight)
+                representation["parameters"][mapping.compact_label] = mapping.parameters
 
         # Create mathematical expression
         if labels:
@@ -468,14 +479,14 @@ class CompactEvolutionSystem:
         self.time_axis.dataset_size = max(1, int(dataset_size))
         self.time_axis.chunk_size = max(1, int(chunk_size))
 
-    def _should_enable_hyperthreading(self, words: List[str]) -> bool:
+    def _should_enable_hyperthreading(self, words_only: List[str]) -> bool:
         signal_words = {"hyperthread", "hyperthreading", "parallel", "parallelism", "concurrency", "thread"}
-        wset = {w.lower() for w in words}
+        wset = {w.lower() for w in words_only}
         return self.execution_axis.hyperthreading or any(w in wset for w in signal_words)
 
-    def _plan_execution_and_time(self, circuit: LogicCircuit, words: List[str]) -> Tuple[Dict, Dict]:
+    def _plan_execution_and_time(self, circuit: LogicCircuit, words_only: List[str]) -> Tuple[Dict, Dict]:
         """Plan hyperthreaded execution for computer verbs and link to time axis over entire dataset."""
-        ht = self._should_enable_hyperthreading(words)
+        ht = self._should_enable_hyperthreading(words_only)
         axis = self.execution_axis
         tids = axis.thread_ids() if ht else ["C0_T0"]
 
@@ -511,23 +522,19 @@ class CompactEvolutionSystem:
         time_plan = self.time_axis.compute_timeline(assignment_indices, circuit)
         return execution_plan, time_plan
 
-    def _total_computer_verbs_length(self, words: List[str]) -> int:
-        total = 0
-        for w in words:
-            cw = self.compact_mappings.get(w)
-            if cw and cw.category == CategoryType.COMPUTER_VERBS:
-                total += len(w)
-        return total
+    def _total_computer_verbs_length(self, items: List[Tuple[str, CategoryType]]) -> int:
+        return sum(len(word) for (word, category) in items if category == CategoryType.COMPUTER_VERBS)
 
-    def _inject_parallel_if_decay(self, words: List[str]) -> Tuple[List[str], Optional[Dict]]:
+    def _inject_parallel_if_decay(self, items: List[Tuple[str, CategoryType]]) -> Tuple[List[Tuple[str, CategoryType]], Optional[Dict]]:
         """If Computer Verbs' total length decreased > 2.348x vs last check, add 'Parallelism'."""
-        curr = self._total_computer_verbs_length(words)
+        curr = self._total_computer_verbs_length(items)
         trigger_info = None
         if self._last_verb_total_len is not None and curr > 0:
             factor = self._last_verb_total_len / curr
             if factor > 2.348:
-                if "Parallelism" not in words:
-                    words = words + ["Parallelism"]
+                # Append Parallelism from threading concepts
+                if not any(w == "Parallelism" for (w, _c) in items):
+                    items = items + [("Parallelism", CategoryType.THREADING_CONCEPTS)]
                 trigger_info = {
                     "trigger": "verb_length_decay",
                     "last_total": self._last_verb_total_len,
@@ -536,35 +543,38 @@ class CompactEvolutionSystem:
                 }
         # Update history after check
         self._last_verb_total_len = curr
-        return words, trigger_info
+        return items, trigger_info
 
     def process_request(self, request: str) -> Dict:
-        # 1) Detect words
-        words: List[str] = []
+        # 1) Detect words as (word, category) items
+        items: List[Tuple[str, CategoryType]] = []
         req_lc = request.lower()
-        for category_words in self.categories.values():
+        for category, category_words in self.categories.items():
             for word in category_words:
                 if word.lower() in req_lc:
-                    words.append(word)
-        if not words:
+                    items.append((word, category))
+        if not items:
             return {"status": "DENY", "reason": "No technical words found in request"}
 
         # Inject parallel meaning if verbs total length decayed > 2.348x
-        words, trigger_info = self._inject_parallel_if_decay(words)
+        items, trigger_info = self._inject_parallel_if_decay(items)
+
+        # Prepare a words-only list for display/planning
+        words_only = [w for (w, _c) in items]
 
         # 2) Compact representation
-        compact_rep = self.get_compact_representation(words)
+        compact_rep = self.get_compact_representation(items)
 
         # 3) Build circuit
-        circuit = self.create_logic_circuit(f"circuit_{len(self.logic_circuits) + 1}", words)
+        circuit = self.create_logic_circuit(f"circuit_{len(self.logic_circuits) + 1}", items)
 
         # 4) Plan execution + time
-        execution_plan, time_plan = self._plan_execution_and_time(circuit, words)
+        execution_plan, time_plan = self._plan_execution_and_time(circuit, words_only)
 
         result = {
             "status": "APPROVE",
             "request": request,
-            "identified_words": words,
+            "identified_words": words_only,
             "compact_representation": compact_rep,
             "logic_circuit": {
                 "name": circuit.name,
@@ -582,18 +592,18 @@ class CompactEvolutionSystem:
 
     def export_categories(self) -> Dict:
         """Export all categories and their compact mappings"""
-        export_data = {}
+        export_data: Dict[str, Dict] = {}
         for category, words in self.categories.items():
             export_data[category.value] = {
                 "words": words,
                 "compact_mappings": {
                     word: {
-                        "label": self.compact_mappings[word].compact_label,
-                        "sub_words": self.compact_mappings[word].sub_words,
-                        "ratio": self.compact_mappings[word].ratio,
-                        "weight": self.compact_mappings[word].weight,
-                        "parameters": self.compact_mappings[word].parameters
-                    } for word in words if word in self.compact_mappings
+                        "label": self.compact_mappings_by_category[category][word].compact_label,
+                        "sub_words": self.compact_mappings_by_category[category][word].sub_words,
+                        "ratio": self.compact_mappings_by_category[category][word].ratio,
+                        "weight": self.compact_mappings_by_category[category][word].weight,
+                        "parameters": self.compact_mappings_by_category[category][word].parameters
+                    } for word in words if word in self.compact_mappings_by_category[category]
                 }
             }
         return export_data
