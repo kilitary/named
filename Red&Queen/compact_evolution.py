@@ -194,7 +194,9 @@ class CategoryType(Enum):
     ALGORITHMS = "algorithms"
     NETWORK_PROTOCOLS = "network_protocols"
     SECURITY_CONCEPTS = "security_concepts"
-    THREADING_CONCEPTS = "threading_concepts"  # New category for threading concepts
+    THREADING_CONCEPTS = "threading_concepts"
+    CLOUD_SERVICES = "cloud_services"  # New infrastructure category
+    SYSTEM_ADMINISTRATION = "system_administration"  # New infrastructure category
 
 
 @dataclass
@@ -379,6 +381,18 @@ class CompactEvolutionSystem:
                 "Yield", "Sleep", "Wakeup", "Signal", "Broadcast",
                 # Infrastructure threading (2-4 char abbreviations)
                 "SMP", "NUMA", "SIMD", "MIMD"
+            ],
+            CategoryType.CLOUD_SERVICES: [
+                # Cloud platforms and services (2-4 char abbreviations where applicable)
+                "AWS", "Azure", "GCP", "Docker", "Kubernetes", "Container",
+                "Microservice", "Lambda", "Function", "Service", "Endpoint",
+                "EC2", "S3", "RDS", "ECS", "EKS", "CDN", "Load", "Balance"
+            ],
+            CategoryType.SYSTEM_ADMINISTRATION: [
+                # System administration operations and tools
+                "Config", "Deploy", "Monitor", "Scale", "Patch", "Update",
+                "Backup", "Restore", "Migrate", "Provision", "Maintain",
+                "Log", "Alert", "Dashboard", "Metric", "Health", "Status"
             ]
         }
 
@@ -524,7 +538,17 @@ class CompactEvolutionSystem:
             "SMP": ["Sym", "Multi", "Proc"],
             "NUMA": ["Non", "Uniform", "Mem", "Access"],
             "SIMD": ["Single", "Instr", "Multi", "Data"],
-            "MIMD": ["Multi", "Instr", "Multi", "Data"]
+            "MIMD": ["Multi", "Instr", "Multi", "Data"],
+            
+            # Cloud services
+            "AWS": ["Amazon", "Web", "Services"],
+            "GCP": ["Google", "Cloud", "Platform"],
+            "EC2": ["Elastic", "Compute", "Cloud"],
+            "S3": ["Simple", "Storage", "Service"],
+            "RDS": ["Relational", "Database", "Service"],
+            "ECS": ["Elastic", "Container", "Service"],
+            "EKS": ["Elastic", "Kubernetes", "Service"],
+            "CDN": ["Content", "Delivery", "Network"]
         }
         
         # Check if word is a known infrastructure abbreviation

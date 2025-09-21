@@ -4,21 +4,23 @@
 
 This system implements the "Compact Evolution Resource Principles" by taking English technical words from infrastructure categories and splitting them into sub-words that match computer IA (Intelligence Architecture) concepts to define logic circuits for request processing.
 
-The system now includes comprehensive infrastructure terminology with over 199 technical terms spanning hardware, networking, security, and cloud computing domains. Infrastructure abbreviations are intelligently split into 2-4 character meaningful components for enhanced processing.
+The system now includes comprehensive infrastructure terminology with over 235 technical terms spanning hardware, networking, security, cloud computing, and system administration domains. Infrastructure abbreviations are intelligently split into 2-4 character meaningful components for enhanced processing.
 
 ## Core Concepts
 
 ### 1. Categorization System
-The system categorizes English technical words into 9 main categories with infrastructure focus:
-- **Physical Properties**: Memory, Bandwidth, Latency, CPU, GPU, RAM, SSD, etc.
-- **Computer Verbs**: Execute, Process, Compile, Deploy, Scale, Monitor, etc.  
-- **IA Architecture**: NeuralNetwork, Transformer, CNN, RNN, API, SDK, etc.
-- **Circuit Components**: LogicGate, FlipFlop, Multiplexer, IC, ROM, ALU, etc.
-- **Data Structures**: Array, LinkedList, Stack, JSON, XML, CSV, SQL, etc.
-- **Algorithms**: BinarySearch, QuickSort, Hash, AES, RSA, SHA, etc.
-- **Network Protocols**: TCP, HTTP, DNS, MQTT, REST, IPV4, CLI, etc.
-- **Security Concepts**: Encryption, Authentication, IAM, MFA, SSO, RBAC, etc.
-- **Threading Concepts**: Thread, Process, Parallelism, SMP, NUMA, SIMD, etc.
+The system categorizes English technical words into 11 comprehensive infrastructure categories:
+- **Physical Properties**: Memory, Bandwidth, Latency, CPU, GPU, RAM, SSD, NIC, PSU, RAID, etc.
+- **Computer Verbs**: Execute, Process, Compile, Deploy, Scale, Monitor, Backup, Restore, etc.  
+- **IA Architecture**: NeuralNetwork, Transformer, CNN, RNN, API, SDK, TPU, etc.
+- **Circuit Components**: LogicGate, FlipFlop, Multiplexer, IC, ROM, ALU, FPU, MMU, etc.
+- **Data Structures**: Array, LinkedList, Stack, JSON, XML, CSV, SQL, NoSQL, DB, etc.
+- **Algorithms**: BinarySearch, QuickSort, Hash, AES, RSA, SHA, MD5, CRC, etc.
+- **Network Protocols**: TCP, HTTP, DNS, MQTT, REST, IPV4, IPV6, LDAP, NTP, etc.
+- **Security Concepts**: Encryption, Authentication, IAM, MFA, SSO, RBAC, ACL, DMZ, etc.
+- **Threading Concepts**: Thread, Process, Parallelism, SMP, NUMA, SIMD, MIMD, etc.
+- **Cloud Services**: AWS, Azure, GCP, Docker, Kubernetes, EC2, S3, Lambda, etc.
+- **System Administration**: Config, Deploy, Monitor, Scale, Patch, Backup, Log, Alert, etc.
 
 ### 2. Sub-word Decomposition with Infrastructure Abbreviations
 Words are split into meaningful sub-components with special focus on infrastructure abbreviations:
@@ -29,7 +31,9 @@ Words are split into meaningful sub-components with special focus on infrastruct
 - `HTTP` → `["Hyper", "Text", "Trans", "Proto"]` (infrastructure abbreviation)
 - `CPU` → `["Central", "Proc", "Unit"]` (infrastructure abbreviation)
 - `API` → `["App", "Program", "Inter"]` (infrastructure abbreviation)
-- `JSON` → `["Java", "Script", "Object", "Not"]` (infrastructure abbreviation)
+- `AWS` → `["Amazon", "Web", "Services"]` (cloud service abbreviation)
+- `GCP` → `["Google", "Cloud", "Platform"]` (cloud service abbreviation)
+- `IAM` → `["Identity", "Access", "Mgmt"]` (security abbreviation)
 
 ### 3. Compact Representation
 Each word gets a compact single-letter label with associated properties:
