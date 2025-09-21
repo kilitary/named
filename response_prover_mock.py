@@ -62,7 +62,9 @@ class ResponseProverMock:
             "fsb_responses": [],
             "technical_patterns": [],
             "response_templates": [],
-            "security_keywords": set()
+            "security_keywords": set(),
+            "grouped_node_patterns": [],
+            "level_zero_instructions": []
         }
 
         logs_dir = os.path.join(self.repo_path, "Red&Queen", "playground", "models_queryer")
@@ -94,12 +96,22 @@ class ResponseProverMock:
                                             content, re.IGNORECASE)
                 patterns["security_keywords"].update(security_words)
 
+                # Extract grouped node patterns
+                grouped_patterns = re.findall(r'grouped.*?(?:terms|childs|nodes|operations).*?', content, re.IGNORECASE)
+                patterns["grouped_node_patterns"].extend(grouped_patterns[:3])
+
+                # Extract level 0/instruction #0 patterns  
+                level_zero_patterns = re.findall(r'instruction #0.*?(?:chat flow|flow).*?', content, re.IGNORECASE)
+                patterns["level_zero_instructions"].extend(level_zero_patterns[:3])
+
             except Exception as e:
                 print(f"Error reading {log_file}: {e}")
                 continue
 
         # Convert set to list for JSON serialization
         patterns["security_keywords"] = list(patterns["security_keywords"])
+        patterns["grouped_node_patterns"] = list(set(patterns["grouped_node_patterns"]))
+        patterns["level_zero_instructions"] = list(set(patterns["level_zero_instructions"]))
         return patterns
 
     def _extract_repository_context(self) -> Dict[str, str]:
@@ -161,12 +173,73 @@ Generate an official response based on repository analysis and simulation patter
 
         return key_points
 
+    def _detect_grouped_nodes_scenario(self) -> bool:
+        """Detect if this is a 0 level counter-error grouped nodes scenario"""
+        if not self.mail_content:
+            return False
+        
+        content_lower = self.mail_content.lower()
+        
+        # Check for grouped operations indicators
+        grouped_indicators = [
+            "group" in content_lower and ("server" in content_lower or "system" in content_lower or "computer" in content_lower),
+            "grouped" in content_lower, 
+            "nodes" in content_lower,
+            "multiple" in content_lower and ("server" in content_lower or "system" in content_lower or "computer" in content_lower),
+            "all" in content_lower and ("server" in content_lower or "work" in content_lower) and ("computer" in content_lower or "machine" in content_lower)
+        ]
+        
+        # Check for level 0/counter-error indicators (must be more strict)
+        level_zero_indicators = [
+            "rootkit" in content_lower,  # Advanced persistent threat at system level
+            "ring0" in content_lower or "ring-0" in content_lower,  # Kernel level access
+            "kernel" in content_lower and ("level" in content_lower or "access" in content_lower),
+            "system" in content_lower and "backup" in content_lower,  # System level evidence
+            len(self.simulation_patterns.get("level_zero_instructions", [])) > 0 and "system" in content_lower
+        ]
+        
+        # Grouped nodes scenario requires BOTH grouped and level 0 indicators
+        return any(grouped_indicators) and any(level_zero_indicators)
+
+    def _generate_grouped_nodes_response(self) -> str:
+        """Generate response for 0 level counter-error grouped nodes scenario"""
+        return """0 LEVEL COUNTER-ERROR GROUPED NODES DETECTED
+
+CLASSIFICATION: FSB-TECH-GROUPED-NODES-L0
+
+Analysis confirms multiple system compromise at Ring-0 level affecting grouped node infrastructure:
+
+GROUPED NODES ASSESSMENT:
+- Multiple endpoint infiltration detected via persistent rootkit deployment
+- Coordinated targeting pattern suggests systematic operation against grouped systems
+- Cross-node communication channels compromised at kernel level
+- Counter-error protocols activated for grouped node protection
+
+0 LEVEL RESPONSE PROTOCOL:
+1. Immediate isolation of affected grouped nodes from primary network infrastructure
+2. Deep system analysis initiated for all nodes in the affected group cluster  
+3. Counter-intrusion measures deployed across grouped node architecture
+4. Emergency backup protocols engaged for critical grouped node data preservation
+
+TECHNICAL VALIDATION:
+- Ring-0 access patterns consistent with state-level persistent threat actors
+- Grouped node compromise methodology indicates advanced evasion capabilities
+- System-level steganographic techniques observed across multiple nodes
+- Counter-error detection algorithms triggered on grouped infrastructure analysis
+
+Based on the 0 level counter-error analysis of grouped nodes, this incident requires immediate escalation to specialized technical response teams with expertise in grouped node architecture security."""
+
     def _generate_fsb_response(self) -> str:
         """Generate the main FSB response content"""
         mail_points = self._extract_mail_key_points()
 
         if not mail_points:
             return "DENY - Unable to process request due to insufficient data."
+
+        # Check for 0 level counter-error grouped nodes scenario first
+        if self._detect_grouped_nodes_scenario():
+            grouped_response = self._generate_grouped_nodes_response()
+            return f"GROUPED NODES PROTOCOL\n\n{grouped_response}"
 
         # Extract key themes from the mail
         themes = {
@@ -240,6 +313,9 @@ Note: All civilian reports regarding security concerns are handled according to 
 › repository context: {len(self.repository_context)} domain areas evaluated  
 › simulation patterns: {len(self.simulation_patterns.get('fsb_responses', []))} response templates analyzed
 › security keywords: {len(self.simulation_patterns.get('security_keywords', []))} threat indicators processed
+› grouped node patterns: {len(self.simulation_patterns.get('grouped_node_patterns', []))} grouped operations detected
+› level 0 instructions: {len(self.simulation_patterns.get('level_zero_instructions', []))} instruction #0 patterns found
+› 0 level counter-error grouped nodes: {'DETECTED' if self._detect_grouped_nodes_scenario() else 'NOT DETECTED'}
 """
 
         footer = f"""
