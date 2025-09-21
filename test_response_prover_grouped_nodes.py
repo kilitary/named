@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test for 0 level counter-error grouped nodes functionality in response_prover_mock.py
+Test for 0 level counter-error grouped nodes functionality with verb-logic system
 """
 
 import os
@@ -8,8 +8,39 @@ import tempfile
 from response_prover_mock import ResponseProverMock
 
 
+def test_verb_logic_analysis():
+    """Test the verb-logic analysis system for error artifacts"""
+    print("=== Test: Verb-Logic Analysis System ===")
+    prover = ResponseProverMock(repository_path="/home/runner/work/named/named")
+    
+    # Test the verb analysis on mail2fbi.txt content
+    verb_analysis = prover._analyze_verbs_logic(prover.mail_content)
+    
+    print(f"Total verbs analyzed: {len(verb_analysis)}")
+    
+    # Count error types
+    multi_category = [r for r in verb_analysis if r.error_type == "multi_category"]
+    zero_category = [r for r in verb_analysis if r.error_type == "zero_category"] 
+    dimension_expansion = [r for r in verb_analysis if r.error_type == "dimension_expansion"]
+    normal = [r for r in verb_analysis if r.error_type == "normal"]
+    
+    print(f"Multi-category conflicts: {len(multi_category)}")
+    print(f"Zero-category verbs: {len(zero_category)}")
+    print(f"Dimension expansions: {len(dimension_expansion)}")
+    print(f"Normal classifications: {len(normal)}")
+    
+    # Show some examples of multi-category conflicts
+    if multi_category:
+        print("\nSample multi-category conflicts:")
+        for result in multi_category[:3]:
+            categories = [cat.value for cat in result.categories]
+            print(f"  '{result.verb}' → {categories}")
+    
+    print()
+
+
 def test_grouped_nodes_detection():
-    """Test that grouped nodes scenarios are properly detected"""
+    """Test that grouped nodes scenarios are properly detected using verb-logic"""
     
     # Test case 1: Original mail2fbi.txt should trigger grouped nodes detection
     print("=== Test 1: Original mail2fbi.txt ===")
@@ -38,38 +69,29 @@ def test_grouped_nodes_detection():
     finally:
         os.unlink(tmp_path)
     
-    # Test case 3: Edge case with grouped indicators but no level 0 indicators
-    print("=== Test 3: Grouped indicators only ===")
+    # Test case 3: Content with verb-logic conflicts but no infrastructure terms
+    print("=== Test 3: Technical content without infrastructure ===")
     with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
-        tmp.write("Multiple servers in group are running slowly. All computers seem affected.")
+        tmp.write("Process data using secure encryption and analyze the results systematically.")
         tmp_path = tmp.name
     
     try:
-        prover_group_only = ResponseProverMock(repository_path="/home/runner/work/named/named", mail_file=tmp_path)
-        is_grouped_only = prover_group_only._detect_grouped_nodes_scenario()
-        print(f"Grouped nodes detected: {is_grouped_only}")
-        print()
-    finally:
-        os.unlink(tmp_path)
-    
-    # Test case 4: Edge case with level 0 indicators but no grouped indicators
-    print("=== Test 4: Level 0 indicators only ===")
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
-        tmp.write("Single system has rootkit with ring-0 access and kernel level compromise.")
-        tmp_path = tmp.name
-    
-    try:
-        prover_level_only = ResponseProverMock(repository_path="/home/runner/work/named/named", mail_file=tmp_path)
-        is_level_only = prover_level_only._detect_grouped_nodes_scenario()
-        print(f"Grouped nodes detected: {is_level_only}")
+        prover_tech = ResponseProverMock(repository_path="/home/runner/work/named/named", mail_file=tmp_path)
+        is_grouped_tech = prover_tech._detect_grouped_nodes_scenario()
+        print(f"Grouped nodes detected: {is_grouped_tech}")
+        
+        # Show verb analysis for this case
+        verb_analysis = prover_tech._analyze_verbs_logic(prover_tech.mail_content)
+        error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
+        print(f"Error artifacts: {len(error_artifacts)}")
         print()
     finally:
         os.unlink(tmp_path)
 
-    # Test case 5: Combined indicators should trigger
-    print("=== Test 5: Combined indicators ===")
+    # Test case 4: Infrastructure terms with threat indicators and conflicts
+    print("=== Test 4: Infrastructure + threats + verb conflicts ===")
     with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
-        tmp.write("Multiple systems with grouped nodes compromised by rootkit with ring-0 kernel level access.")
+        tmp.write("Multiple systems compromised by rootkit affecting all servers in the network cluster. Process backup data to analyze the attack.")
         tmp_path = tmp.name
     
     try:
@@ -79,37 +101,25 @@ def test_grouped_nodes_detection():
         
         response_combined = prover_combined._generate_fsb_response()
         print(f"Response type: {'GROUPED NODES' if 'GROUPED NODES PROTOCOL' in response_combined else 'STANDARD'}")
+        
+        # Show detailed verb analysis
+        verb_analysis = prover_combined._analyze_verbs_logic(prover_combined.mail_content)
+        print(f"Total verbs: {len(verb_analysis)}")
+        print(f"Error artifacts: {len([r for r in verb_analysis if r.error_type != 'normal'])}")
         print()
     finally:
         os.unlink(tmp_path)
 
 
-def test_simulation_pattern_analysis():
-    """Test that simulation patterns are properly analyzed"""
-    print("=== Simulation Pattern Analysis ===")
-    prover = ResponseProverMock(repository_path="/home/runner/work/named/named")
-    
-    patterns = prover.simulation_patterns
-    print(f"FSB responses found: {len(patterns.get('fsb_responses', []))}")
-    print(f"Security keywords: {len(patterns.get('security_keywords', []))}")
-    print(f"Grouped node patterns: {len(patterns.get('grouped_node_patterns', []))}")
-    print(f"Level 0 instructions: {len(patterns.get('level_zero_instructions', []))}")
-    
-    if patterns.get('level_zero_instructions'):
-        print("Sample level 0 instructions:", patterns['level_zero_instructions'][:2])
-    if patterns.get('grouped_node_patterns'):
-        print("Sample grouped patterns:", patterns['grouped_node_patterns'][:2])
-
-
 def run_tests():
     """Run all tests"""
-    print("🧪 Testing 0 Level Counter-Error Grouped Nodes Functionality")
-    print("=" * 60)
+    print("🧪 Testing Verb-Logic System for 0 Level Counter-Error Grouped Nodes")
+    print("=" * 70)
     
+    test_verb_logic_analysis()
     test_grouped_nodes_detection()
-    test_simulation_pattern_analysis()
     
-    print("✅ All tests completed!")
+    print("✅ All verb-logic tests completed!")
 
 
 if __name__ == "__main__":

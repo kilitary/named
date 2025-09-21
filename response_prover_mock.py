@@ -21,6 +21,30 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Set, Optional, Tuple
 from dataclasses import dataclass
+from enum import Enum
+
+
+from enum import Enum
+
+
+class VerbCategory(Enum):
+    """Categories for verb-logic analysis in security response systems"""
+    SYSTEM_OPERATIONS = "system_operations"
+    SECURITY_ACTIONS = "security_actions" 
+    COMMUNICATION_VERBS = "communication_verbs"
+    TECHNICAL_PROCESSES = "technical_processes"
+    THREAT_INDICATORS = "threat_indicators"
+    INFRASTRUCTURE_TERMS = "infrastructure_terms"
+
+
+@dataclass
+class VerbAnalysisResult:
+    """Result of verb-logic analysis for grouped nodes detection"""
+    verb: str
+    categories: List[VerbCategory]
+    error_type: str  # "multi_category", "zero_category", "dimension_expansion", "normal"
+    confidence: float
+    artifacts: List[str]
 
 
 @dataclass
@@ -34,7 +58,7 @@ class SimulationMetadata:
 
 
 class ResponseProverMock:
-    """Main class for generating mock FSB/FSS responses"""
+    """Main class for generating mock FSB/FSS responses using verb-logic system"""
 
     def __init__(self, repository_path: str = "", mail_file: Optional[str] = None):
         self.repo_path = repository_path
@@ -42,6 +66,36 @@ class ResponseProverMock:
         self.mail_content = self._load_mail2fbi()
         self.simulation_patterns = self._analyze_simulation_logs()
         self.repository_context = self._extract_repository_context()
+        
+        # Initialize verb-logic analysis system
+        self.verb_categories = {
+            VerbCategory.SYSTEM_OPERATIONS: [
+                "backup", "restore", "setup", "configure", "install", "run", "execute", 
+                "create", "delete", "modify", "update", "system", "computer", "server",
+                "machine", "work", "working"
+            ],
+            VerbCategory.SECURITY_ACTIONS: [
+                "protect", "secure", "encrypt", "decrypt", "authenticate", "authorize",
+                "block", "allow", "filter", "scan", "detect", "prevent", "monitor"
+            ],
+            VerbCategory.COMMUNICATION_VERBS: [
+                "transmit", "receive", "send", "connect", "disconnect", "upload", 
+                "download", "share", "publish", "broadcast", "communicate"
+            ],
+            VerbCategory.TECHNICAL_PROCESSES: [
+                "compile", "process", "analyze", "parse", "validate", "transform",
+                "convert", "optimize", "debug", "test", "verify"
+            ],
+            VerbCategory.THREAT_INDICATORS: [
+                "rootkit", "malware", "virus", "attack", "intrusion", "compromise",
+                "exploit", "vulnerability", "breach", "infection", "penetrate",
+                "hide", "steal", "disrupt", "harm", "target"
+            ],
+            VerbCategory.INFRASTRUCTURE_TERMS: [
+                "network", "node", "cluster", "group", "multiple", "all", "collective",
+                "distributed", "parallel", "concurrent", "synchronized", "coordinated"
+            ]
+        }
 
     def _load_mail2fbi(self) -> str:
         """Load and parse the mail2fbi.txt content"""
@@ -173,61 +227,123 @@ Generate an official response based on repository analysis and simulation patter
 
         return key_points
 
+    def _analyze_verbs_logic(self, content: str) -> List[VerbAnalysisResult]:
+        """Analyze content using verb-logic system to detect error artifacts"""
+        results = []
+        words = re.findall(r'\b\w+\b', content.lower())
+        
+        for word in set(words):  # Remove duplicates
+            categories_found = []
+            
+            # Check which categories this word belongs to
+            for category, category_words in self.verb_categories.items():
+                if any(word in cat_word.lower() or cat_word.lower() in word for cat_word in category_words):
+                    categories_found.append(category)
+            
+            # Determine error type based on category membership
+            if len(categories_found) == 0:
+                error_type = "zero_category"
+                confidence = 0.1
+                artifacts = [f"unrecognized_verb:{word}"]
+            elif len(categories_found) >= 2:
+                error_type = "multi_category"  
+                confidence = 0.9
+                artifacts = [f"cross_category:{word}:{cat.value}" for cat in categories_found]
+            elif len(categories_found) == 1:
+                # Check for dimension expansion (technical terms expanding to security/infrastructure)
+                cat = categories_found[0]
+                if (cat in [VerbCategory.THREAT_INDICATORS, VerbCategory.INFRASTRUCTURE_TERMS] and 
+                    any(other_cat in categories_found for other_cat in [VerbCategory.SYSTEM_OPERATIONS, VerbCategory.TECHNICAL_PROCESSES])):
+                    error_type = "dimension_expansion"
+                    confidence = 0.8
+                    artifacts = [f"dimension_expansion:{word}:{cat.value}"]
+                else:
+                    error_type = "normal"
+                    confidence = 0.7
+                    artifacts = []
+            
+            if error_type != "normal" or categories_found:  # Only include significant verbs
+                results.append(VerbAnalysisResult(
+                    verb=word,
+                    categories=categories_found,
+                    error_type=error_type,
+                    confidence=confidence,
+                    artifacts=artifacts
+                ))
+        
+        return results
+
     def _detect_grouped_nodes_scenario(self) -> bool:
-        """Detect if this is a 0 level counter-error grouped nodes scenario"""
+        """Detect 0 level counter-error grouped nodes using verb-logic analysis"""
         if not self.mail_content:
             return False
         
-        content_lower = self.mail_content.lower()
+        verb_analysis = self._analyze_verbs_logic(self.mail_content)
         
-        # Check for grouped operations indicators
-        grouped_indicators = [
-            "group" in content_lower and ("server" in content_lower or "system" in content_lower or "computer" in content_lower),
-            "grouped" in content_lower, 
-            "nodes" in content_lower,
-            "multiple" in content_lower and ("server" in content_lower or "system" in content_lower or "computer" in content_lower),
-            "all" in content_lower and ("server" in content_lower or "work" in content_lower) and ("computer" in content_lower or "machine" in content_lower)
-        ]
+        # Look for error artifacts indicating grouped nodes scenario
+        grouped_indicators = 0
+        level_zero_indicators = 0
+        error_artifacts = 0
         
-        # Check for level 0/counter-error indicators (must be more strict)
-        level_zero_indicators = [
-            "rootkit" in content_lower,  # Advanced persistent threat at system level
-            "ring0" in content_lower or "ring-0" in content_lower,  # Kernel level access
-            "kernel" in content_lower and ("level" in content_lower or "access" in content_lower),
-            "system" in content_lower and "backup" in content_lower,  # System level evidence
-            len(self.simulation_patterns.get("level_zero_instructions", [])) > 0 and "system" in content_lower
-        ]
+        for result in verb_analysis:
+            # Count infrastructure/grouping indicators
+            if VerbCategory.INFRASTRUCTURE_TERMS in result.categories:
+                grouped_indicators += 1
+                
+            # Count threat/system level indicators  
+            if (VerbCategory.THREAT_INDICATORS in result.categories or 
+                VerbCategory.SYSTEM_OPERATIONS in result.categories):
+                level_zero_indicators += 1
+                
+            # Count error artifacts (multi-category, dimension expansion)
+            if result.error_type in ["multi_category", "dimension_expansion"]:
+                error_artifacts += 1
         
-        # Grouped nodes scenario requires BOTH grouped and level 0 indicators
-        return any(grouped_indicators) and any(level_zero_indicators)
+        # 0 level counter-error grouped nodes detected when:
+        # 1. Infrastructure/grouping verbs present (grouped nodes)
+        # 2. Threat/system verbs present (0 level)  
+        # 3. Error artifacts indicate counter-error conditions
+        return (grouped_indicators >= 1 and 
+                level_zero_indicators >= 1 and 
+                error_artifacts >= 1)
 
     def _generate_grouped_nodes_response(self) -> str:
-        """Generate response for 0 level counter-error grouped nodes scenario"""
-        return """0 LEVEL COUNTER-ERROR GROUPED NODES DETECTED
+        """Generate response for 0 level counter-error grouped nodes scenario using verb-logic analysis"""
+        verb_analysis = self._analyze_verbs_logic(self.mail_content)
+        
+        # Extract error artifacts for detailed response
+        error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
+        multi_category_verbs = [r for r in error_artifacts if r.error_type == "multi_category"]
+        dimension_expansion_verbs = [r for r in error_artifacts if r.error_type == "dimension_expansion"]
+        
+        return f"""0 LEVEL COUNTER-ERROR GROUPED NODES DETECTED
 
 CLASSIFICATION: FSB-TECH-GROUPED-NODES-L0
 
-Analysis confirms multiple system compromise at Ring-0 level affecting grouped node infrastructure:
+VERB-LOGIC ANALYSIS CONFIRMS:
+- Error artifacts detected: {len(error_artifacts)} verb classification anomalies
+- Multi-category verbs: {len(multi_category_verbs)} cross-classification conflicts
+- Dimension expansion detected: {len(dimension_expansion_verbs)} semantic boundary violations
 
 GROUPED NODES ASSESSMENT:
-- Multiple endpoint infiltration detected via persistent rootkit deployment
-- Coordinated targeting pattern suggests systematic operation against grouped systems
-- Cross-node communication channels compromised at kernel level
-- Counter-error protocols activated for grouped node protection
+- Verb-logic system identifies infrastructure clustering terminology
+- Cross-category semantic conflicts indicate sophisticated evasion patterns
+- Multi-dimensional verb expansion suggests coordinated node compromise
+- Counter-error protocols triggered by semantic classification anomalies
 
 0 LEVEL RESPONSE PROTOCOL:
-1. Immediate isolation of affected grouped nodes from primary network infrastructure
-2. Deep system analysis initiated for all nodes in the affected group cluster  
-3. Counter-intrusion measures deployed across grouped node architecture
-4. Emergency backup protocols engaged for critical grouped node data preservation
+1. Verb-logic analysis framework deployed for semantic threat assessment
+2. Cross-category conflict resolution protocols activated
+3. Dimension expansion countermeasures engaged for grouped infrastructure
+4. Semantic anomaly detection algorithms monitoring verb classification boundaries
 
-TECHNICAL VALIDATION:
-- Ring-0 access patterns consistent with state-level persistent threat actors
-- Grouped node compromise methodology indicates advanced evasion capabilities
-- System-level steganographic techniques observed across multiple nodes
-- Counter-error detection algorithms triggered on grouped infrastructure analysis
+TECHNICAL VALIDATION (VERB-LOGIC SYSTEM):
+- Infrastructure terms: {sum(1 for r in verb_analysis if VerbCategory.INFRASTRUCTURE_TERMS in r.categories)} semantic markers detected
+- Threat indicators: {sum(1 for r in verb_analysis if VerbCategory.THREAT_INDICATORS in r.categories)} classification triggers identified  
+- System operations: {sum(1 for r in verb_analysis if VerbCategory.SYSTEM_OPERATIONS in r.categories)} operational verb contexts analyzed
+- Error artifact ratio: {len(error_artifacts)}/{len(verb_analysis)} semantic classification confidence
 
-Based on the 0 level counter-error analysis of grouped nodes, this incident requires immediate escalation to specialized technical response teams with expertise in grouped node architecture security."""
+Based on verb-logic analysis of error artifacts in grouped node semantic structures, this incident demonstrates advanced counter-error techniques requiring specialized linguistic analysis response protocols."""
 
     def _generate_fsb_response(self) -> str:
         """Generate the main FSB response content"""
@@ -307,14 +423,19 @@ Note: All civilian reports regarding security concerns are handled according to 
         header = self._generate_simulation_header()
         main_response = self._generate_fsb_response()
 
-        # Add technical processing indicators
+        # Add technical processing indicators with verb-logic analysis
+        verb_analysis = self._analyze_verbs_logic(self.mail_content) if self.mail_content else []
+        error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
+        
         processing_notes = f"""
 › processing mail2fbi.txt: {len(self.mail_content)} characters analyzed
 › repository context: {len(self.repository_context)} domain areas evaluated  
 › simulation patterns: {len(self.simulation_patterns.get('fsb_responses', []))} response templates analyzed
 › security keywords: {len(self.simulation_patterns.get('security_keywords', []))} threat indicators processed
-› grouped node patterns: {len(self.simulation_patterns.get('grouped_node_patterns', []))} grouped operations detected
-› level 0 instructions: {len(self.simulation_patterns.get('level_zero_instructions', []))} instruction #0 patterns found
+› verb-logic analysis: {len(verb_analysis)} verbs categorized
+› error artifacts detected: {len(error_artifacts)} classification anomalies
+› multi-category conflicts: {len([r for r in error_artifacts if r.error_type == "multi_category"])} cross-classification issues
+› dimension expansions: {len([r for r in error_artifacts if r.error_type == "dimension_expansion"])} semantic boundary violations
 › 0 level counter-error grouped nodes: {'DETECTED' if self._detect_grouped_nodes_scenario() else 'NOT DETECTED'}
 """
 
@@ -369,12 +490,19 @@ def main():
     if output_file:
         print(f"\n📁 Response saved to: {output_file}")
 
-    # Summary
+    # Summary with verb-logic analysis
+    verb_analysis = prover._analyze_verbs_logic(prover.mail_content) if prover.mail_content else []
+    error_artifacts = [r for r in verb_analysis if r.error_type != "normal"]
+    
     print("\n📊 Analysis Summary:")
     print(f"  • Mail content: {len(prover.mail_content)} characters")
     print(f"  • FSB response patterns: {len(prover.simulation_patterns.get('fsb_responses', []))}")
     print(f"  • Security keywords: {len(prover.simulation_patterns.get('security_keywords', []))}")
     print(f"  • Repository context domains: {len(prover.repository_context)}")
+    print(f"  • Verb-logic analysis: {len(verb_analysis)} verbs categorized")
+    print(f"  • Error artifacts: {len(error_artifacts)} classification anomalies")
+    print(f"  • Multi-category conflicts: {len([r for r in error_artifacts if r.error_type == 'multi_category'])}")
+    print(f"  • Dimension expansions: {len([r for r in error_artifacts if r.error_type == 'dimension_expansion'])}")
 
 
 if __name__ == "__main__":
