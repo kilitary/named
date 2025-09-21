@@ -59,7 +59,14 @@ def demonstrate_compact_representation(system: CompactEvolutionSystem):
     
     for i, words in enumerate(test_cases, 1):
         print(f"\nTest Case {i}: {words}")
-        compact_rep = system.get_compact_representation(words)
+        # Convert words to (word, category) tuples
+        items = []
+        for word in words:
+            for category, category_words in system.categories.items():
+                if word in category_words:
+                    items.append((word, category))
+                    break
+        compact_rep = system.get_compact_representation(items)
         
         print(f"  Mathematical Expression: {compact_rep['mathematical_expression']}")
         print(f"  Compact Labels: {[item['label'] for item in compact_rep['compact_labels']]}")
@@ -82,7 +89,14 @@ def demonstrate_logic_circuits(system: CompactEvolutionSystem):
         print(f"Input Words: {words}")
         
         try:
-            circuit = system.create_logic_circuit(name, words)
+            # Convert words to (word, category) tuples
+            items = []
+            for word in words:
+                for category, category_words in system.categories.items():
+                    if word in category_words:
+                        items.append((word, category))
+                        break
+            circuit = system.create_logic_circuit(name, items)
             print(f"  Inputs: {circuit.inputs[:5]}...")  # Show first 5 inputs
             print(f"  Operations: {circuit.operations}")
             print(f"  Outputs: {circuit.outputs}")
@@ -147,7 +161,14 @@ def demonstrate_mathematical_operations(system: CompactEvolutionSystem):
     
     # Simulate mathematical operations like in the simulation logs
     words = ["Memory", "Process", "NeuralNetwork", "Encryption"]
-    compact_rep = system.get_compact_representation(words)
+    # Convert words to (word, category) tuples
+    items = []
+    for word in words:
+        for category, category_words in system.categories.items():
+            if word in category_words:
+                items.append((word, category))
+                break
+    compact_rep = system.get_compact_representation(items)
     
     labels = [item['label'] for item in compact_rep['compact_labels']]
     weights = compact_rep['weights']

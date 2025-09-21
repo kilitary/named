@@ -194,7 +194,9 @@ class CategoryType(Enum):
     ALGORITHMS = "algorithms"
     NETWORK_PROTOCOLS = "network_protocols"
     SECURITY_CONCEPTS = "security_concepts"
-    THREADING_CONCEPTS = "threading_concepts"  # New category for threading concepts
+    THREADING_CONCEPTS = "threading_concepts"
+    CLOUD_SERVICES = "cloud_services"  # New infrastructure category
+    SYSTEM_ADMINISTRATION = "system_administration"  # New infrastructure category
 
 
 @dataclass
@@ -319,46 +321,78 @@ class CompactEvolutionSystem:
             CategoryType.PHYSICAL_PROPERTIES: [
                 "Memory", "Bandwidth", "Latency", "Throughput", "Capacity",
                 "Frequency", "Voltage", "Current", "Power", "Temperature",
-                "Resistance", "Conductance", "Impedance", "Reactance"
+                "Resistance", "Conductance", "Impedance", "Reactance",
+                # Infrastructure hardware components
+                "CPU", "GPU", "RAM", "SSD", "HDD", "NIC", "PSU", "RAID",
+                "BIOS", "UEFI", "PCB", "Cache", "Core", "Pipeline"
             ],
             CategoryType.COMPUTER_VERBS: [
                 "Execute", "Process", "Compile", "Debug", "Optimize", "Parse",
                 "Validate", "Transform", "Encrypt", "Decode", "Transmit",
-                "Receive", "Store", "Retrieve", "Calculate", "Compare"
+                "Receive", "Store", "Retrieve", "Calculate", "Compare",
+                # Infrastructure operations
+                "Deploy", "Scale", "Monitor", "Backup", "Restore", "Migrate",
+                "Provision", "Configure", "Install", "Update", "Patch", "Maintain"
             ],
             CategoryType.IA_ARCHITECTURE: [
                 "NeuralNetwork", "ConvolutionalLayer", "RecurrentUnit",
                 "AttentionMechanism", "Transformer", "Encoder", "Decoder",
                 "Embedding", "Activation", "Gradient", "Backpropagation",
-                "Regularization", "Normalization", "Pooling"
+                "Regularization", "Normalization", "Pooling",
+                # AI Infrastructure (split into 2-4 char components)
+                "CNN", "RNN", "GAN", "LSTM", "API", "SDK", "TPU"
             ],
             CategoryType.CIRCUIT_COMPONENTS: [
                 "LogicGate", "FlipFlop", "Multiplexer", "Demultiplexer",
                 "Adder", "Comparator", "Counter", "Register", "Buffer",
-                "Amplifier", "Oscillator", "Filter", "Converter"
+                "Amplifier", "Oscillator", "Filter", "Converter",
+                # Electronic infrastructure (abbreviations as 2-4 char)
+                "IC", "ROM", "ALU", "FPU", "MMU", "DMA"
             ],
             CategoryType.DATA_STRUCTURES: [
                 "Array", "LinkedList", "Stack", "Queue", "Tree", "Graph",
-                "HashMap", "HashTable", "Heap", "Trie", "Matrix", "Vector"
+                "HashMap", "HashTable", "Heap", "Trie", "Matrix", "Vector",
+                # Infrastructure data formats (2-4 char abbreviations)  
+                "JSON", "XML", "CSV", "YAML", "SQL", "NoSQL", "DB"
             ],
             CategoryType.ALGORITHMS: [
                 "BinarySearch", "QuickSort", "MergeSort", "BreadthFirst",
                 "DepthFirst", "Dijkstra", "AStar", "DynamicProgramming",
-                "GreedyAlgorithm", "BackTracking", "BranchBound"
+                "GreedyAlgorithm", "BackTracking", "BranchBound",
+                # Infrastructure algorithms (2-4 char abbreviations)
+                "Hash", "CRC", "AES", "RSA", "MD5", "SHA", "DES"
             ],
             CategoryType.NETWORK_PROTOCOLS: [
                 "TCP", "UDP", "HTTP", "HTTPS", "FTP", "SMTP", "DNS", "DHCP",
-                "ARP", "ICMP", "BGP", "OSPF", "RIP", "SNMP", "SSH", "TLS"
+                "ARP", "ICMP", "BGP", "OSPF", "RIP", "SNMP", "SSH", "TLS",
+                # Additional infrastructure protocols (2-4 char abbreviations)
+                "MQTT", "LDAP", "NTP", "IPV4", "IPV6", "REST", "SOAP", "CLI"
             ],
             CategoryType.SECURITY_CONCEPTS: [
                 "Encryption", "Decryption", "Authentication", "Authorization",
                 "Firewall", "VPN", "PKI", "SSL", "Certificate", "Hash",
-                "DigitalSignature", "AccessControl", "Audit", "Forensics"
+                "DigitalSignature", "AccessControl", "Audit", "Forensics",
+                # Infrastructure security (2-4 char abbreviations)
+                "IAM", "MFA", "SSO", "RBAC", "ACL", "DMZ", "IDS", "IPS"
             ],
             CategoryType.THREADING_CONCEPTS: [
                 "Thread", "Process", "Hyperthread", "Concurrency", "Parallelism",
                 "Mutex", "Semaphore", "Lock", "Unlock", "Join", "Detach",
-                "Yield", "Sleep", "Wakeup", "Signal", "Broadcast"
+                "Yield", "Sleep", "Wakeup", "Signal", "Broadcast",
+                # Infrastructure threading (2-4 char abbreviations)
+                "SMP", "NUMA", "SIMD", "MIMD"
+            ],
+            CategoryType.CLOUD_SERVICES: [
+                # Cloud platforms and services (2-4 char abbreviations where applicable)
+                "AWS", "Azure", "GCP", "Docker", "Kubernetes", "Container",
+                "Microservice", "Lambda", "Function", "Service", "Endpoint",
+                "EC2", "S3", "RDS", "ECS", "EKS", "CDN", "Load", "Balance"
+            ],
+            CategoryType.SYSTEM_ADMINISTRATION: [
+                # System administration operations and tools
+                "Config", "Deploy", "Monitor", "Scale", "Patch", "Update",
+                "Backup", "Restore", "Migrate", "Provision", "Maintain",
+                "Log", "Alert", "Dashboard", "Metric", "Health", "Status"
             ]
         }
 
@@ -414,7 +448,113 @@ class CompactEvolutionSystem:
                 self.compact_mappings_by_category[category][word] = compact_word
 
     def _split_into_subwords(self, word: str) -> List[str]:
-        """Split a word into meaningful sub-words using camelCase and compound patterns"""
+        """Split a word into meaningful sub-words using camelCase and compound patterns
+        
+        For infrastructure abbreviations, split into 2-4 character meaningful components.
+        """
+        # Infrastructure abbreviation expansions (2-4 char components)
+        infrastructure_abbreviations = {
+            # Network protocols
+            "TCP": ["Trans", "Ctrl", "Proto"],
+            "UDP": ["User", "Data", "Proto"], 
+            "HTTP": ["Hyper", "Text", "Trans", "Proto"],
+            "HTTPS": ["HTTP", "Secure"],
+            "FTP": ["File", "Trans", "Proto"],
+            "SMTP": ["Mail", "Trans", "Proto"],
+            "DNS": ["Name", "System"],
+            "DHCP": ["Host", "Config", "Proto"],
+            "SSH": ["Secure", "Shell"],
+            "SSL": ["Secure", "Socket", "Layer"],
+            "TLS": ["Trans", "Layer", "Secure"],
+            "VPN": ["Virtual", "Private", "Net"],
+            "PKI": ["Public", "Key", "Infra"],
+            "MQTT": ["Message", "Queue", "Tele", "Trans"],
+            "LDAP": ["Light", "Dir", "Access", "Proto"],
+            "NTP": ["Net", "Time", "Proto"],
+            "IPV4": ["IP", "V4"],
+            "IPV6": ["IP", "V6"],
+            "REST": ["REST"],
+            "SOAP": ["SOAP"],
+            "CLI": ["Cmd", "Line", "Inter"],
+            
+            # Hardware/infrastructure
+            "CPU": ["Central", "Proc", "Unit"],
+            "GPU": ["Graph", "Proc", "Unit"],
+            "RAM": ["Random", "Access", "Mem"],
+            "SSD": ["Solid", "State", "Drive"],
+            "HDD": ["Hard", "Disk", "Drive"],
+            "NIC": ["Net", "Inter", "Card"],
+            "PSU": ["Power", "Supply", "Unit"],
+            "RAID": ["Red", "Array", "Indep", "Disk"],
+            "BIOS": ["Basic", "IO", "System"],
+            "UEFI": ["Unified", "EFI"],
+            "PCB": ["Print", "Circuit", "Board"],
+            
+            # AI/ML
+            "CNN": ["Conv", "Neural", "Net"],
+            "RNN": ["Rec", "Neural", "Net"],
+            "GAN": ["Gen", "Adv", "Net"],
+            "LSTM": ["Long", "Short", "Term", "Mem"],
+            "API": ["App", "Program", "Inter"],
+            "SDK": ["Soft", "Dev", "Kit"],
+            "TPU": ["Tensor", "Proc", "Unit"],
+            
+            # Security
+            "IAM": ["Identity", "Access", "Mgmt"],
+            "MFA": ["Multi", "Factor", "Auth"],
+            "SSO": ["Single", "Sign", "On"],
+            "RBAC": ["Role", "Based", "Access", "Ctrl"],
+            "ACL": ["Access", "Ctrl", "List"],
+            "DMZ": ["De", "Mil", "Zone"],
+            "IDS": ["Intrusion", "Detect", "System"],
+            "IPS": ["Intrusion", "Prev", "System"],
+            
+            # Data formats
+            "JSON": ["Java", "Script", "Object", "Not"],
+            "XML": ["Extend", "Markup", "Lang"],
+            "CSV": ["Comma", "Sep", "Values"],
+            "YAML": ["YAML", "Ain't", "Markup", "Lang"],
+            "SQL": ["Struct", "Query", "Lang"],
+            "NoSQL": ["No", "SQL"],
+            "DB": ["Data", "Base"],
+            
+            # Algorithms  
+            "AES": ["Adv", "Encr", "Std"],
+            "RSA": ["RSA"],
+            "MD5": ["Message", "Digest", "5"],
+            "SHA": ["Secure", "Hash", "Algo"],
+            "DES": ["Data", "Encr", "Std"],
+            "CRC": ["Cyclic", "Red", "Check"],
+            
+            # Circuit components
+            "IC": ["Integrated", "Circuit"],
+            "ROM": ["Read", "Only", "Mem"],
+            "ALU": ["Arith", "Logic", "Unit"],
+            "FPU": ["Float", "Point", "Unit"],
+            "MMU": ["Mem", "Mgmt", "Unit"],
+            "DMA": ["Direct", "Mem", "Access"],
+            
+            # Threading
+            "SMP": ["Sym", "Multi", "Proc"],
+            "NUMA": ["Non", "Uniform", "Mem", "Access"],
+            "SIMD": ["Single", "Instr", "Multi", "Data"],
+            "MIMD": ["Multi", "Instr", "Multi", "Data"],
+            
+            # Cloud services
+            "AWS": ["Amazon", "Web", "Services"],
+            "GCP": ["Google", "Cloud", "Platform"],
+            "EC2": ["Elastic", "Compute", "Cloud"],
+            "S3": ["Simple", "Storage", "Service"],
+            "RDS": ["Relational", "Database", "Service"],
+            "ECS": ["Elastic", "Container", "Service"],
+            "EKS": ["Elastic", "Kubernetes", "Service"],
+            "CDN": ["Content", "Delivery", "Network"]
+        }
+        
+        # Check if word is a known infrastructure abbreviation
+        if word in infrastructure_abbreviations:
+            return infrastructure_abbreviations[word]
+        
         # Handle camelCase
         camel_pattern = re.sub(r'([a-z])([A-Z])', r'\1 \2', word)
 
@@ -432,6 +572,14 @@ class CompactEvolutionSystem:
                     result.extend(['Algo', 'Rithm'])
                 elif 'Protocol' in sub_word:
                     result.extend(['Proto', 'Col'])
+                elif 'Architecture' in sub_word:
+                    result.extend(['Arch', 'itecture'])
+                elif 'Infrastructure' in sub_word:
+                    result.extend(['Infra', 'structure'])
+                elif 'Configuration' in sub_word:
+                    result.extend(['Config', 'uration'])
+                elif 'Management' in sub_word:
+                    result.extend(['Mgmt'])
                 else:
                     result.append(sub_word)
             else:
