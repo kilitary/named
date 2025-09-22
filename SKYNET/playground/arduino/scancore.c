@@ -1,6 +1,6 @@
 //#include <SPI.h>
 //#define FAILURE_HANDLING
-//#undef MINIMAL
+#undef MINIMAL
 #include <RF24.h>
 #include <TaskScheduler.h>
 //#include <iarduino_OLED_I2C.h>
