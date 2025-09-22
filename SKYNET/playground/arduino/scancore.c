@@ -1,6 +1,6 @@
 //#include <SPI.h>
 //#define FAILURE_HANDLING
-#undef MINIMAL
+//#undef MINIMAL
 #include <RF24.h>
 #include <TaskScheduler.h>
 //#include <iarduino_OLED_I2C.h>
@@ -384,8 +384,6 @@ void loop() {
 
     rnd_spect();
 
-    checkReceivedSignalCallback();
-
     epochs++;
 }
 
@@ -402,7 +400,7 @@ void scanFrequencyCallback() {
         carrierSignalCount = 0;
     }
     //radio.flush_rx();
-    //radio.flush_tx();
+     radio.flush_tx();
     delayMicroseconds(150);
 
     radio.stopListening();
@@ -413,7 +411,7 @@ void scanFrequencyCallback() {
     delayMicroseconds(150);
     // Flush RX buffer for stability
     //radio.flush_tx();
-    ///radio.flush_rx();
+    radio.flush_rx();
     delayMicroseconds(150);
     radio.startListening();  // Resume listening
     delayMicroseconds(150);
@@ -479,6 +477,8 @@ void writeCallback() {
         for (int i = 0; i < bytes; i++) {
             buf[i] = (char)rand() % 255;
         }
+        radio.stopListening();
+        delayMicroseconds(150);
         radio.write(buf, bytes);
         sends += bytes;
         if (sends - prevSends >= currentEarnRatio) {
@@ -488,6 +488,7 @@ void writeCallback() {
         }
         digitalWrite(END_CHECK_LED_PIN, LOW);
         wait_switching();
+        delayMicroseconds(150);
         radio.startListening();
     }
 }
