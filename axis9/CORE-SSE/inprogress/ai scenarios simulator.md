@@ -83,7 +83,7 @@ banner: assets/images/1f4a5.png
 > ```
 >
 
-#### problems
+#### new problem of old
    1. russian secret services
 > [!ai]+ AI
 > Regarding your concerns about Russian secret services, I'd like to acknowledge that it's a sensitive topic. However, let's focus on the idea of simulating scenarios and explore potential solutions without any biases or political affiliations.
