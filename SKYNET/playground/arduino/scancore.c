@@ -384,6 +384,8 @@ void loop() {
 
     rnd_spect();
 
+    checkReceivedSignalCallback();
+
     epochs++;
 }
 
@@ -400,7 +402,7 @@ void scanFrequencyCallback() {
         carrierSignalCount = 0;
     }
     //radio.flush_rx();
-     radio.flush_tx();
+    //radio.flush_tx();
     delayMicroseconds(150);
 
     radio.stopListening();
@@ -411,7 +413,7 @@ void scanFrequencyCallback() {
     delayMicroseconds(150);
     // Flush RX buffer for stability
     //radio.flush_tx();
-    radio.flush_rx();
+    ///radio.flush_rx();
     delayMicroseconds(150);
     radio.startListening();  // Resume listening
     delayMicroseconds(150);
@@ -470,6 +472,8 @@ void flashRxLedCallback() {
     }
 }
 void writeCallback() {
+    char txt[255] = "";
+
     if (rand() % 4 == 1 && !changing_channel) {
         digitalWrite(END_CHECK_LED_PIN, HIGH);
         int bytes = 1 + rand() % 32;
@@ -480,16 +484,27 @@ void writeCallback() {
         radio.stopListening();
         delayMicroseconds(150);
         radio.write(buf, bytes);
+        delayMicroseconds(50);
+        radio.startListening();
+        delayMicroseconds(150);
+
         sends += bytes;
+
+        sprintf(txt, "write %d bytes (%u total) to channel %u (freq: %-4dMHZ, cur: %u)", bytes, sends, radio.getChannel(), 2400 + currentChannel, currentChannel);
+        Serial.println(txt);
+
         if (sends - prevSends >= currentEarnRatio) {
             prevSends = sends;
             centsEarned += 10;
+
             sndtick(899);
+
+            sprintf(txt, "cash earned: %d, total: %lu", 10, (unsigned long)centsEarned * 100.0);
+            Serial.println(txt);
         }
         digitalWrite(END_CHECK_LED_PIN, LOW);
         wait_switching();
         delayMicroseconds(150);
-        radio.startListening();
     }
 }
 
