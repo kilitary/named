@@ -1,0 +1,51 @@
+{
+  "session_meta": {
+    "session_id": "playground_1758788117143015",
+    "start_time": "2025-09-25T08:15:17.143024",
+    "end_time": "2025-09-25T08:15:17.344956",
+    "duration_seconds": 0.201932,
+    "total_cycles": 2
+  },
+  "execution_summary": {
+    "phase_sequence": [
+      "LOAD",
+      "ANALYZE",
+      "RELOAD",
+      "OUTPUT"
+    ],
+    "reload_triggered_at": "51.0%",
+    "data_items_processed": 64,
+    "shuffle_operations": 3,
+    "final_progress": "75.0%"
+  },
+  "cycle_results": {
+    "cycle_1": {
+      "timestamp": "2025-09-25T08:15:17.143792",
+      "sample_size": 15,
+      "analyzed_items": 15,
+      "random_patterns": [
+        "pattern_8127",
+        "pattern_8480",
+        "pattern_4539"
+      ],
+      "shuffle_applied": true
+    },
+    "cycle_2": {
+      "timestamp": "2025-09-25T08:15:17.244215",
+      "sample_size": 10,
+      "analyzed_items": 10,
+      "random_patterns": [
+        "pattern_6765",
+        "pattern_6352",
+        "pattern_5176"
+      ],
+      "shuffle_applied": true
+    }
+  },
+  "random_analysis": {
+    "cycles_range": "2-4",
+    "actual_cycles": 2,
+    "shuffle_technique": "r&q_random_shuffle",
+    "reload_threshold": 0.51
+  }
+}
