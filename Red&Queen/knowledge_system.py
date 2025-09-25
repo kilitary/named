@@ -15,12 +15,13 @@ This system structures the rules in 4 steps as requested:
 Following patterns observed in playground simulation logs.
 """
 
-import random
 import time
+import os
 from typing import Dict, List, Tuple, Any, Optional
 from enum import Enum
 from dataclasses import dataclass
 from compact_evolution import CompactEvolutionSystem, CategoryType
+from rq_random_utils import get_rq_random, rq_randint, rq_shuffle, rq_hex_check, rq_cycles
 
 
 class KnowledgeStep(Enum):
@@ -64,6 +65,8 @@ class RedQueenKnowledgeSystem:
         )
         self.session_data = {}
         self.random_checks = []
+        # Initialize R&Q Random System (will print initialization info)
+        self.rq_random = get_rq_random()
         
     def make_we_knowledged(self, request: str) -> Dict[str, Any]:
         """
@@ -75,8 +78,8 @@ class RedQueenKnowledgeSystem:
         - Structures rules in 4 steps: load, analyze, reload at %51, output
         """
         
-        # Generate random check pattern like in simulation logs
-        random_check = ' '.join([f"{random.randint(0, 255):02X}" for _ in range(10)])
+        # Generate random check pattern using R&Q random system
+        random_check = rq_hex_check(10)
         self.random_checks.append(random_check)
         
         print(f"🔬 KNOWLEDGE SYSTEM ACTIVATION")
@@ -133,8 +136,8 @@ class RedQueenKnowledgeSystem:
         else:
             self.knowledge_state.data_buffer = [("empty", [])]
         
-        # Initial random shuffle following R&Q patterns
-        random.shuffle(self.knowledge_state.data_buffer)
+        # Initial R&Q random shuffle following R&Q patterns
+        rq_shuffle(self.knowledge_state.data_buffer)
         self.knowledge_state.shuffle_count += 1
         
         load_result = {
@@ -159,8 +162,8 @@ class RedQueenKnowledgeSystem:
         """
         self.knowledge_state.current_step = KnowledgeStep.ANALYZE
         
-        # Use random analyze cycles each random number in range 2 to 4 (from copilot instructions)
-        analyze_cycles = random.randint(2, 4)
+        # Use R&Q random analyze cycles each random number in range 2 to 4 (from copilot instructions)
+        analyze_cycles = rq_cycles(2, 4)
         self.knowledge_state.analyze_cycles = analyze_cycles
         
         print(f"🔍 Step 2: ANALYZE")
@@ -183,8 +186,8 @@ class RedQueenKnowledgeSystem:
                 self.knowledge_state.reload_triggered = True
                 # Continue analysis but mark for reload
             
-            # Random shuffle for each cycle (R&Q pattern)
-            random.shuffle(self.knowledge_state.data_buffer)
+            # R&Q random shuffle for each cycle (R&Q pattern)
+            rq_shuffle(self.knowledge_state.data_buffer)
             self.knowledge_state.shuffle_count += 1
             
             # Update progress to end of cycle
@@ -235,9 +238,9 @@ class RedQueenKnowledgeSystem:
         print(f"   ⚡ Executing reload at 51% threshold")
         
         # Apply intensive R&Q random shuffle during reload
-        reload_shuffles = random.randint(3, 7)  # Multiple shuffles for reload
+        reload_shuffles = rq_randint(3, 7)  # Multiple shuffles for reload
         for i in range(reload_shuffles):
-            random.shuffle(self.knowledge_state.data_buffer)
+            rq_shuffle(self.knowledge_state.data_buffer)
             self.knowledge_state.shuffle_count += 1
             print(f"     🔀 Reload shuffle {i+1}/{reload_shuffles}")
         

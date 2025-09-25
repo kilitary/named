@@ -10,6 +10,7 @@ and dimensional analysis for the 8 categories.
 from compact_evolution import CompactEvolutionSystem
 from mathematical_abstractions import MathematicalAbstractionEngine
 from knowledge_system import RedQueenKnowledgeSystem
+from rq_random_utils import get_rq_random
 import json
 import os
 
@@ -207,6 +208,13 @@ def demonstrate_knowledge_integration():
     print(f"  ✓ Compact Evolution System")
     print(f"  ✓ Mathematical Abstraction Engine")
     print(f"  ✓ Red&Queen Knowledge System")
+    
+    # Show R&Q Random System info
+    rq_system = get_rq_random()
+    rq_info = rq_system.get_system_info()
+    print(f"  ✓ R&Q Random System ({rq_info['seed_info']['type']})")
+    print(f"    Seed: {rq_info['seed_info']['seed']:08X}")
+    print(f"    Operations: {rq_info['operations_performed']}")
 
     # Test knowledge system with mathematical integration
     test_request = "optimize parallel memory processing with secure encryption algorithms"
