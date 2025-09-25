@@ -1,0 +1,95 @@
+{
+  "session_meta": {
+    "session_id": "playground_1758788237402170",
+    "start_time": "2025-09-25T08:17:17.402179",
+    "end_time": "2025-09-25T08:17:17.810544",
+    "duration_seconds": 0.408365,
+    "total_cycles": 4
+  },
+  "execution_summary": {
+    "phase_sequence": [
+      "LOAD",
+      "ANALYZE",
+      "RELOAD",
+      "OUTPUT"
+    ],
+    "reload_triggered_at": "51.0%",
+    "data_items_processed": 109,
+    "shuffle_operations": 5,
+    "final_progress": "75.0%"
+  },
+  "cycle_results": {
+    "cycle_1": {
+      "timestamp": "2025-09-25T08:17:17.408143",
+      "sample_size": 6,
+      "analyzed_items": 6,
+      "random_patterns": [
+        "pattern_4875",
+        "pattern_6086",
+        "pattern_8684"
+      ],
+      "shuffle_applied": true
+    },
+    "cycle_2": {
+      "timestamp": "2025-09-25T08:17:17.508593",
+      "sample_size": 7,
+      "analyzed_items": 7,
+      "random_patterns": [
+        "pattern_7229",
+        "pattern_3285",
+        "pattern_7617"
+      ],
+      "shuffle_applied": true
+    },
+    "post_reload_cycle_1": {
+      "timestamp": "2025-09-25T08:17:17.509195",
+      "sample_size": 10,
+      "analyzed_items": 10,
+      "random_patterns": [
+        "pattern_9206",
+        "pattern_5869",
+        "pattern_8779"
+      ],
+      "shuffle_applied": true
+    },
+    "post_reload_cycle_2": {
+      "timestamp": "2025-09-25T08:17:17.509362",
+      "sample_size": 10,
+      "analyzed_items": 10,
+      "random_patterns": [
+        "pattern_5641",
+        "pattern_9512",
+        "pattern_6286"
+      ],
+      "shuffle_applied": true
+    },
+    "cycle_3": {
+      "timestamp": "2025-09-25T08:17:17.609818",
+      "sample_size": 11,
+      "analyzed_items": 11,
+      "random_patterns": [
+        "pattern_2126",
+        "pattern_6164",
+        "pattern_6310"
+      ],
+      "shuffle_applied": true
+    },
+    "cycle_4": {
+      "timestamp": "2025-09-25T08:17:17.710308",
+      "sample_size": 14,
+      "analyzed_items": 14,
+      "random_patterns": [
+        "pattern_5952",
+        "pattern_6566",
+        "pattern_1599"
+      ],
+      "shuffle_applied": true
+    }
+  },
+  "random_analysis": {
+    "cycles_range": "2-4",
+    "actual_cycles": 4,
+    "shuffle_technique": "r&q_random_shuffle",
+    "reload_threshold": 0.51
+  }
+}
