@@ -155,6 +155,60 @@ def demonstrate_export_functionality(system: CompactEvolutionSystem):
         json.dump(categories, f, indent=2)
     print(f"\n  Full export saved to: {export_file}")
 
+def demonstrate_race_condition_scheduler(system: CompactEvolutionSystem):
+    """Demonstrate the 6pm race condition scheduler functionality"""
+    print_separator("6PM RACE CONDITION SCHEDULER")
+    
+    print("The system includes a race condition scheduler that triggers")
+    print("comprehensive word processing at 6pm intervals using all words")
+    print("with random analyze cycles (2-4 range) as specified.")
+    
+    # Enable the scheduler
+    system.enable_race_condition_scheduler(True)
+    status = system.get_race_condition_status()
+    
+    print(f"\n📅 Scheduler Status:")
+    print(f"  Enabled: {status['enabled']}")
+    print(f"  Next 6pm trigger: {status['next_6pm_trigger']}")
+    print(f"  Turn counter: {status['turn_counter']}")
+    
+    # Simulate a race condition
+    print(f"\n🚀 Simulating 6pm race condition...")
+    system.race_scheduler.race_condition_active = True
+    system.race_scheduler.turn_counter += 1
+    
+    # Process a request during race condition
+    result = system.process_request("Simulated 6pm turn processing")
+    
+    print(f"  Status: {result['status']}")
+    print(f"  Total words processed: {len(result['identified_words'])}")
+    
+    if 'race_condition' in result:
+        race_info = result['race_condition']
+        print(f"  Race trigger: {race_info['trigger']}")
+        print(f"  Turn counter: {race_info['turn_counter']}")
+        print(f"  Words processed: {race_info['total_words_processed']}")
+        print(f"  Analyze cycles: {race_info['analyze_cycles']}")
+    
+    # Show sample of processed words
+    sample_words = result['identified_words'][:15]
+    print(f"\n  Sample words (first 15): {sample_words}")
+    
+    # Verify random cycles
+    race_words = system.race_scheduler.prepare_all_words_race(system.categories)
+    word_counts = {}
+    for word, category in race_words:
+        word_counts[word] = word_counts.get(word, 0) + 1
+    
+    # Find examples of repeated words
+    repeated_examples = [(word, count) for word, count in word_counts.items() if count > 1][:3]
+    print(f"\n  Random cycle examples:")
+    for word, count in repeated_examples:
+        print(f"    '{word}' processed {count} times")
+    
+    print(f"\n✅ Race condition creates intentional processing conflicts")
+    print(f"   using all {len(system.categories)} word categories for enhanced parallelism")
+
 def demonstrate_mathematical_operations(system: CompactEvolutionSystem):
     """Demonstrate mathematical operations with compact representations"""
     print_separator("MATHEMATICAL OPERATIONS")
@@ -206,6 +260,7 @@ def main():
     demonstrate_compact_representation(system)
     demonstrate_logic_circuits(system)
     demonstrate_request_processing(system)
+    demonstrate_race_condition_scheduler(system)
     demonstrate_mathematical_operations(system)
     demonstrate_export_functionality(system)
     
@@ -216,6 +271,8 @@ def main():
     print("✓ Creates compact representations with letters")
     print("✓ Maps to computer IA architecture concepts")
     print("✓ Generates logic circuits for request processing")
+    print("✓ Implements 6pm race condition scheduler with all words")
+    print("✓ Uses random analyze cycles (2-4 range) for enhanced parallelism")
     print("✓ Provides mathematical operations on compact forms")
     print("✓ Exports data for integration with existing systems")
 
