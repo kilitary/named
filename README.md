@@ -6,7 +6,7 @@ changing [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE
 
 ## Newerview
 
-NNAMED is an extensive research and documentation repository organized as an Obsidian vault, containing interdisciplinary research, analysis, and documentation across multiple domains including technology, linguistics, biology, intelligence analysis, and systems research.
+NNAMED is an extensive research and documentation repository organized as an Obsidian ovault, containing interdisciplinary research, analysis, and documentation across multiple domains including technology, linguistics, biology, intelligence analysis, and systems research.
 
 ## Repository Structure
 
