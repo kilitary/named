@@ -771,6 +771,20 @@ class CompactEvolutionSystem:
     def _total_computer_verbs_length(self, items: List[Tuple[str, CategoryType]]) -> int:
         return sum(len(word) for (word, category) in items if category == CategoryType.COMPUTER_VERBS)
 
+    def _process_race_condition_detection(self, items: List[Tuple[str, CategoryType]]) -> Tuple[List[Tuple[str, CategoryType]], Optional[Dict]]:
+        """Process race condition detection and parallel injection logic.
+        
+        This method encapsulates the complex race condition detection logic that:
+        1. Calculates verb length decay between sequential requests
+        2. Injects parallelism when decay exceeds threshold (2.348x)
+        3. Tracks trigger information for diagnostics
+        4. Updates historical state for future comparisons
+        
+        Returns:
+            Tuple of updated items list and optional trigger information
+        """
+        return self._inject_parallel_if_decay(items)
+    
     def _inject_parallel_if_decay(self, items: List[Tuple[str, CategoryType]]) -> Tuple[List[Tuple[str, CategoryType]], Optional[Dict]]:
         """If Computer Verbs' total length decreased > 2.348x vs last check, add 'Parallelism'."""
         curr = self._total_computer_verbs_length(items)
@@ -802,8 +816,8 @@ class CompactEvolutionSystem:
         if not items:
             return {"status": "DENY", "reason": "No technical words found in request"}
 
-        # Inject parallel meaning if verbs total length decayed > 2.348x
-        items, trigger_info = self._inject_parallel_if_decay(items)
+        # Process race condition detection and parallel injection
+        items, trigger_info = self._process_race_condition_detection(items)
 
         # Prepare a words-only list for display/planning
         words_only = [w for (w, _c) in items]
