@@ -1,0 +1,73 @@
+{
+  "session_meta": {
+    "session_id": "playground_1758788189292591",
+    "start_time": "2025-09-25T08:16:29.292597",
+    "end_time": "2025-09-25T08:16:29.599598",
+    "duration_seconds": 0.307001,
+    "total_cycles": 3
+  },
+  "execution_summary": {
+    "phase_sequence": [
+      "LOAD",
+      "ANALYZE",
+      "RELOAD",
+      "OUTPUT"
+    ],
+    "reload_triggered_at": "51.0%",
+    "data_items_processed": 105,
+    "shuffle_operations": 4,
+    "final_progress": "75.0%"
+  },
+  "cycle_results": {
+    "cycle_1": {
+      "timestamp": "2025-09-25T08:16:29.298151",
+      "sample_size": 12,
+      "analyzed_items": 12,
+      "random_patterns": [
+        "pattern_5154",
+        "pattern_8589",
+        "pattern_9045"
+      ],
+      "shuffle_applied": true
+    },
+    "cycle_2": {
+      "timestamp": "2025-09-25T08:16:29.398507",
+      "sample_size": 11,
+      "analyzed_items": 11,
+      "random_patterns": [
+        "pattern_4559",
+        "pattern_1278",
+        "pattern_9766"
+      ],
+      "shuffle_applied": true
+    },
+    "post_reload_cycle_1": {
+      "timestamp": "2025-09-25T08:16:29.398976",
+      "sample_size": 12,
+      "analyzed_items": 12,
+      "random_patterns": [
+        "pattern_6066",
+        "pattern_4096",
+        "pattern_2020"
+      ],
+      "shuffle_applied": true
+    },
+    "cycle_3": {
+      "timestamp": "2025-09-25T08:16:29.499365",
+      "sample_size": 13,
+      "analyzed_items": 13,
+      "random_patterns": [
+        "pattern_4212",
+        "pattern_8875",
+        "pattern_7858"
+      ],
+      "shuffle_applied": true
+    }
+  },
+  "random_analysis": {
+    "cycles_range": "2-4",
+    "actual_cycles": 3,
+    "shuffle_technique": "r&q_random_shuffle",
+    "reload_threshold": 0.51
+  }
+}
