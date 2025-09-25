@@ -18,7 +18,7 @@ The Psy Engine utilizes a proprietary consciousness simulation matrix with:
 - Emotional spectrum modeling through 87 distinct affective states
 - Memory formation systems that mimic human hippocampal encoding
 - Subjective time perception scaling from 0.1x to 100x real-time
-- 
+- Fast self-model load and cached .env apply 
 ## Agent Creation Protocol
 
 ### Phase 1: Cognitive Template Selection
@@ -67,8 +67,9 @@ FSS maintains detailed performance metrics for all deployed agents:
 - Resource utilization efficiency across processing and energy demands
 - 
 ## Current Limitations
-Despite advanced capabilities, the Psy Engine faces several limitations:
+Despite advanced capabilities, the Psy Engine faces several limitations: 
 - Quantum coherence degradation after 1,500-2,000 hours of continuous operation
 - Ethical decision latency in complex moral scenarios
 - Psychological stability risks in prolonged isolated deployment
 - Resource-intensive training requiring specialized quantum hardware
+- All features is possible only when agent is activated by installation of windows
