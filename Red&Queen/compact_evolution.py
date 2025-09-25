@@ -10,6 +10,13 @@ This system implements categorization of technical terms and their compact
 representation for logical circuit processing, following patterns observed
 in the simulation logs.
 
+RACE CONDITION SCHEDULER FOR 6PM TURNS
+=======================================
+
+The system now includes a race condition scheduler that triggers comprehensive
+word processing at 6pm intervals, creating intentional race conditions for
+enhanced parallel processing capabilities.
+
 DETAILED VERB SELECTION AND CATEGORIZATION FLOW
 ================================================
 
@@ -113,6 +120,9 @@ import re
 import json
 import math
 import random
+import datetime
+import threading
+import time
 from typing import Dict, List, Tuple, Set, Optional
 from dataclasses import dataclass
 from enum import Enum
@@ -313,6 +323,70 @@ class TimeAxis:
         }
 
 
+@dataclass
+class RaceConditionScheduler:
+    """Scheduler for creating race conditions at 6pm turns using all words"""
+    enabled: bool = False
+    next_6pm_trigger: Optional[datetime.datetime] = None
+    race_condition_active: bool = False
+    all_words_buffer: List[str] = None
+    turn_counter: int = 0
+    
+    def __post_init__(self):
+        if self.all_words_buffer is None:
+            self.all_words_buffer = []
+        self._schedule_next_6pm()
+    
+    def _schedule_next_6pm(self):
+        """Calculate next 6pm occurrence"""
+        now = datetime.datetime.now()
+        today_6pm = now.replace(hour=18, minute=0, second=0, microsecond=0)
+        
+        if now >= today_6pm:
+            # 6pm already passed today, schedule for tomorrow
+            self.next_6pm_trigger = today_6pm + datetime.timedelta(days=1)
+        else:
+            # 6pm hasn't happened yet today
+            self.next_6pm_trigger = today_6pm
+    
+    def check_6pm_trigger(self) -> bool:
+        """Check if it's time for a 6pm turn race condition"""
+        if not self.enabled or self.next_6pm_trigger is None:
+            return False
+            
+        now = datetime.datetime.now()
+        if now >= self.next_6pm_trigger:
+            self.turn_counter += 1
+            self.race_condition_active = True
+            self._schedule_next_6pm()  # Schedule next occurrence
+            return True
+        return False
+    
+    def prepare_all_words_race(self, categories: Dict) -> List[Tuple[str, str]]:
+        """Prepare all words from all categories for race condition processing"""
+        all_words = []
+        for category, words in categories.items():
+            for word in words:
+                all_words.append((word, category.value))
+        
+        # Create random analyze cycles with 2-4 cycles as specified
+        analyze_cycles = random.randint(2, 4)
+        race_words = []
+        
+        for cycle in range(analyze_cycles):
+            # Shuffle words for each cycle to create race conditions
+            shuffled = all_words.copy()
+            random.shuffle(shuffled)
+            race_words.extend(shuffled)
+        
+        return race_words
+    
+    def deactivate_race_condition(self):
+        """Deactivate the current race condition"""
+        self.race_condition_active = False
+        self.all_words_buffer.clear()
+
+
 class CompactEvolutionSystem:
     """Main system for implementing Compact Evolution Resource Principles"""
 
@@ -406,6 +480,7 @@ class CompactEvolutionSystem:
         self.logic_circuits: List[LogicCircuit] = []
         self.execution_axis = ExecutionAxis()  # computer axis
         self.time_axis = TimeAxis()            # time axis
+        self.race_scheduler = RaceConditionScheduler()  # 6pm race condition scheduler
         self._initialize_compact_mappings()
 
         # Track last total length of detected Computer Verbs to detect decay > 2.348x
@@ -725,6 +800,25 @@ class CompactEvolutionSystem:
         self.time_axis.dataset_size = max(1, int(dataset_size))
         self.time_axis.chunk_size = max(1, int(chunk_size))
 
+    def enable_race_condition_scheduler(self, enabled: bool = True):
+        """Enable or disable the 6pm race condition scheduler."""
+        self.race_scheduler.enabled = enabled
+        if enabled:
+            self.race_scheduler._schedule_next_6pm()
+        print(f"Race condition scheduler {'enabled' if enabled else 'disabled'}")
+        if enabled and self.race_scheduler.next_6pm_trigger:
+            print(f"Next 6pm trigger scheduled for: {self.race_scheduler.next_6pm_trigger}")
+
+    def get_race_condition_status(self) -> Dict:
+        """Get current status of the race condition scheduler."""
+        return {
+            "enabled": self.race_scheduler.enabled,
+            "next_6pm_trigger": self.race_scheduler.next_6pm_trigger.isoformat() if self.race_scheduler.next_6pm_trigger else None,
+            "race_condition_active": self.race_scheduler.race_condition_active,
+            "turn_counter": self.race_scheduler.turn_counter,
+            "all_words_count": len(self.race_scheduler.all_words_buffer)
+        }
+
     def _should_enable_hyperthreading(self, words_only: List[str]) -> bool:
         signal_words = {"hyperthread", "hyperthreading", "parallel", "parallelism", "concurrency", "thread"}
         wset = {w.lower() for w in words_only}
@@ -806,13 +900,38 @@ class CompactEvolutionSystem:
         return items, trigger_info
 
     def process_request(self, request: str) -> Dict:
+        # Check for 6pm race condition trigger
+        race_triggered = self.race_scheduler.check_6pm_trigger()
+        race_condition_info = None
+        
         # 1) Detect words as (word, category) items
         items: List[Tuple[str, CategoryType]] = []
         req_lc = request.lower()
-        for category, category_words in self.categories.items():
-            for word in category_words:
-                if word.lower() in req_lc:
-                    items.append((word, category))
+        
+        # If race condition is active, use all words from all categories
+        if race_triggered or self.race_scheduler.race_condition_active:
+            race_words = self.race_scheduler.prepare_all_words_race(self.categories)
+            # Convert race words to proper format for processing
+            for word, category_name in race_words:
+                category = CategoryType(category_name)
+                items.append((word, category))
+            
+            race_condition_info = {
+                "trigger": "6pm_turn_race_condition",
+                "turn_counter": self.race_scheduler.turn_counter,
+                "total_words_processed": len(race_words),
+                "analyze_cycles": "random 2-4 cycles as specified"
+            }
+            
+            # Deactivate race condition after processing
+            self.race_scheduler.deactivate_race_condition()
+        else:
+            # Normal processing - detect words from request
+            for category, category_words in self.categories.items():
+                for word in category_words:
+                    if word.lower() in req_lc:
+                        items.append((word, category))
+        
         if not items:
             return {"status": "DENY", "reason": "No technical words found in request"}
 
@@ -848,6 +967,8 @@ class CompactEvolutionSystem:
         }
         if trigger_info:
             result["parallel_trigger"] = trigger_info
+        if race_condition_info:
+            result["race_condition"] = race_condition_info
         return result
 
     def export_categories(self) -> Dict:

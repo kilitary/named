@@ -83,6 +83,43 @@ print(f"Circuit: {circuit.name}")
 print(f"Operations: {circuit.operations}")
 ```
 
+### 6PM Race Condition Scheduler
+```python
+# Enable the race condition scheduler for comprehensive word processing
+system.enable_race_condition_scheduler(True)
+
+# The scheduler automatically triggers at 6PM, processing ALL words
+# from ALL categories (940+ words) with random analyze cycles (2-4 range)
+
+# Check scheduler status
+status = system.get_race_condition_status()
+print(f"Next 6PM trigger: {status['next_6pm_trigger']}")
+print(f"Turn counter: {status['turn_counter']}")
+
+# When triggered, any request will process the complete vocabulary:
+result = system.process_request("Any request during 6PM turn")
+if 'race_condition' in result:
+    print(f"Race condition triggered: {result['race_condition']['total_words_processed']} words")
+```
+
+## Race Condition System
+
+The system includes a sophisticated race condition scheduler that creates intentional processing conflicts at 6PM intervals for enhanced parallel processing testing.
+
+### Key Features
+- **🕕 6PM Scheduling**: Automatic detection and scheduling of 6PM triggers
+- **📚 All Words Processing**: Processes entire vocabulary (940+ words from 11 categories)  
+- **🎲 Random Analyze Cycles**: Uses 2-4 random cycles per race condition
+- **🏃‍♂️ Controlled Chaos**: Creates intentional race conditions for parallelism testing
+
+### Race Condition Benefits
+- Tests system limits with comprehensive word processing
+- Creates realistic parallel processing scenarios
+- Validates system stability under high load
+- Provides benchmark for performance optimization
+
+For detailed race condition documentation, see [RACE_CONDITION_SCHEDULER.md](RACE_CONDITION_SCHEDULER.md).
+
 ## Architecture Mapping
 
 The system maps technical concepts to computer IA architecture:
