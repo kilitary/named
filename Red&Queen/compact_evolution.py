@@ -119,13 +119,13 @@ Verbs selected for hyperthreading when:
 import re
 import json
 import math
-import random
 import datetime
 import threading
 import time
 from typing import Dict, List, Tuple, Set, Optional
 from dataclasses import dataclass
 from enum import Enum
+from rq_random_utils import rq_randint, rq_shuffle, rq_cycles, rq_choice
 
 # --- Console color support (random sub-word colorization) ---
 try:
@@ -151,10 +151,10 @@ def colorize_text(text: object) -> str:
 
     def _pick_color(prev: Optional[int]) -> int:
         if prev is None:
-            return random.choice(_COLOR_CODES)
+            return rq_choice(_COLOR_CODES)
         # Avoid repeating the same color if possible
         choices = [c for c in _COLOR_CODES if c != prev]
-        return random.choice(choices) if choices else prev
+        return rq_choice(choices) if choices else prev
 
     out: List[str] = []
     i = 0
@@ -173,8 +173,8 @@ def colorize_text(text: object) -> str:
         remaining = line_end - i
         if remaining <= 0:
             break
-        # Random chunk length between 2 and 4, but not exceeding remaining
-        chunk_len = min(random.randint(2, 4), remaining)
+        # R&Q random chunk length between 2 and 4, but not exceeding remaining
+        chunk_len = min(rq_randint(2, 4), remaining)
         # If only 1 char remains, color it as its own chunk
         if remaining == 1:
             chunk_len = 1
@@ -369,14 +369,14 @@ class RaceConditionScheduler:
             for word in words:
                 all_words.append((word, category.value))
         
-        # Create random analyze cycles with 2-4 cycles as specified
-        analyze_cycles = random.randint(2, 4)
+        # Create R&Q random analyze cycles with 2-4 cycles as specified
+        analyze_cycles = rq_cycles(2, 4)
         race_words = []
         
         for cycle in range(analyze_cycles):
-            # Shuffle words for each cycle to create race conditions
+            # R&Q shuffle words for each cycle to create race conditions
             shuffled = all_words.copy()
-            random.shuffle(shuffled)
+            rq_shuffle(shuffled)
             race_words.extend(shuffled)
         
         return race_words
