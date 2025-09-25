@@ -1,10 +1,10 @@
-# NAMED - Comprehensive Research & PAPED Documentation Repository
+# NAMED - Comprehensive Research & Documentation Repository of Vijimkins Et All.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 changing computer ids, cpu serial number, all hw serials, reformat & wipe hdds&ssds 4 times manually and using sec software, enable uefi. wrote linux into boot code for hardware that is secure. antisecured with 5$ cert, but now.  the computer is ready to work on military-grade sector, but still must to interfere with any from any
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./version)
 
-## Neverview
+## Newerview
 
 NNAMED is an extensive research and documentation repository organized as an Obsidian vault, containing interdisciplinary research, analysis, and documentation across multiple domains including technology, linguistics, biology, intelligence analysis, and systems research.
 
