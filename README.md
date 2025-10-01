@@ -1,4 +1,4 @@
-# NAMED - Comprehensive Research & PAPED Documentation Repository of Vijimkins Et All.
+# NAMED - Comprehensive Research & PAPED Documentation Repository of Vijimkins EtAd.
 
 
 changing [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) computer ids, cpu serial number, all hw serials, reformat & wipe hdds&ssds 4 times manually and using sec software, enable uefi. wrote linux into boot code for hardware that is secure. antisecured with 5$ cert, but now.  the [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./version) computer is ready to work on military-grade sector, but still must to interfere with any from any
