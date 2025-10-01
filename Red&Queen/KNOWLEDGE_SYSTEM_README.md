@@ -132,4 +132,4 @@ The system uses random analyze cycles each random number in range 2 to 4 as spec
 
 See `knowledge_system.py` for the complete demonstration and `enhanced_demo.py` for integration examples.
 
-The system generates output similar to the playground simulation logs while maintaining structured processing through the 4-step knowledge framework.
+The system generates output similar to the playground visualization of simulated environment, executed with custom parameters.

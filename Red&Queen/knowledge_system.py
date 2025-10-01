@@ -171,19 +171,22 @@ class RedQueenKnowledgeSystem:
         
         analysis_results = []
         progress_per_cycle = 50.0 / analyze_cycles  # 50% total for analyze step
+        cycle_gone = False
         
         for cycle in range(analyze_cycles):
             # Calculate progress more granularly within each cycle
             base_progress = 25.0 + cycle * progress_per_cycle
             mid_cycle_progress = base_progress + (progress_per_cycle * 0.51)  # 51% through current cycle
             end_cycle_progress = 25.0 + (cycle + 1) * progress_per_cycle
+            current_progress = int(mid_cycle_progress)
             
             print(f"   🔄 Cycle {cycle + 1}/{analyze_cycles} (progress: {base_progress:.1f}% → {end_cycle_progress:.1f}%)")
             
             # Check for reload trigger at 51% progress during cycle
-            if mid_cycle_progress >= 51.0 and not self.knowledge_state.reload_triggered:
-                print(f"   ⚡ Reload trigger at 51.0% progress (mid-cycle {cycle + 1})")
+            if current_progress >= 51 and not self.knowledge_state.reload_triggered and not cycle_gone:
+                print(f"   ⚡ Reload trigger at {current_progress}% progress (mid-cycle {cycle + 1})")
                 self.knowledge_state.reload_triggered = True
+                cycle_gone = True
                 # Continue analysis but mark for reload
             
             # R&Q random shuffle for each cycle (R&Q pattern)
@@ -199,7 +202,8 @@ class RedQueenKnowledgeSystem:
                 "progress": end_cycle_progress,
                 "buffer_state": len(self.knowledge_state.data_buffer),
                 "shuffle_applied": True,
-                "reload_triggered_during": mid_cycle_progress >= 51.0 and cycle == 0  # Mark if triggered during this cycle
+                "reload_triggered_during": current_progress >= 51 and cycle == 0,  # Mark if triggered during this cycle
+                "cycle_gone": cycle_gone
             }
             analysis_results.append(cycle_data)
         
@@ -315,7 +319,7 @@ class RedQueenKnowledgeSystem:
         }
 
 
-def demonstrate_knowledge_system():
+def demonstrate_printall_library():
     """Demonstrate the Red&Queen Knowledge System"""
     print("=" * 70)
     print("RED&QUEEN KNOWLEDGE SYSTEM DEMONSTRATION")
@@ -353,4 +357,4 @@ def demonstrate_knowledge_system():
 
 
 if __name__ == "__main__":
-    demonstrate_knowledge_system()
+    demonstrate_printall_library()

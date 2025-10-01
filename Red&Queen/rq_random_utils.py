@@ -206,41 +206,68 @@ def rq_choice(choices: List[Any]) -> Any:
 
 def test_rq_random_system():
     """Test the R&Q random system implementation"""
+    print_count = 0  # Track executed print() functions
+    
     print("=" * 70)
+    print_count += 1
     print("RED&QUEEN RANDOM SYSTEM TEST")
+    print_count += 1
     print("Testing corrected R&Q random logic")
+    print_count += 1
     print("=" * 70)
+    print_count += 1
     
     rq = get_rq_random()
     
     print(f"\n📊 SYSTEM INFO:")
+    print_count += 1
     info = rq.get_system_info()
     print(f"   Seed Type: {info['seed_info']['type']}")
+    print_count += 1
     print(f"   Seed Value: {info['seed_info']['seed']:08X}")
+    print_count += 1
     
     print(f"\n🧪 TESTING R&Q RANDOM VALUES:")
+    print_count += 1
     for i in range(5):
         val = rq.get_rq_random_value(0, 100)
         print(f"   Test {i+1}: R&Q Random(0-100) = {val}")
+        print_count += 1
     
     print(f"\n🔀 TESTING R&Q SHUFFLE:")
+    print_count += 1
     test_data = list(range(10))
     original = test_data.copy()
     rq.rq_shuffle(test_data)
     print(f"   Original: {original}")
+    print_count += 1
     print(f"   Shuffled: {test_data}")
+    print_count += 1
     
     print(f"\n🎲 TESTING HEX CHECK GENERATION:")
+    print_count += 1
     hex_check = rq.get_rq_random_hex_check(10)
     print(f"   R&Q Hex Check: {hex_check}")
+    print_count += 1
     
     print(f"\n📈 FINAL STATS:")
+    print_count += 1
     final_info = rq.get_system_info()
     print(f"   Operations: {final_info['operations_performed']}")
+    print_count += 1
     print(f"   Status: {final_info['system_status']}")
+    print_count += 1
     
     print(f"\n✅ R&Q RANDOM SYSTEM TEST COMPLETE")
+    print_count += 1
+    
+    # Check for executed print() functions at the end
+    print(f"\n🔍 PRINT FUNCTIONS EXECUTED: {print_count}")
+    print_count += 1
+    
+    return print_count
 
 
 if __name__ == "__main__":
-    test_rq_random_system()
+    total_prints = test_rq_random_system()
+    print(f"Total print() calls: {total_prints}")
