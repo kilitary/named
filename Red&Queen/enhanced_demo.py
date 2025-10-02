@@ -9,6 +9,8 @@ and dimensional analysis for the 8 categories.
 
 from compact_evolution import CompactEvolutionSystem
 from mathematical_abstractions import MathematicalAbstractionEngine
+from knowledge_system import RedQueenKnowledgeSystem
+from rq_random_utils import get_rq_random
 import json
 import os
 
@@ -190,6 +192,64 @@ def demonstrate_categorical_mathematics():
         print(f"  [DOMINANT] Dominant: {dim_names[max_dim_idx]} ({vec.dimensions[max_dim_idx]:.2f})")
 
 
+def demonstrate_knowledge_integration():
+    """Demonstrate integration of Knowledge System with existing components"""
+    print(f"\n" + "=" * 70)
+    print("KNOWLEDGE SYSTEM INTEGRATION")
+    print("4-Step Process: Load → Analyze → Reload @ 51% → Output")
+    print("=" * 70)
+
+    # Initialize systems
+    evolution_system = CompactEvolutionSystem()
+    math_engine = MathematicalAbstractionEngine(evolution_system)
+    knowledge_system = RedQueenKnowledgeSystem()
+
+    print(f"\n[INTEGRATION] SYSTEMS INITIALIZED:")
+    print(f"  ✓ Compact Evolution System")
+    print(f"  ✓ Mathematical Abstraction Engine")
+    print(f"  ✓ Red&Queen Knowledge System")
+    
+    # Show R&Q Random System info
+    rq_system = get_rq_random()
+    rq_info = rq_system.get_system_info()
+    print(f"  ✓ R&Q Random System ({rq_info['seed_info']['type']})")
+    print(f"    Seed: {rq_info['seed_info']['seed']:08X}")
+    print(f"    Operations: {rq_info['operations_performed']}")
+
+    # Test knowledge system with mathematical integration
+    test_request = "optimize parallel memory processing with secure encryption algorithms"
+    
+    print(f"\n[REQUEST] Processing: {test_request}")
+    print("-" * 50)
+    
+    # Process through knowledge system (includes compact evolution)
+    knowledge_result = knowledge_system.make_we_knowledged(test_request)
+    
+    # Get mathematical analysis if successful
+    if knowledge_result["status"] == "APPROVE":
+        # Extract words from the knowledge system processing
+        evolution_result = evolution_system.process_request(test_request)
+        if evolution_result["status"] == "APPROVE":
+            words = evolution_result["identified_words"]
+            math_analysis = math_engine.calculate_dimensional_evolution(words)
+            
+            print(f"\n[MATHEMATICS] DIMENSIONAL ANALYSIS:")
+            if 'error' not in math_analysis:
+                print(f"  Formula: {math_analysis['dimensional_formula']}")
+                print(f"  Magnitude: {math_analysis['magnitude']:.3f}")
+                print(f"  Dimensionality: {math_analysis['dimensionality']}")
+                print(f"  Categories: {[cat.value for cat in math_analysis['categories_involved']]}")
+    
+    # Display integration summary
+    print(f"\n[SUMMARY] KNOWLEDGE INTEGRATION:")
+    print(f"  Status: {knowledge_result['status']}")
+    print(f"  Steps Completed: {len(knowledge_result['steps'])}/4")
+    print(f"  Random Check: {knowledge_result['random_check']}")
+    print(f"  Total Shuffles: {knowledge_result['steps']['output']['summary']['total_shuffles']}")
+    
+    return knowledge_result
+
+
 def main():
     """Main demonstration function"""
     print("COMPACT EVOLUTION RESOURCE PRINCIPLES")
@@ -200,6 +260,7 @@ def main():
     test_enhanced_processing()
     demonstrate_categorical_mathematics()
     export_complete_analysis()
+    demonstrate_knowledge_integration()  # New integration demo
 
     print(f"\n" + "=" * 70)
     print("ENHANCED SYSTEM DEMONSTRATION COMPLETE")
@@ -210,6 +271,8 @@ def main():
     print("Information theory metrics (entropy, complexity) measured")
     print("Enhanced request processing with dimensional analysis")
     print("Complete mathematical framework for compact evolution")
+    print("✓ Red&Queen Knowledge System with 4-step process")
+    print("✓ Random analyze cycles (2-4) with R&Q shuffle patterns")
 
 
 if __name__ == "__main__":
