@@ -11,6 +11,20 @@ Repository-wide R&Q random system implementation following the corrected logic:
 4. Make a func for getting random value for entire repository using steps 2-3
 
 This module provides the corrected R&Q random system for the entire repository.
+
+Key Functions:
+--------------
+- get_rq_random(): Get global R&Q random system instance
+- getrandom(from, to): Simplified interface for getting random values
+- rq_randint(min, max): Get random integer using R&Q algorithm
+- rq_shuffle(list): Shuffle list using R&Q random
+- rq_hex_check(length): Generate hex check string
+- rq_cycles(min, max): Get random cycles for analysis
+
+Advanced Features:
+------------------
+- seed_from_sensor_data(sensor_dict): Seed using hardware sensor values
+- run_once(func, *args, **kwargs): Execute function only once
 """
 
 import random
@@ -31,6 +45,7 @@ class RQRandomSystem:
         """Initialize R&Q Random System with true random seed"""
         self._initialize_true_random_seed()
         self.operation_count = 0
+        self._run_once_executed = False
         
     def _initialize_true_random_seed(self):
         """
@@ -69,6 +84,79 @@ class RQRandomSystem:
             print(f"⚠️  R&Q Random System fallback initialization")
             print(f"   Reason: {e}")
             print(f"   Time-based seed: {fallback_seed:08X}")
+    
+    def seed_from_sensor_data(self, sensor_values: dict) -> None:
+        """
+        Seed the random system using sensor data for enhanced entropy
+        
+        This function accepts sensor values (like CPU temp, voltage, etc.)
+        and uses them to create additional entropy for the random system.
+        
+        Args:
+            sensor_values: Dictionary containing sensor data
+                          e.g., {'cpu_temp': 45.2, 'gpu_temp': 60.1, 'voltage_12v': 12.05}
+        
+        Example:
+            rq_system.seed_from_sensor_data({
+                'cpu_temp': 45.2,
+                'gpu_temp': 60.1,
+                'v12_voltage': 12.05,
+                'cpu_voltage': 1.35,
+                'power': 150.0
+            })
+        """
+        # Combine sensor values with XOR and bit shifting
+        entropy_value = 0
+        shift_amount = 0
+        
+        for key, value in sensor_values.items():
+            # Convert float values to integer representation
+            if isinstance(value, float):
+                int_value = int(value * 1000)  # Scale to preserve precision
+            else:
+                int_value = int(value)
+            
+            # XOR and shift operations
+            if shift_amount % 2 == 0:
+                entropy_value ^= (int_value << (shift_amount % 16))
+            else:
+                entropy_value ^= (int_value >> (shift_amount % 8))
+            
+            shift_amount += 1
+        
+        # Combine with OS entropy for maximum randomness
+        try:
+            os_bytes = os.urandom(4)
+            os_value = int.from_bytes(os_bytes, byteorder='big')
+            final_seed = entropy_value ^ os_value
+        except Exception:
+            final_seed = entropy_value
+        
+        # Reseed the random system
+        random.seed(final_seed)
+        
+        print(f"🔧 R&Q System reseeded with sensor data")
+        print(f"   Entropy from sensors: {entropy_value & 0xFFFFFFFF:08X}")
+        print(f"   Final seed: {final_seed & 0xFFFFFFFF:08X}")
+    
+    def run_once(self, func, *args, **kwargs):
+        """
+        Execute a function only once during the lifetime of this R&Q system
+        
+        Args:
+            func: Function to execute
+            *args: Positional arguments for the function
+            **kwargs: Keyword arguments for the function
+            
+        Returns:
+            Result of the function if first call, None if already executed
+        """
+        if not self._run_once_executed:
+            self._run_once_executed = True
+            return func(*args, **kwargs)
+        else:
+            print(f"   RunOnce: Function '{func.__name__}' already executed, skipping")
+            return None
     
     def get_rq_random_value(self, min_val: int = 0, max_val: int = 255) -> int:
         """
@@ -203,6 +291,26 @@ def rq_choice(choices: List[Any]) -> Any:
     index = get_rq_random().get_rq_random_value(0, len(choices) - 1)
     return choices[index]
 
+def getrandom(from_val: int, to_val: int) -> int:
+    """
+    Get random value in range using R&Q algorithm
+    
+    This is a simplified interface following common naming convention.
+    Uses the corrected R&Q random process with entropy seeding and skip algorithm.
+    
+    Args:
+        from_val: Minimum value (inclusive)
+        to_val: Maximum value (inclusive)
+        
+    Returns:
+        Random integer in range [from_val, to_val]
+        
+    Example:
+        >>> random_value = getrandom(1, 100)
+        >>> dice_roll = getrandom(1, 6)
+    """
+    return get_rq_random().get_rq_random_value(from_val, to_val)
+
 
 def test_rq_random_system():
     """Test the R&Q random system implementation"""
@@ -248,6 +356,45 @@ def test_rq_random_system():
     print_count += 1
     hex_check = rq.get_rq_random_hex_check(10)
     print(f"   R&Q Hex Check: {hex_check}")
+    print_count += 1
+    
+    # Test new getrandom function
+    print(f"\n🎯 TESTING getrandom(from, to):")
+    print_count += 1
+    for i in range(3):
+        val = getrandom(1, 100)
+        print(f"   getrandom(1, 100) = {val}")
+        print_count += 1
+    
+    # Test sensor data seeding
+    print(f"\n🔧 TESTING SENSOR DATA SEEDING:")
+    print_count += 1
+    sensor_data = {
+        'cpu_temp': 45.2,
+        'gpu_temp': 60.1,
+        'v12_voltage': 12.05,
+        'cpu_voltage': 1.35,
+        'power': 150.0
+    }
+    rq.seed_from_sensor_data(sensor_data)
+    print_count += 3  # Account for prints inside seed_from_sensor_data
+    
+    # Test RunOnce functionality
+    print(f"\n🔁 TESTING RunOnce:")
+    print_count += 1
+    
+    def test_func(msg):
+        print(f"   Executing test_func: {msg}")
+        return msg.upper()
+    
+    result1 = rq.run_once(test_func, "first call")
+    print_count += 1
+    print(f"   First call result: {result1}")
+    print_count += 1
+    
+    result2 = rq.run_once(test_func, "second call")
+    print_count += 1
+    print(f"   Second call result: {result2}")
     print_count += 1
     
     print(f"\n📈 FINAL STATS:")

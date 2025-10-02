@@ -133,3 +133,37 @@ The system uses random analyze cycles each random number in range 2 to 4 as spec
 See `knowledge_system.py` for the complete demonstration and `enhanced_demo.py` for integration examples.
 
 The system generates output similar to the playground visualization of simulated environment, executed with custom parameters.
+
+## R&Q Random System Functions
+
+The corrected R&Q random system provides several key functions:
+
+### Basic Functions
+- **`getrandom(from, to)`**: Simplified interface for getting random values
+  ```python
+  random_value = getrandom(1, 100)
+  dice_roll = getrandom(1, 6)
+  ```
+
+- **`rq_randint(min, max)`**: Get random integer using R&Q algorithm
+- **`rq_shuffle(list)`**: Shuffle list using R&Q random patterns
+- **`rq_hex_check(length)`**: Generate hex check strings for validation
+
+### Advanced Features
+- **`seed_from_sensor_data(sensor_dict)`**: Seed random system using hardware sensor values
+  ```python
+  rq_system.seed_from_sensor_data({
+      'cpu_temp': 45.2,
+      'gpu_temp': 60.1,
+      'v12_voltage': 12.05,
+      'cpu_voltage': 1.35,
+      'power': 150.0
+  })
+  ```
+
+- **`run_once(func, *args, **kwargs)`**: Execute a function only once during system lifetime
+  ```python
+  result = rq_system.run_once(initialization_func, param1, param2)
+  ```
+
+All functions use the corrected R&Q algorithm with OS entropy seeding and skip-based random generation.
