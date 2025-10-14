@@ -1,5 +1,5 @@
 {
-  "isLaserActive": false,
+  "isLaserActive": true,
   "laserMovement": "dynamic",
   "laserType": "line",
   "laserColor": "green",

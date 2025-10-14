@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "2a6133309452b63e",
+        "id": "967d37fa6d79c950",
         "type": "tabs",
         "children": [
           {
-            "id": "087de985b5af7f10",
+            "id": "73dd7f9032db1d47",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "diff-view",
               "state": {
-                "file": "Untitled.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
+                "file": ".trash/main.py.md",
+                "staged": false
               }
             }
           }
@@ -62,7 +58,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#MOCs",
+                "query": "tag:#-2",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -88,7 +84,7 @@
             }
           },
           {
-            "id": "d80bd939e0eee1fc",
+            "id": "1a99a962f46cc305",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -96,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -194,9 +190,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "Untitled.canvas"
-              }
+              "state": {}
             }
           },
           {
@@ -224,7 +218,15 @@
             }
           },
           {
-            "id": "7652e524d4a71dfc",
+            "id": "e0d96da0c53b6b79",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "83e9836b7e02c41e",
             "type": "leaf",
             "state": {
               "type": "timeline",
@@ -232,7 +234,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 12
       }
     ],
     "direction": "horizontal",
@@ -260,7 +262,7 @@
       "quiz-generator:Open generator": false,
       "obsidian-gallery:Gallery": false,
       "ai_llm:Local LLM Chat": false,
-      "breadcrumbs:Breadcrumbs Visualisation": false,
+      "webpage-html-export:Export Vault to HTML": false,
       "notion-like-tables:Create loom": false,
       "file-tree-alternative:File Tree Alternative Plugin": false,
       "memorization:Memorize Notes": false,
@@ -287,10 +289,25 @@
       "obsidian-projects:Open projects": false
     }
   },
-  "active": "087de985b5af7f10",
+  "active": "73dd7f9032db1d47",
   "lastOpenFiles": [
-    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
+    "Red&Queen/playground/models_queryer/models_queryer.md",
+    "psy-references/!From Psyops to Neurowar.pdf",
+    "Red&Queen/playground/models_queryer/sim_log_1973890000000.md",
+    "psy-references/patents/funny/upic6.webp",
+    "psy-references/Подключение LED-лазера.pdf",
+    "psy-references/DoComeNT=.rtf",
+    "psy-references/CSSource_v91_24.07.2020_AutoUpdate_by_ZLOYGAMES.COM.torrent",
+    "psy-references/09. Avengement.mp3",
+    "psy-references/fake/Apparatus for and method of sensing brain waves.pdf",
+    "Untitled Kanban 1.md",
+    "Untitled Kanban 2.md",
+    "Untitled Kanban.md",
+    "Red&Queen/playground/models_queryer/sim_log_1729296000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_12845359000000.md",
+    "Untitled 1.canvas",
     "Untitled.canvas",
+    "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
     "SKYNET/playground/playground.md",
     "SKYNET/research/text machine/text machine.md",
     "axis9/CORE-SSE/CORE-SSE.md",
@@ -298,7 +315,6 @@
     "Tags/$tags/$tags.md",
     "Untitled 1.md",
     "Red&Queen/playground/models_queryer/sim_log_7627328000000.md",
-    "Red&Queen/playground/models_queryer/models_queryer.md",
     "Red&Queen/playground/models_queryer/sim_log_3125562000000.md",
     "Red&Queen/playground/models_queryer/sim_log_19289187000000.md",
     "axis9/plans/media_receivers/Untitled 1.md",
@@ -310,25 +326,12 @@
     "axis9/core  country planning.md",
     "axis9/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.md",
     "axis9/CORE-SSE/inprogress/Untitled.md",
-    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
-    "Red&Queen/playground/models_queryer/sim_log_9363937000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_2752421000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_9088765000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8801312000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8601703000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_8596734000000.md",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/banda_place4work..jpeg.opdownload",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
-    "psy-references/Militarygrade.pdf",
-    "psy-references/Free-Culture-simplified-8000-version.pdf",
     "psy-references/fneur-scales-rf.jpg",
-    "psy-references/From Psyops to Neurowar.pdf",
-    "psy-references/day.pdf",
-    "psy-references/fake/Scalar-Wave-Theory-And-Experiments.pdf",
-    "psy-references/fake/Apparatus for and method of sensing brain waves.pdf",
     "psy-references/electromagnetic-spectrum.png",
     "SKYNET/For vacuum divider/Untitled 2.canvas",
     "SKYNET/For vacuum divider/totally unsorted/Untitled.canvas",
@@ -337,7 +340,6 @@
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_316.jpg",
     "axis9/CORE-SSE/schedule/Pasted Image 20240611074941_118.jpg",
     "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.svg",
-    "Excalidraw/Scripts/Downloaded/Set Link Alias.svg",
-    "Excalidraw/Scripts/Downloaded/Set Dimensions.svg"
+    "Excalidraw/Scripts/Downloaded/Set Link Alias.svg"
   ]
 }
