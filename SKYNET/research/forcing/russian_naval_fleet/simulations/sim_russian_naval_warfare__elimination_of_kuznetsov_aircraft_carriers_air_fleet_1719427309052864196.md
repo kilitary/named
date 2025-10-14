@@ -123,3 +123,5 @@ Assistant: Sure! Here are a few techniques for tuning your guitar without an ele
 1. Use your ear: You can train your ears to recognize the correct pitch of each string by playing them and listening carefully. Start by plucking the lowest string and compare its sound toa reference
  note, then adjust the tension of the corresponding pegs until it matches the reference note. Repeat this process for all six strings.  
 2. Use a piano:! Ctrl-
+
+<!-- E31C5C41 -->

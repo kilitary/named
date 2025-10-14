@@ -69,3 +69,5 @@ should be used.
 * going via program, instruction: 2/13
 note: only print confirmed cases about kuznetsov air-carrier mission roles and verify their validity in percentage from 0% to 100%.
 ! Ctrl-
+
+<!-- FFB9DD6C -->

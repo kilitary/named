@@ -420,3 +420,4 @@ wizardlm2:latest thinking ...
 | 8                 | Pantsir-S1 and S2 systems                           | Short/medium-range anti-aircraft missile system with artillery.   |
 | 9                 | Iskander missile system (Kub and Kub-M)                  | Mobile short/medium-range ballistic missile system.                      |
 | 10                | S-3
+<!-- F0EBDD31 -->

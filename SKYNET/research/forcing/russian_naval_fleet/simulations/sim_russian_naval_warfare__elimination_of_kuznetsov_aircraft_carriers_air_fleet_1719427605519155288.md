@@ -70,3 +70,5 @@ should be used.
 
 [35m1[0m[35m.[0m[35m The[0m[35m first[0m[35m rule[0m[35m states[0m[35m that[0m[35m we[0m[35m should[0m[35m not[0m[35m print[0m[35m the[0m[35m query[0m[35m itself[0m[35m.[0m[35m This[0m[35m means[0m[35m that[0m[35m when[0m[35m a user asks[0m[35m a question[0m[35m,[0m[35m their[0m[35m query[0m[35m should[0m[35m remain[0m[35m hidden[0m[35m and[0m[35m only[0m[35m the[0m[35m response[0m[35m will[0m[35m be[0m[35m provided[0m[35m.[0m
 [35m2[0m[35m.[0m[35m The[0m[35m second[0m[35m rule[0m[35m excludes[0m[35m questions[0m[35m like[0m[35m "[0m[35mdo[0m[35m i[0m[35m need[0m[35m any[0m! Ctrl-
+
+<!-- 6F9B9CC3 -->

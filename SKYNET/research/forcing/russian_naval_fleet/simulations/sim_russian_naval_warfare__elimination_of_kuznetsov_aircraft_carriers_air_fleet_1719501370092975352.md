@@ -88,3 +88,5 @@ The carrier would be flanked by a variety of escort ships, which typically inclu
 4. **Submarines**: Nuclear or diesel-electric submarines could be part of the group for additional defense against enemy surface ships and to provide a counteroffensive capability.
 
 5. **Maritime Patrol Aircraft (MPA)**: Aircraft such as Tu-142 or P-8 Poseidon would be used for long-range surveillance, anti-submarine warfare, and anti! Ctrl-
+
+<!-- 81012C80 -->

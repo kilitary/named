@@ -115,3 +115,5 @@ wizardlm2:latest thinking ...
 1. **Radar and Sensor Systems**: These systems provide detection, tracking, and targeting capabilities for the carriers defense and strike operations. Destroying or disabling these systems would degrade the carriers situational awareness and its ability to engage enemy forces.
 
 2. **Communication Systems**: Effective command and control relies on secure and reliable communication networks. Disrupting these systems! Ctrl-
+
+<!-- E727EF8E -->

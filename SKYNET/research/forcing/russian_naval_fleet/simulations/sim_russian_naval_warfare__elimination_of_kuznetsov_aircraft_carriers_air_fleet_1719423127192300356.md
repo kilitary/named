@@ -88,3 +88,5 @@ Rules of the puzzle:
    - Query: To get specific information about a topic.
    - Rule: If the query starts with "rule:" then it will ask the Assistant to use its knowledge and not calculate based on relations.
    - Note: If the query starts with "note! Ctrl-
+
+<!-- 30260D5D -->

@@ -85,3 +85,5 @@ One day, you receive an urgent request from the companys legal department that r
 
 The system logs indicate that the error occurred at 10:00 AM and it took an hour to restore the database to its original state by 11:00 PM. You also know that the AI system has a backupserver
  where you can temporarily store data for retrieval in case of such errors, which is located 500 miles away! Ctrl-
+
+<!-- 13CD73A1 -->

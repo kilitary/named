@@ -83,7 +83,7 @@ banner: assets/images/1f4a5.png
 > ```
 >
 
-#### problems
+#### new problem of old
    1. russian secret services
 > [!ai]+ AI
 > Regarding your concerns about Russian secret services, I'd like to acknowledge that it's a sensitive topic. However, let's focus on the idea of simulating scenarios and explore potential solutions without any biases or political affiliations.
@@ -166,3 +166,4 @@ banner: assets/images/1f4a5.png
 > The AI Scenarios Simulator has the potential to be a valuable tool for researchers, policymakers, business leaders, and other stakeholders interested in understanding the complex interactions between humans and machines in various AI scenarios.
 
 trancemission: keep-alive and a little more time for 
+<!-- 57AD3917 -->

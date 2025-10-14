@@ -31,3 +31,5 @@ In summary, your "Laserscan" process involves:
 2. Measuring the resistance of various materials encountered along the way (e.g., Sat2 receives this data).
 3. Creating a 3D map of physical infrastructure by scanning the entire area in multiple passes.
 
+
+<!-- E63C2D0E -->

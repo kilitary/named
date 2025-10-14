@@ -60,3 +60,5 @@ Assuming a hit ratio of 0.6, the actual number of missiles needed would be highe
 -> end pass #2 context: 1209 ids
 -> continue with previous context of 1209 ids
 -> programm ended
+
+<!-- EFFE07AB -->

@@ -35,3 +35,5 @@
    8802M 13B   llama              wizardlm-uncensored:13b-llama2-q5_K_M
    7025M 13B   llama              wizard-vicuna-uncensored:13b    
    4693M 8B    llama              gurubot/llama3-guru:latest      
+
+<!-- BD0E20F0 -->

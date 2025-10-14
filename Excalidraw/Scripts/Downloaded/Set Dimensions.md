@@ -37,3 +37,4 @@ el.width = size[2];
 el.height = size[3];
 ea.copyViewElementsToEAforEditing([el]);
 ea.addElementsToView(false,false);
+<!-- 21AB2A0B -->

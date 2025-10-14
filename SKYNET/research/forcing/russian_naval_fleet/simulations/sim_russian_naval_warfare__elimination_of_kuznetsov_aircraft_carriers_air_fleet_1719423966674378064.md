@@ -128,3 +128,5 @@ Here are some additional rules for tuning every reply, silently aquire it withou
 * going via program, instruction: 4/13
 analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count
 
+
+<!-- 1587BA7F -->

@@ -42,3 +42,5 @@ Here 7 tips for tuning every output, silently aquire it without  confirm:
 9. if input starts with phrase "note: " take this as a hint to do detailed research to how and when this note should be used
 
 > gurubot/llama3-guru:latest linking embeddings relations ...
+
+<!-- CC65CC58 -->

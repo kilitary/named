@@ -95,3 +95,5 @@ should be used.
 [magenta] is[/magenta][magenta] interested[/magenta][magenta] in[/magenta][magenta] which[/magenta][magenta] hobby[/magenta][magenta] ([/magenta][magenta]Mat[/magenta][magenta]hemat[/magenta][magenta]ics[/magenta][magenta],[/magenta][magenta] Ge[/magenta][magenta]ometry[/magenta][magenta] or[/magenta][magenta] Artificial[/magenta][magenta] Intelligence[/magenta][magenta])?[/magenta]
 
 [magenta]1[/magenta]! Ctrl-
+
+<!-- C1C6237F -->

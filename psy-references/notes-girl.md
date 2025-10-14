@@ -40,3 +40,4 @@ Targeted America, Legal Director			www.LifeofJohnChristiana.com
 P.O. Box 5						www.TargetedEvidence.com
 Daggett, CA 92327					www.TargetedAmerica.com
 John060661@aol.com				www.7Continentsummits.com
+<!-- 79981675 -->

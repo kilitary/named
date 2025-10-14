@@ -44,3 +44,5 @@ Responses should complain with these 2 rules, silently aquire it without  confir
 2. if input starts with phrase "note: " take this as a hint to do detailed research to how and when this note should be used
 
 ⅁ wizardlm-uncensored:13b-llama2-q5_K_M linking embeddings relations ...
+
+<!-- CD8DD822 -->

@@ -90,3 +90,4 @@ Admiral Kuznetsov Carrier Strike Group typically includes several types of vesse
 5. **Frigates and Guided Missile Boats**: These include the Amur-class (Gepard-class), serving as escort vessels to protect against submarines, mines, and other naval threats.
 
 6. **Supply Ships**: Essential for maintaining the operational capability of the fleet by providing fuel, ammunition, food supplies, and medical support
+<!-- 020AC59E -->

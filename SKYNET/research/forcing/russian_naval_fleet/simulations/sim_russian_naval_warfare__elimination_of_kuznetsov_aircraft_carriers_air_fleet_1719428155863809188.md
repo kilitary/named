@@ -147,3 +147,5 @@ should be used.
 [cyan]analyze admiral kuznetsov group ship formation, aircraft carrier defense, formation enter date technology ability, roles selected in the formation and it changes through time. print a markdown table. add column 'cavitation level' with ship cavitation using 'x' chars as a count
 [/cyan]
 [red]phi:latest[/red] thinking ...
+
+<!-- 3D53F2C8 -->

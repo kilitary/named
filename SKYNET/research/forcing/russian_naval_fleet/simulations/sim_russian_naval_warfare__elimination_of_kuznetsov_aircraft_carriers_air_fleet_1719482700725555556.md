@@ -131,3 +131,5 @@ Please note that the actual cavitation levels would depend on various factors, i
 | Replenishment Oiler        | Variable            | Logistics Support, Fuel and Provision Supply     | 2-3                   | Designed to provide at-sea replenishment to the carrier group.                              |
 | Anti-Aircraft Frigate    | Variable            | Close-In Weapon System (CIWS), Point Defense      | 4-6                   | Equipped with CIWS like the AK-630 or similar for point defense against incoming aircraft and missiles. |
 | Submarine                  | 2006+                | Anti-Surface Warfare, Intelligence Gathering    | N/A                  | Modern submarines like the Borei class are equipped with advanced sonar and anti-ship! Ctrl-
+
+<!-- 0ECBA2D0 -->

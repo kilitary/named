@@ -48,3 +48,4 @@ excalidraw-plugin:
 {"kanban-plugin":"basic","new-line-trigger":"enter","new-note-folder":"axis9","lane-width":242,"show-checkboxes":true,"tag-colors":[{"tagKey":"","color":"","backgroundColor":""},{"tagKey":"","color":"","backgroundColor":""}],"date-trigger":"@dt","time-trigger":"@tt","show-relative-date":true,"date-colors":[{"isToday":false,"distance":1,"unit":"days","direction":"after"}],"link-date-to-daily-note":true,"archive-with-date":true,"append-archive-date":true,"archive-date-separator":"^","date-picker-week-start":1,"new-card-insertion-method":"prepend-compact"}
 ```
 %%
+<!-- FE69B65E -->
