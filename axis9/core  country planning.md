@@ -1,6 +1,7 @@
 ---
 state: Drafting
 banner: assets/images/1f4ca.png
+sticker: emoji//1f4ab
 ---
 1. [ ] earn 200k in reserve  [created:: 2024-04-22]
 2. [ ] giveaway 50k  [created:: 2024-04-22]
