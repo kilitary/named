@@ -9,5 +9,6 @@
   "translucency": false,
   "baseFontSizeAction": true,
   "monospaceFontFamily": "Inter,Liberation Mono",
-  "showViewHeader": true
+  "showViewHeader": true,
+  "showRibbon": true
 }

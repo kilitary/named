@@ -33,6 +33,7 @@
     "fgh": "checkbox",
     "finished": "checkbox",
     "excalidraw-embeddable-theme": "text",
-    "title": "multitext"
+    "title": "multitext",
+    "sticker": "checkbox"
   }
 }

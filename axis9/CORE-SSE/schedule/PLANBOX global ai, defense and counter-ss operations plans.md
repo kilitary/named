@@ -10,7 +10,7 @@ excalidraw-plugin:
 ## experiments-ongoing
 
 - [ ] [ai scenarios simulator](../inprogress/ai%20scenarios%20simulator.md)
-- [ ] ir scanner
+- [ ] ir scanner  [id:: tn3loc]
 
 
 ## research

@@ -13,14 +13,25 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_11462406000000.md",
+                "file": "textgenerator/README.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
+          },
+          {
+            "id": "439d07021612da6f",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "psy-references/!From Psyops to Neurowar.pdf"
+              }
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -97,7 +108,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -196,7 +207,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_11734703000000.md"
+                "file": "psy-references/!From Psyops to Neurowar.pdf"
               }
             }
           },
@@ -241,7 +252,7 @@
             }
           }
         ],
-        "currentTab": 12
+        "currentTab": 9
       }
     ],
     "direction": "horizontal",
@@ -295,47 +306,47 @@
       "obsidian-projects:Open projects": false
     }
   },
-  "active": "85428a7b72a74fb7",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
-    "Red&Queen/playground/models_queryer/sim_log_10123656000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_11462406000000.md",
-    "logs/logs.md",
-    "Red&Queen/playground/models_queryer/sim_log_11066781000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_10988203000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_10614453000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_10545890000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_10661937000000.md",
-    "Excalidraw/Scripts/Downloaded/Repeat Elements.md",
-    "Excalidraw/Scripts/Downloaded/Set Dimensions.md",
-    "Excalidraw/Scripts/Downloaded/Text to Sticky Notes.md",
-    "Excalidraw/Scripts/Scripts.md",
-    "tmp/tmp.md",
-    "SKYNET/playground/arduino/arduino.md",
-    "team/team.md",
-    "Red&Queen/tmp/tmp.md",
+    "textgenerator/README.md",
+    "textgenerator/templates/huggingface/summarizeBART.md",
+    "textgenerator/templates/huggingface/completeTextBloom.md",
+    "textgenerator/templates/huggingface/classify-bart-large-mnli.md",
+    "textgenerator/textgenerator.md",
+    "indirect/smart-chats/smart-chats.md",
+    "indirect/looms/looms.md",
+    "indirect/garbage/garbage.md",
+    "Red&Queen/playground/models_queryer/sim_log_11734703000000.md",
+    "SKYNET/history Kanban.dll.md",
+    "SKYNET/technology.md",
+    "SKYNET/SKYNET.md",
+    "SKYNET/advisories/advisories.md",
+    "axis9/axis9.md",
+    "axis9/core  country planning.md",
+    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
+    "axis9/research/research.md",
+    "looms/Untitled 2.loom",
+    "looms/Untitled 1.loom",
+    "looms/README.md",
+    "looms/looms.md",
+    "Untitled.loom",
+    "Untitled.canvas",
+    "Vault.md",
+    "2024-06-12.md",
     "pozero2w/pozero2w.md",
+    "Red&Queen/playground/models_queryer/sim_log_11877656000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_6210328000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_11462406000000.md",
+    "Red&Queen/playground/models_queryer/sim_log_10123656000000.md",
     "tmp/mathematical_analysis_export.json",
     "tmp",
     "SKYNET/playground/arduino/scancore.c",
     "SKYNET/playground/arduino/scan.c",
     "SKYNET/playground/arduino",
-    "team/persons.md",
     "team",
     "Red&Queen/tmp/mathematical_analysis_export.json",
-    "Red&Queen/tmp",
-    "pozero2w/gpz.py",
-    "pozero2w",
-    "Excalidraw/README.md",
-    "BMO/README.md",
-    "BMO/Profiles/BMO.md",
-    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
-    "axis9/CORE-SSE/inprogress/inprogress.md",
-    "axis9/CORE-SSE/inprogress/Untitled.md",
-    "axis9/CORE-SSE/CORE-SSE.md",
-    "axis9/axis9.md",
     "psy-references/patents/funny/upic6.webp",
     "Untitled 1.canvas",
-    "Untitled.canvas",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
     "psy-references/banda_place4work..jpeg",
     "psy-references/fneur-scales-rf.jpg",
