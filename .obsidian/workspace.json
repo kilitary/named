@@ -99,7 +99,7 @@
             }
           },
           {
-            "id": "cde99737dddc0f01",
+            "id": "b886fe0bb25b7361",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -166,10 +166,10 @@
             "id": "39c4a2ab69f6d4cf",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -281,9 +281,19 @@
               "icon": "calendar-with-checkmark",
               "title": "Day Planner Timeline"
             }
+          },
+          {
+            "id": "58379a0e23263e38",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 9
+        "currentTab": 15
       }
     ],
     "direction": "horizontal",
@@ -331,13 +341,10 @@
       "obsidian-contacts:Contacts": false,
       "obsidian-projects:Open projects": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false,
-      "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "html-server:Turn Http Server Off": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "58379a0e23263e38",
   "lastOpenFiles": [
     "textgenerator/README.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
