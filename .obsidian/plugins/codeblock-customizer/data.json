@@ -239,8 +239,8 @@
         "displayCodeBlockIcon": false
       },
       "gutter": {
-        "highlightActiveLineNr": true,
-        "enableHighlight": true
+        "highlightActiveLineNr": false,
+        "enableHighlight": false
       },
       "inlineCode": {
         "enableInlineCodeStyling": false
@@ -257,66 +257,70 @@
     "colors": {
       "dark": {
         "codeblock": {
-          "activeLineColor": "--color-base-30",
-          "backgroundColor": "--code-background",
-          "highlightColor": "--text-highlight-bg",
-          "alternateHighlightColors": {},
+          "activeLineColor": "#073642",
+          "backgroundColor": "#002B36",
+          "highlightColor": "#054b5c",
+          "alternateHighlightColors": {
+            "debug": "#9622CA"
+          },
           "languageBorderColors": {}
         },
         "header": {
-          "backgroundColor": "--code-background",
-          "textColor": "--text-normal",
-          "lineColor": "--color-base-30",
-          "codeBlockLangTextColor": "--code-comment",
-          "codeBlockLangBackgroundColor": "--code-background"
+          "backgroundColor": "#0a4554",
+          "textColor": "#DADADA",
+          "lineColor": "#46cced",
+          "codeBlockLangTextColor": "#000000",
+          "codeBlockLangBackgroundColor": "#008080"
         },
         "gutter": {
-          "textColor": "--text-faint",
-          "backgroundColor": "--code-background",
-          "activeLineNrColor": "--text-muted"
+          "textColor": "#6c6c6c",
+          "backgroundColor": "#073642",
+          "activeLineNrColor": "#DADADA"
         },
         "inlineCode": {
-          "backgroundColor": "--code-background",
-          "textColor": "--code-normal"
+          "backgroundColor": "#054b5c",
+          "textColor": "#DADADA"
         },
-        "editorActiveLineColor": "--color-base-20",
+        "editorActiveLineColor": "#468eeb33",
         "languageSpecificColors": {}
       },
       "light": {
         "codeblock": {
-          "activeLineColor": "--color-base-30",
-          "backgroundColor": "--code-background",
-          "highlightColor": "--text-highlight-bg",
-          "alternateHighlightColors": {},
+          "activeLineColor": "#EDE8D6",
+          "backgroundColor": "#FCF6E4",
+          "highlightColor": "#E9DFBA",
+          "alternateHighlightColors": {
+            "debug": "#CECECE"
+          },
           "languageBorderColors": {}
         },
         "header": {
-          "backgroundColor": "--code-background",
-          "textColor": "--text-normal",
-          "lineColor": "--color-base-30",
-          "codeBlockLangTextColor": "--code-comment",
-          "codeBlockLangBackgroundColor": "--code-background"
+          "backgroundColor": "#D5CCB4",
+          "textColor": "#866704",
+          "lineColor": "#EDD489",
+          "codeBlockLangTextColor": "#C25F30",
+          "codeBlockLangBackgroundColor": "#B8B5AA"
         },
         "gutter": {
-          "textColor": "--text-faint",
-          "backgroundColor": "--code-background",
-          "activeLineNrColor": "--text-muted"
+          "textColor": "#6c6c6c",
+          "backgroundColor": "#EDE8D6",
+          "activeLineNrColor": "#866704"
         },
         "inlineCode": {
-          "backgroundColor": "--code-background",
-          "textColor": "--code-normal"
+          "backgroundColor": "#E9DFBA",
+          "textColor": "#866704"
         },
-        "editorActiveLineColor": "--color-base-20",
+        "editorActiveLineColor": "#60460633",
         "languageSpecificColors": {}
       }
     }
   },
-  "ThemeName": "Obsidian",
+  "ThemeName": "Solarized",
   "newThemeName": "",
   "alternateHighlightColorName": "",
   "languageBorderColorName": "",
   "foldAllCommand": false,
-  "settingsType": "basic",
+  "settingsType": "alternateHighlight",
   "langSpecificSettingsType": "",
   "languageSpecificLanguageName": ""
 }

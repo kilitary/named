@@ -1,5 +1,5 @@
 {
   "ollama_endpoint": "http://localhost:11434",
   "model": "llama3",
-  "botRole": "You are a helpful assistant providing detaile answers"
+  "botRole": "You are a helpful assistant providing detailers answers"
 }

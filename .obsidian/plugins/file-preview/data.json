@@ -2,8 +2,8 @@
   "showpreview": true,
   "lineClamp": 2,
   "indents": 0,
-  "previewcontentslength": "50",
-  "ispreview": false,
+  "previewcontentslength": "5",
+  "ispreview": true,
   "format": {
     "frontmatter": true,
     "bolditalic": true,
