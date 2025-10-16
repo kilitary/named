@@ -11,12 +11,12 @@
             "id": "439d07021612da6f",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "pdf",
               "state": {
-                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
+                "file": "psy-references/patents/unidentified/tracking/Sensing_Thousands_of_Visitors_Using_Radio_Frequenc.pdf"
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2024-04-22 02.17.36.excalidraw"
+              "icon": "lucide-file-text",
+              "title": "Sensing_Thousands_of_Visitors_Using_Radio_Frequenc"
             }
           }
         ],
@@ -109,7 +109,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -381,11 +381,18 @@
       "obsidian-contacts:Contacts": false,
       "obsidian-projects:Open projects": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "html-server:Turn Http Server Off": false,
+      "card-board:CardBoard": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false
     }
   },
-  "active": "4f2cbe85f003efd0",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
+    "psy-references/patents/unidentified/unidentified.md",
+    "psy-references/patents/stupidd/stupidd.md",
+    "psy-references/patents/funny/funny.md",
+    "psy-references/patents/fake/fake.md",
     "axis9/CORE-SSE/schedule/schedule.md",
     "textgenerator/README.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
@@ -412,10 +419,6 @@
     "Untitled.canvas",
     "Vault.md",
     "2024-06-12.md",
-    "pozero2w/pozero2w.md",
-    "Red&Queen/playground/models_queryer/sim_log_11877656000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_6210328000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_11462406000000.md",
     "tmp/mathematical_analysis_export.json",
     "tmp",
     "SKYNET/playground/arduino/scancore.c",
