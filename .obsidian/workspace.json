@@ -11,12 +11,15 @@
             "id": "439d07021612da6f",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "psy-references/!From Psyops to Neurowar.pdf"
+                "file": "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
               },
-              "icon": "lucide-file-text",
-              "title": "!From Psyops to Neurowar"
+              "icon": "lucide-file",
+              "title": "use obsidian as documene linkage for  private & public advisories"
             }
           }
         ],
@@ -99,7 +102,7 @@
             }
           },
           {
-            "id": "b886fe0bb25b7361",
+            "id": "6ced7d6ec14d62c4",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -109,7 +112,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -236,10 +239,10 @@
             "id": "2e219f2e1d692087",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -291,9 +294,19 @@
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
+          },
+          {
+            "id": "689584d993ef4d30",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 15
+        "currentTab": 16
       }
     ],
     "direction": "horizontal",
@@ -341,10 +354,13 @@
       "obsidian-contacts:Contacts": false,
       "obsidian-projects:Open projects": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false
+      "html-server:Turn Http Server Off": false,
+      "periodic-notes:Open today": false,
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "58379a0e23263e38",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
     "textgenerator/README.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
