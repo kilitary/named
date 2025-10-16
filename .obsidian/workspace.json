@@ -11,15 +11,12 @@
             "id": "439d07021612da6f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "axis9/plans/use obsidian as documene linkage for  private & public advisories.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
+                "file": "axis9/CORE-SSE/schedule/Drawing 2024-04-22 02.17.36.excalidraw.md"
               },
-              "icon": "lucide-file",
-              "title": "use obsidian as documene linkage for  private & public advisories"
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2024-04-22 02.17.36.excalidraw"
             }
           }
         ],
@@ -102,7 +99,7 @@
             }
           },
           {
-            "id": "51fba90bb9775f5a",
+            "id": "1b11855e7e2c32db",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -112,7 +109,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -299,10 +296,10 @@
             "id": "689584d993ef4d30",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -314,9 +311,19 @@
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
+          },
+          {
+            "id": "49914f04a540ecbe",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 17
+        "currentTab": 18
       }
     ],
     "direction": "horizontal",
@@ -369,8 +376,9 @@
       "map-of-content:Update Map of Content": false
     }
   },
-  "active": "48f69fb7f2a7e005",
+  "active": "5a6799ced38d70b3",
   "lastOpenFiles": [
+    "axis9/CORE-SSE/schedule/schedule.md",
     "textgenerator/README.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
     "textgenerator/templates/huggingface/completeTextBloom.md",
@@ -400,7 +408,6 @@
     "Red&Queen/playground/models_queryer/sim_log_11877656000000.md",
     "Red&Queen/playground/models_queryer/sim_log_6210328000000.md",
     "Red&Queen/playground/models_queryer/sim_log_11462406000000.md",
-    "Red&Queen/playground/models_queryer/sim_log_10123656000000.md",
     "tmp/mathematical_analysis_export.json",
     "tmp",
     "SKYNET/playground/arduino/scancore.c",
