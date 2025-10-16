@@ -99,7 +99,7 @@
             }
           },
           {
-            "id": "1b11855e7e2c32db",
+            "id": "4301abf2eaa7a4e8",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -109,7 +109,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -306,10 +306,10 @@
             "id": "48f69fb7f2a7e005",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -321,9 +321,19 @@
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
+          },
+          {
+            "id": "4f2cbe85f003efd0",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 18
+        "currentTab": 19
       }
     ],
     "direction": "horizontal",
@@ -371,12 +381,10 @@
       "obsidian-contacts:Contacts": false,
       "obsidian-projects:Open projects": false,
       "html-server:Turn Http Server On": false,
-      "html-server:Turn Http Server Off": false,
-      "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false
+      "html-server:Turn Http Server Off": false
     }
   },
-  "active": "5a6799ced38d70b3",
+  "active": "4f2cbe85f003efd0",
   "lastOpenFiles": [
     "axis9/CORE-SSE/schedule/schedule.md",
     "textgenerator/README.md",
