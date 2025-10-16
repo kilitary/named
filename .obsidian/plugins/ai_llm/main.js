@@ -530,14 +530,105 @@ __export(main_exports, {
   default: () => llmPlugin
 });
 module.exports = __toCommonJS(main_exports);
+var fs = __toESM(require("fs"));
 var import_obsidian = require("obsidian");
 var import_ollama_node = __toESM(require_ollama());
-var ollama = new import_ollama_node.Ollama();
+var absPath = app.vault.adapter.basePath;
+function readSettings(pluginId) {
+  const dataFilePath = `${absPath}/.obsidian/plugins/${pluginId}/data.json`;
+  try {
+    const fileContent = fs.readFileSync(dataFilePath, "utf-8");
+    const dataObject = JSON.parse(fileContent);
+    const endpoint = dataObject["ollama_endpoint"];
+    return endpoint;
+  } catch (error) {
+    new import_obsidian.Notice("Could not read data.json settings file");
+    new import_obsidian.Notice(
+      "Select a model within the settings tab and it will be created automatically"
+    );
+    return false;
+  }
+}
+var llm_endpoint = readSettings("ai_llm");
+if (llm_endpoint === false) {
+  llm_endpoint = "127.0.0.1";
+}
+async function checkConnection(passedEndpoint) {
+  const checkUrl = `http://${passedEndpoint}:11434/api/ps`;
+  let res;
+  try {
+    const req = await (0, import_obsidian.requestUrl)(checkUrl).then((dat) => {
+      return dat.status;
+    }).catch((e) => {
+      return false;
+    });
+    return req;
+  } catch (error) {
+    return false;
+  }
+}
+var ollama;
+try {
+  if (llm_endpoint !== false && llm_endpoint !== "127.0.0.1") {
+    try {
+      new import_obsidian.Notice(
+        `Ollama endpoint: ${llm_endpoint}, trying to initiate !`
+      );
+      checkConnection(llm_endpoint).then((data) => {
+        if (String(data) === "200" && String(data) !== "false") {
+          new import_obsidian.Notice(`Passed custom endpoint check: Success ! \u{1F973}`);
+          ollama = new import_ollama_node.Ollama(llm_endpoint);
+        } else {
+          if (String(data) === "false") {
+            new import_obsidian.Notice(
+              `Passed custom endpoint ${llm_endpoint} check: No, status ${data} \u{1F979}`
+            );
+            new import_obsidian.Notice(
+              `Initiating default endpoint instead, double check your custom endpoint \u{1F50E}`
+            );
+            ollama = new import_ollama_node.Ollama();
+          }
+        }
+      });
+    } catch (error) {
+      new import_obsidian.Notice(`Error: ${error} !`);
+    }
+  } else {
+    try {
+      checkConnection(llm_endpoint).then((data) => {
+        if (String(data) === "200" && String(data) !== "false") {
+          new import_obsidian.Notice(
+            `Passed ${llm_endpoint} endpoint check: Success ! \u{1F973}`
+          );
+          ollama = new import_ollama_node.Ollama(llm_endpoint);
+        }
+      }).catch((e) => {
+        new import_obsidian.Notice(`Error: ${e} !`);
+      });
+    } catch (error) {
+      new import_obsidian.Notice(`Error encountered: ${error} !`);
+    }
+  }
+} catch (e) {
+  new import_obsidian.Notice(`Error encountered: ${e} !`);
+}
 var DEFAULT_SETTINGS = {
-  ollama_endpoint: "http://localhost:11434/api/generate",
+  ollama_endpoint: "127.0.0.1",
   model: "tinyllama",
   botRole: "You are a helpful assistant providing only short answers"
 };
+async function reloadPlugin(plugin) {
+  const plugins = app.plugins;
+  const enabled = plugins.enabledPlugins;
+  enabled.forEach(async (element) => {
+    if (String(plugin) === String(element)) {
+      await plugins.disablePlugin(plugin);
+      new import_obsidian.Notice(`Llm plugin was disabled \u{1F642}\u{1F44D}\uFE0F!`);
+      await plugins.enablePlugin(plugin);
+      new import_obsidian.Notice(`Plugin was re-enabled. \u{1F4BB}\uFE0F!`);
+    }
+  });
+}
 async function streamingResponse(editor, set, userRequest, selection) {
   const llmSettings = set;
   const llmModel = llmSettings.model;
@@ -549,7 +640,9 @@ async function streamingResponse(editor, set, userRequest, selection) {
   const print = (word) => {
     editor.replaceSelection(word);
   };
-  await ollama.streamingGenerate(userRequest, print);
+  await ollama.streamingGenerate(userRequest, print).catch((e) => {
+    new import_obsidian.Notice(`Error ${e}`);
+  });
 }
 var VIEW_TYPE_EXAMPLE = "example-view";
 var ExampleView = class extends import_obsidian.ItemView {
@@ -684,8 +777,16 @@ var llmPlugin = class extends import_obsidian.Plugin {
       }
     );
     this.addCommand({
+      id: "reload-llm",
+      name: "Reload llm plugin",
+      callback: () => {
+        reloadPlugin("ai_llm");
+      },
+      hotkeys: []
+    });
+    this.addCommand({
       id: "send-request-to-llm",
-      name: "Ask Llm",
+      name: "Ask llm",
       editorCallback: (editor) => {
         const selection = editor.getSelection();
         const userRequest = selection;
@@ -764,13 +865,20 @@ var llmPlugin = class extends import_obsidian.Plugin {
   }
 };
 var llmSettingsTab = class extends import_obsidian.PluginSettingTab {
-  constructor(app, plugin, settings) {
-    super(app, plugin);
+  constructor(app2, plugin, settings) {
+    super(app2, plugin);
     this.plugin = plugin;
     this.settings = settings;
   }
-  display() {
+  async getModels() {
+    let modelList = await ollama.listModels().then((data) => {
+      return data.models;
+    });
+    return modelList;
+  }
+  async display() {
     const { containerEl } = this;
+    let modelOptions = await this.getModels();
     containerEl.empty();
     new import_obsidian.Setting(containerEl).setName("Ollama endpoint").setDesc("Ollama API URL").addText(
       (text) => text.setPlaceholder("Enter your endpoint url").setValue(this.plugin.settings.ollama_endpoint).onChange(async (value) => {
@@ -782,7 +890,11 @@ var llmSettingsTab = class extends import_obsidian.PluginSettingTab {
       new import_obsidian.Setting(containerEl).setName("LLM model").setDesc(
         "Choose a model, remember that you should download ollama and needed models first !"
       ).addDropdown((dropdown) => {
-        dropdown.addOption("tinyllama", "tinyllama").addOption("phi", "phi").addOption("orca-mini", "orca-mini").addOption("tinydolphin", "tinydolphin").addOption("samantha-mistral", "samantha-mistral").addOption("llama2", "llama2").addOption("llama3", "llama3").addOption("medllama2", "medllama2").setValue(this.settings.model).onChange(async (value) => {
+        dropdown;
+        modelOptions.forEach((model) => {
+          dropdown.addOption(model, model);
+        });
+        dropdown.setValue(this.settings.model).onChange(async (value) => {
           this.plugin.settings.model = value;
           await this.plugin.saveSettings();
         });
@@ -799,7 +911,10 @@ var llmSettingsTab = class extends import_obsidian.PluginSettingTab {
       new import_obsidian.Setting(containerEl).setName("LLM model").setDesc(
         "Choose a model, remember that you should download ollama and needed models first !"
       ).addDropdown((dropdown) => {
-        dropdown.addOption("tinyllama", "tinyllama").addOption("phi", "phi").addOption("orca-mini", "orca-mini").addOption("tinydolphin", "tinydolphin").addOption("samantha-mistral", "samantha-mistral").addOption("llama2", "llama2").addOption("llama3", "llama3").addOption("medllama2", "medllama2").setValue("tinyllama").onChange(async (value) => {
+        modelOptions.forEach((model) => {
+          dropdown.addOption(model, model);
+        });
+        dropdown.setValue(modelOptions[0]).onChange(async (value) => {
           this.plugin.settings.model = value;
           await this.plugin.saveSettings();
         });
@@ -817,3 +932,5 @@ var llmSettingsTab = class extends import_obsidian.PluginSettingTab {
     }
   }
 };
+
+/* nosourcemap */

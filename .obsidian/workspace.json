@@ -102,7 +102,7 @@
             }
           },
           {
-            "id": "6ced7d6ec14d62c4",
+            "id": "51fba90bb9775f5a",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -112,7 +112,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -289,10 +289,10 @@
             "id": "58379a0e23263e38",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -304,9 +304,19 @@
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
+          },
+          {
+            "id": "48f69fb7f2a7e005",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 16
+        "currentTab": 17
       }
     ],
     "direction": "horizontal",
@@ -356,11 +366,10 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "map-of-content:Update Map of Content": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "48f69fb7f2a7e005",
   "lastOpenFiles": [
     "textgenerator/README.md",
     "textgenerator/templates/huggingface/summarizeBART.md",
