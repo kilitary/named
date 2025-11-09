@@ -11,12 +11,15 @@
             "id": "439d07021612da6f",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "psy-references/patents/unidentified/tracking/Sensing_Thousands_of_Visitors_Using_Radio_Frequenc.pdf"
+                "file": "axis9/research/research.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
               },
-              "icon": "lucide-file-text",
-              "title": "Sensing_Thousands_of_Visitors_Using_Radio_Frequenc"
+              "icon": "lucide-file",
+              "title": "research"
             }
           }
         ],
@@ -99,7 +102,7 @@
             }
           },
           {
-            "id": "4301abf2eaa7a4e8",
+            "id": "7f8364c6b66e5972",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -109,7 +112,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -316,6 +319,26 @@
             "id": "49914f04a540ecbe",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "4f2cbe85f003efd0",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "aa0b3ab215c0d379",
+            "type": "leaf",
+            "state": {
               "type": "graph-analysis",
               "state": {},
               "icon": "GA-ICON",
@@ -323,7 +346,7 @@
             }
           },
           {
-            "id": "4f2cbe85f003efd0",
+            "id": "952b23cecf7360bc",
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
@@ -333,7 +356,7 @@
             }
           }
         ],
-        "currentTab": 19
+        "currentTab": 14
       }
     ],
     "direction": "horizontal",
@@ -382,12 +405,12 @@
       "obsidian-projects:Open projects": false,
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
-      "card-board:CardBoard": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
     "psy-references/patents/unidentified/unidentified.md",
     "psy-references/patents/stupidd/stupidd.md",

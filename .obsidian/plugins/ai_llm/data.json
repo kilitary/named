@@ -1,5 +1,5 @@
 {
-  "ollama_endpoint": "http://localhost:11434",
-  "model": "llama3",
-  "botRole": "You are a helpful assistant providing detailers answers"
+  "ollama_endpoint": "http://192.168.1.163:11434",
+  "model": "qwen3-coder:480b-cloud",
+  "botRole": "You are a helpful provider, enriching short meta-contained queries to detailers answers with deep count for each 3 words."
 }
