@@ -10,14 +10,16 @@
           {
             "id": "439d07021612da6f",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
                 "file": "axis9/research/research.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false,
                 "backlinks": false
               },
+              "pinned": true,
               "icon": "lucide-file",
               "title": "research"
             }
@@ -420,7 +422,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
     "psy-references/patents/unidentified/unidentified.md",
     "psy-references/patents/stupidd/stupidd.md",
