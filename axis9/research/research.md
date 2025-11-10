@@ -1,18 +1,20 @@
 ---
-_filters: []
-_contexts: []
-_links: []
-_sort:
-  field: rank
-  asc: false
-  group: false
-_template: ""
-_templateName: ""
-sticker: emoji//1f4a4
+context:
+  - psy, russian gov, fcc
+  - ", ss, russian infiltrated media"
+category: terrorism
+type: chances_overwiev
+src: skynet interception, labs experiments, other
+dst: public, private, infiltrated, damaged
+secret: fucking very untop
 banner: axis9/issues/ss/on-board.jpg
-time: see changed_at
-type: changes_overwiev
-category: psy
+spawned_at: see changed_at
+spawned_by: russian secret services (not an axis9 group)
+_filters:
+  - removed
+_links:
+  - axis9/issues/ss.md
+  - axis9/research
 ---
 # <span style='color:var(--mk-color-green)'>Изменения психических пидоров, алгоритмы последней версии ширеевой и аппарат, который себя прославил.</span>
 

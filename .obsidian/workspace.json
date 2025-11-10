@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "axis9/research/research.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false,
                 "backlinks": false
               },
@@ -420,7 +420,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
     "psy-references/patents/unidentified/unidentified.md",
     "psy-references/patents/stupidd/stupidd.md",
