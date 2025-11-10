@@ -23,8 +23,22 @@
               "icon": "lucide-file",
               "title": "research"
             }
+          },
+          {
+            "id": "451b7bdbc3d73d8d",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian/workspace.json",
+                "staged": false
+              },
+              "icon": "git-pull-request",
+              "title": "Diff View (workspace.json)"
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -442,7 +456,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "451b7bdbc3d73d8d",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",
