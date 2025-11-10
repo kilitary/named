@@ -4,7 +4,7 @@ context:
   - ", ss, russian infiltrated media"
 category: terrorism
 type: chances_overwiev
-src: skynet interception, labs experiments, other
+src: skynet interception, labs experiments, r&q simulations, other, other distant
 dst: public, private, infiltrated, damaged
 secret: fucking very untop
 banner: axis9/issues/ss/on-board.jpg
