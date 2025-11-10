@@ -14,7 +14,7 @@ model: gurubot/llama3-guru:latest
 temperature: 0.01
 completed: "false"
 math: not needed
-prompt:
+prompt: counter terrorism technology in aiss
 destination: be legal, unload notes, defeat terror rules
 down_model: скорецки
 banner: assets/images/1f4a5.png
