@@ -30,16 +30,17 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "axis9/CORE-SSE/notes.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "notes"
+              "title": "README"
             }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -437,7 +438,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "2b5ea9a9af40b8e3",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",
