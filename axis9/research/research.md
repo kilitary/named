@@ -70,6 +70,7 @@ This specification defines two patterns of content negotiation that
    specific) requests based on the user agent characteristics, and
    "Transparent Content Negotiation" ([[RFC2295](https://www.rfc-editor.org/rfc/rfc2295 "\"Transparent Content Negotiation in HTTP\"")]), where content
 ...
+[RFC 7231](https://www.rfc-editor.org/rfc/rfc7231)             HTTP/1.1 Semantics and Content            June 2014
 
 
 Кстати, про мамку (ту что путин и его высшие чины ебали лично отобранными принцем собаками). Продолжают пытать организм моей мамки. Ну что тут можно сказать если путин себя слил тем что он знает? Слова я думаю подберут гденибудь в организованной стране а не зоновском лагере, где пытать 80-летнюю русскую женщину физически и морально, при этом весело давать знать об этом, являясь первым лицом государства. 
