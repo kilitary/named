@@ -40,7 +40,6 @@
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -438,7 +437,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "2b5ea9a9af40b8e3",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",
