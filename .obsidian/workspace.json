@@ -23,8 +23,22 @@
               "icon": "lucide-file",
               "title": "research"
             }
+          },
+          {
+            "id": "b84d36e4f99f4288",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".makemd/fileCache.mdc",
+                "staged": false
+              },
+              "icon": "git-pull-request",
+              "title": "Diff View (fileCache.mdc)"
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -442,7 +456,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "b84d36e4f99f4288",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",
