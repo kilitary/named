@@ -28,13 +28,15 @@
             "id": "b84d36e4f99f4288",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": ".makemd/fileCache.mdc",
-                "staged": false
+                "file": "README.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": false
               },
-              "icon": "git-pull-request",
-              "title": "Diff View (fileCache.mdc)"
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
         ],
@@ -456,7 +458,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "b84d36e4f99f4288",
+  "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",

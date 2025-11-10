@@ -3,16 +3,16 @@
 
 changing [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) computer ids, cpu serial number, all hw serials, reformat & wipe hdds&ssds 4 times manually and using sec software, enable uefi. wrote linux into boot code for hardware that is secure. antisecured with 5$ cert, but now.  the [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./version) computer is ready to work on military-grade sector, but still must to interfere with any from any
 
+#### Alwaysview - обновляриусы видимо будут постоянно по пятницам. здесь самое свежее инфо о массовых преступлениях секретных служб россии и высшего руководства страны в отношении своих граждан.
+
+залита свежая придуманная мною в психтропических наркотиках информационария, расширенная деталириусами: https://github.com/kilitary/named/blob/main/axis9/research/research.md
+просьба проверить уровень биполярки при чтении
+спасибо.
 
 ## Newerview
 
 NNAMED is an extensive research and documentation repository organized as an Obsidian ovault, containing interdisciplinary research, analysis, and documentation across multiple domains including technology, linguistics, biology, intelligence analysis, and systems research.
 
-## Alwaysview
-
-залита свежая придуманная мною в психтропических наркотиках информационная хуйня: https://github.com/kilitary/named/blob/main/axis9/research/research.md
-просьба проверить уровень биполярки при чтении
-спасибо.
 
 ## Repository Structure
 
