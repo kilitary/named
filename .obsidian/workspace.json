@@ -15,7 +15,7 @@
               "type": "markdown",
               "state": {
                 "file": "axis9/research/research.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false,
                 "backlinks": false
               },
@@ -104,7 +104,7 @@
             }
           },
           {
-            "id": "6e3c27ac33773740",
+            "id": "348d247ae2984b0b",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -361,10 +361,10 @@
             "id": "cba424869dbb3c3a",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -376,9 +376,19 @@
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
+          },
+          {
+            "id": "7c12f86fcd91772f",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 23
+        "currentTab": 24
       }
     ],
     "direction": "horizontal",

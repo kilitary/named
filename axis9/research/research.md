@@ -15,6 +15,13 @@ _filters:
 _links:
   - axis9/issues/ss.md
   - axis9/research
+temperature: 0.3
+result: gems revealed, technology leakage, gov reputation lost, ss redeploys, fcc rewrites
+title:
+  - underground idiots
+author: kilitary@gmail.com
+completed: 53%
+prompt: psy technology killers in russia in detail
 ---
 # <span style='color:var(--mk-color-green)'>Изменения психических пидоров, алгоритмы последней версии ширеевой и аппарат, который себя прославил.</span>
 
