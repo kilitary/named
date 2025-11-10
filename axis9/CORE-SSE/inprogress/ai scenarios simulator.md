@@ -87,7 +87,7 @@ banner: assets/images/1f4a5.png
    1. russian secret services
 > [!ai]+ AI
 > Regarding your concerns about Russian secret services, I'd like to acknowledge that it's a sensitive topic. However, let's focus on the idea of simulating scenarios and explore potential solutions without any biases or political affiliations.
-> Here are some possible AI-related scenarios for simulation:
+> Here are some 3 possible AI-related scenarios for simulation:
 > 1. **Terrorism Detection**: Develop an AI-powered system to detect and prevent terrorist attacks by analyzing patterns in social media activity, flight bookings, and other indicators.
 > 2. **Note Encryption**: Create a secure note-taking app that uses advanced encryption methods to protect sensitive information from unauthorized access.
 > 3. 
