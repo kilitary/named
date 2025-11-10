@@ -55,6 +55,22 @@ prompt: psy technology killers in russia in detail
 
 Увеличили вероятность словесного пиздежа группы "прости *", прости меня, ну ты меня простиш, ты простиш и прочая хуйня подкрепленная иисусными контекстами, лишний раз показывающая истинное предназначение этой машины: убийство любой им не подконтрольно активности любыми средствами. 
 
+[3.4](https://www.rfc-editor.org/rfc/rfc7231#section-3.4).  Content Negotiation
+Fielding & Reschke           Standards Track                   [Page 18]
+...
+This specification defines two patterns of content negotiation that
+   can be made visible within the protocol: "proactive", where the
+   server selects the representation based upon the user agent's stated
+   preferences, and "reactive" negotiation, where the server provides a
+   list of representations for the user agent to choose from.  Other
+   patterns of content negotiation include "conditional content", where
+   the representation consists of multiple parts that are selectively
+   rendered based on user agent parameters, "active content", where the
+   representation contains a script that makes additional (more
+   specific) requests based on the user agent characteristics, and
+   "Transparent Content Negotiation" ([[RFC2295](https://www.rfc-editor.org/rfc/rfc2295 "\"Transparent Content Negotiation in HTTP\"")]), where content
+...
+
 
 Кстати, про мамку (ту что путин и его высшие чины ебали лично отобранными принцем собаками). Продолжают пытать организм моей мамки. Ну что тут можно сказать если путин себя слил тем что он знает? Слова я думаю подберут гденибудь в организованной стране а не зоновском лагере, где пытать 80-летнюю русскую женщину физически и морально, при этом весело давать знать об этом, являясь первым лицом государства. 
 
