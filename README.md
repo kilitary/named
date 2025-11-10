@@ -8,6 +8,12 @@ changing [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE
 
 NNAMED is an extensive research and documentation repository organized as an Obsidian ovault, containing interdisciplinary research, analysis, and documentation across multiple domains including technology, linguistics, biology, intelligence analysis, and systems research.
 
+## Alwaysview
+
+залита свежая придуманная мною в психтропических наркотиках информационная хуйня: https://github.com/kilitary/named/blob/main/axis9/research/research.md
+просьба проверить уровень биполярки при чтении
+спасибо.
+
 ## Repository Structure
 
 ### Core Sections
