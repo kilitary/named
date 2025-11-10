@@ -20,7 +20,7 @@ result: gems revealed, technology leakage, gov reputation lost, ss redeploys, fc
 title:
   - underground idiots
 author: kilitary@gmail.com
-completed: 53%
+completed: 54%
 prompt: psy technology killers in russia in detail
 ---
 # <span style='color:var(--mk-color-green)'>Изменения психических пидоров, алгоритмы последней версии ширеевой и аппарат, который себя прославил.</span>
