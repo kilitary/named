@@ -23,8 +23,22 @@
               "icon": "lucide-file",
               "title": "research"
             }
+          },
+          {
+            "id": "c83837c2b4729c72",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".makemd/fileCache.mdc",
+                "staged": false
+              },
+              "icon": "git-pull-request",
+              "title": "Diff View (fileCache.mdc)"
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -104,7 +118,7 @@
             }
           },
           {
-            "id": "200e959738b8b9af",
+            "id": "9c2a8340f2796d67",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -381,10 +395,10 @@
             "id": "7c12f86fcd91772f",
             "type": "leaf",
             "state": {
-              "type": "graph-analysis",
+              "type": "empty",
               "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -396,9 +410,19 @@
               "icon": "GA-ICON",
               "title": "Graph Analysis"
             }
+          },
+          {
+            "id": "23ab02a5163a6179",
+            "type": "leaf",
+            "state": {
+              "type": "graph-analysis",
+              "state": {},
+              "icon": "GA-ICON",
+              "title": "Graph Analysis"
+            }
           }
         ],
-        "currentTab": 25
+        "currentTab": 26
       }
     ],
     "direction": "horizontal",
@@ -452,7 +476,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "c83837c2b4729c72",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",

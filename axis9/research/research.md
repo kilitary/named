@@ -22,6 +22,7 @@ title:
 author: kilitary@gmail.com
 completed: 54%
 prompt: psy technology killers in russia in detail
+sticker: lucide//fuel
 ---
 # <span style='color:var(--mk-color-green)'>Изменения психических пидоров, алгоритмы последней версии ширеевой и аппарат, который себя прославил.</span>
 
