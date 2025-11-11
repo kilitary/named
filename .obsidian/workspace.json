@@ -15,7 +15,7 @@
               "type": "markdown",
               "state": {
                 "file": "axis9/research/research.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false,
                 "backlinks": false
               },
@@ -40,7 +40,6 @@
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -458,7 +457,7 @@
       "card-board:CardBoard": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
     "axis9/CORE-SSE/notes.md",
     "notes/notes.md",
