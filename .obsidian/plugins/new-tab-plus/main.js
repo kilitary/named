@@ -35,95 +35,116 @@ var DEFAULT_SETTINGS = {
 var NewTabPlusPlugin = class extends import_obsidian.Plugin {
   constructor() {
     super(...arguments);
-    this.previousFrameOpenLeaves = Array();
-    this.previousFrameFilePaths = Array();
-    this.nextFrameOpenLeaves = Array();
-    this.nextFrameFilePaths = Array();
-    this.fileHandled = false;
-    this.onClickEvent = async () => {
-      this.fileHandled = false;
-      this.previousFrameOpenLeaves = this.getCurrentTabs();
-      this.previousFrameFilePaths = await this.getCurrentElementsInTabs(this.previousFrameOpenLeaves);
+    this.valideTypes = /* @__PURE__ */ new Set(["markdown", "graph", "canvas", "image", "video", "audio", "pdf"]);
+    this.prevOpenTabs = [];
+    this.prevTabFilePaths = [];
+    this.newOpenTabs = [];
+    this.newTabFilePaths = [];
+    this.isFileProcessed = false;
+    this.onClickEvent = (event) => {
+      this.isFileProcessed = false;
+      this.prevOpenTabs = this.getOpenTabs();
+      this.prevTabFilePaths = this.getFilePathsFromTabs(this.prevOpenTabs);
+      this.prevActiveTab = this.findActiveTab(this.prevOpenTabs);
     };
-    this.getCurrentTabs = () => {
+    this.getOpenTabs = () => {
       const leaves = [];
       this.app.workspace.iterateAllLeaves((leaf) => {
-        if (leaf.view.getViewType() == "markdown" || leaf.view.getViewType() == "graph" || leaf.view.getViewType() == "canvas" || leaf.view.getViewType() == "image") {
+        if (this.valideTypes.has(leaf.view.getViewType())) {
           leaves.push(leaf);
         }
       });
       return leaves;
     };
-    this.getCurrentElementsInTabs = (leaves) => {
+    this.getFilePathsFromTabs = (leaves) => {
       return leaves.map((leaf) => {
         if (leaf.view instanceof import_obsidian.FileView) {
           return leaf.view.file.path;
         }
-        return leaf.view;
+        return leaf.view.getState().file;
       });
     };
-    this.deleteFile = async () => {
-      this.fileHandled = true;
-    };
-    this.fileHandler = () => {
+    this.findActiveTab = (tabs) => {
       var _a;
-      if (this.fileHandled)
+      const activeFile = (_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path;
+      return tabs.find((leaf) => {
+        var _a2;
+        return ((_a2 = leaf.view.getState()) == null ? void 0 : _a2.file) === activeFile;
+      });
+    };
+    this.findLastFile = () => {
+      var _a;
+      const activeFile = (_a = this.app.workspace.getActiveFile()) == null ? void 0 : _a.path;
+      const index = this.newOpenTabs.findLastIndex((leaf) => {
+        var _a2;
+        return ((_a2 = leaf.view.getState()) == null ? void 0 : _a2.file) === activeFile;
+      });
+      return this.newOpenTabs[index];
+    };
+    this.markFileAsDeleted = async () => {
+      this.isFileProcessed = true;
+    };
+    this.handleFileOpen = (file) => {
+      var _a;
+      if (this.isFileProcessed)
         return;
-      if (this.previousFrameOpenLeaves.length === 0)
+      this.isFileProcessed = true;
+      if (this.prevOpenTabs.length === 0)
         return;
-      this.fileHandled = true;
-      this.nextFrameOpenLeaves = this.getCurrentTabs();
-      this.nextFrameFilePaths = this.getCurrentElementsInTabs(this.nextFrameOpenLeaves);
-      if (this.nextFrameFilePaths.length !== this.previousFrameFilePaths.length)
-        return;
-      for (let leaf in this.nextFrameOpenLeaves) {
-        if (this.previousFrameFilePaths[leaf] !== this.nextFrameFilePaths[leaf]) {
-          this.oldLeaf = (_a = this.app.workspace.getActiveViewOfType(import_obsidian.View)) == null ? void 0 : _a.leaf;
-          if (this.previousFrameFilePaths.contains(this.nextFrameFilePaths[leaf]) && this.settings.CheckFileCurrentTabs) {
-            const index = this.previousFrameFilePaths.indexOf(this.nextFrameFilePaths[leaf]);
-            setTimeout(() => {
-              this.openOldFile(this.previousFrameFilePaths[leaf]);
-              this.app.workspace.revealLeaf(this.previousFrameOpenLeaves[index]);
-              this.resetVariables();
-              this.app.workspace.setActiveLeaf(this.previousFrameOpenLeaves[index], { focus: true });
-            }, this.settings.Delay);
+      this.newOpenTabs = this.getOpenTabs();
+      this.newTabFilePaths = this.getFilePathsFromTabs(this.newOpenTabs);
+      this.newActiveFilePath = file.path;
+      this.newActiveTab = this.findActiveTab(this.newOpenTabs);
+      const indexLeaf = this.prevTabFilePaths.findIndex((path) => this.newActiveFilePath == path);
+      if (this.newTabFilePaths.length !== this.prevTabFilePaths.length) {
+        if (this.newTabFilePaths.length < this.prevTabFilePaths.length)
+          return;
+        else {
+          if (this.prevTabFilePaths.includes(this.newActiveFilePath) && this.settings.CheckFileCurrentTabs) {
+            (_a = this.findLastFile()) == null ? void 0 : _a.detach();
+            this.app.workspace.setActiveLeaf(this.prevOpenTabs[indexLeaf], { focus: true });
+            this.resetVariables();
             return;
           }
-          setTimeout(() => {
-            this.openOldFile(this.previousFrameFilePaths[leaf]);
-            this.openNewFile(this.nextFrameFilePaths[leaf]);
-          }, this.settings.Delay);
-          break;
+          return;
         }
       }
-    };
-    this.openOldFile = (element) => {
-      if (element instanceof import_obsidian.View) {
-        this.oldLeaf.open(element);
-        this.oldLeaf.setViewState({ type: element.getViewType() });
-      } else {
-        const file = this.app.vault.getAbstractFileByPath(element);
-        this.oldLeaf.openFile(file, { active: true });
+      if (this.areTabsUnchanged())
+        return;
+      if (indexLeaf !== -1) {
+        if (this.prevTabFilePaths.includes(this.newActiveFilePath) && this.settings.CheckFileCurrentTabs) {
+          this.executeWithDelay(() => this.openFileInTab(this.app.workspace.getLastOpenFiles()[0], false), this.settings.Delay);
+          this.executeWithDelay(() => {
+            this.app.workspace.setActiveLeaf(this.prevOpenTabs[indexLeaf], { focus: true });
+            this.resetVariables();
+          }, this.settings.Delay * 2);
+          return;
+        }
       }
+      this.executeWithDelay(() => this.openFileInTab(this.app.workspace.getLastOpenFiles()[0], false), this.settings.Delay);
+      this.executeWithDelay(() => this.openFileInTab(this.newActiveFilePath, true), this.settings.Delay * 2);
+      this.resetVariables();
     };
-    this.openNewFile = async (element) => {
-      let newLeaf = this.app.workspace.getLeaf(true);
-      this.app.workspace.revealLeaf(newLeaf);
-      if (element instanceof import_obsidian.View) {
-        newLeaf.open(element);
-        newLeaf.setViewState({ type: element.getViewType() });
-      } else {
-        const file = this.app.vault.getAbstractFileByPath(element);
-        newLeaf.openFile(file);
-        this.app.workspace.setActiveLeaf(newLeaf, { focus: true });
+    this.areTabsUnchanged = () => {
+      return this.prevTabFilePaths.length === this.newTabFilePaths.length && this.prevTabFilePaths.every((path, index) => path === this.newTabFilePaths[index]);
+    };
+    this.openFileInTab = (path, newFile) => {
+      const file = this.app.vault.getAbstractFileByPath(path);
+      if (!file) {
+        console.warn(`File not found: ${path}`);
+        return;
       }
-      this.app.workspace.revealLeaf(newLeaf);
+      const leaf = this.app.workspace.getLeaf(newFile);
+      leaf.openFile(file);
     };
     this.resetVariables = () => {
-      this.previousFrameOpenLeaves = [];
-      this.previousFrameFilePaths = [];
-      this.nextFrameOpenLeaves = [];
-      this.nextFrameFilePaths = [];
+      this.prevOpenTabs = [];
+      this.prevTabFilePaths = [];
+      this.newOpenTabs = [];
+      this.newTabFilePaths = [];
+    };
+    this.executeWithDelay = (callback, delay = this.settings.Delay) => {
+      setTimeout(callback, delay);
     };
   }
   async onload() {
@@ -131,18 +152,22 @@ var NewTabPlusPlugin = class extends import_obsidian.Plugin {
     this.registerDomEvent(window, "click", this.onClickEvent, {
       capture: true
     });
-    this.registerEvent(this.app.vault.on("delete", this.deleteFile));
-    this.registerEvent(this.app.workspace.on("file-open", this.fileHandler));
+    this.registerEvent(this.app.vault.on("delete", this.markFileAsDeleted));
+    this.registerEvent(this.app.workspace.on("file-open", this.handleFileOpen));
     this.addSettingTab(new NewTabPlusSettingsTab(this.app, this));
   }
   onunload() {
+    this.resetVariables();
   }
+  //#region settings
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    const data = await this.loadData();
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
   }
   async saveSettings() {
     await this.saveData(this.settings);
   }
+  //#endregion
 };
 var NewTabPlusSettingsTab = class extends import_obsidian.PluginSettingTab {
   constructor(app, plugin) {
@@ -167,3 +192,5 @@ var NewTabPlusSettingsTab = class extends import_obsidian.PluginSettingTab {
     });
   }
 };
+
+/* nosourcemap */

@@ -1,10 +1,11 @@
 {
 	"id": "grind-manager",
-	"name": "Grind Manager",
-	"version": "1.2.3",
+	"name": "Gamified Tasks",
+	"version": "1.10.0",
 	"minAppVersion": "1.5.12",
-	"description": "Task management with rewards system.",
+	"description": "Gamify your task management with rewards system, craft your tasks by tags.",
 	"author": "dromse",
 	"authorUrl": "https://github.com/dromse",
-	"isDesktopOnly": false
+	"isDesktopOnly": false,
+    "fundingUrl": "https://ko-fi.com/dromse"
 }

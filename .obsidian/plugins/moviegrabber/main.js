@@ -1856,6 +1856,7 @@ var MOVIE_DATA_LOWER = {
   "poster": "Poster",
   "posterlocal": "PosterLocal",
   "ratings": "Ratings",
+  "released": "Released",
   "metascore": "Metascore",
   "imdbrating": "imdbRating",
   "imdbvotes": "imdbVotes",
@@ -1990,6 +1991,7 @@ function regexTransform(input, transformation) {
 // main.ts
 var OVERWRITE_DELIMITER = /%%==MOVIEGRABBER_KEEP==%%[\s\S]*/;
 var IMDBID_REGEX = /^ev\d{1,8}\/\d{4}(-\d)?$|^(ch|co|ev|nm|tt)\d{1,8}$/;
+var EXLUDE_COMMA_SPLIT = ["imdbVotes", "BoxOffice"];
 var Moviegrabber = class extends import_obsidian10.Plugin {
   async onload() {
     await this.loadSettings();
@@ -2255,7 +2257,7 @@ retrying...`);
       let items = rawData instanceof Array ? rawData.map((elem) => {
         let r = elem;
         return `${r.Source}: ${r.Value}`;
-      }) : rawData == null ? void 0 : rawData.split(/\,\s?/);
+      }) : EXLUDE_COMMA_SPLIT.contains(name) ? [rawData] : rawData == null ? void 0 : rawData.split(/\,\s?/);
       if (!items) {
         console.log(`Tag "{{${inner}}}" could not be resolved.`);
         new import_obsidian10.Notice(`Warning: Tag "{{${inner}}}" could not be resolved.`);
@@ -2292,7 +2294,7 @@ retrying...`);
     n.noticeEl.addClass("notice_error");
   }
   async CreateDefaultTemplateFile() {
-    var content = DEFAULT_TEMPLATE + "\n\n\n%%\nAvailable tags:\n----------------------\n{{Title}}\n{{Year}}\n{{Rated}}\n{{Runtime}}\n{{Genre}}\n{{Director}}\n{{Writer}}\n{{Actors}}\n{{Plot}}\n{{Language}}\n{{Country}}\n{{Awards}}\n{{Poster}}\n{{PosterLocal}}{{Ratings}}\n{{Metascore}}\n{{imdbRating}}\n{{imdbVotes}}\n{{imdbID}}\n{{Type}}\n{{DVD}}\n{{BoxOffice}}\n{{Production}}\n{{Website}}\n{{totalSeasons}}\n{{YoutubeEmbed}}\n%%";
+    var content = DEFAULT_TEMPLATE + "\n\n\n%%\nAvailable tags:\n----------------------\n{{Title}}\n{{Year}}\n{{Rated}}\n{{Runtime}}\n{{Genre}}\n{{Director}}\n{{Writer}}\n{{Actors}}\n{{Plot}}\n{{Language}}\n{{Country}}\n{{Awards}}\n{{Poster}}\n{{PosterLocal}}{{Ratings}}\n{{Released}}\n{{Metascore}}\n{{imdbRating}}\n{{imdbVotes}}\n{{imdbID}}\n{{Type}}\n{{DVD}}\n{{BoxOffice}}\n{{Production}}\n{{Website}}\n{{totalSeasons}}\n{{YoutubeEmbed}}\n%%";
     var tFile = await this.app.vault.create("/Moviegrabber-example-template.md", content);
     this.app.workspace.getLeaf().openFile(tFile);
   }
@@ -2315,3 +2317,5 @@ retrying...`);
     workspace.revealLeaf(leaf);
   }
 };
+
+/* nosourcemap */

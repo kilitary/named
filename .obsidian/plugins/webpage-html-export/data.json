@@ -1,50 +1,237 @@
 {
   "settingsVersion": "1.8.01",
-  "makeOfflineCompatible": true,
-  "inlineAssets": true,
-  "includePluginCSS": "obsidian-textgenerator-plugin\nobsidian-kanban\nbig-calendar\nobsidian-tasks-plugin\nproject-browser\nobsidian-git\nemo-uploader\nmarkdown-table-editor\nobsidian-checklist-plugin\noz-image-plugin\nobsidian-mindmap-nextgen\ndarlal-switcher-plus\ngraph-analysis\ngrind-manager\nmulti-properties\nfile-property-enhancer\ntimeline-view\nprogress-clocks\nobsidian-enhancing-export\nobsidian-image-layouts\nmini-toolbar\nquiz-generator\nimage-window\nobsidian-gallery\nbmo-chatbot\nbreadcrumbs\nnotion-like-tables\nmemorization\nselect-and-complete\ncard-board\ncolored-text\nobsidian-csv-table\ndesk\nobsidian-day-planner\ndataview\ndynamic-timetable\nobsidian-image-gallery\nmulti-column-markdown\nobsidian-pluck\nquick-explorer\nslurp\ntask-status\nslash-commander\nobsidian-metronome-plugin\nobsidian-aggregator\nhomework-manager\nfile-preview\npower-mode\ncanvasblocks\nhtml-server\nhtml-tabs\ntag-wrangler\nmake-md\nobsidian-folder-index\ntimethings\nlaser-beam\nvault-explorer\nnotetweet\nperiodic-notes\nmetaedit\nmaximise-active-pane-obsidian\narrows-in-md\nobsidian-timestamper\nobsidian-contacts\ncsv-obsidian\nobsidian-core-search-assistant-plugin\nobsidian-timeline\ncanvas-mindmap\ncontribution-graph\nnote-gallery\ncodeblock-customizer\nbadges\nheatmap-calendar\ngene-ai\nobsidian-emoji-toolbar\ndaily-note-navbar\nbetter-inline-fields\nmetadata-menu\nobsidian-projects\nobsidian-recall",
-  "includeSvelteCSS": true,
-  "titleProperty": "export_html_title",
-  "customHeadContentPath": "",
-  "faviconPath": "",
-  "documentWidth": "1024px",
-  "sidebarWidth": "20em",
-  "minOutlineCollapse": 100,
-  "startOutlineCollapsed": true,
-  "allowFoldingHeadings": false,
-  "allowFoldingLists": true,
-  "allowResizingSidebars": true,
+  "exportOptions": {
+    "createDocumentContainer": true,
+    "keepModHeaderFooter": false,
+    "addPageIcon": true,
+    "unifyTitleFormat": true,
+    "createPusherElement": true,
+    "makeHeadersTrees": true,
+    "postProcess": true,
+    "displayProgress": true,
+    "inlineHTML": false,
+    "exportPath": "H:\\research-html",
+    "filesToExport": [],
+    "useFallbackRenderer": false,
+    "addBodyClasses": true,
+    "addMathjaxStyles": true,
+    "addHeadTag": true,
+    "backlinkOptions": {
+      "featureId": "backlinks",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": ".footer",
+        "type": "start"
+      },
+      "displayTitle": "Backlinks"
+    },
+    "tagOptions": {
+      "featureId": "tags",
+      "enabled": true,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": ".header .data-bar",
+        "type": "end"
+      },
+      "displayTitle": "",
+      "showInlineTags": true,
+      "showFrontmatterTags": true
+    },
+    "aliasOptions": {
+      "featureId": "aliases",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": ".header .data-bar",
+        "type": "start"
+      },
+      "displayTitle": "Aliases"
+    },
+    "propertiesOptions": {
+      "featureId": "properties",
+      "enabled": true,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": ".header",
+        "type": "start"
+      },
+      "displayTitle": "Properties"
+    },
+    "fileNavigationOptions": {
+      "featureId": "file-navigation",
+      "enabled": true,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": "#left-sidebar-content",
+        "type": "end"
+      },
+      "showCustomIcons": false,
+      "showDefaultFolderIcons": false,
+      "showDefaultFileIcons": false,
+      "defaultFolderIcon": "lucide//folder",
+      "defaultFileIcon": "lucide//file",
+      "defaultMediaIcon": "lucide//file-image",
+      "exposeStartingPath": true,
+      "includePath": "site-lib/html/file-tree.html"
+    },
+    "searchOptions": {
+      "featureId": "search",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": "#left-sidebar .topbar-content",
+        "type": "start"
+      },
+      "displayTitle": "Search..."
+    },
+    "outlineOptions": {
+      "featureId": "outline",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": "#right-sidebar-content",
+        "type": "end"
+      },
+      "displayTitle": "Outline",
+      "startCollapsed": false,
+      "minCollapseDepth": 0
+    },
+    "themeToggleOptions": {
+      "featureId": "theme-toggle",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": "#right-sidebar .topbar-content",
+        "type": "start"
+      },
+      "displayTitle": ""
+    },
+    "graphViewOptions": {
+      "featureId": "graph-view",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": "#right-sidebar-content",
+        "type": "start"
+      },
+      "displayTitle": "Graph View",
+      "showOrphanNodes": true,
+      "showAttachments": false,
+      "allowGlobalGraph": true,
+      "allowExpand": true,
+      "attractionForce": 1,
+      "linkLength": 15,
+      "repulsionForce": 80,
+      "centralForce": 2,
+      "edgePruning": 100,
+      "minNodeRadius": 3,
+      "maxNodeRadius": 7
+    },
+    "sidebarOptions": {
+      "featureId": "sidebar",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "allowResizing": true,
+      "allowCollapsing": true,
+      "rightDefaultWidth": "20em",
+      "leftDefaultWidth": "20em"
+    },
+    "customHeadOptions": {
+      "featureId": "custom-head",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "featurePlacement": {
+        "selector": "head",
+        "type": "end"
+      },
+      "sourcePath": "",
+      "includePath": "site-lib/html/custom-head.html"
+    },
+    "documentOptions": {
+      "featureId": "obsidian-document",
+      "enabled": true,
+      "unavailable": false,
+      "alwaysEnabled": true,
+      "hideSettingsButton": false,
+      "allowFoldingLists": true,
+      "allowFoldingHeadings": true,
+      "documentWidth": "40em"
+    },
+    "rssOptions": {
+      "featureId": "rss",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": false,
+      "siteUrl": "",
+      "authorName": ""
+    },
+    "linkPreviewOptions": {
+      "featureId": "link-preview",
+      "enabled": false,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": true
+    },
+    "relativeHeaderLinks": true,
+    "includeJS": true,
+    "includeCSS": true,
+    "inlineMedia": false,
+    "inlineCSS": false,
+    "inlineJS": false,
+    "inlineFonts": false,
+    "inlineOther": false,
+    "combineAsSingleFile": false,
+    "offlineResources": true,
+    "themeName": "",
+    "slugifyPaths": false,
+    "flattenExportPaths": false,
+    "fixLinks": true,
+    "faviconPath": "",
+    "siteName": "vault14.2",
+    "iconEmojiStyle": "Native",
+    "exportRoot": "",
+    "includePluginCss": [],
+    "includeStyleCssIds": [],
+    "autoDisposeWebpages": true
+  },
   "logLevel": "all",
-  "minifyHTML": true,
-  "makeNamesWebStyle": false,
+  "titleProperty": "export_html_title",
+  "rssDateProperty": "date",
   "onlyExportModified": true,
   "deleteOldFiles": true,
-  "addThemeToggle": true,
-  "addOutline": true,
-  "addFileNav": true,
-  "addSearchBar": false,
-  "addGraphView": false,
-  "addTitle": true,
-  "addRSSFeed": true,
-  "siteURL": "https://kilitary.ru/vault13/vault13/",
-  "authorName": "Sergey Efimov (kilitary/deconf)",
-  "vaultTitle": "vault14 хуйня полная, которая меня заебала",
-  "exportPreset": "documents",
+  "exportPreset": "online",
   "openAfterExport": false,
-  "graphAttractionForce": 1,
-  "graphLinkLength": 10,
-  "graphRepulsionForce": 150,
-  "graphCentralForce": 3,
-  "graphEdgePruning": 100,
-  "graphMinNodeSize": 3,
-  "graphMaxNodeSize": 7,
-  "showDefaultTreeIcons": true,
-  "emojiStyle": "OpenMojiOutline",
-  "defaultFileIcon": "lucide//file",
-  "defaultFolderIcon": "lucide//folder",
-  "defaultMediaIcon": "lucide//file-image",
-  "exportPath": "H:\\research-html\\",
-  "filesToExport": [
-    []
+  "filePickerBlacklist": [
+    "(^|\\/)node_modules\\/",
+    "(^|\\/)dist\\/",
+    "(^|\\/)dist-ssr\\/",
+    "(^|\\/)\\.vscode\\/"
+  ],
+  "filePickerWhitelist": [
+    "\\.\\w+$"
   ]
 }

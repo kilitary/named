@@ -43,7 +43,7 @@ __export(main_exports, {
   updateSettingsFromFrontMatter: () => updateSettingsFromFrontMatter
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian26 = require("obsidian");
+var import_obsidian27 = require("obsidian");
 
 // src/view.ts
 var import_obsidian7 = require("obsidian");
@@ -199,7 +199,11 @@ function regenerateUserButton(plugin, settings) {
         }
       } else if (settings.APIConnections.googleGemini.geminiModels.includes(settings.general.model)) {
         try {
-          await fetchGoogleGeminiResponse(plugin, settings, index2);
+          if (settings.APIConnections.googleGemini.enableStream) {
+            await fetchGoogleGeminiResponseStream(plugin, settings, index2);
+          } else {
+            await fetchGoogleGeminiResponse(plugin, settings, index2);
+          }
         } catch (error) {
           console.error("Google Gemini Error:", error);
         }
@@ -337,7 +341,11 @@ function displayUserEditButton(plugin, settings, userPre) {
             }
           } else if (settings.APIConnections.googleGemini.geminiModels.includes(settings.general.model)) {
             try {
-              await fetchGoogleGeminiResponse(plugin, settings, index2);
+              if (settings.APIConnections.googleGemini.enableStream) {
+                await fetchGoogleGeminiResponseStream(plugin, settings, index2);
+              } else {
+                await fetchGoogleGeminiResponse(plugin, settings, index2);
+              }
             } catch (error) {
               console.error("Google GeminiError:", error);
             }
@@ -427,6 +435,7 @@ function displayBotEditButton(plugin, message) {
       messageBlock.className = "messageBlock";
       lastClickedElement == null ? void 0 : lastClickedElement.appendChild(messageBlock);
       await import_obsidian.MarkdownRenderer.render(plugin.app, message, messageBlock, "/", plugin);
+      addParagraphBreaks(messageBlock);
       const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
       copyCodeBlocks.forEach((copyCodeBlock) => {
         copyCodeBlock.textContent = "Copy";
@@ -522,6 +531,7 @@ function displayBotEditButton(plugin, message) {
       const regexRenderedNote = /<note-rendered>[\s\S]*?<\/note-rendered>/g;
       message = message.replace(regexRenderedNote, "").trim();
       await import_obsidian.MarkdownRenderer.render(plugin.app, message, messageBlock, "/", plugin);
+      addParagraphBreaks(messageBlock);
       const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
       copyCodeBlocks.forEach((copyCodeBlock) => {
         copyCodeBlock.textContent = "Copy";
@@ -949,6 +959,1751 @@ function displayErrorBotMessage(plugin, settings, messageHistory2, message) {
   addMessage(plugin, messageBlockDiv.innerHTML, "botMessage", this.settings, index2);
   return botMessageDiv;
 }
+
+// src/components/chat/Prompt.ts
+async function getPrompt(plugin, settings) {
+  if (settings.prompts.prompt.trim() === "") {
+    return "";
+  }
+  const promptFilePath = settings.prompts.promptFolderPath + "/" + settings.prompts.prompt;
+  try {
+    const content = await plugin.app.vault.adapter.read(promptFilePath);
+    const clearYamlContent = content.replace(/---[\s\S]+?---/, "").trim();
+    return "\n\n" + clearYamlContent + "\n\n";
+  } catch (error) {
+    console.error(`Error reading file ${promptFilePath}:`, error);
+    return null;
+  }
+}
+
+// src/components/FetchModelResponse.ts
+var abortController = null;
+async function fetchOllamaResponse(plugin, settings, index2) {
+  const ollamaRESTAPIURL = settings.OllamaConnection.RESTAPIURL;
+  if (!ollamaRESTAPIURL) {
+    return;
+  }
+  const prompt = await getPrompt(plugin, settings);
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  abortController = new AbortController();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch(ollamaRESTAPIURL + "/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: referenceCurrentNoteContent2 + settings.general.system_role + prompt + referenceCurrentNoteContent2 },
+          ...messageHistoryAtIndex
+        ],
+        stream: false,
+        options: ollamaParametersOptions(settings)
+      }),
+      signal: abortController.signal
+    });
+    const responseData = await response.json();
+    let message = responseData.message.content;
+    if (messageContainerEl) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+      (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+      submitButton.title = "send";
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+          addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+  } finally {
+    abortController = null;
+  }
+}
+async function fetchOllamaResponseStream(plugin, settings, index2) {
+  const ollamaRESTAPIURL = settings.OllamaConnection.RESTAPIURL;
+  if (!ollamaRESTAPIURL) {
+    return;
+  }
+  const prompt = await getPrompt(plugin, settings);
+  const url = ollamaRESTAPIURL + "/api/chat";
+  abortController = new AbortController();
+  let message = "";
+  let isScroll = false;
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
+          ...messageHistoryAtIndex
+        ],
+        stream: true,
+        keep_alive: parseInt(settings.OllamaConnection.ollamaParameters.keep_alive),
+        options: ollamaParametersOptions(settings)
+      }),
+      signal: abortController.signal
+    });
+    if (!response.ok) {
+      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    if (!response.body) {
+      new import_obsidian4.Notice("Response body is null or undefined.");
+      throw new Error("Response body is null or undefined.");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let reading = true;
+    while (reading) {
+      const { done, value } = await reader.read();
+      if (done) {
+        reading = false;
+        break;
+      }
+      const chunk = decoder.decode(value, { stream: true }) || "";
+      const parts = chunk.split("\n");
+      for (const part of parts.filter(Boolean)) {
+        let parsedChunk;
+        try {
+          parsedChunk = JSON.parse(part);
+          if (parsedChunk.done !== true) {
+            const content = parsedChunk.message.content;
+            message += content;
+          }
+        } catch (err) {
+          console.error("Error parsing JSON:", err);
+          console.log("Part with error:", part);
+          parsedChunk = { response: "{_e_}" };
+        }
+      }
+      const messageContainerEl2 = document.querySelector("#messageContainer");
+      if (messageContainerEl2) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock) {
+          if (loadingEl) {
+            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          }
+          messageBlock.innerHTML = "";
+          const fragment = document.createDocumentFragment();
+          const tempContainer = document.createElement("div");
+          fragment.appendChild(tempContainer);
+          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
+          while (tempContainer.firstChild) {
+            messageBlock.appendChild(tempContainer.firstChild);
+          }
+          addParagraphBreaks(messageBlock);
+          updateUnresolvedInternalLinks(plugin, messageBlock);
+          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+          copyCodeBlocks.forEach((copyCodeBlock) => {
+            copyCodeBlock.textContent = "Copy";
+            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+          });
+        }
+        messageContainerEl2.addEventListener("wheel", (event) => {
+          if (event.deltaY < 0 || event.deltaY > 0) {
+            isScroll = true;
+          }
+        });
+        if (!isScroll) {
+          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+    if (message.trim() === "") {
+      addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+    } else {
+      addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    }
+    new import_obsidian4.Notice("Stream stopped.");
+    console.error("Error fetching chat response from Ollama:", error);
+  } finally {
+    abortController = null;
+  }
+  submitButton.textContent = "send";
+  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+  submitButton.title = "send";
+}
+async function fetchRESTAPIURLResponse(plugin, settings, index2) {
+  const prompt = await getPrompt(plugin, settings);
+  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
+  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  try {
+    const response = await (0, import_obsidian4.requestUrl)({
+      url: settings.RESTAPIURLConnection.RESTAPIURL + "/chat/completions",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${settings.RESTAPIURLConnection.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
+          ...messageHistoryAtIndex
+        ],
+        max_tokens: parseInt(settings.general.max_tokens) || -1,
+        temperature: parseInt(settings.general.temperature)
+      })
+    });
+    let message = response.json.choices[0].message.content;
+    const messageContainerEl2 = document.querySelector("#messageContainer");
+    if (messageContainerEl2) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    return;
+  } catch (error) {
+    const targetUserMessage = messageContainerElDivs[index2];
+    const targetBotMessage = targetUserMessage.nextElementSibling;
+    targetBotMessage == null ? void 0 : targetBotMessage.remove();
+    const messageContainer = document.querySelector("#messageContainer");
+    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+    messageContainer.appendChild(botMessageDiv2);
+  }
+}
+async function fetchRESTAPIURLResponseStream(plugin, settings, index2) {
+  const RESTAPIURL = settings.RESTAPIURLConnection.RESTAPIURL;
+  if (!RESTAPIURL) {
+    return;
+  }
+  const prompt = await getPrompt(plugin, settings);
+  const url = RESTAPIURL + "/chat/completions";
+  abortController = new AbortController();
+  let message = "";
+  let isScroll = false;
+  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
+  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${settings.RESTAPIURLConnection.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
+          ...messageHistoryAtIndex
+        ],
+        stream: true,
+        temperature: parseInt(settings.general.temperature),
+        max_tokens: parseInt(settings.general.max_tokens) || 4096
+      }),
+      signal: abortController.signal
+    });
+    if (!response.ok) {
+      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    if (!response.body) {
+      new import_obsidian4.Notice("Response body is null or undefined.");
+      throw new Error("Response body is null or undefined.");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let reading = true;
+    while (reading) {
+      const { done, value } = await reader.read();
+      if (done) {
+        reading = false;
+        break;
+      }
+      const chunk = decoder.decode(value, { stream: false }) || "";
+      const parts = chunk.split("\n");
+      for (const part of parts.filter(Boolean)) {
+        if (part.includes("data: [DONE]")) {
+          break;
+        }
+        let parsedChunk;
+        try {
+          parsedChunk = JSON.parse(part.replace(/^data: /, ""));
+          if (parsedChunk.choices[0].finish_reason !== "stop") {
+            const content = parsedChunk.choices[0].delta.content;
+            message += content;
+          }
+        } catch (err) {
+          console.error("Error parsing JSON:", err);
+          console.log("Part with error:", part);
+          parsedChunk = { response: "{_e_}" };
+        }
+      }
+      const messageContainerEl2 = document.querySelector("#messageContainer");
+      if (messageContainerEl2) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock) {
+          if (loadingEl) {
+            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          }
+          messageBlock.innerHTML = "";
+          const fragment = document.createDocumentFragment();
+          const tempContainer = document.createElement("div");
+          fragment.appendChild(tempContainer);
+          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
+          while (tempContainer.firstChild) {
+            messageBlock.appendChild(tempContainer.firstChild);
+          }
+          addParagraphBreaks(messageBlock);
+          updateUnresolvedInternalLinks(plugin, messageBlock);
+          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+          copyCodeBlocks.forEach((copyCodeBlock) => {
+            copyCodeBlock.textContent = "Copy";
+            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+          });
+        }
+        messageContainerEl2.addEventListener("wheel", (event) => {
+          if (event.deltaY < 0 || event.deltaY > 0) {
+            isScroll = true;
+          }
+        });
+        if (!isScroll) {
+          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+    if (message.trim() === "") {
+      addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+    } else {
+      addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    }
+    new import_obsidian4.Notice("Stream stopped.");
+    console.error("Error fetching chat response from Ollama:", error);
+  } finally {
+    abortController = null;
+  }
+  submitButton.textContent = "send";
+  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+  submitButton.title = "send";
+}
+async function fetchAnthropicResponse(plugin, settings, index2) {
+  const prompt = await getPrompt(plugin, settings);
+  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
+  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  abortController = new AbortController();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await (0, import_obsidian4.requestUrl)({
+      url: "https://api.anthropic.com/v1/messages",
+      method: "POST",
+      headers: {
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+        "x-api-key": settings.APIConnections.anthropic.APIKey
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        system: settings.general.system_role + prompt + referenceCurrentNoteContent2,
+        messages: [
+          ...messageHistoryAtIndex
+        ],
+        max_tokens: parseInt(settings.general.max_tokens) || 4096,
+        temperature: parseInt(settings.general.temperature)
+      })
+    });
+    let message = response.json.content[0].text;
+    const messageContainerEl2 = document.querySelector("#messageContainer");
+    if (messageContainerEl2) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    return;
+  } catch (error) {
+    const targetUserMessage = messageContainerElDivs[index2];
+    const targetBotMessage = targetUserMessage.nextElementSibling;
+    targetBotMessage == null ? void 0 : targetBotMessage.remove();
+    const messageContainer = document.querySelector("#messageContainer");
+    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+    messageContainer.appendChild(botMessageDiv2);
+  }
+}
+async function fetchGoogleGeminiResponse(plugin, settings, index2) {
+  const prompt = await getPrompt(plugin, settings);
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const convertMessageHistory = (messageHistory2) => {
+    const modifiedMessageHistory = [...messageHistory2];
+    const convertedMessageHistory2 = modifiedMessageHistory.map(({ role, content }) => ({
+      role: role === "assistant" ? "model" : role,
+      parts: [{ text: content }]
+    }));
+    const contents = [
+      ...convertedMessageHistory2
+    ];
+    return { contents };
+  };
+  const convertedMessageHistory = convertMessageHistory(messageHistoryAtIndex);
+  abortController = new AbortController();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const API_KEY = settings.APIConnections.googleGemini.APIKey;
+    const MODEL = settings.general.model;
+    const url = "https://generativelanguage.googleapis.com/v1beta/" + MODEL + ":generateContent?key=" + API_KEY;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: `System prompt: 
+
+ ${plugin.settings.general.system_role} ${prompt} ${referenceCurrentNoteContent2} Respond understood if you got it.` }]
+          },
+          {
+            role: "model",
+            parts: [{ text: "Understood." }]
+          },
+          ...convertedMessageHistory.contents
+        ],
+        generationConfig: {
+          stopSequences: "",
+          temperature: parseInt(settings.general.temperature),
+          maxOutputTokens: settings.general.max_tokens || 4096,
+          topP: 0.8,
+          topK: 10
+        }
+      }),
+      signal: abortController == null ? void 0 : abortController.signal
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const responseData = await response.json();
+    let message = responseData.candidates[0].content.parts[0].text;
+    const messageContainerEl2 = document.querySelector("#messageContainer");
+    if (messageContainerEl2) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    return;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+      (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+      submitButton.title = "send";
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+          addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+  } finally {
+    abortController = null;
+  }
+}
+async function fetchGoogleGeminiResponseStream(plugin, settings, index2) {
+  const prompt = await getPrompt(plugin, settings);
+  abortController = new AbortController();
+  let message = "";
+  let isScroll = false;
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const convertMessageHistory = (messageHistory2) => {
+    const modifiedMessageHistory = [...messageHistory2];
+    const convertedMessageHistory2 = modifiedMessageHistory.map(({ role, content }) => ({
+      role: role === "assistant" ? "model" : role,
+      parts: [{ text: content }]
+    }));
+    const contents = [
+      ...convertedMessageHistory2
+    ];
+    return { contents };
+  };
+  const convertedMessageHistory = convertMessageHistory(messageHistoryAtIndex);
+  abortController = new AbortController();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const API_KEY = settings.APIConnections.googleGemini.APIKey;
+    const MODEL = settings.general.model;
+    const url = "https://generativelanguage.googleapis.com/v1beta/" + MODEL + ":streamGenerateContent?alt=sse&key=" + API_KEY;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: `System prompt: 
+
+ ${plugin.settings.general.system_role} ${prompt} ${referenceCurrentNoteContent2} Respond understood if you got it.` }]
+          },
+          {
+            role: "model",
+            parts: [{ text: "Understood." }]
+          },
+          ...convertedMessageHistory.contents
+        ],
+        generationConfig: {
+          stopSequences: "",
+          temperature: parseInt(settings.general.temperature),
+          maxOutputTokens: settings.general.max_tokens || 4096,
+          topP: 0.8,
+          topK: 10
+        }
+      }),
+      signal: abortController == null ? void 0 : abortController.signal
+    });
+    if (!response.ok) {
+      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    if (!response.body) {
+      new import_obsidian4.Notice("Response body is null or undefined.");
+      throw new Error("Response body is null or undefined.");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let reading = true;
+    while (reading) {
+      const { done, value } = await reader.read();
+      if (done) {
+        reading = false;
+        break;
+      }
+      const chunk = decoder.decode(value, { stream: true }) || "";
+      const parts = chunk.split("\n");
+      for (const part of parts.filter(Boolean)) {
+        if (part.startsWith("data: ")) {
+          const jsonData = part.slice(6);
+          let parsedChunk;
+          try {
+            parsedChunk = JSON.parse(jsonData);
+            if (parsedChunk.done !== true) {
+              const content = parsedChunk.candidates[0].content.parts[0].text;
+              message += content;
+            }
+          } catch (err) {
+            console.error("Error parsing JSON:", err);
+            console.log("Part with error:", jsonData);
+            parsedChunk = { response: "{_e_}" };
+          }
+        }
+      }
+      const messageContainerEl2 = document.querySelector("#messageContainer");
+      if (messageContainerEl2) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock) {
+          if (loadingEl) {
+            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          }
+          messageBlock.innerHTML = "";
+          const fragment = document.createDocumentFragment();
+          const tempContainer = document.createElement("div");
+          fragment.appendChild(tempContainer);
+          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
+          while (tempContainer.firstChild) {
+            messageBlock.appendChild(tempContainer.firstChild);
+          }
+          addParagraphBreaks(messageBlock);
+          updateUnresolvedInternalLinks(plugin, messageBlock);
+          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+          copyCodeBlocks.forEach((copyCodeBlock) => {
+            copyCodeBlock.textContent = "Copy";
+            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+          });
+        }
+        messageContainerEl2.addEventListener("wheel", (event) => {
+          if (event.deltaY < 0 || event.deltaY > 0) {
+            isScroll = true;
+          }
+        });
+        if (!isScroll) {
+          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+    if (message.trim() === "") {
+      addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+    } else {
+      addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    }
+    new import_obsidian4.Notice("Stream stopped.");
+    console.error("Error fetching chat response from Google Gemini:", error);
+  } finally {
+    abortController = null;
+  }
+  submitButton.textContent = "send";
+  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+  submitButton.title = "send";
+}
+async function fetchMistralResponse(plugin, settings, index2) {
+  const prompt = await getPrompt(plugin, settings);
+  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
+  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  abortController = new AbortController();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${settings.APIConnections.mistral.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
+          ...messageHistoryAtIndex
+        ],
+        max_tokens: parseInt(settings.general.max_tokens) || 4096,
+        temperature: parseInt(settings.general.temperature)
+      }),
+      signal: abortController == null ? void 0 : abortController.signal
+    });
+    const data = await response.json();
+    let message = data.choices[0].message.content;
+    const messageContainerEl2 = document.querySelector("#messageContainer");
+    if (messageContainerEl2) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    return;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+      (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+      submitButton.title = "send";
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+          addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+  } finally {
+    abortController = null;
+  }
+}
+async function fetchMistralResponseStream(plugin, settings, index2) {
+  abortController = new AbortController();
+  const prompt = await getPrompt(plugin, settings);
+  let message = "";
+  let isScroll = false;
+  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
+  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  abortController = new AbortController();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${settings.APIConnections.mistral.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
+          ...messageHistoryAtIndex
+        ],
+        stream: true,
+        temperature: parseInt(settings.general.temperature),
+        max_tokens: parseInt(settings.general.max_tokens) || 4096
+      }),
+      signal: abortController.signal
+    });
+    (0, import_obsidian4.setIcon)(submitButton, "square");
+    submitButton.title = "stop";
+    if (!response.ok) {
+      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    if (!response.body) {
+      new import_obsidian4.Notice("Response body is null or undefined.");
+      throw new Error("Response body is null or undefined.");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let reading = true;
+    while (reading) {
+      const { done, value } = await reader.read();
+      if (done) {
+        reading = false;
+        break;
+      }
+      const chunk = decoder.decode(value, { stream: false }) || "";
+      const parts = chunk.split("\n");
+      for (const part of parts.filter(Boolean)) {
+        if (part.includes("data: [DONE]")) {
+          break;
+        }
+        let parsedChunk;
+        try {
+          parsedChunk = JSON.parse(part.replace(/^data: /, ""));
+          if (parsedChunk.choices[0].finish_reason !== "stop") {
+            const content = parsedChunk.choices[0].delta.content;
+            message += content;
+          }
+        } catch (err) {
+          console.error("Error parsing JSON:", err);
+          console.log("Part with error:", part);
+          parsedChunk = { response: "{_e_}" };
+        }
+      }
+      const messageContainerEl2 = document.querySelector("#messageContainer");
+      if (messageContainerEl2) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock) {
+          if (loadingEl) {
+            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          }
+          messageBlock.innerHTML = "";
+          const fragment = document.createDocumentFragment();
+          const tempContainer = document.createElement("div");
+          fragment.appendChild(tempContainer);
+          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
+          while (tempContainer.firstChild) {
+            messageBlock.appendChild(tempContainer.firstChild);
+          }
+          addParagraphBreaks(messageBlock);
+          updateUnresolvedInternalLinks(plugin, messageBlock);
+          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+          copyCodeBlocks.forEach((copyCodeBlock) => {
+            copyCodeBlock.textContent = "Copy";
+            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+          });
+        }
+        messageContainerEl2.addEventListener("wheel", (event) => {
+          if (event.deltaY < 0 || event.deltaY > 0) {
+            isScroll = true;
+          }
+        });
+        if (!isScroll) {
+          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+    if (message.trim() === "") {
+      addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+    } else {
+      addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    }
+    new import_obsidian4.Notice("Stream stopped.");
+    console.error("Error fetching chat response from Mistral:", error);
+  } finally {
+    abortController = null;
+  }
+  submitButton.textContent = "send";
+  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+  submitButton.title = "send";
+}
+async function fetchOpenAIAPIResponse(plugin, settings, index2) {
+  abortController = new AbortController();
+  const prompt = await getPrompt(plugin, settings);
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch(`${plugin.settings.APIConnections.openAI.openAIBaseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${plugin.settings.APIConnections.openAI.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        max_tokens: parseInt(settings.general.max_tokens),
+        stream: false,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
+          ...messageHistoryAtIndex
+        ]
+      }),
+      signal: abortController.signal
+    });
+    const data = await response.json();
+    let message = data.choices[0].message.content || "";
+    if (messageContainerEl) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    if (message != null) {
+      const regexPatterns = [
+        /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+        /<note-rendered>[\s\S]*?<\/note-rendered>/g,
+        /<note-rendered>[\s\S]*?<\/note-rendered>/g
+      ];
+      regexPatterns.forEach((pattern) => {
+        message = message.replace(pattern, "").trim();
+      });
+      addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    }
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+      (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+      submitButton.title = "send";
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+          addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+  } finally {
+    abortController = null;
+  }
+}
+async function fetchOpenAIAPIResponseStream(plugin, settings, index2) {
+  abortController = new AbortController();
+  const prompt = await getPrompt(plugin, settings);
+  let message = "";
+  let isScroll = false;
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  const targetUserMessage = messageContainerElDivs[index2];
+  const targetBotMessage = targetUserMessage.nextElementSibling;
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch(`${plugin.settings.APIConnections.openAI.openAIBaseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${plugin.settings.APIConnections.openAI.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        max_tokens: parseInt(settings.general.max_tokens),
+        stream: true,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
+          ...messageHistoryAtIndex
+        ]
+      }),
+      signal: abortController.signal
+    });
+    if (!response.ok) {
+      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    if (!response.body) {
+      new import_obsidian4.Notice("Response body is null or undefined.");
+      throw new Error("Response body is null or undefined.");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let reading = true;
+    while (reading) {
+      const { done, value } = await reader.read();
+      if (done) {
+        reading = false;
+        break;
+      }
+      const chunk = decoder.decode(value, { stream: true }) || "";
+      const parts = chunk.split("\n");
+      for (const part of parts) {
+        if (part.includes("data: [DONE]")) {
+          reading = false;
+          break;
+        }
+        try {
+          const trimmedPart = part.replace(/^data: /, "").trim();
+          if (trimmedPart) {
+            const data = JSON.parse(trimmedPart);
+            if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
+              const content = data.choices[0].delta.content;
+              message += content;
+            }
+          }
+        } catch (err) {
+          console.error("Error parsing JSON:", err);
+          console.log("Part with error:", part);
+        }
+      }
+      if (messageContainerEl) {
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock) {
+          if (loadingEl) {
+            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          }
+          messageBlock.innerHTML = "";
+          const fragment = document.createDocumentFragment();
+          const tempContainer = document.createElement("div");
+          fragment.appendChild(tempContainer);
+          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
+          while (tempContainer.firstChild) {
+            messageBlock.appendChild(tempContainer.firstChild);
+          }
+          addParagraphBreaks(messageBlock);
+          updateUnresolvedInternalLinks(plugin, messageBlock);
+          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+          copyCodeBlocks.forEach((copyCodeBlock) => {
+            copyCodeBlock.textContent = "Copy";
+            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+          });
+        }
+        messageContainerEl.addEventListener("wheel", (event) => {
+          if (event.deltaY < 0 || event.deltaY > 0) {
+            isScroll = true;
+          }
+        });
+        if (!isScroll) {
+          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+      if (abortController.signal.aborted) {
+        new import_obsidian4.Notice("Stream stopped.");
+        break;
+      }
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      if (messageContainerEl) {
+        const targetUserMessage2 = messageContainerElDivs[index2];
+        const targetBotMessage2 = targetUserMessage2.nextElementSibling;
+        const messageBlock = targetBotMessage2 == null ? void 0 : targetBotMessage2.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage2 == null ? void 0 : targetBotMessage2.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage2 == null ? void 0 : targetBotMessage2.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+        }
+      }
+    } else {
+      const targetUserMessage2 = messageContainerElDivs[index2];
+      const targetBotMessage2 = targetUserMessage2.nextElementSibling;
+      targetBotMessage2 == null ? void 0 : targetBotMessage2.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+    if (message.trim() === "") {
+      addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+    } else {
+      addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    }
+    new import_obsidian4.Notice("Stream stopped.");
+    console.error("Error fetching chat response from OpenAI-Based Models:", error);
+  } finally {
+    abortController = null;
+  }
+  submitButton.textContent = "send";
+  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+  submitButton.title = "send";
+}
+async function fetchOpenRouterResponse(plugin, settings, index2) {
+  abortController = new AbortController();
+  const prompt = await getPrompt(plugin, settings);
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", async () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${settings.APIConnections.openRouter.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
+          ...messageHistoryAtIndex
+        ],
+        max_tokens: parseInt(settings.general.max_tokens) || 4096,
+        temperature: parseInt(settings.general.temperature)
+      }),
+      signal: abortController.signal
+    });
+    const data = await response.json();
+    let message = data.choices[0].message.content;
+    const messageContainerEl2 = document.querySelector("#messageContainer");
+    if (messageContainerEl2) {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+      if (messageBlock) {
+        if (loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+        }
+        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
+        addParagraphBreaks(messageBlock);
+        updateUnresolvedInternalLinks(plugin, messageBlock);
+        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+        copyCodeBlocks.forEach((copyCodeBlock) => {
+          copyCodeBlock.textContent = "Copy";
+          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+        });
+        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
+      }
+      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    return;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+      (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+      submitButton.title = "send";
+      if (messageContainerEl) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock && loadingEl) {
+          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          messageBlock.textContent = "SYSTEM: Response aborted.";
+          addMessage(plugin, "SYSTEM: Response aborted.", "botMessage", settings, index2);
+        }
+      }
+    } else {
+      const targetUserMessage = messageContainerElDivs[index2];
+      const targetBotMessage = targetUserMessage.nextElementSibling;
+      targetBotMessage == null ? void 0 : targetBotMessage.remove();
+      const messageContainer = document.querySelector("#messageContainer");
+      const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
+      messageContainer.appendChild(botMessageDiv2);
+    }
+  } finally {
+    abortController = null;
+  }
+}
+async function fetchOpenRouterResponseStream(plugin, settings, index2) {
+  const url = "https://openrouter.ai/api/v1/chat/completions";
+  abortController = new AbortController();
+  const prompt = await getPrompt(plugin, settings);
+  let message = "";
+  let isScroll = false;
+  const filteredMessageHistory = filterMessageHistory(messageHistory);
+  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
+  const messageContainerEl = document.querySelector("#messageContainer");
+  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
+  const botMessageDiv = displayLoadingBotMessage(settings);
+  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
+  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  await getActiveFileContent(plugin, settings);
+  const referenceCurrentNoteContent2 = getCurrentNoteContent();
+  const submitButton = document.querySelector(".submit-button");
+  (0, import_obsidian4.setIcon)(submitButton, "square");
+  submitButton.title = "stop";
+  submitButton.addEventListener("click", () => {
+    if (submitButton.title === "stop") {
+      const controller = getAbortController();
+      if (controller) {
+        controller.abort();
+      }
+    }
+  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${settings.APIConnections.openRouter.APIKey}`
+      },
+      body: JSON.stringify({
+        model: settings.general.model,
+        messages: [
+          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
+          ...messageHistoryAtIndex
+        ],
+        stream: true,
+        temperature: parseInt(settings.general.temperature),
+        max_tokens: parseInt(settings.general.max_tokens) || 4096
+      }),
+      signal: abortController.signal
+    });
+    if (!response.ok) {
+      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    if (!response.body) {
+      new import_obsidian4.Notice("Response body is null or undefined.");
+      throw new Error("Response body is null or undefined.");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let reading = true;
+    while (reading) {
+      const { done, value } = await reader.read();
+      if (done) {
+        reading = false;
+        break;
+      }
+      const chunk = decoder.decode(value, { stream: false }) || "";
+      const parts = chunk.split("\n");
+      for (const part of parts.filter(Boolean)) {
+        if (part.includes("data: [DONE]")) {
+          break;
+        }
+        let parsedChunk;
+        try {
+          parsedChunk = JSON.parse(part.replace(/^data: /, ""));
+          if (parsedChunk.choices[0].finish_reason !== "stop") {
+            const content = parsedChunk.choices[0].delta.content;
+            message += content;
+          }
+        } catch (err) {
+          console.error("Error parsing JSON:", err);
+          console.log("Part with error:", part);
+          parsedChunk = { response: "{_e_}" };
+        }
+      }
+      const messageContainerEl2 = document.querySelector("#messageContainer");
+      if (messageContainerEl2) {
+        const targetUserMessage = messageContainerElDivs[index2];
+        const targetBotMessage = targetUserMessage.nextElementSibling;
+        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
+        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
+        if (messageBlock) {
+          if (loadingEl) {
+            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
+          }
+          messageBlock.innerHTML = "";
+          const fragment = document.createDocumentFragment();
+          const tempContainer = document.createElement("div");
+          fragment.appendChild(tempContainer);
+          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
+          while (tempContainer.firstChild) {
+            messageBlock.appendChild(tempContainer.firstChild);
+          }
+          addParagraphBreaks(messageBlock);
+          updateUnresolvedInternalLinks(plugin, messageBlock);
+          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
+          copyCodeBlocks.forEach((copyCodeBlock) => {
+            copyCodeBlock.textContent = "Copy";
+            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
+          });
+        }
+        messageContainerEl2.addEventListener("wheel", (event) => {
+          if (event.deltaY < 0 || event.deltaY > 0) {
+            isScroll = true;
+          }
+        });
+        if (!isScroll) {
+          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    }
+    const regexPatterns = [
+      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
+      /<note-rendered>[\s\S]*?<\/note-rendered>/g
+    ];
+    regexPatterns.forEach((pattern) => {
+      message = message.replace(pattern, "").trim();
+    });
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+  } catch (error) {
+    addMessage(plugin, message.trim(), "botMessage", settings, index2);
+    new import_obsidian4.Notice("Stream stopped.");
+    console.error(error);
+  }
+  submitButton.textContent = "send";
+  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
+  submitButton.title = "send";
+}
+function getAbortController() {
+  return abortController;
+}
+function ollamaParametersOptions(settings) {
+  return {
+    mirostat: parseInt(settings.OllamaConnection.ollamaParameters.mirostat),
+    mirostat_eta: parseFloat(settings.OllamaConnection.ollamaParameters.mirostat_eta),
+    mirostat_tau: parseFloat(settings.OllamaConnection.ollamaParameters.mirostat_tau),
+    num_ctx: parseInt(settings.OllamaConnection.ollamaParameters.num_ctx),
+    num_gqa: parseInt(settings.OllamaConnection.ollamaParameters.num_gqa),
+    num_thread: parseInt(settings.OllamaConnection.ollamaParameters.num_thread),
+    repeat_last_n: parseInt(settings.OllamaConnection.ollamaParameters.repeat_last_n),
+    repeat_penalty: parseFloat(settings.OllamaConnection.ollamaParameters.repeat_penalty),
+    temperature: parseInt(settings.general.temperature),
+    seed: parseInt(settings.OllamaConnection.ollamaParameters.seed),
+    stop: settings.OllamaConnection.ollamaParameters.stop,
+    tfs_z: parseFloat(settings.OllamaConnection.ollamaParameters.tfs_z),
+    num_predict: parseInt(settings.general.max_tokens) || -1,
+    top_k: parseInt(settings.OllamaConnection.ollamaParameters.top_k),
+    top_p: parseFloat(settings.OllamaConnection.ollamaParameters.top_p),
+    min_p: parseFloat(settings.OllamaConnection.ollamaParameters.min_p)
+  };
+}
+function filterMessageHistory(messageHistory2) {
+  const skipIndexes = /* @__PURE__ */ new Set();
+  messageHistory2.forEach((message, index2, array) => {
+    if (message.role === "user" && message.content.startsWith("/")) {
+      skipIndexes.add(index2);
+      if (index2 + 1 < array.length && array[index2 + 1].role === "assistant") {
+        skipIndexes.add(index2 + 1);
+      }
+    } else if (message.role === "assistant" && message.content.includes("errorBotMessage")) {
+      skipIndexes.add(index2);
+      if (index2 > 0) {
+        skipIndexes.add(index2 - 1);
+      }
+    }
+  });
+  const filteredMessageHistory = messageHistory2.filter((_, index2) => !skipIndexes.has(index2));
+  return filteredMessageHistory;
+}
+function removeConsecutiveUserRoles(messageHistory2) {
+  const result = [];
+  let foundUserMessage = false;
+  for (let i = 0; i < messageHistory2.length; i++) {
+    if (messageHistory2[i].role === "user") {
+      if (!foundUserMessage) {
+        result.push(messageHistory2[i]);
+        foundUserMessage = true;
+      } else {
+        break;
+      }
+    } else {
+      result.push(messageHistory2[i]);
+      foundUserMessage = false;
+    }
+  }
+  return result;
+}
+
+// src/components/editor/FetchRenameNoteTitle.ts
+var import_obsidian5 = require("obsidian");
 
 // node_modules/whatwg-fetch/fetch.js
 var g = typeof globalThis !== "undefined" && globalThis || typeof self !== "undefined" && self || // eslint-disable-next-line no-undef
@@ -3522,1212 +5277,7 @@ var {
 })(OpenAI || (OpenAI = {}));
 var openai_default = OpenAI;
 
-// src/components/chat/Prompt.ts
-async function getPrompt(plugin, settings) {
-  if (settings.prompts.prompt.trim() === "") {
-    return "";
-  }
-  const promptFilePath = settings.prompts.promptFolderPath + "/" + settings.prompts.prompt;
-  try {
-    const content = await plugin.app.vault.adapter.read(promptFilePath);
-    const clearYamlContent = content.replace(/---[\s\S]+?---/, "").trim();
-    return "\n\n" + clearYamlContent + "\n\n";
-  } catch (error) {
-    console.error(`Error reading file ${promptFilePath}:`, error);
-    return null;
-  }
-}
-
-// src/components/FetchModelResponse.ts
-var abortController = new AbortController();
-async function fetchOllamaResponse(plugin, settings, index2) {
-  const ollamaRESTAPIURL = settings.OllamaConnection.RESTAPIURL;
-  if (!ollamaRESTAPIURL) {
-    return;
-  }
-  const prompt = await getPrompt(plugin, settings);
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  try {
-    const ollama = new Ollama2({ host: ollamaRESTAPIURL });
-    const response = await ollama.chat({
-      model: settings.general.model,
-      messages: [
-        { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
-        ...messageHistoryAtIndex
-      ],
-      stream: false,
-      keep_alive: parseInt(settings.OllamaConnection.ollamaParameters.keep_alive),
-      options: ollamaParametersOptions(settings)
-    });
-    let message = response.message.content;
-    if (messageContainerEl) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchOllamaResponseStream(plugin, settings, index2) {
-  const ollamaRESTAPIURL = settings.OllamaConnection.RESTAPIURL;
-  if (!ollamaRESTAPIURL) {
-    return;
-  }
-  const prompt = await getPrompt(plugin, settings);
-  abortController = new AbortController();
-  let message = "";
-  let isScroll = false;
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  const submitButton = document.querySelector(".submit-button");
-  submitButton.addEventListener("click", () => {
-    if (submitButton.title === "stop") {
-      const controller = getAbortController();
-      if (controller) {
-        controller.abort();
-      }
-    }
-  });
-  try {
-    const ollama = new Ollama2({ host: ollamaRESTAPIURL });
-    const response = await ollama.chat({
-      model: settings.general.model,
-      messages: [
-        { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
-        ...messageHistoryAtIndex
-      ],
-      stream: true,
-      keep_alive: parseInt(settings.OllamaConnection.ollamaParameters.keep_alive),
-      options: ollamaParametersOptions(settings)
-    });
-    (0, import_obsidian4.setIcon)(submitButton, "square");
-    submitButton.title = "stop";
-    for await (const part of response) {
-      if (abortController.signal.aborted) {
-        throw new Error("Request aborted");
-      }
-      const content = part.message.content;
-      message += content;
-      const messageContainerEl2 = document.querySelector("#messageContainer");
-      if (messageContainerEl2) {
-        const targetUserMessage = messageContainerElDivs[index2];
-        const targetBotMessage = targetUserMessage.nextElementSibling;
-        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-        if (messageBlock) {
-          if (loadingEl) {
-            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-          }
-          messageBlock.innerHTML = "";
-          const fragment = document.createDocumentFragment();
-          const tempContainer = document.createElement("div");
-          fragment.appendChild(tempContainer);
-          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
-          while (tempContainer.firstChild) {
-            messageBlock.appendChild(tempContainer.firstChild);
-          }
-          addParagraphBreaks(messageBlock);
-          updateUnresolvedInternalLinks(plugin, messageBlock);
-          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-          copyCodeBlocks.forEach((copyCodeBlock) => {
-            copyCodeBlock.textContent = "Copy";
-            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-          });
-        }
-        messageContainerEl2.addEventListener("wheel", (event) => {
-          if (event.deltaY < 0 || event.deltaY > 0) {
-            isScroll = true;
-          }
-        });
-        if (!isScroll) {
-          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      }
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-  } catch (error) {
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    new import_obsidian4.Notice("Stream stopped.");
-    console.error("Error fetching chat response from Ollama:", error);
-  }
-  submitButton.textContent = "send";
-  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
-  submitButton.title = "send";
-}
-async function fetchRESTAPIURLResponse(plugin, settings, index2) {
-  const prompt = await getPrompt(plugin, settings);
-  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
-  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  try {
-    const response = await (0, import_obsidian4.requestUrl)({
-      url: settings.RESTAPIURLConnection.RESTAPIURL + "/chat/completions",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${settings.RESTAPIURLConnection.APIKey}`
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        messages: [
-          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
-          ...messageHistoryAtIndex
-        ],
-        max_tokens: parseInt(settings.general.max_tokens) || -1,
-        temperature: parseInt(settings.general.temperature)
-      })
-    });
-    let message = response.json.choices[0].message.content;
-    const messageContainerEl2 = document.querySelector("#messageContainer");
-    if (messageContainerEl2) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    return;
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchRESTAPIURLResponseStream(plugin, settings, index2) {
-  const RESTAPIURL = settings.RESTAPIURLConnection.RESTAPIURL;
-  if (!RESTAPIURL) {
-    return;
-  }
-  const prompt = await getPrompt(plugin, settings);
-  const url = RESTAPIURL + "/chat/completions";
-  abortController = new AbortController();
-  let message = "";
-  let isScroll = false;
-  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
-  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  const submitButton = document.querySelector(".submit-button");
-  submitButton.addEventListener("click", () => {
-    if (submitButton.title === "stop") {
-      const controller = getAbortController();
-      if (controller) {
-        controller.abort();
-      }
-    }
-  });
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${settings.RESTAPIURLConnection.APIKey}`
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        messages: [
-          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
-          ...messageHistoryAtIndex
-        ],
-        stream: true,
-        temperature: parseInt(settings.general.temperature),
-        max_tokens: parseInt(settings.general.max_tokens) || 4096
-      }),
-      signal: abortController.signal
-    });
-    (0, import_obsidian4.setIcon)(submitButton, "square");
-    submitButton.title = "stop";
-    if (!response.ok) {
-      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    if (!response.body) {
-      new import_obsidian4.Notice("Response body is null or undefined.");
-      throw new Error("Response body is null or undefined.");
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let reading = true;
-    while (reading) {
-      const { done, value } = await reader.read();
-      if (done) {
-        reading = false;
-        break;
-      }
-      const chunk = decoder.decode(value, { stream: false }) || "";
-      const parts = chunk.split("\n");
-      for (const part of parts.filter(Boolean)) {
-        if (part.includes("data: [DONE]")) {
-          break;
-        }
-        let parsedChunk;
-        try {
-          parsedChunk = JSON.parse(part.replace(/^data: /, ""));
-          if (parsedChunk.choices[0].finish_reason !== "stop") {
-            const content = parsedChunk.choices[0].delta.content;
-            message += content;
-          }
-        } catch (err) {
-          console.error("Error parsing JSON:", err);
-          console.log("Part with error:", part);
-          parsedChunk = { response: "{_e_}" };
-        }
-      }
-      const messageContainerEl2 = document.querySelector("#messageContainer");
-      if (messageContainerEl2) {
-        const targetUserMessage = messageContainerElDivs[index2];
-        const targetBotMessage = targetUserMessage.nextElementSibling;
-        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-        if (messageBlock) {
-          if (loadingEl) {
-            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-          }
-          messageBlock.innerHTML = "";
-          const fragment = document.createDocumentFragment();
-          const tempContainer = document.createElement("div");
-          fragment.appendChild(tempContainer);
-          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
-          while (tempContainer.firstChild) {
-            messageBlock.appendChild(tempContainer.firstChild);
-          }
-          addParagraphBreaks(messageBlock);
-          updateUnresolvedInternalLinks(plugin, messageBlock);
-          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-          copyCodeBlocks.forEach((copyCodeBlock) => {
-            copyCodeBlock.textContent = "Copy";
-            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-          });
-        }
-        messageContainerEl2.addEventListener("wheel", (event) => {
-          if (event.deltaY < 0 || event.deltaY > 0) {
-            isScroll = true;
-          }
-        });
-        if (!isScroll) {
-          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      }
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-  } catch (error) {
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    new import_obsidian4.Notice("Stream stopped.");
-    console.error(error);
-  }
-  submitButton.textContent = "send";
-  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
-  submitButton.title = "send";
-}
-async function fetchAnthropicResponse(plugin, settings, index2) {
-  const prompt = await getPrompt(plugin, settings);
-  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
-  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  try {
-    const response = await (0, import_obsidian4.requestUrl)({
-      url: "https://api.anthropic.com/v1/messages",
-      method: "POST",
-      headers: {
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-        "x-api-key": settings.APIConnections.anthropic.APIKey
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        system: settings.general.system_role + prompt + referenceCurrentNoteContent2,
-        messages: [
-          ...messageHistoryAtIndex
-        ],
-        max_tokens: parseInt(settings.general.max_tokens) || 4096,
-        temperature: parseInt(settings.general.temperature)
-      })
-    });
-    let message = response.json.content[0].text;
-    const messageContainerEl2 = document.querySelector("#messageContainer");
-    if (messageContainerEl2) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    return;
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchGoogleGeminiResponse(plugin, settings, index2) {
-  const prompt = await getPrompt(plugin, settings);
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  const convertMessageHistory = (messageHistory2) => {
-    const modifiedMessageHistory = [...messageHistory2];
-    const convertedMessageHistory2 = modifiedMessageHistory.map(({ role, content }) => ({
-      role: role === "assistant" ? "model" : role,
-      parts: [{ text: content }]
-    }));
-    const contents = [
-      ...convertedMessageHistory2
-    ];
-    return { contents };
-  };
-  const convertedMessageHistory = convertMessageHistory(messageHistoryAtIndex);
-  try {
-    const API_KEY = settings.APIConnections.googleGemini.APIKey;
-    const response = await (0, import_obsidian4.requestUrl)({
-      url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: `System prompt: 
-
- ${plugin.settings.general.system_role} ${prompt} ${referenceCurrentNoteContent2} Respond understood if you got it.` }]
-          },
-          {
-            role: "model",
-            parts: [{ text: "Understood." }]
-          },
-          ...convertedMessageHistory.contents
-        ],
-        generationConfig: {
-          stopSequences: "",
-          temperature: parseInt(settings.general.temperature),
-          maxOutputTokens: settings.general.max_tokens || 4096,
-          topP: 0.8,
-          topK: 10
-        }
-      })
-    });
-    let message = response.json.candidates[0].content.parts[0].text;
-    const messageContainerEl2 = document.querySelector("#messageContainer");
-    if (messageContainerEl2) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    return;
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchMistralResponse(plugin, settings, index2) {
-  const prompt = await getPrompt(plugin, settings);
-  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
-  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  try {
-    const response = await (0, import_obsidian4.requestUrl)({
-      url: "https://api.mistral.ai/v1/chat/completions",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${settings.APIConnections.mistral.APIKey}`
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        messages: [
-          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
-          ...messageHistoryAtIndex
-        ],
-        max_tokens: parseInt(settings.general.max_tokens) || 4096,
-        temperature: parseInt(settings.general.temperature)
-      })
-    });
-    let message = response.json.choices[0].message.content;
-    const messageContainerEl2 = document.querySelector("#messageContainer");
-    if (messageContainerEl2) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    return;
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchMistralResponseStream(plugin, settings, index2) {
-  abortController = new AbortController();
-  const prompt = await getPrompt(plugin, settings);
-  let message = "";
-  let isScroll = false;
-  const noImageMessageHistory = messageHistory.map(({ role, content }) => ({ role, content }));
-  const filteredMessageHistory = filterMessageHistory(noImageMessageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  const submitButton = document.querySelector(".submit-button");
-  submitButton.addEventListener("click", () => {
-    if (submitButton.title === "stop") {
-      const controller = getAbortController();
-      if (controller) {
-        controller.abort();
-      }
-    }
-  });
-  try {
-    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${settings.APIConnections.mistral.APIKey}`
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        messages: [
-          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
-          ...messageHistoryAtIndex
-        ],
-        stream: true,
-        temperature: parseInt(settings.general.temperature),
-        max_tokens: parseInt(settings.general.max_tokens) || 4096
-      }),
-      signal: abortController.signal
-    });
-    (0, import_obsidian4.setIcon)(submitButton, "square");
-    submitButton.title = "stop";
-    if (!response.ok) {
-      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    if (!response.body) {
-      new import_obsidian4.Notice("Response body is null or undefined.");
-      throw new Error("Response body is null or undefined.");
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let reading = true;
-    while (reading) {
-      const { done, value } = await reader.read();
-      if (done) {
-        reading = false;
-        break;
-      }
-      const chunk = decoder.decode(value, { stream: false }) || "";
-      const parts = chunk.split("\n");
-      for (const part of parts.filter(Boolean)) {
-        if (part.includes("data: [DONE]")) {
-          break;
-        }
-        let parsedChunk;
-        try {
-          parsedChunk = JSON.parse(part.replace(/^data: /, ""));
-          if (parsedChunk.choices[0].finish_reason !== "stop") {
-            const content = parsedChunk.choices[0].delta.content;
-            message += content;
-          }
-        } catch (err) {
-          console.error("Error parsing JSON:", err);
-          console.log("Part with error:", part);
-          parsedChunk = { response: "{_e_}" };
-        }
-      }
-      const messageContainerEl2 = document.querySelector("#messageContainer");
-      if (messageContainerEl2) {
-        const targetUserMessage = messageContainerElDivs[index2];
-        const targetBotMessage = targetUserMessage.nextElementSibling;
-        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-        if (messageBlock) {
-          if (loadingEl) {
-            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-          }
-          messageBlock.innerHTML = "";
-          const fragment = document.createDocumentFragment();
-          const tempContainer = document.createElement("div");
-          fragment.appendChild(tempContainer);
-          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
-          while (tempContainer.firstChild) {
-            messageBlock.appendChild(tempContainer.firstChild);
-          }
-          addParagraphBreaks(messageBlock);
-          updateUnresolvedInternalLinks(plugin, messageBlock);
-          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-          copyCodeBlocks.forEach((copyCodeBlock) => {
-            copyCodeBlock.textContent = "Copy";
-            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-          });
-        }
-        messageContainerEl2.addEventListener("wheel", (event) => {
-          if (event.deltaY < 0 || event.deltaY > 0) {
-            isScroll = true;
-          }
-        });
-        if (!isScroll) {
-          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      }
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-  } catch (error) {
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    new import_obsidian4.Notice("Stream stopped.");
-    console.error(error);
-  }
-  submitButton.textContent = "send";
-  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
-  submitButton.title = "send";
-}
-async function fetchOpenAIAPIResponse(plugin, settings, index2) {
-  const openai = new openai_default({
-    apiKey: settings.APIConnections.openAI.APIKey,
-    baseURL: settings.APIConnections.openAI.openAIBaseUrl,
-    dangerouslyAllowBrowser: true
-    // apiKey is stored within data.json
-  });
-  const prompt = await getPrompt(plugin, settings);
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  try {
-    const completion = await openai.chat.completions.create({
-      model: settings.general.model,
-      max_tokens: parseInt(settings.general.max_tokens),
-      stream: false,
-      messages: [
-        { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
-        ...messageHistoryAtIndex
-      ]
-    });
-    let message = completion.choices[0].message.content || "";
-    if (messageContainerEl) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    if (message != null) {
-      const regexPatterns = [
-        /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-        /<note-rendered>[\s\S]*?<\/note-rendered>/g,
-        /<note-rendered>[\s\S]*?<\/note-rendered>/g
-      ];
-      regexPatterns.forEach((pattern) => {
-        message = message.replace(pattern, "").trim();
-      });
-      addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    }
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchOpenAIAPIResponseStream(plugin, settings, index2) {
-  var _a2, _b;
-  const openai = new openai_default({
-    apiKey: settings.APIConnections.openAI.APIKey,
-    baseURL: settings.APIConnections.openAI.openAIBaseUrl,
-    dangerouslyAllowBrowser: true
-    // apiKey is stored within data.json
-  });
-  abortController = new AbortController();
-  const prompt = await getPrompt(plugin, settings);
-  let message = "";
-  let isScroll = false;
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  const targetUserMessage = messageContainerElDivs[index2];
-  const targetBotMessage = targetUserMessage.nextElementSibling;
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  const submitButton = document.querySelector(".submit-button");
-  submitButton.addEventListener("click", () => {
-    if (submitButton.title === "stop") {
-      const controller = getAbortController();
-      if (controller) {
-        controller.abort();
-      }
-    }
-  });
-  try {
-    const stream = await openai.chat.completions.create({
-      model: settings.general.model,
-      max_tokens: parseInt(settings.general.max_tokens),
-      temperature: parseInt(settings.general.temperature),
-      stream: true,
-      messages: [
-        { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 },
-        ...messageHistoryAtIndex
-      ]
-    });
-    (0, import_obsidian4.setIcon)(submitButton, "square");
-    submitButton.title = "stop";
-    for await (const part of stream) {
-      const content = ((_b = (_a2 = part.choices[0]) == null ? void 0 : _a2.delta) == null ? void 0 : _b.content) || "";
-      message += content;
-      if (messageContainerEl) {
-        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-        if (messageBlock) {
-          if (loadingEl) {
-            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-          }
-          messageBlock.innerHTML = "";
-          const fragment = document.createDocumentFragment();
-          const tempContainer = document.createElement("div");
-          fragment.appendChild(tempContainer);
-          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
-          while (tempContainer.firstChild) {
-            messageBlock.appendChild(tempContainer.firstChild);
-          }
-          addParagraphBreaks(messageBlock);
-          updateUnresolvedInternalLinks(plugin, messageBlock);
-          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-          copyCodeBlocks.forEach((copyCodeBlock) => {
-            copyCodeBlock.textContent = "Copy";
-            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-          });
-        }
-        messageContainerEl.addEventListener("wheel", (event) => {
-          if (event.deltaY < 0 || event.deltaY > 0) {
-            isScroll = true;
-          }
-        });
-        if (!isScroll) {
-          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      }
-      if (abortController.signal.aborted) {
-        new import_obsidian4.Notice("Stream stopped.");
-        break;
-      }
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-  } catch (error) {
-    const targetUserMessage2 = messageContainerElDivs[index2];
-    const targetBotMessage2 = targetUserMessage2.nextElementSibling;
-    targetBotMessage2 == null ? void 0 : targetBotMessage2.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-  submitButton.textContent = "send";
-  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
-  submitButton.title = "send";
-}
-async function fetchOpenRouterResponse(plugin, settings, index2) {
-  const prompt = await getPrompt(plugin, settings);
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  try {
-    const response = await (0, import_obsidian4.requestUrl)({
-      url: "https://openrouter.ai/api/v1/chat/completions",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${settings.APIConnections.openRouter.APIKey}`
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        messages: [
-          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
-          ...messageHistoryAtIndex
-        ],
-        max_tokens: parseInt(settings.general.max_tokens) || 4096,
-        temperature: parseInt(settings.general.temperature)
-      })
-    });
-    let message = response.json.choices[0].message.content;
-    const messageContainerEl2 = document.querySelector("#messageContainer");
-    if (messageContainerEl2) {
-      const targetUserMessage = messageContainerElDivs[index2];
-      const targetBotMessage = targetUserMessage.nextElementSibling;
-      const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-      const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-      if (messageBlock) {
-        if (loadingEl) {
-          targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-        }
-        await import_obsidian4.MarkdownRenderer.render(plugin.app, message || "", messageBlock, "/", plugin);
-        addParagraphBreaks(messageBlock);
-        updateUnresolvedInternalLinks(plugin, messageBlock);
-        const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-        copyCodeBlocks.forEach((copyCodeBlock) => {
-          copyCodeBlock.textContent = "Copy";
-          (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-        });
-        targetBotMessage == null ? void 0 : targetBotMessage.appendChild(messageBlock);
-      }
-      targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    return;
-  } catch (error) {
-    const targetUserMessage = messageContainerElDivs[index2];
-    const targetBotMessage = targetUserMessage.nextElementSibling;
-    targetBotMessage == null ? void 0 : targetBotMessage.remove();
-    const messageContainer = document.querySelector("#messageContainer");
-    const botMessageDiv2 = displayErrorBotMessage(plugin, settings, messageHistory, error);
-    messageContainer.appendChild(botMessageDiv2);
-  }
-}
-async function fetchOpenRouterResponseStream(plugin, settings, index2) {
-  const url = "https://openrouter.ai/api/v1/chat/completions";
-  abortController = new AbortController();
-  const prompt = await getPrompt(plugin, settings);
-  let message = "";
-  let isScroll = false;
-  const filteredMessageHistory = filterMessageHistory(messageHistory);
-  const messageHistoryAtIndex = removeConsecutiveUserRoles(filteredMessageHistory);
-  const messageContainerEl = document.querySelector("#messageContainer");
-  const messageContainerElDivs = document.querySelectorAll("#messageContainer div.userMessage, #messageContainer div.botMessage");
-  const botMessageDiv = displayLoadingBotMessage(settings);
-  messageContainerEl == null ? void 0 : messageContainerEl.insertBefore(botMessageDiv, messageContainerElDivs[index2 + 1]);
-  botMessageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  await getActiveFileContent(plugin, settings);
-  const referenceCurrentNoteContent2 = getCurrentNoteContent();
-  const submitButton = document.querySelector(".submit-button");
-  submitButton.addEventListener("click", () => {
-    if (submitButton.title === "stop") {
-      const controller = getAbortController();
-      if (controller) {
-        controller.abort();
-      }
-    }
-  });
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${settings.APIConnections.openRouter.APIKey}`
-      },
-      body: JSON.stringify({
-        model: settings.general.model,
-        messages: [
-          { role: "system", content: settings.general.system_role + prompt + referenceCurrentNoteContent2 || "You are a helpful assistant." },
-          ...messageHistoryAtIndex
-        ],
-        stream: true,
-        temperature: parseInt(settings.general.temperature),
-        max_tokens: parseInt(settings.general.max_tokens) || 4096
-      }),
-      signal: abortController.signal
-    });
-    (0, import_obsidian4.setIcon)(submitButton, "square");
-    submitButton.title = "stop";
-    if (!response.ok) {
-      new import_obsidian4.Notice(`HTTP error! Status: ${response.status}`);
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    if (!response.body) {
-      new import_obsidian4.Notice("Response body is null or undefined.");
-      throw new Error("Response body is null or undefined.");
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let reading = true;
-    while (reading) {
-      const { done, value } = await reader.read();
-      if (done) {
-        reading = false;
-        break;
-      }
-      const chunk = decoder.decode(value, { stream: false }) || "";
-      const parts = chunk.split("\n");
-      for (const part of parts.filter(Boolean)) {
-        if (part.includes("data: [DONE]")) {
-          break;
-        }
-        let parsedChunk;
-        try {
-          parsedChunk = JSON.parse(part.replace(/^data: /, ""));
-          if (parsedChunk.choices[0].finish_reason !== "stop") {
-            const content = parsedChunk.choices[0].delta.content;
-            message += content;
-          }
-        } catch (err) {
-          console.error("Error parsing JSON:", err);
-          console.log("Part with error:", part);
-          parsedChunk = { response: "{_e_}" };
-        }
-      }
-      const messageContainerEl2 = document.querySelector("#messageContainer");
-      if (messageContainerEl2) {
-        const targetUserMessage = messageContainerElDivs[index2];
-        const targetBotMessage = targetUserMessage.nextElementSibling;
-        const messageBlock = targetBotMessage == null ? void 0 : targetBotMessage.querySelector(".messageBlock");
-        const loadingEl = targetBotMessage == null ? void 0 : targetBotMessage.querySelector("#loading");
-        if (messageBlock) {
-          if (loadingEl) {
-            targetBotMessage == null ? void 0 : targetBotMessage.removeChild(loadingEl);
-          }
-          messageBlock.innerHTML = "";
-          const fragment = document.createDocumentFragment();
-          const tempContainer = document.createElement("div");
-          fragment.appendChild(tempContainer);
-          await import_obsidian4.MarkdownRenderer.render(plugin.app, message, tempContainer, "/", plugin);
-          while (tempContainer.firstChild) {
-            messageBlock.appendChild(tempContainer.firstChild);
-          }
-          addParagraphBreaks(messageBlock);
-          updateUnresolvedInternalLinks(plugin, messageBlock);
-          const copyCodeBlocks = messageBlock.querySelectorAll(".copy-code-button");
-          copyCodeBlocks.forEach((copyCodeBlock) => {
-            copyCodeBlock.textContent = "Copy";
-            (0, import_obsidian4.setIcon)(copyCodeBlock, "copy");
-          });
-        }
-        messageContainerEl2.addEventListener("wheel", (event) => {
-          if (event.deltaY < 0 || event.deltaY > 0) {
-            isScroll = true;
-          }
-        });
-        if (!isScroll) {
-          targetBotMessage == null ? void 0 : targetBotMessage.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      }
-    }
-    const regexPatterns = [
-      /<block-rendered>[\s\S]*?<\/block-rendered>/g,
-      /<note-rendered>[\s\S]*?<\/note-rendered>/g
-    ];
-    regexPatterns.forEach((pattern) => {
-      message = message.replace(pattern, "").trim();
-    });
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-  } catch (error) {
-    addMessage(plugin, message.trim(), "botMessage", settings, index2);
-    new import_obsidian4.Notice("Stream stopped.");
-    console.error(error);
-  }
-  submitButton.textContent = "send";
-  (0, import_obsidian4.setIcon)(submitButton, "arrow-up");
-  submitButton.title = "send";
-}
-function getAbortController() {
-  return abortController;
-}
-function ollamaParametersOptions(settings) {
-  return {
-    mirostat: parseInt(settings.OllamaConnection.ollamaParameters.mirostat),
-    mirostat_eta: parseFloat(settings.OllamaConnection.ollamaParameters.mirostat_eta),
-    mirostat_tau: parseFloat(settings.OllamaConnection.ollamaParameters.mirostat_tau),
-    num_ctx: parseInt(settings.OllamaConnection.ollamaParameters.num_ctx),
-    num_gqa: parseInt(settings.OllamaConnection.ollamaParameters.num_gqa),
-    num_thread: parseInt(settings.OllamaConnection.ollamaParameters.num_thread),
-    repeat_last_n: parseInt(settings.OllamaConnection.ollamaParameters.repeat_last_n),
-    repeat_penalty: parseFloat(settings.OllamaConnection.ollamaParameters.repeat_penalty),
-    temperature: parseInt(settings.general.temperature),
-    seed: parseInt(settings.OllamaConnection.ollamaParameters.seed),
-    stop: settings.OllamaConnection.ollamaParameters.stop,
-    tfs_z: parseFloat(settings.OllamaConnection.ollamaParameters.tfs_z),
-    num_predict: parseInt(settings.general.max_tokens) || -1,
-    top_k: parseInt(settings.OllamaConnection.ollamaParameters.top_k),
-    top_p: parseFloat(settings.OllamaConnection.ollamaParameters.top_p),
-    min_p: parseFloat(settings.OllamaConnection.ollamaParameters.min_p)
-  };
-}
-function filterMessageHistory(messageHistory2) {
-  const skipIndexes = /* @__PURE__ */ new Set();
-  messageHistory2.forEach((message, index2, array) => {
-    if (message.role === "user" && message.content.startsWith("/")) {
-      skipIndexes.add(index2);
-      if (index2 + 1 < array.length && array[index2 + 1].role === "assistant") {
-        skipIndexes.add(index2 + 1);
-      }
-    } else if (message.role === "assistant" && message.content.includes("errorBotMessage")) {
-      skipIndexes.add(index2);
-      if (index2 > 0) {
-        skipIndexes.add(index2 - 1);
-      }
-    }
-  });
-  const filteredMessageHistory = messageHistory2.filter((_, index2) => !skipIndexes.has(index2));
-  return filteredMessageHistory;
-}
-function removeConsecutiveUserRoles(messageHistory2) {
-  const result = [];
-  let foundUserMessage = false;
-  for (let i = 0; i < messageHistory2.length; i++) {
-    if (messageHistory2[i].role === "user") {
-      if (!foundUserMessage) {
-        result.push(messageHistory2[i]);
-        foundUserMessage = true;
-      } else {
-        break;
-      }
-    } else {
-      result.push(messageHistory2[i]);
-      foundUserMessage = false;
-    }
-  }
-  return result;
-}
-
 // src/components/editor/FetchRenameNoteTitle.ts
-var import_obsidian5 = require("obsidian");
 async function fetchModelRenameTitle(settings, referenceCurrentNoteContent2) {
   var _a2, _b;
   const clearYamlContent = referenceCurrentNoteContent2.replace(/---[\s\S]+?---/, "").trim();
@@ -4925,6 +5475,7 @@ async function fetchModelRenameTitle(settings, referenceCurrentNoteContent2) {
 }
 
 // src/components/chat/Commands.ts
+var lastLoadedChatHistoryFile = null;
 var commandMap = {
   "/help": (input, settings, plugin) => commandHelp(plugin, settings),
   "/model": (input, settings, plugin) => commandModel(input, settings, plugin),
@@ -4935,6 +5486,7 @@ var commandMap = {
   "/maxtokens": (input, settings, plugin) => commandMaxTokens(input, settings, plugin),
   "/append": (input, settings, plugin) => commandAppend(plugin, settings),
   "/save": (input, settings, plugin) => commandSave(plugin, settings),
+  "/load": (input, settings, plugin) => commandLoad(input, plugin, settings),
   "/clear": (input, settings, plugin) => removeMessageThread(plugin, 0),
   "/stop": (input, settings, plugin) => commandStop()
 };
@@ -5041,12 +5593,15 @@ function commandHelp(plugin, settings) {
   const commandSaveP = document.createElement("p");
   commandSaveP.innerHTML = "<code>/save</code> - Save current chat history to a note.";
   displayCommandBotMessageDiv.appendChild(commandSaveP);
+  const commandLoadP = document.createElement("p");
+  commandLoadP.innerHTML = "<code>/load</code> - List or load a chat history into view.";
+  displayCommandBotMessageDiv.appendChild(commandLoadP);
   const streamCommandHeader = document.createElement("h4");
-  streamCommandHeader.textContent = "Stream Commands";
+  streamCommandHeader.textContent = "Response Commands";
   streamCommandHeader.style.textAlign = "left";
   displayCommandBotMessageDiv.appendChild(streamCommandHeader);
   const commandStopP = document.createElement("p");
-  commandStopP.innerHTML = "<code>/stop</code> or <code>/s</code> - Stop fetching response for streaming models only.";
+  commandStopP.innerHTML = "<code>/stop</code> or <code>/s</code> - Stop fetching response. Warning: Anthropric models cannot be aborted. Please use with caution.";
   displayCommandBotMessageDiv.appendChild(commandStopP);
   messageBlockDiv.appendChild(displayCommandBotMessageDiv);
   botMessageToolBarDiv.appendChild(botNameSpan);
@@ -5100,13 +5655,13 @@ async function commandModel(input, settings, plugin) {
     currentModelP.style.textAlign = "center";
     displayCommandBotMessageDiv.appendChild(currentModelP);
     const apiLists = [
-      { header: "Ollama", items: ollamaModels },
-      { header: "REST API", items: RESTAPIModels },
-      { header: "Anthropic", items: anthropicModels },
-      { header: "Google Gemini", items: googleGeminiModels },
-      { header: "Mistral", items: mistralModels },
-      { header: "OpenAI", items: openAIBaseModels },
-      { header: "OpenRouter", items: openRouterModels }
+      { header: "Ollama Models", items: ollamaModels },
+      { header: "REST API Models", items: RESTAPIModels },
+      { header: "Anthropic Models", items: anthropicModels },
+      { header: "Google Gemini Models", items: googleGeminiModels },
+      { header: "Mistral Models", items: mistralModels },
+      { header: "OpenAI-Based Models", items: openAIBaseModels },
+      { header: "OpenRouter Models", items: openRouterModels }
     ];
     let currentStartIndex = 1;
     apiLists.forEach((api) => {
@@ -5145,7 +5700,7 @@ async function commandModel(input, settings, plugin) {
       new import_obsidian6.Notice(`Updated model to ${settings.general.model}`);
     } else if (Object.entries(modelAliases).find(([key, val]) => val === inputModel)) {
       settings.general.model = modelAliases[Object.keys(modelAliases).find((key) => modelAliases[key] === inputModel) || ""];
-      new import_obsidian6.Notice("Updated model to {settings.general.model}");
+      new import_obsidian6.Notice(`Updated model to ${settings.general.model}`);
     } else {
       new import_obsidian6.Notice("Invalid model.");
     }
@@ -5163,12 +5718,12 @@ async function commandProfile(input, settings, plugin) {
   }
   const files = plugin.app.vault.getFiles().filter((file) => file.path.startsWith(plugin.settings.profiles.profileFolderPath));
   files.sort((a, b) => a.name.localeCompare(b.name));
+  let currentProfile = settings.profiles.profile.replace(/\.[^/.]+$/, "");
   if (!input.split(" ")[1]) {
     const fileListItems = files.map((file) => {
       const fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
       return `<li>${fileNameWithoutExtension}</li>`;
     }).join("");
-    let currentProfile = settings.profiles.profile.replace(/\.[^/.]+$/, "");
     if (!currentProfile) {
       currentProfile = "Empty";
     }
@@ -5192,18 +5747,24 @@ async function commandProfile(input, settings, plugin) {
     if (profileAliases[inputValue]) {
       plugin.settings.profiles.profile = profileAliases[inputValue] + ".md";
       const profileFilePath = plugin.settings.profiles.profileFolderPath + "/" + profileAliases[inputValue] + ".md";
-      const currentProfile = plugin.app.vault.getAbstractFileByPath(profileFilePath);
+      const currentProfile2 = plugin.app.vault.getAbstractFileByPath(profileFilePath);
+      const currentProfileName = settings.profiles.profile.replace(/\.[^/.]+$/, "");
+      const profileIndex = files.findIndex((file) => file.basename === currentProfileName);
+      settings.profiles.lastLoadedChatHistoryPath = settings.profiles.lastLoadedChatHistory[profileIndex];
       plugin.activateView();
-      await updateSettingsFromFrontMatter(plugin, currentProfile);
+      await updateSettingsFromFrontMatter(plugin, currentProfile2);
       await plugin.saveSettings();
     } else if (Object.values(profileAliases).map((v) => v.toLowerCase()).includes(inputValue.toLowerCase())) {
       const matchedProfile = Object.entries(profileAliases).find(([key, value]) => value.toLowerCase() === inputValue.toLowerCase());
       if (matchedProfile) {
         plugin.settings.profiles.profile = matchedProfile[1] + ".md";
         const profileFilePath = plugin.settings.profiles.profileFolderPath + "/" + matchedProfile[1] + ".md";
-        const currentProfile = plugin.app.vault.getAbstractFileByPath(profileFilePath);
+        const currentProfile2 = plugin.app.vault.getAbstractFileByPath(profileFilePath);
+        const currentProfileName = settings.profiles.profile.replace(/\.[^/.]+$/, "");
+        const profileIndex = files.findIndex((file) => file.basename === currentProfileName);
+        settings.profiles.lastLoadedChatHistoryPath = settings.profiles.lastLoadedChatHistory[profileIndex];
         plugin.activateView();
-        await updateSettingsFromFrontMatter(plugin, currentProfile);
+        await updateSettingsFromFrontMatter(plugin, currentProfile2);
         await plugin.saveSettings();
       }
     } else {
@@ -5405,27 +5966,24 @@ async function commandSave(plugin, settings) {
   try {
     let markdownContent = "";
     const allFiles = plugin.app.vault.getFiles();
-    const modelNameElement = document.querySelector("#modelName");
-    let modelName = "Unknown";
-    if (modelNameElement && modelNameElement.textContent) {
-      modelName = modelNameElement.textContent.replace("Model: ", "").toLowerCase();
-    }
-    const templateFile = allFiles.find((file2) => file2.path.toLowerCase() === settings.chatHistory.templateFilePath.toLowerCase());
+    const templateFile = allFiles.find((file) => file.path.toLowerCase() === settings.chatHistory.templateFilePath.toLowerCase());
     if (templateFile) {
       let fileContent = await plugin.app.vault.read(templateFile);
       if (/^---\s*[\s\S]*?---/.test(fileContent)) {
-        fileContent = fileContent.replace(/^---/, `---
-model: ${modelName}`);
+        if (!/^model:\s/m.test(fileContent)) {
+          fileContent = fileContent.replace(/^---/, `---
+model: ${settings.general.model}`);
+        }
       } else {
         fileContent = `---
-  model: ${modelName}
+  model: ${settings.general.model}
 ---
 ` + fileContent;
       }
       markdownContent += fileContent;
     } else {
       markdownContent += `---
-  model: ${modelName}
+  model: ${settings.general.model}
 ---
 `;
     }
@@ -5477,7 +6035,7 @@ ${message.content}
       let uniqueNameFound = false;
       let modelRenameTitle;
       const fileNameExists = (name) => {
-        return allFiles.some((file2) => file2.path === folderName + name + fileExtension);
+        return allFiles.some((file) => file.path === folderName + name + fileExtension);
       };
       while (!uniqueNameFound) {
         modelRenameTitle = await fetchModelRenameTitle(settings, markdownContent);
@@ -5489,13 +6047,276 @@ ${message.content}
     } else {
       fileName = folderName + baseFileName + " " + dateTimeStamp + fileExtension;
     }
-    const file = await plugin.app.vault.create(fileName, markdownContent);
-    if (file) {
-      new import_obsidian6.Notice("Saved conversation.");
-      plugin.app.workspace.openLinkText(fileName, "", true, { active: true });
+    if (settings.profiles.lastLoadedChatHistoryPath !== null) {
+      lastLoadedChatHistoryFile = plugin.app.vault.getAbstractFileByPath(settings.profiles.lastLoadedChatHistoryPath);
     }
+    if (lastLoadedChatHistoryFile === null) {
+      const file = await plugin.app.vault.create(fileName, markdownContent);
+      const profileFiles = plugin.app.vault.getFiles().filter((file2) => file2.path.startsWith(settings.profiles.profileFolderPath));
+      profileFiles.sort((a, b) => a.name.localeCompare(b.name));
+      const currentProfile = settings.profiles.profile.replace(/\.[^/.]+$/, "");
+      const profileIndex = profileFiles.findIndex((file2) => file2.basename === currentProfile);
+      if (file) {
+        settings.profiles.lastLoadedChatHistoryPath = file.path;
+        settings.profiles.lastLoadedChatHistory[profileIndex] = file.path;
+        plugin.app.workspace.openLinkText(fileName, "", true, { active: true });
+      }
+    } else {
+      await plugin.app.vault.modify(lastLoadedChatHistoryFile, markdownContent);
+      const activeFile = plugin.app.workspace.getActiveFile();
+      if ((activeFile == null ? void 0 : activeFile.path) !== lastLoadedChatHistoryFile.path) {
+        plugin.app.workspace.openLinkText(lastLoadedChatHistoryFile.path, lastLoadedChatHistoryFile.path, true, { active: true });
+      }
+    }
+    new import_obsidian6.Notice(`Saved to '${lastLoadedChatHistoryFile == null ? void 0 : lastLoadedChatHistoryFile.name}'`);
+    await plugin.saveSettings();
   } catch (error) {
     console.error("Failed to create note:", error);
+  }
+}
+async function commandLoad(input, plugin, settings) {
+  const messageContainer = document.querySelector("#messageContainer");
+  const folderPath = plugin.settings.chatHistory.chatHistoryPath.trim() || DEFAULT_SETTINGS.chatHistory.chatHistoryPath;
+  const files = plugin.app.vault.getFiles().filter((file) => file.path.startsWith(folderPath));
+  files.sort((a, b) => a.name.localeCompare(b.name));
+  const profileFiles = plugin.app.vault.getFiles().filter((file) => file.path.startsWith(plugin.settings.profiles.profileFolderPath));
+  profileFiles.sort((a, b) => a.name.localeCompare(b.name));
+  const currentProfile = settings.profiles.profile.replace(/\.[^/.]+$/, "");
+  const profileIndex = profileFiles.findIndex((file) => file.basename === currentProfile);
+  if (!input.split(" ")[1]) {
+    const fileGroups = files.reduce((acc, file) => {
+      const fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
+      if (acc[fileNameWithoutExtension]) {
+        acc[fileNameWithoutExtension].count++;
+      } else {
+        acc[fileNameWithoutExtension] = { count: 1 };
+      }
+      return acc;
+    }, {});
+    const fileListItems = Object.entries(fileGroups).map(([fileName, { count }]) => {
+      return count > 1 ? `<li>${fileName} [${count} files found]</li>` : `<li>${fileName}</li>`;
+    }).join("");
+    const commandBotMessage = `<h2 style="text-align: center;">Chat History</h2>
+   <p style="text-align: center;"><b>Current Chat History:</b> ${settings.profiles.lastLoadedChatHistory[profileIndex] ? settings.profiles.lastLoadedChatHistory[profileIndex] : "Empty"}</p>
+    <ol>${fileListItems}</ol>`;
+    const botMessageDiv = displayCommandBotMessage(plugin, settings, messageHistory, commandBotMessage);
+    messageContainer.appendChild(botMessageDiv);
+    return;
+  }
+  if (input.startsWith("/load")) {
+    let inputValue = input.split(" ").slice(1).join(" ").trim();
+    if (inputValue.startsWith('"') && inputValue.endsWith('"') || inputValue.startsWith("'") && inputValue.endsWith("'")) {
+      inputValue = inputValue.substring(1, inputValue.length - 1);
+    }
+    const loadAliases = {};
+    let currentIndex = 1;
+    for (let i = 0; i < files.length; i++) {
+      const fileNameWithoutExtension = files[i].name.replace(/\.[^/.]+$/, "");
+      const existingKey = Object.values(loadAliases).find(
+        (value) => value === fileNameWithoutExtension
+      );
+      if (!existingKey) {
+        loadAliases[currentIndex.toString().toLowerCase()] = fileNameWithoutExtension;
+        currentIndex++;
+      }
+    }
+    const messageHistory2 = [];
+    const loadChatHistory = async (filePath) => {
+      const currentLoad = plugin.app.vault.getAbstractFileByPath(filePath);
+      const fileContent = await plugin.app.vault.cachedRead(currentLoad);
+      const contentWithoutFrontmatter = fileContent.replace(/^---\n[\s\S]*?\n---\n/, "");
+      const lines = contentWithoutFrontmatter.split("\n");
+      let currentRole = "";
+      let currentContent = "";
+      let headerCount = 0;
+      for (const line of lines) {
+        if (line.startsWith("###### ")) {
+          headerCount++;
+          if (currentContent) {
+            messageHistory2.push({
+              role: currentRole,
+              content: currentContent.trim()
+            });
+          }
+          currentRole = currentRole === "user" ? "assistant" : "user";
+          currentContent = "";
+        } else {
+          currentContent += line + "\n";
+        }
+      }
+      if (currentContent) {
+        messageHistory2.push({
+          role: currentRole,
+          content: currentContent.trim()
+        });
+      }
+      if (headerCount % 2 !== 0) {
+        new import_obsidian6.Notice("Incorrect formatting.");
+        return false;
+      }
+      const updatedJsonString = JSON.stringify(messageHistory2, null, 4);
+      await plugin.app.vault.adapter.write(fileNameMessageHistoryJson(plugin), updatedJsonString);
+      plugin.activateView();
+      return true;
+    };
+    if (loadAliases[inputValue]) {
+      const matchingFiles = files.filter((file) => file.name.includes(loadAliases[inputValue]));
+      const modal = new import_obsidian6.Modal(plugin.app);
+      const modalContent = document.createElement("div");
+      modalContent.classList.add("modal-content");
+      const heading = document.createElement("h2");
+      heading.textContent = "Load Chat History";
+      modalContent.appendChild(heading);
+      if (matchingFiles.length === 1) {
+        const message = document.createElement("p");
+        message.textContent = `Are you sure you want to override your current chat history with "${matchingFiles[0].name}"?`;
+        modalContent.appendChild(message);
+        const confirmLoadButton = document.createElement("button");
+        confirmLoadButton.id = "confirmLoad";
+        confirmLoadButton.textContent = "Confirm";
+        modalContent.appendChild(confirmLoadButton);
+        confirmLoadButton == null ? void 0 : confirmLoadButton.addEventListener("click", async function() {
+          const selectedFile = matchingFiles[0];
+          const chatHistoryFilePath = selectedFile.path;
+          const success = await loadChatHistory(chatHistoryFilePath);
+          if (success) {
+            new import_obsidian6.Notice(`Switched to '${selectedFile.path}' chat history.`);
+            lastLoadedChatHistoryFile = selectedFile;
+            settings.profiles.lastLoadedChatHistoryPath = selectedFile.path;
+            settings.profiles.lastLoadedChatHistory[profileIndex] = settings.profiles.lastLoadedChatHistoryPath;
+            await plugin.saveSettings();
+          }
+          modal.close();
+        });
+      } else {
+        const message = document.createElement("p");
+        message.textContent = "Select a chat history to override:";
+        modalContent.appendChild(message);
+        const optionsContainer = document.createElement("div");
+        optionsContainer.classList.add("file-options");
+        optionsContainer.style.marginBottom = "16px";
+        matchingFiles.forEach((file, index2) => {
+          const radioElement = document.createElement("input");
+          radioElement.type = "radio";
+          radioElement.name = "fileOption";
+          radioElement.value = file.path;
+          radioElement.id = `file-${index2}`;
+          const labelElement = document.createElement("label");
+          labelElement.htmlFor = `file-${index2}`;
+          labelElement.textContent = file.path;
+          optionsContainer.appendChild(radioElement);
+          optionsContainer.appendChild(labelElement);
+          optionsContainer.appendChild(document.createElement("br"));
+        });
+        modalContent.appendChild(optionsContainer);
+        const confirmLoadButton = document.createElement("button");
+        confirmLoadButton.id = "confirmLoad";
+        confirmLoadButton.textContent = "Load";
+        modalContent.appendChild(confirmLoadButton);
+        confirmLoadButton == null ? void 0 : confirmLoadButton.addEventListener("click", async function() {
+          const selectedRadio = optionsContainer.querySelector('input[type="radio"]:checked');
+          if (selectedRadio) {
+            const selectedFilePath = selectedRadio.value;
+            const selectedFile = matchingFiles.find((file) => file.path === selectedFilePath);
+            if (selectedFile) {
+              const chatHistoryFilePath = selectedFile.path;
+              const success = await loadChatHistory(chatHistoryFilePath);
+              if (success) {
+                new import_obsidian6.Notice(`Switched to '${selectedFile.path}' chat history.`);
+                lastLoadedChatHistoryFile = selectedFile;
+                settings.profiles.lastLoadedChatHistoryPath = selectedFile.path;
+                settings.profiles.lastLoadedChatHistory[profileIndex] = settings.profiles.lastLoadedChatHistoryPath;
+                await plugin.saveSettings();
+              }
+              modal.close();
+            }
+          }
+        });
+      }
+      modal.contentEl.appendChild(modalContent);
+      modal.open();
+    } else if (Object.values(loadAliases).map((v) => v.toLowerCase()).includes(inputValue.toLowerCase())) {
+      const matchedFile = Object.entries(loadAliases).find(([key, value]) => value.toLowerCase() === inputValue.toLowerCase());
+      if (matchedFile) {
+        const matchingFiles = files.filter((file) => file.name.includes(matchedFile[1]));
+        const modal = new import_obsidian6.Modal(plugin.app);
+        const modalContent = document.createElement("div");
+        modalContent.classList.add("modal-content");
+        const heading = document.createElement("h2");
+        heading.textContent = "Load Chat History";
+        modalContent.appendChild(heading);
+        if (matchingFiles.length === 1) {
+          const message = document.createElement("p");
+          message.textContent = `Are you sure you want to override your current chat history with "${matchingFiles[0].name}"?`;
+          modalContent.appendChild(message);
+          const confirmLoadButton = document.createElement("button");
+          confirmLoadButton.id = "confirmLoad";
+          confirmLoadButton.textContent = "Confirm";
+          modalContent.appendChild(confirmLoadButton);
+          confirmLoadButton == null ? void 0 : confirmLoadButton.addEventListener("click", async function() {
+            const selectedFile = matchingFiles[0];
+            const chatHistoryFilePath = selectedFile.path;
+            const success = await loadChatHistory(chatHistoryFilePath);
+            if (success) {
+              new import_obsidian6.Notice(`Switched to '${selectedFile.path}' chat history.`);
+              lastLoadedChatHistoryFile = selectedFile;
+              settings.profiles.lastLoadedChatHistoryPath = selectedFile.path;
+              settings.profiles.lastLoadedChatHistory[profileIndex] = settings.profiles.lastLoadedChatHistoryPath;
+              await plugin.saveSettings();
+            }
+            modal.close();
+          });
+        } else {
+          const message = document.createElement("p");
+          message.textContent = "Select a chat history to override:";
+          modalContent.appendChild(message);
+          const optionsContainer = document.createElement("div");
+          optionsContainer.classList.add("file-options");
+          optionsContainer.style.marginBottom = "16px";
+          matchingFiles.forEach((file, index2) => {
+            const radioElement = document.createElement("input");
+            radioElement.type = "radio";
+            radioElement.name = "fileOption";
+            radioElement.value = file.path;
+            radioElement.id = `file-${index2}`;
+            const labelElement = document.createElement("label");
+            labelElement.htmlFor = `file-${index2}`;
+            labelElement.textContent = file.path;
+            optionsContainer.appendChild(radioElement);
+            optionsContainer.appendChild(labelElement);
+            optionsContainer.appendChild(document.createElement("br"));
+          });
+          modalContent.appendChild(optionsContainer);
+          const confirmLoadButton = document.createElement("button");
+          confirmLoadButton.id = "confirmLoad";
+          confirmLoadButton.textContent = "Load";
+          modalContent.appendChild(confirmLoadButton);
+          confirmLoadButton == null ? void 0 : confirmLoadButton.addEventListener("click", async function() {
+            const selectedRadio = optionsContainer.querySelector('input[type="radio"]:checked');
+            if (selectedRadio) {
+              const selectedFilePath = selectedRadio.value;
+              const selectedFile = matchingFiles.find((file) => file.path === selectedFilePath);
+              if (selectedFile) {
+                const chatHistoryFilePath = selectedFile.path;
+                const success = await loadChatHistory(chatHistoryFilePath);
+                if (success) {
+                  new import_obsidian6.Notice(`Switched to '${selectedFile.path}' chat history.`);
+                  lastLoadedChatHistoryFile = selectedFile;
+                  settings.profiles.lastLoadedChatHistoryPath = selectedFile.path;
+                  settings.profiles.lastLoadedChatHistory[profileIndex] = settings.profiles.lastLoadedChatHistoryPath;
+                  await plugin.saveSettings();
+                }
+                modal.close();
+              }
+            }
+          });
+        }
+        modal.contentEl.appendChild(modalContent);
+        modal.open();
+      }
+    } else {
+      new import_obsidian6.Notice("File does not exist.");
+    }
   }
 }
 function commandStop() {
@@ -5516,6 +6337,14 @@ async function removeMessageThread(plugin, index2) {
   const jsonString = JSON.stringify(messageHistory, null, 4);
   try {
     await plugin.app.vault.adapter.write(fileNameMessageHistoryJson(plugin), jsonString);
+    const profileFiles = plugin.app.vault.getFiles().filter((file) => file.path.startsWith(plugin.settings.profiles.profileFolderPath));
+    profileFiles.sort((a, b) => a.name.localeCompare(b.name));
+    const currentProfile = plugin.settings.profiles.profile.replace(/\.[^/.]+$/, "");
+    const profileIndex = profileFiles.findIndex((file) => file.basename === currentProfile);
+    lastLoadedChatHistoryFile = null;
+    plugin.settings.profiles.lastLoadedChatHistoryPath = null;
+    plugin.settings.profiles.lastLoadedChatHistory[profileIndex] = plugin.settings.profiles.lastLoadedChatHistoryPath;
+    await plugin.saveSettings();
     new import_obsidian6.Notice("Chat history cleared.");
   } catch (error) {
     console.error("Error writing messageHistory.json", error);
@@ -5562,8 +6391,8 @@ function displayUserMessage(plugin, settings, message) {
 
 // src/view.ts
 var VIEW_TYPE_CHATBOT = "chatbot-view";
-var ANTHROPIC_MODELS = ["claude-instant-1.2", "claude-2.0", "claude-2.1", "claude-3-haiku-20240307", "claude-3-sonnet-20240229", "claude-3-opus-20240229"];
-var OPENAI_MODELS = ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo", "gpt-4o"];
+var ANTHROPIC_MODELS = ["claude-instant-1.2", "claude-2.0", "claude-2.1", "claude-3-haiku-20240307", "claude-3-sonnet-20240229", "claude-3-5-sonnet-20240620", "claude-3-opus-20240229"];
+var OPENAI_MODELS = ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo", "gpt-4o", "gpt-4o-mini"];
 function fileNameMessageHistoryJson(plugin) {
   const filenameMessageHistoryPath = "./.obsidian/plugins/bmo-chatbot/data/";
   const currentProfileMessageHistory = "messageHistory_" + plugin.settings.profiles.profile.replace(".md", ".json");
@@ -5610,12 +6439,7 @@ var BMOView = class extends import_obsidian7.ItemView {
         id: "chatbotNameHeading"
       }
     });
-    const modelName = chatbotContainer.createEl("p", {
-      text: "Model: " + this.settings.general.model || DEFAULT_SETTINGS.general.model,
-      attr: {
-        id: "modelName"
-      }
-    });
+    const modelOptions = populateModelDropdown(this.plugin, this.settings);
     const dotIndicator = chatbotContainer.createEl("span", {
       attr: {
         class: "dotIndicator",
@@ -5629,7 +6453,7 @@ var BMOView = class extends import_obsidian7.ItemView {
       }
     });
     header.appendChild(chatbotNameHeading);
-    header.appendChild(modelName);
+    header.appendChild(modelOptions);
     referenceCurrentNoteElement.appendChild(dotIndicator);
     referenceCurrentNoteElement.style.display = "none";
     if (referenceCurrentNoteElement) {
@@ -5820,6 +6644,7 @@ var BMOView = class extends import_obsidian7.ItemView {
           "/s",
           "/stop",
           "/save",
+          "/load ",
           "/m ",
           "/model ",
           "/models ",
@@ -5859,10 +6684,6 @@ var BMOView = class extends import_obsidian7.ItemView {
             const botMessages = messageContainer.querySelectorAll(".botMessage");
             const lastBotMessage = botMessages[botMessages.length - 1];
             lastBotMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-          const modelName = document.querySelector("#modelName");
-          if (modelName) {
-            modelName.textContent = "Model: " + this.settings.general.model.toLowerCase();
           }
         } else {
           this.preventEnter = true;
@@ -5908,10 +6729,6 @@ var BMOView = class extends import_obsidian7.ItemView {
         if (cursor != null && this.plugin.app.workspace.activeEditor != null) {
           lastCursorPosition = cursor;
           activeEditor = view.editor;
-        }
-        const modelName = document.querySelector("#modelName");
-        if (modelName) {
-          modelName.textContent = "Model: " + this.plugin.settings.general.model;
         }
       }
     };
@@ -5959,7 +6776,11 @@ var BMOView = class extends import_obsidian7.ItemView {
           await fetchMistralResponse(this.plugin, this.settings, index2);
         }
       } else if (this.settings.APIConnections.googleGemini.geminiModels.includes(this.settings.general.model)) {
-        await fetchGoogleGeminiResponse(this.plugin, this.settings, index2);
+        if (this.settings.APIConnections.googleGemini.enableStream) {
+          await fetchGoogleGeminiResponseStream(this.plugin, this.settings, index2);
+        } else {
+          await fetchGoogleGeminiResponse(this.plugin, this.settings, index2);
+        }
       } else if (this.settings.APIConnections.openAI.openAIBaseModels.includes(this.settings.general.model)) {
         if (this.settings.APIConnections.openAI.enableStream) {
           await fetchOpenAIAPIResponseStream(this.plugin, this.settings, index2);
@@ -6004,6 +6825,51 @@ async function loadData(plugin) {
   } else {
     messageHistory = [];
   }
+}
+function populateModelDropdown(plugin, settings) {
+  const modelOptions = document.createElement("select");
+  modelOptions.id = "modelOptions";
+  if (modelOptions) {
+    modelOptions.innerHTML = "";
+  }
+  const defaultModel = settings.general.model || DEFAULT_SETTINGS.general.model;
+  const modelGroups = [
+    { name: "Ollama Models", models: settings.OllamaConnection.ollamaModels },
+    { name: "REST API Models", models: settings.RESTAPIURLConnection.RESTAPIURLModels },
+    { name: "Anthropic Models", models: settings.APIConnections.anthropic.anthropicModels },
+    { name: "Google Gemini Models", models: settings.APIConnections.googleGemini.geminiModels },
+    { name: "Mistral Models", models: settings.APIConnections.mistral.mistralModels },
+    { name: "OpenAI-Based Models", models: settings.APIConnections.openAI.openAIBaseModels },
+    { name: "OpenRouter Models", models: settings.APIConnections.openRouter.openRouterModels }
+  ];
+  if (defaultModel === "") {
+    const optionEl = document.createElement("option");
+    optionEl.textContent = "No Model";
+    optionEl.value = "";
+    optionEl.selected = true;
+    modelOptions.appendChild(optionEl);
+  }
+  modelGroups.forEach((group) => {
+    if (group.models.length > 0) {
+      const optgroup = document.createElement("optgroup");
+      optgroup.label = group.name;
+      group.models.forEach((model) => {
+        const optionEl = document.createElement("option");
+        optionEl.textContent = model;
+        optionEl.value = model;
+        if (model === defaultModel) {
+          optionEl.selected = true;
+        }
+        optgroup.appendChild(optionEl);
+      });
+      modelOptions.appendChild(optgroup);
+    }
+  });
+  modelOptions.addEventListener("change", async function() {
+    plugin.settings.general.model = this.value;
+    await plugin.saveSettings();
+  });
+  return modelOptions;
 }
 
 // src/settings.ts
@@ -6070,7 +6936,7 @@ async function fetchGoogleGeminiModels(plugin) {
       }
     });
     if (response.json && response.json.models) {
-      const models = response.json.models.map((model) => model.name).filter((model) => model.endsWith("models/gemini-pro"));
+      const models = response.json.models.map((model) => model.name).filter((model) => model.startsWith("models/gemini"));
       plugin.settings.APIConnections.googleGemini.geminiModels = models;
       return models;
     }
@@ -6091,6 +6957,7 @@ async function fetchMistralModels(plugin) {
     if (response.json && response.json.data) {
       const models = response.json.data.map((model) => model.id);
       plugin.settings.APIConnections.mistral.mistralModels = models;
+      console.log(models);
       return models;
     }
   } catch (error) {
@@ -6162,196 +7029,85 @@ async function addGeneralSettings(containerEl, plugin, SettingTab15) {
     }
     await plugin.saveSettings();
   });
-  new import_obsidian9.Setting(settingsContainer).setName("Model").setDesc("Choose a model.").addButton(
-    (button) => button.setButtonText("Restore Default").setIcon("rotate-cw").setClass("clickable-icon").onClick(async () => {
-      if (plugin.settings.OllamaConnection.RESTAPIURL !== "") {
-        const models = await fetchOllamaModels(plugin);
-        plugin.settings.OllamaConnection.ollamaModels = [];
-        console.log("Ollama Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.OllamaConnection.ollamaModels.includes(model)) {
-            plugin.settings.OllamaConnection.ollamaModels.push(model);
+  const createModelDropdown = (dropdown) => {
+    const modelGroups = [
+      { name: "Ollama Models", models: plugin.settings.OllamaConnection.ollamaModels },
+      { name: "REST API Models", models: plugin.settings.RESTAPIURLConnection.RESTAPIURLModels },
+      { name: "Anthropic Models", models: plugin.settings.APIConnections.anthropic.anthropicModels },
+      { name: "Google Gemini Models", models: plugin.settings.APIConnections.googleGemini.geminiModels },
+      { name: "Mistral Models", models: plugin.settings.APIConnections.mistral.mistralModels },
+      { name: "OpenAI-Based Models", models: plugin.settings.APIConnections.openAI.openAIBaseModels },
+      { name: "OpenRouter Models", models: plugin.settings.APIConnections.openRouter.openRouterModels }
+    ];
+    const selectEl = dropdown.selectEl;
+    selectEl.innerHTML = "";
+    const defaultOption = selectEl.createEl("option", {
+      value: "",
+      text: "No Model"
+    });
+    if (plugin.settings.general.model === "No Model") {
+      defaultOption.selected = true;
+    }
+    modelGroups.forEach((group) => {
+      if (group.models.length > 0) {
+        const optgroup = selectEl.createEl("optgroup");
+        optgroup.label = group.name;
+        group.models.forEach((model) => {
+          const option = optgroup.createEl("option", {
+            value: model,
+            text: model
+          });
+          if (model === plugin.settings.general.model) {
+            option.selected = true;
           }
         });
+      }
+    });
+    dropdown.onChange(async (value) => {
+      plugin.settings.general.model = value;
+      await plugin.saveSettings();
+    });
+  };
+  let modelDropdown;
+  new import_obsidian9.Setting(settingsContainer).setName("Model").setDesc("Choose a model.").addButton(
+    (button) => button.setButtonText("Restore Default").setIcon("rotate-cw").setClass("clickable-icon").onClick(async () => {
+      new import_obsidian9.Notice("Reloading...");
+      if (plugin.settings.OllamaConnection.RESTAPIURL !== "") {
+        const models = await fetchOllamaModels(plugin);
+        plugin.settings.OllamaConnection.ollamaModels = models || [];
       }
       if (plugin.settings.RESTAPIURLConnection.RESTAPIURL !== "") {
         const models = await fetchRESTAPIURLModels(plugin);
-        plugin.settings.RESTAPIURLConnection.RESTAPIURLModels = [];
-        console.log("REST API Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.RESTAPIURLConnection.RESTAPIURLModels.includes(model)) {
-            plugin.settings.RESTAPIURLConnection.RESTAPIURLModels.push(model);
-          }
-        });
+        plugin.settings.RESTAPIURLConnection.RESTAPIURLModels = models || [];
       }
       if (plugin.settings.APIConnections.anthropic.APIKey !== "") {
         const models = ANTHROPIC_MODELS;
-        plugin.settings.APIConnections.anthropic.anthropicModels = [];
-        console.log("Anthropic Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.APIConnections.anthropic.anthropicModels.includes(model)) {
-            plugin.settings.APIConnections.anthropic.anthropicModels.push(model);
-          }
-        });
+        plugin.settings.APIConnections.anthropic.anthropicModels = models || [];
       }
       if (plugin.settings.APIConnections.googleGemini.APIKey !== "") {
         const models = await fetchGoogleGeminiModels(plugin);
-        plugin.settings.APIConnections.googleGemini.geminiModels = [];
-        console.log("Google Gemini Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.APIConnections.googleGemini.geminiModels.includes(model)) {
-            plugin.settings.APIConnections.googleGemini.geminiModels.push(model);
-          }
-        });
+        plugin.settings.APIConnections.googleGemini.geminiModels = models || [];
       }
       if (plugin.settings.APIConnections.mistral.APIKey !== "") {
         const models = await fetchMistralModels(plugin);
-        plugin.settings.APIConnections.mistral.mistralModels = [];
-        console.log("Mistral Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.APIConnections.mistral.mistralModels.includes(model)) {
-            plugin.settings.APIConnections.mistral.mistralModels.push(model);
-          }
-        });
+        plugin.settings.APIConnections.mistral.mistralModels = models || [];
       }
       if (plugin.settings.APIConnections.openAI.APIKey !== "" || plugin.settings.APIConnections.openAI.openAIBaseUrl != DEFAULT_SETTINGS.APIConnections.openAI.openAIBaseUrl) {
         const models = await fetchOpenAIBaseModels(plugin);
-        plugin.settings.APIConnections.openAI.openAIBaseModels = [];
-        console.log("OpenAI Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.APIConnections.openAI.openAIBaseModels.includes(model)) {
-            plugin.settings.APIConnections.openAI.openAIBaseModels.push(model);
-          }
-        });
+        plugin.settings.APIConnections.openAI.openAIBaseModels = models || [];
       }
       if (plugin.settings.APIConnections.openRouter.APIKey !== "") {
         const models = await fetchOpenRouterModels(plugin);
-        plugin.settings.APIConnections.openRouter.openRouterModels = [];
-        console.log("OpenRouter Models:", models);
-        models == null ? void 0 : models.forEach((model) => {
-          if (!plugin.settings.APIConnections.openRouter.openRouterModels.includes(model)) {
-            plugin.settings.APIConnections.openRouter.openRouterModels.push(model);
-          }
-        });
+        plugin.settings.APIConnections.openRouter.openRouterModels = models || [];
       }
-      const dropdown = settingsContainer.querySelector("select");
-      if (dropdown) {
-        dropdown.innerHTML = "";
-        const ollamaModels = plugin.settings.OllamaConnection.ollamaModels;
-        if (ollamaModels.length > 0) {
-          dropdown.add(new Option("---------- Ollama ----------", ""));
-          ollamaModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        const restApiModels = plugin.settings.RESTAPIURLConnection.RESTAPIURLModels;
-        if (restApiModels.length > 0) {
-          dropdown.add(new Option("---------- REST API ----------", ""));
-          restApiModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        const anthropicModels = plugin.settings.APIConnections.anthropic.anthropicModels;
-        if (anthropicModels.length > 0) {
-          dropdown.add(new Option("---------- Anthropic ----------", ""));
-          anthropicModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        const googleGeminiModels = plugin.settings.APIConnections.googleGemini.geminiModels;
-        if (googleGeminiModels.length > 0) {
-          dropdown.add(new Option("---------- Google Gemini ----------", ""));
-          googleGeminiModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        const mistralModels = plugin.settings.APIConnections.mistral.mistralModels;
-        if (mistralModels.length > 0) {
-          dropdown.add(new Option("---------- Mistral ----------", ""));
-          mistralModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        const openAIModels = plugin.settings.APIConnections.openAI.openAIBaseModels;
-        if (openAIModels.length > 0) {
-          dropdown.add(new Option("---------- OpenAI ----------", ""));
-          openAIModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        const openRouterModels = plugin.settings.APIConnections.openRouter.openRouterModels;
-        if (openRouterModels.length > 0) {
-          dropdown.add(new Option("---------- OpenRouter ----------", ""));
-          openRouterModels.forEach((model) => {
-            dropdown.add(new Option(model, model));
-          });
-        }
-        dropdown.value = plugin.settings.general.model;
-        const modelName = document.querySelector("#modelName");
-        if (modelName) {
-          modelName.textContent = "Model: " + plugin.settings.general.model;
-        }
-        new import_obsidian9.Notice("Models reloaded.");
+      if (modelDropdown) {
+        createModelDropdown(modelDropdown);
       }
+      new import_obsidian9.Notice("Models reloaded.");
     })
-  ).addDropdown(async (dropdown) => {
-    const ollamaModels = plugin.settings.OllamaConnection.ollamaModels;
-    if (ollamaModels.length > 0) {
-      dropdown.addOption("", "---------- Ollama ----------");
-      ollamaModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    const restApiModels = plugin.settings.RESTAPIURLConnection.RESTAPIURLModels;
-    if (restApiModels.length > 0) {
-      dropdown.addOption("", "---------- REST API ----------");
-      restApiModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    const anthropicModels = plugin.settings.APIConnections.anthropic.anthropicModels;
-    if (anthropicModels.length > 0) {
-      dropdown.addOption("", "---------- Anthropic ----------");
-      anthropicModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    const googleGeminiModels = plugin.settings.APIConnections.googleGemini.geminiModels;
-    if (googleGeminiModels.length > 0) {
-      dropdown.addOption("", "---------- Google Gemini ----------");
-      googleGeminiModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    const mistralModels = plugin.settings.APIConnections.mistral.mistralModels;
-    if (mistralModels.length > 0) {
-      dropdown.addOption("", "---------- Mistral ----------");
-      mistralModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    const openAIModels = plugin.settings.APIConnections.openAI.openAIBaseModels;
-    if (openAIModels.length > 0) {
-      dropdown.addOption("", "---------- OpenAI ----------");
-      openAIModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    const openRouterModels = plugin.settings.APIConnections.openRouter.openRouterModels;
-    if (openRouterModels.length > 0) {
-      dropdown.addOption("", "---------- OpenRouter ----------");
-      openRouterModels.forEach((model) => {
-        dropdown.addOption(model, model);
-      });
-    }
-    dropdown.setValue(plugin.settings.general.model).onChange(async (value) => {
-      plugin.settings.general.model = value;
-      await plugin.saveSettings();
-      const modelName = document.querySelector("#modelName");
-      if (modelName) {
-        modelName.textContent = "model: " + plugin.settings.general.model.toLowerCase();
-      }
-    });
+  ).addDropdown((dropdown) => {
+    modelDropdown = dropdown;
+    createModelDropdown(dropdown);
   });
   new import_obsidian9.Setting(settingsContainer).setName("Max Tokens").setDesc("The maximum number of tokens, or words, that the model is allowed to generate in its output. Some models require a minimum number of tokens to be set. The default value is empty.").addText(
     (text) => text.setPlaceholder("4096").setValue(plugin.settings.general.max_tokens).onChange(async (value) => {
@@ -6421,6 +7177,7 @@ function addAppearanceSettings(containerEl, plugin, SettingTab15) {
     }
     await plugin.saveSettings();
   });
+  settingsContainer.createEl("h6", { text: "Chat View" });
   new import_obsidian10.Setting(settingsContainer).setName("Enable Header").setDesc("Display chatbot name and model name in header.").addToggle(
     (toggle) => toggle.setValue(plugin.settings.appearance.enableHeader).onChange((value) => {
       plugin.settings.appearance.enableHeader = value;
@@ -6761,6 +7518,67 @@ function addAppearanceSettings(containerEl, plugin, SettingTab15) {
       plugin.saveSettings();
     })
   );
+  settingsContainer.createEl("h6", { text: "Generate View" });
+  let colorPicker9;
+  let colorPicker10;
+  const defaultBMOGenerateFontColor = getComputedStyle(document.body).getPropertyValue(DEFAULT_SETTINGS.appearance.bmoGenerateFontColor).trim();
+  new import_obsidian10.Setting(settingsContainer).setName("BMO Generate Background Color").setDesc("Modify the background color of BMO Generate.").addButton(
+    (button) => button.setButtonText("Restore Default").setIcon("rotate-cw").setClass("clickable-icon").onClick(async () => {
+      colorPicker9.setValue(DEFAULT_SETTINGS.appearance.bmoGenerateBackgroundColor);
+      const containers = document.querySelectorAll(".bmoCodeBlockContainer");
+      containers.forEach((container) => {
+        const element = container;
+        element.style.backgroundColor = DEFAULT_SETTINGS.appearance.bmoGenerateBackgroundColor;
+      });
+      await plugin.saveSettings();
+    })
+  ).addColorPicker(async (color) => {
+    colorPicker9 = color;
+    const defaultValue = plugin.settings.appearance.bmoGenerateBackgroundColor;
+    color.setValue(defaultValue).onChange(async (value) => {
+      const hexValue = colorToHex(value);
+      plugin.settings.appearance.bmoGenerateBackgroundColor = hexValue;
+      const containers = document.querySelectorAll(".bmoCodeBlockContainer");
+      containers.forEach((container) => {
+        const element = container;
+        element.style.backgroundColor = hexValue;
+      });
+      await plugin.saveSettings();
+    });
+  });
+  new import_obsidian10.Setting(settingsContainer).setName("BMO Generate Font Color").setDesc("Modify the font color of BMO Generate.").addButton(
+    (button) => button.setButtonText("Restore Default").setIcon("rotate-cw").setClass("clickable-icon").onClick(async () => {
+      const defaultValue = colorToHex(defaultBMOGenerateFontColor);
+      colorPicker10.setValue(defaultValue);
+      const bmoCodeBlockContents = document.querySelectorAll(".bmoCodeBlockContent");
+      bmoCodeBlockContents.forEach((content) => {
+        const element = content;
+        element.style.color = defaultValue;
+      });
+      await plugin.saveSettings();
+    })
+  ).addColorPicker(async (color) => {
+    colorPicker10 = color;
+    let defaultValue = plugin.settings.appearance.bmoGenerateFontColor;
+    if (defaultValue == "--text-normal") {
+      defaultValue = colorToHex(defaultBMOGenerateFontColor);
+    }
+    color.setValue(defaultValue).onChange(async (value) => {
+      const hexValue = colorToHex(value);
+      plugin.settings.appearance.bmoGenerateFontColor = hexValue;
+      const bmoCodeBlockContents2 = document.querySelectorAll(".bmoCodeBlockContent");
+      bmoCodeBlockContents2.forEach((content) => {
+        const element = content;
+        element.style.color = hexValue;
+      });
+      await plugin.saveSettings();
+    });
+    const bmoCodeBlockContents = document.querySelectorAll(".bmoCodeBlockContent");
+    bmoCodeBlockContents.forEach((content) => {
+      const element = content;
+      element.style.color = defaultValue;
+    });
+  });
 }
 
 // src/components/settings/ChatHistorySettings.ts
@@ -6879,7 +7697,7 @@ function addOllamaSettings(containerEl, plugin, SettingTab15) {
     }
     await plugin.saveSettings();
   });
-  new import_obsidian12.Setting(settingsContainer).setName("OLLAMA REST API URL").setDesc(addDescriptionLink("Enter your REST API URL. Additional setup required: ", "https://github.com/longy2k/obsidian-bmo-chatbot/wiki/How-to-setup-with-Ollama", "", "[Instructions]")).addText(
+  new import_obsidian12.Setting(settingsContainer).setName("OLLAMA REST API URL").setDesc(addDescriptionLink("Enter your REST API URL. Update ", "https://ollama.com/", "to version >=0.1.42 to avoid CORS restriction.", "Ollama")).addText(
     (text) => text.setPlaceholder("http://localhost:11434").setValue(plugin.settings.OllamaConnection.RESTAPIURL || DEFAULT_SETTINGS.OllamaConnection.RESTAPIURL).onChange(async (value) => {
       plugin.settings.OllamaConnection.ollamaModels = [];
       plugin.settings.OllamaConnection.RESTAPIURL = value ? value : DEFAULT_SETTINGS.OllamaConnection.RESTAPIURL;
@@ -6898,7 +7716,7 @@ function addOllamaSettings(containerEl, plugin, SettingTab15) {
       SettingTab15.display();
     })
   );
-  new import_obsidian12.Setting(settingsContainer).setName("Enable Stream").setDesc(addDescriptionLink("Enable Ollama models to stream response.", "", "", "")).addToggle(
+  new import_obsidian12.Setting(settingsContainer).setName("Enable Stream").setDesc("Enable Ollama models to stream response.").addToggle(
     (toggle) => toggle.setValue(plugin.settings.OllamaConnection.enableStream).onChange((value) => {
       plugin.settings.OllamaConnection.enableStream = value;
       plugin.saveSettings();
@@ -7287,6 +8105,12 @@ function addGoogleGeminiConnectionSettings(containerEl, plugin, SettingTab15) {
       SettingTab15.display();
     })
   );
+  new import_obsidian15.Setting(settingsContainer).setName("Enable Stream").setDesc("Enable Google Gemini models to stream response.").addToggle(
+    (toggle) => toggle.setValue(plugin.settings.APIConnections.googleGemini.enableStream).onChange((value) => {
+      plugin.settings.APIConnections.googleGemini.enableStream = value;
+      plugin.saveSettings();
+    })
+  );
 }
 
 // src/components/settings/APIConnections/AnthropicConnections.ts
@@ -7312,7 +8136,7 @@ function addAnthropicConnectionSettings(containerEl, plugin, SettingTab15) {
     }
     await plugin.saveSettings();
   });
-  new import_obsidian16.Setting(settingsContainer).setName("Anthropic API Key").setDesc("Insert Anthropic API Key.").addText(
+  new import_obsidian16.Setting(settingsContainer).setName("Anthropic API Key").setDesc("Insert Anthropic API Key. Warning: Anthropic models cannot be aborted. Please use with caution.").addText(
     (text) => text.setPlaceholder("insert-api-key").setValue(plugin.settings.APIConnections.anthropic.APIKey ? `${plugin.settings.APIConnections.anthropic.APIKey.slice(0, 6)}-...${plugin.settings.APIConnections.anthropic.APIKey.slice(-4)}` : "").onChange(async (value) => {
       plugin.settings.APIConnections.anthropic.anthropicModels = [];
       plugin.settings.APIConnections.anthropic.APIKey = value;
@@ -7573,9 +8397,9 @@ async function addEditorSettings(containerEl, plugin, SettingTab15) {
     }
     await plugin.saveSettings();
   });
-  new import_obsidian21.Setting(settingsContainer).setName("'Prompt Select Generate' System").setDesc(addDescriptionLink("System role for 'Prompt Select Generate' command.", "https://github.com/longy2k/obsidian-bmo-chatbot/wiki/Prompt---Select---Generate-Command", "", "[Instructions]")).addTextArea(
-    (text) => text.setPlaceholder("You are a helpful assistant.").setValue(plugin.settings.editor.prompt_select_generate_system_role !== void 0 ? plugin.settings.editor.prompt_select_generate_system_role : DEFAULT_SETTINGS.editor.prompt_select_generate_system_role).onChange(async (value) => {
-      plugin.settings.editor.prompt_select_generate_system_role = value !== void 0 ? value : DEFAULT_SETTINGS.editor.prompt_select_generate_system_role;
+  new import_obsidian21.Setting(settingsContainer).setName("Editor System Role").setDesc("System role for BMO Generate and 'Prompt Select Generate' command.").addTextArea(
+    (text) => text.setPlaceholder("You are a helpful assistant.").setValue(plugin.settings.editor.systen_role !== void 0 ? plugin.settings.editor.systen_role : DEFAULT_SETTINGS.editor.systen_role).onChange(async (value) => {
+      plugin.settings.editor.systen_role = value !== void 0 ? value : DEFAULT_SETTINGS.editor.systen_role;
       await plugin.saveSettings();
     })
   );
@@ -7656,22 +8480,28 @@ var BMOSettingTab = class extends import_obsidian23.PluginSettingTab {
     containerEl.empty();
     containerEl.createEl("h1", { text: "BMO Chatbot Settings" });
     const linkContainer = containerEl.createEl("div");
-    const changeLogLink = linkContainer.createEl("a", {
-      text: "Changelog",
-      href: "https://github.com/longy2k/obsidian-bmo-chatbot/releases"
+    const links = [
+      { text: "Changelog", href: "https://github.com/longy2k/obsidian-bmo-chatbot/releases" },
+      { text: "Wiki", href: "https://github.com/longy2k/obsidian-bmo-chatbot/wiki" },
+      { text: "Report a Bug", href: "https://github.com/longy2k/obsidian-bmo-chatbot/issues" },
+      { text: "Support Me", href: "https://ko-fi.com/longy2k" }
+    ];
+    links.forEach((link, index2) => {
+      if (index2 > 0) {
+        linkContainer.createEl("span", {
+          text: " | ",
+          attr: { style: "font-size: 0.8rem; margin-right: 5px;" }
+        });
+      }
+      const linkEl = linkContainer.createEl("a", {
+        text: link.text,
+        href: link.href,
+        attr: { style: "font-size: 0.8rem;" }
+      });
+      if (index2 < links.length - 1) {
+        linkEl.style.marginRight = "5px";
+      }
     });
-    changeLogLink.style.fontSize = "0.8rem";
-    changeLogLink.style.marginRight = "5px";
-    const separator = linkContainer.createEl("span", {
-      text: " | "
-    });
-    separator.style.fontSize = "0.8rem";
-    separator.style.marginRight = "5px";
-    const wikiLink = linkContainer.createEl("a", {
-      text: "Wiki",
-      href: "https://github.com/longy2k/obsidian-bmo-chatbot/wiki"
-    });
-    wikiLink.style.fontSize = "0.8rem";
     containerEl.createEl("p", { text: "Type `/help` in chat for commands." });
     addHorizontalRule(this.containerEl);
     addProfileSettings(this.containerEl, this.plugin, this);
@@ -7738,12 +8568,12 @@ var import_obsidian25 = require("obsidian");
 
 // src/components/FetchModelEditor.ts
 var import_obsidian24 = require("obsidian");
-async function fetchOllamaResponseEditor(settings, selectionString) {
+async function fetchOllamaResponseEditor(settings, prompt, model, temperature, maxTokens, signal) {
   const ollamaRESTAPIURL = settings.OllamaConnection.RESTAPIURL;
   if (!ollamaRESTAPIURL) {
     return;
   }
-  const imageMatch = selectionString.match(/!?\[\[(.*?)\]\]/g);
+  const imageMatch = prompt.match(/!?\[\[(.*?)\]\]/g);
   const imageLink = imageMatch ? imageMatch.map((item) => item.startsWith("!") ? item.slice(3, -2) : item.slice(2, -2)).filter((link) => /\.(jpg|jpeg|png|gif|webp|bmp|tiff|tif|svg)$/i.test(link)) : [];
   const imagesVaultPath = [];
   if (imageLink.length > 0) {
@@ -7756,53 +8586,68 @@ async function fetchOllamaResponseEditor(settings, selectionString) {
     });
   }
   try {
-    const ollama = new Ollama2({ host: ollamaRESTAPIURL });
-    const response = await ollama.generate({
-      model: settings.general.model,
-      system: settings.editor.prompt_select_generate_system_role,
-      prompt: selectionString,
-      images: imagesVaultPath,
-      stream: false,
-      keep_alive: parseInt(settings.OllamaConnection.ollamaParameters.keep_alive),
-      options: {
-        temperature: parseInt(settings.general.temperature),
-        num_predict: parseInt(settings.general.max_tokens)
-      }
+    const response = await fetch(ollamaRESTAPIURL + "/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: model || settings.general.model,
+        system: settings.editor.systen_role,
+        prompt,
+        images: imagesVaultPath,
+        stream: false,
+        keep_alive: parseInt(settings.OllamaConnection.ollamaParameters.keep_alive),
+        options: {
+          temperature: temperature ? parseFloat(temperature) : parseFloat(settings.general.temperature),
+          num_predict: maxTokens ? parseInt(maxTokens) : parseInt(settings.general.max_tokens)
+        }
+      }),
+      signal
     });
-    const message = response.response.trim();
+    const data = await response.json();
+    const message = data.response.trim();
     return message;
   } catch (error) {
-    console.error("Ollama request:", error);
-    throw error;
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+    } else {
+      console.error("Ollama request:", error);
+      throw error;
+    }
   }
 }
-async function fetchRESTAPIURLDataEditor(settings, selectionString) {
+async function fetchRESTAPIURLDataEditor(settings, prompt, model, temperature, maxTokens, signal) {
   try {
-    const response = await (0, import_obsidian24.requestUrl)({
-      url: settings.RESTAPIURLConnection.RESTAPIURL + "/chat/completions",
+    const response = await fetch(settings.RESTAPIURLConnection.RESTAPIURL + "/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${settings.RESTAPIURLConnection.APIKey}`
       },
       body: JSON.stringify({
-        model: settings.general.model,
+        model: model || settings.general.model,
         messages: [
-          { role: "system", content: settings.editor.prompt_select_generate_system_role || "You are a helpful assistant." },
-          { role: "user", content: selectionString }
+          { role: "system", content: settings.editor.systen_role || "You are a helpful assistant." },
+          { role: "user", content: prompt }
         ],
-        max_tokens: parseInt(settings.general.max_tokens) || -1,
-        temperature: parseInt(settings.general.temperature)
-      })
+        max_tokens: parseInt(maxTokens || settings.general.max_tokens || "-1"),
+        temperature: parseFloat(temperature || settings.general.temperature)
+      }),
+      signal
     });
-    const message = response.json.choices[0].message.content.trim();
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    const message = data.choices[0].message.content.trim();
     return message;
   } catch (error) {
     console.error("Error making API request:", error);
     throw error;
   }
 }
-async function fetchAnthropicResponseEditor(settings, selectionString) {
+async function fetchAnthropicResponseEditor(settings, prompt, model, temperature, maxTokens, signal) {
   try {
     const response = await (0, import_obsidian24.requestUrl)({
       url: "https://api.anthropic.com/v1/messages",
@@ -7813,13 +8658,13 @@ async function fetchAnthropicResponseEditor(settings, selectionString) {
         "x-api-key": settings.APIConnections.anthropic.APIKey
       },
       body: JSON.stringify({
-        model: settings.general.model,
-        system: settings.editor.prompt_select_generate_system_role,
+        model: model || settings.general.model,
+        system: settings.editor.systen_role,
         messages: [
-          { role: "user", content: selectionString }
+          { role: "user", content: prompt }
         ],
-        max_tokens: parseInt(settings.general.max_tokens) || 4096,
-        temperature: parseInt(settings.general.temperature)
+        max_tokens: parseInt(maxTokens || settings.general.max_tokens) || 4096,
+        temperature: parseFloat(temperature || settings.general.temperature)
       })
     });
     const message = response.json.content[0].text.trim();
@@ -7828,94 +8673,106 @@ async function fetchAnthropicResponseEditor(settings, selectionString) {
     console.error(error);
   }
 }
-async function fetchGoogleGeminiDataEditor(settings, selectionString) {
+async function fetchGoogleGeminiDataEditor(settings, prompt, model, temperature, maxTokens, signal) {
   try {
-    const API_KEY = settings.APIConnections.googleGemini.APIKey;
-    const requestBody = {
-      contents: [{
-        parts: [
-          { text: settings.editor.prompt_select_generate_system_role + selectionString }
-        ]
-      }]
-    };
-    const response = await (0, import_obsidian24.requestUrl)({
-      url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${settings.APIConnections.googleGemini.APIKey}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              { text: settings.editor.systen_role + prompt }
+            ]
+          }
+        ],
+        model: model || settings.general.model,
+        generationConfig: {
+          temperature: parseFloat(temperature || settings.general.temperature),
+          maxOutputTokens: parseInt(maxTokens || settings.general.max_tokens) || 4096
+        }
+      }),
+      signal
     });
-    const message = response.json.candidates[0].content.parts[0].text.trim();
+    const data = await response.json();
+    const message = data.candidates[0].content.parts[0].text.trim();
     return message;
   } catch (error) {
     console.error(error);
   }
 }
-async function fetchMistralDataEditor(settings, selectionString) {
+async function fetchMistralDataEditor(settings, prompt, model, temperature, maxTokens, signal) {
   try {
-    const response = await (0, import_obsidian24.requestUrl)({
-      url: "https://api.mistral.ai/v1/chat/completions",
+    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${settings.APIConnections.mistral.APIKey}`
       },
       body: JSON.stringify({
-        model: settings.general.model,
+        model: model || settings.general.model,
         messages: [
-          { role: "system", content: settings.editor.prompt_select_generate_system_role },
-          { role: "user", content: selectionString }
+          { role: "system", content: settings.editor.systen_role },
+          { role: "user", content: prompt }
         ],
-        max_tokens: parseInt(settings.general.max_tokens),
-        temperature: parseInt(settings.general.temperature)
-      })
+        max_tokens: parseInt(maxTokens || settings.general.max_tokens),
+        temperature: parseFloat(temperature || settings.general.temperature)
+      }),
+      signal
     });
-    const message = response.json.choices[0].message.content.trim();
+    const data = await response.json();
+    const message = data.choices[0].message.content.trim();
     return message;
   } catch (error) {
     console.error(error);
   }
 }
-async function fetchOpenAIBaseAPIResponseEditor(settings, selectionString) {
-  var _a2;
-  const openai = new openai_default({
-    apiKey: settings.APIConnections.openAI.APIKey,
-    baseURL: settings.APIConnections.openAI.openAIBaseUrl,
-    dangerouslyAllowBrowser: true
-    // apiKey is stored within data.json
+async function fetchOpenAIBaseAPIResponseEditor(settings, prompt, model, temperature, maxTokens, signal) {
+  const response = await fetch(`${settings.APIConnections.openAI.openAIBaseUrl}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${settings.APIConnections.openAI.APIKey}`
+    },
+    body: JSON.stringify({
+      model: model || settings.general.model,
+      max_tokens: parseInt(maxTokens || settings.general.max_tokens),
+      temperature: parseFloat(temperature || settings.general.temperature),
+      stream: false,
+      messages: [
+        { role: "system", content: settings.editor.systen_role },
+        { role: "user", content: prompt }
+      ]
+    }),
+    signal
   });
-  const completion = await openai.chat.completions.create({
-    model: settings.general.model,
-    max_tokens: parseInt(settings.general.max_tokens),
-    messages: [
-      { role: "system", content: settings.editor.prompt_select_generate_system_role },
-      { role: "user", content: selectionString }
-    ]
-  });
-  const message = (_a2 = completion.choices[0].message.content) == null ? void 0 : _a2.trim();
+  const data = await response.json();
+  const message = data.choices[0].message.content || "";
   return message;
 }
-async function fetchOpenRouterEditor(settings, selectionString) {
+async function fetchOpenRouterEditor(settings, prompt, model, temperature, maxTokens, signal) {
   try {
-    const response = await (0, import_obsidian24.requestUrl)({
-      url: "https://openrouter.ai/api/v1/chat/completions",
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${settings.APIConnections.openRouter.APIKey}`
       },
       body: JSON.stringify({
-        model: settings.general.model,
+        model: model || settings.general.model,
         messages: [
-          { role: "system", content: settings.editor.prompt_select_generate_system_role },
-          { role: "user", content: selectionString }
+          { role: "system", content: settings.editor.systen_role },
+          { role: "user", content: prompt }
         ],
-        max_tokens: parseInt(settings.general.max_tokens),
-        temperature: parseInt(settings.general.temperature)
-      })
+        max_tokens: parseInt(maxTokens || settings.general.max_tokens),
+        temperature: parseFloat(temperature || settings.general.temperature)
+      }),
+      signal
     });
-    const message = response.json.choices[0].message.content.trim();
+    const data = await response.json();
+    const message = data.choices[0].message.content.trim();
     return message;
   } catch (error) {
     console.error("Error making API request:", error);
@@ -8079,11 +8936,218 @@ async function promptSelectGenerateCommand(plugin, settings) {
   }
 }
 
+// src/components/editor/BMOCodeBlockProcessor.ts
+var import_obsidian26 = require("obsidian");
+function bmoCodeBlockProcessor(plugin, settings) {
+  let previousPrompt = "";
+  let abortController2 = null;
+  return plugin.registerMarkdownCodeBlockProcessor("bmo", async (source, el, ctx) => {
+    if (abortController2) {
+      abortController2.abort();
+    }
+    abortController2 = new AbortController();
+    const file = plugin.app.workspace.getActiveFile();
+    if (file && settings.general.model !== "") {
+      const fileContent = await plugin.app.vault.read(file);
+      const codeBlockRegex = /```bmo\n([\s\S]*?)```/g;
+      let match;
+      let updatedFileContent = fileContent;
+      while ((match = codeBlockRegex.exec(fileContent)) !== null) {
+        const originalCodeBlock = match[0];
+        const codeBlockContent = match[1];
+        if (!codeBlockContent.includes("MODEL ")) {
+          const updatedSource = "MODEL " + settings.general.model + "\n" + codeBlockContent;
+          updatedFileContent = updatedFileContent.replace(originalCodeBlock, "```bmo\n" + updatedSource + "```");
+        }
+      }
+      if (updatedFileContent !== fileContent) {
+        await plugin.app.vault.modify(file, updatedFileContent);
+      }
+    }
+    let modelName = "No Model";
+    let temperature = "1.0";
+    let maxTokens = "";
+    let contentToRender = "";
+    const modelMatch = source.match(/MODEL\s+(.+)/);
+    if (modelMatch) {
+      modelName = modelMatch[1].trim();
+    }
+    const temperatureMatch = source.match(/TEMPERATURE\s+(.+)/);
+    if (temperatureMatch) {
+      temperature = temperatureMatch[1].trim();
+    }
+    const maxTokensMatch = source.match(/MAX_TOKENS\s+(.+)/);
+    if (maxTokensMatch) {
+      maxTokens = maxTokensMatch[1].trim();
+    }
+    const promptMatch = source.match(/^(?:MODEL.*\n|TEMPERATURE.*\n|MAX_TOKENS.*\n)*([\s\S]*?)(?=\s*<response>|$)/);
+    let prompt = "";
+    if (promptMatch) {
+      prompt = promptMatch[1].trim();
+    }
+    if (prompt !== previousPrompt) {
+      previousPrompt = prompt;
+    }
+    const responseMatch = source.match(/<response>([\s\S]*?)<\/response>/);
+    if (responseMatch) {
+      contentToRender = responseMatch[1].trim();
+    }
+    const container = el.createEl("div");
+    container.style.position = "relative";
+    const bmoCodeBlockContainer = container.createEl("div", { cls: "bmoCodeBlockContainer" });
+    bmoCodeBlockContainer.dataset.callout = "chat";
+    bmoCodeBlockContainer.style.backgroundColor = settings.appearance.bmoGenerateBackgroundColor;
+    bmoCodeBlockContainer.style.border = "1px solid #0a0f0a";
+    bmoCodeBlockContainer.style.borderRadius = "5px";
+    bmoCodeBlockContainer.style.padding = "10px";
+    bmoCodeBlockContainer.style.marginBottom = "10px";
+    const bmoCodeBlockContent = bmoCodeBlockContainer.createEl("div", { cls: "bmoCodeBlockContent" });
+    bmoCodeBlockContent.style.color = settings.appearance.bmoGenerateFontColor;
+    bmoCodeBlockContent.style.whiteSpace = "normal";
+    const bottomContainer = container.createEl("div");
+    bottomContainer.style.display = "flex";
+    bottomContainer.style.justifyContent = "space-between";
+    bottomContainer.style.alignItems = "center";
+    bottomContainer.style.marginTop = "10px";
+    const modelText = bottomContainer.createEl("span");
+    modelText.textContent = modelName;
+    modelText.style.fontSize = "0.9em";
+    modelText.style.color = "#666";
+    modelText.style.fontWeight = "bold";
+    const loaderCircle = bottomContainer.createEl("div");
+    loaderCircle.classList.add("loader-circle");
+    loaderCircle.style.width = "20px";
+    loaderCircle.style.height = "20px";
+    loaderCircle.style.border = "2px solid #666";
+    loaderCircle.style.borderTopColor = "transparent";
+    loaderCircle.style.borderRadius = "50%";
+    loaderCircle.style.animation = "spin 1s linear infinite";
+    loaderCircle.style.display = "none";
+    const bmoGenerationNotice = bottomContainer.createEl("span");
+    bmoGenerationNotice.textContent = "Done!";
+    bmoGenerationNotice.style.fontSize = "0.9em";
+    bmoGenerationNotice.style.color = "#4caf50";
+    bmoGenerationNotice.style.display = "none";
+    const button = bottomContainer.createEl("button");
+    button.textContent = "Generate";
+    button.onclick = async () => {
+      if (button.textContent === "Cancel") {
+        if (abortController2) {
+          abortController2.abort();
+          abortController2 = null;
+        }
+        button.textContent = "Generate";
+        loaderCircle.style.display = "none";
+        bmoGenerationNotice.textContent = "Aborted.";
+        bmoGenerationNotice.style.color = "#ff6666";
+        bmoGenerationNotice.style.display = "inline";
+        setTimeout(() => {
+          bmoGenerationNotice.style.display = "none";
+        }, 2e3);
+        return;
+      }
+      button.textContent = "Cancel";
+      if (!abortController2) {
+        abortController2 = new AbortController();
+      }
+      const signal = abortController2.signal;
+      loaderCircle.style.display = "block";
+      let modelResponse = "";
+      try {
+        if (settings.OllamaConnection.ollamaModels.includes(modelName)) {
+          modelResponse = await fetchOllamaResponseEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else if (settings.RESTAPIURLConnection.RESTAPIURLModels.includes(modelName)) {
+          modelResponse = await fetchRESTAPIURLDataEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else if (settings.APIConnections.anthropic.anthropicModels.includes(modelName)) {
+          button.disabled = true;
+          modelResponse = await fetchAnthropicResponseEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else if (settings.APIConnections.googleGemini.geminiModels.includes(modelName)) {
+          modelResponse = await fetchGoogleGeminiDataEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else if (settings.APIConnections.mistral.mistralModels.includes(modelName)) {
+          modelResponse = await fetchMistralDataEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else if (settings.APIConnections.openAI.openAIBaseModels.includes(modelName)) {
+          modelResponse = await fetchOpenAIBaseAPIResponseEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else if (settings.APIConnections.openRouter.openRouterModels.includes(modelName)) {
+          modelResponse = await fetchOpenRouterEditor(settings, prompt, modelName, temperature, maxTokens, signal) || contentToRender;
+        } else {
+          bmoGenerationNotice.textContent = "Model not found.";
+          bmoGenerationNotice.style.color = "#ff6666";
+          bmoGenerationNotice.style.display = "inline";
+          setTimeout(() => {
+            bmoGenerationNotice.style.display = "none";
+            button.textContent = "Generate";
+          }, 2e3);
+        }
+        if (modelResponse !== "") {
+          if (!modelResponse.includes("\\`")) {
+            modelResponse = modelResponse.replace(/`/g, "\\`");
+          }
+          const responseTagsExist = source.includes("<response>") && source.includes("</response>");
+          let updatedSource = source;
+          if (responseTagsExist) {
+            updatedSource = source.replace(
+              /<response>[\s\S]*?<\/response>/,
+              `<response>
+${modelResponse}
+</response>`
+            );
+          } else {
+            updatedSource = `${source}
+
+<response>
+${modelResponse}
+</response>`;
+          }
+          const newResponseMatch = updatedSource.match(/<response>([\s\S]*?)<\/response>/);
+          if (newResponseMatch) {
+            contentToRender = newResponseMatch[1].trim();
+          }
+          const file2 = plugin.app.workspace.getActiveFile();
+          if (file2) {
+            const fileContent = await plugin.app.vault.read(file2);
+            const updatedFileContent = fileContent.replace(source, updatedSource);
+            await plugin.app.vault.modify(file2, updatedFileContent);
+          }
+        }
+        loaderCircle.style.display = "none";
+      } catch (error) {
+        if (error.name === "AbortError") {
+          console.log("BMO Generate Aborted.");
+          button.textContent = "Generate";
+          loaderCircle.style.display = "none";
+          bmoGenerationNotice.textContent = "Aborted.";
+          bmoGenerationNotice.style.color = "#ff6666";
+          bmoGenerationNotice.style.display = "inline";
+          setTimeout(() => {
+            bmoGenerationNotice.style.display = "none";
+          }, 2e3);
+          return;
+        } else {
+          console.error("Generation error:", error);
+          bmoGenerationNotice.textContent = "Error occurred.";
+          bmoGenerationNotice.style.color = "#ff6666";
+          bmoGenerationNotice.style.display = "inline";
+          setTimeout(() => {
+            bmoGenerationNotice.style.display = "none";
+          }, 2e3);
+        }
+      }
+    };
+    if (source.includes("<response>") && source.includes("</response>")) {
+      await import_obsidian26.MarkdownRenderer.render(plugin.app, contentToRender, bmoCodeBlockContent, "/", plugin);
+    } else {
+      await import_obsidian26.MarkdownRenderer.render(plugin.app, prompt, bmoCodeBlockContent, "/", plugin);
+    }
+  });
+}
+
 // src/main.ts
 var DEFAULT_SETTINGS = {
   profiles: {
     profile: "BMO.md",
-    profileFolderPath: "BMO/Profiles"
+    profileFolderPath: "BMO/Profiles",
+    lastLoadedChatHistoryPath: null,
+    lastLoadedChatHistory: []
   },
   general: {
     model: "",
@@ -8104,14 +9168,16 @@ var DEFAULT_SETTINGS = {
     chatBoxFontColor: "--text-normal",
     chatBoxBackgroundColor: "--interactive-accent",
     enableHeader: true,
-    enableScrollBar: false
+    enableScrollBar: false,
+    bmoGenerateBackgroundColor: "#0c0a12",
+    bmoGenerateFontColor: "--text-normal"
   },
   prompts: {
     prompt: "",
     promptFolderPath: "BMO/Prompts"
   },
   editor: {
-    prompt_select_generate_system_role: "Output user request."
+    systen_role: "You are a helpful assistant."
   },
   chatHistory: {
     chatHistoryPath: "BMO/History",
@@ -8119,7 +9185,7 @@ var DEFAULT_SETTINGS = {
     allowRenameNoteTitle: false
   },
   OllamaConnection: {
-    RESTAPIURL: "",
+    RESTAPIURL: "http://localhost:11434",
     enableStream: true,
     ollamaParameters: {
       mirostat: "0",
@@ -8153,6 +9219,7 @@ var DEFAULT_SETTINGS = {
     },
     googleGemini: {
       APIKey: "",
+      enableStream: false,
       geminiModels: []
     },
     mistral: {
@@ -8189,7 +9256,7 @@ var DEFAULT_SETTINGS = {
   toggleAdvancedSettings: false
 };
 var checkActiveFile = null;
-var BMOGPT15 = class extends import_obsidian26.Plugin {
+var BMOGPT15 = class extends import_obsidian27.Plugin {
   async onload() {
     await this.loadSettings();
     const folderPath = this.settings.profiles.profileFolderPath || DEFAULT_SETTINGS.profiles.profileFolderPath;
@@ -8204,11 +9271,26 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
     }
     this.registerEvent(
       this.app.vault.on("create", async (file) => {
-        if (file instanceof import_obsidian26.TFile && file.path.startsWith(folderPath)) {
+        if (file instanceof import_obsidian27.TFile && file.path.startsWith(folderPath)) {
           const fileContent = await this.app.vault.read(file);
           if (fileContent.trim() === "") {
             defaultFrontMatter(this, file);
           }
+          const profileFiles = this.app.vault.getFiles().filter((file2) => file2.path.startsWith(this.settings.profiles.profileFolderPath));
+          profileFiles.sort((a, b) => a.name.localeCompare(b.name));
+          if (this.settings.profiles.lastLoadedChatHistory.length === 0) {
+            profileFiles.forEach((profile, index2) => {
+              if (!this.settings.profiles.lastLoadedChatHistory[index2]) {
+                this.settings.profiles.lastLoadedChatHistory[index2] = null;
+              }
+            });
+          } else {
+            if (this.settings.profiles.lastLoadedChatHistory.length !== profileFiles.length) {
+              const profileIndex = profileFiles.findIndex((profileFiles2) => profileFiles2.basename === file.basename);
+              this.settings.profiles.lastLoadedChatHistory.splice(profileIndex, 0, null);
+            }
+          }
+          await this.saveSettings();
         }
       })
     );
@@ -8216,9 +9298,24 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
       this.app.vault.on(
         "delete",
         async (file) => {
-          if (file instanceof import_obsidian26.TFile && file.path.startsWith(folderPath)) {
+          const profileFiles = this.app.vault.getFiles().filter((file2) => file2.path.startsWith(this.settings.profiles.profileFolderPath));
+          profileFiles.sort((a, b) => a.name.localeCompare(b.name));
+          if (file instanceof import_obsidian27.TFile && file.path.startsWith(this.settings.chatHistory.chatHistoryPath)) {
+            const currentProfile = this.settings.profiles.profile.replace(/\.[^/.]+$/, "");
+            const profileIndex = profileFiles.findIndex((file2) => file2.basename === currentProfile);
+            const currentIndex = this.settings.profiles.lastLoadedChatHistory.indexOf(file.path);
+            if (this.settings.profiles.lastLoadedChatHistory[currentIndex] === file.path) {
+              this.settings.profiles.lastLoadedChatHistory[currentIndex] = null;
+            }
+            if (profileIndex === currentIndex) {
+              this.settings.profiles.lastLoadedChatHistoryPath = null;
+            }
+          }
+          if (file instanceof import_obsidian27.TFile && file.path.startsWith(folderPath)) {
             const filenameMessageHistory = "./.obsidian/plugins/bmo-chatbot/data/messageHistory_" + file.name.replace(".md", ".json");
             this.app.vault.adapter.remove(filenameMessageHistory);
+            const profileIndex = profileFiles.findIndex((profileFile) => profileFile.name > file.name);
+            this.settings.profiles.lastLoadedChatHistory.splice(profileIndex, 1);
             if (file.path === defaultFilePath) {
               this.settings = DEFAULT_SETTINGS;
               this.app.vault.create(defaultFilePath, "");
@@ -8226,6 +9323,13 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
             } else {
               if (this.settings.profiles.profile === file.name) {
                 this.settings.profiles.profile = DEFAULT_SETTINGS.profiles.profile;
+                const profileFiles2 = this.app.vault.getFiles().filter((file2) => file2.path.startsWith(this.settings.profiles.profileFolderPath));
+                profileFiles2.sort((a, b) => a.name.localeCompare(b.name));
+                const currentProfile = this.settings.profiles.profile.replace(/\.[^/.]+$/, "");
+                const profileIndex2 = profileFiles2.findIndex((file2) => file2.basename === currentProfile);
+                if (this.settings.profiles.lastLoadedChatHistoryPath !== null) {
+                  this.settings.profiles.lastLoadedChatHistoryPath = this.settings.profiles.lastLoadedChatHistory[profileIndex2];
+                }
                 const fileContent = (await this.app.vault.read(defaultProfile)).replace(/^---\s*[\s\S]*?---/, "").trim();
                 this.settings.general.system_role = fileContent;
                 await updateSettingsFromFrontMatter(this, defaultProfile);
@@ -8233,7 +9337,6 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
             }
           }
           await this.saveSettings();
-          this.activateView();
         }
       )
     );
@@ -8260,7 +9363,7 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
             this.settings.appearance.chatbotName = file.basename;
             await this.saveSettings();
           }
-          if (file instanceof import_obsidian26.TFile && file.path.startsWith(folderPath)) {
+          if (file instanceof import_obsidian27.TFile && file.path.startsWith(folderPath)) {
             const filenameMessageHistoryPath = "./.obsidian/plugins/bmo-chatbot/data/";
             const oldProfileMessageHistory = "messageHistory_" + oldPath.replace(folderPath + "/", "").replace(".md", ".json");
             await this.app.vault.adapter.rename(filenameMessageHistoryPath + oldProfileMessageHistory, filenameMessageHistoryPath + "messageHistory_" + file.name.replace(".md", ".json")).catch((error) => {
@@ -8274,6 +9377,31 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
             console.error("Error handling rename event:", error);
           }
         }
+        const profileFiles = this.app.vault.getFiles().filter((file2) => file2.path.startsWith(this.settings.profiles.profileFolderPath));
+        profileFiles.sort((a, b) => a.name.localeCompare(b.name));
+        const currentIndex = profileFiles.findIndex((profileFile) => profileFile.path === file.path);
+        const prevFileName = oldPath.replace(folderPath + "/", "");
+        const updatedProfileFiles = [...profileFiles, { name: prevFileName }];
+        updatedProfileFiles.sort((a, b) => a.name.localeCompare(b.name));
+        const fileIndex = updatedProfileFiles.findIndex((profileFile) => profileFile.name === file.name);
+        if (fileIndex !== -1) {
+          updatedProfileFiles.splice(fileIndex, 1);
+        }
+        const prevIndex = updatedProfileFiles.findIndex((profileFile) => profileFile.name === prevFileName);
+        if (currentIndex !== -1) {
+          const [removed] = this.settings.profiles.lastLoadedChatHistory.splice(prevIndex, 1);
+          this.settings.profiles.lastLoadedChatHistory.splice(currentIndex, 0, removed);
+        }
+        const currentProfile = this.settings.profiles.profile.replace(/\.[^/.]+$/, "");
+        const profileIndex = profileFiles.findIndex((file2) => file2.basename === currentProfile);
+        const index2 = this.settings.profiles.lastLoadedChatHistory.indexOf(oldPath);
+        if (this.settings.profiles.lastLoadedChatHistory[profileIndex] === oldPath) {
+          this.settings.profiles.lastLoadedChatHistory[index2] = file.path;
+          this.settings.profiles.lastLoadedChatHistoryPath = file.path;
+        } else if (this.settings.profiles.lastLoadedChatHistory[index2] === oldPath) {
+          this.settings.profiles.lastLoadedChatHistory[index2] = file.path;
+        }
+        await this.saveSettings();
       })
     );
     this.registerEvent(
@@ -8316,7 +9444,7 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
     });
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, file) => {
-        if (!(file instanceof import_obsidian26.TFile)) {
+        if (!(file instanceof import_obsidian27.TFile)) {
           return;
         }
         menu.addItem((item) => {
@@ -8337,6 +9465,7 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
         }
       ]
     });
+    bmoCodeBlockProcessor(this, this.settings);
     this.addSettingTab(new BMOSettingTab(this.app, this));
   }
   handleFileSwitch() {
@@ -8387,6 +9516,13 @@ var BMOGPT15 = class extends import_obsidian26.Plugin {
     const currentProfileFile = `${this.settings.profiles.profileFolderPath}/${this.settings.profiles.profile}`;
     const currentProfile = this.app.vault.getAbstractFileByPath(currentProfileFile);
     updateFrontMatter(this, currentProfile);
+    const header = document.querySelector("#header");
+    const modelOptions = header == null ? void 0 : header.querySelector("#modelOptions");
+    if (modelOptions) {
+      modelOptions.remove();
+    }
+    const populateModelOptions = populateModelDropdown(this, this.settings);
+    header == null ? void 0 : header.appendChild(populateModelOptions);
     await this.saveData(this.settings);
   }
 };
@@ -8407,7 +9543,9 @@ async function defaultFrontMatter(plugin, file) {
     frontmatter.chatbot_message_background_color = DEFAULT_SETTINGS.appearance.botMessageBackgroundColor.replace(/^#/, "");
     frontmatter.chatbox_font_color = DEFAULT_SETTINGS.appearance.chatBoxFontColor.replace(/^#/, "");
     frontmatter.chatbox_background_color = DEFAULT_SETTINGS.appearance.chatBoxBackgroundColor.replace(/^#/, "");
-    frontmatter.prompt_select_generate_system_role = DEFAULT_SETTINGS.editor.prompt_select_generate_system_role;
+    frontmatter.bmo_generate_background_color = DEFAULT_SETTINGS.appearance.bmoGenerateBackgroundColor.replace(/^#/, "");
+    frontmatter.bmo_generate_font_color = DEFAULT_SETTINGS.appearance.bmoGenerateFontColor.replace(/^#/, "");
+    frontmatter.systen_role = DEFAULT_SETTINGS.editor.systen_role;
     frontmatter.ollama_mirostat = parseFloat(DEFAULT_SETTINGS.OllamaConnection.ollamaParameters.mirostat);
     frontmatter.ollama_mirostat_eta = parseFloat(DEFAULT_SETTINGS.OllamaConnection.ollamaParameters.mirostat_eta);
     frontmatter.ollama_mirostat_tau = parseFloat(DEFAULT_SETTINGS.OllamaConnection.ollamaParameters.mirostat_tau);
@@ -8452,7 +9590,9 @@ async function updateSettingsFromFrontMatter(plugin, file) {
     plugin.settings.appearance.botMessageBackgroundColor = "#" + frontmatter.chatbot_message_background_color;
     plugin.settings.appearance.chatBoxFontColor = "#" + frontmatter.chatbox_font_color;
     plugin.settings.appearance.chatBoxBackgroundColor = "#" + frontmatter.chatbox_background_color;
-    plugin.settings.editor.prompt_select_generate_system_role = frontmatter.prompt_select_generate_system_role;
+    plugin.settings.appearance.bmoGenerateBackgroundColor = "#" + frontmatter.bmo_generate_background_color;
+    plugin.settings.appearance.bmoGenerateFontColor = "#" + frontmatter.bmo_generate_font_color;
+    plugin.settings.editor.systen_role = frontmatter.systen_role;
     plugin.settings.OllamaConnection.ollamaParameters.mirostat = frontmatter.ollama_mirostat;
     plugin.settings.OllamaConnection.ollamaParameters.mirostat_eta = frontmatter.ollama_mirostat_eta;
     plugin.settings.OllamaConnection.ollamaParameters.mirostat_tau = frontmatter.ollama_mirostat_tau;
@@ -8498,7 +9638,9 @@ async function updateFrontMatter(plugin, file) {
     frontmatter.chatbot_message_background_color = plugin.settings.appearance.botMessageBackgroundColor.replace(/^#/, "");
     frontmatter.chatbox_font_color = plugin.settings.appearance.chatBoxFontColor.replace(/^#/, "");
     frontmatter.chatbox_background_color = plugin.settings.appearance.chatBoxBackgroundColor.replace(/^#/, "");
-    frontmatter.prompt_select_generate_system_role = plugin.settings.editor.prompt_select_generate_system_role;
+    frontmatter.bmo_generate_background_color = plugin.settings.appearance.bmoGenerateBackgroundColor.replace(/^#/, "");
+    frontmatter.bmo_generate_font_color = plugin.settings.appearance.bmoGenerateFontColor.replace(/^#/, "");
+    frontmatter.systen_role = plugin.settings.editor.systen_role;
     frontmatter.ollama_mirostat = parseFloat(plugin.settings.OllamaConnection.ollamaParameters.mirostat);
     frontmatter.ollama_mirostat_eta = parseFloat(plugin.settings.OllamaConnection.ollamaParameters.mirostat_eta);
     frontmatter.ollama_mirostat_tau = parseFloat(plugin.settings.OllamaConnection.ollamaParameters.mirostat_tau);
@@ -8529,10 +9671,6 @@ async function updateProfile(plugin, file) {
   try {
     await plugin.app.fileManager.processFrontMatter(file, (frontmatter) => {
       plugin.settings.general.model = frontmatter.model || DEFAULT_SETTINGS.general.model;
-      const modelName = document.querySelector("#modelName");
-      if (modelName) {
-        modelName.textContent = "Model: " + plugin.settings.general.model;
-      }
       if (frontmatter.max_tokens) {
         plugin.settings.general.max_tokens = frontmatter.max_tokens.toString();
         frontmatter.max_tokens = parseInt(plugin.settings.general.max_tokens);
@@ -8772,7 +9910,41 @@ async function updateProfile(plugin, file) {
           }
         }
       }
-      plugin.settings.editor.prompt_select_generate_system_role = frontmatter.prompt_select_generate_system_role;
+      if (isValidHexColor(frontmatter.bmo_generate_background_color)) {
+        plugin.settings.appearance.bmoGenerateBackgroundColor = "#" + frontmatter.bmo_generate_background_color.substring(0, 6);
+        const containers = document.querySelectorAll(".bmoCodeBlockContainer");
+        containers.forEach((container) => {
+          const element = container;
+          element.style.backgroundColor = plugin.settings.appearance.bmoGenerateBackgroundColor;
+        });
+      } else {
+        plugin.settings.appearance.bmoGenerateBackgroundColor = colorToHex(DEFAULT_SETTINGS.appearance.bmoGenerateBackgroundColor);
+        frontmatter.bmo_generate_background_color = plugin.settings.appearance.bmoGenerateBackgroundColor.replace(/^#/, "");
+        const containers = document.querySelectorAll(".bmoCodeBlockContainer");
+        containers.forEach((container) => {
+          const element = container;
+          const defaultBMOGenerateBackgroundColor = getComputedStyle(document.body).getPropertyValue(DEFAULT_SETTINGS.appearance.bmoGenerateBackgroundColor).trim();
+          element.style.backgroundColor = defaultBMOGenerateBackgroundColor;
+        });
+      }
+      if (isValidHexColor(frontmatter.bmo_generate_font_color)) {
+        plugin.settings.appearance.bmoGenerateFontColor = "#" + frontmatter.bmo_generate_font_color.substring(0, 6);
+        const containers = document.querySelectorAll(".bmoCodeBlockContent");
+        containers.forEach((container) => {
+          const element = container;
+          element.style.color = plugin.settings.appearance.bmoGenerateFontColor;
+        });
+      } else {
+        plugin.settings.appearance.bmoGenerateFontColor = colorToHex(DEFAULT_SETTINGS.appearance.bmoGenerateFontColor);
+        frontmatter.bmo_generate_font_color = plugin.settings.appearance.bmoGenerateFontColor.replace(/^#/, "");
+        const containers = document.querySelectorAll(".bmoCodeBlockContent");
+        containers.forEach((container) => {
+          const element = container;
+          const defaultBMOGenerateFontColor = getComputedStyle(document.body).getPropertyValue(DEFAULT_SETTINGS.appearance.bmoGenerateFontColor).trim();
+          element.style.color = defaultBMOGenerateFontColor;
+        });
+      }
+      plugin.settings.editor.systen_role = frontmatter.systen_role;
       plugin.settings.appearance.enableHeader = frontmatter.enable_header;
       if (frontmatter.enable_header === true) {
         const header = document.querySelector("#header");
@@ -8902,3 +10074,6 @@ async function updateProfile(plugin, file) {
     console.error("Error processing frontmatter:", error);
   }
 }
+
+
+/* nosourcemap */

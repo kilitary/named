@@ -82,47 +82,76 @@ var ClaudeModel = class extends ChatInterface {
 var import_obsidian2 = require("obsidian");
 var OpenAIModel = class extends ChatInterface {
   async generate(prompt) {
+    const requestBody = {
+      model: this.modelName,
+      response_format: {
+        type: "text"
+      },
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: prompt
+            }
+          ]
+        }
+      ]
+    };
+    if (this.modelName.includes("gpt")) {
+      requestBody.max_completion_tokens = +this.maxTokens;
+      requestBody.temperature = 0.5;
+    }
     const message = await (0, import_obsidian2.requestUrl)({
       url: "https://api.openai.com/v1/chat/completions",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${this.apiKey}`
       },
+      body: JSON.stringify(requestBody),
+      method: "POST"
+    }).catch((error) => {
+      console.error(error);
+      return error;
+    });
+    return message.json.choices[0].message.content;
+  }
+};
+
+// models/model_openrouter.ts
+var import_obsidian3 = require("obsidian");
+var OpenRouterModel = class extends ChatInterface {
+  async generate(prompt) {
+    const message = await (0, import_obsidian3.requestUrl)({
+      url: "https://openrouter.ai/api/v1/chat/completions",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.apiKey}`
+      },
+      method: "POST",
       body: JSON.stringify({
         model: this.modelName,
         max_tokens: +this.maxTokens,
-        temperature: 0.5,
         messages: [
           {
             role: "user",
             content: prompt
           }
         ]
-      }),
-      method: "POST"
-    }).catch((error) => {
-      console.error(error);
-      return error;
+      })
     });
-    return message.json.content[0].text;
+    const json = await message.json;
+    return json.choices[0].message.content;
   }
 };
 
 // src/main.ts
-var import_obsidian5 = require("obsidian");
-
-// utils.ts
-var getKeyNameBasedOnModel = (model) => {
-  if (model.toLowerCase().startsWith("gpt"))
-    return "openaiKey";
-  if (model.toLowerCase().startsWith("claude"))
-    return "antrhopicKey";
-  return "openaiKey";
-};
+var import_obsidian6 = require("obsidian");
 
 // src/components/FillerModal.ts
-var import_obsidian3 = require("obsidian");
-var FillerModal = class extends import_obsidian3.SuggestModal {
+var import_obsidian4 = require("obsidian");
+var FillerModal = class extends import_obsidian4.SuggestModal {
   constructor(fillers, prompt = "", callback) {
     super(app);
     this.prompt = prompt;
@@ -151,18 +180,35 @@ function getSelectedText(editor) {
     selectedText = textSelection.toString();
   return { selectedText, textSelection };
 }
+var getKeyNameBasedOnModel = (model) => {
+  const modelName = model.toLowerCase();
+  if (modelName.includes("/"))
+    return "openRouterKey";
+  if (modelName.startsWith("gpt") || modelName.startsWith("o1"))
+    return "openaiKey";
+  if (modelName.startsWith("claude"))
+    return "antrhopicKey";
+  return "openaiKey";
+};
 var MODELS = {
   "GPT-3.5 Turbo": "gpt-3.5-turbo",
   "GPT-4": "gpt-4",
+  "GPT-4o": "gpt-4o",
+  "GPT-4o mini": "gpt-4o-mini",
   "GPT-4 Turbo": "gpt-4-turbo",
+  "o1 preview": "o1-preview",
+  "o1 mini": "o1-mini",
   "Claude 3 Haiku": "claude-3-haiku-20240307",
+  "Claude 3.5 Haiku": "claude-3-5-haiku-20241022",
+  "Claude 3.5 Sonnet": "claude-3-5-sonnet-20241022",
   "Claude 3 Sonnet": "claude-3-sonnet-20240229",
-  "Claude 3 Opus": "claude-3-opus-20240229"
+  "Claude 3 Opus": "claude-3-opus-20240229",
+  "Gemini 2.0 Flash (OpenRouter)": "google/gemini-2.0-flash-001"
 };
 
 // src/components/SettingsTab.ts
-var import_obsidian4 = require("obsidian");
-var MySettingTab = class extends import_obsidian4.PluginSettingTab {
+var import_obsidian5 = require("obsidian");
+var MySettingTab = class extends import_obsidian5.PluginSettingTab {
   constructor(app2, plugin) {
     super(app2, plugin);
     this.plugin = plugin;
@@ -170,40 +216,51 @@ var MySettingTab = class extends import_obsidian4.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    new import_obsidian4.Setting(containerEl).setName("Keys").setDesc("Add your API keys here").setHeading();
-    new import_obsidian4.Setting(containerEl).setName("OpenAI API Key").setDesc("Input your OpenAI API key here.").addText((text) => text.setPlaceholder("Enter your secret").setValue(this.plugin.settings.openaiKey).onChange(async (value) => {
+    new import_obsidian5.Setting(containerEl).setName("Keys").setDesc("Add your API keys here").setHeading();
+    new import_obsidian5.Setting(containerEl).setName("OpenAI API Key").setDesc("Input your OpenAI API key here.").addText((text) => text.setPlaceholder("Enter your secret").setValue(this.plugin.settings.openaiKey).onChange(async (value) => {
       this.plugin.settings.openaiKey = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian4.Setting(containerEl).setName("Anthropic API Key").setDesc("Input your Anthropic API key here.").addText((text) => text.setPlaceholder("Enter your secret").setValue(this.plugin.settings.antrhopicKey).onChange(async (value) => {
+    new import_obsidian5.Setting(containerEl).setName("Anthropic API Key").setDesc("Input your Anthropic API key here.").addText((text) => text.setPlaceholder("Enter your secret").setValue(this.plugin.settings.antrhopicKey).onChange(async (value) => {
       this.plugin.settings.antrhopicKey = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian4.Setting(containerEl).setName("Model").setDesc("Choose the model you want to use").setHeading();
-    new import_obsidian4.Setting(containerEl).setName("Choose your model").addDropdown((dropdown) => {
+    new import_obsidian5.Setting(containerEl).setName("OpenRouter API Key").setDesc("Input your OpenRouter API key here.").addText((text) => text.setPlaceholder("Enter your secret").setValue(this.plugin.settings.openRouterKey).onChange(async (value) => {
+      this.plugin.settings.openRouterKey = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian5.Setting(containerEl).setName("Model").setDesc("Choose the model you want to use").setHeading();
+    new import_obsidian5.Setting(containerEl).setName("Choose your model").addDropdown((dropdown) => {
       Object.keys(MODELS).forEach((displayModelName) => {
         dropdown.addOption(MODELS[displayModelName], displayModelName);
       });
       dropdown.setValue(this.plugin.settings.model).onChange(async (value) => {
         this.plugin.settings.model = value;
         await this.plugin.saveSettings();
+        this.display();
       });
     });
-    new import_obsidian4.Setting(containerEl).setName("Max tokens").setDesc("The maximum number of tokens (words) to generate").addText((text) => text.setPlaceholder("600 (default)").setValue(this.plugin.settings.maxTokens).onChange(async (value) => {
+    this.customModelInputText = new import_obsidian5.Setting(containerEl).setName("Custom Model Name").setDesc("Type the name of a model from openai/antrhopic (by default is the same as the dropdown)").addText((text) => text.setPlaceholder("Type here your custom model").setValue(this.plugin.settings.model).onChange(async (value) => {
+      if (value == "")
+        this.plugin.settings.model = MODELS["GPT-4o"];
+      this.plugin.settings.model = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian5.Setting(containerEl).setName("Max tokens").setDesc("The maximum number of tokens (words) to generate").addText((text) => text.setPlaceholder("600 (default)").setValue(this.plugin.settings.maxTokens).onChange(async (value) => {
       if (isNaN(+value)) {
-        new import_obsidian4.Notice("Max tokens must be a number");
+        new import_obsidian5.Notice("Max tokens must be a number");
         return;
       }
       this.plugin.settings.maxTokens = value;
       await this.plugin.saveSettings();
     }));
-    new import_obsidian4.Setting(containerEl).setName("Fillers").setDesc("Custom templates for all your needs").setHeading();
-    const newFillerSetting = new import_obsidian4.Setting(containerEl).setName("Add Filler").setDesc("Add a new filler, use {{PROMPT}} to indicate where the prompt should be inserted").addTextArea((text) => {
+    new import_obsidian5.Setting(containerEl).setName("Fillers").setDesc("Custom templates for all your needs").setHeading();
+    const newFillerSetting = new import_obsidian5.Setting(containerEl).setName("Add Filler").setDesc("Add a new filler, use {{PROMPT}} to indicate where the prompt should be inserted").addTextArea((text) => {
     }).addButton((button) => button.setButtonText("Add").onClick(() => {
       const textArea = newFillerSetting.settingEl.querySelector("textarea");
       const fillerText = textArea == null ? void 0 : textArea.value;
       if (!fillerText) {
-        new import_obsidian4.Notice("Filler text cannot be empty");
+        new import_obsidian5.Notice("Filler text cannot be empty");
         return;
       }
       this.plugin.settings.fillers.push({
@@ -234,15 +291,17 @@ var MySettingTab = class extends import_obsidian4.PluginSettingTab {
       buttons.style.display = "flex";
       buttons.style.gap = "0.5rem";
       buttons.createEl("button", { text: "Edit" }).addEventListener("click", () => {
-        const modifyModal = new import_obsidian4.Modal(this.app);
+        const modifyModal = new import_obsidian5.Modal(this.app);
         const { contentEl } = modifyModal;
-        new import_obsidian4.Setting(contentEl).setName("Filler name").setClass("pt-2").addText((text) => text.setValue(filler.name).onChange(async (value) => {
+        new import_obsidian5.Setting(contentEl).setName("Filler name").setClass("pt-2").addText((text) => text.setValue(filler.name).onChange(async (value) => {
           filler.name = value;
+          this.plugin.saveSettings();
           this.display();
         }));
-        new import_obsidian4.Setting(contentEl).setName("Filler content").addTextArea(
+        new import_obsidian5.Setting(contentEl).setName("Filler content").addTextArea(
           (text) => text.setValue(filler.content).onChange(async (value) => {
             filler.content = value;
+            this.plugin.saveSettings();
             this.display();
           })
         );
@@ -262,16 +321,17 @@ var MySettingTab = class extends import_obsidian4.PluginSettingTab {
 var DEFAULT_SETTINGS = {
   openaiKey: "",
   antrhopicKey: "",
+  openRouterKey: "",
   model: "gpt-3.5-turbo",
-  maxTokens: "600",
+  maxTokens: "2000",
   fillers: []
 };
-var SelectAndCompletePlugin = class extends import_obsidian5.Plugin {
+var SelectAndCompletePlugin = class extends import_obsidian6.Plugin {
   async completeText(possiblePrefetchedText) {
     var _a;
-    const editor = (_a = this.app.workspace.getActiveViewOfType(import_obsidian5.MarkdownView)) == null ? void 0 : _a.editor;
+    const editor = (_a = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView)) == null ? void 0 : _a.editor;
     if (!editor) {
-      new import_obsidian5.Notice("No active editor found");
+      new import_obsidian6.Notice("No active editor found");
       return;
     }
     const {
@@ -279,7 +339,7 @@ var SelectAndCompletePlugin = class extends import_obsidian5.Plugin {
       textSelection
     } = getSelectedText(editor);
     try {
-      new import_obsidian5.Notice("Generating text...");
+      new import_obsidian6.Notice("Generating text with " + this.settings.model);
       const message = await this.chatExecutor.generate(possiblePrefetchedText || selectedText);
       if (!textSelection) {
         editor.replaceRange("\n" + message, {
@@ -291,36 +351,48 @@ var SelectAndCompletePlugin = class extends import_obsidian5.Plugin {
       }
     } catch (error) {
       console.error(error);
-      new import_obsidian5.Notice("Error generating text. Check the console for more information");
+      new import_obsidian6.Notice("Error generating text. Check the console for more information");
     }
   }
   setupLLM() {
     const keyName = getKeyNameBasedOnModel(this.settings.model);
     const apiKey = this.settings[keyName];
     const selectedModel = this.settings.model;
-    const claudeModel = new ClaudeModel({
-      modelName: selectedModel,
-      apiKey,
-      maxTokens: +this.settings.maxTokens
-    });
-    const openaiModel = new OpenAIModel({
-      modelName: selectedModel,
-      apiKey,
-      maxTokens: +this.settings.maxTokens
-    });
     switch (keyName) {
-      case "openaiKey":
+      case "openaiKey": {
+        const openaiModel = new OpenAIModel({
+          modelName: selectedModel,
+          apiKey,
+          maxTokens: +this.settings.maxTokens
+        });
         this.chatExecutor = new ChatExecutor(openaiModel);
         break;
-      case "antrhopicKey":
+      }
+      case "antrhopicKey": {
+        const claudeModel = new ClaudeModel({
+          modelName: selectedModel,
+          apiKey,
+          maxTokens: +this.settings.maxTokens
+        });
         this.chatExecutor = new ChatExecutor(claudeModel);
+        break;
+      }
+      case "openRouterKey": {
+        const openRouterModel = new OpenRouterModel({
+          modelName: selectedModel,
+          apiKey,
+          maxTokens: +this.settings.maxTokens
+        });
+        this.chatExecutor = new ChatExecutor(openRouterModel);
+        break;
+      }
     }
   }
   openFillerModal() {
     var _a;
-    const editor = (_a = this.app.workspace.getActiveViewOfType(import_obsidian5.MarkdownView)) == null ? void 0 : _a.editor;
+    const editor = (_a = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView)) == null ? void 0 : _a.editor;
     if (!editor) {
-      new import_obsidian5.Notice("No active editor found");
+      new import_obsidian6.Notice("No active editor found");
       return;
     }
     const {
@@ -333,7 +405,7 @@ var SelectAndCompletePlugin = class extends import_obsidian5.Plugin {
   async onload() {
     await this.loadSettings();
     this.setupLLM();
-    (0, import_obsidian5.addIcon)("complete_ai", `
+    (0, import_obsidian6.addIcon)("complete_ai", `
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
 			</svg>
@@ -362,5 +434,8 @@ var SelectAndCompletePlugin = class extends import_obsidian5.Plugin {
   }
   async saveSettings() {
     await this.saveData(this.settings);
+    this.setupLLM();
   }
 };
+
+/* nosourcemap */

@@ -42,10 +42,9 @@ var import_obsidian4 = require("obsidian");
 // src/converter.ts
 var import_obsidian = require("obsidian");
 var fs = __toESM(require("fs/promises"));
-var path = __toESM(require("path"));
 
 // src/fileExtensionStripper.ts
-var removeFileExtensionsForMdFiles = (fileText) => {
+var removeFileExtensionForMdFilesInLinks = (fileText) => {
   const markdownRegex = /\[(^$|.*?)\]\((.*?)\)/g;
   const markdownMatches = fileText.match(markdownRegex);
   if (markdownMatches) {
@@ -61,86 +60,11 @@ var removeFileExtensionsForMdFiles = (fileText) => {
 };
 
 // src/converter.ts
-var convertAndExportVault = async (plugin) => {
-  new import_obsidian.Notice("Starting Vault conversion and export ...", 4e3);
-  const files = plugin.app.vault.getFiles();
-  for (const file of files) {
-    if (file.path.slice(0, -3).match(plugin.settings.homeFilePath)) {
-      const path2 = file.path.split("/");
-      path2[path2.length - 1] = "home.md";
-      await plugin.app.fileManager.renameFile(file, path2.join("/"));
-      continue;
-    }
-    await plugin.app.fileManager.renameFile(file, file.path.replace(/\s+/g, "-"));
-  }
-  const markdownFiles = plugin.app.vault.getMarkdownFiles();
-  for (const file of markdownFiles) {
-    await plugin.app.vault.process(file, (data) => {
-      return removeFileExtensionsForMdFiles(data);
-    });
-  }
-  exportVaultToSpecifiedLocation(plugin);
-  for (const file of files) {
-    if (file.path.match("home.md")) {
-      const path2 = file.path.split("/");
-      path2[path2.length - 1] = plugin.settings.homeFilePath + ".md";
-      await plugin.app.fileManager.renameFile(file, path2.join("/"));
-      continue;
-    }
-    await plugin.app.fileManager.renameFile(file, file.path.replace(/-/g, " "));
-  }
-  new import_obsidian.Notice("Vault conversion and export finished successfully!", 5e3);
-};
-var exportVaultToSpecifiedLocation = async (plugin) => {
-  const adapter = plugin.app.vault.adapter;
-  if (adapter instanceof import_obsidian.FileSystemAdapter) {
-    const vaultAbsolutePath = adapter.getBasePath();
-    const exportPath = plugin.settings.exportPath.split(path.sep).join(path.posix.sep);
-    import_obsidian.Vault.recurseChildren(plugin.app.vault.getRoot(), async (file) => {
-      if (file instanceof import_obsidian.TFolder && file.isRoot()) {
-        try {
-          await fs.mkdir(exportPath);
-        } catch (error) {
-          if (error.code != "EEXIST") {
-            console.log("Export failed: Could not find or create export folder! Check path specified in settings.");
-            new import_obsidian.Notice("Export failed: Could not find or create export folder! Check path specified in settings.", 0);
-            return;
-          }
-        }
-      } else {
-        if (file instanceof import_obsidian.TFolder) {
-          try {
-            await fs.mkdir(path.posix.join(exportPath, file.path));
-          } catch (error) {
-            if (error.code != "EEXIST") {
-              console.log("Export failed: Could not create subfolder in export folder! Check that you have the corresponding permissions.");
-              new import_obsidian.Notice("Export failed: Could not create subfolder in export folder! Check that you have the corresponding permissions.", 0);
-              return;
-            }
-          }
-        } else {
-          try {
-            await fs.copyFile(path.posix.join(vaultAbsolutePath, file.path), path.posix.join(exportPath, file.path));
-          } catch (error) {
-            console.log("Export failed: Could not write to export folder! Check that path is correct and you have the corresponding permissions.");
-            new import_obsidian.Notice("Export failed: Could not write to export folder! Check that path is correct and you have the corresponding permissions.", 0);
-            return;
-          }
-        }
-      }
-    });
-    return;
-  }
-  console.error("Could not get base path of Vault");
-};
-
-// src/fileSuggest.ts
-var import_obsidian2 = require("obsidian");
+var path = __toESM(require("path"));
 
 // src/utils.ts
 function trimFile(file) {
-  if (!file)
-    return "";
+  if (!file) return "";
   return file.extension == "md" ? file.path.slice(0, -3) : file.path;
 }
 function isHomePageSelectedAndValid(plugin) {
@@ -150,8 +74,71 @@ function isHomePageSelectedAndValid(plugin) {
     return false;
   }
 }
+function isUnixHiddenPath(path2) {
+  return /(^|\/)\.[^\/\.]/g.test(path2);
+}
+
+// src/converter.ts
+var convertAndExportVault = async (vault, fileManager, homeFilePath, exportPath) => {
+  new import_obsidian.Notice("Starting Vault conversion and export ...", 4e3);
+  const homeFile = vault.getAbstractFileByPath(homeFilePath + ".md");
+  if (!(homeFile instanceof import_obsidian.TFile)) {
+    new import_obsidian.Notice("Export failed! Could not find home file in vault. Make sure the specified home file path is correct.", 0);
+    return;
+  }
+  await fileManager.renameFile(homeFile, "home.md");
+  const folders = vault.getAllFolders(false);
+  for (const folder of folders) {
+    await fileManager.renameFile(folder, folder.path.replace(/\s+/g, "-"));
+  }
+  const files = vault.getFiles();
+  await Promise.all(
+    files.map(
+      (file) => fileManager.renameFile(file, file.path.replace(/\s+/g, "-"))
+    )
+  );
+  const markdownFiles = vault.getMarkdownFiles();
+  await Promise.all(
+    markdownFiles.map(
+      (file) => vault.process(file, (data) => {
+        return removeFileExtensionForMdFilesInLinks(data);
+      })
+    )
+  );
+  await exportVaultToSpecifiedLocation(vault, exportPath);
+  for (const folder of folders) {
+    await fileManager.renameFile(folder, folder.path.replace(/-/g, " "));
+  }
+  await Promise.all(
+    files.map(
+      (file) => fileManager.renameFile(file, file.path.replace(/-/g, " "))
+    )
+  );
+  await fileManager.renameFile(homeFile, homeFilePath + ".md");
+  new import_obsidian.Notice("Vault conversion and export finished successfully!", 5e3);
+};
+var exportVaultToSpecifiedLocation = async (vault, rawExportPath) => {
+  const adapter = vault.adapter;
+  if (adapter instanceof import_obsidian.FileSystemAdapter) {
+    const vaultAbsolutePath = adapter.getBasePath();
+    const exportPath = rawExportPath.split(path.sep).join(path.posix.sep);
+    await fs.cp(vaultAbsolutePath, exportPath, {
+      recursive: true,
+      errorOnExist: false,
+      // overwrite by default
+      force: true,
+      // overwrite read-only files if needed
+      filter: (srcPath) => {
+        return !isUnixHiddenPath(path.basename(srcPath));
+      }
+    });
+    return;
+  }
+  console.error("Could not get file system adapter from vault adapter:", adapter);
+};
 
 // src/fileSuggest.ts
+var import_obsidian2 = require("obsidian");
 var FileSuggest = class extends import_obsidian2.AbstractInputSuggest {
   getSuggestions(inputStr) {
     const mdFiles = this.app.vault.getMarkdownFiles();
@@ -176,6 +163,7 @@ var FileSuggest = class extends import_obsidian2.AbstractInputSuggest {
 
 // src/settings.ts
 var import_obsidian3 = require("obsidian");
+var import_path = require("path");
 var DEFAULT_SETTINGS = {
   exportPath: "",
   homeFilePath: ""
@@ -189,7 +177,7 @@ var GitLabWikiConverterSettingTab = class extends import_obsidian3.PluginSetting
     const { containerEl } = this;
     containerEl.empty();
     new import_obsidian3.Setting(containerEl).setName("Location").setDesc("Specify the path to where you want to export converted vault.").addText((text) => text.setPlaceholder("Path").setValue(this.plugin.settings.exportPath).onChange(async (value) => {
-      this.plugin.settings.exportPath = (0, import_obsidian3.normalizePath)(value);
+      this.plugin.settings.exportPath = (0, import_path.normalize)(value);
       await this.plugin.saveSettings();
     }));
     new import_obsidian3.Setting(containerEl).setName("Home page").setDesc("Specify the file, which will be your Gitlab homepage.").addText((text) => {
@@ -211,7 +199,7 @@ var GitLabWikiConverterPlugin = class extends import_obsidian4.Plugin {
       name: "Export Vault as Gitlab Wiki",
       callback: () => {
         if (isHomePageSelectedAndValid(this)) {
-          convertAndExportVault(this);
+          convertAndExportVault(this.app.vault, this.app.fileManager, this.settings.homeFilePath, this.settings.exportPath);
         } else {
           new import_obsidian4.Notice("Export failed! Select a valid Gitlab home page in the settings before exporting vault.", 0);
         }
@@ -228,3 +216,5 @@ var GitLabWikiConverterPlugin = class extends import_obsidian4.Plugin {
     await this.saveData(this.settings);
   }
 };
+
+/* nosourcemap */

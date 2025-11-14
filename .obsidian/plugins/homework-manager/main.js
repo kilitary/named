@@ -24,17 +24,299 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => HomeworkPlugin
+  default: () => HomeworkManagerPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian3 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 
-// src/modal.ts
-var import_obsidian2 = require("obsidian");
-
-// src/suggestModal.ts
+// src/settings.ts
 var import_obsidian = require("obsidian");
-var SuggestFileModal = class extends import_obsidian.SuggestModal {
+var defaultLogo = "book";
+var SettingsTab = class extends import_obsidian.PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    new import_obsidian.Setting(containerEl).setName("Auto sort for task quantity").setDesc("Automatically sort subjects by the quantity of tasks.").addToggle((toggle) => {
+      toggle.setValue(this.plugin.data.settings.autoSortForTaskQuantity).onChange(async (val) => {
+        this.plugin.data.settings.autoSortForTaskQuantity = val;
+        await this.plugin.writeData();
+      });
+    });
+    new import_obsidian.Setting(containerEl).setName("Show tooltips").setDesc("Show tooltips when hovering over buttons.").addToggle((toggle) => {
+      toggle.setValue(this.plugin.data.settings.showTooltips).onChange(async (val) => {
+        this.plugin.data.settings.showTooltips = val;
+        await this.plugin.writeData();
+      });
+    });
+  }
+};
+
+// src/data-editor.ts
+var currentVersion = "1.1.1";
+var DEFAULT_DATA = {
+  settings: {
+    deleteFinishedTasks: true,
+    showTooltips: true,
+    autoSortForTaskQuantity: true,
+    version: currentVersion
+  },
+  views: new Array()
+};
+var Task = class {
+  constructor() {
+    this.name = "";
+    this.date = "";
+    this.page = "";
+  }
+};
+var Subject = class {
+  constructor() {
+    this.name = "";
+    this.tasks = new Array();
+  }
+};
+var View = class {
+  constructor() {
+    this.name = "";
+    this.subjects = new Array();
+    this.tasks = new Array();
+  }
+};
+var DataEditor = class {
+  constructor(plugin) {
+    this.plugin = plugin;
+  }
+  // Make sure new updates are reflected
+  formatData(data) {
+    const newData = Object.assign({}, DEFAULT_DATA);
+    newData.settings = { ...DEFAULT_DATA.settings, ...data.settings };
+    newData.views = new Array();
+    const assign = (assignTo, object) => {
+      let filteredObject = {};
+      for (const key in object) {
+        if (key in assignTo) {
+          filteredObject[key] = object[key];
+        }
+      }
+      return Object.assign(assignTo, filteredObject);
+    };
+    for (const view of data.views) {
+      const newView = assign(new View(), view);
+      newView.subjects = new Array();
+      newView.tasks = new Array();
+      for (const task of view.tasks) {
+        const newTask = assign(new Task(), task);
+        newView.tasks.push(newTask);
+      }
+      for (const subject of view.subjects) {
+        const newSubject = assign(new Subject(), subject);
+        newSubject.tasks = new Array();
+        for (const task of subject.tasks) {
+          const newTask = assign(new Task(), task);
+          newSubject.tasks.push(newTask);
+        }
+        newView.subjects.push(newSubject);
+      }
+      newData.views.push(newView);
+    }
+    if (newData.views.length === 0) {
+      const newView = new View();
+      newView.name = "View 1";
+      newData.views.push(newView);
+    }
+    return newData;
+  }
+  // Convert legacy versions (1.0.0, 1.1.0) to new data structure
+  convertFromLegacy(data) {
+    const view = new View();
+    view.name = "View 1";
+    for (const subjectKey in data) {
+      const subject = new Subject();
+      subject.name = subjectKey;
+      const oldSubject = data[subjectKey];
+      for (const taskKey in data[subjectKey]) {
+        const task = new Task();
+        task.name = taskKey;
+        task.page = oldSubject[taskKey].page;
+        task.date = oldSubject[taskKey].date;
+        subject.tasks.push(task);
+      }
+      view.subjects.push(subject);
+    }
+    const newData = Object.assign({}, DEFAULT_DATA);
+    newData.views.push(view);
+    console.log("Found data is legacy, converting now.\n\nLegacy", data, "\n\nConverted", newData);
+    return newData;
+  }
+  async checkPluginUpdated() {
+    const lastVersion = this.plugin.data.settings.version.split(".").slice(0, 2).join(".");
+    const current = currentVersion.split(".").slice(0, 2).join(".");
+    if (lastVersion == current) {
+      return false;
+    }
+    this.plugin.data.settings.version = currentVersion;
+    await this.plugin.writeData();
+    return true;
+  }
+  async addSubject(viewIndex, subjectName) {
+    const view = this.plugin.data.views[viewIndex];
+    if (!view) {
+      return;
+    }
+    view.subjects.push({
+      "name": subjectName,
+      "tasks": []
+    });
+    await this.plugin.writeData();
+  }
+  async removeSubject(viewIndex, subjectIndex) {
+    const view = this.plugin.data.views[viewIndex];
+    if (!view.subjects[subjectIndex]) {
+      return;
+    }
+    view.subjects.splice(subjectIndex, 1);
+    await this.plugin.writeData();
+  }
+  async moveSubject(viewIndex, subjectIndex) {
+    const view = this.plugin.data.views[viewIndex];
+    if (!view.subjects[subjectIndex]) {
+      return;
+    }
+    const subject = view.subjects[subjectIndex];
+    view.subjects.splice(subjectIndex, 1);
+    view.subjects.splice(viewIndex, 0, subject);
+    await this.plugin.writeData();
+  }
+  async addTask(viewIndex, taskOptions, subjectIndex) {
+    const view = this.plugin.data.views[viewIndex];
+    if (!view) {
+      return;
+    }
+    if (subjectIndex !== void 0) {
+      const subject = view.subjects[subjectIndex];
+      if (subject) {
+        subject.tasks.push(taskOptions);
+      }
+    } else {
+      if (view.tasks) {
+        view.tasks.push(taskOptions);
+      }
+    }
+    await this.plugin.writeData();
+  }
+  async removeTask(viewIndex, taskIndex, subjectIndex) {
+    const view = this.plugin.data.views[viewIndex];
+    if (!view) {
+      return;
+    }
+    if (subjectIndex !== void 0) {
+      const subject = view.subjects[subjectIndex];
+      if (subject) {
+        subject.tasks.splice(taskIndex, 1);
+      }
+    } else {
+      if (view.tasks) {
+        view.tasks.splice(taskIndex, 1);
+      }
+    }
+    await this.plugin.writeData();
+  }
+  async moveTask(viewIndex, taskIndex, up, subjectIndex) {
+    const view = this.plugin.data.views[viewIndex];
+    if (subjectIndex !== void 0) {
+      const subject = view.subjects[subjectIndex];
+      if (subject && subject.tasks.length > 1 && (up && taskIndex > 0 || !up && taskIndex < subject.tasks.length - 1)) {
+        subject.tasks[taskIndex] = subject.tasks.splice(taskIndex + (up ? -1 : 1), 1, subject.tasks[taskIndex])[0];
+      }
+    }
+  }
+};
+
+// src/modals/update-modal.ts
+var import_obsidian2 = require("obsidian");
+var UpdateModal = class extends import_obsidian2.Modal {
+  constructor(app, plugin) {
+    super(app);
+    this.plugin = plugin;
+  }
+  async onOpen() {
+    const { contentEl } = this;
+    await this.plugin.fetchData();
+    contentEl.addClass("update-modal");
+    contentEl.createEl("h1", { text: "Homework Manager: v1.1.0!" });
+    contentEl.createEl("p", { text: `\u2757 This update requires the reformatting of user data. If you run into any issues or have lost any data, please create an issue on the GitHub. \u2757` });
+    contentEl.createEl("hr");
+    contentEl.createEl("li", { text: `\u{1F4C2} Views: You can switch between different views, each with its own set of tasks. This makes it easy to separate work-related to-dos from personal tasks.` });
+    contentEl.createEl("li", { text: `\u270F\uFE0F Editing tasks & subjects: Update names, due dates, and files.` });
+    contentEl.createEl("li", { text: `\u{1F500} Reordering tasks: Arrange tasks the way you like.` });
+    contentEl.createEl("li", { text: `\u{1F4CC} Auto-sorting subjects: Subjects can now automatically sort to the top based on the number of tasks they have. This feature can be enabled in the settings.` });
+    contentEl.createEl("hr");
+    contentEl.createEl("b", { text: `Big thanks to HerrChaos for implementing sorting subjects, editing tasks/subjects and reordering tasks.` });
+  }
+  onClose() {
+    const { contentEl } = this;
+    contentEl.empty();
+  }
+};
+
+// src/modals/homework-modal.ts
+var import_obsidian5 = require("obsidian");
+
+// src/modals/view-modal.ts
+var import_obsidian3 = require("obsidian");
+var ViewManagerModal = class extends import_obsidian3.Modal {
+  constructor(app, plugin) {
+    super(app);
+    this.plugin = plugin;
+  }
+  onOpen() {
+    const { contentEl } = this;
+    const title = contentEl.createEl("h1", { text: "View Manager" });
+    this.plugin.data.views.forEach((view) => {
+      const viewContainer = contentEl.createDiv("view-container");
+      viewContainer.style.display = "flex";
+      viewContainer.style.flexDirection = "row";
+      const viewTitle = viewContainer.createEl("input", { value: view.name, type: "text", cls: "hidden-textbox subject-box" });
+      viewTitle.addEventListener("change", () => {
+        view.name = viewTitle.value;
+        this.plugin.writeData();
+      });
+      const deleteButton = viewContainer.createEl("button", { cls: "delete-button hidden-textbox" });
+      (0, import_obsidian3.setIcon)(deleteButton, "trash-2");
+      deleteButton.addEventListener("click", () => {
+        this.plugin.data.views = this.plugin.data.views.filter((v) => v !== view);
+        this.plugin.writeData();
+        this.onClose();
+        this.onOpen();
+      });
+    });
+    const newViewContainer = contentEl.createEl("form");
+    const newViewer = newViewContainer.createEl("input", { type: "text", cls: "hidden-textbox subject-box", placeholder: "New View" });
+    newViewContainer.addEventListener("submit", (event) => {
+      event.preventDefault();
+      this.plugin.data.views.push({ name: newViewer.value, subjects: [], tasks: [] });
+      this.plugin.writeData();
+      this.onClose();
+      this.onOpen();
+    });
+    new import_obsidian3.Setting(contentEl).addButton((btn) => btn.setButtonText("Done").setCta().onClick(() => {
+      this.close();
+    }));
+  }
+  onClose() {
+    const { contentEl } = this;
+    this.onClosing();
+    contentEl.empty();
+  }
+};
+
+// src/modals/file-modal.ts
+var import_obsidian4 = require("obsidian");
+var SuggestFileModal = class extends import_obsidian4.SuggestModal {
   constructor(app, onSubmit) {
     super(app);
     this.onSubmit = onSubmit;
@@ -56,209 +338,454 @@ var SuggestFileModal = class extends import_obsidian.SuggestModal {
   }
 };
 
-// src/modal.ts
-var HomeworkModal = class extends import_obsidian2.Modal {
+// src/modals/homework-modal.ts
+var HomeworkModal = class extends import_obsidian5.Modal {
   constructor(app, plugin) {
     super(app);
-    const { contentEl } = this;
     this.plugin = plugin;
-    this.headingClass = contentEl.createEl("div", { cls: "header" });
-    this.loadClass = contentEl.createEl("div");
+    this.editMode = false;
+    this.creating = false;
   }
   async onOpen() {
     const { contentEl } = this;
-    await this.plugin.loadHomework();
-    this.editMode = false;
-    this.creating = false;
-    const headingText = this.headingClass.createEl("h1", { text: "Homework", cls: "header-title" });
-    const editButton = this.headingClass.createEl("div", { cls: "header-edit-button" });
-    (0, import_obsidian2.setIcon)(editButton, "pencil");
-    this.loadSubjects();
-    editButton.addEventListener("click", (click) => {
-      if (this.creating == false) {
-        this.editMode = !this.editMode;
-        this.loadSubjects();
-        if (this.editMode) {
-          (0, import_obsidian2.setIcon)(editButton, "book-open");
-        } else {
-          (0, import_obsidian2.setIcon)(editButton, "pencil");
-        }
-      } else {
-        new import_obsidian2.Notice("Please complete prompt first.");
-      }
-    });
+    await this.plugin.fetchData();
+    contentEl.addClass("homework-manager");
+    this.divHeader = contentEl.createEl("div", { attr: { "id": "header" } });
+    this.divViewSelector = contentEl.createEl("div");
+    this.divTopLevel = contentEl.createEl("div", { cls: "homework-manager-hidden" });
+    this.divBody = contentEl.createEl("div", { attr: { "id": "body" } });
+    await this.changeView(0);
   }
   onClose() {
     const { contentEl } = this;
     contentEl.empty();
   }
-  async loadSubjects() {
-    this.loadClass.empty();
+  async changeView(viewIndex) {
+    if (!this.plugin.data.views[viewIndex]) {
+      console.log("Cannot find requested view in data.");
+      viewIndex = 0;
+    }
+    await this.createHeader(viewIndex);
     if (this.editMode) {
-      const subjectsHeading = this.loadClass.createEl("div", { cls: "subjects-heading" });
-      const addSubjectButton = subjectsHeading.createEl("div", { cls: "add-subject" });
-      addSubjectButton.createEl("p", { text: "Add a subject" });
-      addSubjectButton.addEventListener("click", (click) => {
-        if (this.creating == false) {
-          let onPromptFinish = function(object) {
-            const subjectText = inputText.value.trim();
-            if (subjectText.length <= 32) {
-              if (!object.plugin.data[subjectText]) {
-                if (subjectText != "") {
-                  object.plugin.data[subjectText] = {};
-                } else {
-                  new import_obsidian2.Notice("Subject must have a name.");
-                }
-              } else {
-                new import_obsidian2.Notice("Cannot create duplicate subject.");
+      await this.createEditMode(viewIndex);
+    } else {
+      await this.createReadMode(viewIndex);
+    }
+  }
+  async createHeader(viewIndex) {
+    this.divHeader.empty();
+    this.divViewSelector.empty();
+    const headerLeft = this.divHeader.createEl("div", { attr: { "id": "left-column" } });
+    const views = this.plugin.data.views;
+    if (!this.editMode) {
+      const dropdownButton = this.createIconButton(headerLeft, void 0, "chevron-down", { message: "View options" });
+      let dropdownList = void 0;
+      dropdownButton.addEventListener("click", (click) => {
+        if (dropdownList == void 0) {
+          dropdownList = this.divViewSelector.createEl("div", { cls: "menu mod-tab-list", attr: { "id": "menu" } });
+          if (views.length > 1) {
+            views.forEach((viewOption, index) => {
+              if (index != viewIndex && dropdownList) {
+                const viewButton = this.createMenuButton(
+                  dropdownList,
+                  void 0,
+                  { icon: "layers", text: viewOption.name },
+                  { message: "Switch to view", position: "right" }
+                );
+                viewButton == null ? void 0 : viewButton.addEventListener("click", (click2) => {
+                  this.editMode = false;
+                  this.changeView(index);
+                });
               }
-            } else {
-              new import_obsidian2.Notice("Must be under 32 characters.");
+            });
+            dropdownList.createEl("div", { cls: "menu-separator" });
+          }
+          const manageButton = this.createMenuButton(
+            dropdownList,
+            void 0,
+            { icon: "pencil", text: "Manage views" },
+            { message: "Add, delete, sort, or rename your views", position: "right" }
+          );
+          manageButton == null ? void 0 : manageButton.addEventListener("click", (click2) => {
+            this.changeView(viewIndex);
+            let modalManage = new ViewManagerModal(this.app, this.plugin);
+            modalManage.onClosing = () => {
+              this.changeView(viewIndex);
+            };
+            modalManage.open();
+          });
+          dropdownList.createEl("div", { cls: "menu-separator" });
+          const taskButton = this.createMenuButton(
+            dropdownList,
+            void 0,
+            { icon: "plus", text: "Add task" },
+            { message: "Creates a task without a subject", position: "right" }
+          );
+          taskButton == null ? void 0 : taskButton.addEventListener("click", async (click2) => {
+            dropdownList == null ? void 0 : dropdownList.remove();
+            dropdownList = void 0;
+            let viewTasksDiv = this.divBody.getElementsByClassName("homework-manager-view-tasks")[0];
+            if (viewTasksDiv === void 0) {
+              viewTasksDiv = this.divTopLevel;
             }
-            object.plugin.saveHomework();
-            object.loadSubjects();
-            object.creating = false;
-            return;
-          };
-          this.creating = true;
-          const promptClass = subjectsHeading.createEl("div", { cls: "subject-prompt" });
-          promptClass.createEl("p", { text: "New subject" });
-          const inputText = promptClass.createEl("input", { type: "text", cls: "subject-prompt-input" });
-          inputText.focus();
-          inputText.addEventListener("keydown", (event) => {
-            if (event.key == "Enter") {
-              onPromptFinish(this);
+            const taskOptions = await this.createTaskPrompt(viewTasksDiv);
+            if (taskOptions) {
+              await this.plugin.dataEditor.addTask(viewIndex, taskOptions);
+              this.changeView(viewIndex);
             }
           });
-          const confirmSubject = promptClass.createEl("div", { cls: "subject-prompt-confirm" });
-          (0, import_obsidian2.setIcon)(confirmSubject, "check");
-          confirmSubject.addEventListener("click", (click2) => {
-            onPromptFinish(this);
+          const subjectButton = this.createMenuButton(
+            dropdownList,
+            void 0,
+            { icon: "copy-plus", text: "Add subject" },
+            { message: "Creates a subject in the current view", position: "right" }
+          );
+          subjectButton == null ? void 0 : subjectButton.addEventListener("click", async (click2) => {
+            dropdownList == null ? void 0 : dropdownList.remove();
+            dropdownList = void 0;
+            const subjectName = await this.createSubjectPrompt();
+            if (subjectName !== void 0) {
+              await this.plugin.dataEditor.addSubject(viewIndex, subjectName);
+              this.changeView(viewIndex);
+            }
           });
         } else {
-          new import_obsidian2.Notice("Already creating new subject.");
+          dropdownList == null ? void 0 : dropdownList.remove();
+          dropdownList = void 0;
         }
       });
     }
-    for (const subjectKey in this.plugin.data) {
-      let newSubjectClass = this.loadClass.createEl("div", { cls: "subject" });
-      let subjectHeading = newSubjectClass.createEl("div", { cls: "subject-heading" });
-      let subjectName = subjectHeading.createEl("div", { text: subjectKey, cls: "subject-heading-name" });
-      if (this.editMode) {
-        let removeSubjectButton = subjectHeading.createEl("div", { cls: "subject-heading-remove" });
-        (0, import_obsidian2.setIcon)(removeSubjectButton, "minus");
-        subjectHeading.insertBefore(removeSubjectButton, subjectName);
-        removeSubjectButton.addEventListener("click", (click) => {
-          Reflect.deleteProperty(this.plugin.data, subjectKey);
-          this.plugin.saveHomework();
-          newSubjectClass.empty();
-        });
-      } else {
-        let newTaskButton = subjectHeading.createEl("div", { cls: "subject-heading-add" });
-        (0, import_obsidian2.setIcon)(newTaskButton, "plus");
-        newTaskButton.addEventListener("click", (click) => {
-          if (this.creating == false) {
-            let onPromptFinish = function(object) {
-              const taskText = inputText.value.trim();
-              if (taskText.length <= 100) {
-                if (!object.plugin.data[subjectKey][taskText]) {
-                  if (taskText != "") {
-                    object.plugin.data[subjectKey][taskText] = {
-                      page,
-                      date: dateField.value
-                    };
-                    object.createTask(newSubjectClass, subjectKey, taskText);
-                  } else {
-                    new import_obsidian2.Notice("Must have a name.");
-                  }
-                } else {
-                  new import_obsidian2.Notice("Cannot create duplicate task.");
-                }
-              } else {
-                new import_obsidian2.Notice("Must be under 100 characters.");
-              }
-              object.plugin.saveHomework();
-              object.creating = false;
-              promptClass.empty();
-            };
-            this.creating = true;
-            let page = "";
-            const promptClass = newSubjectClass.createEl("div", { cls: "task-prompt" });
-            const flexClassTop = promptClass.createEl("div", { cls: "task-prompt-flextop" });
-            const inputText = flexClassTop.createEl("input", { type: "text", cls: "task-prompt-flextop-input" });
-            const confirmTask = flexClassTop.createEl("div", { cls: "task-prompt-flextop-confirm" });
-            (0, import_obsidian2.setIcon)(confirmTask, "check");
-            inputText.focus();
-            const flexClassBottom = promptClass.createEl("div", { cls: "task-prompt-flexbottom" });
-            const suggestButton = flexClassBottom.createEl("div", { text: "File", cls: "task-prompt-flexbottom-suggest" });
-            const dateField = flexClassBottom.createEl("input", { type: "date", cls: "task-prompt-flexbottom-date" });
-            suggestButton.addEventListener("click", (click2) => {
-              new SuggestFileModal(this.app, (result) => {
-                page = result.path;
-                suggestButton.setText(result.name);
-              }).open();
-            });
-            inputText.addEventListener("keydown", (event) => {
-              if (event.key == "Enter") {
-                onPromptFinish(this);
-              }
-            });
-            confirmTask.addEventListener("click", (click2) => {
-              onPromptFinish(this);
-            });
-          } else {
-            new import_obsidian2.Notice("Already creating task.");
-          }
-        });
-      }
-      if (!this.editMode) {
-        for (const taskKey in this.plugin.data[subjectKey]) {
-          this.createTask(newSubjectClass, subjectKey, `${taskKey}`);
-        }
-      }
-    }
+    const viewName = views[viewIndex].name;
+    headerLeft.createEl("h1", { text: viewName });
+    const editIcon = this.editMode ? "book-open" : "pencil";
+    const attributeMessage = this.editMode ? "Switch to view mode" : "Switch to edit mode\nFor editing, reordering or deleting tasks/subjects";
+    const editButton = this.createIconButton(this.divHeader, { attr: { "id": "edit-button" } }, editIcon, { message: attributeMessage });
+    editButton.addEventListener("click", (click) => {
+      this.editMode = !this.editMode;
+      this.changeView(viewIndex);
+    });
   }
-  createTask(subjectClass, subjectKey, taskName) {
-    let taskClass = subjectClass.createEl("div", { cls: "task" });
-    let taskButton = taskClass.createEl("div", { cls: "task-check" });
-    let filePath = this.plugin.data[subjectKey][taskName].page;
-    let taskText;
-    if (filePath == "") {
-      taskText = taskClass.createEl("div", { text: taskName, cls: "task-text", parent: taskButton });
-    } else {
-      taskText = taskClass.createEl("div", { text: taskName, cls: "task-link", parent: taskButton });
+  async createReadMode(viewIndex) {
+    this.divBody.empty();
+    const view = this.plugin.data.views[viewIndex];
+    const subjects = this.plugin.data.views[viewIndex].subjects;
+    const viewTasks = this.divBody.createEl("div", { cls: "homework-manager-view-tasks", attr: { "id": "subject" } });
+    view.tasks.forEach(async (task, taskIndex) => {
+      const check = this.createTask(viewTasks, task, taskIndex, viewIndex);
+      if (check !== void 0) {
+        check.addEventListener("click", async (click) => {
+          await this.plugin.dataEditor.removeTask(viewIndex, taskIndex);
+          this.changeView(viewIndex);
+        });
+      }
+    });
+    if (this.plugin.data.settings.autoSortForTaskQuantity) {
+      subjects.sort((a, b) => a.tasks.length > b.tasks.length ? -1 : 1);
     }
-    let dateValue = this.plugin.data[subjectKey][taskName].date;
-    if (dateValue != "") {
-      let date = new Date(this.plugin.data[subjectKey][taskName].date);
-      var dateArr = date.toDateString().split(" ");
-      var dateFormat = dateArr[2] + " " + dateArr[1] + " " + dateArr[3];
-      let taskDate = taskClass.createEl("div", { text: dateFormat, cls: "task-date", parent: taskText });
-      if (new Date() > date && new Date().toDateString() != date.toDateString()) {
+    subjects.forEach((subject, subjectIndex) => {
+      const subjectDiv = this.divBody.createEl("div", { attr: { "id": "subject" } });
+      const titleDiv = subjectDiv.createEl("div", { attr: { "id": "title" } });
+      titleDiv.createEl("h2", { text: subject.name });
+      const newTaskButton = this.createIconButton(
+        titleDiv,
+        void 0,
+        "plus",
+        { message: "Add new task to subject" }
+      );
+      newTaskButton.addEventListener("click", async (click) => {
+        const taskOptions = await this.createTaskPrompt(subjectDiv);
+        if (taskOptions) {
+          await this.plugin.dataEditor.addTask(viewIndex, taskOptions, subjectIndex);
+          this.changeView(viewIndex);
+        }
+      });
+      const tasks = subject.tasks;
+      tasks.forEach(async (task, taskIndex) => {
+        const check = this.createTask(subjectDiv, task, taskIndex, viewIndex, subjectIndex);
+        check.addEventListener("click", async (click) => {
+          await this.plugin.dataEditor.removeTask(viewIndex, taskIndex, subjectIndex);
+          this.changeView(viewIndex);
+        });
+      });
+    });
+  }
+  createEditMode(viewIndex) {
+    this.divBody.empty();
+    const view = this.plugin.data.views[viewIndex];
+    const subjects = this.plugin.data.views[viewIndex].subjects;
+    const viewTasks = this.divBody.createEl("div", { cls: "homework-manager-view-tasks", attr: { "id": "subject" } });
+    view.tasks.forEach(async (task, taskIndex) => {
+      this.createEditTask(viewTasks, task, taskIndex, viewIndex);
+    });
+    subjects.forEach((subject, subjectIndex) => {
+      const subjectDiv = this.divBody.createEl("div", { attr: { "id": "subject" } });
+      const titleDiv = subjectDiv.createEl("div", { attr: { "id": "title" } });
+      let removeSubjectButton = titleDiv.createEl("div", { attr: { "id": "remove-subject" } });
+      (0, import_obsidian5.setIcon)(removeSubjectButton, "minus");
+      removeSubjectButton.addEventListener("click", async (click) => {
+        await this.plugin.dataEditor.removeSubject(viewIndex, subjectIndex);
+        subjectDiv.empty();
+      });
+      let title = titleDiv.createEl("input", { cls: "hidden-textbox subject-box", type: "text", value: subject.name });
+      title.addEventListener("change", async (change) => {
+        subject.name = title.value;
+        await this.plugin.writeData();
+      });
+      const tasks = subject.tasks;
+      tasks.forEach(async (task, taskIndex) => {
+        this.createEditTask(subjectDiv, task, taskIndex, viewIndex, subjectIndex);
+      });
+    });
+  }
+  createEditTask(div, task, taskIndex, viewIndex, subjectIndex) {
+    const taskDiv = div.createEl("div", { attr: { "id": "task", "display": "flex" } });
+    const leftDiv = taskDiv.createEl("div");
+    const rightDiv = taskDiv.createEl("div");
+    leftDiv.style.display = "flex";
+    leftDiv.style.flexDirection = "row";
+    const righterDiv = leftDiv.createEl("div");
+    righterDiv.style.display = "flex";
+    righterDiv.style.flexDirection = "row";
+    let up = righterDiv.createEl("p", { text: " \u2191 " });
+    righterDiv.createEl("p", { text: "   " });
+    let down = righterDiv.createEl("p", { text: " \u2193 " });
+    up.addEventListener("click", async (click) => {
+      await this.plugin.dataEditor.moveTask(viewIndex, taskIndex, true, subjectIndex);
+      this.changeView(viewIndex);
+    });
+    down.addEventListener("click", async (click) => {
+      await this.plugin.dataEditor.moveTask(viewIndex, taskIndex, false, subjectIndex);
+      this.changeView(viewIndex);
+    });
+    const nameBox = leftDiv.createEl("input", { type: "text", value: task.name, cls: "hidden-textbox" });
+    nameBox.addEventListener("change", async (change) => {
+      task.name = nameBox.value;
+      await this.plugin.writeData();
+    });
+    const fileButton = leftDiv.createEl("button", { text: "File" });
+    const dateButton = rightDiv.createEl("input", { type: "date", value: task.date });
+    let page = "";
+    fileButton.addEventListener("click", () => {
+      new SuggestFileModal(this.app, (result) => {
+        page = result.path;
+        fileButton.setText(result.name);
+        task.page = page;
+        this.plugin.writeData();
+      }).open();
+    });
+    dateButton.addEventListener("change", async (change) => {
+      task.date = dateButton.value;
+      await this.plugin.writeData();
+    });
+  }
+  createTask(div, task, taskIndex, viewIndex, subjectIndex) {
+    const taskDiv = div.createEl("div", { attr: { "id": "task", "display": "flex" } });
+    const leftDiv = taskDiv.createEl("div");
+    const rightDiv = taskDiv.createEl("div");
+    leftDiv.style.display = "flex";
+    leftDiv.style.flexDirection = "row";
+    let interactionDiv;
+    interactionDiv = leftDiv.createEl("div", { attr: { "id": "check" } });
+    const taskName = leftDiv.createEl("p", { text: task.name });
+    if (task.page !== "") {
+      taskName.addClass("homework-manager-link");
+      if (this.plugin.data.settings.showTooltips) {
+        taskName.setAttribute("aria-label", "Go to linked file");
+        taskName.setAttribute("data-tooltip-position", "right");
+      }
+      taskName.addEventListener("click", (click) => {
+        const file = this.app.vault.getAbstractFileByPath(task.page);
+        if (file instanceof import_obsidian5.TFile) {
+          this.app.workspace.getLeaf().openFile(file);
+          this.close();
+          return;
+        }
+        new import_obsidian5.Notice("Linked file cannot be found.");
+      });
+    }
+    if (task.date.length > 0) {
+      const date = new Date(task.date);
+      let formattedDate = date.toLocaleDateString(void 0, {
+        weekday: "short",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+      if (date.toDateString() == today.toDateString()) {
+        formattedDate = "Today";
+      } else if (date.toDateString() == tomorrow.toDateString()) {
+        formattedDate = "Tomorrow";
+      } else if (date.toDateString() == yesterday.toDateString()) {
+        formattedDate = "Yesterday";
+      }
+      const taskDate = rightDiv.createEl("p", { text: formattedDate, attr: { "id": "date" } });
+      if (today > date && today.toDateString() !== date.toDateString()) {
         taskDate.style.color = "var(--text-error)";
       }
     }
-    taskText.addEventListener("click", (click) => {
-      if (filePath != "") {
-        let file = this.app.vault.getAbstractFileByPath(filePath);
-        if (file instanceof import_obsidian2.TFile) {
-          this.app.workspace.getLeaf().openFile(file);
-          this.close();
-        }
+    return interactionDiv;
+  }
+  createSubjectPrompt() {
+    this.divTopLevel.empty();
+    this.divTopLevel.removeClass("homework-manager-hidden");
+    const subjectPrompt = this.divTopLevel.createEl("div", { attr: { "id": "subject-prompt" } });
+    const inputText = subjectPrompt.createEl("input", { type: "text", placeholder: "Enter subject name" });
+    inputText.focus();
+    const saveButton = this.createIconButton(subjectPrompt, void 0, "check", { message: "Confirm", position: "bottom" });
+    saveButton.addClass("homework-manager-hidden");
+    const cancelButton = this.createIconButton(subjectPrompt, void 0, "x", { message: "Cancel", position: "bottom" });
+    inputText.addEventListener("keyup", (event) => {
+      if (inputText.value.trim().length > 0) {
+        saveButton.removeClass("homework-manager-hidden");
+      } else {
+        saveButton.addClass("homework-manager-hidden");
       }
     });
-    taskButton.addEventListener("click", (click) => {
-      Reflect.deleteProperty(this.plugin.data[subjectKey], taskName);
-      this.plugin.saveHomework();
-      taskClass.empty();
+    const hideDiv = () => {
+      this.divTopLevel.empty();
+      this.divTopLevel.addClass("homework-manager-hidden");
+    };
+    return new Promise((resolve) => {
+      inputText.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+          if (inputText.value.trim().length > 0) {
+            hideDiv();
+            resolve(inputText.value.trim());
+          }
+        }
+      });
+      saveButton.addEventListener("click", () => {
+        hideDiv();
+        if (inputText.value.trim().length > 0) {
+          resolve(inputText.value.trim());
+        }
+        resolve(void 0);
+      });
+      cancelButton.addEventListener("click", () => {
+        hideDiv();
+        resolve(void 0);
+      });
     });
+  }
+  createTaskPrompt(subjectDiv) {
+    let topLevel = false;
+    if (subjectDiv === this.divTopLevel) {
+      topLevel = true;
+    }
+    if (topLevel) {
+      this.divTopLevel.empty();
+      this.divTopLevel.removeClass("homework-manager-hidden");
+    }
+    const taskPrompt = subjectDiv.createEl("div", { attr: { "id": "task-prompt" } });
+    const top = taskPrompt.createEl("div", { attr: { "id": "top" } });
+    const bottom = taskPrompt.createEl("div", { attr: { "id": "bottom" } });
+    const inputText = top.createEl("input", { type: "text", placeholder: "Enter task name" });
+    inputText.focus();
+    const saveButton = this.createIconButton(top, void 0, "check", { message: "Confirm", position: "bottom" });
+    saveButton.addClass("homework-manager-hidden");
+    const cancelButton = this.createIconButton(top, void 0, "x", { message: "Cancel", position: "bottom" });
+    inputText.addEventListener("keyup", (event) => {
+      if (inputText.value.trim().length > 0) {
+        saveButton.removeClass("homework-manager-hidden");
+      } else {
+        saveButton.addClass("homework-manager-hidden");
+      }
+    });
+    const fileButton = bottom.createEl("button", { text: "File" });
+    const dateButton = bottom.createEl("input", { type: "date" });
+    let page = "";
+    fileButton.addEventListener("click", () => {
+      new SuggestFileModal(this.app, (result) => {
+        page = result.path;
+        fileButton.setText(result.name);
+      }).open();
+    });
+    const getTaskOptions = () => {
+      return {
+        name: inputText.value.trim(),
+        date: dateButton.value,
+        page
+      };
+    };
+    const hideDiv = () => {
+      if (topLevel) {
+        this.divTopLevel.empty();
+        this.divTopLevel.addClass("homework-manager-hidden");
+      }
+    };
+    return new Promise((resolve) => {
+      inputText.addEventListener("keyup", (event) => {
+        const result = getTaskOptions();
+        if (event.key === "Enter") {
+          if (result.name.length > 0) {
+            hideDiv();
+            resolve(result);
+          }
+        }
+      });
+      saveButton.addEventListener("click", () => {
+        const result = getTaskOptions();
+        hideDiv();
+        if (result.name.length > 0) {
+          resolve(result);
+        }
+        taskPrompt.remove();
+        resolve(void 0);
+      });
+      cancelButton.addEventListener("click", () => {
+        hideDiv();
+        taskPrompt.remove();
+        resolve(void 0);
+      });
+    });
+  }
+  createIconButton(div, elementInfo, icon, attribute) {
+    const button = div.createEl("span", elementInfo);
+    button.addClass("clickable-icon");
+    (0, import_obsidian5.setIcon)(button, icon);
+    if ((attribute == null ? void 0 : attribute.message) && this.plugin.data.settings.showTooltips) {
+      button.setAttribute("aria-label", attribute.message);
+      if (attribute.position) {
+        button.setAttribute("data-tooltip-position", attribute.position);
+      } else {
+        button.setAttribute("data-tooltip-position", "top");
+      }
+    }
+    return button;
+  }
+  createMenuButton(div, elementInfo, item, attribute) {
+    const button = div.createEl("div", elementInfo);
+    button.addClass("menu-item");
+    if (item.icon) {
+      const buttonIcon = button.createEl("div", { cls: "menu-item-icon" });
+      (0, import_obsidian5.setIcon)(buttonIcon, item.icon);
+    }
+    if (item.text) {
+      button.createEl("div", { cls: "menu-item-title", "text": item.text });
+    }
+    if ((attribute == null ? void 0 : attribute.message) && this.plugin.data.settings.showTooltips) {
+      button.setAttribute("aria-label", attribute.message);
+      if (attribute.position) {
+        button.setAttribute("data-tooltip-position", attribute.position);
+      } else {
+        button.setAttribute("data-tooltip-position", "top");
+      }
+    }
+    return button;
   }
 };
 
 // src/main.ts
-var HomeworkPlugin = class extends import_obsidian3.Plugin {
+var HomeworkManagerPlugin = class extends import_obsidian6.Plugin {
   async onload() {
-    const ribbonToggle = this.addRibbonIcon("book", "Open homework", (evt) => {
+    await this.fetchData();
+    this.addSettingTab(new SettingsTab(this.app, this));
+    const ribbonToggle = this.addRibbonIcon(defaultLogo, "Open homework", (evt) => {
       new HomeworkModal(this.app, this).open();
     });
     ribbonToggle.addClass("my-plugin-ribbon-class");
@@ -269,12 +796,34 @@ var HomeworkPlugin = class extends import_obsidian3.Plugin {
         new HomeworkModal(this.app, this).open();
       }
     });
+    this.addCommand({
+      id: "open-update-notes",
+      name: "Open update notes",
+      callback: () => {
+        new UpdateModal(this.app, this).open();
+      }
+    });
+    if (await this.dataEditor.checkPluginUpdated()) {
+      new UpdateModal(this.app, this).open();
+    }
   }
-  async loadHomework() {
-    this.data = Object.assign({}, await this.loadData());
+  async onunload() {
+    await this.writeData();
   }
-  async saveHomework() {
+  async fetchData() {
+    this.dataEditor = new DataEditor(this);
+    const foundData = Object.assign({}, await this.loadData());
+    let newData = foundData;
+    if (foundData.views === void 0) {
+      newData = this.dataEditor.convertFromLegacy(foundData);
+    }
+    newData = this.dataEditor.formatData(newData);
+    this.data = newData;
+    await this.writeData();
+  }
+  async writeData() {
     await this.saveData(this.data);
   }
 };
-//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsic3JjL21haW4udHMiLCAic3JjL21vZGFsLnRzIiwgInNyYy9zdWdnZXN0TW9kYWwudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImltcG9ydCB7IFBsdWdpbiB9IGZyb20gJ29ic2lkaWFuJztcclxuXHJcbmltcG9ydCBIb21ld29ya01vZGFsIGZyb20gJy4vbW9kYWwnXHJcblxyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBIb21ld29ya1BsdWdpbiBleHRlbmRzIFBsdWdpbiB7XHJcblx0ZGF0YTogYW55O1xyXG5cclxuXHRhc3luYyBvbmxvYWQoKSB7XHJcblx0XHQvLyBPcGVuIGhvbWV3b3JrIHJpYmJvbiBidXR0b25cclxuXHRcdGNvbnN0IHJpYmJvblRvZ2dsZSA9IHRoaXMuYWRkUmliYm9uSWNvbignYm9vaycsICdPcGVuIGhvbWV3b3JrJywgKGV2dDogTW91c2VFdmVudCkgPT4ge1xyXG5cdFx0XHRuZXcgSG9tZXdvcmtNb2RhbCh0aGlzLmFwcCwgdGhpcykub3BlbigpO1xyXG5cdFx0fSk7XHJcblxyXG5cdFx0Ly8gUGVyZm9ybSBhZGRpdGlvbmFsIHRoaW5ncyB3aXRoIHRoZSByaWJib25cclxuXHRcdHJpYmJvblRvZ2dsZS5hZGRDbGFzcygnbXktcGx1Z2luLXJpYmJvbi1jbGFzcycpO1xyXG5cclxuXHRcdC8vIE9wZW4gaG9tZXdvcmsgY29tbWFuZFxyXG5cdFx0dGhpcy5hZGRDb21tYW5kKHtcclxuXHRcdFx0aWQ6ICdvcGVuLWhvbWV3b3JrJyxcclxuXHRcdFx0bmFtZTogJ09wZW4gaG9tZXdvcmsnLFxyXG5cdFx0XHRjYWxsYmFjazogKCkgPT4ge1xyXG5cdFx0XHRcdG5ldyBIb21ld29ya01vZGFsKHRoaXMuYXBwLCB0aGlzKS5vcGVuKCk7XHJcblx0XHRcdH1cclxuXHRcdH0pO1xyXG5cdH1cclxuXHJcblx0YXN5bmMgbG9hZEhvbWV3b3JrKCkge1xyXG5cdFx0dGhpcy5kYXRhID0gT2JqZWN0LmFzc2lnbih7fSwgYXdhaXQgdGhpcy5sb2FkRGF0YSgpKTtcclxuXHR9XHJcblx0XHJcblx0YXN5bmMgc2F2ZUhvbWV3b3JrKCkge1xyXG5cdFx0YXdhaXQgdGhpcy5zYXZlRGF0YSh0aGlzLmRhdGEpO1xyXG5cdH1cclxufSIsICJpbXBvcnQgSG9tZXdvcmtQbHVnaW4gZnJvbSAnLi9tYWluJztcclxuaW1wb3J0IHsgQXBwLCBNb2RhbCwgVEZpbGUsIE5vdGljZSwgc2V0SWNvbiB9IGZyb20gJ29ic2lkaWFuJztcclxuaW1wb3J0IHsgU3VnZ2VzdEZpbGVNb2RhbCB9IGZyb20gJy4vc3VnZ2VzdE1vZGFsJztcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEhvbWV3b3JrTW9kYWwgZXh0ZW5kcyBNb2RhbCB7XHJcblx0cGx1Z2luOiBIb21ld29ya1BsdWdpbjtcclxuICAgIGhlYWRpbmdDbGFzczogSFRNTERpdkVsZW1lbnQ7XHJcbiAgICBsb2FkQ2xhc3M6IEhUTUxEaXZFbGVtZW50O1xyXG4gICAgZWRpdE1vZGU6IEJvb2xlYW47XHJcbiAgICBjcmVhdGluZzogQm9vbGVhbjtcclxuXHJcblx0Y29uc3RydWN0b3IoYXBwOiBBcHAsIHBsdWdpbjogSG9tZXdvcmtQbHVnaW4pIHtcclxuXHRcdHN1cGVyKGFwcCk7XHJcblxyXG4gICAgICAgIGNvbnN0IHtjb250ZW50RWx9ID0gdGhpcztcclxuXHJcblx0XHR0aGlzLnBsdWdpbiA9IHBsdWdpbjtcclxuICAgICAgICB0aGlzLmhlYWRpbmdDbGFzcyA9IGNvbnRlbnRFbC5jcmVhdGVFbChcImRpdlwiLCB7IGNsczogXCJoZWFkZXJcIiB9KTtcclxuICAgICAgICB0aGlzLmxvYWRDbGFzcyA9IGNvbnRlbnRFbC5jcmVhdGVFbChcImRpdlwiKTtcclxuXHR9XHJcblxyXG5cdGFzeW5jIG9uT3BlbigpIHtcclxuXHRcdGNvbnN0IHtjb250ZW50RWx9ID0gdGhpcztcclxuXHJcbiAgICAgICAgYXdhaXQgdGhpcy5wbHVnaW4ubG9hZEhvbWV3b3JrKCk7XHJcblxyXG4gICAgICAgIHRoaXMuZWRpdE1vZGUgPSBmYWxzZTtcclxuICAgICAgICB0aGlzLmNyZWF0aW5nID0gZmFsc2U7XHJcblxyXG5cdFx0Y29uc3QgaGVhZGluZ1RleHQgPSB0aGlzLmhlYWRpbmdDbGFzcy5jcmVhdGVFbChcImgxXCIsIHsgdGV4dDogXCJIb21ld29ya1wiLCBjbHM6IFwiaGVhZGVyLXRpdGxlXCIgfSk7XHJcbiAgICAgICAgY29uc3QgZWRpdEJ1dHRvbiA9IHRoaXMuaGVhZGluZ0NsYXNzLmNyZWF0ZUVsKFwiZGl2XCIsIHtjbHM6IFwiaGVhZGVyLWVkaXQtYnV0dG9uXCIgfSk7XHJcbiAgICAgICAgc2V0SWNvbihlZGl0QnV0dG9uLCBcInBlbmNpbFwiKTtcclxuICAgICAgIFxyXG4gICAgICAgIHRoaXMubG9hZFN1YmplY3RzKCk7XHJcblxyXG4gICAgICAgIGVkaXRCdXR0b24uYWRkRXZlbnRMaXN0ZW5lcihcImNsaWNrXCIsIChjbGljaykgPT4ge1xyXG4gICAgICAgICAgICBpZiAodGhpcy5jcmVhdGluZyA9PSBmYWxzZSlcclxuICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgdGhpcy5lZGl0TW9kZSA9ICF0aGlzLmVkaXRNb2RlO1xyXG4gICAgICAgICAgICAgICAgdGhpcy5sb2FkU3ViamVjdHMoKTtcclxuXHJcbiAgICAgICAgICAgICAgICBpZiAodGhpcy5lZGl0TW9kZSkge1xyXG4gICAgICAgICAgICAgICAgICAgIHNldEljb24oZWRpdEJ1dHRvbiwgXCJib29rLW9wZW5cIik7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICBlbHNlIHtcclxuICAgICAgICAgICAgICAgICAgICBzZXRJY29uKGVkaXRCdXR0b24sIFwicGVuY2lsXCIpO1xyXG4gICAgICAgICAgICAgICAgfSAgIFxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIGVsc2Uge1xyXG4gICAgICAgICAgICAgICAgbmV3IE5vdGljZShcIlBsZWFzZSBjb21wbGV0ZSBwcm9tcHQgZmlyc3QuXCIpO1xyXG4gICAgICAgICAgICB9ICAgIFxyXG4gICAgICAgIH0pO1xyXG5cdH1cclxuXHJcblx0b25DbG9zZSgpIHsgICBcclxuXHRcdGNvbnN0IHtjb250ZW50RWx9ID0gdGhpcztcclxuXHRcdGNvbnRlbnRFbC5lbXB0eSgpO1xyXG5cdH1cclxuXHJcbiAgICBhc3luYyBsb2FkU3ViamVjdHMoKVxyXG4gICAge1xyXG4gICAgICAgIHRoaXMubG9hZENsYXNzLmVtcHR5KCk7XHJcblxyXG4gICAgICAgIGlmICh0aGlzLmVkaXRNb2RlKSB7XHJcbiAgICAgICAgICAgIGNvbnN0IHN1YmplY3RzSGVhZGluZyA9IHRoaXMubG9hZENsYXNzLmNyZWF0ZUVsKFwiZGl2XCIsIHsgY2xzOiBcInN1YmplY3RzLWhlYWRpbmdcIiB9KTtcclxuICAgICAgICAgICAgY29uc3QgYWRkU3ViamVjdEJ1dHRvbiA9IHN1YmplY3RzSGVhZGluZy5jcmVhdGVFbChcImRpdlwiLCB7IGNsczogXCJhZGQtc3ViamVjdFwiIH0pO1xyXG4gICAgICAgICAgICBhZGRTdWJqZWN0QnV0dG9uLmNyZWF0ZUVsKFwicFwiLCB7IHRleHQ6IFwiQWRkIGEgc3ViamVjdFwiIH0pO1xyXG5cclxuICAgICAgICAgICAgYWRkU3ViamVjdEJ1dHRvbi5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKGNsaWNrKSA9PiB7XHJcbiAgICAgICAgICAgICAgICBpZiAodGhpcy5jcmVhdGluZyA9PSBmYWxzZSkge1xyXG4gICAgICAgICAgICAgICAgICAgIHRoaXMuY3JlYXRpbmcgPSB0cnVlO1xyXG5cclxuICAgICAgICAgICAgICAgICAgICBjb25zdCBwcm9tcHRDbGFzcyA9IHN1YmplY3RzSGVhZGluZy5jcmVhdGVFbChcImRpdlwiLCB7Y2xzOiBcInN1YmplY3QtcHJvbXB0XCJ9KTtcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgcHJvbXB0Q2xhc3MuY3JlYXRlRWwoXCJwXCIsIHt0ZXh0OiBcIk5ldyBzdWJqZWN0XCJ9KTtcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgY29uc3QgaW5wdXRUZXh0ID0gcHJvbXB0Q2xhc3MuY3JlYXRlRWwoXCJpbnB1dFwiLCB7dHlwZTogXCJ0ZXh0XCIsIGNsczogXCJzdWJqZWN0LXByb21wdC1pbnB1dFwifSk7XHJcbiAgICAgICAgICAgICAgICAgICAgaW5wdXRUZXh0LmZvY3VzKCk7XHJcblxyXG4gICAgICAgICAgICAgICAgICAgIGZ1bmN0aW9uIG9uUHJvbXB0RmluaXNoKG9iamVjdCA6IEhvbWV3b3JrTW9kYWwpIHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3ViamVjdFRleHQgPSBpbnB1dFRleHQudmFsdWUudHJpbSgpO1xyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgaWYgKHN1YmplY3RUZXh0Lmxlbmd0aCA8PSAzMikge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKCFvYmplY3QucGx1Z2luLmRhdGFbc3ViamVjdFRleHRdKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKHN1YmplY3RUZXh0ICE9IFwiXCIpIHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb2JqZWN0LnBsdWdpbi5kYXRhW3N1YmplY3RUZXh0XSA9IHt9O1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5ldyBOb3RpY2UoXCJTdWJqZWN0IG11c3QgaGF2ZSBhIG5hbWUuXCIpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5ldyBOb3RpY2UoXCJDYW5ub3QgY3JlYXRlIGR1cGxpY2F0ZSBzdWJqZWN0LlwiKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gICBcclxuICAgICAgICAgICAgICAgICAgICAgICAgfSBcclxuICAgICAgICAgICAgICAgICAgICAgICAgZWxzZSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBuZXcgTm90aWNlKFwiTXVzdCBiZSB1bmRlciAzMiBjaGFyYWN0ZXJzLlwiKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgfSAgICAgICAgICAgICAgICAgICAgICAgIFxyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgb2JqZWN0LnBsdWdpbi5zYXZlSG9tZXdvcmsoKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICBvYmplY3QubG9hZFN1YmplY3RzKCk7ICBcclxuICAgICAgICAgICAgICAgICAgICAgICAgb2JqZWN0LmNyZWF0aW5nID0gZmFsc2U7ICAgICAgXHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICByZXR1cm47XHJcbiAgICAgICAgICAgICAgICAgICAgfVxyXG5cclxuICAgICAgICAgICAgICAgICAgICBpbnB1dFRleHQuYWRkRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsIChldmVudCkgPT4ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBpZiAoZXZlbnQua2V5ID09ICdFbnRlcicpe1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgb25Qcm9tcHRGaW5pc2godGhpcyk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgICAgICB9KTtcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgY29uc3QgY29uZmlybVN1YmplY3QgPSBwcm9tcHRDbGFzcy5jcmVhdGVFbChcImRpdlwiLCB7Y2xzOiBcInN1YmplY3QtcHJvbXB0LWNvbmZpcm1cIn0pO1xyXG4gICAgICAgICAgICAgICAgICAgIHNldEljb24oY29uZmlybVN1YmplY3QsIFwiY2hlY2tcIik7XHJcblxyXG4gICAgICAgICAgICAgICAgICAgIGNvbmZpcm1TdWJqZWN0LmFkZEV2ZW50TGlzdGVuZXIoXCJjbGlja1wiLCAoY2xpY2spID0+IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgb25Qcm9tcHRGaW5pc2godGhpcyk7XHJcbiAgICAgICAgICAgICAgICAgICAgfSk7ICAgXHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICBlbHNlIHtcclxuICAgICAgICAgICAgICAgICAgICBuZXcgTm90aWNlKFwiQWxyZWFkeSBjcmVhdGluZyBuZXcgc3ViamVjdC5cIik7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH0pOyAgICBcclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICAgICAgZm9yIChjb25zdCBzdWJqZWN0S2V5IGluIHRoaXMucGx1Z2luLmRhdGEpIHtcclxuICAgICAgICAgICAgbGV0IG5ld1N1YmplY3RDbGFzcyA9IHRoaXMubG9hZENsYXNzLmNyZWF0ZUVsKFwiZGl2XCIsIHsgY2xzOiBcInN1YmplY3RcIiB9KTtcclxuXHJcbiAgICAgICAgICAgIGxldCBzdWJqZWN0SGVhZGluZyA9IG5ld1N1YmplY3RDbGFzcy5jcmVhdGVFbChcImRpdlwiLCB7IGNsczogXCJzdWJqZWN0LWhlYWRpbmdcIiB9KTtcclxuICAgICAgICAgICAgbGV0IHN1YmplY3ROYW1lID0gc3ViamVjdEhlYWRpbmcuY3JlYXRlRWwoXCJkaXZcIiwge3RleHQ6IHN1YmplY3RLZXksIGNsczogXCJzdWJqZWN0LWhlYWRpbmctbmFtZVwiIH0pO1xyXG5cclxuICAgICAgICAgICAgaWYgKHRoaXMuZWRpdE1vZGUpIHtcclxuICAgICAgICAgICAgICAgIGxldCByZW1vdmVTdWJqZWN0QnV0dG9uID0gc3ViamVjdEhlYWRpbmcuY3JlYXRlRWwoXCJkaXZcIiwge2NsczogXCJzdWJqZWN0LWhlYWRpbmctcmVtb3ZlXCIgfSk7XHJcbiAgICAgICAgICAgICAgICBzZXRJY29uKHJlbW92ZVN1YmplY3RCdXR0b24sIFwibWludXNcIik7XHJcblxyXG4gICAgICAgICAgICAgICAgc3ViamVjdEhlYWRpbmcuaW5zZXJ0QmVmb3JlKHJlbW92ZVN1YmplY3RCdXR0b24sIHN1YmplY3ROYW1lKTtcclxuICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgcmVtb3ZlU3ViamVjdEJ1dHRvbi5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKGNsaWNrKSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgUmVmbGVjdC5kZWxldGVQcm9wZXJ0eSh0aGlzLnBsdWdpbi5kYXRhLCBzdWJqZWN0S2V5KTtcclxuICAgICAgICAgICAgICAgICAgICB0aGlzLnBsdWdpbi5zYXZlSG9tZXdvcmsoKTtcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgbmV3U3ViamVjdENsYXNzLmVtcHR5KCk7XHJcbiAgICAgICAgICAgICAgICB9KTtcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICBlbHNlIHtcclxuICAgICAgICAgICAgICAgIGxldCBuZXdUYXNrQnV0dG9uID0gc3ViamVjdEhlYWRpbmcuY3JlYXRlRWwoXCJkaXZcIiwge2NsczogXCJzdWJqZWN0LWhlYWRpbmctYWRkXCIgfSk7XHJcbiAgICAgICAgICAgICAgICBzZXRJY29uKG5ld1Rhc2tCdXR0b24sIFwicGx1c1wiKTtcclxuXHJcbiAgICAgICAgICAgICAgICBuZXdUYXNrQnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoXCJjbGlja1wiLCAoY2xpY2spID0+IHtcclxuICAgICAgICAgICAgICAgICAgICBpZiAodGhpcy5jcmVhdGluZyA9PSBmYWxzZSkge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICB0aGlzLmNyZWF0aW5nID0gdHJ1ZTtcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGxldCBwYWdlID0gXCJcIjtcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHByb21wdENsYXNzID0gbmV3U3ViamVjdENsYXNzLmNyZWF0ZUVsKFwiZGl2XCIsIHsgY2xzOiBcInRhc2stcHJvbXB0XCIgfSk7XHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBmbGV4Q2xhc3NUb3AgPSBwcm9tcHRDbGFzcy5jcmVhdGVFbChcImRpdlwiLCB7IGNsczogXCJ0YXNrLXByb21wdC1mbGV4dG9wXCIgfSk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGlucHV0VGV4dCA9IGZsZXhDbGFzc1RvcC5jcmVhdGVFbChcImlucHV0XCIsIHt0eXBlOiBcInRleHRcIiwgY2xzOiBcInRhc2stcHJvbXB0LWZsZXh0b3AtaW5wdXRcIn0pO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBjb25maXJtVGFzayA9IGZsZXhDbGFzc1RvcC5jcmVhdGVFbChcImRpdlwiLCB7Y2xzOiBcInRhc2stcHJvbXB0LWZsZXh0b3AtY29uZmlybVwifSk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHNldEljb24oY29uZmlybVRhc2ssIFwiY2hlY2tcIik7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGlucHV0VGV4dC5mb2N1cygpO1xyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgZmxleENsYXNzQm90dG9tID0gcHJvbXB0Q2xhc3MuY3JlYXRlRWwoXCJkaXZcIiwgeyBjbHM6IFwidGFzay1wcm9tcHQtZmxleGJvdHRvbVwiIH0pO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBzdWdnZXN0QnV0dG9uID0gZmxleENsYXNzQm90dG9tLmNyZWF0ZUVsKFwiZGl2XCIsIHt0ZXh0OiBcIkZpbGVcIiwgY2xzOiBcInRhc2stcHJvbXB0LWZsZXhib3R0b20tc3VnZ2VzdFwifSk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGRhdGVGaWVsZCA9IGZsZXhDbGFzc0JvdHRvbS5jcmVhdGVFbChcImlucHV0XCIsIHt0eXBlOiBcImRhdGVcIiwgY2xzOiBcInRhc2stcHJvbXB0LWZsZXhib3R0b20tZGF0ZVwifSk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICBzdWdnZXN0QnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoXCJjbGlja1wiLCAoY2xpY2spID0+IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5ldyBTdWdnZXN0RmlsZU1vZGFsKHRoaXMuYXBwLCAocmVzdWx0KSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGFnZSA9IHJlc3VsdC5wYXRoO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN1Z2dlc3RCdXR0b24uc2V0VGV4dChyZXN1bHQubmFtZSk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KS5vcGVuKCk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIH0pO1xyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgZnVuY3Rpb24gb25Qcm9tcHRGaW5pc2gob2JqZWN0IDogSG9tZXdvcmtNb2RhbCkgeyAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCB0YXNrVGV4dCA9IGlucHV0VGV4dC52YWx1ZS50cmltKCk7ICBcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAodGFza1RleHQubGVuZ3RoIDw9IDEwMCkge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmICghb2JqZWN0LnBsdWdpbi5kYXRhW3N1YmplY3RLZXldW3Rhc2tUZXh0XSkge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAodGFza1RleHQgIT0gXCJcIikge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb2JqZWN0LnBsdWdpbi5kYXRhW3N1YmplY3RLZXldW3Rhc2tUZXh0XSA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWdlIDogcGFnZSxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkYXRlIDogZGF0ZUZpZWxkLnZhbHVlLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfTtcclxuICAgICAgICBcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9iamVjdC5jcmVhdGVUYXNrKG5ld1N1YmplY3RDbGFzcywgc3ViamVjdEtleSwgdGFza1RleHQpOyAgICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBuZXcgTm90aWNlKFwiTXVzdCBoYXZlIGEgbmFtZS5cIik7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSBlbHNlIHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbmV3IE5vdGljZShcIkNhbm5vdCBjcmVhdGUgZHVwbGljYXRlIHRhc2suXCIpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgZWxzZSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbmV3IE5vdGljZShcIk11c3QgYmUgdW5kZXIgMTAwIGNoYXJhY3RlcnMuXCIpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfSAgXHJcblxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgb2JqZWN0LnBsdWdpbi5zYXZlSG9tZXdvcmsoKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9iamVjdC5jcmVhdGluZyA9IGZhbHNlO1xyXG5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByb21wdENsYXNzLmVtcHR5KCk7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIH1cclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGlucHV0VGV4dC5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgKGV2ZW50KSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoZXZlbnQua2V5ID09ICdFbnRlcicpe1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uUHJvbXB0RmluaXNoKHRoaXMpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbmZpcm1UYXNrLmFkZEV2ZW50TGlzdGVuZXIoXCJjbGlja1wiLCAoY2xpY2spID0+IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uUHJvbXB0RmluaXNoKHRoaXMpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuICAgICAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICAgICAgZWxzZSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIG5ldyBOb3RpY2UoXCJBbHJlYWR5IGNyZWF0aW5nIHRhc2suXCIpO1xyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIH0pO1xyXG4gICAgICAgICAgICB9XHJcblxyXG4gICAgICAgICAgICBpZiAoIXRoaXMuZWRpdE1vZGUpIHtcclxuICAgICAgICAgICAgICAgIGZvciAoY29uc3QgdGFza0tleSBpbiB0aGlzLnBsdWdpbi5kYXRhW3N1YmplY3RLZXldKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5jcmVhdGVUYXNrKG5ld1N1YmplY3RDbGFzcywgc3ViamVjdEtleSwgYCR7dGFza0tleX1gKVxyXG4gICAgICAgICAgICAgICAgfSAgICBcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbiAgICBjcmVhdGVUYXNrKHN1YmplY3RDbGFzcyA6IEhUTUxEaXZFbGVtZW50LCBzdWJqZWN0S2V5IDogc3RyaW5nLCB0YXNrTmFtZSA6IHN0cmluZykge1xyXG4gICAgICAgIGxldCB0YXNrQ2xhc3MgPSBzdWJqZWN0Q2xhc3MuY3JlYXRlRWwoXCJkaXZcIiwgeyBjbHM6IFwidGFza1wiIH0pO1xyXG5cdFx0XHJcblx0XHRsZXQgdGFza0J1dHRvbiA9IHRhc2tDbGFzcy5jcmVhdGVFbChcImRpdlwiLCB7Y2xzOiBcInRhc2stY2hlY2tcIiB9KTtcclxuXHJcbiAgICAgICAgbGV0IGZpbGVQYXRoID0gdGhpcy5wbHVnaW4uZGF0YVtzdWJqZWN0S2V5XVt0YXNrTmFtZV0ucGFnZTtcclxuXHJcbiAgICAgICAgbGV0IHRhc2tUZXh0O1xyXG5cclxuICAgICAgICBpZiAoZmlsZVBhdGggPT0gXCJcIikge1xyXG4gICAgICAgICAgICB0YXNrVGV4dCA9IHRhc2tDbGFzcy5jcmVhdGVFbChcImRpdlwiLCB7IHRleHQ6IHRhc2tOYW1lLCBjbHM6IFwidGFzay10ZXh0XCIsIHBhcmVudDogdGFza0J1dHRvbn0pO1xyXG4gICAgICAgIH1cclxuICAgICAgICBlbHNlIHtcclxuICAgICAgICAgICAgdGFza1RleHQgPSB0YXNrQ2xhc3MuY3JlYXRlRWwoXCJkaXZcIiwgeyB0ZXh0OiB0YXNrTmFtZSwgY2xzOiBcInRhc2stbGlua1wiLCBwYXJlbnQ6IHRhc2tCdXR0b259KTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIGxldCBkYXRlVmFsdWUgPSB0aGlzLnBsdWdpbi5kYXRhW3N1YmplY3RLZXldW3Rhc2tOYW1lXS5kYXRlO1xyXG5cclxuICAgICAgICBpZiAoZGF0ZVZhbHVlICE9IFwiXCIpIHtcclxuICAgICAgICAgICAgbGV0IGRhdGUgPSBuZXcgRGF0ZSh0aGlzLnBsdWdpbi5kYXRhW3N1YmplY3RLZXldW3Rhc2tOYW1lXS5kYXRlKTtcclxuICAgICAgICAgICAgdmFyIGRhdGVBcnIgPSBkYXRlLnRvRGF0ZVN0cmluZygpLnNwbGl0KCcgJyk7XHJcbiAgICAgICAgICAgIHZhciBkYXRlRm9ybWF0ID0gZGF0ZUFyclsyXSArICcgJyArIGRhdGVBcnJbMV0gKyAnICcgKyBkYXRlQXJyWzNdO1xyXG4gICAgICAgICAgICBsZXQgdGFza0RhdGUgPSB0YXNrQ2xhc3MuY3JlYXRlRWwoXCJkaXZcIiwgeyB0ZXh0OiBkYXRlRm9ybWF0LCBjbHM6IFwidGFzay1kYXRlXCIsIHBhcmVudDogdGFza1RleHQgfSk7ICAgIFxyXG5cclxuICAgICAgICAgICAgaWYgKG5ldyBEYXRlKCkgPiBkYXRlICYmIG5ldyBEYXRlKCkudG9EYXRlU3RyaW5nKCkgIT0gZGF0ZS50b0RhdGVTdHJpbmcoKSkge1xyXG4gICAgICAgICAgICAgICAgdGFza0RhdGUuc3R5bGUuY29sb3IgPSBcInZhcigtLXRleHQtZXJyb3IpXCI7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIHRhc2tUZXh0LmFkZEV2ZW50TGlzdGVuZXIoXCJjbGlja1wiLCAoY2xpY2sgPT4ge1xyXG4gICAgICAgICAgICBpZiAoZmlsZVBhdGggIT0gXCJcIikge1xyXG4gICAgICAgICAgICAgICAgbGV0IGZpbGUgPSB0aGlzLmFwcC52YXVsdC5nZXRBYnN0cmFjdEZpbGVCeVBhdGgoZmlsZVBhdGgpO1xyXG5cclxuICAgICAgICAgICAgICAgIGlmIChmaWxlIGluc3RhbmNlb2YgVEZpbGUpXHJcbiAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5hcHAud29ya3NwYWNlLmdldExlYWYoKS5vcGVuRmlsZShmaWxlKTtcclxuICAgICAgICAgICAgICAgICAgICB0aGlzLmNsb3NlKCk7XHJcbiAgICAgICAgICAgICAgICB9ICAgICAgIFxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfSkpXHJcblx0XHRcclxuXHRcdHRhc2tCdXR0b24uYWRkRXZlbnRMaXN0ZW5lcihcImNsaWNrXCIsIChjbGljaykgPT4ge1xyXG4gICAgICAgICAgICBSZWZsZWN0LmRlbGV0ZVByb3BlcnR5KHRoaXMucGx1Z2luLmRhdGFbc3ViamVjdEtleV0sIHRhc2tOYW1lKTtcclxuICAgICAgICAgICAgdGhpcy5wbHVnaW4uc2F2ZUhvbWV3b3JrKCk7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICB0YXNrQ2xhc3MuZW1wdHkoKTtcclxuXHRcdH0pO1xyXG4gICAgfVxyXG59XHJcbiIsICJpbXBvcnQgeyBBcHAsIFN1Z2dlc3RNb2RhbCwgVEZpbGUgfSBmcm9tIFwib2JzaWRpYW5cIjtcclxuXHJcbmV4cG9ydCBjbGFzcyBTdWdnZXN0RmlsZU1vZGFsIGV4dGVuZHMgU3VnZ2VzdE1vZGFsPFRGaWxlPiB7XHJcbiAgICByZXN1bHQ6IFRGaWxlO1xyXG4gICAgb25TdWJtaXQ6IChyZXN1bHQ6IFRGaWxlKSA9PiB2b2lkO1xyXG5cclxuICAgIGNvbnN0cnVjdG9yKGFwcDogQXBwLCBvblN1Ym1pdDogKHJlc3VsdDogVEZpbGUpID0+IHZvaWQpIHtcclxuICAgICAgICBzdXBlcihhcHApO1xyXG4gICAgICAgIHRoaXMub25TdWJtaXQgPSBvblN1Ym1pdDtcclxuICAgIH1cclxuXHJcbiAgICBnZXRTdWdnZXN0aW9ucyhxdWVyeTogc3RyaW5nKTogVEZpbGVbXSB7XHJcbiAgICAgICAgY29uc3QgZmlsZXMgPSB0aGlzLmFwcC52YXVsdC5nZXRNYXJrZG93bkZpbGVzKCk7XHJcblxyXG4gICAgICAgIHJldHVybiBmaWxlcy5maWx0ZXIoKGZpbGUpID0+XHJcbiAgICAgICAgICAgIGZpbGUubmFtZS50b0xvd2VyQ2FzZSgpLmluY2x1ZGVzKHF1ZXJ5LnRvTG93ZXJDYXNlKCkpXHJcbiAgICAgICAgKTtcclxuICAgIH1cclxuXHJcbiAgICByZW5kZXJTdWdnZXN0aW9uKGZpbGU6IFRGaWxlLCBlbDogSFRNTEVsZW1lbnQpIHtcclxuICAgICAgICBlbC5jcmVhdGVFbChcImRpdlwiLCB7IHRleHQ6IGZpbGUubmFtZSB9KTtcclxuICAgICAgICBlbC5jcmVhdGVFbChcInNtYWxsXCIsIHsgdGV4dDogZmlsZS5wYXJlbnQ/Lm5hbWUgfSk7XHJcbiAgICB9XHJcblxyXG4gICAgb25DaG9vc2VTdWdnZXN0aW9uKGZpbGU6IFRGaWxlLCBldnQ6IE1vdXNlRXZlbnQgfCBLZXlib2FyZEV2ZW50KSB7XHJcbiAgICAgICAgdGhpcy5yZXN1bHQgPSBmaWxlO1xyXG4gICAgICAgIHRoaXMub25TdWJtaXQodGhpcy5yZXN1bHQpO1xyXG4gICAgfVxyXG59Il0sCiAgIm1hcHBpbmdzIjogIjs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLElBQUFBLG1CQUF1Qjs7O0FDQ3ZCLElBQUFDLG1CQUFtRDs7O0FDRG5ELHNCQUF5QztBQUVsQyxJQUFNLG1CQUFOLGNBQStCLDZCQUFvQjtBQUFBLEVBSXRELFlBQVksS0FBVSxVQUFtQztBQUNyRCxVQUFNLEdBQUc7QUFDVCxTQUFLLFdBQVc7QUFBQSxFQUNwQjtBQUFBLEVBRUEsZUFBZSxPQUF3QjtBQUNuQyxVQUFNLFFBQVEsS0FBSyxJQUFJLE1BQU0saUJBQWlCO0FBRTlDLFdBQU8sTUFBTTtBQUFBLE1BQU8sQ0FBQyxTQUNqQixLQUFLLEtBQUssWUFBWSxFQUFFLFNBQVMsTUFBTSxZQUFZLENBQUM7QUFBQSxJQUN4RDtBQUFBLEVBQ0o7QUFBQSxFQUVBLGlCQUFpQixNQUFhLElBQWlCO0FBbkJuRDtBQW9CUSxPQUFHLFNBQVMsT0FBTyxFQUFFLE1BQU0sS0FBSyxLQUFLLENBQUM7QUFDdEMsT0FBRyxTQUFTLFNBQVMsRUFBRSxPQUFNLFVBQUssV0FBTCxtQkFBYSxLQUFLLENBQUM7QUFBQSxFQUNwRDtBQUFBLEVBRUEsbUJBQW1CLE1BQWEsS0FBaUM7QUFDN0QsU0FBSyxTQUFTO0FBQ2QsU0FBSyxTQUFTLEtBQUssTUFBTTtBQUFBLEVBQzdCO0FBQ0o7OztBRHhCQSxJQUFxQixnQkFBckIsY0FBMkMsdUJBQU07QUFBQSxFQU9oRCxZQUFZLEtBQVUsUUFBd0I7QUFDN0MsVUFBTSxHQUFHO0FBRUgsVUFBTSxFQUFDLFVBQVMsSUFBSTtBQUUxQixTQUFLLFNBQVM7QUFDUixTQUFLLGVBQWUsVUFBVSxTQUFTLE9BQU8sRUFBRSxLQUFLLFNBQVMsQ0FBQztBQUMvRCxTQUFLLFlBQVksVUFBVSxTQUFTLEtBQUs7QUFBQSxFQUNoRDtBQUFBLEVBRUEsTUFBTSxTQUFTO0FBQ2QsVUFBTSxFQUFDLFVBQVMsSUFBSTtBQUVkLFVBQU0sS0FBSyxPQUFPLGFBQWE7QUFFL0IsU0FBSyxXQUFXO0FBQ2hCLFNBQUssV0FBVztBQUV0QixVQUFNLGNBQWMsS0FBSyxhQUFhLFNBQVMsTUFBTSxFQUFFLE1BQU0sWUFBWSxLQUFLLGVBQWUsQ0FBQztBQUN4RixVQUFNLGFBQWEsS0FBSyxhQUFhLFNBQVMsT0FBTyxFQUFDLEtBQUsscUJBQXFCLENBQUM7QUFDakYsa0NBQVEsWUFBWSxRQUFRO0FBRTVCLFNBQUssYUFBYTtBQUVsQixlQUFXLGlCQUFpQixTQUFTLENBQUMsVUFBVTtBQUM1QyxVQUFJLEtBQUssWUFBWSxPQUNyQjtBQUNJLGFBQUssV0FBVyxDQUFDLEtBQUs7QUFDdEIsYUFBSyxhQUFhO0FBRWxCLFlBQUksS0FBSyxVQUFVO0FBQ2Ysd0NBQVEsWUFBWSxXQUFXO0FBQUEsUUFDbkMsT0FDSztBQUNELHdDQUFRLFlBQVksUUFBUTtBQUFBLFFBQ2hDO0FBQUEsTUFDSixPQUNLO0FBQ0QsWUFBSSx3QkFBTywrQkFBK0I7QUFBQSxNQUM5QztBQUFBLElBQ0osQ0FBQztBQUFBLEVBQ1I7QUFBQSxFQUVBLFVBQVU7QUFDVCxVQUFNLEVBQUMsVUFBUyxJQUFJO0FBQ3BCLGNBQVUsTUFBTTtBQUFBLEVBQ2pCO0FBQUEsRUFFRyxNQUFNLGVBQ047QUFDSSxTQUFLLFVBQVUsTUFBTTtBQUVyQixRQUFJLEtBQUssVUFBVTtBQUNmLFlBQU0sa0JBQWtCLEtBQUssVUFBVSxTQUFTLE9BQU8sRUFBRSxLQUFLLG1CQUFtQixDQUFDO0FBQ2xGLFlBQU0sbUJBQW1CLGdCQUFnQixTQUFTLE9BQU8sRUFBRSxLQUFLLGNBQWMsQ0FBQztBQUMvRSx1QkFBaUIsU0FBUyxLQUFLLEVBQUUsTUFBTSxnQkFBZ0IsQ0FBQztBQUV4RCx1QkFBaUIsaUJBQWlCLFNBQVMsQ0FBQyxVQUFVO0FBQ2xELFlBQUksS0FBSyxZQUFZLE9BQU87QUFVeEIsY0FBUyxpQkFBVCxTQUF3QixRQUF3QjtBQUM1QyxrQkFBTSxjQUFjLFVBQVUsTUFBTSxLQUFLO0FBRXpDLGdCQUFJLFlBQVksVUFBVSxJQUFJO0FBQzFCLGtCQUFJLENBQUMsT0FBTyxPQUFPLEtBQUssV0FBVyxHQUFHO0FBQ2xDLG9CQUFJLGVBQWUsSUFBSTtBQUNuQix5QkFBTyxPQUFPLEtBQUssV0FBVyxJQUFJLENBQUM7QUFBQSxnQkFDdkMsT0FBTztBQUNILHNCQUFJLHdCQUFPLDJCQUEyQjtBQUFBLGdCQUMxQztBQUFBLGNBQ0osT0FBTztBQUNILG9CQUFJLHdCQUFPLGtDQUFrQztBQUFBLGNBQ2pEO0FBQUEsWUFDSixPQUNLO0FBQ0Qsa0JBQUksd0JBQU8sOEJBQThCO0FBQUEsWUFDN0M7QUFFQSxtQkFBTyxPQUFPLGFBQWE7QUFFM0IsbUJBQU8sYUFBYTtBQUNwQixtQkFBTyxXQUFXO0FBRWxCO0FBQUEsVUFDSjtBQWpDQSxlQUFLLFdBQVc7QUFFaEIsZ0JBQU0sY0FBYyxnQkFBZ0IsU0FBUyxPQUFPLEVBQUMsS0FBSyxpQkFBZ0IsQ0FBQztBQUUzRSxzQkFBWSxTQUFTLEtBQUssRUFBQyxNQUFNLGNBQWEsQ0FBQztBQUUvQyxnQkFBTSxZQUFZLFlBQVksU0FBUyxTQUFTLEVBQUMsTUFBTSxRQUFRLEtBQUssdUJBQXNCLENBQUM7QUFDM0Ysb0JBQVUsTUFBTTtBQTRCaEIsb0JBQVUsaUJBQWlCLFdBQVcsQ0FBQyxVQUFVO0FBQzdDLGdCQUFJLE1BQU0sT0FBTyxTQUFRO0FBQ3JCLDZCQUFlLElBQUk7QUFBQSxZQUN2QjtBQUFBLFVBQ0osQ0FBQztBQUVELGdCQUFNLGlCQUFpQixZQUFZLFNBQVMsT0FBTyxFQUFDLEtBQUsseUJBQXdCLENBQUM7QUFDbEYsd0NBQVEsZ0JBQWdCLE9BQU87QUFFL0IseUJBQWUsaUJBQWlCLFNBQVMsQ0FBQ0MsV0FBVTtBQUNoRCwyQkFBZSxJQUFJO0FBQUEsVUFDdkIsQ0FBQztBQUFBLFFBQ0wsT0FDSztBQUNELGNBQUksd0JBQU8sK0JBQStCO0FBQUEsUUFDOUM7QUFBQSxNQUNKLENBQUM7QUFBQSxJQUNMO0FBRUEsZUFBVyxjQUFjLEtBQUssT0FBTyxNQUFNO0FBQ3ZDLFVBQUksa0JBQWtCLEtBQUssVUFBVSxTQUFTLE9BQU8sRUFBRSxLQUFLLFVBQVUsQ0FBQztBQUV2RSxVQUFJLGlCQUFpQixnQkFBZ0IsU0FBUyxPQUFPLEVBQUUsS0FBSyxrQkFBa0IsQ0FBQztBQUMvRSxVQUFJLGNBQWMsZUFBZSxTQUFTLE9BQU8sRUFBQyxNQUFNLFlBQVksS0FBSyx1QkFBdUIsQ0FBQztBQUVqRyxVQUFJLEtBQUssVUFBVTtBQUNmLFlBQUksc0JBQXNCLGVBQWUsU0FBUyxPQUFPLEVBQUMsS0FBSyx5QkFBeUIsQ0FBQztBQUN6RixzQ0FBUSxxQkFBcUIsT0FBTztBQUVwQyx1QkFBZSxhQUFhLHFCQUFxQixXQUFXO0FBRTVELDRCQUFvQixpQkFBaUIsU0FBUyxDQUFDLFVBQVU7QUFDckQsa0JBQVEsZUFBZSxLQUFLLE9BQU8sTUFBTSxVQUFVO0FBQ25ELGVBQUssT0FBTyxhQUFhO0FBRXpCLDBCQUFnQixNQUFNO0FBQUEsUUFDMUIsQ0FBQztBQUFBLE1BQ0wsT0FDSztBQUNELFlBQUksZ0JBQWdCLGVBQWUsU0FBUyxPQUFPLEVBQUMsS0FBSyxzQkFBc0IsQ0FBQztBQUNoRixzQ0FBUSxlQUFlLE1BQU07QUFFN0Isc0JBQWMsaUJBQWlCLFNBQVMsQ0FBQyxVQUFVO0FBQy9DLGNBQUksS0FBSyxZQUFZLE9BQU87QUF3QnhCLGdCQUFTLGlCQUFULFNBQXdCLFFBQXdCO0FBQzVDLG9CQUFNLFdBQVcsVUFBVSxNQUFNLEtBQUs7QUFFdEMsa0JBQUksU0FBUyxVQUFVLEtBQUs7QUFDeEIsb0JBQUksQ0FBQyxPQUFPLE9BQU8sS0FBSyxVQUFVLEVBQUUsUUFBUSxHQUFHO0FBQzNDLHNCQUFJLFlBQVksSUFBSTtBQUNoQiwyQkFBTyxPQUFPLEtBQUssVUFBVSxFQUFFLFFBQVEsSUFBSTtBQUFBLHNCQUN2QztBQUFBLHNCQUNBLE1BQU8sVUFBVTtBQUFBLG9CQUNyQjtBQUVBLDJCQUFPLFdBQVcsaUJBQWlCLFlBQVksUUFBUTtBQUFBLGtCQUMzRCxPQUFPO0FBQ0gsd0JBQUksd0JBQU8sbUJBQW1CO0FBQUEsa0JBQ2xDO0FBQUEsZ0JBQ0osT0FBTztBQUNILHNCQUFJLHdCQUFPLCtCQUErQjtBQUFBLGdCQUM5QztBQUFBLGNBQ0osT0FDSztBQUNELG9CQUFJLHdCQUFPLCtCQUErQjtBQUFBLGNBQzlDO0FBRUEscUJBQU8sT0FBTyxhQUFhO0FBQzNCLHFCQUFPLFdBQVc7QUFFbEIsMEJBQVksTUFBTTtBQUFBLFlBQ3RCO0FBbERBLGlCQUFLLFdBQVc7QUFFaEIsZ0JBQUksT0FBTztBQUVYLGtCQUFNLGNBQWMsZ0JBQWdCLFNBQVMsT0FBTyxFQUFFLEtBQUssY0FBYyxDQUFDO0FBRTFFLGtCQUFNLGVBQWUsWUFBWSxTQUFTLE9BQU8sRUFBRSxLQUFLLHNCQUFzQixDQUFDO0FBQy9FLGtCQUFNLFlBQVksYUFBYSxTQUFTLFNBQVMsRUFBQyxNQUFNLFFBQVEsS0FBSyw0QkFBMkIsQ0FBQztBQUNqRyxrQkFBTSxjQUFjLGFBQWEsU0FBUyxPQUFPLEVBQUMsS0FBSyw4QkFBNkIsQ0FBQztBQUNyRiwwQ0FBUSxhQUFhLE9BQU87QUFDNUIsc0JBQVUsTUFBTTtBQUVoQixrQkFBTSxrQkFBa0IsWUFBWSxTQUFTLE9BQU8sRUFBRSxLQUFLLHlCQUF5QixDQUFDO0FBQ3JGLGtCQUFNLGdCQUFnQixnQkFBZ0IsU0FBUyxPQUFPLEVBQUMsTUFBTSxRQUFRLEtBQUssaUNBQWdDLENBQUM7QUFDM0csa0JBQU0sWUFBWSxnQkFBZ0IsU0FBUyxTQUFTLEVBQUMsTUFBTSxRQUFRLEtBQUssOEJBQTZCLENBQUM7QUFFdEcsMEJBQWMsaUJBQWlCLFNBQVMsQ0FBQ0EsV0FBVTtBQUMvQyxrQkFBSSxpQkFBaUIsS0FBSyxLQUFLLENBQUMsV0FBVztBQUN2Qyx1QkFBTyxPQUFPO0FBQ2QsOEJBQWMsUUFBUSxPQUFPLElBQUk7QUFBQSxjQUNyQyxDQUFDLEVBQUUsS0FBSztBQUFBLFlBQ1osQ0FBQztBQStCRCxzQkFBVSxpQkFBaUIsV0FBVyxDQUFDLFVBQVU7QUFDN0Msa0JBQUksTUFBTSxPQUFPLFNBQVE7QUFDckIsK0JBQWUsSUFBSTtBQUFBLGNBQ3ZCO0FBQUEsWUFDSixDQUFDO0FBRUQsd0JBQVksaUJBQWlCLFNBQVMsQ0FBQ0EsV0FBVTtBQUM3Qyw2QkFBZSxJQUFJO0FBQUEsWUFDdkIsQ0FBQztBQUFBLFVBQ0wsT0FDSztBQUNELGdCQUFJLHdCQUFPLHdCQUF3QjtBQUFBLFVBQ3ZDO0FBQUEsUUFDSixDQUFDO0FBQUEsTUFDTDtBQUVBLFVBQUksQ0FBQyxLQUFLLFVBQVU7QUFDaEIsbUJBQVcsV0FBVyxLQUFLLE9BQU8sS0FBSyxVQUFVLEdBQUc7QUFDaEQsZUFBSyxXQUFXLGlCQUFpQixZQUFZLEdBQUcsU0FBUztBQUFBLFFBQzdEO0FBQUEsTUFDSjtBQUFBLElBQ0o7QUFBQSxFQUNKO0FBQUEsRUFFQSxXQUFXLGNBQStCLFlBQXFCLFVBQW1CO0FBQzlFLFFBQUksWUFBWSxhQUFhLFNBQVMsT0FBTyxFQUFFLEtBQUssT0FBTyxDQUFDO0FBRWxFLFFBQUksYUFBYSxVQUFVLFNBQVMsT0FBTyxFQUFDLEtBQUssYUFBYSxDQUFDO0FBRXpELFFBQUksV0FBVyxLQUFLLE9BQU8sS0FBSyxVQUFVLEVBQUUsUUFBUSxFQUFFO0FBRXRELFFBQUk7QUFFSixRQUFJLFlBQVksSUFBSTtBQUNoQixpQkFBVyxVQUFVLFNBQVMsT0FBTyxFQUFFLE1BQU0sVUFBVSxLQUFLLGFBQWEsUUFBUSxXQUFVLENBQUM7QUFBQSxJQUNoRyxPQUNLO0FBQ0QsaUJBQVcsVUFBVSxTQUFTLE9BQU8sRUFBRSxNQUFNLFVBQVUsS0FBSyxhQUFhLFFBQVEsV0FBVSxDQUFDO0FBQUEsSUFDaEc7QUFFQSxRQUFJLFlBQVksS0FBSyxPQUFPLEtBQUssVUFBVSxFQUFFLFFBQVEsRUFBRTtBQUV2RCxRQUFJLGFBQWEsSUFBSTtBQUNqQixVQUFJLE9BQU8sSUFBSSxLQUFLLEtBQUssT0FBTyxLQUFLLFVBQVUsRUFBRSxRQUFRLEVBQUUsSUFBSTtBQUMvRCxVQUFJLFVBQVUsS0FBSyxhQUFhLEVBQUUsTUFBTSxHQUFHO0FBQzNDLFVBQUksYUFBYSxRQUFRLENBQUMsSUFBSSxNQUFNLFFBQVEsQ0FBQyxJQUFJLE1BQU0sUUFBUSxDQUFDO0FBQ2hFLFVBQUksV0FBVyxVQUFVLFNBQVMsT0FBTyxFQUFFLE1BQU0sWUFBWSxLQUFLLGFBQWEsUUFBUSxTQUFTLENBQUM7QUFFakcsVUFBSSxJQUFJLEtBQUssSUFBSSxRQUFRLElBQUksS0FBSyxFQUFFLGFBQWEsS0FBSyxLQUFLLGFBQWEsR0FBRztBQUN2RSxpQkFBUyxNQUFNLFFBQVE7QUFBQSxNQUMzQjtBQUFBLElBQ0o7QUFFQSxhQUFTLGlCQUFpQixTQUFVLFdBQVM7QUFDekMsVUFBSSxZQUFZLElBQUk7QUFDaEIsWUFBSSxPQUFPLEtBQUssSUFBSSxNQUFNLHNCQUFzQixRQUFRO0FBRXhELFlBQUksZ0JBQWdCLHdCQUNwQjtBQUNJLGVBQUssSUFBSSxVQUFVLFFBQVEsRUFBRSxTQUFTLElBQUk7QUFDMUMsZUFBSyxNQUFNO0FBQUEsUUFDZjtBQUFBLE1BQ0o7QUFBQSxJQUNKLENBQUU7QUFFUixlQUFXLGlCQUFpQixTQUFTLENBQUMsVUFBVTtBQUN0QyxjQUFRLGVBQWUsS0FBSyxPQUFPLEtBQUssVUFBVSxHQUFHLFFBQVE7QUFDN0QsV0FBSyxPQUFPLGFBQWE7QUFFekIsZ0JBQVUsTUFBTTtBQUFBLElBQzFCLENBQUM7QUFBQSxFQUNDO0FBQ0o7OztBRDdRQSxJQUFxQixpQkFBckIsY0FBNEMsd0JBQU87QUFBQSxFQUdsRCxNQUFNLFNBQVM7QUFFZCxVQUFNLGVBQWUsS0FBSyxjQUFjLFFBQVEsaUJBQWlCLENBQUMsUUFBb0I7QUFDckYsVUFBSSxjQUFjLEtBQUssS0FBSyxJQUFJLEVBQUUsS0FBSztBQUFBLElBQ3hDLENBQUM7QUFHRCxpQkFBYSxTQUFTLHdCQUF3QjtBQUc5QyxTQUFLLFdBQVc7QUFBQSxNQUNmLElBQUk7QUFBQSxNQUNKLE1BQU07QUFBQSxNQUNOLFVBQVUsTUFBTTtBQUNmLFlBQUksY0FBYyxLQUFLLEtBQUssSUFBSSxFQUFFLEtBQUs7QUFBQSxNQUN4QztBQUFBLElBQ0QsQ0FBQztBQUFBLEVBQ0Y7QUFBQSxFQUVBLE1BQU0sZUFBZTtBQUNwQixTQUFLLE9BQU8sT0FBTyxPQUFPLENBQUMsR0FBRyxNQUFNLEtBQUssU0FBUyxDQUFDO0FBQUEsRUFDcEQ7QUFBQSxFQUVBLE1BQU0sZUFBZTtBQUNwQixVQUFNLEtBQUssU0FBUyxLQUFLLElBQUk7QUFBQSxFQUM5QjtBQUNEOyIsCiAgIm5hbWVzIjogWyJpbXBvcnRfb2JzaWRpYW4iLCAiaW1wb3J0X29ic2lkaWFuIiwgImNsaWNrIl0KfQo=
+
+/* nosourcemap */

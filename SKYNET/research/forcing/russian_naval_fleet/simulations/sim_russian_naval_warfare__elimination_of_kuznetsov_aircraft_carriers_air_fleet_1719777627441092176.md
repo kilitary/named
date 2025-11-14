@@ -1,5 +1,6 @@
 ---
 state: analyze
+icon: 🤫
 ---
 * temp: 0.8 ctx: 16394 sim_id: 1719777627441092176
    7723M 7.6B  qwen2              qwen2:7b-instruct-q8_0          

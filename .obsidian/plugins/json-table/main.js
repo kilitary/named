@@ -28,14 +28,87 @@ __export(main_exports, {
 });
 module.exports = __toCommonJS(main_exports);
 
-// src/functions.ts
+// src/md.utils.ts
 function trimSeperatorSpaces(string) {
   return string.replace(/([^\S\r\n]*[|][^\S\r\n]*)/g, "|");
+}
+function getTableLines(content) {
+  return content.split("\n").map((line) => line.trim()).filter((line) => line.length > 0);
+}
+function getRowContent(line) {
+  return line.slice(1, -1).split("|").map((content) => content.trim());
+}
+function parseHeader(header) {
+  const keys = header.split(".");
+  const isArray = keys.map((key) => key.includes("["));
+  const indices = keys.map((key) => {
+    const match = key.match(/\[(\d+)\]/);
+    return match ? parseInt(match[1]) : void 0;
+  }).filter((index) => index !== void 0);
+  return { keys, isArray, indices };
+}
+function createHeaderRow(headers) {
+  return removeDuplicateWhitespaces(`| ${headers.join(" | ")} |`);
+}
+function createSeparatorRow(headers) {
+  return removeDuplicateWhitespaces(
+    `| ${headers.map(() => "---").join(" | ")} |`
+  );
+}
+function createDataRow(data, headers) {
+  return `| ${headers.map((header) => data[header] !== void 0 ? `${data[header]}` : "").join(" | ")} |`;
+}
+function removeDuplicateWhitespaces(row) {
+  return row.replace(/( +)/g, " ");
+}
+
+// src/json.utils.ts
+function isObject(input) {
+  return typeof input === "object" && input !== null;
+}
+function handleArray(value, key, prefix) {
+  const flatObject = {};
+  value.forEach((item, index) => {
+    if (isObject(item)) {
+      Object.assign(
+        flatObject,
+        flattenStructure(item, `${prefix}${key}[${index}].`)
+      );
+    } else if (item !== void 0) {
+      flatObject[`${prefix}${key}[${index}]`] = item;
+    }
+  });
+  return flatObject;
+}
+function handleValue(value, key, prefix) {
+  const flatObject = {};
+  const newKey = `${prefix}${key}`;
+  if (isObject(value)) {
+    Object.assign(flatObject, flattenStructure(value, `${newKey}.`));
+  } else if (value !== void 0) {
+    flatObject[newKey] = value;
+  }
+  return flatObject;
+}
+function flattenStructure(input, prefix = "") {
+  const flatObject = {};
+  if (!isObject(input)) {
+    return flatObject;
+  }
+  for (const key in input) {
+    const value = input[key];
+    if (Array.isArray(value)) {
+      Object.assign(flatObject, handleArray(value, key, prefix));
+    } else {
+      Object.assign(flatObject, handleValue(value, key, prefix));
+    }
+  }
+  return flatObject;
 }
 function collectAllKeys(input) {
   const keys = [];
   for (const obj of input) {
-    const jsonObject = obj;
+    const jsonObject = flattenStructure(obj);
     for (const key in jsonObject) {
       if (jsonObject.hasOwnProperty(key) && !keys.includes(key)) {
         keys.push(key);
@@ -44,44 +117,115 @@ function collectAllKeys(input) {
   }
   return keys;
 }
+function getNestedObject(rowObject, keys, isArray, indices) {
+  let current = rowObject;
+  for (let j = 0; j < keys.length - 1; j++) {
+    const key = keys[j].replace(/\[\d+\]/, "");
+    if (isArray[j]) {
+      if (!Array.isArray(current[key])) {
+        current[key] = [];
+      }
+      if (indices[j] !== void 0) {
+        const arrayCurrent = current[key];
+        if (typeof arrayCurrent[indices[j]] !== "object" || arrayCurrent[indices[j]] === null) {
+          arrayCurrent[indices[j]] = {};
+        }
+        current = arrayCurrent[indices[j]];
+      }
+    } else {
+      if (typeof current[key] !== "object" || current[key] === null) {
+        current[key] = {};
+      }
+      current = current[key];
+    }
+  }
+  return current;
+}
+function convertToPrimitive(input) {
+  const check = `${input}`.toLowerCase();
+  if (check === "true") {
+    return true;
+  } else if (check === "false") {
+    return false;
+  } else if (check === "null") {
+    return null;
+  } else if (check === "undefined") {
+    return void 0;
+  } else if (check === "") {
+    return void 0;
+  } else if (check === "0") {
+    return 0;
+  } else if (check.startsWith("0")) {
+    return input;
+  } else if (!isNaN(Number(input))) {
+    return Number(input);
+  } else {
+    return input;
+  }
+}
+function processRow(row, parsedHeaders) {
+  const rowData = getRowContent(row);
+  const rowObject = {};
+  for (let i = 0; i < parsedHeaders.length; i++) {
+    processCell(rowData[i], parsedHeaders[i], rowObject);
+  }
+  return rowObject;
+}
+function processCell(value, header, rowObject) {
+  value = convertToPrimitive(value);
+  if (value === void 0 || value === "") {
+    return;
+  }
+  const { keys, isArray, indices } = header;
+  const key = keys[keys.length - 1].replace(/\[\d+\]/, "");
+  const current = getNestedObject(
+    rowObject,
+    keys,
+    isArray,
+    indices
+  );
+  if (isArray[keys.length - 1]) {
+    if (!Array.isArray(current[key])) {
+      current[key] = [];
+    }
+    current[key][indices[keys.length - 1]] = value;
+  } else {
+    current[key] = value;
+  }
+}
+
+// src/functions.ts
 function jsonToTable(content) {
   const jsonData = JSON.parse(content);
   if (!jsonData || jsonData.length === 0) {
     return "";
   }
-  const headers = collectAllKeys(jsonData);
-  const headerRow = `| ${headers.join(" | ")} |`;
-  const separatorRow = `| ${headers.map(() => "---").join(" | ")} |`;
-  const dataRows = jsonData.map(
-    (data) => {
-      return `| ${headers.map((header) => data[header]).join(" | ")} |`;
-    }
+  const flatData = jsonData.map((data) => flattenStructure(data));
+  const headers = collectAllKeys(flatData);
+  const headerRow = createHeaderRow(headers);
+  const separatorRow = createSeparatorRow(headers);
+  const dataRows = flatData.map(
+    (data) => createDataRow(data, headers)
   );
   const markdownTable = [
     headerRow,
     separatorRow,
-    ...dataRows.map((row) => row.replace(/( {2,})/g, " "))
+    ...dataRows.map((data) => {
+      return removeDuplicateWhitespaces(data);
+    })
   ].join("\n");
   return markdownTable;
 }
 function tableToJson(content) {
-  const tableObject = [];
   content = trimSeperatorSpaces(content);
-  const lines = content.split("\n").map((line) => line.trim());
+  const lines = getTableLines(content);
   if (lines.length <= 2) {
-    return tableObject;
+    return [];
   }
-  const headers = lines[0].substring(1, lines[0].length - 1).split("|");
+  const headers = getRowContent(lines[0]);
   const rows = lines.slice(2);
-  for (const row of rows) {
-    const rowData = row.slice(1, -1).split("|");
-    const rowObject = {};
-    for (let i = 0; i < headers.length; i++) {
-      rowObject[headers[i]] = rowData[i];
-    }
-    tableObject.push(rowObject);
-  }
-  return tableObject;
+  const parsedHeaders = headers.map(parseHeader);
+  return rows.map((row) => processRow(row, parsedHeaders)).filter((row) => Object.keys(row).length > 0);
 }
 
 // src/main.ts
@@ -185,3 +329,5 @@ var JsonTablePlugin = class extends import_obsidian2.Plugin {
     await this.saveData(this.settings);
   }
 };
+
+/* nosourcemap */

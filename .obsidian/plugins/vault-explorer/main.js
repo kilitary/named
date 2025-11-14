@@ -10,6 +10,9 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __typeError = (msg) => {
+  throw TypeError(msg);
+};
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -35,18 +38,19 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var __publicField = (obj, key, value) => {
-  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-  return value;
-};
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
+var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
+var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 
 // node_modules/js-logger/src/logger.js
 var require_logger = __commonJS({
   "node_modules/js-logger/src/logger.js"(exports, module2) {
     (function(global2) {
       "use strict";
-      var Logger6 = {};
-      Logger6.VERSION = "1.6.1";
+      var Logger15 = {};
+      Logger15.VERSION = "1.6.1";
       var logHandler;
       var contextualLoggersByNameMap = {};
       var bind = function(scope, func) {
@@ -68,13 +72,13 @@ var require_logger = __commonJS({
       var defineLogLevel = function(value, name) {
         return { value, name };
       };
-      Logger6.TRACE = defineLogLevel(1, "TRACE");
-      Logger6.DEBUG = defineLogLevel(2, "DEBUG");
-      Logger6.INFO = defineLogLevel(3, "INFO");
-      Logger6.TIME = defineLogLevel(4, "TIME");
-      Logger6.WARN = defineLogLevel(5, "WARN");
-      Logger6.ERROR = defineLogLevel(8, "ERROR");
-      Logger6.OFF = defineLogLevel(99, "OFF");
+      Logger15.TRACE = defineLogLevel(1, "TRACE");
+      Logger15.DEBUG = defineLogLevel(2, "DEBUG");
+      Logger15.INFO = defineLogLevel(3, "INFO");
+      Logger15.TIME = defineLogLevel(4, "TIME");
+      Logger15.WARN = defineLogLevel(5, "WARN");
+      Logger15.ERROR = defineLogLevel(8, "ERROR");
+      Logger15.OFF = defineLogLevel(99, "OFF");
       var ContextualLogger = function(defaultContext) {
         this.context = defaultContext;
         this.setLevel(defaultContext.filterLevel);
@@ -97,28 +101,28 @@ var require_logger = __commonJS({
           return lvl.value >= filterLevel.value;
         },
         trace: function() {
-          this.invoke(Logger6.TRACE, arguments);
+          this.invoke(Logger15.TRACE, arguments);
         },
         debug: function() {
-          this.invoke(Logger6.DEBUG, arguments);
+          this.invoke(Logger15.DEBUG, arguments);
         },
         info: function() {
-          this.invoke(Logger6.INFO, arguments);
+          this.invoke(Logger15.INFO, arguments);
         },
         warn: function() {
-          this.invoke(Logger6.WARN, arguments);
+          this.invoke(Logger15.WARN, arguments);
         },
         error: function() {
-          this.invoke(Logger6.ERROR, arguments);
+          this.invoke(Logger15.ERROR, arguments);
         },
         time: function(label) {
           if (typeof label === "string" && label.length > 0) {
-            this.invoke(Logger6.TIME, [label, "start"]);
+            this.invoke(Logger15.TIME, [label, "start"]);
           }
         },
         timeEnd: function(label) {
           if (typeof label === "string" && label.length > 0) {
-            this.invoke(Logger6.TIME, [label, "end"]);
+            this.invoke(Logger15.TIME, [label, "end"]);
           }
         },
         // Invokes the logger callback if it's not being filtered.
@@ -128,9 +132,9 @@ var require_logger = __commonJS({
           }
         }
       };
-      var globalLogger = new ContextualLogger({ filterLevel: Logger6.OFF });
+      var globalLogger = new ContextualLogger({ filterLevel: Logger15.OFF });
       (function() {
-        var L = Logger6;
+        var L = Logger15;
         L.enabledFor = bind(globalLogger, globalLogger.enabledFor);
         L.trace = bind(globalLogger, globalLogger.trace);
         L.debug = bind(globalLogger, globalLogger.debug);
@@ -141,10 +145,10 @@ var require_logger = __commonJS({
         L.error = bind(globalLogger, globalLogger.error);
         L.log = L.info;
       })();
-      Logger6.setHandler = function(func) {
+      Logger15.setHandler = function(func) {
         logHandler = func;
       };
-      Logger6.setLevel = function(level) {
+      Logger15.setLevel = function(level) {
         globalLogger.setLevel(level);
         for (var key in contextualLoggersByNameMap) {
           if (contextualLoggersByNameMap.hasOwnProperty(key)) {
@@ -152,13 +156,13 @@ var require_logger = __commonJS({
           }
         }
       };
-      Logger6.getLevel = function() {
+      Logger15.getLevel = function() {
         return globalLogger.getLevel();
       };
-      Logger6.get = function(name) {
+      Logger15.get = function(name) {
         return contextualLoggersByNameMap[name] || (contextualLoggersByNameMap[name] = new ContextualLogger(merge({ name }, globalLogger.context)));
       };
-      Logger6.createDefaultHandler = function(options) {
+      Logger15.createDefaultHandler = function(options) {
         options = options || {};
         options.formatter = options.formatter || function defaultMessageFormatter(messages, context) {
           if (context.name) {
@@ -177,31 +181,31 @@ var require_logger = __commonJS({
           messages = Array.prototype.slice.call(messages);
           var hdlr = console.log;
           var timerLabel;
-          if (context.level === Logger6.TIME) {
+          if (context.level === Logger15.TIME) {
             timerLabel = (context.name ? "[" + context.name + "] " : "") + messages[0];
             if (messages[1] === "start") {
               if (console.time) {
                 console.time(timerLabel);
               } else {
-                timerStartTimeByLabelMap[timerLabel] = new Date().getTime();
+                timerStartTimeByLabelMap[timerLabel] = (/* @__PURE__ */ new Date()).getTime();
               }
             } else {
               if (console.timeEnd) {
                 console.timeEnd(timerLabel);
               } else {
-                invokeConsoleMethod(hdlr, [timerLabel + ": " + (new Date().getTime() - timerStartTimeByLabelMap[timerLabel]) + "ms"]);
+                invokeConsoleMethod(hdlr, [timerLabel + ": " + ((/* @__PURE__ */ new Date()).getTime() - timerStartTimeByLabelMap[timerLabel]) + "ms"]);
               }
             }
           } else {
-            if (context.level === Logger6.WARN && console.warn) {
+            if (context.level === Logger15.WARN && console.warn) {
               hdlr = console.warn;
-            } else if (context.level === Logger6.ERROR && console.error) {
+            } else if (context.level === Logger15.ERROR && console.error) {
               hdlr = console.error;
-            } else if (context.level === Logger6.INFO && console.info) {
+            } else if (context.level === Logger15.INFO && console.info) {
               hdlr = console.info;
-            } else if (context.level === Logger6.DEBUG && console.debug) {
+            } else if (context.level === Logger15.DEBUG && console.debug) {
               hdlr = console.debug;
-            } else if (context.level === Logger6.TRACE && console.trace) {
+            } else if (context.level === Logger15.TRACE && console.trace) {
               hdlr = console.trace;
             }
             options.formatter(messages, context);
@@ -209,22 +213,22 @@ var require_logger = __commonJS({
           }
         };
       };
-      Logger6.useDefaults = function(options) {
-        Logger6.setLevel(options && options.defaultLevel || Logger6.DEBUG);
-        Logger6.setHandler(Logger6.createDefaultHandler(options));
+      Logger15.useDefaults = function(options) {
+        Logger15.setLevel(options && options.defaultLevel || Logger15.DEBUG);
+        Logger15.setHandler(Logger15.createDefaultHandler(options));
       };
-      Logger6.setDefaults = Logger6.useDefaults;
+      Logger15.setDefaults = Logger15.useDefaults;
       if (typeof define === "function" && define.amd) {
-        define(Logger6);
+        define(Logger15);
       } else if (typeof module2 !== "undefined" && module2.exports) {
-        module2.exports = Logger6;
+        module2.exports = Logger15;
       } else {
-        Logger6._prevLogger = global2.Logger;
-        Logger6.noConflict = function() {
-          global2.Logger = Logger6._prevLogger;
-          return Logger6;
+        Logger15._prevLogger = global2.Logger;
+        Logger15.noConflict = function() {
+          global2.Logger = Logger15._prevLogger;
+          return Logger15;
         };
-        global2.Logger = Logger6;
+        global2.Logger = Logger15;
       }
     })(exports);
   }
@@ -235,7 +239,7 @@ var require_lodash = __commonJS({
   "node_modules/lodash/lodash.js"(exports, module2) {
     (function() {
       var undefined2;
-      var VERSION2 = "4.17.21";
+      var VERSION = "4.17.21";
       var LARGE_ARRAY_SIZE = 200;
       var CORE_ERROR_TEXT = "Unsupported core-js use. Try https://npms.io/search?q=ponyfill.", FUNC_ERROR_TEXT = "Expected a function", INVALID_TEMPL_VAR_ERROR_TEXT = "Invalid `variable` option passed into `_.template`";
       var HASH_UNDEFINED = "__lodash_hash_undefined__";
@@ -559,7 +563,7 @@ var require_lodash = __commonJS({
       var freeParseFloat = parseFloat, freeParseInt = parseInt;
       var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
       var freeSelf = typeof self == "object" && self && self.Object === Object && self;
-      var root = freeGlobal || freeSelf || Function("return this")();
+      var root29 = freeGlobal || freeSelf || Function("return this")();
       var freeExports = typeof exports == "object" && exports && !exports.nodeType && exports;
       var freeModule = freeExports && typeof module2 == "object" && module2 && !module2.nodeType && module2;
       var moduleExports = freeModule && freeModule.exports === freeExports;
@@ -575,7 +579,7 @@ var require_lodash = __commonJS({
         }
       }();
       var nodeIsArrayBuffer = nodeUtil && nodeUtil.isArrayBuffer, nodeIsDate = nodeUtil && nodeUtil.isDate, nodeIsMap = nodeUtil && nodeUtil.isMap, nodeIsRegExp = nodeUtil && nodeUtil.isRegExp, nodeIsSet = nodeUtil && nodeUtil.isSet, nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
-      function apply(func, thisArg, args) {
+      function apply2(func, thisArg, args) {
         switch (args.length) {
           case 0:
             return func.call(thisArg);
@@ -589,17 +593,17 @@ var require_lodash = __commonJS({
         return func.apply(thisArg, args);
       }
       function arrayAggregator(array, setter, iteratee, accumulator) {
-        var index = -1, length = array == null ? 0 : array.length;
-        while (++index < length) {
-          var value = array[index];
+        var index2 = -1, length = array == null ? 0 : array.length;
+        while (++index2 < length) {
+          var value = array[index2];
           setter(accumulator, value, iteratee(value), array);
         }
         return accumulator;
       }
       function arrayEach(array, iteratee) {
-        var index = -1, length = array == null ? 0 : array.length;
-        while (++index < length) {
-          if (iteratee(array[index], index, array) === false) {
+        var index2 = -1, length = array == null ? 0 : array.length;
+        while (++index2 < length) {
+          if (iteratee(array[index2], index2, array) === false) {
             break;
           }
         }
@@ -615,19 +619,19 @@ var require_lodash = __commonJS({
         return array;
       }
       function arrayEvery(array, predicate) {
-        var index = -1, length = array == null ? 0 : array.length;
-        while (++index < length) {
-          if (!predicate(array[index], index, array)) {
+        var index2 = -1, length = array == null ? 0 : array.length;
+        while (++index2 < length) {
+          if (!predicate(array[index2], index2, array)) {
             return false;
           }
         }
         return true;
       }
       function arrayFilter(array, predicate) {
-        var index = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
-        while (++index < length) {
-          var value = array[index];
-          if (predicate(value, index, array)) {
+        var index2 = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
+        while (++index2 < length) {
+          var value = array[index2];
+          if (predicate(value, index2, array)) {
             result[resIndex++] = value;
           }
         }
@@ -638,35 +642,35 @@ var require_lodash = __commonJS({
         return !!length && baseIndexOf(array, value, 0) > -1;
       }
       function arrayIncludesWith(array, value, comparator) {
-        var index = -1, length = array == null ? 0 : array.length;
-        while (++index < length) {
-          if (comparator(value, array[index])) {
+        var index2 = -1, length = array == null ? 0 : array.length;
+        while (++index2 < length) {
+          if (comparator(value, array[index2])) {
             return true;
           }
         }
         return false;
       }
       function arrayMap(array, iteratee) {
-        var index = -1, length = array == null ? 0 : array.length, result = Array(length);
-        while (++index < length) {
-          result[index] = iteratee(array[index], index, array);
+        var index2 = -1, length = array == null ? 0 : array.length, result = Array(length);
+        while (++index2 < length) {
+          result[index2] = iteratee(array[index2], index2, array);
         }
         return result;
       }
       function arrayPush(array, values) {
-        var index = -1, length = values.length, offset = array.length;
-        while (++index < length) {
-          array[offset + index] = values[index];
+        var index2 = -1, length = values.length, offset = array.length;
+        while (++index2 < length) {
+          array[offset + index2] = values[index2];
         }
         return array;
       }
       function arrayReduce(array, iteratee, accumulator, initAccum) {
-        var index = -1, length = array == null ? 0 : array.length;
+        var index2 = -1, length = array == null ? 0 : array.length;
         if (initAccum && length) {
-          accumulator = array[++index];
+          accumulator = array[++index2];
         }
-        while (++index < length) {
-          accumulator = iteratee(accumulator, array[index], index, array);
+        while (++index2 < length) {
+          accumulator = iteratee(accumulator, array[index2], index2, array);
         }
         return accumulator;
       }
@@ -681,9 +685,9 @@ var require_lodash = __commonJS({
         return accumulator;
       }
       function arraySome(array, predicate) {
-        var index = -1, length = array == null ? 0 : array.length;
-        while (++index < length) {
-          if (predicate(array[index], index, array)) {
+        var index2 = -1, length = array == null ? 0 : array.length;
+        while (++index2 < length) {
+          if (predicate(array[index2], index2, array)) {
             return true;
           }
         }
@@ -707,10 +711,10 @@ var require_lodash = __commonJS({
         return result;
       }
       function baseFindIndex(array, predicate, fromIndex, fromRight) {
-        var length = array.length, index = fromIndex + (fromRight ? 1 : -1);
-        while (fromRight ? index-- : ++index < length) {
-          if (predicate(array[index], index, array)) {
-            return index;
+        var length = array.length, index2 = fromIndex + (fromRight ? 1 : -1);
+        while (fromRight ? index2-- : ++index2 < length) {
+          if (predicate(array[index2], index2, array)) {
+            return index2;
           }
         }
         return -1;
@@ -719,10 +723,10 @@ var require_lodash = __commonJS({
         return value === value ? strictIndexOf(array, value, fromIndex) : baseFindIndex(array, baseIsNaN, fromIndex);
       }
       function baseIndexOfWith(array, value, fromIndex, comparator) {
-        var index = fromIndex - 1, length = array.length;
-        while (++index < length) {
-          if (comparator(array[index], value)) {
-            return index;
+        var index2 = fromIndex - 1, length = array.length;
+        while (++index2 < length) {
+          if (comparator(array[index2], value)) {
+            return index2;
           }
         }
         return -1;
@@ -745,8 +749,8 @@ var require_lodash = __commonJS({
         };
       }
       function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
-        eachFunc(collection, function(value, index, collection2) {
-          accumulator = initAccum ? (initAccum = false, value) : iteratee(accumulator, value, index, collection2);
+        eachFunc(collection, function(value, index2, collection2) {
+          accumulator = initAccum ? (initAccum = false, value) : iteratee(accumulator, value, index2, collection2);
         });
         return accumulator;
       }
@@ -759,9 +763,9 @@ var require_lodash = __commonJS({
         return array;
       }
       function baseSum(array, iteratee) {
-        var result, index = -1, length = array.length;
-        while (++index < length) {
-          var current = iteratee(array[index]);
+        var result, index2 = -1, length = array.length;
+        while (++index2 < length) {
+          var current = iteratee(array[index2]);
           if (current !== undefined2) {
             result = result === undefined2 ? current : result + current;
           }
@@ -769,9 +773,9 @@ var require_lodash = __commonJS({
         return result;
       }
       function baseTimes(n, iteratee) {
-        var index = -1, result = Array(n);
-        while (++index < n) {
-          result[index] = iteratee(index);
+        var index2 = -1, result = Array(n);
+        while (++index2 < n) {
+          result[index2] = iteratee(index2);
         }
         return result;
       }
@@ -797,16 +801,16 @@ var require_lodash = __commonJS({
         return cache.has(key);
       }
       function charsStartIndex(strSymbols, chrSymbols) {
-        var index = -1, length = strSymbols.length;
-        while (++index < length && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {
+        var index2 = -1, length = strSymbols.length;
+        while (++index2 < length && baseIndexOf(chrSymbols, strSymbols[index2], 0) > -1) {
         }
-        return index;
+        return index2;
       }
       function charsEndIndex(strSymbols, chrSymbols) {
-        var index = strSymbols.length;
-        while (index-- && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {
+        var index2 = strSymbols.length;
+        while (index2-- && baseIndexOf(chrSymbols, strSymbols[index2], 0) > -1) {
         }
-        return index;
+        return index2;
       }
       function countHolders(array, placeholder) {
         var length = array.length, result = 0;
@@ -839,9 +843,9 @@ var require_lodash = __commonJS({
         return result;
       }
       function mapToArray(map) {
-        var index = -1, result = Array(map.size);
+        var index2 = -1, result = Array(map.size);
         map.forEach(function(value, key) {
-          result[++index] = [key, value];
+          result[++index2] = [key, value];
         });
         return result;
       }
@@ -851,47 +855,47 @@ var require_lodash = __commonJS({
         };
       }
       function replaceHolders(array, placeholder) {
-        var index = -1, length = array.length, resIndex = 0, result = [];
-        while (++index < length) {
-          var value = array[index];
+        var index2 = -1, length = array.length, resIndex = 0, result = [];
+        while (++index2 < length) {
+          var value = array[index2];
           if (value === placeholder || value === PLACEHOLDER) {
-            array[index] = PLACEHOLDER;
-            result[resIndex++] = index;
+            array[index2] = PLACEHOLDER;
+            result[resIndex++] = index2;
           }
         }
         return result;
       }
-      function setToArray(set) {
-        var index = -1, result = Array(set.size);
-        set.forEach(function(value) {
-          result[++index] = value;
+      function setToArray(set2) {
+        var index2 = -1, result = Array(set2.size);
+        set2.forEach(function(value) {
+          result[++index2] = value;
         });
         return result;
       }
-      function setToPairs(set) {
-        var index = -1, result = Array(set.size);
-        set.forEach(function(value) {
-          result[++index] = [value, value];
+      function setToPairs(set2) {
+        var index2 = -1, result = Array(set2.size);
+        set2.forEach(function(value) {
+          result[++index2] = [value, value];
         });
         return result;
       }
       function strictIndexOf(array, value, fromIndex) {
-        var index = fromIndex - 1, length = array.length;
-        while (++index < length) {
-          if (array[index] === value) {
-            return index;
+        var index2 = fromIndex - 1, length = array.length;
+        while (++index2 < length) {
+          if (array[index2] === value) {
+            return index2;
           }
         }
         return -1;
       }
       function strictLastIndexOf(array, value, fromIndex) {
-        var index = fromIndex + 1;
-        while (index--) {
-          if (array[index] === value) {
-            return index;
+        var index2 = fromIndex + 1;
+        while (index2--) {
+          if (array[index2] === value) {
+            return index2;
           }
         }
-        return index;
+        return index2;
       }
       function stringSize(string) {
         return hasUnicode(string) ? unicodeSize(string) : asciiSize(string);
@@ -900,10 +904,10 @@ var require_lodash = __commonJS({
         return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
       }
       function trimmedEndIndex(string) {
-        var index = string.length;
-        while (index-- && reWhitespace.test(string.charAt(index))) {
+        var index2 = string.length;
+        while (index2-- && reWhitespace.test(string.charAt(index2))) {
         }
-        return index;
+        return index2;
       }
       var unescapeHtmlChar = basePropertyOf(htmlUnescapes);
       function unicodeSize(string) {
@@ -920,7 +924,7 @@ var require_lodash = __commonJS({
         return string.match(reUnicodeWord) || [];
       }
       var runInContext = function runInContext2(context) {
-        context = context == null ? root : _2.defaults(root.Object(), context, _2.pick(root, contextProps));
+        context = context == null ? root29 : _3.defaults(root29.Object(), context, _3.pick(root29, contextProps));
         var Array2 = context.Array, Date2 = context.Date, Error2 = context.Error, Function2 = context.Function, Math2 = context.Math, Object2 = context.Object, RegExp2 = context.RegExp, String2 = context.String, TypeError2 = context.TypeError;
         var arrayProto = Array2.prototype, funcProto = Function2.prototype, objectProto = Object2.prototype;
         var coreJsData = context["__core-js_shared__"];
@@ -933,7 +937,7 @@ var require_lodash = __commonJS({
         }();
         var nativeObjectToString = objectProto.toString;
         var objectCtorString = funcToString.call(Object2);
-        var oldDash = root._;
+        var oldDash = root29._;
         var reIsNative = RegExp2(
           "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
         );
@@ -946,7 +950,7 @@ var require_lodash = __commonJS({
           } catch (e) {
           }
         }();
-        var ctxClearTimeout = context.clearTimeout !== root.clearTimeout && context.clearTimeout, ctxNow = Date2 && Date2.now !== root.Date.now && Date2.now, ctxSetTimeout = context.setTimeout !== root.setTimeout && context.setTimeout;
+        var ctxClearTimeout = context.clearTimeout !== root29.clearTimeout && context.clearTimeout, ctxNow = Date2 && Date2.now !== root29.Date.now && Date2.now, ctxSetTimeout = context.setTimeout !== root29.setTimeout && context.setTimeout;
         var nativeCeil = Math2.ceil, nativeFloor = Math2.floor, nativeGetSymbols = Object2.getOwnPropertySymbols, nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : undefined2, nativeIsFinite = context.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object2.keys, Object2), nativeMax = Math2.max, nativeMin = Math2.min, nativeNow = Date2.now, nativeParseInt = context.parseInt, nativeRandom = Math2.random, nativeReverse = arrayProto.reverse;
         var DataView = getNative(context, "DataView"), Map2 = getNative(context, "Map"), Promise2 = getNative(context, "Promise"), Set2 = getNative(context, "Set"), WeakMap2 = getNative(context, "WeakMap"), nativeCreate = getNative(Object2, "create");
         var metaMap = WeakMap2 && new WeakMap2();
@@ -964,7 +968,7 @@ var require_lodash = __commonJS({
           }
           return new LodashWrapper(value);
         }
-        var baseCreate = function() {
+        var baseCreate = /* @__PURE__ */ function() {
           function object() {
           }
           return function(proto) {
@@ -1069,15 +1073,15 @@ var require_lodash = __commonJS({
           return result2;
         }
         function lazyValue() {
-          var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start = view.start, end = view.end, length = end - start, index = isRight ? end : start - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
+          var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start = view.start, end = view.end, length = end - start, index2 = isRight ? end : start - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
           if (!isArr || !isRight && arrLength == length && takeCount == length) {
             return baseWrapperValue(array, this.__actions__);
           }
           var result2 = [];
           outer:
             while (length-- && resIndex < takeCount) {
-              index += dir;
-              var iterIndex = -1, value = array[index];
+              index2 += dir;
+              var iterIndex = -1, value = array[index2];
               while (++iterIndex < iterLength) {
                 var data = iteratees[iterIndex], iteratee2 = data.iteratee, type = data.type, computed = iteratee2(value);
                 if (type == LAZY_MAP_FLAG) {
@@ -1097,10 +1101,10 @@ var require_lodash = __commonJS({
         LazyWrapper.prototype = baseCreate(baseLodash.prototype);
         LazyWrapper.prototype.constructor = LazyWrapper;
         function Hash(entries) {
-          var index = -1, length = entries == null ? 0 : entries.length;
+          var index2 = -1, length = entries == null ? 0 : entries.length;
           this.clear();
-          while (++index < length) {
-            var entry = entries[index];
+          while (++index2 < length) {
+            var entry = entries[index2];
             this.set(entry[0], entry[1]);
           }
         }
@@ -1137,10 +1141,10 @@ var require_lodash = __commonJS({
         Hash.prototype.has = hashHas;
         Hash.prototype.set = hashSet;
         function ListCache(entries) {
-          var index = -1, length = entries == null ? 0 : entries.length;
+          var index2 = -1, length = entries == null ? 0 : entries.length;
           this.clear();
-          while (++index < length) {
-            var entry = entries[index];
+          while (++index2 < length) {
+            var entry = entries[index2];
             this.set(entry[0], entry[1]);
           }
         }
@@ -1149,33 +1153,33 @@ var require_lodash = __commonJS({
           this.size = 0;
         }
         function listCacheDelete(key) {
-          var data = this.__data__, index = assocIndexOf(data, key);
-          if (index < 0) {
+          var data = this.__data__, index2 = assocIndexOf(data, key);
+          if (index2 < 0) {
             return false;
           }
           var lastIndex = data.length - 1;
-          if (index == lastIndex) {
+          if (index2 == lastIndex) {
             data.pop();
           } else {
-            splice.call(data, index, 1);
+            splice.call(data, index2, 1);
           }
           --this.size;
           return true;
         }
         function listCacheGet(key) {
-          var data = this.__data__, index = assocIndexOf(data, key);
-          return index < 0 ? undefined2 : data[index][1];
+          var data = this.__data__, index2 = assocIndexOf(data, key);
+          return index2 < 0 ? undefined2 : data[index2][1];
         }
         function listCacheHas(key) {
           return assocIndexOf(this.__data__, key) > -1;
         }
         function listCacheSet(key, value) {
-          var data = this.__data__, index = assocIndexOf(data, key);
-          if (index < 0) {
+          var data = this.__data__, index2 = assocIndexOf(data, key);
+          if (index2 < 0) {
             ++this.size;
             data.push([key, value]);
           } else {
-            data[index][1] = value;
+            data[index2][1] = value;
           }
           return this;
         }
@@ -1185,10 +1189,10 @@ var require_lodash = __commonJS({
         ListCache.prototype.has = listCacheHas;
         ListCache.prototype.set = listCacheSet;
         function MapCache(entries) {
-          var index = -1, length = entries == null ? 0 : entries.length;
+          var index2 = -1, length = entries == null ? 0 : entries.length;
           this.clear();
-          while (++index < length) {
-            var entry = entries[index];
+          while (++index2 < length) {
+            var entry = entries[index2];
             this.set(entry[0], entry[1]);
           }
         }
@@ -1223,10 +1227,10 @@ var require_lodash = __commonJS({
         MapCache.prototype.has = mapCacheHas;
         MapCache.prototype.set = mapCacheSet;
         function SetCache(values2) {
-          var index = -1, length = values2 == null ? 0 : values2.length;
+          var index2 = -1, length = values2 == null ? 0 : values2.length;
           this.__data__ = new MapCache();
-          while (++index < length) {
-            this.add(values2[index]);
+          while (++index2 < length) {
+            this.add(values2[index2]);
           }
         }
         function setCacheAdd(value) {
@@ -1326,11 +1330,11 @@ var require_lodash = __commonJS({
           });
           return accumulator;
         }
-        function baseAssign(object, source) {
-          return object && copyObject(source, keys(source), object);
+        function baseAssign(object, source2) {
+          return object && copyObject(source2, keys(source2), object);
         }
-        function baseAssignIn(object, source) {
-          return object && copyObject(source, keysIn(source), object);
+        function baseAssignIn(object, source2) {
+          return object && copyObject(source2, keysIn(source2), object);
         }
         function baseAssignValue(object, key, value) {
           if (key == "__proto__" && defineProperty) {
@@ -1345,9 +1349,9 @@ var require_lodash = __commonJS({
           }
         }
         function baseAt(object, paths) {
-          var index = -1, length = paths.length, result2 = Array2(length), skip = object == null;
-          while (++index < length) {
-            result2[index] = skip ? undefined2 : get(object, paths[index]);
+          var index2 = -1, length = paths.length, result2 = Array2(length), skip = object == null;
+          while (++index2 < length) {
+            result2[index2] = skip ? undefined2 : get3(object, paths[index2]);
           }
           return result2;
         }
@@ -1362,10 +1366,10 @@ var require_lodash = __commonJS({
           }
           return number;
         }
-        function baseClone(value, bitmask, customizer, key, object, stack) {
+        function baseClone(value, bitmask, customizer, key, object, stack2) {
           var result2, isDeep = bitmask & CLONE_DEEP_FLAG, isFlat = bitmask & CLONE_FLAT_FLAG, isFull = bitmask & CLONE_SYMBOLS_FLAG;
           if (customizer) {
-            result2 = object ? customizer(value, key, object, stack) : customizer(value);
+            result2 = object ? customizer(value, key, object, stack2) : customizer(value);
           }
           if (result2 !== undefined2) {
             return result2;
@@ -1396,19 +1400,19 @@ var require_lodash = __commonJS({
               result2 = initCloneByTag(value, tag, isDeep);
             }
           }
-          stack || (stack = new Stack2());
-          var stacked = stack.get(value);
+          stack2 || (stack2 = new Stack2());
+          var stacked = stack2.get(value);
           if (stacked) {
             return stacked;
           }
-          stack.set(value, result2);
+          stack2.set(value, result2);
           if (isSet(value)) {
             value.forEach(function(subValue) {
-              result2.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+              result2.add(baseClone(subValue, bitmask, customizer, subValue, value, stack2));
             });
           } else if (isMap(value)) {
             value.forEach(function(subValue, key2) {
-              result2.set(key2, baseClone(subValue, bitmask, customizer, key2, value, stack));
+              result2.set(key2, baseClone(subValue, bitmask, customizer, key2, value, stack2));
             });
           }
           var keysFunc = isFull ? isFlat ? getAllKeysIn : getAllKeys : isFlat ? keysIn : keys;
@@ -1418,24 +1422,24 @@ var require_lodash = __commonJS({
               key2 = subValue;
               subValue = value[key2];
             }
-            assignValue(result2, key2, baseClone(subValue, bitmask, customizer, key2, value, stack));
+            assignValue(result2, key2, baseClone(subValue, bitmask, customizer, key2, value, stack2));
           });
           return result2;
         }
-        function baseConforms(source) {
-          var props = keys(source);
+        function baseConforms(source2) {
+          var props = keys(source2);
           return function(object) {
-            return baseConformsTo(object, source, props);
+            return baseConformsTo(object, source2, props);
           };
         }
-        function baseConformsTo(object, source, props) {
+        function baseConformsTo(object, source2, props) {
           var length = props.length;
           if (object == null) {
             return !length;
           }
           object = Object2(object);
           while (length--) {
-            var key = props[length], predicate = source[key], value = object[key];
+            var key = props[length], predicate = source2[key], value = object[key];
             if (value === undefined2 && !(key in object) || !predicate(value)) {
               return false;
             }
@@ -1451,7 +1455,7 @@ var require_lodash = __commonJS({
           }, wait);
         }
         function baseDifference(array, values2, iteratee2, comparator) {
-          var index = -1, includes2 = arrayIncludes, isCommon = true, length = array.length, result2 = [], valuesLength = values2.length;
+          var index2 = -1, includes2 = arrayIncludes, isCommon = true, length = array.length, result2 = [], valuesLength = values2.length;
           if (!length) {
             return result2;
           }
@@ -1467,8 +1471,8 @@ var require_lodash = __commonJS({
             values2 = new SetCache(values2);
           }
           outer:
-            while (++index < length) {
-              var value = array[index], computed = iteratee2 == null ? value : iteratee2(value);
+            while (++index2 < length) {
+              var value = array[index2], computed = iteratee2 == null ? value : iteratee2(value);
               value = comparator || value !== 0 ? value : 0;
               if (isCommon && computed === computed) {
                 var valuesIndex = valuesLength;
@@ -1488,16 +1492,16 @@ var require_lodash = __commonJS({
         var baseEachRight = createBaseEach(baseForOwnRight, true);
         function baseEvery(collection, predicate) {
           var result2 = true;
-          baseEach(collection, function(value, index, collection2) {
-            result2 = !!predicate(value, index, collection2);
+          baseEach(collection, function(value, index2, collection2) {
+            result2 = !!predicate(value, index2, collection2);
             return result2;
           });
           return result2;
         }
         function baseExtremum(array, iteratee2, comparator) {
-          var index = -1, length = array.length;
-          while (++index < length) {
-            var value = array[index], current = iteratee2(value);
+          var index2 = -1, length = array.length;
+          while (++index2 < length) {
+            var value = array[index2], current = iteratee2(value);
             if (current != null && (computed === undefined2 ? current === current && !isSymbol(current) : comparator(current, computed))) {
               var computed = current, result2 = value;
             }
@@ -1522,19 +1526,19 @@ var require_lodash = __commonJS({
         }
         function baseFilter(collection, predicate) {
           var result2 = [];
-          baseEach(collection, function(value, index, collection2) {
-            if (predicate(value, index, collection2)) {
+          baseEach(collection, function(value, index2, collection2) {
+            if (predicate(value, index2, collection2)) {
               result2.push(value);
             }
           });
           return result2;
         }
         function baseFlatten(array, depth, predicate, isStrict, result2) {
-          var index = -1, length = array.length;
+          var index2 = -1, length = array.length;
           predicate || (predicate = isFlattenable);
           result2 || (result2 = []);
-          while (++index < length) {
-            var value = array[index];
+          while (++index2 < length) {
+            var value = array[index2];
             if (depth > 0 && predicate(value)) {
               if (depth > 1) {
                 baseFlatten(value, depth - 1, predicate, isStrict, result2);
@@ -1562,11 +1566,11 @@ var require_lodash = __commonJS({
         }
         function baseGet(object, path) {
           path = castPath(path, object);
-          var index = 0, length = path.length;
-          while (object != null && index < length) {
-            object = object[toKey(path[index++])];
+          var index2 = 0, length = path.length;
+          while (object != null && index2 < length) {
+            object = object[toKey(path[index2++])];
           }
-          return index && index == length ? object : undefined2;
+          return index2 && index2 == length ? object : undefined2;
         }
         function baseGetAllKeys(object, keysFunc, symbolsFunc) {
           var result2 = keysFunc(object);
@@ -1601,10 +1605,10 @@ var require_lodash = __commonJS({
             caches[othIndex] = !comparator && (iteratee2 || length >= 120 && array.length >= 120) ? new SetCache(othIndex && array) : undefined2;
           }
           array = arrays[0];
-          var index = -1, seen = caches[0];
+          var index2 = -1, seen = caches[0];
           outer:
-            while (++index < length && result2.length < maxLength) {
-              var value = array[index], computed = iteratee2 ? iteratee2(value) : value;
+            while (++index2 < length && result2.length < maxLength) {
+              var value = array[index2], computed = iteratee2 ? iteratee2(value) : value;
               value = comparator || value !== 0 ? value : 0;
               if (!(seen ? cacheHas(seen, computed) : includes2(result2, computed, comparator))) {
                 othIndex = othLength;
@@ -1632,7 +1636,7 @@ var require_lodash = __commonJS({
           path = castPath(path, object);
           object = parent(object, path);
           var func = object == null ? object : object[toKey(last(path))];
-          return func == null ? undefined2 : apply(func, object, args);
+          return func == null ? undefined2 : apply2(func, object, args);
         }
         function baseIsArguments(value) {
           return isObjectLike(value) && baseGetTag(value) == argsTag;
@@ -1643,16 +1647,16 @@ var require_lodash = __commonJS({
         function baseIsDate(value) {
           return isObjectLike(value) && baseGetTag(value) == dateTag;
         }
-        function baseIsEqual(value, other, bitmask, customizer, stack) {
+        function baseIsEqual(value, other, bitmask, customizer, stack2) {
           if (value === other) {
             return true;
           }
           if (value == null || other == null || !isObjectLike(value) && !isObjectLike(other)) {
             return value !== value && other !== other;
           }
-          return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+          return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack2);
         }
-        function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+        function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack2) {
           var objIsArr = isArray(object), othIsArr = isArray(other), objTag = objIsArr ? arrayTag : getTag(object), othTag = othIsArr ? arrayTag : getTag(other);
           objTag = objTag == argsTag ? objectTag : objTag;
           othTag = othTag == argsTag ? objectTag : othTag;
@@ -1665,51 +1669,51 @@ var require_lodash = __commonJS({
             objIsObj = false;
           }
           if (isSameTag && !objIsObj) {
-            stack || (stack = new Stack2());
-            return objIsArr || isTypedArray(object) ? equalArrays(object, other, bitmask, customizer, equalFunc, stack) : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+            stack2 || (stack2 = new Stack2());
+            return objIsArr || isTypedArray(object) ? equalArrays(object, other, bitmask, customizer, equalFunc, stack2) : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack2);
           }
           if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
             var objIsWrapped = objIsObj && hasOwnProperty.call(object, "__wrapped__"), othIsWrapped = othIsObj && hasOwnProperty.call(other, "__wrapped__");
             if (objIsWrapped || othIsWrapped) {
               var objUnwrapped = objIsWrapped ? object.value() : object, othUnwrapped = othIsWrapped ? other.value() : other;
-              stack || (stack = new Stack2());
-              return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+              stack2 || (stack2 = new Stack2());
+              return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack2);
             }
           }
           if (!isSameTag) {
             return false;
           }
-          stack || (stack = new Stack2());
-          return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+          stack2 || (stack2 = new Stack2());
+          return equalObjects(object, other, bitmask, customizer, equalFunc, stack2);
         }
         function baseIsMap(value) {
           return isObjectLike(value) && getTag(value) == mapTag;
         }
-        function baseIsMatch(object, source, matchData, customizer) {
-          var index = matchData.length, length = index, noCustomizer = !customizer;
+        function baseIsMatch(object, source2, matchData, customizer) {
+          var index2 = matchData.length, length = index2, noCustomizer = !customizer;
           if (object == null) {
             return !length;
           }
           object = Object2(object);
-          while (index--) {
-            var data = matchData[index];
+          while (index2--) {
+            var data = matchData[index2];
             if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
               return false;
             }
           }
-          while (++index < length) {
-            data = matchData[index];
+          while (++index2 < length) {
+            data = matchData[index2];
             var key = data[0], objValue = object[key], srcValue = data[1];
             if (noCustomizer && data[2]) {
               if (objValue === undefined2 && !(key in object)) {
                 return false;
               }
             } else {
-              var stack = new Stack2();
+              var stack2 = new Stack2();
               if (customizer) {
-                var result2 = customizer(objValue, srcValue, key, object, source, stack);
+                var result2 = customizer(objValue, srcValue, key, object, source2, stack2);
               }
-              if (!(result2 === undefined2 ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack) : result2)) {
+              if (!(result2 === undefined2 ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack2) : result2)) {
                 return false;
               }
             }
@@ -1737,7 +1741,7 @@ var require_lodash = __commonJS({
             return value;
           }
           if (value == null) {
-            return identity2;
+            return identity;
           }
           if (typeof value == "object") {
             return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
@@ -1772,19 +1776,19 @@ var require_lodash = __commonJS({
           return value < other;
         }
         function baseMap(collection, iteratee2) {
-          var index = -1, result2 = isArrayLike(collection) ? Array2(collection.length) : [];
+          var index2 = -1, result2 = isArrayLike(collection) ? Array2(collection.length) : [];
           baseEach(collection, function(value, key, collection2) {
-            result2[++index] = iteratee2(value, key, collection2);
+            result2[++index2] = iteratee2(value, key, collection2);
           });
           return result2;
         }
-        function baseMatches(source) {
-          var matchData = getMatchData(source);
+        function baseMatches(source2) {
+          var matchData = getMatchData(source2);
           if (matchData.length == 1 && matchData[0][2]) {
             return matchesStrictComparable(matchData[0][0], matchData[0][1]);
           }
           return function(object) {
-            return object === source || baseIsMatch(object, source, matchData);
+            return object === source2 || baseIsMatch(object, source2, matchData);
           };
         }
         function baseMatchesProperty(path, srcValue) {
@@ -1792,20 +1796,20 @@ var require_lodash = __commonJS({
             return matchesStrictComparable(toKey(path), srcValue);
           }
           return function(object) {
-            var objValue = get(object, path);
+            var objValue = get3(object, path);
             return objValue === undefined2 && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
           };
         }
-        function baseMerge(object, source, srcIndex, customizer, stack) {
-          if (object === source) {
+        function baseMerge(object, source2, srcIndex, customizer, stack2) {
+          if (object === source2) {
             return;
           }
-          baseFor(source, function(srcValue, key) {
-            stack || (stack = new Stack2());
+          baseFor(source2, function(srcValue, key) {
+            stack2 || (stack2 = new Stack2());
             if (isObject(srcValue)) {
-              baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+              baseMergeDeep(object, source2, key, srcIndex, baseMerge, customizer, stack2);
             } else {
-              var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + "", object, source, stack) : undefined2;
+              var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + "", object, source2, stack2) : undefined2;
               if (newValue === undefined2) {
                 newValue = srcValue;
               }
@@ -1813,13 +1817,13 @@ var require_lodash = __commonJS({
             }
           }, keysIn);
         }
-        function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
-          var objValue = safeGet(object, key), srcValue = safeGet(source, key), stacked = stack.get(srcValue);
+        function baseMergeDeep(object, source2, key, srcIndex, mergeFunc, customizer, stack2) {
+          var objValue = safeGet(object, key), srcValue = safeGet(source2, key), stacked = stack2.get(srcValue);
           if (stacked) {
             assignMergeValue(object, key, stacked);
             return;
           }
-          var newValue = customizer ? customizer(objValue, srcValue, key + "", object, source, stack) : undefined2;
+          var newValue = customizer ? customizer(objValue, srcValue, key + "", object, source2, stack2) : undefined2;
           var isCommon = newValue === undefined2;
           if (isCommon) {
             var isArr = isArray(srcValue), isBuff = !isArr && isBuffer(srcValue), isTyped = !isArr && !isBuff && isTypedArray(srcValue);
@@ -1850,9 +1854,9 @@ var require_lodash = __commonJS({
             }
           }
           if (isCommon) {
-            stack.set(srcValue, newValue);
-            mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
-            stack["delete"](srcValue);
+            stack2.set(srcValue, newValue);
+            mergeFunc(newValue, srcValue, srcIndex, customizer, stack2);
+            stack2["delete"](srcValue);
           }
           assignMergeValue(object, key, newValue);
         }
@@ -1875,15 +1879,15 @@ var require_lodash = __commonJS({
               return iteratee2;
             });
           } else {
-            iteratees = [identity2];
+            iteratees = [identity];
           }
-          var index = -1;
+          var index2 = -1;
           iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
           var result2 = baseMap(collection, function(value, key, collection2) {
             var criteria = arrayMap(iteratees, function(iteratee2) {
               return iteratee2(value);
             });
-            return { "criteria": criteria, "index": ++index, "value": value };
+            return { "criteria": criteria, "index": ++index2, "value": value };
           });
           return baseSortBy(result2, function(object, other) {
             return compareMultiple(object, other, orders);
@@ -1895,9 +1899,9 @@ var require_lodash = __commonJS({
           });
         }
         function basePickBy(object, paths, predicate) {
-          var index = -1, length = paths.length, result2 = {};
-          while (++index < length) {
-            var path = paths[index], value = baseGet(object, path);
+          var index2 = -1, length = paths.length, result2 = {};
+          while (++index2 < length) {
+            var path = paths[index2], value = baseGet(object, path);
             if (predicate(value, path)) {
               baseSet(result2, castPath(path, object), value);
             }
@@ -1910,15 +1914,15 @@ var require_lodash = __commonJS({
           };
         }
         function basePullAll(array, values2, iteratee2, comparator) {
-          var indexOf2 = comparator ? baseIndexOfWith : baseIndexOf, index = -1, length = values2.length, seen = array;
+          var indexOf2 = comparator ? baseIndexOfWith : baseIndexOf, index2 = -1, length = values2.length, seen = array;
           if (array === values2) {
             values2 = copyArray(values2);
           }
           if (iteratee2) {
             seen = arrayMap(array, baseUnary(iteratee2));
           }
-          while (++index < length) {
-            var fromIndex = 0, value = values2[index], computed = iteratee2 ? iteratee2(value) : value;
+          while (++index2 < length) {
+            var fromIndex = 0, value = values2[index2], computed = iteratee2 ? iteratee2(value) : value;
             while ((fromIndex = indexOf2(seen, computed, fromIndex, comparator)) > -1) {
               if (seen !== array) {
                 splice.call(seen, fromIndex, 1);
@@ -1931,13 +1935,13 @@ var require_lodash = __commonJS({
         function basePullAt(array, indexes) {
           var length = array ? indexes.length : 0, lastIndex = length - 1;
           while (length--) {
-            var index = indexes[length];
-            if (length == lastIndex || index !== previous) {
-              var previous = index;
-              if (isIndex(index)) {
-                splice.call(array, index, 1);
+            var index2 = indexes[length];
+            if (length == lastIndex || index2 !== previous) {
+              var previous = index2;
+              if (isIndex(index2)) {
+                splice.call(array, index2, 1);
               } else {
-                baseUnset(array, index);
+                baseUnset(array, index2);
               }
             }
           }
@@ -1947,9 +1951,9 @@ var require_lodash = __commonJS({
           return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
         }
         function baseRange(start, end, step, fromRight) {
-          var index = -1, length = nativeMax(nativeCeil((end - start) / (step || 1)), 0), result2 = Array2(length);
+          var index2 = -1, length = nativeMax(nativeCeil((end - start) / (step || 1)), 0), result2 = Array2(length);
           while (length--) {
-            result2[fromRight ? length : ++index] = start;
+            result2[fromRight ? length : ++index2] = start;
             start += step;
           }
           return result2;
@@ -1971,7 +1975,7 @@ var require_lodash = __commonJS({
           return result2;
         }
         function baseRest(func, start) {
-          return setToString(overRest(func, start, identity2), func + "");
+          return setToString(overRest(func, start, identity), func + "");
         }
         function baseSample(collection) {
           return arraySample(values(collection));
@@ -1985,17 +1989,17 @@ var require_lodash = __commonJS({
             return object;
           }
           path = castPath(path, object);
-          var index = -1, length = path.length, lastIndex = length - 1, nested = object;
-          while (nested != null && ++index < length) {
-            var key = toKey(path[index]), newValue = value;
+          var index2 = -1, length = path.length, lastIndex = length - 1, nested = object;
+          while (nested != null && ++index2 < length) {
+            var key = toKey(path[index2]), newValue = value;
             if (key === "__proto__" || key === "constructor" || key === "prototype") {
               return object;
             }
-            if (index != lastIndex) {
+            if (index2 != lastIndex) {
               var objValue = nested[key];
               newValue = customizer ? customizer(objValue, key, nested) : undefined2;
               if (newValue === undefined2) {
-                newValue = isObject(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
+                newValue = isObject(objValue) ? objValue : isIndex(path[index2 + 1]) ? [] : {};
               }
             }
             assignValue(nested, key, newValue);
@@ -2003,11 +2007,11 @@ var require_lodash = __commonJS({
           }
           return object;
         }
-        var baseSetData = !metaMap ? identity2 : function(func, data) {
+        var baseSetData = !metaMap ? identity : function(func, data) {
           metaMap.set(func, data);
           return func;
         };
-        var baseSetToString = !defineProperty ? identity2 : function(func, string) {
+        var baseSetToString = !defineProperty ? identity : function(func, string) {
           return defineProperty(func, "toString", {
             "configurable": true,
             "enumerable": false,
@@ -2019,7 +2023,7 @@ var require_lodash = __commonJS({
           return shuffleSelf(values(collection));
         }
         function baseSlice(array, start, end) {
-          var index = -1, length = array.length;
+          var index2 = -1, length = array.length;
           if (start < 0) {
             start = -start > length ? 0 : length + start;
           }
@@ -2030,15 +2034,15 @@ var require_lodash = __commonJS({
           length = start > end ? 0 : end - start >>> 0;
           start >>>= 0;
           var result2 = Array2(length);
-          while (++index < length) {
-            result2[index] = array[index + start];
+          while (++index2 < length) {
+            result2[index2] = array[index2 + start];
           }
           return result2;
         }
         function baseSome(collection, predicate) {
           var result2;
-          baseEach(collection, function(value, index, collection2) {
-            result2 = predicate(value, index, collection2);
+          baseEach(collection, function(value, index2, collection2) {
+            result2 = predicate(value, index2, collection2);
             return !result2;
           });
           return !!result2;
@@ -2056,7 +2060,7 @@ var require_lodash = __commonJS({
             }
             return high;
           }
-          return baseSortedIndexBy(array, value, identity2, retHighest);
+          return baseSortedIndexBy(array, value, identity, retHighest);
         }
         function baseSortedIndexBy(array, value, iteratee2, retHighest) {
           var low = 0, high = array == null ? 0 : array.length;
@@ -2089,10 +2093,10 @@ var require_lodash = __commonJS({
           return nativeMin(high, MAX_ARRAY_INDEX);
         }
         function baseSortedUniq(array, iteratee2) {
-          var index = -1, length = array.length, resIndex = 0, result2 = [];
-          while (++index < length) {
-            var value = array[index], computed = iteratee2 ? iteratee2(value) : value;
-            if (!index || !eq(computed, seen)) {
+          var index2 = -1, length = array.length, resIndex = 0, result2 = [];
+          while (++index2 < length) {
+            var value = array[index2], computed = iteratee2 ? iteratee2(value) : value;
+            if (!index2 || !eq(computed, seen)) {
               var seen = computed;
               result2[resIndex++] = value === 0 ? 0 : value;
             }
@@ -2122,14 +2126,14 @@ var require_lodash = __commonJS({
           return result2 == "0" && 1 / value == -INFINITY ? "-0" : result2;
         }
         function baseUniq(array, iteratee2, comparator) {
-          var index = -1, includes2 = arrayIncludes, length = array.length, isCommon = true, result2 = [], seen = result2;
+          var index2 = -1, includes2 = arrayIncludes, length = array.length, isCommon = true, result2 = [], seen = result2;
           if (comparator) {
             isCommon = false;
             includes2 = arrayIncludesWith;
           } else if (length >= LARGE_ARRAY_SIZE) {
-            var set2 = iteratee2 ? null : createSet(array);
-            if (set2) {
-              return setToArray(set2);
+            var set3 = iteratee2 ? null : createSet(array);
+            if (set3) {
+              return setToArray(set3);
             }
             isCommon = false;
             includes2 = cacheHas;
@@ -2138,8 +2142,8 @@ var require_lodash = __commonJS({
             seen = iteratee2 ? [] : result2;
           }
           outer:
-            while (++index < length) {
-              var value = array[index], computed = iteratee2 ? iteratee2(value) : value;
+            while (++index2 < length) {
+              var value = array[index2], computed = iteratee2 ? iteratee2(value) : value;
               value = comparator || value !== 0 ? value : 0;
               if (isCommon && computed === computed) {
                 var seenIndex = seen.length;
@@ -2170,18 +2174,18 @@ var require_lodash = __commonJS({
           return baseSet(object, path, updater(baseGet(object, path)), customizer);
         }
         function baseWhile(array, predicate, isDrop, fromRight) {
-          var length = array.length, index = fromRight ? length : -1;
-          while ((fromRight ? index-- : ++index < length) && predicate(array[index], index, array)) {
+          var length = array.length, index2 = fromRight ? length : -1;
+          while ((fromRight ? index2-- : ++index2 < length) && predicate(array[index2], index2, array)) {
           }
-          return isDrop ? baseSlice(array, fromRight ? 0 : index, fromRight ? index + 1 : length) : baseSlice(array, fromRight ? index + 1 : 0, fromRight ? length : index);
+          return isDrop ? baseSlice(array, fromRight ? 0 : index2, fromRight ? index2 + 1 : length) : baseSlice(array, fromRight ? index2 + 1 : 0, fromRight ? length : index2);
         }
         function baseWrapperValue(value, actions) {
           var result2 = value;
           if (result2 instanceof LazyWrapper) {
             result2 = result2.value();
           }
-          return arrayReduce(actions, function(result3, action) {
-            return action.func.apply(action.thisArg, arrayPush([result3], action.args));
+          return arrayReduce(actions, function(result3, action2) {
+            return action2.func.apply(action2.thisArg, arrayPush([result3], action2.args));
           }, result2);
         }
         function baseXor(arrays, iteratee2, comparator) {
@@ -2189,22 +2193,22 @@ var require_lodash = __commonJS({
           if (length < 2) {
             return length ? baseUniq(arrays[0]) : [];
           }
-          var index = -1, result2 = Array2(length);
-          while (++index < length) {
-            var array = arrays[index], othIndex = -1;
+          var index2 = -1, result2 = Array2(length);
+          while (++index2 < length) {
+            var array = arrays[index2], othIndex = -1;
             while (++othIndex < length) {
-              if (othIndex != index) {
-                result2[index] = baseDifference(result2[index] || array, arrays[othIndex], iteratee2, comparator);
+              if (othIndex != index2) {
+                result2[index2] = baseDifference(result2[index2] || array, arrays[othIndex], iteratee2, comparator);
               }
             }
           }
           return baseUniq(baseFlatten(result2, 1), iteratee2, comparator);
         }
         function baseZipObject(props, values2, assignFunc) {
-          var index = -1, length = props.length, valsLength = values2.length, result2 = {};
-          while (++index < length) {
-            var value = index < valsLength ? values2[index] : undefined2;
-            assignFunc(result2, props[index], value);
+          var index2 = -1, length = props.length, valsLength = values2.length, result2 = {};
+          while (++index2 < length) {
+            var value = index2 < valsLength ? values2[index2] : undefined2;
+            assignFunc(result2, props[index2], value);
           }
           return result2;
         }
@@ -2212,7 +2216,7 @@ var require_lodash = __commonJS({
           return isArrayLikeObject(value) ? value : [];
         }
         function castFunction(value) {
-          return typeof value == "function" ? value : identity2;
+          return typeof value == "function" ? value : identity;
         }
         function castPath(value, object) {
           if (isArray(value)) {
@@ -2226,8 +2230,8 @@ var require_lodash = __commonJS({
           end = end === undefined2 ? length : end;
           return !start && end >= length ? array : baseSlice(array, start, end);
         }
-        var clearTimeout = ctxClearTimeout || function(id) {
-          return root.clearTimeout(id);
+        var clearTimeout2 = ctxClearTimeout || function(id) {
+          return root29.clearTimeout(id);
         };
         function cloneBuffer(buffer, isDeep) {
           if (isDeep) {
@@ -2272,14 +2276,14 @@ var require_lodash = __commonJS({
           return 0;
         }
         function compareMultiple(object, other, orders) {
-          var index = -1, objCriteria = object.criteria, othCriteria = other.criteria, length = objCriteria.length, ordersLength = orders.length;
-          while (++index < length) {
-            var result2 = compareAscending(objCriteria[index], othCriteria[index]);
+          var index2 = -1, objCriteria = object.criteria, othCriteria = other.criteria, length = objCriteria.length, ordersLength = orders.length;
+          while (++index2 < length) {
+            var result2 = compareAscending(objCriteria[index2], othCriteria[index2]);
             if (result2) {
-              if (index >= ordersLength) {
+              if (index2 >= ordersLength) {
                 return result2;
               }
-              var order = orders[index];
+              var order = orders[index2];
               return result2 * (order == "desc" ? -1 : 1);
             }
           }
@@ -2316,23 +2320,23 @@ var require_lodash = __commonJS({
           }
           return result2;
         }
-        function copyArray(source, array) {
-          var index = -1, length = source.length;
+        function copyArray(source2, array) {
+          var index2 = -1, length = source2.length;
           array || (array = Array2(length));
-          while (++index < length) {
-            array[index] = source[index];
+          while (++index2 < length) {
+            array[index2] = source2[index2];
           }
           return array;
         }
-        function copyObject(source, props, object, customizer) {
+        function copyObject(source2, props, object, customizer) {
           var isNew = !object;
           object || (object = {});
-          var index = -1, length = props.length;
-          while (++index < length) {
-            var key = props[index];
-            var newValue = customizer ? customizer(object[key], source[key], key, object, source) : undefined2;
+          var index2 = -1, length = props.length;
+          while (++index2 < length) {
+            var key = props[index2];
+            var newValue = customizer ? customizer(object[key], source2[key], key, object, source2) : undefined2;
             if (newValue === undefined2) {
-              newValue = source[key];
+              newValue = source2[key];
             }
             if (isNew) {
               baseAssignValue(object, key, newValue);
@@ -2342,11 +2346,11 @@ var require_lodash = __commonJS({
           }
           return object;
         }
-        function copySymbols(source, object) {
-          return copyObject(source, getSymbols(source), object);
+        function copySymbols(source2, object) {
+          return copyObject(source2, getSymbols(source2), object);
         }
-        function copySymbolsIn(source, object) {
-          return copyObject(source, getSymbolsIn(source), object);
+        function copySymbolsIn(source2, object) {
+          return copyObject(source2, getSymbolsIn(source2), object);
         }
         function createAggregator(setter, initializer) {
           return function(collection, iteratee2) {
@@ -2356,17 +2360,17 @@ var require_lodash = __commonJS({
         }
         function createAssigner(assigner) {
           return baseRest(function(object, sources) {
-            var index = -1, length = sources.length, customizer = length > 1 ? sources[length - 1] : undefined2, guard = length > 2 ? sources[2] : undefined2;
+            var index2 = -1, length = sources.length, customizer = length > 1 ? sources[length - 1] : undefined2, guard = length > 2 ? sources[2] : undefined2;
             customizer = assigner.length > 3 && typeof customizer == "function" ? (length--, customizer) : undefined2;
             if (guard && isIterateeCall(sources[0], sources[1], guard)) {
               customizer = length < 3 ? undefined2 : customizer;
               length = 1;
             }
             object = Object2(object);
-            while (++index < length) {
-              var source = sources[index];
-              if (source) {
-                assigner(object, source, index, customizer);
+            while (++index2 < length) {
+              var source2 = sources[index2];
+              if (source2) {
+                assigner(object, source2, index2, customizer);
               }
             }
             return object;
@@ -2380,9 +2384,9 @@ var require_lodash = __commonJS({
             if (!isArrayLike(collection)) {
               return eachFunc(collection, iteratee2);
             }
-            var length = collection.length, index = fromRight ? length : -1, iterable = Object2(collection);
-            while (fromRight ? index-- : ++index < length) {
-              if (iteratee2(iterable[index], index, iterable) === false) {
+            var length = collection.length, index2 = fromRight ? length : -1, iterable = Object2(collection);
+            while (fromRight ? index2-- : ++index2 < length) {
+              if (iteratee2(iterable[index2], index2, iterable) === false) {
                 break;
               }
             }
@@ -2391,9 +2395,9 @@ var require_lodash = __commonJS({
         }
         function createBaseFor(fromRight) {
           return function(object, iteratee2, keysFunc) {
-            var index = -1, iterable = Object2(object), props = keysFunc(object), length = props.length;
+            var index2 = -1, iterable = Object2(object), props = keysFunc(object), length = props.length;
             while (length--) {
-              var key = props[fromRight ? length : ++index];
+              var key = props[fromRight ? length : ++index2];
               if (iteratee2(iterable[key], key, iterable) === false) {
                 break;
               }
@@ -2404,7 +2408,7 @@ var require_lodash = __commonJS({
         function createBind(func, bitmask, thisArg) {
           var isBind = bitmask & WRAP_BIND_FLAG, Ctor = createCtor(func);
           function wrapper() {
-            var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+            var fn = this && this !== root29 && this instanceof wrapper ? Ctor : func;
             return fn.apply(isBind ? thisArg : this, arguments);
           }
           return wrapper;
@@ -2451,9 +2455,9 @@ var require_lodash = __commonJS({
         function createCurry(func, bitmask, arity) {
           var Ctor = createCtor(func);
           function wrapper() {
-            var length = arguments.length, args = Array2(length), index = length, placeholder = getHolder(wrapper);
-            while (index--) {
-              args[index] = arguments[index];
+            var length = arguments.length, args = Array2(length), index2 = length, placeholder = getHolder(wrapper);
+            while (index2--) {
+              args[index2] = arguments[index2];
             }
             var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
             length -= holders.length;
@@ -2471,8 +2475,8 @@ var require_lodash = __commonJS({
                 arity - length
               );
             }
-            var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
-            return apply(fn, this, args);
+            var fn = this && this !== root29 && this instanceof wrapper ? Ctor : func;
+            return apply2(fn, this, args);
           }
           return wrapper;
         }
@@ -2486,18 +2490,18 @@ var require_lodash = __commonJS({
                 return iteratee2(iterable[key], key, iterable);
               };
             }
-            var index = findIndexFunc(collection, predicate, fromIndex);
-            return index > -1 ? iterable[iteratee2 ? collection[index] : index] : undefined2;
+            var index2 = findIndexFunc(collection, predicate, fromIndex);
+            return index2 > -1 ? iterable[iteratee2 ? collection[index2] : index2] : undefined2;
           };
         }
         function createFlow(fromRight) {
           return flatRest(function(funcs) {
-            var length = funcs.length, index = length, prereq = LodashWrapper.prototype.thru;
+            var length = funcs.length, index2 = length, prereq = LodashWrapper.prototype.thru;
             if (fromRight) {
               funcs.reverse();
             }
-            while (index--) {
-              var func = funcs[index];
+            while (index2--) {
+              var func = funcs[index2];
               if (typeof func != "function") {
                 throw new TypeError2(FUNC_ERROR_TEXT);
               }
@@ -2505,9 +2509,9 @@ var require_lodash = __commonJS({
                 var wrapper = new LodashWrapper([], true);
               }
             }
-            index = wrapper ? index : length;
-            while (++index < length) {
-              func = funcs[index];
+            index2 = wrapper ? index2 : length;
+            while (++index2 < length) {
+              func = funcs[index2];
               var funcName = getFuncName(func), data = funcName == "wrapper" ? getData(func) : undefined2;
               if (data && isLaziable(data[0]) && data[1] == (WRAP_ARY_FLAG | WRAP_CURRY_FLAG | WRAP_PARTIAL_FLAG | WRAP_REARG_FLAG) && !data[4].length && data[9] == 1) {
                 wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
@@ -2520,9 +2524,9 @@ var require_lodash = __commonJS({
               if (wrapper && args.length == 1 && isArray(value)) {
                 return wrapper.plant(value).value();
               }
-              var index2 = 0, result2 = length ? funcs[index2].apply(this, args) : value;
-              while (++index2 < length) {
-                result2 = funcs[index2].call(this, result2);
+              var index3 = 0, result2 = length ? funcs[index3].apply(this, args) : value;
+              while (++index3 < length) {
+                result2 = funcs[index3].call(this, result2);
               }
               return result2;
             };
@@ -2531,9 +2535,9 @@ var require_lodash = __commonJS({
         function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary2, arity) {
           var isAry = bitmask & WRAP_ARY_FLAG, isBind = bitmask & WRAP_BIND_FLAG, isBindKey = bitmask & WRAP_BIND_KEY_FLAG, isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG), isFlip = bitmask & WRAP_FLIP_FLAG, Ctor = isBindKey ? undefined2 : createCtor(func);
           function wrapper() {
-            var length = arguments.length, args = Array2(length), index = length;
-            while (index--) {
-              args[index] = arguments[index];
+            var length = arguments.length, args = Array2(length), index2 = length;
+            while (index2--) {
+              args[index2] = arguments[index2];
             }
             if (isCurried) {
               var placeholder = getHolder(wrapper), holdersCount = countHolders(args, placeholder);
@@ -2570,7 +2574,7 @@ var require_lodash = __commonJS({
             if (isAry && ary2 < length) {
               args.length = ary2;
             }
-            if (this && this !== root && this instanceof wrapper) {
+            if (this && this !== root29 && this instanceof wrapper) {
               fn = Ctor || createCtor(fn);
             }
             return fn.apply(thisBinding, args);
@@ -2613,7 +2617,7 @@ var require_lodash = __commonJS({
             return baseRest(function(args) {
               var thisArg = this;
               return arrayFunc(iteratees, function(iteratee2) {
-                return apply(iteratee2, thisArg, args);
+                return apply2(iteratee2, thisArg, args);
               });
             });
           });
@@ -2630,14 +2634,14 @@ var require_lodash = __commonJS({
         function createPartial(func, bitmask, thisArg, partials) {
           var isBind = bitmask & WRAP_BIND_FLAG, Ctor = createCtor(func);
           function wrapper() {
-            var argsIndex = -1, argsLength = arguments.length, leftIndex = -1, leftLength = partials.length, args = Array2(leftLength + argsLength), fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+            var argsIndex = -1, argsLength = arguments.length, leftIndex = -1, leftLength = partials.length, args = Array2(leftLength + argsLength), fn = this && this !== root29 && this instanceof wrapper ? Ctor : func;
             while (++leftIndex < leftLength) {
               args[leftIndex] = partials[leftIndex];
             }
             while (argsLength--) {
               args[leftIndex++] = arguments[++argsIndex];
             }
-            return apply(fn, isBind ? thisArg : this, args);
+            return apply2(fn, isBind ? thisArg : this, args);
           }
           return wrapper;
         }
@@ -2780,34 +2784,34 @@ var require_lodash = __commonJS({
           }
           return objValue;
         }
-        function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
+        function customDefaultsMerge(objValue, srcValue, key, object, source2, stack2) {
           if (isObject(objValue) && isObject(srcValue)) {
-            stack.set(srcValue, objValue);
-            baseMerge(objValue, srcValue, undefined2, customDefaultsMerge, stack);
-            stack["delete"](srcValue);
+            stack2.set(srcValue, objValue);
+            baseMerge(objValue, srcValue, undefined2, customDefaultsMerge, stack2);
+            stack2["delete"](srcValue);
           }
           return objValue;
         }
         function customOmitClone(value) {
           return isPlainObject(value) ? undefined2 : value;
         }
-        function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+        function equalArrays(array, other, bitmask, customizer, equalFunc, stack2) {
           var isPartial = bitmask & COMPARE_PARTIAL_FLAG, arrLength = array.length, othLength = other.length;
           if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
             return false;
           }
-          var arrStacked = stack.get(array);
-          var othStacked = stack.get(other);
+          var arrStacked = stack2.get(array);
+          var othStacked = stack2.get(other);
           if (arrStacked && othStacked) {
             return arrStacked == other && othStacked == array;
           }
-          var index = -1, result2 = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : undefined2;
-          stack.set(array, other);
-          stack.set(other, array);
-          while (++index < arrLength) {
-            var arrValue = array[index], othValue = other[index];
+          var index2 = -1, result2 = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : undefined2;
+          stack2.set(array, other);
+          stack2.set(other, array);
+          while (++index2 < arrLength) {
+            var arrValue = array[index2], othValue = other[index2];
             if (customizer) {
-              var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
+              var compared = isPartial ? customizer(othValue, arrValue, index2, other, array, stack2) : customizer(arrValue, othValue, index2, array, other, stack2);
             }
             if (compared !== undefined2) {
               if (compared) {
@@ -2818,23 +2822,23 @@ var require_lodash = __commonJS({
             }
             if (seen) {
               if (!arraySome(other, function(othValue2, othIndex) {
-                if (!cacheHas(seen, othIndex) && (arrValue === othValue2 || equalFunc(arrValue, othValue2, bitmask, customizer, stack))) {
+                if (!cacheHas(seen, othIndex) && (arrValue === othValue2 || equalFunc(arrValue, othValue2, bitmask, customizer, stack2))) {
                   return seen.push(othIndex);
                 }
               })) {
                 result2 = false;
                 break;
               }
-            } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+            } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack2))) {
               result2 = false;
               break;
             }
           }
-          stack["delete"](array);
-          stack["delete"](other);
+          stack2["delete"](array);
+          stack2["delete"](other);
           return result2;
         }
-        function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+        function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack2) {
           switch (tag) {
             case dataViewTag:
               if (object.byteLength != other.byteLength || object.byteOffset != other.byteOffset) {
@@ -2864,14 +2868,14 @@ var require_lodash = __commonJS({
               if (object.size != other.size && !isPartial) {
                 return false;
               }
-              var stacked = stack.get(object);
+              var stacked = stack2.get(object);
               if (stacked) {
                 return stacked == other;
               }
               bitmask |= COMPARE_UNORDERED_FLAG;
-              stack.set(object, other);
-              var result2 = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
-              stack["delete"](object);
+              stack2.set(object, other);
+              var result2 = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack2);
+              stack2["delete"](object);
               return result2;
             case symbolTag:
               if (symbolValueOf) {
@@ -2880,34 +2884,34 @@ var require_lodash = __commonJS({
           }
           return false;
         }
-        function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+        function equalObjects(object, other, bitmask, customizer, equalFunc, stack2) {
           var isPartial = bitmask & COMPARE_PARTIAL_FLAG, objProps = getAllKeys(object), objLength = objProps.length, othProps = getAllKeys(other), othLength = othProps.length;
           if (objLength != othLength && !isPartial) {
             return false;
           }
-          var index = objLength;
-          while (index--) {
-            var key = objProps[index];
+          var index2 = objLength;
+          while (index2--) {
+            var key = objProps[index2];
             if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
               return false;
             }
           }
-          var objStacked = stack.get(object);
-          var othStacked = stack.get(other);
+          var objStacked = stack2.get(object);
+          var othStacked = stack2.get(other);
           if (objStacked && othStacked) {
             return objStacked == other && othStacked == object;
           }
           var result2 = true;
-          stack.set(object, other);
-          stack.set(other, object);
+          stack2.set(object, other);
+          stack2.set(other, object);
           var skipCtor = isPartial;
-          while (++index < objLength) {
-            key = objProps[index];
+          while (++index2 < objLength) {
+            key = objProps[index2];
             var objValue = object[key], othValue = other[key];
             if (customizer) {
-              var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
+              var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack2) : customizer(objValue, othValue, key, object, other, stack2);
             }
-            if (!(compared === undefined2 ? objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack) : compared)) {
+            if (!(compared === undefined2 ? objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack2) : compared)) {
               result2 = false;
               break;
             }
@@ -2919,8 +2923,8 @@ var require_lodash = __commonJS({
               result2 = false;
             }
           }
-          stack["delete"](object);
-          stack["delete"](other);
+          stack2["delete"](object);
+          stack2["delete"](other);
           return result2;
         }
         function flatRest(func) {
@@ -3026,9 +3030,9 @@ var require_lodash = __commonJS({
           };
         }
         function getView(start, end, transforms) {
-          var index = -1, length = transforms.length;
-          while (++index < length) {
-            var data = transforms[index], size2 = data.size;
+          var index2 = -1, length = transforms.length;
+          while (++index2 < length) {
+            var data = transforms[index2], size2 = data.size;
             switch (data.type) {
               case "drop":
                 start += size2;
@@ -3046,21 +3050,21 @@ var require_lodash = __commonJS({
           }
           return { "start": start, "end": end };
         }
-        function getWrapDetails(source) {
-          var match = source.match(reWrapDetails);
+        function getWrapDetails(source2) {
+          var match = source2.match(reWrapDetails);
           return match ? match[1].split(reSplitDetails) : [];
         }
         function hasPath(object, path, hasFunc) {
           path = castPath(path, object);
-          var index = -1, length = path.length, result2 = false;
-          while (++index < length) {
-            var key = toKey(path[index]);
+          var index2 = -1, length = path.length, result2 = false;
+          while (++index2 < length) {
+            var key = toKey(path[index2]);
             if (!(result2 = object != null && hasFunc(object, key))) {
               break;
             }
             object = object[key];
           }
-          if (result2 || ++index != length) {
+          if (result2 || ++index2 != length) {
             return result2;
           }
           length = object == null ? 0 : object.length;
@@ -3110,15 +3114,15 @@ var require_lodash = __commonJS({
               return cloneSymbol(object);
           }
         }
-        function insertWrapDetails(source, details) {
+        function insertWrapDetails(source2, details) {
           var length = details.length;
           if (!length) {
-            return source;
+            return source2;
           }
           var lastIndex = length - 1;
           details[lastIndex] = (length > 1 ? "& " : "") + details[lastIndex];
           details = details.join(length > 2 ? ", " : " ");
-          return source.replace(reWrapComment, "{\n/* [wrapped with " + details + "] */\n");
+          return source2.replace(reWrapComment, "{\n/* [wrapped with " + details + "] */\n");
         }
         function isFlattenable(value) {
           return isArray(value) || isArguments(value) || !!(spreadableSymbol && value && value[spreadableSymbol]);
@@ -3128,13 +3132,13 @@ var require_lodash = __commonJS({
           length = length == null ? MAX_SAFE_INTEGER : length;
           return !!length && (type == "number" || type != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
         }
-        function isIterateeCall(value, index, object) {
+        function isIterateeCall(value, index2, object) {
           if (!isObject(object)) {
             return false;
           }
-          var type = typeof index;
-          if (type == "number" ? isArrayLike(object) && isIndex(index, object.length) : type == "string" && index in object) {
-            return eq(object[index], value);
+          var type = typeof index2;
+          if (type == "number" ? isArrayLike(object) && isIndex(index2, object.length) : type == "string" && index2 in object) {
+            return eq(object[index2], value);
           }
           return false;
         }
@@ -3192,39 +3196,39 @@ var require_lodash = __commonJS({
           var cache = result2.cache;
           return result2;
         }
-        function mergeData(data, source) {
-          var bitmask = data[1], srcBitmask = source[1], newBitmask = bitmask | srcBitmask, isCommon = newBitmask < (WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG | WRAP_ARY_FLAG);
-          var isCombo = srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_CURRY_FLAG || srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_REARG_FLAG && data[7].length <= source[8] || srcBitmask == (WRAP_ARY_FLAG | WRAP_REARG_FLAG) && source[7].length <= source[8] && bitmask == WRAP_CURRY_FLAG;
+        function mergeData(data, source2) {
+          var bitmask = data[1], srcBitmask = source2[1], newBitmask = bitmask | srcBitmask, isCommon = newBitmask < (WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG | WRAP_ARY_FLAG);
+          var isCombo = srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_CURRY_FLAG || srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_REARG_FLAG && data[7].length <= source2[8] || srcBitmask == (WRAP_ARY_FLAG | WRAP_REARG_FLAG) && source2[7].length <= source2[8] && bitmask == WRAP_CURRY_FLAG;
           if (!(isCommon || isCombo)) {
             return data;
           }
           if (srcBitmask & WRAP_BIND_FLAG) {
-            data[2] = source[2];
+            data[2] = source2[2];
             newBitmask |= bitmask & WRAP_BIND_FLAG ? 0 : WRAP_CURRY_BOUND_FLAG;
           }
-          var value = source[3];
+          var value = source2[3];
           if (value) {
             var partials = data[3];
-            data[3] = partials ? composeArgs(partials, value, source[4]) : value;
-            data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : source[4];
+            data[3] = partials ? composeArgs(partials, value, source2[4]) : value;
+            data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : source2[4];
           }
-          value = source[5];
+          value = source2[5];
           if (value) {
             partials = data[5];
-            data[5] = partials ? composeArgsRight(partials, value, source[6]) : value;
-            data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : source[6];
+            data[5] = partials ? composeArgsRight(partials, value, source2[6]) : value;
+            data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : source2[6];
           }
-          value = source[7];
+          value = source2[7];
           if (value) {
             data[7] = value;
           }
           if (srcBitmask & WRAP_ARY_FLAG) {
-            data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+            data[8] = data[8] == null ? source2[8] : nativeMin(data[8], source2[8]);
           }
           if (data[9] == null) {
-            data[9] = source[9];
+            data[9] = source2[9];
           }
-          data[0] = source[0];
+          data[0] = source2[0];
           data[1] = newBitmask;
           return data;
         }
@@ -3243,17 +3247,17 @@ var require_lodash = __commonJS({
         function overRest(func, start, transform2) {
           start = nativeMax(start === undefined2 ? func.length - 1 : start, 0);
           return function() {
-            var args = arguments, index = -1, length = nativeMax(args.length - start, 0), array = Array2(length);
-            while (++index < length) {
-              array[index] = args[start + index];
+            var args = arguments, index2 = -1, length = nativeMax(args.length - start, 0), array = Array2(length);
+            while (++index2 < length) {
+              array[index2] = args[start + index2];
             }
-            index = -1;
+            index2 = -1;
             var otherArgs = Array2(start + 1);
-            while (++index < start) {
-              otherArgs[index] = args[index];
+            while (++index2 < start) {
+              otherArgs[index2] = args[index2];
             }
             otherArgs[start] = transform2(array);
-            return apply(func, this, otherArgs);
+            return apply2(func, this, otherArgs);
           };
         }
         function parent(object, path) {
@@ -3262,8 +3266,8 @@ var require_lodash = __commonJS({
         function reorder(array, indexes) {
           var arrLength = array.length, length = nativeMin(indexes.length, arrLength), oldArray = copyArray(array);
           while (length--) {
-            var index = indexes[length];
-            array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined2;
+            var index2 = indexes[length];
+            array[length] = isIndex(index2, arrLength) ? oldArray[index2] : undefined2;
           }
           return array;
         }
@@ -3278,12 +3282,12 @@ var require_lodash = __commonJS({
         }
         var setData = shortOut(baseSetData);
         var setTimeout2 = ctxSetTimeout || function(func, wait) {
-          return root.setTimeout(func, wait);
+          return root29.setTimeout(func, wait);
         };
         var setToString = shortOut(baseSetToString);
         function setWrapToString(wrapper, reference, bitmask) {
-          var source = reference + "";
-          return setToString(wrapper, insertWrapDetails(source, updateWrapDetails(getWrapDetails(source), bitmask)));
+          var source2 = reference + "";
+          return setToString(wrapper, insertWrapDetails(source2, updateWrapDetails(getWrapDetails(source2), bitmask)));
         }
         function shortOut(func) {
           var count = 0, lastCalled = 0;
@@ -3301,12 +3305,12 @@ var require_lodash = __commonJS({
           };
         }
         function shuffleSelf(array, size2) {
-          var index = -1, length = array.length, lastIndex = length - 1;
+          var index2 = -1, length = array.length, lastIndex = length - 1;
           size2 = size2 === undefined2 ? length : size2;
-          while (++index < size2) {
-            var rand = baseRandom(index, lastIndex), value = array[rand];
-            array[rand] = array[index];
-            array[index] = value;
+          while (++index2 < size2) {
+            var rand = baseRandom(index2, lastIndex), value = array[rand];
+            array[rand] = array[index2];
+            array[index2] = value;
           }
           array.length = size2;
           return array;
@@ -3370,16 +3374,16 @@ var require_lodash = __commonJS({
           if (!length || size2 < 1) {
             return [];
           }
-          var index = 0, resIndex = 0, result2 = Array2(nativeCeil(length / size2));
-          while (index < length) {
-            result2[resIndex++] = baseSlice(array, index, index += size2);
+          var index2 = 0, resIndex = 0, result2 = Array2(nativeCeil(length / size2));
+          while (index2 < length) {
+            result2[resIndex++] = baseSlice(array, index2, index2 += size2);
           }
           return result2;
         }
         function compact(array) {
-          var index = -1, length = array == null ? 0 : array.length, resIndex = 0, result2 = [];
-          while (++index < length) {
-            var value = array[index];
+          var index2 = -1, length = array == null ? 0 : array.length, resIndex = 0, result2 = [];
+          while (++index2 < length) {
+            var value = array[index2];
             if (value) {
               result2[resIndex++] = value;
             }
@@ -3391,9 +3395,9 @@ var require_lodash = __commonJS({
           if (!length) {
             return [];
           }
-          var args = Array2(length - 1), array = arguments[0], index = length;
-          while (index--) {
-            args[index - 1] = arguments[index];
+          var args = Array2(length - 1), array = arguments[0], index2 = length;
+          while (index2--) {
+            args[index2 - 1] = arguments[index2];
           }
           return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
         }
@@ -3453,23 +3457,23 @@ var require_lodash = __commonJS({
           if (!length) {
             return -1;
           }
-          var index = fromIndex == null ? 0 : toInteger(fromIndex);
-          if (index < 0) {
-            index = nativeMax(length + index, 0);
+          var index2 = fromIndex == null ? 0 : toInteger(fromIndex);
+          if (index2 < 0) {
+            index2 = nativeMax(length + index2, 0);
           }
-          return baseFindIndex(array, getIteratee(predicate, 3), index);
+          return baseFindIndex(array, getIteratee(predicate, 3), index2);
         }
         function findLastIndex(array, predicate, fromIndex) {
           var length = array == null ? 0 : array.length;
           if (!length) {
             return -1;
           }
-          var index = length - 1;
+          var index2 = length - 1;
           if (fromIndex !== undefined2) {
-            index = toInteger(fromIndex);
-            index = fromIndex < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+            index2 = toInteger(fromIndex);
+            index2 = fromIndex < 0 ? nativeMax(length + index2, 0) : nativeMin(index2, length - 1);
           }
-          return baseFindIndex(array, getIteratee(predicate, 3), index, true);
+          return baseFindIndex(array, getIteratee(predicate, 3), index2, true);
         }
         function flatten(array) {
           var length = array == null ? 0 : array.length;
@@ -3488,14 +3492,14 @@ var require_lodash = __commonJS({
           return baseFlatten(array, depth);
         }
         function fromPairs(pairs) {
-          var index = -1, length = pairs == null ? 0 : pairs.length, result2 = {};
-          while (++index < length) {
-            var pair = pairs[index];
+          var index2 = -1, length = pairs == null ? 0 : pairs.length, result2 = {};
+          while (++index2 < length) {
+            var pair = pairs[index2];
             result2[pair[0]] = pair[1];
           }
           return result2;
         }
-        function head(array) {
+        function head2(array) {
           return array && array.length ? array[0] : undefined2;
         }
         function indexOf(array, value, fromIndex) {
@@ -3503,11 +3507,11 @@ var require_lodash = __commonJS({
           if (!length) {
             return -1;
           }
-          var index = fromIndex == null ? 0 : toInteger(fromIndex);
-          if (index < 0) {
-            index = nativeMax(length + index, 0);
+          var index2 = fromIndex == null ? 0 : toInteger(fromIndex);
+          if (index2 < 0) {
+            index2 = nativeMax(length + index2, 0);
           }
-          return baseIndexOf(array, value, index);
+          return baseIndexOf(array, value, index2);
         }
         function initial(array) {
           var length = array == null ? 0 : array.length;
@@ -3546,12 +3550,12 @@ var require_lodash = __commonJS({
           if (!length) {
             return -1;
           }
-          var index = length;
+          var index2 = length;
           if (fromIndex !== undefined2) {
-            index = toInteger(fromIndex);
-            index = index < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+            index2 = toInteger(fromIndex);
+            index2 = index2 < 0 ? nativeMax(length + index2, 0) : nativeMin(index2, length - 1);
           }
-          return value === value ? strictLastIndexOf(array, value, index) : baseFindIndex(array, baseIsNaN, index, true);
+          return value === value ? strictLastIndexOf(array, value, index2) : baseFindIndex(array, baseIsNaN, index2, true);
         }
         function nth(array, n) {
           return array && array.length ? baseNth(array, toInteger(n)) : undefined2;
@@ -3568,8 +3572,8 @@ var require_lodash = __commonJS({
         }
         var pullAt = flatRest(function(array, indexes) {
           var length = array == null ? 0 : array.length, result2 = baseAt(array, indexes);
-          basePullAt(array, arrayMap(indexes, function(index) {
-            return isIndex(index, length) ? +index : index;
+          basePullAt(array, arrayMap(indexes, function(index2) {
+            return isIndex(index2, length) ? +index2 : index2;
           }).sort(compareAscending));
           return result2;
         });
@@ -3578,13 +3582,13 @@ var require_lodash = __commonJS({
           if (!(array && array.length)) {
             return result2;
           }
-          var index = -1, indexes = [], length = array.length;
+          var index2 = -1, indexes = [], length = array.length;
           predicate = getIteratee(predicate, 3);
-          while (++index < length) {
-            var value = array[index];
-            if (predicate(value, index, array)) {
+          while (++index2 < length) {
+            var value = array[index2];
+            if (predicate(value, index2, array)) {
               result2.push(value);
-              indexes.push(index);
+              indexes.push(index2);
             }
           }
           basePullAt(array, indexes);
@@ -3616,9 +3620,9 @@ var require_lodash = __commonJS({
         function sortedIndexOf(array, value) {
           var length = array == null ? 0 : array.length;
           if (length) {
-            var index = baseSortedIndex(array, value);
-            if (index < length && eq(array[index], value)) {
-              return index;
+            var index2 = baseSortedIndex(array, value);
+            if (index2 < length && eq(array[index2], value)) {
+              return index2;
             }
           }
           return -1;
@@ -3632,9 +3636,9 @@ var require_lodash = __commonJS({
         function sortedLastIndexOf(array, value) {
           var length = array == null ? 0 : array.length;
           if (length) {
-            var index = baseSortedIndex(array, value, true) - 1;
-            if (eq(array[index], value)) {
-              return index;
+            var index2 = baseSortedIndex(array, value, true) - 1;
+            if (eq(array[index2], value)) {
+              return index2;
             }
           }
           return -1;
@@ -3707,8 +3711,8 @@ var require_lodash = __commonJS({
               return true;
             }
           });
-          return baseTimes(length, function(index) {
-            return arrayMap(array, baseProperty(index));
+          return baseTimes(length, function(index2) {
+            return arrayMap(array, baseProperty(index2));
           });
         }
         function unzipWith(array, iteratee2) {
@@ -3720,7 +3724,7 @@ var require_lodash = __commonJS({
             return result2;
           }
           return arrayMap(result2, function(group) {
-            return apply(iteratee2, undefined2, group);
+            return apply2(iteratee2, undefined2, group);
           });
         }
         var without = baseRest(function(array, values2) {
@@ -3893,9 +3897,9 @@ var require_lodash = __commonJS({
           return isString(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
         }
         var invokeMap = baseRest(function(collection, path, args) {
-          var index = -1, isFunc = typeof path == "function", result2 = isArrayLike(collection) ? Array2(collection.length) : [];
+          var index2 = -1, isFunc = typeof path == "function", result2 = isArrayLike(collection) ? Array2(collection.length) : [];
           baseEach(collection, function(value) {
-            result2[++index] = isFunc ? apply(path, value, args) : baseInvoke(value, path, args);
+            result2[++index2] = isFunc ? apply2(path, value, args) : baseInvoke(value, path, args);
           });
           return result2;
         });
@@ -3985,8 +3989,8 @@ var require_lodash = __commonJS({
           }
           return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
         });
-        var now2 = ctxNow || function() {
-          return root.Date.now();
+        var now = ctxNow || function() {
+          return root29.Date.now();
         };
         function after(n, func) {
           if (typeof func != "function") {
@@ -4081,7 +4085,7 @@ var require_lodash = __commonJS({
             return lastCallTime === undefined2 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
           }
           function timerExpired() {
-            var time = now2();
+            var time = now();
             if (shouldInvoke(time)) {
               return trailingEdge(time);
             }
@@ -4097,16 +4101,16 @@ var require_lodash = __commonJS({
           }
           function cancel() {
             if (timerId !== undefined2) {
-              clearTimeout(timerId);
+              clearTimeout2(timerId);
             }
             lastInvokeTime = 0;
             lastArgs = lastCallTime = lastThis = timerId = undefined2;
           }
-          function flush2() {
-            return timerId === undefined2 ? result2 : trailingEdge(now2());
+          function flush() {
+            return timerId === undefined2 ? result2 : trailingEdge(now());
           }
           function debounced() {
-            var time = now2(), isInvoking = shouldInvoke(time);
+            var time = now(), isInvoking = shouldInvoke(time);
             lastArgs = arguments;
             lastThis = this;
             lastCallTime = time;
@@ -4115,7 +4119,7 @@ var require_lodash = __commonJS({
                 return leadingEdge(lastCallTime);
               }
               if (maxing) {
-                clearTimeout(timerId);
+                clearTimeout2(timerId);
                 timerId = setTimeout2(timerExpired, wait);
                 return invokeFunc(lastCallTime);
               }
@@ -4126,7 +4130,7 @@ var require_lodash = __commonJS({
             return result2;
           }
           debounced.cancel = cancel;
-          debounced.flush = flush2;
+          debounced.flush = flush;
           return debounced;
         }
         var defer = baseRest(function(func, args) {
@@ -4174,18 +4178,18 @@ var require_lodash = __commonJS({
             return !predicate.apply(this, args);
           };
         }
-        function once(func) {
+        function once2(func) {
           return before(2, func);
         }
         var overArgs = castRest(function(func, transforms) {
           transforms = transforms.length == 1 && isArray(transforms[0]) ? arrayMap(transforms[0], baseUnary(getIteratee())) : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
           var funcsLength = transforms.length;
           return baseRest(function(args) {
-            var index = -1, length = nativeMin(args.length, funcsLength);
-            while (++index < length) {
-              args[index] = transforms[index].call(this, args[index]);
+            var index2 = -1, length = nativeMin(args.length, funcsLength);
+            while (++index2 < length) {
+              args[index2] = transforms[index2].call(this, args[index2]);
             }
-            return apply(func, this, args);
+            return apply2(func, this, args);
           });
         });
         var partial = baseRest(function(func, partials) {
@@ -4216,7 +4220,7 @@ var require_lodash = __commonJS({
             if (array) {
               arrayPush(otherArgs, array);
             }
-            return apply(func, this, otherArgs);
+            return apply2(func, this, otherArgs);
           });
         }
         function throttle(func, wait, options) {
@@ -4237,7 +4241,7 @@ var require_lodash = __commonJS({
         function unary(func) {
           return ary(func, 1);
         }
-        function wrap(value, wrapper) {
+        function wrap2(value, wrapper) {
           return partial(castFunction(wrapper), value);
         }
         function castArray() {
@@ -4261,8 +4265,8 @@ var require_lodash = __commonJS({
           customizer = typeof customizer == "function" ? customizer : undefined2;
           return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG, customizer);
         }
-        function conformsTo(object, source) {
-          return source == null || baseConformsTo(object, source, keys(source));
+        function conformsTo(object, source2) {
+          return source2 == null || baseConformsTo(object, source2, keys(source2));
         }
         function eq(value, other) {
           return value === other || value !== value && other !== other;
@@ -4271,7 +4275,7 @@ var require_lodash = __commonJS({
         var gte = createRelationalOperation(function(value, other) {
           return value >= other;
         });
-        var isArguments = baseIsArguments(function() {
+        var isArguments = baseIsArguments(/* @__PURE__ */ function() {
           return arguments;
         }()) ? baseIsArguments : function(value) {
           return isObjectLike(value) && hasOwnProperty.call(value, "callee") && !propertyIsEnumerable.call(value, "callee");
@@ -4352,14 +4356,14 @@ var require_lodash = __commonJS({
           return value != null && typeof value == "object";
         }
         var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
-        function isMatch(object, source) {
-          return object === source || baseIsMatch(object, source, getMatchData(source));
+        function isMatch(object, source2) {
+          return object === source2 || baseIsMatch(object, source2, getMatchData(source2));
         }
-        function isMatchWith(object, source, customizer) {
+        function isMatchWith(object, source2, customizer) {
           customizer = typeof customizer == "function" ? customizer : undefined2;
-          return baseIsMatch(object, source, getMatchData(source), customizer);
+          return baseIsMatch(object, source2, getMatchData(source2), customizer);
         }
-        function isNaN(value) {
+        function isNaN2(value) {
           return isNumber(value) && value != +value;
         }
         function isNative(value) {
@@ -4471,25 +4475,25 @@ var require_lodash = __commonJS({
         function toString(value) {
           return value == null ? "" : baseToString(value);
         }
-        var assign2 = createAssigner(function(object, source) {
-          if (isPrototype(source) || isArrayLike(source)) {
-            copyObject(source, keys(source), object);
+        var assign2 = createAssigner(function(object, source2) {
+          if (isPrototype(source2) || isArrayLike(source2)) {
+            copyObject(source2, keys(source2), object);
             return;
           }
-          for (var key in source) {
-            if (hasOwnProperty.call(source, key)) {
-              assignValue(object, key, source[key]);
+          for (var key in source2) {
+            if (hasOwnProperty.call(source2, key)) {
+              assignValue(object, key, source2[key]);
             }
           }
         });
-        var assignIn = createAssigner(function(object, source) {
-          copyObject(source, keysIn(source), object);
+        var assignIn = createAssigner(function(object, source2) {
+          copyObject(source2, keysIn(source2), object);
         });
-        var assignInWith = createAssigner(function(object, source, srcIndex, customizer) {
-          copyObject(source, keysIn(source), object, customizer);
+        var assignInWith = createAssigner(function(object, source2, srcIndex, customizer) {
+          copyObject(source2, keysIn(source2), object, customizer);
         });
-        var assignWith = createAssigner(function(object, source, srcIndex, customizer) {
-          copyObject(source, keys(source), object, customizer);
+        var assignWith = createAssigner(function(object, source2, srcIndex, customizer) {
+          copyObject(source2, keys(source2), object, customizer);
         });
         var at = flatRest(baseAt);
         function create(prototype, properties) {
@@ -4498,22 +4502,22 @@ var require_lodash = __commonJS({
         }
         var defaults = baseRest(function(object, sources) {
           object = Object2(object);
-          var index = -1;
+          var index2 = -1;
           var length = sources.length;
           var guard = length > 2 ? sources[2] : undefined2;
           if (guard && isIterateeCall(sources[0], sources[1], guard)) {
             length = 1;
           }
-          while (++index < length) {
-            var source = sources[index];
-            var props = keysIn(source);
+          while (++index2 < length) {
+            var source2 = sources[index2];
+            var props = keysIn(source2);
             var propsIndex = -1;
             var propsLength = props.length;
             while (++propsIndex < propsLength) {
               var key = props[propsIndex];
               var value = object[key];
               if (value === undefined2 || eq(value, objectProto[key]) && !hasOwnProperty.call(object, key)) {
-                object[key] = source[key];
+                object[key] = source2[key];
               }
             }
           }
@@ -4521,7 +4525,7 @@ var require_lodash = __commonJS({
         });
         var defaultsDeep = baseRest(function(args) {
           args.push(undefined2, customDefaultsMerge);
-          return apply(mergeWith, undefined2, args);
+          return apply2(mergeWith, undefined2, args);
         });
         function findKey(object, predicate) {
           return baseFindKey(object, getIteratee(predicate, 3), baseForOwn);
@@ -4547,7 +4551,7 @@ var require_lodash = __commonJS({
         function functionsIn(object) {
           return object == null ? [] : baseFunctions(object, keysIn(object));
         }
-        function get(object, path, defaultValue) {
+        function get3(object, path, defaultValue) {
           var result2 = object == null ? undefined2 : baseGet(object, path);
           return result2 === undefined2 ? defaultValue : result2;
         }
@@ -4562,7 +4566,7 @@ var require_lodash = __commonJS({
             value = nativeObjectToString.call(value);
           }
           result2[value] = key;
-        }, constant(identity2));
+        }, constant(identity));
         var invertBy = createInverter(function(result2, value, key) {
           if (value != null && typeof value.toString != "function") {
             value = nativeObjectToString.call(value);
@@ -4596,11 +4600,11 @@ var require_lodash = __commonJS({
           });
           return result2;
         }
-        var merge = createAssigner(function(object, source, srcIndex) {
-          baseMerge(object, source, srcIndex);
+        var merge = createAssigner(function(object, source2, srcIndex) {
+          baseMerge(object, source2, srcIndex);
         });
-        var mergeWith = createAssigner(function(object, source, srcIndex, customizer) {
-          baseMerge(object, source, srcIndex, customizer);
+        var mergeWith = createAssigner(function(object, source2, srcIndex, customizer) {
+          baseMerge(object, source2, srcIndex, customizer);
         });
         var omit = flatRest(function(object, paths) {
           var result2 = {};
@@ -4633,8 +4637,8 @@ var require_lodash = __commonJS({
           if (object == null) {
             return {};
           }
-          var props = arrayMap(getAllKeysIn(object), function(prop) {
-            return [prop];
+          var props = arrayMap(getAllKeysIn(object), function(prop2) {
+            return [prop2];
           });
           predicate = getIteratee(predicate);
           return basePickBy(object, props, function(value, path) {
@@ -4643,22 +4647,22 @@ var require_lodash = __commonJS({
         }
         function result(object, path, defaultValue) {
           path = castPath(path, object);
-          var index = -1, length = path.length;
+          var index2 = -1, length = path.length;
           if (!length) {
             length = 1;
             object = undefined2;
           }
-          while (++index < length) {
-            var value = object == null ? undefined2 : object[toKey(path[index])];
+          while (++index2 < length) {
+            var value = object == null ? undefined2 : object[toKey(path[index2])];
             if (value === undefined2) {
-              index = length;
+              index2 = length;
               value = defaultValue;
             }
             object = isFunction(value) ? value.call(object) : value;
           }
           return object;
         }
-        function set(object, path, value) {
+        function set2(object, path, value) {
           return object == null ? object : baseSet(object, path, value);
         }
         function setWith(object, path, value, customizer) {
@@ -4680,8 +4684,8 @@ var require_lodash = __commonJS({
               accumulator = {};
             }
           }
-          (isArrLike ? arrayEach : baseForOwn)(object, function(value, index, object2) {
-            return iteratee2(accumulator, value, index, object2);
+          (isArrLike ? arrayEach : baseForOwn)(object, function(value, index2, object2) {
+            return iteratee2(accumulator, value, index2, object2);
           });
           return accumulator;
         }
@@ -4727,7 +4731,7 @@ var require_lodash = __commonJS({
           number = toNumber(number);
           return baseInRange(number, start, end);
         }
-        function random(lower, upper, floating) {
+        function random2(lower, upper, floating) {
           if (floating && typeof floating != "boolean" && isIterateeCall(lower, upper, floating)) {
             upper = floating = undefined2;
           }
@@ -4763,9 +4767,9 @@ var require_lodash = __commonJS({
           }
           return baseRandom(lower, upper);
         }
-        var camelCase = createCompounder(function(result2, word, index) {
+        var camelCase = createCompounder(function(result2, word, index2) {
           word = word.toLowerCase();
-          return result2 + (index ? capitalize(word) : word);
+          return result2 + (index2 ? capitalize(word) : word);
         });
         function capitalize(string) {
           return upperFirst(toString(string).toLowerCase());
@@ -4791,11 +4795,11 @@ var require_lodash = __commonJS({
           string = toString(string);
           return string && reHasRegExpChar.test(string) ? string.replace(reRegExpChar, "\\$&") : string;
         }
-        var kebabCase = createCompounder(function(result2, word, index) {
-          return result2 + (index ? "-" : "") + word.toLowerCase();
+        var kebabCase = createCompounder(function(result2, word, index2) {
+          return result2 + (index2 ? "-" : "") + word.toLowerCase();
         });
-        var lowerCase = createCompounder(function(result2, word, index) {
-          return result2 + (index ? " " : "") + word.toLowerCase();
+        var lowerCase = createCompounder(function(result2, word, index2) {
+          return result2 + (index2 ? " " : "") + word.toLowerCase();
         });
         var lowerFirst = createCaseFirst("toLowerCase");
         function pad(string, length, chars) {
@@ -4840,8 +4844,8 @@ var require_lodash = __commonJS({
           var args = arguments, string = toString(args[0]);
           return args.length < 3 ? string : string.replace(args[1], args[2]);
         }
-        var snakeCase = createCompounder(function(result2, word, index) {
-          return result2 + (index ? "_" : "") + word.toLowerCase();
+        var snakeCase = createCompounder(function(result2, word, index2) {
+          return result2 + (index2 ? "_" : "") + word.toLowerCase();
         });
         function split(string, separator, limit) {
           if (limit && typeof limit != "number" && isIterateeCall(string, separator, limit)) {
@@ -4860,8 +4864,8 @@ var require_lodash = __commonJS({
           }
           return string.split(separator, limit);
         }
-        var startCase = createCompounder(function(result2, word, index) {
-          return result2 + (index ? " " : "") + upperFirst(word);
+        var startCase = createCompounder(function(result2, word, index2) {
+          return result2 + (index2 ? " " : "") + upperFirst(word);
         });
         function startsWith(string, target, position) {
           string = toString(string);
@@ -4869,7 +4873,7 @@ var require_lodash = __commonJS({
           target = baseToString(target);
           return string.slice(position, position + target.length) == target;
         }
-        function template(string, options, guard) {
+        function template2(string, options, guard) {
           var settings = lodash.templateSettings;
           if (guard && isIterateeCall(string, options, guard)) {
             options = undefined2;
@@ -4877,7 +4881,7 @@ var require_lodash = __commonJS({
           string = toString(string);
           options = assignInWith({}, options, settings, customDefaultsAssignIn);
           var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn), importsKeys = keys(imports), importsValues = baseValues(imports, importsKeys);
-          var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+          var isEscaping, isEvaluating, index2 = 0, interpolate = options.interpolate || reNoMatch, source2 = "__p += '";
           var reDelimiters = RegExp2(
             (options.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + "|" + (options.evaluate || reNoMatch).source + "|$",
             "g"
@@ -4885,34 +4889,34 @@ var require_lodash = __commonJS({
           var sourceURL = "//# sourceURL=" + (hasOwnProperty.call(options, "sourceURL") ? (options.sourceURL + "").replace(/\s/g, " ") : "lodash.templateSources[" + ++templateCounter + "]") + "\n";
           string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
             interpolateValue || (interpolateValue = esTemplateValue);
-            source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+            source2 += string.slice(index2, offset).replace(reUnescapedString, escapeStringChar);
             if (escapeValue) {
               isEscaping = true;
-              source += "' +\n__e(" + escapeValue + ") +\n'";
+              source2 += "' +\n__e(" + escapeValue + ") +\n'";
             }
             if (evaluateValue) {
               isEvaluating = true;
-              source += "';\n" + evaluateValue + ";\n__p += '";
+              source2 += "';\n" + evaluateValue + ";\n__p += '";
             }
             if (interpolateValue) {
-              source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+              source2 += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
             }
-            index = offset + match.length;
+            index2 = offset + match.length;
             return match;
           });
-          source += "';\n";
+          source2 += "';\n";
           var variable = hasOwnProperty.call(options, "variable") && options.variable;
           if (!variable) {
-            source = "with (obj) {\n" + source + "\n}\n";
+            source2 = "with (obj) {\n" + source2 + "\n}\n";
           } else if (reForbiddenIdentifierChars.test(variable)) {
             throw new Error2(INVALID_TEMPL_VAR_ERROR_TEXT);
           }
-          source = (isEvaluating ? source.replace(reEmptyStringLeading, "") : source).replace(reEmptyStringMiddle, "$1").replace(reEmptyStringTrailing, "$1;");
-          source = "function(" + (variable || "obj") + ") {\n" + (variable ? "" : "obj || (obj = {});\n") + "var __t, __p = ''" + (isEscaping ? ", __e = _.escape" : "") + (isEvaluating ? ", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n" : ";\n") + source + "return __p\n}";
+          source2 = (isEvaluating ? source2.replace(reEmptyStringLeading, "") : source2).replace(reEmptyStringMiddle, "$1").replace(reEmptyStringTrailing, "$1;");
+          source2 = "function(" + (variable || "obj") + ") {\n" + (variable ? "" : "obj || (obj = {});\n") + "var __t, __p = ''" + (isEscaping ? ", __e = _.escape" : "") + (isEvaluating ? ", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n" : ";\n") + source2 + "return __p\n}";
           var result2 = attempt(function() {
-            return Function2(importsKeys, sourceURL + "return " + source).apply(undefined2, importsValues);
+            return Function2(importsKeys, sourceURL + "return " + source2).apply(undefined2, importsValues);
           });
-          result2.source = source;
+          result2.source = source2;
           if (isError(result2)) {
             throw result2;
           }
@@ -4997,9 +5001,9 @@ var require_lodash = __commonJS({
               result2 = result2.slice(0, newEnd === undefined2 ? end : newEnd);
             }
           } else if (string.indexOf(baseToString(separator), end) != end) {
-            var index = result2.lastIndexOf(separator);
-            if (index > -1) {
-              result2 = result2.slice(0, index);
+            var index2 = result2.lastIndexOf(separator);
+            if (index2 > -1) {
+              result2 = result2.slice(0, index2);
             }
           }
           return result2 + omission;
@@ -5008,8 +5012,8 @@ var require_lodash = __commonJS({
           string = toString(string);
           return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
         }
-        var upperCase = createCompounder(function(result2, word, index) {
-          return result2 + (index ? " " : "") + word.toUpperCase();
+        var upperCase = createCompounder(function(result2, word, index2) {
+          return result2 + (index2 ? " " : "") + word.toUpperCase();
         });
         var upperFirst = createCaseFirst("toUpperCase");
         function words(string, pattern, guard) {
@@ -5022,7 +5026,7 @@ var require_lodash = __commonJS({
         }
         var attempt = baseRest(function(func, args) {
           try {
-            return apply(func, undefined2, args);
+            return apply2(func, undefined2, args);
           } catch (e) {
             return isError(e) ? e : new Error2(e);
           }
@@ -5043,17 +5047,17 @@ var require_lodash = __commonJS({
             return [toIteratee(pair[0]), pair[1]];
           });
           return baseRest(function(args) {
-            var index = -1;
-            while (++index < length) {
-              var pair = pairs[index];
-              if (apply(pair[0], this, args)) {
-                return apply(pair[1], this, args);
+            var index2 = -1;
+            while (++index2 < length) {
+              var pair = pairs[index2];
+              if (apply2(pair[0], this, args)) {
+                return apply2(pair[1], this, args);
               }
             }
           });
         }
-        function conforms(source) {
-          return baseConforms(baseClone(source, CLONE_DEEP_FLAG));
+        function conforms(source2) {
+          return baseConforms(baseClone(source2, CLONE_DEEP_FLAG));
         }
         function constant(value) {
           return function() {
@@ -5065,14 +5069,14 @@ var require_lodash = __commonJS({
         }
         var flow = createFlow();
         var flowRight = createFlow(true);
-        function identity2(value) {
+        function identity(value) {
           return value;
         }
         function iteratee(func) {
           return baseIteratee(typeof func == "function" ? func : baseClone(func, CLONE_DEEP_FLAG));
         }
-        function matches(source) {
-          return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
+        function matches(source2) {
+          return baseMatches(baseClone(source2, CLONE_DEEP_FLAG));
         }
         function matchesProperty(path, srcValue) {
           return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
@@ -5087,17 +5091,17 @@ var require_lodash = __commonJS({
             return baseInvoke(object, path, args);
           };
         });
-        function mixin(object, source, options) {
-          var props = keys(source), methodNames = baseFunctions(source, props);
-          if (options == null && !(isObject(source) && (methodNames.length || !props.length))) {
-            options = source;
-            source = object;
+        function mixin(object, source2, options) {
+          var props = keys(source2), methodNames = baseFunctions(source2, props);
+          if (options == null && !(isObject(source2) && (methodNames.length || !props.length))) {
+            options = source2;
+            source2 = object;
             object = this;
-            methodNames = baseFunctions(source, keys(source));
+            methodNames = baseFunctions(source2, keys(source2));
           }
           var chain2 = !(isObject(options) && "chain" in options) || !!options.chain, isFunc = isFunction(object);
           arrayEach(methodNames, function(methodName) {
-            var func = source[methodName];
+            var func = source2[methodName];
             object[methodName] = func;
             if (isFunc) {
               object.prototype[methodName] = function() {
@@ -5115,8 +5119,8 @@ var require_lodash = __commonJS({
           return object;
         }
         function noConflict() {
-          if (root._ === this) {
-            root._ = oldDash;
+          if (root29._ === this) {
+            root29._ = oldDash;
           }
           return this;
         }
@@ -5161,12 +5165,12 @@ var require_lodash = __commonJS({
           if (n < 1 || n > MAX_SAFE_INTEGER) {
             return [];
           }
-          var index = MAX_ARRAY_LENGTH, length = nativeMin(n, MAX_ARRAY_LENGTH);
+          var index2 = MAX_ARRAY_LENGTH, length = nativeMin(n, MAX_ARRAY_LENGTH);
           iteratee2 = getIteratee(iteratee2);
           n -= MAX_ARRAY_LENGTH;
           var result2 = baseTimes(length, iteratee2);
-          while (++index < n) {
-            iteratee2(index);
+          while (++index2 < n) {
+            iteratee2(index2);
           }
           return result2;
         }
@@ -5189,19 +5193,19 @@ var require_lodash = __commonJS({
         }, 1);
         var floor = createRound("floor");
         function max(array) {
-          return array && array.length ? baseExtremum(array, identity2, baseGt) : undefined2;
+          return array && array.length ? baseExtremum(array, identity, baseGt) : undefined2;
         }
         function maxBy(array, iteratee2) {
           return array && array.length ? baseExtremum(array, getIteratee(iteratee2, 2), baseGt) : undefined2;
         }
         function mean(array) {
-          return baseMean(array, identity2);
+          return baseMean(array, identity);
         }
         function meanBy(array, iteratee2) {
           return baseMean(array, getIteratee(iteratee2, 2));
         }
         function min(array) {
-          return array && array.length ? baseExtremum(array, identity2, baseLt) : undefined2;
+          return array && array.length ? baseExtremum(array, identity, baseLt) : undefined2;
         }
         function minBy(array, iteratee2) {
           return array && array.length ? baseExtremum(array, getIteratee(iteratee2, 2), baseLt) : undefined2;
@@ -5214,7 +5218,7 @@ var require_lodash = __commonJS({
           return minuend - subtrahend;
         }, 0);
         function sum(array) {
-          return array && array.length ? baseSum(array, identity2) : 0;
+          return array && array.length ? baseSum(array, identity) : 0;
         }
         function sumBy(array, iteratee2) {
           return array && array.length ? baseSum(array, getIteratee(iteratee2, 2)) : 0;
@@ -5295,7 +5299,7 @@ var require_lodash = __commonJS({
         lodash.nthArg = nthArg;
         lodash.omit = omit;
         lodash.omitBy = omitBy;
-        lodash.once = once;
+        lodash.once = once2;
         lodash.orderBy = orderBy;
         lodash.over = over;
         lodash.overArgs = overArgs;
@@ -5321,7 +5325,7 @@ var require_lodash = __commonJS({
         lodash.rest = rest;
         lodash.reverse = reverse;
         lodash.sampleSize = sampleSize;
-        lodash.set = set;
+        lodash.set = set2;
         lodash.setWith = setWith;
         lodash.shuffle = shuffle;
         lodash.slice = slice;
@@ -5360,7 +5364,7 @@ var require_lodash = __commonJS({
         lodash.valuesIn = valuesIn;
         lodash.without = without;
         lodash.words = words;
-        lodash.wrap = wrap;
+        lodash.wrap = wrap2;
         lodash.xor = xor;
         lodash.xorBy = xorBy;
         lodash.xorWith = xorWith;
@@ -5405,13 +5409,13 @@ var require_lodash = __commonJS({
         lodash.forInRight = forInRight;
         lodash.forOwn = forOwn;
         lodash.forOwnRight = forOwnRight;
-        lodash.get = get;
+        lodash.get = get3;
         lodash.gt = gt;
         lodash.gte = gte;
         lodash.has = has;
         lodash.hasIn = hasIn;
-        lodash.head = head;
-        lodash.identity = identity2;
+        lodash.head = head2;
+        lodash.identity = identity;
         lodash.includes = includes;
         lodash.indexOf = indexOf;
         lodash.inRange = inRange;
@@ -5436,7 +5440,7 @@ var require_lodash = __commonJS({
         lodash.isMap = isMap;
         lodash.isMatch = isMatch;
         lodash.isMatchWith = isMatchWith;
-        lodash.isNaN = isNaN;
+        lodash.isNaN = isNaN2;
         lodash.isNative = isNative;
         lodash.isNil = isNil;
         lodash.isNull = isNull;
@@ -5476,12 +5480,12 @@ var require_lodash = __commonJS({
         lodash.nth = nth;
         lodash.noConflict = noConflict;
         lodash.noop = noop2;
-        lodash.now = now2;
+        lodash.now = now;
         lodash.pad = pad;
         lodash.padEnd = padEnd;
         lodash.padStart = padStart;
         lodash.parseInt = parseInt2;
-        lodash.random = random;
+        lodash.random = random2;
         lodash.reduce = reduce;
         lodash.reduceRight = reduceRight;
         lodash.repeat = repeat;
@@ -5504,7 +5508,7 @@ var require_lodash = __commonJS({
         lodash.subtract = subtract;
         lodash.sum = sum;
         lodash.sumBy = sumBy;
-        lodash.template = template;
+        lodash.template = template2;
         lodash.times = times;
         lodash.toFinite = toFinite;
         lodash.toInteger = toInteger;
@@ -5524,24 +5528,24 @@ var require_lodash = __commonJS({
         lodash.upperFirst = upperFirst;
         lodash.each = forEach;
         lodash.eachRight = forEachRight;
-        lodash.first = head;
+        lodash.first = head2;
         mixin(lodash, function() {
-          var source = {};
+          var source2 = {};
           baseForOwn(lodash, function(func, methodName) {
             if (!hasOwnProperty.call(lodash.prototype, methodName)) {
-              source[methodName] = func;
+              source2[methodName] = func;
             }
           });
-          return source;
+          return source2;
         }(), { "chain": false });
-        lodash.VERSION = VERSION2;
+        lodash.VERSION = VERSION;
         arrayEach(["bind", "bindKey", "curry", "curryRight", "partial", "partialRight"], function(methodName) {
           lodash[methodName].placeholder = lodash;
         });
-        arrayEach(["drop", "take"], function(methodName, index) {
+        arrayEach(["drop", "take"], function(methodName, index2) {
           LazyWrapper.prototype[methodName] = function(n) {
             n = n === undefined2 ? 1 : nativeMax(toInteger(n), 0);
-            var result2 = this.__filtered__ && !index ? new LazyWrapper(this) : this.clone();
+            var result2 = this.__filtered__ && !index2 ? new LazyWrapper(this) : this.clone();
             if (result2.__filtered__) {
               result2.__takeCount__ = nativeMin(n, result2.__takeCount__);
             } else {
@@ -5556,8 +5560,8 @@ var require_lodash = __commonJS({
             return this.reverse()[methodName](n).reverse();
           };
         });
-        arrayEach(["filter", "map", "takeWhile"], function(methodName, index) {
-          var type = index + 1, isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+        arrayEach(["filter", "map", "takeWhile"], function(methodName, index2) {
+          var type = index2 + 1, isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
           LazyWrapper.prototype[methodName] = function(iteratee2) {
             var result2 = this.clone();
             result2.__iteratees__.push({
@@ -5568,20 +5572,20 @@ var require_lodash = __commonJS({
             return result2;
           };
         });
-        arrayEach(["head", "last"], function(methodName, index) {
-          var takeName = "take" + (index ? "Right" : "");
+        arrayEach(["head", "last"], function(methodName, index2) {
+          var takeName = "take" + (index2 ? "Right" : "");
           LazyWrapper.prototype[methodName] = function() {
             return this[takeName](1).value()[0];
           };
         });
-        arrayEach(["initial", "tail"], function(methodName, index) {
-          var dropName = "drop" + (index ? "" : "Right");
+        arrayEach(["initial", "tail"], function(methodName, index2) {
+          var dropName = "drop" + (index2 ? "" : "Right");
           LazyWrapper.prototype[methodName] = function() {
             return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
           };
         });
         LazyWrapper.prototype.compact = function() {
-          return this.filter(identity2);
+          return this.filter(identity);
         };
         LazyWrapper.prototype.find = function(predicate) {
           return this.filter(predicate).head();
@@ -5694,17 +5698,17 @@ var require_lodash = __commonJS({
         }
         return lodash;
       };
-      var _2 = runInContext();
+      var _3 = runInContext();
       if (typeof define == "function" && typeof define.amd == "object" && define.amd) {
-        root._ = _2;
+        root29._ = _3;
         define(function() {
-          return _2;
+          return _3;
         });
       } else if (freeModule) {
-        (freeModule.exports = _2)._ = _2;
-        freeExports._ = _2;
+        (freeModule.exports = _3)._ = _3;
+        freeExports._ = _3;
       } else {
-        root._ = _2;
+        root29._ = _3;
       }
     }).call(exports);
   }
@@ -5713,13 +5717,17 @@ var require_lodash = __commonJS({
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => VaultExplorerPlugin
+  default: () => VaultExplorerPlugin2
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian9 = require("obsidian");
+var import_obsidian22 = require("obsidian");
 
-// src/obsidian/vault-explorer-view.ts
-var import_obsidian7 = require("obsidian");
+// src/obsidian/vault-explorer-settings-tab.ts
+var import_js_logger4 = __toESM(require_logger());
+var import_obsidian4 = require("obsidian");
+
+// src/logger/index.ts
+var import_js_logger = __toESM(require_logger());
 
 // src/logger/constants.ts
 var LOG_LEVEL_OFF = "off";
@@ -5729,25 +5737,130 @@ var LOG_LEVEL_INFO = "info";
 var LOG_LEVEL_DEBUG = "debug";
 var LOG_LEVEL_TRACE = "trace";
 
-// node_modules/nanoid/url-alphabet/index.js
-var urlAlphabet = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
-
-// node_modules/nanoid/index.browser.js
-var nanoid = (size = 21) => {
-  let id = "";
-  let bytes = crypto.getRandomValues(new Uint8Array(size));
-  while (size--) {
-    id += urlAlphabet[bytes[size] & 63];
+// src/logger/index.ts
+var stringToLogLevel = (value) => {
+  switch (value) {
+    case LOG_LEVEL_OFF:
+      return import_js_logger.default.OFF;
+    case LOG_LEVEL_ERROR:
+      return import_js_logger.default.ERROR;
+    case LOG_LEVEL_WARN:
+      return import_js_logger.default.WARN;
+    case LOG_LEVEL_INFO:
+      return import_js_logger.default.INFO;
+    case LOG_LEVEL_DEBUG:
+      return import_js_logger.default.DEBUG;
+    case LOG_LEVEL_TRACE:
+      return import_js_logger.default.TRACE;
+    default:
+      throw new Error(`Unhandled log level: ${value}`);
   }
-  return id;
+};
+var formatMessageForLogger = (...args) => {
+  const head2 = args[0];
+  const body = args[1];
+  if (typeof args[0] == "object") {
+    const headers = head2;
+    const { fileName, functionName, message } = headers;
+    return {
+      message: `[${fileName}:${functionName}] ${message}`,
+      data: body
+    };
+  } else {
+    return { message: String(head2), data: body };
+  }
 };
 
-// src/svelte/shared/services/uuid.ts
-var generateUUID = () => {
-  return nanoid(16);
+// src/obsidian/utils.ts
+var import_obsidian = require("obsidian");
+var getAllObsidianProperties = (app) => {
+  const properties = app.metadataTypeManager.getAllProperties();
+  return Object.values(properties).sort(
+    (a, b) => a.name.localeCompare(b.name)
+  );
+};
+var getObsidianPropertiesByType = (app, type) => {
+  return getAllObsidianProperties(app).filter((p) => p.type === type);
+};
+var getDropdownOptionsForProperties = (properties, defaultValue = { "": "Select a property" }) => {
+  return properties.reduce(
+    (acc, cur) => {
+      acc[cur.name] = cur.name;
+      return acc;
+    },
+    defaultValue
+  );
+};
+
+// src/event/event-manager.ts
+var import_js_logger2 = __toESM(require_logger());
+var EventManager = class _EventManager {
+  constructor() {
+    this.eventListeners = {};
+  }
+  // Ensures only one instance is created
+  static getInstance() {
+    if (!_EventManager.instance) {
+      _EventManager.instance = new _EventManager();
+    }
+    return _EventManager.instance;
+  }
+  // Method to add an event listener
+  on(eventName, callback) {
+    if (!this.eventListeners[eventName]) {
+      this.eventListeners[eventName] = [];
+    }
+    this.eventListeners[eventName].push(callback);
+  }
+  // Method to remove an event listener
+  off(eventName, callbackToRemove) {
+    if (!this.eventListeners[eventName]) {
+      return;
+    }
+    this.eventListeners[eventName] = this.eventListeners[eventName].filter(
+      (callback) => callback !== callbackToRemove
+    );
+  }
+  // Method to trigger all callbacks associated with an event
+  emit(eventName, ...data) {
+    import_js_logger2.default.trace({
+      fileName: "event-manager.ts",
+      functionName: "emit",
+      message: "called"
+    });
+    if (!this.eventListeners[eventName]) {
+      import_js_logger2.default.debug(
+        {
+          fileName: "event-manager.ts",
+          functionName: "emit",
+          message: "no event listeners found for event. returning..."
+        },
+        { eventName }
+      );
+      return;
+    }
+    import_js_logger2.default.debug(
+      {
+        fileName: "event-manager.ts",
+        functionName: "emit",
+        message: "emiting event"
+      },
+      { eventName }
+    );
+    this.eventListeners[eventName].forEach((callback) => {
+      callback(...data);
+    });
+  }
 };
 
 // src/types/index.ts
+var TExplorerView = /* @__PURE__ */ ((TExplorerView4) => {
+  TExplorerView4["GRID"] = "grid";
+  TExplorerView4["LIST"] = "list";
+  TExplorerView4["FEED"] = "feed";
+  TExplorerView4["TABLE"] = "table";
+  return TExplorerView4;
+})(TExplorerView || {});
 var TextFilterCondition = /* @__PURE__ */ ((TextFilterCondition2) => {
   TextFilterCondition2["IS"] = "is";
   TextFilterCondition2["IS_NOT"] = "is-not";
@@ -5788,10 +5901,33 @@ var DateFilterCondition = /* @__PURE__ */ ((DateFilterCondition2) => {
   DateFilterCondition2["IS"] = "is";
   DateFilterCondition2["IS_BEFORE"] = "is-before";
   DateFilterCondition2["IS_AFTER"] = "is-after";
+  DateFilterCondition2["IS_ON_OR_BEFORE"] = "is-on-or-before";
+  DateFilterCondition2["IS_ON_OR_AFTER"] = "is-on-or-after";
   DateFilterCondition2["EXISTS"] = "exists";
   DateFilterCondition2["DOES_NOT_EXIST"] = "does-not-exist";
   return DateFilterCondition2;
 })(DateFilterCondition || {});
+var ContentFilterCondition = /* @__PURE__ */ ((ContentFilterCondition2) => {
+  ContentFilterCondition2["CONTAINS"] = "contains";
+  ContentFilterCondition2["DOES_NOT_CONTAIN"] = "does-not-contain";
+  ContentFilterCondition2["IS_EMPTY"] = "is-empty";
+  ContentFilterCondition2["IS_NOT_EMPTY"] = "is-not-empty";
+  return ContentFilterCondition2;
+})(ContentFilterCondition || {});
+var FolderFilterCondition = /* @__PURE__ */ ((FolderFilterCondition2) => {
+  FolderFilterCondition2["IS"] = "is";
+  FolderFilterCondition2["IS_NOT"] = "is-not";
+  return FolderFilterCondition2;
+})(FolderFilterCondition || {});
+var FileNameFilterCondition = /* @__PURE__ */ ((FileNameFilterCondition2) => {
+  FileNameFilterCondition2["IS"] = "is";
+  FileNameFilterCondition2["IS_NOT"] = "is-not";
+  FileNameFilterCondition2["CONTAINS"] = "contains";
+  FileNameFilterCondition2["DOES_NOT_CONTAIN"] = "does-not-contain";
+  FileNameFilterCondition2["STARTS_WITH"] = "starts-with";
+  FileNameFilterCondition2["ENDS_WITH"] = "ends-with";
+  return FileNameFilterCondition2;
+})(FileNameFilterCondition || {});
 var PropertyType = /* @__PURE__ */ ((PropertyType2) => {
   PropertyType2["TEXT"] = "text";
   PropertyType2["NUMBER"] = "number";
@@ -5801,264 +5937,3708 @@ var PropertyType = /* @__PURE__ */ ((PropertyType2) => {
   PropertyType2["DATETIME"] = "datetime";
   return PropertyType2;
 })(PropertyType || {});
+var FilterRuleType = /* @__PURE__ */ ((FilterRuleType3) => {
+  FilterRuleType3["PROPERTY"] = "property";
+  FilterRuleType3["FOLDER"] = "folder";
+  FilterRuleType3["FILE_NAME"] = "file-name";
+  FilterRuleType3["CONTENT"] = "content";
+  return FilterRuleType3;
+})(FilterRuleType || {});
+var DatePropertyFilterValue = /* @__PURE__ */ ((DatePropertyFilterValue2) => {
+  DatePropertyFilterValue2["TODAY"] = "today";
+  DatePropertyFilterValue2["TOMORROW"] = "tomorrow";
+  DatePropertyFilterValue2["YESTERDAY"] = "yesterday";
+  DatePropertyFilterValue2["ONE_WEEK_FROM_NOW"] = "one-week-from-now";
+  DatePropertyFilterValue2["ONE_WEEK_AGO"] = "one-week-ago";
+  DatePropertyFilterValue2["ONE_MONTH_FROM_NOW"] = "one-month-from-now";
+  DatePropertyFilterValue2["ONE_MONTH_AGO"] = "one-month-ago";
+  DatePropertyFilterValue2["CUSTOM"] = "custom";
+  return DatePropertyFilterValue2;
+})(DatePropertyFilterValue || {});
 
-// src/constants.ts
-var VAULT_EXPLORER_VIEW = "vault-explorer";
-var HOVER_LINK_SOURCE_ID = "vault-explorer-preview";
-var groupUUID = generateUUID();
-var DEFAULT_SETTINGS = {
-  logLevel: LOG_LEVEL_WARN,
-  properties: {
-    favorite: "",
-    url: "",
-    createdDate: "",
-    modifiedDate: "",
-    custom1: "",
-    custom2: "",
-    custom3: ""
-  },
-  filters: {
-    folder: "/",
-    search: "",
-    onlyFavorites: false,
-    timestamp: "all",
-    sort: "file-name-asc",
-    properties: {
-      selectedGroupId: groupUUID,
-      groups: [
-        {
-          id: groupUUID,
-          name: "Group 1",
-          filters: [],
-          isEnabled: true
-        }
-      ]
-    }
-  },
-  views: {
-    currentView: "grid" /* GRID */,
-    order: ["grid" /* GRID */, "list" /* LIST */],
-    titleWrapping: "normal"
-  },
-  pageSize: 50,
-  pluginVersion: null
-};
+// node_modules/svelte/src/version.js
+var PUBLIC_VERSION = "5";
 
-// node_modules/svelte/src/runtime/internal/utils.js
-function noop() {
+// node_modules/svelte/src/internal/disclose-version.js
+var _a, _b, _c;
+if (typeof window !== "undefined") {
+  ((_c = (_b = (_a = window.__svelte) != null ? _a : window.__svelte = {}).v) != null ? _c : _b.v = /* @__PURE__ */ new Set()).add(PUBLIC_VERSION);
 }
-function assign(tar, src) {
-  for (const k in src)
-    tar[k] = src[k];
-  return (
-    /** @type {T & S} */
-    tar
-  );
+
+// node_modules/svelte/src/internal/flags/index.js
+var legacy_mode_flag = false;
+var tracing_mode_flag = false;
+function enable_legacy_mode_flag() {
+  legacy_mode_flag = true;
 }
-function run(fn) {
-  return fn();
+
+// node_modules/svelte/src/internal/flags/legacy.js
+enable_legacy_mode_flag();
+
+// node_modules/svelte/src/constants.js
+var EACH_ITEM_REACTIVE = 1;
+var EACH_INDEX_REACTIVE = 1 << 1;
+var EACH_IS_CONTROLLED = 1 << 2;
+var EACH_IS_ANIMATED = 1 << 3;
+var EACH_ITEM_IMMUTABLE = 1 << 4;
+var PROPS_IS_IMMUTABLE = 1;
+var PROPS_IS_RUNES = 1 << 1;
+var PROPS_IS_UPDATED = 1 << 2;
+var PROPS_IS_BINDABLE = 1 << 3;
+var PROPS_IS_LAZY_INITIAL = 1 << 4;
+var TRANSITION_OUT = 1 << 1;
+var TRANSITION_GLOBAL = 1 << 2;
+var TEMPLATE_FRAGMENT = 1;
+var TEMPLATE_USE_IMPORT_NODE = 1 << 1;
+var HYDRATION_START = "[";
+var HYDRATION_START_ELSE = "[!";
+var HYDRATION_END = "]";
+var HYDRATION_ERROR = {};
+var ELEMENT_PRESERVE_ATTRIBUTE_CASE = 1 << 1;
+var UNINITIALIZED = Symbol();
+var FILENAME = Symbol("filename");
+var HMR = Symbol("hmr");
+var NAMESPACE_HTML = "http://www.w3.org/1999/xhtml";
+
+// node_modules/esm-env/dev-fallback.js
+var _a2, _b2;
+var node_env = (_b2 = (_a2 = globalThis.process) == null ? void 0 : _a2.env) == null ? void 0 : _b2.NODE_ENV;
+var dev_fallback_default = node_env && !node_env.toLowerCase().startsWith("prod");
+
+// node_modules/svelte/src/internal/shared/errors.js
+function lifecycle_outside_component(name) {
+  if (dev_fallback_default) {
+    const error = new Error(`lifecycle_outside_component
+\`${name}(...)\` can only be used during component initialisation
+https://svelte.dev/e/lifecycle_outside_component`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/lifecycle_outside_component`);
+  }
 }
-function blank_object() {
-  return /* @__PURE__ */ Object.create(null);
-}
-function run_all(fns) {
-  fns.forEach(run);
-}
+
+// node_modules/svelte/src/internal/shared/utils.js
+var is_array = Array.isArray;
+var index_of = Array.prototype.indexOf;
+var array_from = Array.from;
+var object_keys = Object.keys;
+var define_property = Object.defineProperty;
+var get_descriptor = Object.getOwnPropertyDescriptor;
+var get_descriptors = Object.getOwnPropertyDescriptors;
+var object_prototype = Object.prototype;
+var array_prototype = Array.prototype;
+var get_prototype_of = Object.getPrototypeOf;
+var is_extensible = Object.isExtensible;
 function is_function(thing) {
   return typeof thing === "function";
 }
-function safe_not_equal(a, b) {
-  return a != a ? b == b : a !== b || a && typeof a === "object" || typeof a === "function";
+var noop = () => {
+};
+function run(fn) {
+  return fn();
 }
-function is_empty(obj) {
-  return Object.keys(obj).length === 0;
-}
-function subscribe(store, ...callbacks) {
-  if (store == null) {
-    for (const callback of callbacks) {
-      callback(void 0);
-    }
-    return noop;
-  }
-  const unsub = store.subscribe(...callbacks);
-  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
-}
-function component_subscribe(component, store, callback) {
-  component.$$.on_destroy.push(subscribe(store, callback));
-}
-function create_slot(definition, ctx, $$scope, fn) {
-  if (definition) {
-    const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
-    return definition[0](slot_ctx);
+function run_all(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    arr[i]();
   }
 }
-function get_slot_context(definition, ctx, $$scope, fn) {
-  return definition[1] && fn ? assign($$scope.ctx.slice(), definition[1](fn(ctx))) : $$scope.ctx;
+
+// node_modules/svelte/src/internal/client/constants.js
+var DERIVED = 1 << 1;
+var EFFECT = 1 << 2;
+var RENDER_EFFECT = 1 << 3;
+var BLOCK_EFFECT = 1 << 4;
+var BRANCH_EFFECT = 1 << 5;
+var ROOT_EFFECT = 1 << 6;
+var BOUNDARY_EFFECT = 1 << 7;
+var UNOWNED = 1 << 8;
+var DISCONNECTED = 1 << 9;
+var CLEAN = 1 << 10;
+var DIRTY = 1 << 11;
+var MAYBE_DIRTY = 1 << 12;
+var INERT = 1 << 13;
+var DESTROYED = 1 << 14;
+var EFFECT_RAN = 1 << 15;
+var EFFECT_TRANSPARENT = 1 << 16;
+var LEGACY_DERIVED_PROP = 1 << 17;
+var INSPECT_EFFECT = 1 << 18;
+var HEAD_EFFECT = 1 << 19;
+var EFFECT_HAS_DERIVED = 1 << 20;
+var EFFECT_IS_UPDATING = 1 << 21;
+var STATE_SYMBOL = Symbol("$state");
+var LEGACY_PROPS = Symbol("legacy props");
+var LOADING_ATTR_SYMBOL = Symbol("");
+
+// node_modules/svelte/src/internal/client/errors.js
+function bind_invalid_checkbox_value() {
+  if (dev_fallback_default) {
+    const error = new Error(`bind_invalid_checkbox_value
+Using \`bind:value\` together with a checkbox input is not allowed. Use \`bind:checked\` instead
+https://svelte.dev/e/bind_invalid_checkbox_value`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/bind_invalid_checkbox_value`);
+  }
 }
-function get_slot_changes(definition, $$scope, dirty, fn) {
-  if (definition[2] && fn) {
-    const lets = definition[2](fn(dirty));
-    if ($$scope.dirty === void 0) {
-      return lets;
+function derived_references_self() {
+  if (dev_fallback_default) {
+    const error = new Error(`derived_references_self
+A derived value cannot reference itself recursively
+https://svelte.dev/e/derived_references_self`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/derived_references_self`);
+  }
+}
+function effect_in_teardown(rune) {
+  if (dev_fallback_default) {
+    const error = new Error(`effect_in_teardown
+\`${rune}\` cannot be used inside an effect cleanup function
+https://svelte.dev/e/effect_in_teardown`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/effect_in_teardown`);
+  }
+}
+function effect_in_unowned_derived() {
+  if (dev_fallback_default) {
+    const error = new Error(`effect_in_unowned_derived
+Effect cannot be created inside a \`$derived\` value that was not itself created inside an effect
+https://svelte.dev/e/effect_in_unowned_derived`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/effect_in_unowned_derived`);
+  }
+}
+function effect_orphan(rune) {
+  if (dev_fallback_default) {
+    const error = new Error(`effect_orphan
+\`${rune}\` can only be used inside an effect (e.g. during component initialisation)
+https://svelte.dev/e/effect_orphan`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/effect_orphan`);
+  }
+}
+function effect_update_depth_exceeded() {
+  if (dev_fallback_default) {
+    const error = new Error(`effect_update_depth_exceeded
+Maximum update depth exceeded. This can happen when a reactive block or effect repeatedly sets a new value. Svelte limits the number of nested updates to prevent infinite loops
+https://svelte.dev/e/effect_update_depth_exceeded`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/effect_update_depth_exceeded`);
+  }
+}
+function hydration_failed() {
+  if (dev_fallback_default) {
+    const error = new Error(`hydration_failed
+Failed to hydrate the application
+https://svelte.dev/e/hydration_failed`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/hydration_failed`);
+  }
+}
+function lifecycle_legacy_only(name) {
+  if (dev_fallback_default) {
+    const error = new Error(`lifecycle_legacy_only
+\`${name}(...)\` cannot be used in runes mode
+https://svelte.dev/e/lifecycle_legacy_only`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/lifecycle_legacy_only`);
+  }
+}
+function props_invalid_value(key) {
+  if (dev_fallback_default) {
+    const error = new Error(`props_invalid_value
+Cannot do \`bind:${key}={undefined}\` when \`${key}\` has a fallback value
+https://svelte.dev/e/props_invalid_value`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/props_invalid_value`);
+  }
+}
+function rune_outside_svelte(rune) {
+  if (dev_fallback_default) {
+    const error = new Error(`rune_outside_svelte
+The \`${rune}\` rune is only available inside \`.svelte\` and \`.svelte.js/ts\` files
+https://svelte.dev/e/rune_outside_svelte`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/rune_outside_svelte`);
+  }
+}
+function state_descriptors_fixed() {
+  if (dev_fallback_default) {
+    const error = new Error(`state_descriptors_fixed
+Property descriptors defined on \`$state\` objects must contain \`value\` and always be \`enumerable\`, \`configurable\` and \`writable\`.
+https://svelte.dev/e/state_descriptors_fixed`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/state_descriptors_fixed`);
+  }
+}
+function state_prototype_fixed() {
+  if (dev_fallback_default) {
+    const error = new Error(`state_prototype_fixed
+Cannot set prototype of \`$state\` object
+https://svelte.dev/e/state_prototype_fixed`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/state_prototype_fixed`);
+  }
+}
+function state_unsafe_mutation() {
+  if (dev_fallback_default) {
+    const error = new Error(`state_unsafe_mutation
+Updating state inside a derived or a template expression is forbidden. If the value should not be reactive, declare it without \`$state\`
+https://svelte.dev/e/state_unsafe_mutation`);
+    error.name = "Svelte error";
+    throw error;
+  } else {
+    throw new Error(`https://svelte.dev/e/state_unsafe_mutation`);
+  }
+}
+
+// node_modules/svelte/src/internal/client/warnings.js
+var bold = "font-weight: bold";
+var normal = "font-weight: normal";
+function hydration_attribute_changed(attribute, html2, value) {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] hydration_attribute_changed
+%cThe \`${attribute}\` attribute on \`${html2}\` changed its value between server and client renders. The client value, \`${value}\`, will be ignored in favour of the server value
+https://svelte.dev/e/hydration_attribute_changed`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/hydration_attribute_changed`);
+  }
+}
+function hydration_html_changed(location) {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] hydration_html_changed
+%c${location ? `The value of an \`{@html ...}\` block ${location} changed between server and client renders. The client value will be ignored in favour of the server value` : "The value of an `{@html ...}` block changed between server and client renders. The client value will be ignored in favour of the server value"}
+https://svelte.dev/e/hydration_html_changed`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/hydration_html_changed`);
+  }
+}
+function hydration_mismatch(location) {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] hydration_mismatch
+%c${location ? `Hydration failed because the initial UI does not match what was rendered on the server. The error occurred near ${location}` : "Hydration failed because the initial UI does not match what was rendered on the server"}
+https://svelte.dev/e/hydration_mismatch`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/hydration_mismatch`);
+  }
+}
+function lifecycle_double_unmount() {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] lifecycle_double_unmount
+%cTried to unmount a component that was not mounted
+https://svelte.dev/e/lifecycle_double_unmount`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/lifecycle_double_unmount`);
+  }
+}
+function state_proxy_equality_mismatch(operator) {
+  if (dev_fallback_default) {
+    console.warn(`%c[svelte] state_proxy_equality_mismatch
+%cReactive \`$state(...)\` proxies and the values they proxy have different identities. Because of this, comparisons with \`${operator}\` will produce unexpected results
+https://svelte.dev/e/state_proxy_equality_mismatch`, bold, normal);
+  } else {
+    console.warn(`https://svelte.dev/e/state_proxy_equality_mismatch`);
+  }
+}
+
+// node_modules/svelte/src/internal/client/dom/hydration.js
+var hydrating = false;
+function set_hydrating(value) {
+  hydrating = value;
+}
+var hydrate_node;
+function set_hydrate_node(node) {
+  if (node === null) {
+    hydration_mismatch();
+    throw HYDRATION_ERROR;
+  }
+  return hydrate_node = node;
+}
+function hydrate_next() {
+  return set_hydrate_node(
+    /** @type {TemplateNode} */
+    get_next_sibling(hydrate_node)
+  );
+}
+function reset(node) {
+  if (!hydrating) return;
+  if (get_next_sibling(hydrate_node) !== null) {
+    hydration_mismatch();
+    throw HYDRATION_ERROR;
+  }
+  hydrate_node = node;
+}
+function next(count = 1) {
+  if (hydrating) {
+    var i = count;
+    var node = hydrate_node;
+    while (i--) {
+      node = /** @type {TemplateNode} */
+      get_next_sibling(node);
     }
-    if (typeof lets === "object") {
-      const merged = [];
-      const len = Math.max($$scope.dirty.length, lets.length);
-      for (let i = 0; i < len; i += 1) {
-        merged[i] = $$scope.dirty[i] | lets[i];
+    hydrate_node = node;
+  }
+}
+function remove_nodes() {
+  var depth = 0;
+  var node = hydrate_node;
+  while (true) {
+    if (node.nodeType === 8) {
+      var data = (
+        /** @type {Comment} */
+        node.data
+      );
+      if (data === HYDRATION_END) {
+        if (depth === 0) return node;
+        depth -= 1;
+      } else if (data === HYDRATION_START || data === HYDRATION_START_ELSE) {
+        depth += 1;
       }
-      return merged;
     }
-    return $$scope.dirty | lets;
+    var next2 = (
+      /** @type {TemplateNode} */
+      get_next_sibling(node)
+    );
+    node.remove();
+    node = next2;
   }
-  return $$scope.dirty;
-}
-function update_slot_base(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn) {
-  if (slot_changes) {
-    const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
-    slot.p(slot_context, slot_changes);
-  }
-}
-function get_all_dirty_from_scope($$scope) {
-  if ($$scope.ctx.length > 32) {
-    const dirty = [];
-    const length = $$scope.ctx.length / 32;
-    for (let i = 0; i < length; i++) {
-      dirty[i] = -1;
-    }
-    return dirty;
-  }
-  return -1;
-}
-function null_to_empty(value) {
-  return value == null ? "" : value;
 }
 
-// node_modules/svelte/src/runtime/internal/globals.js
-var globals = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : (
-  // @ts-ignore Node typings have this
-  global
-);
-
-// node_modules/svelte/src/runtime/internal/ResizeObserverSingleton.js
-var ResizeObserverSingleton = class {
-  /** @param {ResizeObserverOptions} options */
-  constructor(options) {
-    /**
-     * @private
-     * @readonly
-     * @type {WeakMap<Element, import('./private.js').Listener>}
-     */
-    __publicField(this, "_listeners", "WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0);
-    /**
-     * @private
-     * @type {ResizeObserver}
-     */
-    __publicField(this, "_observer");
-    /** @type {ResizeObserverOptions} */
-    __publicField(this, "options");
-    this.options = options;
+// node_modules/svelte/src/internal/client/dev/tracing.js
+var tracing_expressions = null;
+function get_stack(label) {
+  let error = Error();
+  const stack2 = error.stack;
+  if (stack2) {
+    const lines = stack2.split("\n");
+    const new_lines = ["\n"];
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line === "Error") {
+        continue;
+      }
+      if (line.includes("validate_each_keys")) {
+        return null;
+      }
+      if (line.includes("svelte/src/internal")) {
+        continue;
+      }
+      new_lines.push(line);
+    }
+    if (new_lines.length === 1) {
+      return null;
+    }
+    define_property(error, "stack", {
+      value: new_lines.join("\n")
+    });
+    define_property(error, "name", {
+      // 'Error' suffix is required for stack traces to be rendered properly
+      value: `${label}Error`
+    });
   }
-  /**
-   * @param {Element} element
-   * @param {import('./private.js').Listener} listener
-   * @returns {() => void}
-   */
-  observe(element2, listener) {
-    this._listeners.set(element2, listener);
-    this._getObserver().observe(element2, this.options);
-    return () => {
-      this._listeners.delete(element2);
-      this._observer.unobserve(element2);
+  return error;
+}
+
+// node_modules/svelte/src/internal/client/proxy.js
+function proxy(value) {
+  if (typeof value !== "object" || value === null || STATE_SYMBOL in value) {
+    return value;
+  }
+  const prototype = get_prototype_of(value);
+  if (prototype !== object_prototype && prototype !== array_prototype) {
+    return value;
+  }
+  var sources = /* @__PURE__ */ new Map();
+  var is_proxied_array = is_array(value);
+  var version = state(0);
+  var stack2 = dev_fallback_default && tracing_mode_flag ? get_stack("CreatedAt") : null;
+  var reaction = active_reaction;
+  var with_parent = (fn) => {
+    var previous_reaction = active_reaction;
+    set_active_reaction(reaction);
+    var result = fn();
+    set_active_reaction(previous_reaction);
+    return result;
+  };
+  if (is_proxied_array) {
+    sources.set("length", state(
+      /** @type {any[]} */
+      value.length,
+      stack2
+    ));
+  }
+  return new Proxy(
+    /** @type {any} */
+    value,
+    {
+      defineProperty(_3, prop2, descriptor) {
+        if (!("value" in descriptor) || descriptor.configurable === false || descriptor.enumerable === false || descriptor.writable === false) {
+          state_descriptors_fixed();
+        }
+        var s = sources.get(prop2);
+        if (s === void 0) {
+          s = with_parent(() => state(descriptor.value, stack2));
+          sources.set(prop2, s);
+        } else {
+          set(
+            s,
+            with_parent(() => proxy(descriptor.value))
+          );
+        }
+        return true;
+      },
+      deleteProperty(target, prop2) {
+        var s = sources.get(prop2);
+        if (s === void 0) {
+          if (prop2 in target) {
+            sources.set(
+              prop2,
+              with_parent(() => state(UNINITIALIZED, stack2))
+            );
+            update_version(version);
+          }
+        } else {
+          if (is_proxied_array && typeof prop2 === "string") {
+            var ls = (
+              /** @type {Source<number>} */
+              sources.get("length")
+            );
+            var n = Number(prop2);
+            if (Number.isInteger(n) && n < ls.v) {
+              set(ls, n);
+            }
+          }
+          set(s, UNINITIALIZED);
+          update_version(version);
+        }
+        return true;
+      },
+      get(target, prop2, receiver) {
+        var _a3;
+        if (prop2 === STATE_SYMBOL) {
+          return value;
+        }
+        var s = sources.get(prop2);
+        var exists = prop2 in target;
+        if (s === void 0 && (!exists || ((_a3 = get_descriptor(target, prop2)) == null ? void 0 : _a3.writable))) {
+          s = with_parent(() => state(proxy(exists ? target[prop2] : UNINITIALIZED), stack2));
+          sources.set(prop2, s);
+        }
+        if (s !== void 0) {
+          var v = get(s);
+          return v === UNINITIALIZED ? void 0 : v;
+        }
+        return Reflect.get(target, prop2, receiver);
+      },
+      getOwnPropertyDescriptor(target, prop2) {
+        var descriptor = Reflect.getOwnPropertyDescriptor(target, prop2);
+        if (descriptor && "value" in descriptor) {
+          var s = sources.get(prop2);
+          if (s) descriptor.value = get(s);
+        } else if (descriptor === void 0) {
+          var source2 = sources.get(prop2);
+          var value2 = source2 == null ? void 0 : source2.v;
+          if (source2 !== void 0 && value2 !== UNINITIALIZED) {
+            return {
+              enumerable: true,
+              configurable: true,
+              value: value2,
+              writable: true
+            };
+          }
+        }
+        return descriptor;
+      },
+      has(target, prop2) {
+        var _a3;
+        if (prop2 === STATE_SYMBOL) {
+          return true;
+        }
+        var s = sources.get(prop2);
+        var has = s !== void 0 && s.v !== UNINITIALIZED || Reflect.has(target, prop2);
+        if (s !== void 0 || active_effect !== null && (!has || ((_a3 = get_descriptor(target, prop2)) == null ? void 0 : _a3.writable))) {
+          if (s === void 0) {
+            s = with_parent(() => state(has ? proxy(target[prop2]) : UNINITIALIZED, stack2));
+            sources.set(prop2, s);
+          }
+          var value2 = get(s);
+          if (value2 === UNINITIALIZED) {
+            return false;
+          }
+        }
+        return has;
+      },
+      set(target, prop2, value2, receiver) {
+        var _a3;
+        var s = sources.get(prop2);
+        var has = prop2 in target;
+        if (is_proxied_array && prop2 === "length") {
+          for (var i = value2; i < /** @type {Source<number>} */
+          s.v; i += 1) {
+            var other_s = sources.get(i + "");
+            if (other_s !== void 0) {
+              set(other_s, UNINITIALIZED);
+            } else if (i in target) {
+              other_s = with_parent(() => state(UNINITIALIZED, stack2));
+              sources.set(i + "", other_s);
+            }
+          }
+        }
+        if (s === void 0) {
+          if (!has || ((_a3 = get_descriptor(target, prop2)) == null ? void 0 : _a3.writable)) {
+            s = with_parent(() => state(void 0, stack2));
+            set(
+              s,
+              with_parent(() => proxy(value2))
+            );
+            sources.set(prop2, s);
+          }
+        } else {
+          has = s.v !== UNINITIALIZED;
+          set(
+            s,
+            with_parent(() => proxy(value2))
+          );
+        }
+        var descriptor = Reflect.getOwnPropertyDescriptor(target, prop2);
+        if (descriptor == null ? void 0 : descriptor.set) {
+          descriptor.set.call(receiver, value2);
+        }
+        if (!has) {
+          if (is_proxied_array && typeof prop2 === "string") {
+            var ls = (
+              /** @type {Source<number>} */
+              sources.get("length")
+            );
+            var n = Number(prop2);
+            if (Number.isInteger(n) && n >= ls.v) {
+              set(ls, n + 1);
+            }
+          }
+          update_version(version);
+        }
+        return true;
+      },
+      ownKeys(target) {
+        get(version);
+        var own_keys = Reflect.ownKeys(target).filter((key2) => {
+          var source3 = sources.get(key2);
+          return source3 === void 0 || source3.v !== UNINITIALIZED;
+        });
+        for (var [key, source2] of sources) {
+          if (source2.v !== UNINITIALIZED && !(key in target)) {
+            own_keys.push(key);
+          }
+        }
+        return own_keys;
+      },
+      setPrototypeOf() {
+        state_prototype_fixed();
+      }
+    }
+  );
+}
+function update_version(signal, d = 1) {
+  set(signal, signal.v + d);
+}
+function get_proxied_value(value) {
+  try {
+    if (value !== null && typeof value === "object" && STATE_SYMBOL in value) {
+      return value[STATE_SYMBOL];
+    }
+  } catch (e) {
+  }
+  return value;
+}
+function is(a, b) {
+  return Object.is(get_proxied_value(a), get_proxied_value(b));
+}
+
+// node_modules/svelte/src/internal/client/dev/equality.js
+function init_array_prototype_warnings() {
+  const array_prototype2 = Array.prototype;
+  const cleanup = Array.__svelte_cleanup;
+  if (cleanup) {
+    cleanup();
+  }
+  const { indexOf, lastIndexOf, includes } = array_prototype2;
+  array_prototype2.indexOf = function(item, from_index) {
+    const index2 = indexOf.call(this, item, from_index);
+    if (index2 === -1) {
+      for (let i = from_index != null ? from_index : 0; i < this.length; i += 1) {
+        if (get_proxied_value(this[i]) === item) {
+          state_proxy_equality_mismatch("array.indexOf(...)");
+          break;
+        }
+      }
+    }
+    return index2;
+  };
+  array_prototype2.lastIndexOf = function(item, from_index) {
+    const index2 = lastIndexOf.call(this, item, from_index != null ? from_index : this.length - 1);
+    if (index2 === -1) {
+      for (let i = 0; i <= (from_index != null ? from_index : this.length - 1); i += 1) {
+        if (get_proxied_value(this[i]) === item) {
+          state_proxy_equality_mismatch("array.lastIndexOf(...)");
+          break;
+        }
+      }
+    }
+    return index2;
+  };
+  array_prototype2.includes = function(item, from_index) {
+    const has = includes.call(this, item, from_index);
+    if (!has) {
+      for (let i = 0; i < this.length; i += 1) {
+        if (get_proxied_value(this[i]) === item) {
+          state_proxy_equality_mismatch("array.includes(...)");
+          break;
+        }
+      }
+    }
+    return has;
+  };
+  Array.__svelte_cleanup = () => {
+    array_prototype2.indexOf = indexOf;
+    array_prototype2.lastIndexOf = lastIndexOf;
+    array_prototype2.includes = includes;
+  };
+}
+
+// node_modules/svelte/src/internal/client/dom/operations.js
+var $window;
+var $document;
+var is_firefox;
+var first_child_getter;
+var next_sibling_getter;
+function init_operations() {
+  if ($window !== void 0) {
+    return;
+  }
+  $window = window;
+  $document = document;
+  is_firefox = /Firefox/.test(navigator.userAgent);
+  var element_prototype = Element.prototype;
+  var node_prototype = Node.prototype;
+  var text_prototype = Text.prototype;
+  first_child_getter = get_descriptor(node_prototype, "firstChild").get;
+  next_sibling_getter = get_descriptor(node_prototype, "nextSibling").get;
+  if (is_extensible(element_prototype)) {
+    element_prototype.__click = void 0;
+    element_prototype.__className = void 0;
+    element_prototype.__attributes = null;
+    element_prototype.__style = void 0;
+    element_prototype.__e = void 0;
+  }
+  if (is_extensible(text_prototype)) {
+    text_prototype.__t = void 0;
+  }
+  if (dev_fallback_default) {
+    element_prototype.__svelte_meta = null;
+    init_array_prototype_warnings();
+  }
+}
+function create_text(value = "") {
+  return document.createTextNode(value);
+}
+// @__NO_SIDE_EFFECTS__
+function get_first_child(node) {
+  return first_child_getter.call(node);
+}
+// @__NO_SIDE_EFFECTS__
+function get_next_sibling(node) {
+  return next_sibling_getter.call(node);
+}
+function child(node, is_text) {
+  if (!hydrating) {
+    return /* @__PURE__ */ get_first_child(node);
+  }
+  var child2 = (
+    /** @type {TemplateNode} */
+    /* @__PURE__ */ get_first_child(hydrate_node)
+  );
+  if (child2 === null) {
+    child2 = hydrate_node.appendChild(create_text());
+  } else if (is_text && child2.nodeType !== 3) {
+    var text2 = create_text();
+    child2 == null ? void 0 : child2.before(text2);
+    set_hydrate_node(text2);
+    return text2;
+  }
+  set_hydrate_node(child2);
+  return child2;
+}
+function first_child(fragment, is_text) {
+  var _a3, _b3;
+  if (!hydrating) {
+    var first = (
+      /** @type {DocumentFragment} */
+      /* @__PURE__ */ get_first_child(
+        /** @type {Node} */
+        fragment
+      )
+    );
+    if (first instanceof Comment && first.data === "") return /* @__PURE__ */ get_next_sibling(first);
+    return first;
+  }
+  if (is_text && ((_a3 = hydrate_node) == null ? void 0 : _a3.nodeType) !== 3) {
+    var text2 = create_text();
+    (_b3 = hydrate_node) == null ? void 0 : _b3.before(text2);
+    set_hydrate_node(text2);
+    return text2;
+  }
+  return hydrate_node;
+}
+function sibling(node, count = 1, is_text = false) {
+  let next_sibling = hydrating ? hydrate_node : node;
+  var last_sibling;
+  while (count--) {
+    last_sibling = next_sibling;
+    next_sibling = /** @type {TemplateNode} */
+    /* @__PURE__ */ get_next_sibling(next_sibling);
+  }
+  if (!hydrating) {
+    return next_sibling;
+  }
+  var type = next_sibling == null ? void 0 : next_sibling.nodeType;
+  if (is_text && type !== 3) {
+    var text2 = create_text();
+    if (next_sibling === null) {
+      last_sibling == null ? void 0 : last_sibling.after(text2);
+    } else {
+      next_sibling.before(text2);
+    }
+    set_hydrate_node(text2);
+    return text2;
+  }
+  set_hydrate_node(next_sibling);
+  return (
+    /** @type {TemplateNode} */
+    next_sibling
+  );
+}
+function clear_text_content(node) {
+  node.textContent = "";
+}
+
+// node_modules/svelte/src/internal/client/reactivity/equality.js
+function equals(value) {
+  return value === this.v;
+}
+function safe_not_equal(a, b) {
+  return a != a ? b == b : a !== b || a !== null && typeof a === "object" || typeof a === "function";
+}
+function safe_equals(value) {
+  return !safe_not_equal(value, this.v);
+}
+
+// node_modules/svelte/src/internal/client/reactivity/deriveds.js
+// @__NO_SIDE_EFFECTS__
+function derived(fn) {
+  var flags = DERIVED | DIRTY;
+  var parent_derived = active_reaction !== null && (active_reaction.f & DERIVED) !== 0 ? (
+    /** @type {Derived} */
+    active_reaction
+  ) : null;
+  if (active_effect === null || parent_derived !== null && (parent_derived.f & UNOWNED) !== 0) {
+    flags |= UNOWNED;
+  } else {
+    active_effect.f |= EFFECT_HAS_DERIVED;
+  }
+  const signal = {
+    ctx: component_context,
+    deps: null,
+    effects: null,
+    equals,
+    f: flags,
+    fn,
+    reactions: null,
+    rv: 0,
+    v: (
+      /** @type {V} */
+      null
+    ),
+    wv: 0,
+    parent: parent_derived != null ? parent_derived : active_effect
+  };
+  if (dev_fallback_default && tracing_mode_flag) {
+    signal.created = get_stack("CreatedAt");
+  }
+  return signal;
+}
+// @__NO_SIDE_EFFECTS__
+function derived_safe_equal(fn) {
+  const signal = /* @__PURE__ */ derived(fn);
+  signal.equals = safe_equals;
+  return signal;
+}
+function destroy_derived_effects(derived3) {
+  var effects = derived3.effects;
+  if (effects !== null) {
+    derived3.effects = null;
+    for (var i = 0; i < effects.length; i += 1) {
+      destroy_effect(
+        /** @type {Effect} */
+        effects[i]
+      );
+    }
+  }
+}
+var stack = [];
+function get_derived_parent_effect(derived3) {
+  var parent = derived3.parent;
+  while (parent !== null) {
+    if ((parent.f & DERIVED) === 0) {
+      return (
+        /** @type {Effect} */
+        parent
+      );
+    }
+    parent = parent.parent;
+  }
+  return null;
+}
+function execute_derived(derived3) {
+  var value;
+  var prev_active_effect = active_effect;
+  set_active_effect(get_derived_parent_effect(derived3));
+  if (dev_fallback_default) {
+    let prev_inspect_effects = inspect_effects;
+    set_inspect_effects(/* @__PURE__ */ new Set());
+    try {
+      if (stack.includes(derived3)) {
+        derived_references_self();
+      }
+      stack.push(derived3);
+      destroy_derived_effects(derived3);
+      value = update_reaction(derived3);
+    } finally {
+      set_active_effect(prev_active_effect);
+      set_inspect_effects(prev_inspect_effects);
+      stack.pop();
+    }
+  } else {
+    try {
+      destroy_derived_effects(derived3);
+      value = update_reaction(derived3);
+    } finally {
+      set_active_effect(prev_active_effect);
+    }
+  }
+  return value;
+}
+function update_derived(derived3) {
+  var value = execute_derived(derived3);
+  var status = (skip_reaction || (derived3.f & UNOWNED) !== 0) && derived3.deps !== null ? MAYBE_DIRTY : CLEAN;
+  set_signal_status(derived3, status);
+  if (!derived3.equals(value)) {
+    derived3.v = value;
+    derived3.wv = increment_write_version();
+  }
+}
+
+// node_modules/svelte/src/internal/client/reactivity/effects.js
+function validate_effect(rune) {
+  if (active_effect === null && active_reaction === null) {
+    effect_orphan(rune);
+  }
+  if (active_reaction !== null && (active_reaction.f & UNOWNED) !== 0 && active_effect === null) {
+    effect_in_unowned_derived();
+  }
+  if (is_destroying_effect) {
+    effect_in_teardown(rune);
+  }
+}
+function push_effect(effect2, parent_effect) {
+  var parent_last = parent_effect.last;
+  if (parent_last === null) {
+    parent_effect.last = parent_effect.first = effect2;
+  } else {
+    parent_last.next = effect2;
+    effect2.prev = parent_last;
+    parent_effect.last = effect2;
+  }
+}
+function create_effect(type, fn, sync, push2 = true) {
+  var _a3;
+  var parent = active_effect;
+  if (dev_fallback_default) {
+    while (parent !== null && (parent.f & INSPECT_EFFECT) !== 0) {
+      parent = parent.parent;
+    }
+  }
+  var effect2 = {
+    ctx: component_context,
+    deps: null,
+    nodes_start: null,
+    nodes_end: null,
+    f: type | DIRTY,
+    first: null,
+    fn,
+    last: null,
+    next: null,
+    parent,
+    prev: null,
+    teardown: null,
+    transitions: null,
+    wv: 0
+  };
+  if (dev_fallback_default) {
+    effect2.component_function = dev_current_component_function;
+  }
+  if (sync) {
+    try {
+      update_effect(effect2);
+      effect2.f |= EFFECT_RAN;
+    } catch (e) {
+      destroy_effect(effect2);
+      throw e;
+    }
+  } else if (fn !== null) {
+    schedule_effect(effect2);
+  }
+  var inert = sync && effect2.deps === null && effect2.first === null && effect2.nodes_start === null && effect2.teardown === null && (effect2.f & (EFFECT_HAS_DERIVED | BOUNDARY_EFFECT)) === 0;
+  if (!inert && push2) {
+    if (parent !== null) {
+      push_effect(effect2, parent);
+    }
+    if (active_reaction !== null && (active_reaction.f & DERIVED) !== 0) {
+      var derived3 = (
+        /** @type {Derived} */
+        active_reaction
+      );
+      ((_a3 = derived3.effects) != null ? _a3 : derived3.effects = []).push(effect2);
+    }
+  }
+  return effect2;
+}
+function teardown(fn) {
+  const effect2 = create_effect(RENDER_EFFECT, null, false);
+  set_signal_status(effect2, CLEAN);
+  effect2.teardown = fn;
+  return effect2;
+}
+function user_effect(fn) {
+  var _a3;
+  validate_effect("$effect");
+  var defer = active_effect !== null && (active_effect.f & BRANCH_EFFECT) !== 0 && component_context !== null && !component_context.m;
+  if (dev_fallback_default) {
+    define_property(fn, "name", {
+      value: "$effect"
+    });
+  }
+  if (defer) {
+    var context = (
+      /** @type {ComponentContext} */
+      component_context
+    );
+    ((_a3 = context.e) != null ? _a3 : context.e = []).push({
+      fn,
+      effect: active_effect,
+      reaction: active_reaction
+    });
+  } else {
+    var signal = effect(fn);
+    return signal;
+  }
+}
+function user_pre_effect(fn) {
+  validate_effect("$effect.pre");
+  if (dev_fallback_default) {
+    define_property(fn, "name", {
+      value: "$effect.pre"
+    });
+  }
+  return render_effect(fn);
+}
+function effect_root(fn) {
+  const effect2 = create_effect(ROOT_EFFECT, fn, true);
+  return () => {
+    destroy_effect(effect2);
+  };
+}
+function component_root(fn) {
+  const effect2 = create_effect(ROOT_EFFECT, fn, true);
+  return (options = {}) => {
+    return new Promise((fulfil) => {
+      if (options.outro) {
+        pause_effect(effect2, () => {
+          destroy_effect(effect2);
+          fulfil(void 0);
+        });
+      } else {
+        destroy_effect(effect2);
+        fulfil(void 0);
+      }
+    });
+  };
+}
+function effect(fn) {
+  return create_effect(EFFECT, fn, false);
+}
+function legacy_pre_effect(deps, fn) {
+  var context = (
+    /** @type {ComponentContextLegacy} */
+    component_context
+  );
+  var token = { effect: null, ran: false };
+  context.l.r1.push(token);
+  token.effect = render_effect(() => {
+    deps();
+    if (token.ran) return;
+    token.ran = true;
+    set(context.l.r2, true);
+    untrack(fn);
+  });
+}
+function legacy_pre_effect_reset() {
+  var context = (
+    /** @type {ComponentContextLegacy} */
+    component_context
+  );
+  render_effect(() => {
+    if (!get(context.l.r2)) return;
+    for (var token of context.l.r1) {
+      var effect2 = token.effect;
+      if ((effect2.f & CLEAN) !== 0) {
+        set_signal_status(effect2, MAYBE_DIRTY);
+      }
+      if (check_dirtiness(effect2)) {
+        update_effect(effect2);
+      }
+      token.ran = false;
+    }
+    context.l.r2.v = false;
+  });
+}
+function render_effect(fn) {
+  return create_effect(RENDER_EFFECT, fn, true);
+}
+function template_effect(fn, thunks = [], d = derived) {
+  const deriveds = thunks.map(d);
+  const effect2 = () => fn(...deriveds.map(get));
+  if (dev_fallback_default) {
+    define_property(effect2, "name", {
+      value: "{expression}"
+    });
+  }
+  return block(effect2);
+}
+function block(fn, flags = 0) {
+  return create_effect(RENDER_EFFECT | BLOCK_EFFECT | flags, fn, true);
+}
+function branch(fn, push2 = true) {
+  return create_effect(RENDER_EFFECT | BRANCH_EFFECT, fn, true, push2);
+}
+function execute_effect_teardown(effect2) {
+  var teardown2 = effect2.teardown;
+  if (teardown2 !== null) {
+    const previously_destroying_effect = is_destroying_effect;
+    const previous_reaction = active_reaction;
+    set_is_destroying_effect(true);
+    set_active_reaction(null);
+    try {
+      teardown2.call(null);
+    } finally {
+      set_is_destroying_effect(previously_destroying_effect);
+      set_active_reaction(previous_reaction);
+    }
+  }
+}
+function destroy_effect_children(signal, remove_dom = false) {
+  var effect2 = signal.first;
+  signal.first = signal.last = null;
+  while (effect2 !== null) {
+    var next2 = effect2.next;
+    if ((effect2.f & ROOT_EFFECT) !== 0) {
+      effect2.parent = null;
+    } else {
+      destroy_effect(effect2, remove_dom);
+    }
+    effect2 = next2;
+  }
+}
+function destroy_block_effect_children(signal) {
+  var effect2 = signal.first;
+  while (effect2 !== null) {
+    var next2 = effect2.next;
+    if ((effect2.f & BRANCH_EFFECT) === 0) {
+      destroy_effect(effect2);
+    }
+    effect2 = next2;
+  }
+}
+function destroy_effect(effect2, remove_dom = true) {
+  var removed = false;
+  if ((remove_dom || (effect2.f & HEAD_EFFECT) !== 0) && effect2.nodes_start !== null) {
+    remove_effect_dom(
+      effect2.nodes_start,
+      /** @type {TemplateNode} */
+      effect2.nodes_end
+    );
+    removed = true;
+  }
+  destroy_effect_children(effect2, remove_dom && !removed);
+  remove_reactions(effect2, 0);
+  set_signal_status(effect2, DESTROYED);
+  var transitions = effect2.transitions;
+  if (transitions !== null) {
+    for (const transition2 of transitions) {
+      transition2.stop();
+    }
+  }
+  execute_effect_teardown(effect2);
+  var parent = effect2.parent;
+  if (parent !== null && parent.first !== null) {
+    unlink_effect(effect2);
+  }
+  if (dev_fallback_default) {
+    effect2.component_function = null;
+  }
+  effect2.next = effect2.prev = effect2.teardown = effect2.ctx = effect2.deps = effect2.fn = effect2.nodes_start = effect2.nodes_end = null;
+}
+function remove_effect_dom(node, end) {
+  while (node !== null) {
+    var next2 = node === end ? null : (
+      /** @type {TemplateNode} */
+      get_next_sibling(node)
+    );
+    node.remove();
+    node = next2;
+  }
+}
+function unlink_effect(effect2) {
+  var parent = effect2.parent;
+  var prev = effect2.prev;
+  var next2 = effect2.next;
+  if (prev !== null) prev.next = next2;
+  if (next2 !== null) next2.prev = prev;
+  if (parent !== null) {
+    if (parent.first === effect2) parent.first = next2;
+    if (parent.last === effect2) parent.last = prev;
+  }
+}
+function pause_effect(effect2, callback) {
+  var transitions = [];
+  pause_children(effect2, transitions, true);
+  run_out_transitions(transitions, () => {
+    destroy_effect(effect2);
+    if (callback) callback();
+  });
+}
+function run_out_transitions(transitions, fn) {
+  var remaining = transitions.length;
+  if (remaining > 0) {
+    var check = () => --remaining || fn();
+    for (var transition2 of transitions) {
+      transition2.out(check);
+    }
+  } else {
+    fn();
+  }
+}
+function pause_children(effect2, transitions, local) {
+  if ((effect2.f & INERT) !== 0) return;
+  effect2.f ^= INERT;
+  if (effect2.transitions !== null) {
+    for (const transition2 of effect2.transitions) {
+      if (transition2.is_global || local) {
+        transitions.push(transition2);
+      }
+    }
+  }
+  var child2 = effect2.first;
+  while (child2 !== null) {
+    var sibling2 = child2.next;
+    var transparent = (child2.f & EFFECT_TRANSPARENT) !== 0 || (child2.f & BRANCH_EFFECT) !== 0;
+    pause_children(child2, transitions, transparent ? local : false);
+    child2 = sibling2;
+  }
+}
+function resume_effect(effect2) {
+  resume_children(effect2, true);
+}
+function resume_children(effect2, local) {
+  if ((effect2.f & INERT) === 0) return;
+  effect2.f ^= INERT;
+  if ((effect2.f & CLEAN) === 0) {
+    effect2.f ^= CLEAN;
+  }
+  if (check_dirtiness(effect2)) {
+    set_signal_status(effect2, DIRTY);
+    schedule_effect(effect2);
+  }
+  var child2 = effect2.first;
+  while (child2 !== null) {
+    var sibling2 = child2.next;
+    var transparent = (child2.f & EFFECT_TRANSPARENT) !== 0 || (child2.f & BRANCH_EFFECT) !== 0;
+    resume_children(child2, transparent ? local : false);
+    child2 = sibling2;
+  }
+  if (effect2.transitions !== null) {
+    for (const transition2 of effect2.transitions) {
+      if (transition2.is_global || local) {
+        transition2.in();
+      }
+    }
+  }
+}
+
+// node_modules/svelte/src/internal/client/dom/task.js
+var request_idle_callback = typeof requestIdleCallback === "undefined" ? (cb) => setTimeout(cb, 1) : requestIdleCallback;
+var micro_tasks = [];
+var idle_tasks = [];
+function run_micro_tasks() {
+  var tasks = micro_tasks;
+  micro_tasks = [];
+  run_all(tasks);
+}
+function run_idle_tasks() {
+  var tasks = idle_tasks;
+  idle_tasks = [];
+  run_all(tasks);
+}
+function queue_micro_task(fn) {
+  if (micro_tasks.length === 0) {
+    queueMicrotask(run_micro_tasks);
+  }
+  micro_tasks.push(fn);
+}
+function queue_idle_task(fn) {
+  if (idle_tasks.length === 0) {
+    request_idle_callback(run_idle_tasks);
+  }
+  idle_tasks.push(fn);
+}
+function flush_tasks() {
+  if (micro_tasks.length > 0) {
+    run_micro_tasks();
+  }
+  if (idle_tasks.length > 0) {
+    run_idle_tasks();
+  }
+}
+
+// node_modules/svelte/src/internal/client/runtime.js
+var handled_errors = /* @__PURE__ */ new WeakSet();
+var is_throwing_error = false;
+var is_flushing = false;
+var last_scheduled_effect = null;
+var is_updating_effect = false;
+var is_destroying_effect = false;
+function set_is_destroying_effect(value) {
+  is_destroying_effect = value;
+}
+var queued_root_effects = [];
+var dev_effect_stack = [];
+var active_reaction = null;
+var untracking = false;
+function set_active_reaction(reaction) {
+  active_reaction = reaction;
+}
+var active_effect = null;
+function set_active_effect(effect2) {
+  active_effect = effect2;
+}
+var reaction_sources = null;
+function push_reaction_value(value) {
+  if (active_reaction !== null && active_reaction.f & EFFECT_IS_UPDATING) {
+    if (reaction_sources === null) {
+      reaction_sources = [value];
+    } else {
+      reaction_sources.push(value);
+    }
+  }
+}
+var new_deps = null;
+var skipped_deps = 0;
+var untracked_writes = null;
+function set_untracked_writes(value) {
+  untracked_writes = value;
+}
+var write_version = 1;
+var read_version = 0;
+var skip_reaction = false;
+var captured_signals = null;
+function increment_write_version() {
+  return ++write_version;
+}
+function check_dirtiness(reaction) {
+  var _a3, _b3;
+  var flags = reaction.f;
+  if ((flags & DIRTY) !== 0) {
+    return true;
+  }
+  if ((flags & MAYBE_DIRTY) !== 0) {
+    var dependencies = reaction.deps;
+    var is_unowned = (flags & UNOWNED) !== 0;
+    if (dependencies !== null) {
+      var i;
+      var dependency;
+      var is_disconnected = (flags & DISCONNECTED) !== 0;
+      var is_unowned_connected = is_unowned && active_effect !== null && !skip_reaction;
+      var length = dependencies.length;
+      if (is_disconnected || is_unowned_connected) {
+        var derived3 = (
+          /** @type {Derived} */
+          reaction
+        );
+        var parent = derived3.parent;
+        for (i = 0; i < length; i++) {
+          dependency = dependencies[i];
+          if (is_disconnected || !((_a3 = dependency == null ? void 0 : dependency.reactions) == null ? void 0 : _a3.includes(derived3))) {
+            ((_b3 = dependency.reactions) != null ? _b3 : dependency.reactions = []).push(derived3);
+          }
+        }
+        if (is_disconnected) {
+          derived3.f ^= DISCONNECTED;
+        }
+        if (is_unowned_connected && parent !== null && (parent.f & UNOWNED) === 0) {
+          derived3.f ^= UNOWNED;
+        }
+      }
+      for (i = 0; i < length; i++) {
+        dependency = dependencies[i];
+        if (check_dirtiness(
+          /** @type {Derived} */
+          dependency
+        )) {
+          update_derived(
+            /** @type {Derived} */
+            dependency
+          );
+        }
+        if (dependency.wv > reaction.wv) {
+          return true;
+        }
+      }
+    }
+    if (!is_unowned || active_effect !== null && !skip_reaction) {
+      set_signal_status(reaction, CLEAN);
+    }
+  }
+  return false;
+}
+function propagate_error(error, effect2) {
+  var current = effect2;
+  while (current !== null) {
+    if ((current.f & BOUNDARY_EFFECT) !== 0) {
+      try {
+        current.fn(error);
+        return;
+      } catch (e) {
+        current.f ^= BOUNDARY_EFFECT;
+      }
+    }
+    current = current.parent;
+  }
+  is_throwing_error = false;
+  throw error;
+}
+function should_rethrow_error(effect2) {
+  return (effect2.f & DESTROYED) === 0 && (effect2.parent === null || (effect2.parent.f & BOUNDARY_EFFECT) === 0);
+}
+function handle_error(error, effect2, previous_effect, component_context2) {
+  var _a3, _b3;
+  if (is_throwing_error) {
+    if (previous_effect === null) {
+      is_throwing_error = false;
+    }
+    if (should_rethrow_error(effect2)) {
+      throw error;
+    }
+    return;
+  }
+  if (previous_effect !== null) {
+    is_throwing_error = true;
+  }
+  if (dev_fallback_default && component_context2 !== null && error instanceof Error && !handled_errors.has(error)) {
+    handled_errors.add(error);
+    const component_stack = [];
+    const effect_name = (_a3 = effect2.fn) == null ? void 0 : _a3.name;
+    if (effect_name) {
+      component_stack.push(effect_name);
+    }
+    let current_context = component_context2;
+    while (current_context !== null) {
+      var filename = (_b3 = current_context.function) == null ? void 0 : _b3[FILENAME];
+      if (filename) {
+        const file = filename.split("/").pop();
+        component_stack.push(file);
+      }
+      current_context = current_context.p;
+    }
+    const indent = is_firefox ? "  " : "	";
+    define_property(error, "message", {
+      value: error.message + `
+${component_stack.map((name) => `
+${indent}in ${name}`).join("")}
+`
+    });
+    define_property(error, "component_stack", {
+      value: component_stack
+    });
+    const stack2 = error.stack;
+    if (stack2) {
+      const lines = stack2.split("\n");
+      const new_lines = [];
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.includes("svelte/src/internal")) {
+          continue;
+        }
+        new_lines.push(line);
+      }
+      define_property(error, "stack", {
+        value: new_lines.join("\n")
+      });
+    }
+  }
+  propagate_error(error, effect2);
+  if (should_rethrow_error(effect2)) {
+    throw error;
+  }
+}
+function schedule_possible_effect_self_invalidation(signal, effect2, root29 = true) {
+  var reactions = signal.reactions;
+  if (reactions === null) return;
+  for (var i = 0; i < reactions.length; i++) {
+    var reaction = reactions[i];
+    if (reaction_sources == null ? void 0 : reaction_sources.includes(signal)) continue;
+    if ((reaction.f & DERIVED) !== 0) {
+      schedule_possible_effect_self_invalidation(
+        /** @type {Derived} */
+        reaction,
+        effect2,
+        false
+      );
+    } else if (effect2 === reaction) {
+      if (root29) {
+        set_signal_status(reaction, DIRTY);
+      } else if ((reaction.f & CLEAN) !== 0) {
+        set_signal_status(reaction, MAYBE_DIRTY);
+      }
+      schedule_effect(
+        /** @type {Effect} */
+        reaction
+      );
+    }
+  }
+}
+function update_reaction(reaction) {
+  var _a3, _b3;
+  var previous_deps = new_deps;
+  var previous_skipped_deps = skipped_deps;
+  var previous_untracked_writes = untracked_writes;
+  var previous_reaction = active_reaction;
+  var previous_skip_reaction = skip_reaction;
+  var previous_reaction_sources = reaction_sources;
+  var previous_component_context = component_context;
+  var previous_untracking = untracking;
+  var flags = reaction.f;
+  new_deps = /** @type {null | Value[]} */
+  null;
+  skipped_deps = 0;
+  untracked_writes = null;
+  skip_reaction = (flags & UNOWNED) !== 0 && (untracking || !is_updating_effect || active_reaction === null);
+  active_reaction = (flags & (BRANCH_EFFECT | ROOT_EFFECT)) === 0 ? reaction : null;
+  reaction_sources = null;
+  set_component_context(reaction.ctx);
+  untracking = false;
+  read_version++;
+  reaction.f |= EFFECT_IS_UPDATING;
+  try {
+    var result = (
+      /** @type {Function} */
+      (0, reaction.fn)()
+    );
+    var deps = reaction.deps;
+    if (new_deps !== null) {
+      var i;
+      remove_reactions(reaction, skipped_deps);
+      if (deps !== null && skipped_deps > 0) {
+        deps.length = skipped_deps + new_deps.length;
+        for (i = 0; i < new_deps.length; i++) {
+          deps[skipped_deps + i] = new_deps[i];
+        }
+      } else {
+        reaction.deps = deps = new_deps;
+      }
+      if (!skip_reaction) {
+        for (i = skipped_deps; i < deps.length; i++) {
+          ((_b3 = (_a3 = deps[i]).reactions) != null ? _b3 : _a3.reactions = []).push(reaction);
+        }
+      }
+    } else if (deps !== null && skipped_deps < deps.length) {
+      remove_reactions(reaction, skipped_deps);
+      deps.length = skipped_deps;
+    }
+    if (is_runes() && untracked_writes !== null && !untracking && deps !== null && (reaction.f & (DERIVED | MAYBE_DIRTY | DIRTY)) === 0) {
+      for (i = 0; i < /** @type {Source[]} */
+      untracked_writes.length; i++) {
+        schedule_possible_effect_self_invalidation(
+          untracked_writes[i],
+          /** @type {Effect} */
+          reaction
+        );
+      }
+    }
+    if (previous_reaction !== null && previous_reaction !== reaction) {
+      read_version++;
+      if (untracked_writes !== null) {
+        if (previous_untracked_writes === null) {
+          previous_untracked_writes = untracked_writes;
+        } else {
+          previous_untracked_writes.push(.../** @type {Source[]} */
+          untracked_writes);
+        }
+      }
+    }
+    return result;
+  } finally {
+    new_deps = previous_deps;
+    skipped_deps = previous_skipped_deps;
+    untracked_writes = previous_untracked_writes;
+    active_reaction = previous_reaction;
+    skip_reaction = previous_skip_reaction;
+    reaction_sources = previous_reaction_sources;
+    set_component_context(previous_component_context);
+    untracking = previous_untracking;
+    reaction.f ^= EFFECT_IS_UPDATING;
+  }
+}
+function remove_reaction(signal, dependency) {
+  let reactions = dependency.reactions;
+  if (reactions !== null) {
+    var index2 = index_of.call(reactions, signal);
+    if (index2 !== -1) {
+      var new_length = reactions.length - 1;
+      if (new_length === 0) {
+        reactions = dependency.reactions = null;
+      } else {
+        reactions[index2] = reactions[new_length];
+        reactions.pop();
+      }
+    }
+  }
+  if (reactions === null && (dependency.f & DERIVED) !== 0 && // Destroying a child effect while updating a parent effect can cause a dependency to appear
+  // to be unused, when in fact it is used by the currently-updating parent. Checking `new_deps`
+  // allows us to skip the expensive work of disconnecting and immediately reconnecting it
+  (new_deps === null || !new_deps.includes(dependency))) {
+    set_signal_status(dependency, MAYBE_DIRTY);
+    if ((dependency.f & (UNOWNED | DISCONNECTED)) === 0) {
+      dependency.f ^= DISCONNECTED;
+    }
+    destroy_derived_effects(
+      /** @type {Derived} **/
+      dependency
+    );
+    remove_reactions(
+      /** @type {Derived} **/
+      dependency,
+      0
+    );
+  }
+}
+function remove_reactions(signal, start_index) {
+  var dependencies = signal.deps;
+  if (dependencies === null) return;
+  for (var i = start_index; i < dependencies.length; i++) {
+    remove_reaction(signal, dependencies[i]);
+  }
+}
+function update_effect(effect2) {
+  var flags = effect2.f;
+  if ((flags & DESTROYED) !== 0) {
+    return;
+  }
+  set_signal_status(effect2, CLEAN);
+  var previous_effect = active_effect;
+  var previous_component_context = component_context;
+  var was_updating_effect = is_updating_effect;
+  active_effect = effect2;
+  is_updating_effect = true;
+  if (dev_fallback_default) {
+    var previous_component_fn = dev_current_component_function;
+    set_dev_current_component_function(effect2.component_function);
+  }
+  try {
+    if ((flags & BLOCK_EFFECT) !== 0) {
+      destroy_block_effect_children(effect2);
+    } else {
+      destroy_effect_children(effect2);
+    }
+    execute_effect_teardown(effect2);
+    var teardown2 = update_reaction(effect2);
+    effect2.teardown = typeof teardown2 === "function" ? teardown2 : null;
+    effect2.wv = write_version;
+    var deps = effect2.deps;
+    if (dev_fallback_default && tracing_mode_flag && (effect2.f & DIRTY) !== 0 && deps !== null) {
+      for (let i = 0; i < deps.length; i++) {
+        var dep = deps[i];
+        if (dep.trace_need_increase) {
+          dep.wv = increment_write_version();
+          dep.trace_need_increase = void 0;
+          dep.trace_v = void 0;
+        }
+      }
+    }
+    if (dev_fallback_default) {
+      dev_effect_stack.push(effect2);
+    }
+  } catch (error) {
+    handle_error(error, effect2, previous_effect, previous_component_context || effect2.ctx);
+  } finally {
+    is_updating_effect = was_updating_effect;
+    active_effect = previous_effect;
+    if (dev_fallback_default) {
+      set_dev_current_component_function(previous_component_fn);
+    }
+  }
+}
+function log_effect_stack() {
+  console.error(
+    "Last ten effects were: ",
+    dev_effect_stack.slice(-10).map((d) => d.fn)
+  );
+  dev_effect_stack = [];
+}
+function infinite_loop_guard() {
+  try {
+    effect_update_depth_exceeded();
+  } catch (error) {
+    if (dev_fallback_default) {
+      define_property(error, "stack", {
+        value: ""
+      });
+    }
+    if (last_scheduled_effect !== null) {
+      if (dev_fallback_default) {
+        try {
+          handle_error(error, last_scheduled_effect, null, null);
+        } catch (e) {
+          log_effect_stack();
+          throw e;
+        }
+      } else {
+        handle_error(error, last_scheduled_effect, null, null);
+      }
+    } else {
+      if (dev_fallback_default) {
+        log_effect_stack();
+      }
+      throw error;
+    }
+  }
+}
+function flush_queued_root_effects() {
+  var was_updating_effect = is_updating_effect;
+  try {
+    var flush_count = 0;
+    is_updating_effect = true;
+    while (queued_root_effects.length > 0) {
+      if (flush_count++ > 1e3) {
+        infinite_loop_guard();
+      }
+      var root_effects = queued_root_effects;
+      var length = root_effects.length;
+      queued_root_effects = [];
+      for (var i = 0; i < length; i++) {
+        var collected_effects = process_effects(root_effects[i]);
+        flush_queued_effects(collected_effects);
+      }
+      old_values.clear();
+    }
+  } finally {
+    is_flushing = false;
+    is_updating_effect = was_updating_effect;
+    last_scheduled_effect = null;
+    if (dev_fallback_default) {
+      dev_effect_stack = [];
+    }
+  }
+}
+function flush_queued_effects(effects) {
+  var length = effects.length;
+  if (length === 0) return;
+  for (var i = 0; i < length; i++) {
+    var effect2 = effects[i];
+    if ((effect2.f & (DESTROYED | INERT)) === 0) {
+      try {
+        if (check_dirtiness(effect2)) {
+          update_effect(effect2);
+          if (effect2.deps === null && effect2.first === null && effect2.nodes_start === null) {
+            if (effect2.teardown === null) {
+              unlink_effect(effect2);
+            } else {
+              effect2.fn = null;
+            }
+          }
+        }
+      } catch (error) {
+        handle_error(error, effect2, null, effect2.ctx);
+      }
+    }
+  }
+}
+function schedule_effect(signal) {
+  if (!is_flushing) {
+    is_flushing = true;
+    queueMicrotask(flush_queued_root_effects);
+  }
+  var effect2 = last_scheduled_effect = signal;
+  while (effect2.parent !== null) {
+    effect2 = effect2.parent;
+    var flags = effect2.f;
+    if ((flags & (ROOT_EFFECT | BRANCH_EFFECT)) !== 0) {
+      if ((flags & CLEAN) === 0) return;
+      effect2.f ^= CLEAN;
+    }
+  }
+  queued_root_effects.push(effect2);
+}
+function process_effects(root29) {
+  var effects = [];
+  var effect2 = root29;
+  while (effect2 !== null) {
+    var flags = effect2.f;
+    var is_branch = (flags & (BRANCH_EFFECT | ROOT_EFFECT)) !== 0;
+    var is_skippable_branch = is_branch && (flags & CLEAN) !== 0;
+    if (!is_skippable_branch && (flags & INERT) === 0) {
+      if ((flags & EFFECT) !== 0) {
+        effects.push(effect2);
+      } else if (is_branch) {
+        effect2.f ^= CLEAN;
+      } else {
+        try {
+          if (check_dirtiness(effect2)) {
+            update_effect(effect2);
+          }
+        } catch (error) {
+          handle_error(error, effect2, null, effect2.ctx);
+        }
+      }
+      var child2 = effect2.first;
+      if (child2 !== null) {
+        effect2 = child2;
+        continue;
+      }
+    }
+    var parent = effect2.parent;
+    effect2 = effect2.next;
+    while (effect2 === null && parent !== null) {
+      effect2 = parent.next;
+      parent = parent.parent;
+    }
+  }
+  return effects;
+}
+function flushSync(fn) {
+  var result;
+  if (fn) {
+    is_flushing = true;
+    flush_queued_root_effects();
+    result = fn();
+  }
+  flush_tasks();
+  while (queued_root_effects.length > 0) {
+    is_flushing = true;
+    flush_queued_root_effects();
+    flush_tasks();
+  }
+  return (
+    /** @type {T} */
+    result
+  );
+}
+async function tick() {
+  await Promise.resolve();
+  flushSync();
+}
+function get(signal) {
+  var flags = signal.f;
+  var is_derived = (flags & DERIVED) !== 0;
+  if (captured_signals !== null) {
+    captured_signals.add(signal);
+  }
+  if (active_reaction !== null && !untracking) {
+    if (!(reaction_sources == null ? void 0 : reaction_sources.includes(signal))) {
+      var deps = active_reaction.deps;
+      if (signal.rv < read_version) {
+        signal.rv = read_version;
+        if (new_deps === null && deps !== null && deps[skipped_deps] === signal) {
+          skipped_deps++;
+        } else if (new_deps === null) {
+          new_deps = [signal];
+        } else if (!skip_reaction || !new_deps.includes(signal)) {
+          new_deps.push(signal);
+        }
+      }
+    }
+  } else if (is_derived && /** @type {Derived} */
+  signal.deps === null && /** @type {Derived} */
+  signal.effects === null) {
+    var derived3 = (
+      /** @type {Derived} */
+      signal
+    );
+    var parent = derived3.parent;
+    if (parent !== null && (parent.f & UNOWNED) === 0) {
+      derived3.f ^= UNOWNED;
+    }
+  }
+  if (is_derived) {
+    derived3 = /** @type {Derived} */
+    signal;
+    if (check_dirtiness(derived3)) {
+      update_derived(derived3);
+    }
+  }
+  if (dev_fallback_default && tracing_mode_flag && tracing_expressions !== null && active_reaction !== null && tracing_expressions.reaction === active_reaction) {
+    if (signal.debug) {
+      signal.debug();
+    } else if (signal.created) {
+      var entry = tracing_expressions.entries.get(signal);
+      if (entry === void 0) {
+        entry = { read: [] };
+        tracing_expressions.entries.set(signal, entry);
+      }
+      entry.read.push(get_stack("TracedAt"));
+    }
+  }
+  if (is_destroying_effect && old_values.has(signal)) {
+    return old_values.get(signal);
+  }
+  return signal.v;
+}
+function untrack(fn) {
+  var previous_untracking = untracking;
+  try {
+    untracking = true;
+    return fn();
+  } finally {
+    untracking = previous_untracking;
+  }
+}
+var STATUS_MASK = ~(DIRTY | MAYBE_DIRTY | CLEAN);
+function set_signal_status(signal, status) {
+  signal.f = signal.f & STATUS_MASK | status;
+}
+function deep_read_state(value) {
+  if (typeof value !== "object" || !value || value instanceof EventTarget) {
+    return;
+  }
+  if (STATE_SYMBOL in value) {
+    deep_read(value);
+  } else if (!Array.isArray(value)) {
+    for (let key in value) {
+      const prop2 = value[key];
+      if (typeof prop2 === "object" && prop2 && STATE_SYMBOL in prop2) {
+        deep_read(prop2);
+      }
+    }
+  }
+}
+function deep_read(value, visited = /* @__PURE__ */ new Set()) {
+  if (typeof value === "object" && value !== null && // We don't want to traverse DOM elements
+  !(value instanceof EventTarget) && !visited.has(value)) {
+    visited.add(value);
+    if (value instanceof Date) {
+      value.getTime();
+    }
+    for (let key in value) {
+      try {
+        deep_read(value[key], visited);
+      } catch (e) {
+      }
+    }
+    const proto = get_prototype_of(value);
+    if (proto !== Object.prototype && proto !== Array.prototype && proto !== Map.prototype && proto !== Set.prototype && proto !== Date.prototype) {
+      const descriptors = get_descriptors(proto);
+      for (let key in descriptors) {
+        const get3 = descriptors[key].get;
+        if (get3) {
+          try {
+            get3.call(value);
+          } catch (e) {
+          }
+        }
+      }
+    }
+  }
+}
+
+// node_modules/svelte/src/internal/client/reactivity/sources.js
+var inspect_effects = /* @__PURE__ */ new Set();
+var old_values = /* @__PURE__ */ new Map();
+function set_inspect_effects(v) {
+  inspect_effects = v;
+}
+function source(v, stack2) {
+  var signal = {
+    f: 0,
+    // TODO ideally we could skip this altogether, but it causes type errors
+    v,
+    reactions: null,
+    equals,
+    rv: 0,
+    wv: 0
+  };
+  if (dev_fallback_default && tracing_mode_flag) {
+    signal.created = stack2 != null ? stack2 : get_stack("CreatedAt");
+    signal.debug = null;
+  }
+  return signal;
+}
+// @__NO_SIDE_EFFECTS__
+function state(v, stack2) {
+  const s = source(v, stack2);
+  push_reaction_value(s);
+  return s;
+}
+// @__NO_SIDE_EFFECTS__
+function mutable_source(initial_value, immutable = false) {
+  var _a3, _b3;
+  const s = source(initial_value);
+  if (!immutable) {
+    s.equals = safe_equals;
+  }
+  if (legacy_mode_flag && component_context !== null && component_context.l !== null) {
+    ((_b3 = (_a3 = component_context.l).s) != null ? _b3 : _a3.s = []).push(s);
+  }
+  return s;
+}
+function mutate(source2, value) {
+  set(
+    source2,
+    untrack(() => get(source2))
+  );
+  return value;
+}
+function set(source2, value, should_proxy = false) {
+  var _a3;
+  if (active_reaction !== null && !untracking && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT)) !== 0 && !((_a3 = reaction_sources) == null ? void 0 : _a3.includes(source2))) {
+    state_unsafe_mutation();
+  }
+  let new_value = should_proxy ? proxy(value) : value;
+  return internal_set(source2, new_value);
+}
+function internal_set(source2, value) {
+  var _a3;
+  if (!source2.equals(value)) {
+    var old_value = source2.v;
+    if (is_destroying_effect) {
+      old_values.set(source2, value);
+    } else {
+      old_values.set(source2, old_value);
+    }
+    source2.v = value;
+    if (dev_fallback_default && tracing_mode_flag) {
+      source2.updated = get_stack("UpdatedAt");
+      if (active_effect != null) {
+        source2.trace_need_increase = true;
+        (_a3 = source2.trace_v) != null ? _a3 : source2.trace_v = old_value;
+      }
+    }
+    if ((source2.f & DERIVED) !== 0) {
+      if ((source2.f & DIRTY) !== 0) {
+        execute_derived(
+          /** @type {Derived} */
+          source2
+        );
+      }
+      set_signal_status(source2, (source2.f & UNOWNED) === 0 ? CLEAN : MAYBE_DIRTY);
+    }
+    source2.wv = increment_write_version();
+    mark_reactions(source2, DIRTY);
+    if (is_runes() && active_effect !== null && (active_effect.f & CLEAN) !== 0 && (active_effect.f & (BRANCH_EFFECT | ROOT_EFFECT)) === 0) {
+      if (untracked_writes === null) {
+        set_untracked_writes([source2]);
+      } else {
+        untracked_writes.push(source2);
+      }
+    }
+    if (dev_fallback_default && inspect_effects.size > 0) {
+      const inspects = Array.from(inspect_effects);
+      for (const effect2 of inspects) {
+        if ((effect2.f & CLEAN) !== 0) {
+          set_signal_status(effect2, MAYBE_DIRTY);
+        }
+        if (check_dirtiness(effect2)) {
+          update_effect(effect2);
+        }
+      }
+      inspect_effects.clear();
+    }
+  }
+  return value;
+}
+function mark_reactions(signal, status) {
+  var reactions = signal.reactions;
+  if (reactions === null) return;
+  var runes = is_runes();
+  var length = reactions.length;
+  for (var i = 0; i < length; i++) {
+    var reaction = reactions[i];
+    var flags = reaction.f;
+    if ((flags & DIRTY) !== 0) continue;
+    if (!runes && reaction === active_effect) continue;
+    if (dev_fallback_default && (flags & INSPECT_EFFECT) !== 0) {
+      inspect_effects.add(reaction);
+      continue;
+    }
+    set_signal_status(reaction, status);
+    if ((flags & (CLEAN | UNOWNED)) !== 0) {
+      if ((flags & DERIVED) !== 0) {
+        mark_reactions(
+          /** @type {Derived} */
+          reaction,
+          MAYBE_DIRTY
+        );
+      } else {
+        schedule_effect(
+          /** @type {Effect} */
+          reaction
+        );
+      }
+    }
+  }
+}
+
+// node_modules/svelte/src/internal/client/context.js
+var component_context = null;
+function set_component_context(context) {
+  component_context = context;
+}
+var dev_current_component_function = null;
+function set_dev_current_component_function(fn) {
+  dev_current_component_function = fn;
+}
+function getContext(key) {
+  const context_map = get_or_init_context_map("getContext");
+  const result = (
+    /** @type {T} */
+    context_map.get(key)
+  );
+  return result;
+}
+function setContext(key, context) {
+  const context_map = get_or_init_context_map("setContext");
+  context_map.set(key, context);
+  return context;
+}
+function push(props, runes = false, fn) {
+  var ctx = component_context = {
+    p: component_context,
+    c: null,
+    d: false,
+    e: null,
+    m: false,
+    s: props,
+    x: null,
+    l: null
+  };
+  if (legacy_mode_flag && !runes) {
+    component_context.l = {
+      s: null,
+      u: null,
+      r1: [],
+      r2: source(false)
     };
   }
-  /**
-   * @private
-   */
-  _getObserver() {
-    var _a;
-    return (_a = this._observer) != null ? _a : this._observer = new ResizeObserver((entries) => {
-      var _a2;
-      for (const entry of entries) {
-        ResizeObserverSingleton.entries.set(entry.target, entry);
-        (_a2 = this._listeners.get(entry.target)) == null ? void 0 : _a2(entry);
+  teardown(() => {
+    ctx.d = true;
+  });
+  if (dev_fallback_default) {
+    component_context.function = fn;
+    dev_current_component_function = fn;
+  }
+}
+function pop(component2) {
+  var _a3, _b3;
+  const context_stack_item = component_context;
+  if (context_stack_item !== null) {
+    if (component2 !== void 0) {
+      context_stack_item.x = component2;
+    }
+    const component_effects = context_stack_item.e;
+    if (component_effects !== null) {
+      var previous_effect = active_effect;
+      var previous_reaction = active_reaction;
+      context_stack_item.e = null;
+      try {
+        for (var i = 0; i < component_effects.length; i++) {
+          var component_effect = component_effects[i];
+          set_active_effect(component_effect.effect);
+          set_active_reaction(component_effect.reaction);
+          effect(component_effect.fn);
+        }
+      } finally {
+        set_active_effect(previous_effect);
+        set_active_reaction(previous_reaction);
+      }
+    }
+    component_context = context_stack_item.p;
+    if (dev_fallback_default) {
+      dev_current_component_function = (_b3 = (_a3 = context_stack_item.p) == null ? void 0 : _a3.function) != null ? _b3 : null;
+    }
+    context_stack_item.m = true;
+  }
+  return component2 || /** @type {T} */
+  {};
+}
+function is_runes() {
+  return !legacy_mode_flag || component_context !== null && component_context.l === null;
+}
+function get_or_init_context_map(name) {
+  var _a3;
+  if (component_context === null) {
+    lifecycle_outside_component(name);
+  }
+  return (_a3 = component_context.c) != null ? _a3 : component_context.c = new Map(get_parent_context(component_context) || void 0);
+}
+function get_parent_context(component_context2) {
+  let parent = component_context2.p;
+  while (parent !== null) {
+    const context_map = parent.c;
+    if (context_map !== null) {
+      return context_map;
+    }
+    parent = parent.p;
+  }
+  return null;
+}
+
+// node_modules/svelte/src/utils.js
+var regex_return_characters = /\r/g;
+function hash(str) {
+  str = str.replace(regex_return_characters, "");
+  let hash2 = 5381;
+  let i = str.length;
+  while (i--) hash2 = (hash2 << 5) - hash2 ^ str.charCodeAt(i);
+  return (hash2 >>> 0).toString(36);
+}
+var DOM_BOOLEAN_ATTRIBUTES = [
+  "allowfullscreen",
+  "async",
+  "autofocus",
+  "autoplay",
+  "checked",
+  "controls",
+  "default",
+  "disabled",
+  "formnovalidate",
+  "hidden",
+  "indeterminate",
+  "inert",
+  "ismap",
+  "loop",
+  "multiple",
+  "muted",
+  "nomodule",
+  "novalidate",
+  "open",
+  "playsinline",
+  "readonly",
+  "required",
+  "reversed",
+  "seamless",
+  "selected",
+  "webkitdirectory",
+  "defer",
+  "disablepictureinpicture",
+  "disableremoteplayback"
+];
+var DOM_PROPERTIES = [
+  ...DOM_BOOLEAN_ATTRIBUTES,
+  "formNoValidate",
+  "isMap",
+  "noModule",
+  "playsInline",
+  "readOnly",
+  "value",
+  "volume",
+  "defaultValue",
+  "defaultChecked",
+  "srcObject",
+  "noValidate",
+  "allowFullscreen",
+  "disablePictureInPicture",
+  "disableRemotePlayback"
+];
+var PASSIVE_EVENTS = ["touchstart", "touchmove"];
+function is_passive_event(name) {
+  return PASSIVE_EVENTS.includes(name);
+}
+function sanitize_location(location) {
+  return (
+    /** @type {T} */
+    location == null ? void 0 : location.replace(/\//g, "/\u200B")
+  );
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/misc.js
+var listening_to_form_reset = false;
+function add_form_reset_listener() {
+  if (!listening_to_form_reset) {
+    listening_to_form_reset = true;
+    document.addEventListener(
+      "reset",
+      (evt) => {
+        Promise.resolve().then(() => {
+          var _a3;
+          if (!evt.defaultPrevented) {
+            for (
+              const e of
+              /**@type {HTMLFormElement} */
+              evt.target.elements
+            ) {
+              (_a3 = e.__on_r) == null ? void 0 : _a3.call(e);
+            }
+          }
+        });
+      },
+      // In the capture phase to guarantee we get noticed of it (no possiblity of stopPropagation)
+      { capture: true }
+    );
+  }
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/bindings/shared.js
+function without_reactive_context(fn) {
+  var previous_reaction = active_reaction;
+  var previous_effect = active_effect;
+  set_active_reaction(null);
+  set_active_effect(null);
+  try {
+    return fn();
+  } finally {
+    set_active_reaction(previous_reaction);
+    set_active_effect(previous_effect);
+  }
+}
+function listen_to_event_and_reset_event(element2, event2, handler, on_reset = handler) {
+  element2.addEventListener(event2, () => without_reactive_context(handler));
+  const prev = element2.__on_r;
+  if (prev) {
+    element2.__on_r = () => {
+      prev();
+      on_reset(true);
+    };
+  } else {
+    element2.__on_r = () => on_reset(true);
+  }
+  add_form_reset_listener();
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/events.js
+var all_registered_events = /* @__PURE__ */ new Set();
+var root_event_handles = /* @__PURE__ */ new Set();
+function create_event(event_name, dom, handler, options = {}) {
+  function target_handler(event2) {
+    if (!options.capture) {
+      handle_event_propagation.call(dom, event2);
+    }
+    if (!event2.cancelBubble) {
+      return without_reactive_context(() => {
+        return handler == null ? void 0 : handler.call(this, event2);
+      });
+    }
+  }
+  if (event_name.startsWith("pointer") || event_name.startsWith("touch") || event_name === "wheel") {
+    queue_micro_task(() => {
+      dom.addEventListener(event_name, target_handler, options);
+    });
+  } else {
+    dom.addEventListener(event_name, target_handler, options);
+  }
+  return target_handler;
+}
+function event(event_name, dom, handler, capture, passive2) {
+  var options = { capture, passive: passive2 };
+  var target_handler = create_event(event_name, dom, handler, options);
+  if (dom === document.body || dom === window || dom === document) {
+    teardown(() => {
+      dom.removeEventListener(event_name, target_handler, options);
+    });
+  }
+}
+function handle_event_propagation(event2) {
+  var _a3;
+  var handler_element = this;
+  var owner_document = (
+    /** @type {Node} */
+    handler_element.ownerDocument
+  );
+  var event_name = event2.type;
+  var path = ((_a3 = event2.composedPath) == null ? void 0 : _a3.call(event2)) || [];
+  var current_target = (
+    /** @type {null | Element} */
+    path[0] || event2.target
+  );
+  var path_idx = 0;
+  var handled_at = event2.__root;
+  if (handled_at) {
+    var at_idx = path.indexOf(handled_at);
+    if (at_idx !== -1 && (handler_element === document || handler_element === /** @type {any} */
+    window)) {
+      event2.__root = handler_element;
+      return;
+    }
+    var handler_idx = path.indexOf(handler_element);
+    if (handler_idx === -1) {
+      return;
+    }
+    if (at_idx <= handler_idx) {
+      path_idx = at_idx;
+    }
+  }
+  current_target = /** @type {Element} */
+  path[path_idx] || event2.target;
+  if (current_target === handler_element) return;
+  define_property(event2, "currentTarget", {
+    configurable: true,
+    get() {
+      return current_target || owner_document;
+    }
+  });
+  var previous_reaction = active_reaction;
+  var previous_effect = active_effect;
+  set_active_reaction(null);
+  set_active_effect(null);
+  try {
+    var throw_error;
+    var other_errors = [];
+    while (current_target !== null) {
+      var parent_element = current_target.assignedSlot || current_target.parentNode || /** @type {any} */
+      current_target.host || null;
+      try {
+        var delegated = current_target["__" + event_name];
+        if (delegated != null && (!/** @type {any} */
+        current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
+        // -> the target could not have been disabled because it emits the event in the first place
+        event2.target === current_target)) {
+          if (is_array(delegated)) {
+            var [fn, ...data] = delegated;
+            fn.apply(current_target, [event2, ...data]);
+          } else {
+            delegated.call(current_target, event2);
+          }
+        }
+      } catch (error) {
+        if (throw_error) {
+          other_errors.push(error);
+        } else {
+          throw_error = error;
+        }
+      }
+      if (event2.cancelBubble || parent_element === handler_element || parent_element === null) {
+        break;
+      }
+      current_target = parent_element;
+    }
+    if (throw_error) {
+      for (let error of other_errors) {
+        queueMicrotask(() => {
+          throw error;
+        });
+      }
+      throw throw_error;
+    }
+  } finally {
+    event2.__root = handler_element;
+    delete event2.currentTarget;
+    set_active_reaction(previous_reaction);
+    set_active_effect(previous_effect);
+  }
+}
+
+// node_modules/svelte/src/internal/client/dom/blocks/svelte-head.js
+var head_anchor;
+function reset_head_anchor() {
+  head_anchor = void 0;
+}
+
+// node_modules/svelte/src/internal/client/dom/reconciler.js
+function create_fragment_from_html(html2) {
+  var elem = document.createElement("template");
+  elem.innerHTML = html2;
+  return elem.content;
+}
+
+// node_modules/svelte/src/internal/client/dom/template.js
+function assign_nodes(start, end) {
+  var effect2 = (
+    /** @type {Effect} */
+    active_effect
+  );
+  if (effect2.nodes_start === null) {
+    effect2.nodes_start = start;
+    effect2.nodes_end = end;
+  }
+}
+// @__NO_SIDE_EFFECTS__
+function template(content, flags) {
+  var is_fragment = (flags & TEMPLATE_FRAGMENT) !== 0;
+  var use_import_node = (flags & TEMPLATE_USE_IMPORT_NODE) !== 0;
+  var node;
+  var has_start = !content.startsWith("<!>");
+  return () => {
+    if (hydrating) {
+      assign_nodes(hydrate_node, null);
+      return hydrate_node;
+    }
+    if (node === void 0) {
+      node = create_fragment_from_html(has_start ? content : "<!>" + content);
+      if (!is_fragment) node = /** @type {Node} */
+      get_first_child(node);
+    }
+    var clone = (
+      /** @type {TemplateNode} */
+      use_import_node || is_firefox ? document.importNode(node, true) : node.cloneNode(true)
+    );
+    if (is_fragment) {
+      var start = (
+        /** @type {TemplateNode} */
+        get_first_child(clone)
+      );
+      var end = (
+        /** @type {TemplateNode} */
+        clone.lastChild
+      );
+      assign_nodes(start, end);
+    } else {
+      assign_nodes(clone, clone);
+    }
+    return clone;
+  };
+}
+function text(value = "") {
+  if (!hydrating) {
+    var t = create_text(value + "");
+    assign_nodes(t, t);
+    return t;
+  }
+  var node = hydrate_node;
+  if (node.nodeType !== 3) {
+    node.before(node = create_text());
+    set_hydrate_node(node);
+  }
+  assign_nodes(node, node);
+  return node;
+}
+function comment() {
+  if (hydrating) {
+    assign_nodes(hydrate_node, null);
+    return hydrate_node;
+  }
+  var frag = document.createDocumentFragment();
+  var start = document.createComment("");
+  var anchor = create_text();
+  frag.append(start, anchor);
+  assign_nodes(start, anchor);
+  return frag;
+}
+function append(anchor, dom) {
+  if (hydrating) {
+    active_effect.nodes_end = hydrate_node;
+    hydrate_next();
+    return;
+  }
+  if (anchor === null) {
+    return;
+  }
+  anchor.before(
+    /** @type {Node} */
+    dom
+  );
+}
+
+// node_modules/svelte/src/internal/client/render.js
+var should_intro = true;
+function set_text(text2, value) {
+  var _a3;
+  var str = value == null ? "" : typeof value === "object" ? value + "" : value;
+  if (str !== ((_a3 = text2.__t) != null ? _a3 : text2.__t = text2.nodeValue)) {
+    text2.__t = str;
+    text2.nodeValue = str + "";
+  }
+}
+function mount(component2, options) {
+  return _mount(component2, options);
+}
+function hydrate(component2, options) {
+  var _a3;
+  init_operations();
+  options.intro = (_a3 = options.intro) != null ? _a3 : false;
+  const target = options.target;
+  const was_hydrating = hydrating;
+  const previous_hydrate_node = hydrate_node;
+  try {
+    var anchor = (
+      /** @type {TemplateNode} */
+      get_first_child(target)
+    );
+    while (anchor && (anchor.nodeType !== 8 || /** @type {Comment} */
+    anchor.data !== HYDRATION_START)) {
+      anchor = /** @type {TemplateNode} */
+      get_next_sibling(anchor);
+    }
+    if (!anchor) {
+      throw HYDRATION_ERROR;
+    }
+    set_hydrating(true);
+    set_hydrate_node(
+      /** @type {Comment} */
+      anchor
+    );
+    hydrate_next();
+    const instance = _mount(component2, { ...options, anchor });
+    if (hydrate_node === null || hydrate_node.nodeType !== 8 || /** @type {Comment} */
+    hydrate_node.data !== HYDRATION_END) {
+      hydration_mismatch();
+      throw HYDRATION_ERROR;
+    }
+    set_hydrating(false);
+    return (
+      /**  @type {Exports} */
+      instance
+    );
+  } catch (error) {
+    if (error === HYDRATION_ERROR) {
+      if (options.recover === false) {
+        hydration_failed();
+      }
+      init_operations();
+      clear_text_content(target);
+      set_hydrating(false);
+      return mount(component2, options);
+    }
+    throw error;
+  } finally {
+    set_hydrating(was_hydrating);
+    set_hydrate_node(previous_hydrate_node);
+    reset_head_anchor();
+  }
+}
+var document_listeners = /* @__PURE__ */ new Map();
+function _mount(Component, { target, anchor, props = {}, events, context, intro = true }) {
+  init_operations();
+  var registered_events = /* @__PURE__ */ new Set();
+  var event_handle = (events2) => {
+    for (var i = 0; i < events2.length; i++) {
+      var event_name = events2[i];
+      if (registered_events.has(event_name)) continue;
+      registered_events.add(event_name);
+      var passive2 = is_passive_event(event_name);
+      target.addEventListener(event_name, handle_event_propagation, { passive: passive2 });
+      var n = document_listeners.get(event_name);
+      if (n === void 0) {
+        document.addEventListener(event_name, handle_event_propagation, { passive: passive2 });
+        document_listeners.set(event_name, 1);
+      } else {
+        document_listeners.set(event_name, n + 1);
+      }
+    }
+  };
+  event_handle(array_from(all_registered_events));
+  root_event_handles.add(event_handle);
+  var component2 = void 0;
+  var unmount2 = component_root(() => {
+    var anchor_node = anchor != null ? anchor : target.appendChild(create_text());
+    branch(() => {
+      if (context) {
+        push({});
+        var ctx = (
+          /** @type {ComponentContext} */
+          component_context
+        );
+        ctx.c = context;
+      }
+      if (events) {
+        props.$$events = events;
+      }
+      if (hydrating) {
+        assign_nodes(
+          /** @type {TemplateNode} */
+          anchor_node,
+          null
+        );
+      }
+      should_intro = intro;
+      component2 = Component(anchor_node, props) || {};
+      should_intro = true;
+      if (hydrating) {
+        active_effect.nodes_end = hydrate_node;
+      }
+      if (context) {
+        pop();
+      }
+    });
+    return () => {
+      var _a3;
+      for (var event_name of registered_events) {
+        target.removeEventListener(event_name, handle_event_propagation);
+        var n = (
+          /** @type {number} */
+          document_listeners.get(event_name)
+        );
+        if (--n === 0) {
+          document.removeEventListener(event_name, handle_event_propagation);
+          document_listeners.delete(event_name);
+        } else {
+          document_listeners.set(event_name, n);
+        }
+      }
+      root_event_handles.delete(event_handle);
+      if (anchor_node !== anchor) {
+        (_a3 = anchor_node.parentNode) == null ? void 0 : _a3.removeChild(anchor_node);
+      }
+    };
+  });
+  mounted_components.set(component2, unmount2);
+  return component2;
+}
+var mounted_components = /* @__PURE__ */ new WeakMap();
+function unmount(component2, options) {
+  const fn = mounted_components.get(component2);
+  if (fn) {
+    mounted_components.delete(component2);
+    return fn(options);
+  }
+  if (dev_fallback_default) {
+    lifecycle_double_unmount();
+  }
+  return Promise.resolve();
+}
+
+// node_modules/svelte/src/internal/client/dom/blocks/if.js
+function if_block(node, fn, [root_index, hydrate_index] = [0, 0]) {
+  if (hydrating && root_index === 0) {
+    hydrate_next();
+  }
+  var anchor = node;
+  var consequent_effect = null;
+  var alternate_effect = null;
+  var condition = UNINITIALIZED;
+  var flags = root_index > 0 ? EFFECT_TRANSPARENT : 0;
+  var has_branch = false;
+  const set_branch = (fn2, flag = true) => {
+    has_branch = true;
+    update_branch(flag, fn2);
+  };
+  const update_branch = (new_condition, fn2) => {
+    if (condition === (condition = new_condition)) return;
+    let mismatch = false;
+    if (hydrating && hydrate_index !== -1) {
+      if (root_index === 0) {
+        const data = (
+          /** @type {Comment} */
+          anchor.data
+        );
+        if (data === HYDRATION_START) {
+          hydrate_index = 0;
+        } else if (data === HYDRATION_START_ELSE) {
+          hydrate_index = Infinity;
+        } else {
+          hydrate_index = parseInt(data.substring(1));
+          if (hydrate_index !== hydrate_index) {
+            hydrate_index = condition ? Infinity : -1;
+          }
+        }
+      }
+      const is_else = hydrate_index > root_index;
+      if (!!condition === is_else) {
+        anchor = remove_nodes();
+        set_hydrate_node(anchor);
+        set_hydrating(false);
+        mismatch = true;
+        hydrate_index = -1;
+      }
+    }
+    if (condition) {
+      if (consequent_effect) {
+        resume_effect(consequent_effect);
+      } else if (fn2) {
+        consequent_effect = branch(() => fn2(anchor));
+      }
+      if (alternate_effect) {
+        pause_effect(alternate_effect, () => {
+          alternate_effect = null;
+        });
+      }
+    } else {
+      if (alternate_effect) {
+        resume_effect(alternate_effect);
+      } else if (fn2) {
+        alternate_effect = branch(() => fn2(anchor, [root_index + 1, hydrate_index]));
+      }
+      if (consequent_effect) {
+        pause_effect(consequent_effect, () => {
+          consequent_effect = null;
+        });
+      }
+    }
+    if (mismatch) {
+      set_hydrating(true);
+    }
+  };
+  block(() => {
+    has_branch = false;
+    fn(set_branch);
+    if (!has_branch) {
+      update_branch(null, null);
+    }
+  }, flags);
+  if (hydrating) {
+    anchor = hydrate_node;
+  }
+}
+
+// node_modules/svelte/src/internal/client/dom/blocks/each.js
+var current_each_item = null;
+function index(_3, i) {
+  return i;
+}
+function pause_effects(state2, items, controlled_anchor, items_map) {
+  var transitions = [];
+  var length = items.length;
+  for (var i = 0; i < length; i++) {
+    pause_children(items[i].e, transitions, true);
+  }
+  var is_controlled = length > 0 && transitions.length === 0 && controlled_anchor !== null;
+  if (is_controlled) {
+    var parent_node = (
+      /** @type {Element} */
+      /** @type {Element} */
+      controlled_anchor.parentNode
+    );
+    clear_text_content(parent_node);
+    parent_node.append(
+      /** @type {Element} */
+      controlled_anchor
+    );
+    items_map.clear();
+    link(state2, items[0].prev, items[length - 1].next);
+  }
+  run_out_transitions(transitions, () => {
+    for (var i2 = 0; i2 < length; i2++) {
+      var item = items[i2];
+      if (!is_controlled) {
+        items_map.delete(item.k);
+        link(state2, item.prev, item.next);
+      }
+      destroy_effect(item.e, !is_controlled);
+    }
+  });
+}
+function each(node, flags, get_collection, get_key, render_fn, fallback_fn = null) {
+  var anchor = node;
+  var state2 = { flags, items: /* @__PURE__ */ new Map(), first: null };
+  var is_controlled = (flags & EACH_IS_CONTROLLED) !== 0;
+  if (is_controlled) {
+    var parent_node = (
+      /** @type {Element} */
+      node
+    );
+    anchor = hydrating ? set_hydrate_node(
+      /** @type {Comment | Text} */
+      get_first_child(parent_node)
+    ) : parent_node.appendChild(create_text());
+  }
+  if (hydrating) {
+    hydrate_next();
+  }
+  var fallback2 = null;
+  var was_empty = false;
+  var each_array = derived_safe_equal(() => {
+    var collection = get_collection();
+    return is_array(collection) ? collection : collection == null ? [] : array_from(collection);
+  });
+  block(() => {
+    var array = get(each_array);
+    var length = array.length;
+    if (was_empty && length === 0) {
+      return;
+    }
+    was_empty = length === 0;
+    let mismatch = false;
+    if (hydrating) {
+      var is_else = (
+        /** @type {Comment} */
+        anchor.data === HYDRATION_START_ELSE
+      );
+      if (is_else !== (length === 0)) {
+        anchor = remove_nodes();
+        set_hydrate_node(anchor);
+        set_hydrating(false);
+        mismatch = true;
+      }
+    }
+    if (hydrating) {
+      var prev = null;
+      var item;
+      for (var i = 0; i < length; i++) {
+        if (hydrate_node.nodeType === 8 && /** @type {Comment} */
+        hydrate_node.data === HYDRATION_END) {
+          anchor = /** @type {Comment} */
+          hydrate_node;
+          mismatch = true;
+          set_hydrating(false);
+          break;
+        }
+        var value = array[i];
+        var key = get_key(value, i);
+        item = create_item(
+          hydrate_node,
+          state2,
+          prev,
+          null,
+          value,
+          key,
+          i,
+          render_fn,
+          flags,
+          get_collection
+        );
+        state2.items.set(key, item);
+        prev = item;
+      }
+      if (length > 0) {
+        set_hydrate_node(remove_nodes());
+      }
+    }
+    if (!hydrating) {
+      reconcile(array, state2, anchor, render_fn, flags, get_key, get_collection);
+    }
+    if (fallback_fn !== null) {
+      if (length === 0) {
+        if (fallback2) {
+          resume_effect(fallback2);
+        } else {
+          fallback2 = branch(() => fallback_fn(anchor));
+        }
+      } else if (fallback2 !== null) {
+        pause_effect(fallback2, () => {
+          fallback2 = null;
+        });
+      }
+    }
+    if (mismatch) {
+      set_hydrating(true);
+    }
+    get(each_array);
+  });
+  if (hydrating) {
+    anchor = hydrate_node;
+  }
+}
+function reconcile(array, state2, anchor, render_fn, flags, get_key, get_collection) {
+  var _a3, _b3, _c2, _d;
+  var is_animated = (flags & EACH_IS_ANIMATED) !== 0;
+  var should_update = (flags & (EACH_ITEM_REACTIVE | EACH_INDEX_REACTIVE)) !== 0;
+  var length = array.length;
+  var items = state2.items;
+  var first = state2.first;
+  var current = first;
+  var seen;
+  var prev = null;
+  var to_animate;
+  var matched = [];
+  var stashed = [];
+  var value;
+  var key;
+  var item;
+  var i;
+  if (is_animated) {
+    for (i = 0; i < length; i += 1) {
+      value = array[i];
+      key = get_key(value, i);
+      item = items.get(key);
+      if (item !== void 0) {
+        (_a3 = item.a) == null ? void 0 : _a3.measure();
+        (to_animate != null ? to_animate : to_animate = /* @__PURE__ */ new Set()).add(item);
+      }
+    }
+  }
+  for (i = 0; i < length; i += 1) {
+    value = array[i];
+    key = get_key(value, i);
+    item = items.get(key);
+    if (item === void 0) {
+      var child_anchor = current ? (
+        /** @type {TemplateNode} */
+        current.e.nodes_start
+      ) : anchor;
+      prev = create_item(
+        child_anchor,
+        state2,
+        prev,
+        prev === null ? state2.first : prev.next,
+        value,
+        key,
+        i,
+        render_fn,
+        flags,
+        get_collection
+      );
+      items.set(key, prev);
+      matched = [];
+      stashed = [];
+      current = prev.next;
+      continue;
+    }
+    if (should_update) {
+      update_item(item, value, i, flags);
+    }
+    if ((item.e.f & INERT) !== 0) {
+      resume_effect(item.e);
+      if (is_animated) {
+        (_b3 = item.a) == null ? void 0 : _b3.unfix();
+        (to_animate != null ? to_animate : to_animate = /* @__PURE__ */ new Set()).delete(item);
+      }
+    }
+    if (item !== current) {
+      if (seen !== void 0 && seen.has(item)) {
+        if (matched.length < stashed.length) {
+          var start = stashed[0];
+          var j;
+          prev = start.prev;
+          var a = matched[0];
+          var b = matched[matched.length - 1];
+          for (j = 0; j < matched.length; j += 1) {
+            move(matched[j], start, anchor);
+          }
+          for (j = 0; j < stashed.length; j += 1) {
+            seen.delete(stashed[j]);
+          }
+          link(state2, a.prev, b.next);
+          link(state2, prev, a);
+          link(state2, b, start);
+          current = start;
+          prev = b;
+          i -= 1;
+          matched = [];
+          stashed = [];
+        } else {
+          seen.delete(item);
+          move(item, current, anchor);
+          link(state2, item.prev, item.next);
+          link(state2, item, prev === null ? state2.first : prev.next);
+          link(state2, prev, item);
+          prev = item;
+        }
+        continue;
+      }
+      matched = [];
+      stashed = [];
+      while (current !== null && current.k !== key) {
+        if ((current.e.f & INERT) === 0) {
+          (seen != null ? seen : seen = /* @__PURE__ */ new Set()).add(current);
+        }
+        stashed.push(current);
+        current = current.next;
+      }
+      if (current === null) {
+        continue;
+      }
+      item = current;
+    }
+    matched.push(item);
+    prev = item;
+    current = item.next;
+  }
+  if (current !== null || seen !== void 0) {
+    var to_destroy = seen === void 0 ? [] : array_from(seen);
+    while (current !== null) {
+      if ((current.e.f & INERT) === 0) {
+        to_destroy.push(current);
+      }
+      current = current.next;
+    }
+    var destroy_length = to_destroy.length;
+    if (destroy_length > 0) {
+      var controlled_anchor = (flags & EACH_IS_CONTROLLED) !== 0 && length === 0 ? anchor : null;
+      if (is_animated) {
+        for (i = 0; i < destroy_length; i += 1) {
+          (_c2 = to_destroy[i].a) == null ? void 0 : _c2.measure();
+        }
+        for (i = 0; i < destroy_length; i += 1) {
+          (_d = to_destroy[i].a) == null ? void 0 : _d.fix();
+        }
+      }
+      pause_effects(state2, to_destroy, controlled_anchor, items);
+    }
+  }
+  if (is_animated) {
+    queue_micro_task(() => {
+      var _a4;
+      if (to_animate === void 0) return;
+      for (item of to_animate) {
+        (_a4 = item.a) == null ? void 0 : _a4.apply();
       }
     });
   }
-};
-ResizeObserverSingleton.entries = "WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0;
-
-// node_modules/svelte/src/runtime/internal/dom.js
-var is_hydrating = false;
-function start_hydrating() {
-  is_hydrating = true;
+  active_effect.first = state2.first && state2.first.e;
+  active_effect.last = prev && prev.e;
 }
-function end_hydrating() {
-  is_hydrating = false;
-}
-function append(target, node) {
-  target.appendChild(node);
-}
-function insert(target, node, anchor) {
-  target.insertBefore(node, anchor || null);
-}
-function detach(node) {
-  if (node.parentNode) {
-    node.parentNode.removeChild(node);
+function update_item(item, value, index2, type) {
+  if ((type & EACH_ITEM_REACTIVE) !== 0) {
+    internal_set(item.v, value);
   }
-}
-function destroy_each(iterations, detaching) {
-  for (let i = 0; i < iterations.length; i += 1) {
-    if (iterations[i])
-      iterations[i].d(detaching);
-  }
-}
-function element(name) {
-  return document.createElement(name);
-}
-function text(data) {
-  return document.createTextNode(data);
-}
-function space() {
-  return text(" ");
-}
-function empty() {
-  return text("");
-}
-function listen(node, event, handler, options) {
-  node.addEventListener(event, handler, options);
-  return () => node.removeEventListener(event, handler, options);
-}
-function attr(node, attribute, value) {
-  if (value == null)
-    node.removeAttribute(attribute);
-  else if (node.getAttribute(attribute) !== value)
-    node.setAttribute(attribute, value);
-}
-function children(element2) {
-  return Array.from(element2.childNodes);
-}
-function set_data(text2, data) {
-  data = "" + data;
-  if (text2.data === data)
-    return;
-  text2.data = /** @type {string} */
-  data;
-}
-function set_input_value(input, value) {
-  input.value = value == null ? "" : value;
-}
-function set_style(node, key, value, important) {
-  if (value == null) {
-    node.style.removeProperty(key);
+  if ((type & EACH_INDEX_REACTIVE) !== 0) {
+    internal_set(
+      /** @type {Value<number>} */
+      item.i,
+      index2
+    );
   } else {
-    node.style.setProperty(key, value, important ? "important" : "");
+    item.i = index2;
   }
 }
+function create_item(anchor, state2, prev, next2, value, key, index2, render_fn, flags, get_collection) {
+  var previous_each_item = current_each_item;
+  var reactive = (flags & EACH_ITEM_REACTIVE) !== 0;
+  var mutable = (flags & EACH_ITEM_IMMUTABLE) === 0;
+  var v = reactive ? mutable ? mutable_source(value) : source(value) : value;
+  var i = (flags & EACH_INDEX_REACTIVE) === 0 ? index2 : source(index2);
+  if (dev_fallback_default && reactive) {
+    v.debug = () => {
+      var collection_index = typeof i === "number" ? index2 : i.v;
+      get_collection()[collection_index];
+    };
+  }
+  var item = {
+    i,
+    v,
+    k: key,
+    a: null,
+    // @ts-expect-error
+    e: null,
+    prev,
+    next: next2
+  };
+  current_each_item = item;
+  try {
+    item.e = branch(() => render_fn(anchor, v, i, get_collection), hydrating);
+    item.e.prev = prev && prev.e;
+    item.e.next = next2 && next2.e;
+    if (prev === null) {
+      state2.first = item;
+    } else {
+      prev.next = item;
+      prev.e.next = item.e;
+    }
+    if (next2 !== null) {
+      next2.prev = item;
+      next2.e.prev = item.e;
+    }
+    return item;
+  } finally {
+    current_each_item = previous_each_item;
+  }
+}
+function move(item, next2, anchor) {
+  var end = item.next ? (
+    /** @type {TemplateNode} */
+    item.next.e.nodes_start
+  ) : anchor;
+  var dest = next2 ? (
+    /** @type {TemplateNode} */
+    next2.e.nodes_start
+  ) : anchor;
+  var node = (
+    /** @type {TemplateNode} */
+    item.e.nodes_start
+  );
+  while (node !== end) {
+    var next_node = (
+      /** @type {TemplateNode} */
+      get_next_sibling(node)
+    );
+    dest.before(node);
+    node = next_node;
+  }
+}
+function link(state2, prev, next2) {
+  if (prev === null) {
+    state2.first = next2;
+  } else {
+    prev.next = next2;
+    prev.e.next = next2 && next2.e;
+  }
+  if (next2 !== null) {
+    next2.prev = prev;
+    next2.e.prev = prev && prev.e;
+  }
+}
+
+// node_modules/svelte/src/internal/client/dom/blocks/html.js
+function check_hash(element2, server_hash, value) {
+  var _a3, _b3;
+  if (!server_hash || server_hash === hash(String(value != null ? value : ""))) return;
+  let location;
+  const loc = (_a3 = element2.__svelte_meta) == null ? void 0 : _a3.loc;
+  if (loc) {
+    location = `near ${loc.file}:${loc.line}:${loc.column}`;
+  } else if ((_b3 = dev_current_component_function) == null ? void 0 : _b3[FILENAME]) {
+    location = `in ${dev_current_component_function[FILENAME]}`;
+  }
+  hydration_html_changed(sanitize_location(location));
+}
+function html(node, get_value, svg = false, mathml = false, skip_warning = false) {
+  var anchor = node;
+  var value = "";
+  template_effect(() => {
+    var _a3;
+    var effect2 = (
+      /** @type {Effect} */
+      active_effect
+    );
+    if (value === (value = (_a3 = get_value()) != null ? _a3 : "")) {
+      if (hydrating) hydrate_next();
+      return;
+    }
+    if (effect2.nodes_start !== null) {
+      remove_effect_dom(
+        effect2.nodes_start,
+        /** @type {TemplateNode} */
+        effect2.nodes_end
+      );
+      effect2.nodes_start = effect2.nodes_end = null;
+    }
+    if (value === "") return;
+    if (hydrating) {
+      var hash2 = (
+        /** @type {Comment} */
+        hydrate_node.data
+      );
+      var next2 = hydrate_next();
+      var last = next2;
+      while (next2 !== null && (next2.nodeType !== 8 || /** @type {Comment} */
+      next2.data !== "")) {
+        last = next2;
+        next2 = /** @type {TemplateNode} */
+        get_next_sibling(next2);
+      }
+      if (next2 === null) {
+        hydration_mismatch();
+        throw HYDRATION_ERROR;
+      }
+      if (dev_fallback_default && !skip_warning) {
+        check_hash(
+          /** @type {Element} */
+          next2.parentNode,
+          hash2,
+          value
+        );
+      }
+      assign_nodes(hydrate_node, last);
+      anchor = set_hydrate_node(next2);
+      return;
+    }
+    var html2 = value + "";
+    if (svg) html2 = `<svg>${html2}</svg>`;
+    else if (mathml) html2 = `<math>${html2}</math>`;
+    var node2 = create_fragment_from_html(html2);
+    if (svg || mathml) {
+      node2 = /** @type {Element} */
+      get_first_child(node2);
+    }
+    assign_nodes(
+      /** @type {TemplateNode} */
+      get_first_child(node2),
+      /** @type {TemplateNode} */
+      node2.lastChild
+    );
+    if (svg || mathml) {
+      while (get_first_child(node2)) {
+        anchor.before(
+          /** @type {Node} */
+          get_first_child(node2)
+        );
+      }
+    } else {
+      anchor.before(node2);
+    }
+  });
+}
+
+// node_modules/svelte/src/internal/client/dom/blocks/slot.js
+function slot(anchor, $$props, name, slot_props, fallback_fn) {
+  var _a3;
+  if (hydrating) {
+    hydrate_next();
+  }
+  var slot_fn = (_a3 = $$props.$$slots) == null ? void 0 : _a3[name];
+  var is_interop = false;
+  if (slot_fn === true) {
+    slot_fn = $$props[name === "default" ? "children" : name];
+    is_interop = true;
+  }
+  if (slot_fn === void 0) {
+    if (fallback_fn !== null) {
+      fallback_fn(anchor);
+    }
+  } else {
+    slot_fn(anchor, is_interop ? () => slot_props : slot_props);
+  }
+}
+function sanitize_slots(props) {
+  const sanitized = {};
+  if (props.children) sanitized.default = true;
+  for (const key in props.$$slots) {
+    sanitized[key] = true;
+  }
+  return sanitized;
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/actions.js
+function action(dom, action2, get_value) {
+  effect(() => {
+    var payload = untrack(() => action2(dom, get_value == null ? void 0 : get_value()) || {});
+    if (get_value && (payload == null ? void 0 : payload.update)) {
+      var inited = false;
+      var prev = (
+        /** @type {any} */
+        {}
+      );
+      render_effect(() => {
+        var value = get_value();
+        deep_read_state(value);
+        if (inited && safe_not_equal(prev, value)) {
+          prev = value;
+          payload.update(value);
+        }
+      });
+      inited = true;
+    }
+    if (payload == null ? void 0 : payload.destroy) {
+      return () => (
+        /** @type {Function} */
+        payload.destroy()
+      );
+    }
+  });
+}
+
+// node_modules/clsx/dist/clsx.mjs
+function r(e) {
+  var t, f, n = "";
+  if ("string" == typeof e || "number" == typeof e) n += e;
+  else if ("object" == typeof e) if (Array.isArray(e)) {
+    var o = e.length;
+    for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+  } else for (f in e) e[f] && (n && (n += " "), n += f);
+  return n;
+}
+function clsx() {
+  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
+  return n;
+}
+
+// node_modules/svelte/src/internal/shared/attributes.js
+function clsx2(value) {
+  if (typeof value === "object") {
+    return clsx(value);
+  } else {
+    return value != null ? value : "";
+  }
+}
+var whitespace = [..." 	\n\r\f\xA0\v\uFEFF"];
+function to_class(value, hash2, directives) {
+  var classname = value == null ? "" : "" + value;
+  if (hash2) {
+    classname = classname ? classname + " " + hash2 : hash2;
+  }
+  if (directives) {
+    for (var key in directives) {
+      if (directives[key]) {
+        classname = classname ? classname + " " + key : key;
+      } else if (classname.length) {
+        var len = key.length;
+        var a = 0;
+        while ((a = classname.indexOf(key, a)) >= 0) {
+          var b = a + len;
+          if ((a === 0 || whitespace.includes(classname[a - 1])) && (b === classname.length || whitespace.includes(classname[b]))) {
+            classname = (a === 0 ? "" : classname.substring(0, a)) + classname.substring(b + 1);
+          } else {
+            a = b;
+          }
+        }
+      }
+    }
+  }
+  return classname === "" ? null : classname;
+}
+function append_styles(styles, important = false) {
+  var separator = important ? " !important;" : ";";
+  var css = "";
+  for (var key in styles) {
+    var value = styles[key];
+    if (value != null && value !== "") {
+      css += " " + key + ": " + value + separator;
+    }
+  }
+  return css;
+}
+function to_css_name(name) {
+  if (name[0] !== "-" || name[1] !== "-") {
+    return name.toLowerCase();
+  }
+  return name;
+}
+function to_style(value, styles) {
+  if (styles) {
+    var new_style = "";
+    var normal_styles;
+    var important_styles;
+    if (Array.isArray(styles)) {
+      normal_styles = styles[0];
+      important_styles = styles[1];
+    } else {
+      normal_styles = styles;
+    }
+    if (value) {
+      value = String(value).replaceAll(/\s*\/\*.*?\*\/\s*/g, "").trim();
+      var in_str = false;
+      var in_apo = 0;
+      var in_comment = false;
+      var reserved_names = [];
+      if (normal_styles) {
+        reserved_names.push(...Object.keys(normal_styles).map(to_css_name));
+      }
+      if (important_styles) {
+        reserved_names.push(...Object.keys(important_styles).map(to_css_name));
+      }
+      var start_index = 0;
+      var name_index = -1;
+      const len = value.length;
+      for (var i = 0; i < len; i++) {
+        var c = value[i];
+        if (in_comment) {
+          if (c === "/" && value[i - 1] === "*") {
+            in_comment = false;
+          }
+        } else if (in_str) {
+          if (in_str === c) {
+            in_str = false;
+          }
+        } else if (c === "/" && value[i + 1] === "*") {
+          in_comment = true;
+        } else if (c === '"' || c === "'") {
+          in_str = c;
+        } else if (c === "(") {
+          in_apo++;
+        } else if (c === ")") {
+          in_apo--;
+        }
+        if (!in_comment && in_str === false && in_apo === 0) {
+          if (c === ":" && name_index === -1) {
+            name_index = i;
+          } else if (c === ";" || i === len - 1) {
+            if (name_index !== -1) {
+              var name = to_css_name(value.substring(start_index, name_index).trim());
+              if (!reserved_names.includes(name)) {
+                if (c !== ";") {
+                  i++;
+                }
+                var property = value.substring(start_index, i).trim();
+                new_style += " " + property + ";";
+              }
+            }
+            start_index = i + 1;
+            name_index = -1;
+          }
+        }
+      }
+    }
+    if (normal_styles) {
+      new_style += append_styles(normal_styles);
+    }
+    if (important_styles) {
+      new_style += append_styles(important_styles, true);
+    }
+    new_style = new_style.trim();
+    return new_style === "" ? null : new_style;
+  }
+  return value == null ? null : String(value);
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/class.js
+function set_class(dom, is_html, value, hash2, prev_classes, next_classes) {
+  var prev = dom.__className;
+  if (hydrating || prev !== value || prev === void 0) {
+    var next_class_name = to_class(value, hash2, next_classes);
+    if (!hydrating || next_class_name !== dom.getAttribute("class")) {
+      if (next_class_name == null) {
+        dom.removeAttribute("class");
+      } else if (is_html) {
+        dom.className = next_class_name;
+      } else {
+        dom.setAttribute("class", next_class_name);
+      }
+    }
+    dom.__className = value;
+  } else if (next_classes && prev_classes !== next_classes) {
+    for (var key in next_classes) {
+      var is_present = !!next_classes[key];
+      if (prev_classes == null || is_present !== !!prev_classes[key]) {
+        dom.classList.toggle(key, is_present);
+      }
+    }
+  }
+  return next_classes;
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/style.js
+function update_styles(dom, prev = {}, next2, priority) {
+  for (var key in next2) {
+    var value = next2[key];
+    if (prev[key] !== value) {
+      if (next2[key] == null) {
+        dom.style.removeProperty(key);
+      } else {
+        dom.style.setProperty(key, value, priority);
+      }
+    }
+  }
+}
+function set_style(dom, value, prev_styles, next_styles) {
+  var prev = dom.__style;
+  if (hydrating || prev !== value) {
+    var next_style_attr = to_style(value, next_styles);
+    if (!hydrating || next_style_attr !== dom.getAttribute("style")) {
+      if (next_style_attr == null) {
+        dom.removeAttribute("style");
+      } else {
+        dom.style.cssText = next_style_attr;
+      }
+    }
+    dom.__style = value;
+  } else if (next_styles) {
+    if (Array.isArray(next_styles)) {
+      update_styles(dom, prev_styles == null ? void 0 : prev_styles[0], next_styles[0]);
+      update_styles(dom, prev_styles == null ? void 0 : prev_styles[1], next_styles[1], "important");
+    } else {
+      update_styles(dom, prev_styles, next_styles);
+    }
+  }
+  return next_styles;
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/attributes.js
+var CLASS = Symbol("class");
+var STYLE = Symbol("style");
+var IS_CUSTOM_ELEMENT = Symbol("is custom element");
+var IS_HTML = Symbol("is html");
+function remove_input_defaults(input) {
+  if (!hydrating) return;
+  var already_removed = false;
+  var remove_defaults = () => {
+    if (already_removed) return;
+    already_removed = true;
+    if (input.hasAttribute("value")) {
+      var value = input.value;
+      set_attribute(input, "value", null);
+      input.value = value;
+    }
+    if (input.hasAttribute("checked")) {
+      var checked = input.checked;
+      set_attribute(input, "checked", null);
+      input.checked = checked;
+    }
+  };
+  input.__on_r = remove_defaults;
+  queue_idle_task(remove_defaults);
+  add_form_reset_listener();
+}
+function set_value(element2, value) {
+  var attributes = get_attributes(element2);
+  if (attributes.value === (attributes.value = // treat null and undefined the same for the initial value
+  value != null ? value : void 0) || // @ts-expect-error
+  // `progress` elements always need their value set when it's `0`
+  element2.value === value && (value !== 0 || element2.nodeName !== "PROGRESS")) {
+    return;
+  }
+  element2.value = value != null ? value : "";
+}
+function set_checked(element2, checked) {
+  var attributes = get_attributes(element2);
+  if (attributes.checked === (attributes.checked = // treat null and undefined the same for the initial value
+  checked != null ? checked : void 0)) {
+    return;
+  }
+  element2.checked = checked;
+}
+function set_attribute(element2, attribute, value, skip_warning) {
+  var attributes = get_attributes(element2);
+  if (hydrating) {
+    attributes[attribute] = element2.getAttribute(attribute);
+    if (attribute === "src" || attribute === "srcset" || attribute === "href" && element2.nodeName === "LINK") {
+      if (!skip_warning) {
+        check_src_in_dev_hydration(element2, attribute, value != null ? value : "");
+      }
+      return;
+    }
+  }
+  if (attributes[attribute] === (attributes[attribute] = value)) return;
+  if (attribute === "loading") {
+    element2[LOADING_ATTR_SYMBOL] = value;
+  }
+  if (value == null) {
+    element2.removeAttribute(attribute);
+  } else if (typeof value !== "string" && get_setters(element2).includes(attribute)) {
+    element2[attribute] = value;
+  } else {
+    element2.setAttribute(attribute, value);
+  }
+}
+function get_attributes(element2) {
+  var _a3;
+  return (
+    /** @type {Record<string | symbol, unknown>} **/
+    // @ts-expect-error
+    (_a3 = element2.__attributes) != null ? _a3 : element2.__attributes = {
+      [IS_CUSTOM_ELEMENT]: element2.nodeName.includes("-"),
+      [IS_HTML]: element2.namespaceURI === NAMESPACE_HTML
+    }
+  );
+}
+var setters_cache = /* @__PURE__ */ new Map();
+function get_setters(element2) {
+  var setters = setters_cache.get(element2.nodeName);
+  if (setters) return setters;
+  setters_cache.set(element2.nodeName, setters = []);
+  var descriptors;
+  var proto = element2;
+  var element_proto = Element.prototype;
+  while (element_proto !== proto) {
+    descriptors = get_descriptors(proto);
+    for (var key in descriptors) {
+      if (descriptors[key].set) {
+        setters.push(key);
+      }
+    }
+    proto = get_prototype_of(proto);
+  }
+  return setters;
+}
+function check_src_in_dev_hydration(element2, attribute, value) {
+  var _a3;
+  if (!dev_fallback_default) return;
+  if (attribute === "srcset" && srcset_url_equal(element2, value)) return;
+  if (src_url_equal((_a3 = element2.getAttribute(attribute)) != null ? _a3 : "", value)) return;
+  hydration_attribute_changed(
+    attribute,
+    element2.outerHTML.replace(element2.innerHTML, element2.innerHTML && "..."),
+    String(value)
+  );
+}
+function src_url_equal(element_src, url) {
+  if (element_src === url) return true;
+  return new URL(element_src, document.baseURI).href === new URL(url, document.baseURI).href;
+}
+function split_srcset(srcset) {
+  return srcset.split(",").map((src) => src.trim().split(" ").filter(Boolean));
+}
+function srcset_url_equal(element2, srcset) {
+  var element_urls = split_srcset(element2.srcset);
+  var urls = split_srcset(srcset);
+  return urls.length === element_urls.length && urls.every(
+    ([url, width], i) => width === element_urls[i][1] && // We need to test both ways because Vite will create an a full URL with
+    // `new URL(asset, import.meta.url).href` for the client when `base: './'`, and the
+    // relative URLs inside srcset are not automatically resolved to absolute URLs by
+    // browsers (in contrast to img.src). This means both SSR and DOM code could
+    // contain relative or absolute URLs.
+    (src_url_equal(element_urls[i][0], url) || src_url_equal(url, element_urls[i][0]))
+  );
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/bindings/input.js
+function bind_value(input, get3, set2 = get3) {
+  var runes = is_runes();
+  listen_to_event_and_reset_event(input, "input", (is_reset) => {
+    if (dev_fallback_default && input.type === "checkbox") {
+      bind_invalid_checkbox_value();
+    }
+    var value = is_reset ? input.defaultValue : input.value;
+    value = is_numberlike_input(input) ? to_number(value) : value;
+    set2(value);
+    if (runes && value !== (value = get3())) {
+      var start = input.selectionStart;
+      var end = input.selectionEnd;
+      input.value = value != null ? value : "";
+      if (end !== null) {
+        input.selectionStart = start;
+        input.selectionEnd = Math.min(end, input.value.length);
+      }
+    }
+  });
+  if (
+    // If we are hydrating and the value has since changed,
+    // then use the updated value from the input instead.
+    hydrating && input.defaultValue !== input.value || // If defaultValue is set, then value == defaultValue
+    // TODO Svelte 6: remove input.value check and set to empty string?
+    untrack(get3) == null && input.value
+  ) {
+    set2(is_numberlike_input(input) ? to_number(input.value) : input.value);
+  }
+  render_effect(() => {
+    if (dev_fallback_default && input.type === "checkbox") {
+      bind_invalid_checkbox_value();
+    }
+    var value = get3();
+    if (is_numberlike_input(input) && value === to_number(input.value)) {
+      return;
+    }
+    if (input.type === "date" && !value && !input.value) {
+      return;
+    }
+    if (value !== input.value) {
+      input.value = value != null ? value : "";
+    }
+  });
+}
+function is_numberlike_input(input) {
+  var type = input.type;
+  return type === "number" || type === "range";
+}
+function to_number(value) {
+  return value === "" ? null : +value;
+}
+
+// node_modules/svelte/src/internal/client/dom/elements/bindings/select.js
 function select_option(select, value, mounting) {
-  for (let i = 0; i < select.options.length; i += 1) {
-    const option = select.options[i];
-    if (option.__value === value) {
+  if (select.multiple) {
+    return select_options(select, value);
+  }
+  for (var option of select.options) {
+    var option_value = get_option_value(option);
+    if (is(option_value, value)) {
       option.selected = true;
       return;
     }
@@ -6067,425 +9647,719 @@ function select_option(select, value, mounting) {
     select.selectedIndex = -1;
   }
 }
-function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
-  return new CustomEvent(type, { detail, bubbles, cancelable });
-}
-function get_custom_elements_slots(element2) {
-  const result = {};
-  element2.childNodes.forEach(
-    /** @param {Element} node */
-    (node) => {
-      result[node.slot || "default"] = true;
+function init_select(select, get_value) {
+  let mounting = true;
+  effect(() => {
+    if (get_value) {
+      select_option(select, untrack(get_value), mounting);
     }
-  );
-  return result;
+    mounting = false;
+    var observer = new MutationObserver(() => {
+      var value = select.__value;
+      select_option(select, value);
+    });
+    observer.observe(select, {
+      // Listen to option element changes
+      childList: true,
+      subtree: true,
+      // because of <optgroup>
+      // Listen to option element value attribute changes
+      // (doesn't get notified of select value changes,
+      // because that property is not reflected as an attribute)
+      attributes: true,
+      attributeFilter: ["value"]
+    });
+    return () => {
+      observer.disconnect();
+    };
+  });
+}
+function select_options(select, value) {
+  for (var option of select.options) {
+    option.selected = ~value.indexOf(get_option_value(option));
+  }
+}
+function get_option_value(option) {
+  if ("__value" in option) {
+    return option.__value;
+  } else {
+    return option.value;
+  }
 }
 
-// node_modules/svelte/src/runtime/internal/lifecycle.js
-var current_component;
-function set_current_component(component) {
-  current_component = component;
+// node_modules/svelte/src/internal/client/dom/elements/bindings/this.js
+function is_bound_this(bound_value, element_or_component) {
+  return bound_value === element_or_component || (bound_value == null ? void 0 : bound_value[STATE_SYMBOL]) === element_or_component;
 }
-function get_current_component() {
-  if (!current_component)
-    throw new Error("Function called outside component initialization");
-  return current_component;
+function bind_this(element_or_component = {}, update2, get_value, get_parts) {
+  effect(() => {
+    var old_parts;
+    var parts;
+    render_effect(() => {
+      old_parts = parts;
+      parts = (get_parts == null ? void 0 : get_parts()) || [];
+      untrack(() => {
+        if (element_or_component !== get_value(...parts)) {
+          update2(element_or_component, ...parts);
+          if (old_parts && is_bound_this(get_value(...old_parts), element_or_component)) {
+            update2(null, ...old_parts);
+          }
+        }
+      });
+    });
+    return () => {
+      queue_micro_task(() => {
+        if (parts && is_bound_this(get_value(...parts), element_or_component)) {
+          update2(null, ...parts);
+        }
+      });
+    };
+  });
+  return element_or_component;
+}
+
+// node_modules/svelte/src/internal/client/dom/legacy/lifecycle.js
+function init(immutable = false) {
+  const context = (
+    /** @type {ComponentContextLegacy} */
+    component_context
+  );
+  const callbacks = context.l.u;
+  if (!callbacks) return;
+  let props = () => deep_read_state(context.s);
+  if (immutable) {
+    let version = 0;
+    let prev = (
+      /** @type {Record<string, any>} */
+      {}
+    );
+    const d = derived(() => {
+      let changed = false;
+      const props2 = context.s;
+      for (const key in props2) {
+        if (props2[key] !== prev[key]) {
+          prev[key] = props2[key];
+          changed = true;
+        }
+      }
+      if (changed) version++;
+      return version;
+    });
+    props = () => get(d);
+  }
+  if (callbacks.b.length) {
+    user_pre_effect(() => {
+      observe_all(context, props);
+      run_all(callbacks.b);
+    });
+  }
+  user_effect(() => {
+    const fns = untrack(() => callbacks.m.map(run));
+    return () => {
+      for (const fn of fns) {
+        if (typeof fn === "function") {
+          fn();
+        }
+      }
+    };
+  });
+  if (callbacks.a.length) {
+    user_effect(() => {
+      observe_all(context, props);
+      run_all(callbacks.a);
+    });
+  }
+}
+function observe_all(context, props) {
+  if (context.l.s) {
+    for (const signal of context.l.s) get(signal);
+  }
+  props();
+}
+
+// node_modules/svelte/src/internal/client/dom/legacy/misc.js
+function bubble_event($$props, event2) {
+  var _a3;
+  var events = (
+    /** @type {Record<string, Function[] | Function>} */
+    (_a3 = $$props.$$events) == null ? void 0 : _a3[event2.type]
+  );
+  var callbacks = is_array(events) ? events.slice() : events == null ? [] : [events];
+  for (var fn of callbacks) {
+    fn.call(this, event2);
+  }
+}
+
+// node_modules/svelte/src/index-client.js
+if (dev_fallback_default) {
+  let throw_rune_error = function(rune) {
+    if (!(rune in globalThis)) {
+      let value;
+      Object.defineProperty(globalThis, rune, {
+        configurable: true,
+        // eslint-disable-next-line getter-return
+        get: () => {
+          if (value !== void 0) {
+            return value;
+          }
+          rune_outside_svelte(rune);
+        },
+        set: (v) => {
+          value = v;
+        }
+      });
+    }
+  };
+  throw_rune_error("$state");
+  throw_rune_error("$effect");
+  throw_rune_error("$derived");
+  throw_rune_error("$inspect");
+  throw_rune_error("$props");
+  throw_rune_error("$bindable");
 }
 function onMount(fn) {
-  get_current_component().$$.on_mount.push(fn);
+  if (component_context === null) {
+    lifecycle_outside_component("onMount");
+  }
+  if (legacy_mode_flag && component_context.l !== null) {
+    init_update_callbacks(component_context).m.push(fn);
+  } else {
+    user_effect(() => {
+      const cleanup = untrack(fn);
+      if (typeof cleanup === "function") return (
+        /** @type {() => void} */
+        cleanup
+      );
+    });
+  }
+}
+function create_custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+  return new CustomEvent(type, { detail, bubbles, cancelable });
 }
 function createEventDispatcher() {
-  const component = get_current_component();
-  return (type, detail, { cancelable = false } = {}) => {
-    const callbacks = component.$$.callbacks[type];
-    if (callbacks) {
-      const event = custom_event(
+  const active_component_context = component_context;
+  if (active_component_context === null) {
+    lifecycle_outside_component("createEventDispatcher");
+  }
+  return (type, detail, options) => {
+    var _a3;
+    const events = (
+      /** @type {Record<string, Function | Function[]>} */
+      (_a3 = active_component_context.s.$$events) == null ? void 0 : _a3[
+        /** @type {any} */
+        type
+      ]
+    );
+    if (events) {
+      const callbacks = is_array(events) ? events.slice() : [events];
+      const event2 = create_custom_event(
         /** @type {string} */
         type,
         detail,
-        { cancelable }
+        options
       );
-      callbacks.slice().forEach((fn) => {
-        fn.call(component, event);
-      });
-      return !event.defaultPrevented;
+      for (const fn of callbacks) {
+        fn.call(active_component_context.x, event2);
+      }
+      return !event2.defaultPrevented;
     }
     return true;
   };
 }
-function setContext(key, context) {
-  get_current_component().$$.context.set(key, context);
-  return context;
-}
-function getContext(key) {
-  return get_current_component().$$.context.get(key);
-}
-function bubble(component, event) {
-  const callbacks = component.$$.callbacks[event.type];
-  if (callbacks) {
-    callbacks.slice().forEach((fn) => fn.call(this, event));
+function afterUpdate(fn) {
+  if (component_context === null) {
+    lifecycle_outside_component("afterUpdate");
   }
+  if (component_context.l === null) {
+    lifecycle_legacy_only("afterUpdate");
+  }
+  init_update_callbacks(component_context).a.push(fn);
+}
+function init_update_callbacks(context) {
+  var _a3;
+  var l = (
+    /** @type {ComponentContextLegacy} */
+    context.l
+  );
+  return (_a3 = l.u) != null ? _a3 : l.u = { a: [], b: [], m: [] };
 }
 
-// node_modules/svelte/src/runtime/internal/scheduler.js
-var dirty_components = [];
-var binding_callbacks = [];
-var render_callbacks = [];
-var flush_callbacks = [];
-var resolved_promise = /* @__PURE__ */ Promise.resolve();
-var update_scheduled = false;
-function schedule_update() {
-  if (!update_scheduled) {
-    update_scheduled = true;
-    resolved_promise.then(flush);
+// node_modules/svelte/src/store/utils.js
+function subscribe_to_store(store, run2, invalidate) {
+  if (store == null) {
+    run2(void 0);
+    if (invalidate) invalidate(void 0);
+    return noop;
   }
-}
-function tick() {
-  schedule_update();
-  return resolved_promise;
-}
-function add_render_callback(fn) {
-  render_callbacks.push(fn);
-}
-var seen_callbacks = /* @__PURE__ */ new Set();
-var flushidx = 0;
-function flush() {
-  if (flushidx !== 0) {
-    return;
-  }
-  const saved_component = current_component;
-  do {
-    try {
-      while (flushidx < dirty_components.length) {
-        const component = dirty_components[flushidx];
-        flushidx++;
-        set_current_component(component);
-        update(component.$$);
-      }
-    } catch (e) {
-      dirty_components.length = 0;
-      flushidx = 0;
-      throw e;
-    }
-    set_current_component(null);
-    dirty_components.length = 0;
-    flushidx = 0;
-    while (binding_callbacks.length)
-      binding_callbacks.pop()();
-    for (let i = 0; i < render_callbacks.length; i += 1) {
-      const callback = render_callbacks[i];
-      if (!seen_callbacks.has(callback)) {
-        seen_callbacks.add(callback);
-        callback();
-      }
-    }
-    render_callbacks.length = 0;
-  } while (dirty_components.length);
-  while (flush_callbacks.length) {
-    flush_callbacks.pop()();
-  }
-  update_scheduled = false;
-  seen_callbacks.clear();
-  set_current_component(saved_component);
-}
-function update($$) {
-  if ($$.fragment !== null) {
-    $$.update();
-    run_all($$.before_update);
-    const dirty = $$.dirty;
-    $$.dirty = [-1];
-    $$.fragment && $$.fragment.p($$.ctx, dirty);
-    $$.after_update.forEach(add_render_callback);
-  }
-}
-function flush_render_callbacks(fns) {
-  const filtered = [];
-  const targets = [];
-  render_callbacks.forEach((c) => fns.indexOf(c) === -1 ? filtered.push(c) : targets.push(c));
-  targets.forEach((c) => c());
-  render_callbacks = filtered;
+  const unsub = untrack(
+    () => store.subscribe(
+      run2,
+      // @ts-expect-error
+      invalidate
+    )
+  );
+  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
 
-// node_modules/svelte/src/runtime/internal/transitions.js
-var outroing = /* @__PURE__ */ new Set();
-var outros;
-function group_outros() {
-  outros = {
-    r: 0,
-    c: [],
-    p: outros
-    // parent group
+// node_modules/svelte/src/store/shared/index.js
+var subscriber_queue = [];
+function writable(value, start = noop) {
+  let stop = null;
+  const subscribers = /* @__PURE__ */ new Set();
+  function set2(new_value) {
+    if (safe_not_equal(value, new_value)) {
+      value = new_value;
+      if (stop) {
+        const run_queue = !subscriber_queue.length;
+        for (const subscriber of subscribers) {
+          subscriber[1]();
+          subscriber_queue.push(subscriber, value);
+        }
+        if (run_queue) {
+          for (let i = 0; i < subscriber_queue.length; i += 2) {
+            subscriber_queue[i][0](subscriber_queue[i + 1]);
+          }
+          subscriber_queue.length = 0;
+        }
+      }
+    }
+  }
+  function update2(fn) {
+    set2(fn(
+      /** @type {T} */
+      value
+    ));
+  }
+  function subscribe(run2, invalidate = noop) {
+    const subscriber = [run2, invalidate];
+    subscribers.add(subscriber);
+    if (subscribers.size === 1) {
+      stop = start(set2, update2) || noop;
+    }
+    run2(
+      /** @type {T} */
+      value
+    );
+    return () => {
+      subscribers.delete(subscriber);
+      if (subscribers.size === 0 && stop) {
+        stop();
+        stop = null;
+      }
+    };
+  }
+  return { set: set2, update: update2, subscribe };
+}
+function get2(store) {
+  let value;
+  subscribe_to_store(store, (_3) => value = _3)();
+  return value;
+}
+
+// node_modules/svelte/src/internal/client/reactivity/store.js
+var is_store_binding = false;
+var IS_UNMOUNTED = Symbol();
+function store_get(store, store_name, stores) {
+  var _a3;
+  const entry = (_a3 = stores[store_name]) != null ? _a3 : stores[store_name] = {
+    store: null,
+    source: mutable_source(void 0),
+    unsubscribe: noop
   };
-}
-function check_outros() {
-  if (!outros.r) {
-    run_all(outros.c);
+  if (entry.store !== store && !(IS_UNMOUNTED in stores)) {
+    entry.unsubscribe();
+    entry.store = store != null ? store : null;
+    if (store == null) {
+      entry.source.v = void 0;
+      entry.unsubscribe = noop;
+    } else {
+      var is_synchronous_callback = true;
+      entry.unsubscribe = subscribe_to_store(store, (v) => {
+        if (is_synchronous_callback) {
+          entry.source.v = v;
+        } else {
+          set(entry.source, v);
+        }
+      });
+      is_synchronous_callback = false;
+    }
   }
-  outros = outros.p;
-}
-function transition_in(block, local) {
-  if (block && block.i) {
-    outroing.delete(block);
-    block.i(local);
+  if (store && IS_UNMOUNTED in stores) {
+    return get2(store);
   }
+  return get(entry.source);
 }
-function transition_out(block, local, detach2, callback) {
-  if (block && block.o) {
-    if (outroing.has(block))
-      return;
-    outroing.add(block);
-    outros.c.push(() => {
-      outroing.delete(block);
-      if (callback) {
-        if (detach2)
-          block.d(1);
-        callback();
+function setup_stores() {
+  const stores = {};
+  function cleanup() {
+    teardown(() => {
+      for (var store_name in stores) {
+        const ref = stores[store_name];
+        ref.unsubscribe();
       }
+      define_property(stores, IS_UNMOUNTED, {
+        enumerable: false,
+        value: true
+      });
     });
-    block.o(local);
-  } else if (callback) {
-    callback();
+  }
+  return [stores, cleanup];
+}
+function capture_store_binding(fn) {
+  var previous_is_store_binding = is_store_binding;
+  try {
+    is_store_binding = false;
+    return [fn(), is_store_binding];
+  } finally {
+    is_store_binding = previous_is_store_binding;
   }
 }
 
-// node_modules/svelte/src/runtime/internal/each.js
-function ensure_array_like(array_like_or_iterator) {
-  return (array_like_or_iterator == null ? void 0 : array_like_or_iterator.length) !== void 0 ? array_like_or_iterator : Array.from(array_like_or_iterator);
-}
-function destroy_block(block, lookup) {
-  block.d(1);
-  lookup.delete(block.key);
-}
-function outro_and_destroy_block(block, lookup) {
-  transition_out(block, 1, 1, () => {
-    lookup.delete(block.key);
-  });
-}
-function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block9, next, get_context) {
-  let o = old_blocks.length;
-  let n = list.length;
-  let i = o;
-  const old_indexes = {};
-  while (i--)
-    old_indexes[old_blocks[i].key] = i;
-  const new_blocks = [];
-  const new_lookup = /* @__PURE__ */ new Map();
-  const deltas = /* @__PURE__ */ new Map();
-  const updates = [];
-  i = n;
-  while (i--) {
-    const child_ctx = get_context(ctx, list, i);
-    const key = get_key(child_ctx);
-    let block = lookup.get(key);
-    if (!block) {
-      block = create_each_block9(key, child_ctx);
-      block.c();
-    } else if (dynamic) {
-      updates.push(() => block.p(child_ctx, dirty));
+// node_modules/svelte/src/internal/client/reactivity/props.js
+var spread_props_handler = {
+  get(target, key) {
+    let i = target.props.length;
+    while (i--) {
+      let p = target.props[i];
+      if (is_function(p)) p = p();
+      if (typeof p === "object" && p !== null && key in p) return p[key];
     }
-    new_lookup.set(key, new_blocks[i] = block);
-    if (key in old_indexes)
-      deltas.set(key, Math.abs(i - old_indexes[key]));
-  }
-  const will_move = /* @__PURE__ */ new Set();
-  const did_move = /* @__PURE__ */ new Set();
-  function insert2(block) {
-    transition_in(block, 1);
-    block.m(node, next);
-    lookup.set(block.key, block);
-    next = block.first;
-    n--;
-  }
-  while (o && n) {
-    const new_block = new_blocks[n - 1];
-    const old_block = old_blocks[o - 1];
-    const new_key = new_block.key;
-    const old_key = old_block.key;
-    if (new_block === old_block) {
-      next = new_block.first;
-      o--;
-      n--;
-    } else if (!new_lookup.has(old_key)) {
-      destroy(old_block, lookup);
-      o--;
-    } else if (!lookup.has(new_key) || will_move.has(new_key)) {
-      insert2(new_block);
-    } else if (did_move.has(old_key)) {
-      o--;
-    } else if (deltas.get(new_key) > deltas.get(old_key)) {
-      did_move.add(new_key);
-      insert2(new_block);
-    } else {
-      will_move.add(old_key);
-      o--;
+  },
+  set(target, key, value) {
+    let i = target.props.length;
+    while (i--) {
+      let p = target.props[i];
+      if (is_function(p)) p = p();
+      const desc = get_descriptor(p, key);
+      if (desc && desc.set) {
+        desc.set(value);
+        return true;
+      }
     }
-  }
-  while (o--) {
-    const old_block = old_blocks[o];
-    if (!new_lookup.has(old_block.key))
-      destroy(old_block, lookup);
-  }
-  while (n)
-    insert2(new_blocks[n - 1]);
-  run_all(updates);
-  return new_blocks;
-}
-
-// node_modules/svelte/src/shared/boolean_attributes.js
-var _boolean_attributes = (
-  /** @type {const} */
-  [
-    "allowfullscreen",
-    "allowpaymentrequest",
-    "async",
-    "autofocus",
-    "autoplay",
-    "checked",
-    "controls",
-    "default",
-    "defer",
-    "disabled",
-    "formnovalidate",
-    "hidden",
-    "inert",
-    "ismap",
-    "loop",
-    "multiple",
-    "muted",
-    "nomodule",
-    "novalidate",
-    "open",
-    "playsinline",
-    "readonly",
-    "required",
-    "reversed",
-    "selected"
-  ]
-);
-var boolean_attributes = /* @__PURE__ */ new Set([..._boolean_attributes]);
-
-// node_modules/svelte/src/runtime/internal/Component.js
-function create_component(block) {
-  block && block.c();
-}
-function mount_component(component, target, anchor) {
-  const { fragment, after_update } = component.$$;
-  fragment && fragment.m(target, anchor);
-  add_render_callback(() => {
-    const new_on_destroy = component.$$.on_mount.map(run).filter(is_function);
-    if (component.$$.on_destroy) {
-      component.$$.on_destroy.push(...new_on_destroy);
-    } else {
-      run_all(new_on_destroy);
+    return false;
+  },
+  getOwnPropertyDescriptor(target, key) {
+    let i = target.props.length;
+    while (i--) {
+      let p = target.props[i];
+      if (is_function(p)) p = p();
+      if (typeof p === "object" && p !== null && key in p) {
+        const descriptor = get_descriptor(p, key);
+        if (descriptor && !descriptor.configurable) {
+          descriptor.configurable = true;
+        }
+        return descriptor;
+      }
     }
-    component.$$.on_mount = [];
-  });
-  after_update.forEach(add_render_callback);
-}
-function destroy_component(component, detaching) {
-  const $$ = component.$$;
-  if ($$.fragment !== null) {
-    flush_render_callbacks($$.after_update);
-    run_all($$.on_destroy);
-    $$.fragment && $$.fragment.d(detaching);
-    $$.on_destroy = $$.fragment = null;
-    $$.ctx = [];
+  },
+  has(target, key) {
+    if (key === STATE_SYMBOL || key === LEGACY_PROPS) return false;
+    for (let p of target.props) {
+      if (is_function(p)) p = p();
+      if (p != null && key in p) return true;
+    }
+    return false;
+  },
+  ownKeys(target) {
+    const keys = [];
+    for (let p of target.props) {
+      if (is_function(p)) p = p();
+      for (const key in p) {
+        if (!keys.includes(key)) keys.push(key);
+      }
+    }
+    return keys;
   }
+};
+function spread_props(...props) {
+  return new Proxy({ props }, spread_props_handler);
 }
-function make_dirty(component, i) {
-  if (component.$$.dirty[0] === -1) {
-    dirty_components.push(component);
-    schedule_update();
-    component.$$.dirty.fill(0);
+function has_destroyed_component_ctx(current_value) {
+  var _a3, _b3;
+  return (_b3 = (_a3 = current_value.ctx) == null ? void 0 : _a3.d) != null ? _b3 : false;
+}
+function prop(props, key, flags, fallback2) {
+  var _a3, _b3;
+  var immutable = (flags & PROPS_IS_IMMUTABLE) !== 0;
+  var runes = !legacy_mode_flag || (flags & PROPS_IS_RUNES) !== 0;
+  var bindable = (flags & PROPS_IS_BINDABLE) !== 0;
+  var lazy = (flags & PROPS_IS_LAZY_INITIAL) !== 0;
+  var is_store_sub = false;
+  var prop_value;
+  if (bindable) {
+    [prop_value, is_store_sub] = capture_store_binding(() => (
+      /** @type {V} */
+      props[key]
+    ));
+  } else {
+    prop_value = /** @type {V} */
+    props[key];
   }
-  component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
-}
-function init(component, options, instance26, create_fragment26, not_equal, props, append_styles = null, dirty = [-1]) {
-  const parent_component = current_component;
-  set_current_component(component);
-  const $$ = component.$$ = {
-    fragment: null,
-    ctx: [],
-    // state
-    props,
-    update: noop,
-    not_equal,
-    bound: blank_object(),
-    // lifecycle
-    on_mount: [],
-    on_destroy: [],
-    on_disconnect: [],
-    before_update: [],
-    after_update: [],
-    context: new Map(options.context || (parent_component ? parent_component.$$.context : [])),
-    // everything else
-    callbacks: blank_object(),
-    dirty,
-    skip_bound: false,
-    root: options.target || parent_component.$$.root
+  var is_entry_props = STATE_SYMBOL in props || LEGACY_PROPS in props;
+  var setter = bindable && ((_b3 = (_a3 = get_descriptor(props, key)) == null ? void 0 : _a3.set) != null ? _b3 : is_entry_props && key in props && ((v) => props[key] = v)) || void 0;
+  var fallback_value = (
+    /** @type {V} */
+    fallback2
+  );
+  var fallback_dirty = true;
+  var fallback_used = false;
+  var get_fallback = () => {
+    fallback_used = true;
+    if (fallback_dirty) {
+      fallback_dirty = false;
+      if (lazy) {
+        fallback_value = untrack(
+          /** @type {() => V} */
+          fallback2
+        );
+      } else {
+        fallback_value = /** @type {V} */
+        fallback2;
+      }
+    }
+    return fallback_value;
   };
-  append_styles && append_styles($$.root);
-  let ready = false;
-  $$.ctx = instance26 ? instance26(component, options.props || {}, (i, ret, ...rest) => {
-    const value = rest.length ? rest[0] : ret;
-    if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
-      if (!$$.skip_bound && $$.bound[i])
-        $$.bound[i](value);
-      if (ready)
-        make_dirty(component, i);
+  if (prop_value === void 0 && fallback2 !== void 0) {
+    if (setter && runes) {
+      props_invalid_value(key);
     }
-    return ret;
-  }) : [];
-  $$.update();
-  ready = true;
-  run_all($$.before_update);
-  $$.fragment = create_fragment26 ? create_fragment26($$.ctx) : false;
-  if (options.target) {
-    if (options.hydrate) {
-      start_hydrating();
-      const nodes = children(options.target);
-      $$.fragment && $$.fragment.l(nodes);
-      nodes.forEach(detach);
-    } else {
-      $$.fragment && $$.fragment.c();
-    }
-    if (options.intro)
-      transition_in(component.$$.fragment);
-    mount_component(component, options.target, options.anchor);
-    end_hydrating();
-    flush();
+    prop_value = get_fallback();
+    if (setter) setter(prop_value);
   }
-  set_current_component(parent_component);
+  var getter;
+  if (runes) {
+    getter = () => {
+      var value = (
+        /** @type {V} */
+        props[key]
+      );
+      if (value === void 0) return get_fallback();
+      fallback_dirty = true;
+      fallback_used = false;
+      return value;
+    };
+  } else {
+    var derived_getter = (immutable ? derived : derived_safe_equal)(
+      () => (
+        /** @type {V} */
+        props[key]
+      )
+    );
+    derived_getter.f |= LEGACY_DERIVED_PROP;
+    getter = () => {
+      var value = get(derived_getter);
+      if (value !== void 0) fallback_value = /** @type {V} */
+      void 0;
+      return value === void 0 ? fallback_value : value;
+    };
+  }
+  if ((flags & PROPS_IS_UPDATED) === 0) {
+    return getter;
+  }
+  if (setter) {
+    var legacy_parent = props.$$legacy;
+    return function(value, mutation) {
+      if (arguments.length > 0) {
+        if (!runes || !mutation || legacy_parent || is_store_sub) {
+          setter(mutation ? getter() : value);
+        }
+        return value;
+      } else {
+        return getter();
+      }
+    };
+  }
+  var from_child = false;
+  var was_from_child = false;
+  var inner_current_value = mutable_source(prop_value);
+  var current_value = derived(() => {
+    var parent_value = getter();
+    var child_value = get(inner_current_value);
+    if (from_child) {
+      from_child = false;
+      was_from_child = true;
+      return child_value;
+    }
+    was_from_child = false;
+    return inner_current_value.v = parent_value;
+  });
+  if (bindable) {
+    get(current_value);
+  }
+  if (!immutable) current_value.equals = safe_equals;
+  return function(value, mutation) {
+    if (captured_signals !== null) {
+      from_child = was_from_child;
+      getter();
+      get(inner_current_value);
+    }
+    if (arguments.length > 0) {
+      const new_value = mutation ? get(current_value) : runes && bindable ? proxy(value) : value;
+      if (!current_value.equals(new_value)) {
+        from_child = true;
+        set(inner_current_value, new_value);
+        if (fallback_used && fallback_value !== void 0) {
+          fallback_value = new_value;
+        }
+        if (has_destroyed_component_ctx(current_value)) {
+          return value;
+        }
+        untrack(() => get(current_value));
+      }
+      return value;
+    }
+    if (has_destroyed_component_ctx(current_value)) {
+      return current_value.v;
+    }
+    return get(current_value);
+  };
 }
+
+// node_modules/svelte/src/legacy/legacy-client.js
+function createClassComponent(options) {
+  return new Svelte4Component(options);
+}
+var _events, _instance;
+var Svelte4Component = class {
+  /**
+   * @param {ComponentConstructorOptions & {
+   *  component: any;
+   * }} options
+   */
+  constructor(options) {
+    /** @type {any} */
+    __privateAdd(this, _events);
+    /** @type {Record<string, any>} */
+    __privateAdd(this, _instance);
+    var _a3, _b3;
+    var sources = /* @__PURE__ */ new Map();
+    var add_source = (key, value) => {
+      var s = mutable_source(value);
+      sources.set(key, s);
+      return s;
+    };
+    const props = new Proxy(
+      { ...options.props || {}, $$events: {} },
+      {
+        get(target, prop2) {
+          var _a4;
+          return get((_a4 = sources.get(prop2)) != null ? _a4 : add_source(prop2, Reflect.get(target, prop2)));
+        },
+        has(target, prop2) {
+          var _a4;
+          if (prop2 === LEGACY_PROPS) return true;
+          get((_a4 = sources.get(prop2)) != null ? _a4 : add_source(prop2, Reflect.get(target, prop2)));
+          return Reflect.has(target, prop2);
+        },
+        set(target, prop2, value) {
+          var _a4;
+          set((_a4 = sources.get(prop2)) != null ? _a4 : add_source(prop2, value), value);
+          return Reflect.set(target, prop2, value);
+        }
+      }
+    );
+    __privateSet(this, _instance, (options.hydrate ? hydrate : mount)(options.component, {
+      target: options.target,
+      anchor: options.anchor,
+      props,
+      context: options.context,
+      intro: (_a3 = options.intro) != null ? _a3 : false,
+      recover: options.recover
+    }));
+    if (!((_b3 = options == null ? void 0 : options.props) == null ? void 0 : _b3.$$host) || options.sync === false) {
+      flushSync();
+    }
+    __privateSet(this, _events, props.$$events);
+    for (const key of Object.keys(__privateGet(this, _instance))) {
+      if (key === "$set" || key === "$destroy" || key === "$on") continue;
+      define_property(this, key, {
+        get() {
+          return __privateGet(this, _instance)[key];
+        },
+        /** @param {any} value */
+        set(value) {
+          __privateGet(this, _instance)[key] = value;
+        },
+        enumerable: true
+      });
+    }
+    __privateGet(this, _instance).$set = /** @param {Record<string, any>} next */
+    (next2) => {
+      Object.assign(props, next2);
+    };
+    __privateGet(this, _instance).$destroy = () => {
+      unmount(__privateGet(this, _instance));
+    };
+  }
+  /** @param {Record<string, any>} props */
+  $set(props) {
+    __privateGet(this, _instance).$set(props);
+  }
+  /**
+   * @param {string} event
+   * @param {(...args: any[]) => any} callback
+   * @returns {any}
+   */
+  $on(event2, callback) {
+    __privateGet(this, _events)[event2] = __privateGet(this, _events)[event2] || [];
+    const cb = (...args) => callback.call(this, ...args);
+    __privateGet(this, _events)[event2].push(cb);
+    return () => {
+      __privateGet(this, _events)[event2] = __privateGet(this, _events)[event2].filter(
+        /** @param {any} fn */
+        (fn) => fn !== cb
+      );
+    };
+  }
+  $destroy() {
+    __privateGet(this, _instance).$destroy();
+  }
+};
+_events = new WeakMap();
+_instance = new WeakMap();
+
+// node_modules/svelte/src/internal/client/dom/elements/custom-element.js
 var SvelteElement;
 if (typeof HTMLElement === "function") {
   SvelteElement = class extends HTMLElement {
+    /**
+     * @param {*} $$componentCtor
+     * @param {*} $$slots
+     * @param {*} use_shadow_dom
+     */
     constructor($$componentCtor, $$slots, use_shadow_dom) {
       super();
       /** The Svelte component constructor */
       __publicField(this, "$$ctor");
       /** Slots */
       __publicField(this, "$$s");
-      /** The Svelte component instance */
+      /** @type {any} The Svelte component instance */
       __publicField(this, "$$c");
       /** Whether or not the custom element is connected */
       __publicField(this, "$$cn", false);
-      /** Component props data */
+      /** @type {Record<string, any>} Component props data */
       __publicField(this, "$$d", {});
       /** `true` if currently in the process of reflecting component props back to attributes */
       __publicField(this, "$$r", false);
       /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
       __publicField(this, "$$p_d", {});
-      /** @type {Record<string, Function[]>} Event listeners */
+      /** @type {Record<string, EventListenerOrEventListenerObject[]>} Event listeners */
       __publicField(this, "$$l", {});
-      /** @type {Map<Function, Function>} Event listener unsubscribe functions */
+      /** @type {Map<EventListenerOrEventListenerObject, Function>} Event listener unsubscribe functions */
       __publicField(this, "$$l_u", /* @__PURE__ */ new Map());
+      /** @type {any} The managed render effect for reflecting attributes */
+      __publicField(this, "$$me");
       this.$$ctor = $$componentCtor;
       this.$$s = $$slots;
       if (use_shadow_dom) {
         this.attachShadow({ mode: "open" });
       }
     }
+    /**
+     * @param {string} type
+     * @param {EventListenerOrEventListenerObject} listener
+     * @param {boolean | AddEventListenerOptions} [options]
+     */
     addEventListener(type, listener, options) {
       this.$$l[type] = this.$$l[type] || [];
       this.$$l[type].push(listener);
@@ -6495,6 +10369,11 @@ if (typeof HTMLElement === "function") {
       }
       super.addEventListener(type, listener, options);
     }
+    /**
+     * @param {string} type
+     * @param {EventListenerOrEventListenerObject} listener
+     * @param {boolean | AddEventListenerOptions} [options]
+     */
     removeEventListener(type, listener, options) {
       super.removeEventListener(type, listener, options);
       if (this.$$c) {
@@ -6508,30 +10387,11 @@ if (typeof HTMLElement === "function") {
     async connectedCallback() {
       this.$$cn = true;
       if (!this.$$c) {
-        let create_slot2 = function(name) {
-          return () => {
-            let node;
-            const obj = {
-              c: function create() {
-                node = element("slot");
-                if (name !== "default") {
-                  attr(node, "name", name);
-                }
-              },
-              /**
-               * @param {HTMLElement} target
-               * @param {HTMLElement} [anchor]
-               */
-              m: function mount(target, anchor) {
-                insert(target, node, anchor);
-              },
-              d: function destroy(detaching) {
-                if (detaching) {
-                  detach(node);
-                }
-              }
-            };
-            return obj;
+        let create_slot = function(name) {
+          return (anchor) => {
+            const slot2 = document.createElement("slot");
+            if (name !== "default") slot2.name = name;
+            append(anchor, slot2);
           };
         };
         await Promise.resolve();
@@ -6542,7 +10402,12 @@ if (typeof HTMLElement === "function") {
         const existing_slots = get_custom_elements_slots(this);
         for (const name of this.$$s) {
           if (name in existing_slots) {
-            $$slots[name] = [create_slot2(name)];
+            if (name === "default" && !this.$$d.children) {
+              this.$$d.children = create_slot(name);
+              $$slots.default = true;
+            } else {
+              $$slots[name] = create_slot(name);
+            }
           }
         }
         for (const attribute of this.attributes) {
@@ -6557,21 +10422,22 @@ if (typeof HTMLElement === "function") {
             delete this[key];
           }
         }
-        this.$$c = new this.$$ctor({
+        this.$$c = createClassComponent({
+          component: this.$$ctor,
           target: this.shadowRoot || this,
           props: {
             ...this.$$d,
             $$slots,
-            $$scope: {
-              ctx: []
-            }
+            $$host: this
           }
         });
-        const reflect_attributes = () => {
-          this.$$r = true;
-          for (const key in this.$$p_d) {
-            this.$$d[key] = this.$$c.$$.ctx[this.$$c.$$.props[key]];
-            if (this.$$p_d[key].reflect) {
+        this.$$me = effect_root(() => {
+          render_effect(() => {
+            var _a3;
+            this.$$r = true;
+            for (const key of object_keys(this.$$c)) {
+              if (!((_a3 = this.$$p_d[key]) == null ? void 0 : _a3.reflect)) continue;
+              this.$$d[key] = this.$$c[key];
               const attribute_value = get_custom_element_value(
                 key,
                 this.$$d[key],
@@ -6584,11 +10450,9 @@ if (typeof HTMLElement === "function") {
                 this.setAttribute(this.$$p_d[key].attribute || key, attribute_value);
               }
             }
-          }
-          this.$$r = false;
-        };
-        this.$$c.$$.after_update.push(reflect_attributes);
-        reflect_attributes();
+            this.$$r = false;
+          });
+        });
         for (const type in this.$$l) {
           for (const listener of this.$$l[type]) {
             const unsub = this.$$c.$on(type, listener);
@@ -6600,35 +10464,43 @@ if (typeof HTMLElement === "function") {
     }
     // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
     // and setting attributes through setAttribute etc, this is helpful
+    /**
+     * @param {string} attr
+     * @param {string} _oldValue
+     * @param {string} newValue
+     */
     attributeChangedCallback(attr2, _oldValue, newValue) {
-      var _a;
-      if (this.$$r)
-        return;
+      var _a3;
+      if (this.$$r) return;
       attr2 = this.$$g_p(attr2);
       this.$$d[attr2] = get_custom_element_value(attr2, newValue, this.$$p_d, "toProp");
-      (_a = this.$$c) == null ? void 0 : _a.$set({ [attr2]: this.$$d[attr2] });
+      (_a3 = this.$$c) == null ? void 0 : _a3.$set({ [attr2]: this.$$d[attr2] });
     }
     disconnectedCallback() {
       this.$$cn = false;
       Promise.resolve().then(() => {
-        if (!this.$$cn) {
+        if (!this.$$cn && this.$$c) {
           this.$$c.$destroy();
+          this.$$me();
           this.$$c = void 0;
         }
       });
     }
+    /**
+     * @param {string} attribute_name
+     */
     $$g_p(attribute_name) {
-      return Object.keys(this.$$p_d).find(
+      return object_keys(this.$$p_d).find(
         (key) => this.$$p_d[key].attribute === attribute_name || !this.$$p_d[key].attribute && key.toLowerCase() === attribute_name
       ) || attribute_name;
     }
   };
 }
-function get_custom_element_value(prop, value, props_definition, transform) {
-  var _a;
-  const type = (_a = props_definition[prop]) == null ? void 0 : _a.type;
+function get_custom_element_value(prop2, value, props_definition, transform) {
+  var _a3;
+  const type = (_a3 = props_definition[prop2]) == null ? void 0 : _a3.type;
   value = type === "Boolean" && typeof value !== "boolean" ? value != null : value;
-  if (!transform || !props_definition[prop]) {
+  if (!transform || !props_definition[prop2]) {
     return value;
   } else if (transform === "toAttribute") {
     switch (type) {
@@ -6649,6 +10521,7 @@ function get_custom_element_value(prop, value, props_definition, transform) {
         return value && JSON.parse(value);
       case "Boolean":
         return value;
+      // conversion already handled above
       case "Number":
         return value != null ? +value : value;
       default:
@@ -6656,69 +10529,18 @@ function get_custom_element_value(prop, value, props_definition, transform) {
     }
   }
 }
-var SvelteComponent = class {
-  constructor() {
-    /**
-     * ### PRIVATE API
-     *
-     * Do not use, may change at any time
-     *
-     * @type {any}
-     */
-    __publicField(this, "$$");
-    /**
-     * ### PRIVATE API
-     *
-     * Do not use, may change at any time
-     *
-     * @type {any}
-     */
-    __publicField(this, "$$set");
-  }
-  /** @returns {void} */
-  $destroy() {
-    destroy_component(this, 1);
-    this.$destroy = noop;
-  }
-  /**
-   * @template {Extract<keyof Events, string>} K
-   * @param {K} type
-   * @param {((e: Events[K]) => void) | null | undefined} callback
-   * @returns {() => void}
-   */
-  $on(type, callback) {
-    if (!is_function(callback)) {
-      return noop;
-    }
-    const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
-    callbacks.push(callback);
-    return () => {
-      const index = callbacks.indexOf(callback);
-      if (index !== -1)
-        callbacks.splice(index, 1);
-    };
-  }
-  /**
-   * @param {Partial<Props>} props
-   * @returns {void}
-   */
-  $set(props) {
-    if (this.$$set && !is_empty(props)) {
-      this.$$.skip_bound = true;
-      this.$$set(props);
-      this.$$.skip_bound = false;
-    }
-  }
-};
+function get_custom_elements_slots(element2) {
+  const result = {};
+  element2.childNodes.forEach((node) => {
+    result[
+      /** @type {Element} node */
+      node.slot || "default"
+    ] = true;
+  });
+  return result;
+}
 
-// node_modules/svelte/src/shared/version.js
-var PUBLIC_VERSION = "4";
-
-// node_modules/svelte/src/runtime/internal/disclose-version/index.js
-if (typeof window !== "undefined")
-  (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(PUBLIC_VERSION);
-
-// node_modules/tslib/tslib.es6.js
+// node_modules/tslib/tslib.es6.mjs
 function __awaiter(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -6747,9144 +10569,945 @@ function __awaiter(thisArg, _arguments, P, generator) {
   });
 }
 
-// src/svelte/shared/components/stack.svelte
-function create_fragment(ctx) {
-  let div;
-  let div_style_value;
-  let current;
-  const default_slot_template = (
-    /*#slots*/
-    ctx[8].default
-  );
-  const default_slot = create_slot(
-    default_slot_template,
-    ctx,
-    /*$$scope*/
-    ctx[7],
-    null
-  );
-  return {
-    c() {
-      div = element("div");
-      if (default_slot)
-        default_slot.c();
-      attr(div, "class", "vault-explorer-stack");
-      attr(div, "style", div_style_value = "display: flex; flex-direction: " + /*direction*/
-      ctx[2] + "; justify-content: " + /*justify*/
-      ctx[0] + "; align-items: " + /*align*/
-      ctx[1] + "; " + /*direction*/
-      (ctx[2] === "row" ? "column-gap" : "row-gap") + ": " + /*spacingPx*/
-      ctx[5] + "px; width: " + /*width*/
-      ctx[3] + "; height: " + /*height*/
-      ctx[4] + ";");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      if (default_slot) {
-        default_slot.m(div, null);
-      }
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      if (default_slot) {
-        if (default_slot.p && (!current || dirty & /*$$scope*/
-        128)) {
-          update_slot_base(
-            default_slot,
-            default_slot_template,
-            ctx2,
-            /*$$scope*/
-            ctx2[7],
-            !current ? get_all_dirty_from_scope(
-              /*$$scope*/
-              ctx2[7]
-            ) : get_slot_changes(
-              default_slot_template,
-              /*$$scope*/
-              ctx2[7],
-              dirty,
-              null
-            ),
-            null
-          );
-        }
-      }
-      if (!current || dirty & /*direction, justify, align, spacingPx, width, height*/
-      63 && div_style_value !== (div_style_value = "display: flex; flex-direction: " + /*direction*/
-      ctx2[2] + "; justify-content: " + /*justify*/
-      ctx2[0] + "; align-items: " + /*align*/
-      ctx2[1] + "; " + /*direction*/
-      (ctx2[2] === "row" ? "column-gap" : "row-gap") + ": " + /*spacingPx*/
-      ctx2[5] + "px; width: " + /*width*/
-      ctx2[3] + "; height: " + /*height*/
-      ctx2[4] + ";")) {
-        attr(div, "style", div_style_value);
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(default_slot, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(default_slot, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      if (default_slot)
-        default_slot.d(detaching);
-    }
-  };
-}
-function instance($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  let { spacing = "md" } = $$props;
-  let { justify = "unset" } = $$props;
-  let { align = "unset" } = $$props;
-  let { direction = "row" } = $$props;
-  let { width = "unset" } = $$props;
-  let { height = "unset" } = $$props;
-  let spacingPx = 0;
-  switch (spacing) {
-    case "xs":
-      spacingPx = 4;
-      break;
-    case "sm":
-      spacingPx = 8;
-      break;
-    case "md":
-      spacingPx = 16;
-      break;
-    case "lg":
-      spacingPx = 24;
-      break;
-    case "xl":
-      spacingPx = 32;
-      break;
-  }
-  $$self.$$set = ($$props2) => {
-    if ("spacing" in $$props2)
-      $$invalidate(6, spacing = $$props2.spacing);
-    if ("justify" in $$props2)
-      $$invalidate(0, justify = $$props2.justify);
-    if ("align" in $$props2)
-      $$invalidate(1, align = $$props2.align);
-    if ("direction" in $$props2)
-      $$invalidate(2, direction = $$props2.direction);
-    if ("width" in $$props2)
-      $$invalidate(3, width = $$props2.width);
-    if ("height" in $$props2)
-      $$invalidate(4, height = $$props2.height);
-    if ("$$scope" in $$props2)
-      $$invalidate(7, $$scope = $$props2.$$scope);
-  };
-  return [justify, align, direction, width, height, spacingPx, spacing, $$scope, slots];
-}
-var Stack = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance, create_fragment, safe_not_equal, {
-      spacing: 6,
-      justify: 0,
-      align: 1,
-      direction: 2,
-      width: 3,
-      height: 4
-    });
-  }
-};
-var stack_default = Stack;
-
-// src/svelte/shared/components/flex.svelte
-function create_fragment2(ctx) {
-  let div;
-  let current;
-  const default_slot_template = (
-    /*#slots*/
-    ctx[7].default
-  );
-  const default_slot = create_slot(
-    default_slot_template,
-    ctx,
-    /*$$scope*/
-    ctx[6],
-    null
-  );
-  return {
-    c() {
-      div = element("div");
-      if (default_slot)
-        default_slot.c();
-      attr(div, "class", "vault-explorer-flex");
-      set_style(div, "display", "flex");
-      set_style(
-        div,
-        "flex-direction",
-        /*direction*/
-        ctx[2]
-      );
-      set_style(
-        div,
-        "justify-content",
-        /*justify*/
-        ctx[3]
-      );
-      set_style(
-        div,
-        "align-items",
-        /*align*/
-        ctx[4]
-      );
-      set_style(
-        div,
-        "flex-wrap",
-        /*wrap*/
-        ctx[5]
-      );
-      set_style(
-        div,
-        "width",
-        /*width*/
-        ctx[0]
-      );
-      set_style(
-        div,
-        "height",
-        /*height*/
-        ctx[1]
-      );
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      if (default_slot) {
-        default_slot.m(div, null);
-      }
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      if (default_slot) {
-        if (default_slot.p && (!current || dirty & /*$$scope*/
-        64)) {
-          update_slot_base(
-            default_slot,
-            default_slot_template,
-            ctx2,
-            /*$$scope*/
-            ctx2[6],
-            !current ? get_all_dirty_from_scope(
-              /*$$scope*/
-              ctx2[6]
-            ) : get_slot_changes(
-              default_slot_template,
-              /*$$scope*/
-              ctx2[6],
-              dirty,
-              null
-            ),
-            null
-          );
-        }
-      }
-      if (!current || dirty & /*direction*/
-      4) {
-        set_style(
-          div,
-          "flex-direction",
-          /*direction*/
-          ctx2[2]
-        );
-      }
-      if (!current || dirty & /*justify*/
-      8) {
-        set_style(
-          div,
-          "justify-content",
-          /*justify*/
-          ctx2[3]
-        );
-      }
-      if (!current || dirty & /*align*/
-      16) {
-        set_style(
-          div,
-          "align-items",
-          /*align*/
-          ctx2[4]
-        );
-      }
-      if (!current || dirty & /*wrap*/
-      32) {
-        set_style(
-          div,
-          "flex-wrap",
-          /*wrap*/
-          ctx2[5]
-        );
-      }
-      if (!current || dirty & /*width*/
-      1) {
-        set_style(
-          div,
-          "width",
-          /*width*/
-          ctx2[0]
-        );
-      }
-      if (!current || dirty & /*height*/
-      2) {
-        set_style(
-          div,
-          "height",
-          /*height*/
-          ctx2[1]
-        );
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(default_slot, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(default_slot, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      if (default_slot)
-        default_slot.d(detaching);
-    }
-  };
-}
-function instance2($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  let { direction = "row" } = $$props;
-  let { justify = "flex-start" } = $$props;
-  let { align = "flex-start" } = $$props;
-  let { wrap = "nowrap" } = $$props;
-  let { width = "" } = $$props;
-  let { height = "" } = $$props;
-  if (width === void 0 && direction === "row") {
-    width = "100%";
-  } else if (height === void 0 && direction === "column") {
-    height = "100%";
-  }
-  $$self.$$set = ($$props2) => {
-    if ("direction" in $$props2)
-      $$invalidate(2, direction = $$props2.direction);
-    if ("justify" in $$props2)
-      $$invalidate(3, justify = $$props2.justify);
-    if ("align" in $$props2)
-      $$invalidate(4, align = $$props2.align);
-    if ("wrap" in $$props2)
-      $$invalidate(5, wrap = $$props2.wrap);
-    if ("width" in $$props2)
-      $$invalidate(0, width = $$props2.width);
-    if ("height" in $$props2)
-      $$invalidate(1, height = $$props2.height);
-    if ("$$scope" in $$props2)
-      $$invalidate(6, $$scope = $$props2.$$scope);
-  };
-  return [width, height, direction, justify, align, wrap, $$scope, slots];
-}
-var Flex = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance2, create_fragment2, safe_not_equal, {
-      direction: 2,
-      justify: 3,
-      align: 4,
-      wrap: 5,
-      width: 0,
-      height: 1
-    });
-  }
-};
-var flex_default = Flex;
-
-// src/svelte/shared/components/icon-button.svelte
-var import_obsidian = require("obsidian");
-function create_fragment3(ctx) {
-  let button;
-  let button_class_value;
-  let button_tabindex_value;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      button = element("button");
-      attr(button, "class", button_class_value = null_to_empty(
-        /*className*/
-        ctx[4]
-      ) + " svelte-94mg5c");
-      attr(button, "tabindex", button_tabindex_value = /*isTabbable*/
-      ctx[2] ? 0 : -1);
-      button.disabled = /*disabled*/
-      ctx[1];
-      attr(
-        button,
-        "aria-label",
-        /*ariaLabel*/
-        ctx[0]
-      );
-    },
-    m(target, anchor) {
-      insert(target, button, anchor);
-      button.innerHTML = /*svgData*/
-      ctx[5];
-      ctx[9](button);
-      if (!mounted) {
-        dispose = listen(
-          button,
-          "click",
-          /*handleClick*/
-          ctx[6]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*svgData*/
-      32)
-        button.innerHTML = /*svgData*/
-        ctx2[5];
-      ;
-      if (dirty & /*className*/
-      16 && button_class_value !== (button_class_value = null_to_empty(
-        /*className*/
-        ctx2[4]
-      ) + " svelte-94mg5c")) {
-        attr(button, "class", button_class_value);
-      }
-      if (dirty & /*isTabbable*/
-      4 && button_tabindex_value !== (button_tabindex_value = /*isTabbable*/
-      ctx2[2] ? 0 : -1)) {
-        attr(button, "tabindex", button_tabindex_value);
-      }
-      if (dirty & /*disabled*/
-      2) {
-        button.disabled = /*disabled*/
-        ctx2[1];
-      }
-      if (dirty & /*ariaLabel*/
-      1) {
-        attr(
-          button,
-          "aria-label",
-          /*ariaLabel*/
-          ctx2[0]
-        );
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(button);
-      }
-      ctx[9](null);
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function getSvgData(id) {
-  if (id === "ellipsis-vertical") {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>`;
-  }
-  return "";
-}
-function instance3($$self, $$props, $$invalidate) {
-  let svgData;
-  let className;
-  let { ariaLabel = "" } = $$props;
-  let { iconId = "" } = $$props;
-  let { disabled = false } = $$props;
-  let { noPadding = false } = $$props;
-  let { isTabbable = true } = $$props;
-  const dispatch = createEventDispatcher();
-  let ref;
-  onMount(() => {
-    if (iconId === "ellipsis-vertical")
-      return;
-    (0, import_obsidian.setIcon)(ref, iconId);
-  });
-  function handleClick(event) {
-    dispatch("click", { nativeEvent: event });
-  }
-  function button_binding($$value) {
-    binding_callbacks[$$value ? "unshift" : "push"](() => {
-      ref = $$value;
-      $$invalidate(3, ref);
-    });
-  }
-  $$self.$$set = ($$props2) => {
-    if ("ariaLabel" in $$props2)
-      $$invalidate(0, ariaLabel = $$props2.ariaLabel);
-    if ("iconId" in $$props2)
-      $$invalidate(7, iconId = $$props2.iconId);
-    if ("disabled" in $$props2)
-      $$invalidate(1, disabled = $$props2.disabled);
-    if ("noPadding" in $$props2)
-      $$invalidate(8, noPadding = $$props2.noPadding);
-    if ("isTabbable" in $$props2)
-      $$invalidate(2, isTabbable = $$props2.isTabbable);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*iconId*/
-    128) {
-      $:
-        $$invalidate(5, svgData = getSvgData(iconId));
-    }
-    if ($$self.$$.dirty & /*noPadding*/
-    256) {
-      $:
-        $$invalidate(4, className = "clickable-icon" + (noPadding == true ? " vault-explorer-icon--no-padding" : ""));
-    }
-  };
-  return [
-    ariaLabel,
-    disabled,
-    isTabbable,
-    ref,
-    className,
-    svgData,
-    handleClick,
-    iconId,
-    noPadding,
-    button_binding
-  ];
-}
-var Icon_button = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance3, create_fragment3, safe_not_equal, {
-      ariaLabel: 0,
-      iconId: 7,
-      disabled: 1,
-      noPadding: 8,
-      isTabbable: 2
-    });
-  }
-};
-var icon_button_default = Icon_button;
-
-// src/svelte/shared/components/checkbox.svelte
-function create_fragment4(ctx) {
-  let div;
-  let label_1;
-  let t0;
-  let t1;
-  let input;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      div = element("div");
-      label_1 = element("label");
-      t0 = text(
-        /*label*/
-        ctx[1]
-      );
-      t1 = space();
-      input = element("input");
-      attr(
-        label_1,
-        "for",
-        /*id*/
-        ctx[0]
-      );
-      attr(
-        input,
-        "id",
-        /*id*/
-        ctx[0]
-      );
-      attr(input, "type", "checkbox");
-      input.checked = /*value*/
-      ctx[2];
-      attr(div, "class", "vault-explorer-checkbox svelte-sbdz1k");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      append(div, label_1);
-      append(label_1, t0);
-      append(div, t1);
-      append(div, input);
-      if (!mounted) {
-        dispose = listen(
-          input,
-          "change",
-          /*handleChange*/
-          ctx[3]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*label*/
-      2)
-        set_data(
-          t0,
-          /*label*/
-          ctx2[1]
-        );
-      if (dirty & /*id*/
-      1) {
-        attr(
-          label_1,
-          "for",
-          /*id*/
-          ctx2[0]
-        );
-      }
-      if (dirty & /*id*/
-      1) {
-        attr(
-          input,
-          "id",
-          /*id*/
-          ctx2[0]
-        );
-      }
-      if (dirty & /*value*/
-      4) {
-        input.checked = /*value*/
-        ctx2[2];
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function instance4($$self, $$props, $$invalidate) {
-  let { id } = $$props;
-  let { label } = $$props;
-  let { value } = $$props;
-  const dispatch = createEventDispatcher();
-  function handleChange(event) {
-    dispatch("change", { nativeEvent: event });
-  }
-  $$self.$$set = ($$props2) => {
-    if ("id" in $$props2)
-      $$invalidate(0, id = $$props2.id);
-    if ("label" in $$props2)
-      $$invalidate(1, label = $$props2.label);
-    if ("value" in $$props2)
-      $$invalidate(2, value = $$props2.value);
-  };
-  return [id, label, value, handleChange];
-}
-var Checkbox = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance4, create_fragment4, safe_not_equal, { id: 0, label: 1, value: 2 });
-  }
-};
-var checkbox_default = Checkbox;
-
-// node_modules/svelte/src/runtime/store/index.js
-var subscriber_queue = [];
-function writable(value, start = noop) {
-  let stop;
-  const subscribers = /* @__PURE__ */ new Set();
-  function set(new_value) {
-    if (safe_not_equal(value, new_value)) {
-      value = new_value;
-      if (stop) {
-        const run_queue = !subscriber_queue.length;
-        for (const subscriber of subscribers) {
-          subscriber[1]();
-          subscriber_queue.push(subscriber, value);
-        }
-        if (run_queue) {
-          for (let i = 0; i < subscriber_queue.length; i += 2) {
-            subscriber_queue[i][0](subscriber_queue[i + 1]);
-          }
-          subscriber_queue.length = 0;
-        }
-      }
-    }
-  }
-  function update2(fn) {
-    set(fn(value));
-  }
-  function subscribe2(run2, invalidate = noop) {
-    const subscriber = [run2, invalidate];
-    subscribers.add(subscriber);
-    if (subscribers.size === 1) {
-      stop = start(set, update2) || noop;
-    }
-    run2(value);
-    return () => {
-      subscribers.delete(subscriber);
-      if (subscribers.size === 0 && stop) {
-        stop();
-        stop = null;
-      }
-    };
-  }
-  return { set, update: update2, subscribe: subscribe2 };
-}
-
-// src/svelte/shared/components/tab-list.svelte
-function create_default_slot(ctx) {
-  let current;
-  const default_slot_template = (
-    /*#slots*/
-    ctx[4].default
-  );
-  const default_slot = create_slot(
-    default_slot_template,
-    ctx,
-    /*$$scope*/
-    ctx[5],
-    null
-  );
-  return {
-    c() {
-      if (default_slot)
-        default_slot.c();
-    },
-    m(target, anchor) {
-      if (default_slot) {
-        default_slot.m(target, anchor);
-      }
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (default_slot) {
-        if (default_slot.p && (!current || dirty & /*$$scope*/
-        32)) {
-          update_slot_base(
-            default_slot,
-            default_slot_template,
-            ctx2,
-            /*$$scope*/
-            ctx2[5],
-            !current ? get_all_dirty_from_scope(
-              /*$$scope*/
-              ctx2[5]
-            ) : get_slot_changes(
-              default_slot_template,
-              /*$$scope*/
-              ctx2[5],
-              dirty,
-              null
-            ),
-            null
-          );
-        }
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(default_slot, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(default_slot, local);
-      current = false;
-    },
-    d(detaching) {
-      if (default_slot)
-        default_slot.d(detaching);
-    }
-  };
-}
-function create_fragment5(ctx) {
-  let div;
-  let stack;
-  let div_class_value;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "sm",
-      $$slots: { default: [create_default_slot] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      div = element("div");
-      create_component(stack.$$.fragment);
-      attr(div, "class", div_class_value = null_to_empty(
-        /*className*/
-        ctx[0]
-      ) + " svelte-2w3pm3");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(stack, div, null);
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      const stack_changes = {};
-      if (dirty & /*$$scope*/
-      32) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-      if (!current || dirty & /*className*/
-      1 && div_class_value !== (div_class_value = null_to_empty(
-        /*className*/
-        ctx2[0]
-      ) + " svelte-2w3pm3")) {
-        attr(div, "class", div_class_value);
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(stack);
-    }
-  };
-}
-function instance5($$self, $$props, $$invalidate) {
-  let className;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  let { initialSelectedIndex = 0 } = $$props;
-  let { variant = "rounded" } = $$props;
-  let registeredTabs = [];
-  const selectedTab = writable();
-  function registerTab(id) {
-    $$invalidate(3, registeredTabs = [...registeredTabs, id]);
-  }
-  function unregisterTab(id) {
-    $$invalidate(3, registeredTabs = registeredTabs.filter((tabId) => tabId !== id));
-  }
-  setContext("selectedTab", selectedTab);
-  setContext("registerTab", registerTab);
-  setContext("unregisterTab", unregisterTab);
-  setContext("variant", variant);
-  $$self.$$set = ($$props2) => {
-    if ("initialSelectedIndex" in $$props2)
-      $$invalidate(1, initialSelectedIndex = $$props2.initialSelectedIndex);
-    if ("variant" in $$props2)
-      $$invalidate(2, variant = $$props2.variant);
-    if ("$$scope" in $$props2)
-      $$invalidate(5, $$scope = $$props2.$$scope);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*initialSelectedIndex, registeredTabs*/
-    10) {
-      $:
-        initialSelectedIndex, registeredTabs.length, selectedTab.set(registeredTabs[initialSelectedIndex]);
-    }
-    if ($$self.$$.dirty & /*variant*/
-    4) {
-      $:
-        $$invalidate(0, className = "vault-explorer-tab-list" + (variant === "line" ? " vault-explorer-tab-list--line" : ""));
-    }
-  };
-  return [className, initialSelectedIndex, variant, registeredTabs, slots, $$scope];
-}
-var Tab_list = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance5, create_fragment5, safe_not_equal, { initialSelectedIndex: 1, variant: 2 });
-  }
-};
-var tab_list_default = Tab_list;
-
-// src/svelte/shared/components/tab.svelte
-function create_fragment6(ctx) {
-  let div;
-  let div_class_value;
-  let current;
-  let mounted;
-  let dispose;
-  const default_slot_template = (
-    /*#slots*/
-    ctx[10].default
-  );
-  const default_slot = create_slot(
-    default_slot_template,
-    ctx,
-    /*$$scope*/
-    ctx[9],
-    null
-  );
-  return {
-    c() {
-      div = element("div");
-      if (default_slot)
-        default_slot.c();
-      attr(div, "tabindex", "0");
-      attr(div, "role", "button");
-      attr(div, "class", div_class_value = null_to_empty(
-        /*className*/
-        ctx[1]
-      ) + " svelte-1mmhyf5");
-      attr(
-        div,
-        "draggable",
-        /*draggable*/
-        ctx[0]
-      );
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      if (default_slot) {
-        default_slot.m(div, null);
-      }
-      current = true;
-      if (!mounted) {
-        dispose = [
-          listen(
-            div,
-            "click",
-            /*handleClick*/
-            ctx[6]
-          ),
-          listen(
-            div,
-            "dragstart",
-            /*handleDragStart*/
-            ctx[3]
-          ),
-          listen(
-            div,
-            "dragover",
-            /*handleDragOver*/
-            ctx[4]
-          ),
-          listen(
-            div,
-            "drop",
-            /*handleDrop*/
-            ctx[5]
-          ),
-          listen(
-            div,
-            "keydown",
-            /*keydown_handler*/
-            ctx[11]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (default_slot) {
-        if (default_slot.p && (!current || dirty & /*$$scope*/
-        512)) {
-          update_slot_base(
-            default_slot,
-            default_slot_template,
-            ctx2,
-            /*$$scope*/
-            ctx2[9],
-            !current ? get_all_dirty_from_scope(
-              /*$$scope*/
-              ctx2[9]
-            ) : get_slot_changes(
-              default_slot_template,
-              /*$$scope*/
-              ctx2[9],
-              dirty,
-              null
-            ),
-            null
-          );
-        }
-      }
-      if (!current || dirty & /*className*/
-      2 && div_class_value !== (div_class_value = null_to_empty(
-        /*className*/
-        ctx2[1]
-      ) + " svelte-1mmhyf5")) {
-        attr(div, "class", div_class_value);
-      }
-      if (!current || dirty & /*draggable*/
-      1) {
-        attr(
-          div,
-          "draggable",
-          /*draggable*/
-          ctx2[0]
-        );
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(default_slot, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(default_slot, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      if (default_slot)
-        default_slot.d(detaching);
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-function instance6($$self, $$props, $$invalidate) {
-  let isSelected;
-  let className;
-  let $selectedTab;
-  let { $$slots: slots = {}, $$scope } = $$props;
-  const dispatch = createEventDispatcher();
-  let { draggable = false } = $$props;
-  const id = generateUUID();
-  const selectedTab = getContext("selectedTab");
-  component_subscribe($$self, selectedTab, (value) => $$invalidate(8, $selectedTab = value));
-  const registerTab = getContext("registerTab");
-  const unregisterTab = getContext("unregisterTab");
-  const variant = getContext("variant");
-  onMount(() => {
-    registerTab(id);
-    return () => {
-      unregisterTab(id);
-    };
-  });
-  function handleDragStart(event) {
-    dispatch("dragstart", { nativeEvent: event });
-  }
-  function handleDragOver(event) {
-    dispatch("dragover", { nativeEvent: event });
-  }
-  function handleDrop(event) {
-    dispatch("drop", { nativeEvent: event });
-  }
-  function handleClick(event) {
-    selectedTab.set(id);
-    dispatch("click", { nativeEvent: event });
-  }
-  function findClassName(variant2, isSelected2) {
-    let className2 = "vault-explorer-tab";
-    if (variant2 === "line") {
-      className2 += " vault-explorer-tab__line";
-      if (isSelected2) {
-        className2 += "--active";
-      }
-    } else if (variant2 === "rounded") {
-      className2 += " vault-explorer-tab__rounded";
-      if (isSelected2) {
-        className2 += "--active";
-      }
-    }
-    return className2;
-  }
-  const keydown_handler = (e) => (e.key === "Enter" || e.key === " ") && handleClick(e);
-  $$self.$$set = ($$props2) => {
-    if ("draggable" in $$props2)
-      $$invalidate(0, draggable = $$props2.draggable);
-    if ("$$scope" in $$props2)
-      $$invalidate(9, $$scope = $$props2.$$scope);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*$selectedTab*/
-    256) {
-      $:
-        $$invalidate(7, isSelected = $selectedTab === id);
-    }
-    if ($$self.$$.dirty & /*isSelected*/
-    128) {
-      $:
-        $$invalidate(1, className = findClassName(variant, isSelected));
-    }
-  };
-  return [
-    draggable,
-    className,
-    selectedTab,
-    handleDragStart,
-    handleDragOver,
-    handleDrop,
-    handleClick,
-    isSelected,
-    $selectedTab,
-    $$scope,
-    slots,
-    keydown_handler
-  ];
-}
-var Tab = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance6, create_fragment6, safe_not_equal, { draggable: 0 });
-  }
-};
-var tab_default = Tab;
-
-// src/svelte/app/index.svelte
-var import_obsidian6 = require("obsidian");
-
-// src/obsidian/properties-filter-modal.ts
+// src/svelte/shared/components/icon.svelte
 var import_obsidian2 = require("obsidian");
 
-// src/event/event-manager.ts
-var import_js_logger = __toESM(require_logger());
-var EventManager = class {
-  constructor() {
-    this.eventListeners = {};
-  }
-  // Ensures only one instance is created
-  static getInstance() {
-    if (!EventManager.instance) {
-      EventManager.instance = new EventManager();
-    }
-    return EventManager.instance;
-  }
-  // Method to add an event listener
-  on(eventName, callback) {
-    if (!this.eventListeners[eventName]) {
-      this.eventListeners[eventName] = [];
-    }
-    this.eventListeners[eventName].push(callback);
-  }
-  // Method to remove an event listener
-  off(eventName, callbackToRemove) {
-    if (!this.eventListeners[eventName]) {
-      return;
-    }
-    this.eventListeners[eventName] = this.eventListeners[eventName].filter(
-      (callback) => callback !== callbackToRemove
-    );
-  }
-  // Method to trigger all callbacks associated with an event
-  emit(eventName, ...data) {
-    import_js_logger.default.trace({ fileName: "event-manager.ts", functionName: "emit", message: "called" });
-    if (!this.eventListeners[eventName]) {
-      return;
-    }
-    import_js_logger.default.debug({ fileName: "event-manager.ts", functionName: "emit", message: "emiting event" }, eventName);
-    this.eventListeners[eventName].forEach((callback) => {
-      callback(...data);
-    });
-  }
-};
-
-// src/svelte/shared/services/store.ts
-var plugin = writable();
-var store_default = { plugin };
-
-// src/svelte/shared/components/divider.svelte
-function create_fragment7(ctx) {
-  let div;
-  let div_class_value;
-  return {
-    c() {
-      div = element("div");
-      attr(div, "class", div_class_value = null_to_empty(
-        /*className*/
-        ctx[1]
-      ) + " svelte-118dkzv");
-      set_style(
-        div,
-        "border-width",
-        /*borderWidth*/
-        ctx[0]
-      );
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*className*/
-      2 && div_class_value !== (div_class_value = null_to_empty(
-        /*className*/
-        ctx2[1]
-      ) + " svelte-118dkzv")) {
-        attr(div, "class", div_class_value);
-      }
-      if (dirty & /*borderWidth*/
-      1) {
-        set_style(
-          div,
-          "border-width",
-          /*borderWidth*/
-          ctx2[0]
-        );
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-    }
-  };
-}
-function instance7($$self, $$props, $$invalidate) {
-  let className;
-  let { direction = "horizontal" } = $$props;
-  let { borderWidth = "var(--hr-thickness)" } = $$props;
-  $$self.$$set = ($$props2) => {
-    if ("direction" in $$props2)
-      $$invalidate(2, direction = $$props2.direction);
-    if ("borderWidth" in $$props2)
-      $$invalidate(0, borderWidth = $$props2.borderWidth);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*direction*/
-    4) {
-      $:
-        $$invalidate(1, className = `vault-explorer-divider vault-explorer-divider--${direction}`);
-    }
-  };
-  return [borderWidth, className, direction];
-}
-var Divider = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance7, create_fragment7, safe_not_equal, { direction: 2, borderWidth: 0 });
-  }
-};
-var divider_default = Divider;
-
-// src/svelte/shared/components/switch.svelte
-function create_fragment8(ctx) {
-  let div;
-  let input;
-  let div_class_value;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      div = element("div");
-      input = element("input");
-      attr(
-        input,
-        "id",
-        /*id*/
-        ctx[2]
-      );
-      attr(input, "type", "checkbox");
-      attr(input, "class", "svelte-dc6puo");
-      attr(div, "tabindex", "0");
-      attr(div, "role", "switch");
-      attr(
-        div,
-        "aria-checked",
-        /*value*/
-        ctx[1]
-      );
-      attr(
-        div,
-        "aria-label",
-        /*ariaLabel*/
-        ctx[0]
-      );
-      attr(div, "class", div_class_value = null_to_empty(
-        /*className*/
-        ctx[3]
-      ) + " svelte-dc6puo");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      append(div, input);
-      if (!mounted) {
-        dispose = [
-          listen(
-            div,
-            "click",
-            /*handleClick*/
-            ctx[5]
-          ),
-          listen(
-            div,
-            "keydown",
-            /*handleKeyDown*/
-            ctx[4]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*id*/
-      4) {
-        attr(
-          input,
-          "id",
-          /*id*/
-          ctx2[2]
-        );
-      }
-      if (dirty & /*value*/
-      2) {
-        attr(
-          div,
-          "aria-checked",
-          /*value*/
-          ctx2[1]
-        );
-      }
-      if (dirty & /*ariaLabel*/
-      1) {
-        attr(
-          div,
-          "aria-label",
-          /*ariaLabel*/
-          ctx2[0]
-        );
-      }
-      if (dirty & /*className*/
-      8 && div_class_value !== (div_class_value = null_to_empty(
-        /*className*/
-        ctx2[3]
-      ) + " svelte-dc6puo")) {
-        attr(div, "class", div_class_value);
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-function instance8($$self, $$props, $$invalidate) {
-  let className;
-  let { ariaLabel = null } = $$props;
-  let { value = false } = $$props;
-  let { id = null } = $$props;
-  const dispatch = createEventDispatcher();
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      e.stopPropagation();
-      dispatch("change", { value: !value });
-    }
-  }
-  function handleClick(e) {
-    e.stopPropagation();
-    dispatch("change", { value: !value });
-  }
-  $$self.$$set = ($$props2) => {
-    if ("ariaLabel" in $$props2)
-      $$invalidate(0, ariaLabel = $$props2.ariaLabel);
-    if ("value" in $$props2)
-      $$invalidate(1, value = $$props2.value);
-    if ("id" in $$props2)
-      $$invalidate(2, id = $$props2.id);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*value*/
-    2) {
-      $:
-        $$invalidate(3, className = "checkbox-container vault-explorer-switch" + (value ? " is-enabled" : ""));
-    }
-  };
-  return [ariaLabel, value, id, className, handleKeyDown, handleClick];
-}
-var Switch = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance8, create_fragment8, safe_not_equal, { ariaLabel: 0, value: 1, id: 2 });
-  }
-};
-var switch_default = Switch;
-
-// src/svelte/properties-filter-app/components/utils.ts
-var getDisplayNameForFilterCondition = (type) => {
-  switch (type) {
-    case "is" /* IS */:
-    case "is" /* IS */:
-    case "is" /* IS */:
-      return "is";
-    case "is-not" /* IS_NOT */:
-    case "is-not" /* IS_NOT */:
-      return "is not";
-    case "contains" /* CONTAINS */:
-    case "contains" /* CONTAINS */:
-      return "contains";
-    case "does-not-contain" /* DOES_NOT_CONTAIN */:
-    case "does-not-contain" /* DOES_NOT_CONTAIN */:
-      return "does not contain";
-    case "starts-with" /* STARTS_WITH */:
-      return "starts with";
-    case "ends-with" /* ENDS_WITH */:
-      return "ends with";
-    case "exists" /* EXISTS */:
-    case "exists" /* EXISTS */:
-    case "exists" /* EXISTS */:
-    case "exists" /* EXISTS */:
-    case "exists" /* EXISTS */:
-      return "exists";
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-      return "does not exist";
-    case "is-equal" /* IS_EQUAL */:
-      return "=";
-    case "is-not-equal" /* IS_NOT_EQUAL */:
-      return "!=";
-    case "is-greater" /* IS_GREATER */:
-      return ">";
-    case "is-greater-or-equal" /* IS_GREATER_OR_EQUAL */:
-      return ">=";
-    case "is-less" /* IS_LESS */:
-      return "<";
-    case "is-less-or-equal" /* IS_LESS_OR_EQUAL */:
-      return "<=";
-    case "is-after" /* IS_AFTER */:
-      return "is after";
-    case "is-before" /* IS_BEFORE */:
-      return "is before";
+// src/svelte/shared/services/get-svg-data.ts
+var ellipsisVertical = (className) => `<svg class="${className}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>`;
+var getSvgData = (iconId, className) => {
+  switch (iconId) {
+    case "ellipsis-vertical":
+      return ellipsisVertical(className);
     default:
       return "";
   }
 };
 
-// src/obsidian/utils.ts
-var getAllObsidianProperties = (app) => {
-  const properties = app.metadataTypeManager.getAllProperties();
-  return Object.values(properties).sort((a, b) => a.name.localeCompare(b.name));
-};
-var getObsidianPropertiesByType = (app, type) => {
-  return getAllObsidianProperties(app).filter((p) => p.type === type);
-};
-var getDropdownOptionsForProperties = (properties) => {
-  return properties.reduce((acc, cur) => {
-    acc[cur.name] = cur.name;
-    return acc;
-  }, { "": "Select a property" });
+// src/svelte/shared/components/icon.svelte
+var root = template(`<div><!></div>`);
+function Icon($$anchor, $$props) {
+  push($$props, false);
+  const className = mutable_source();
+  const svgData = mutable_source();
+  let ariaLabel = prop($$props, "ariaLabel", 8, "");
+  let iconId = prop($$props, "iconId", 8);
+  let size = prop($$props, "size", 8, "md");
+  let color = prop($$props, "color", 8, "");
+  let fill = prop($$props, "fill", 8, "");
+  let ref = mutable_source(null);
+  onMount(() => {
+    updateIcon();
+  });
+  afterUpdate(() => {
+    updateIcon();
+  });
+  function updateIcon() {
+    if (!get(ref)) return;
+    if (iconId() === "ellipsis-vertical") return;
+    (0, import_obsidian2.setIcon)(get(ref), iconId());
+    const icon = get(ref).querySelector("svg");
+    if (icon) {
+      icon.style.setProperty("fill", fill());
+      const sizeVariable = getSizeVariable();
+      icon.style.setProperty("width", sizeVariable);
+      icon.style.setProperty("height", sizeVariable);
+    }
+  }
+  function getSizeVariable() {
+    if (size() === "xs") return `var(--icon-xs)`;
+    if (size() === "sm") return `var(--icon-sm)`;
+    if (size() === "md") return `var(--icon-m)`;
+    if (size() === "lg") return `24px`;
+    if (size() === "xl") return `var(--icon-xl)`;
+    return "";
+  }
+  function getClassName(size2) {
+    let className2 = "vault-explorer-icon";
+    if (size2 === "xs") {
+      className2 += " vault-explorer-icon--xs";
+    } else if (size2 === "sm") {
+      className2 += " vault-explorer-icon--sm";
+    } else if (size2 === "md") {
+      className2 += " vault-explorer-icon--md";
+    } else if (size2 === "lg") {
+      className2 += " vault-explorer-icon--lg";
+    } else if (size2 === "xl") {
+      className2 += " vault-explorer-icon--xl";
+    }
+    return className2;
+  }
+  legacy_pre_effect(() => deep_read_state(size()), () => {
+    set(className, getClassName(size()));
+  });
+  legacy_pre_effect(
+    () => (getSvgData, deep_read_state(iconId()), get(className)),
+    () => {
+      set(svgData, getSvgData(iconId(), get(className)));
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root();
+  var node = child(div);
+  html(node, () => get(svgData));
+  reset(div);
+  bind_this(div, ($$value) => set(ref, $$value), () => get(ref));
+  template_effect(() => {
+    var _a3;
+    set_class(div, 1, clsx2(get(className)), "svelte-zgdni4");
+    set_style(div, `color: ${(_a3 = color()) != null ? _a3 : ""};`);
+    set_attribute(div, "aria-label", ariaLabel());
+  });
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/shared/services/store.ts
+var plugin = writable();
+var store_default = { plugin };
+
+// src/svelte/image-source-app/display-name.ts
+var getDisplayNameForImageSource = (type) => {
+  switch (type) {
+    case "image-property":
+      return "Image property";
+    case "url-property":
+      return "URL property";
+    case "frontmatter":
+      return "Frontmatter";
+    case "body":
+      return "Body";
+    default:
+      return "";
+  }
 };
 
-// src/svelte/shared/components/wrap.svelte
-function create_fragment9(ctx) {
-  let div;
-  let current;
-  const default_slot_template = (
-    /*#slots*/
-    ctx[10].default
-  );
-  const default_slot = create_slot(
-    default_slot_template,
-    ctx,
-    /*$$scope*/
-    ctx[9],
-    null
-  );
-  return {
-    c() {
-      div = element("div");
-      if (default_slot)
-        default_slot.c();
-      attr(div, "class", "vault-explorer-wrap svelte-1xlawuv");
-      set_style(
-        div,
-        "flex-direction",
-        /*direction*/
-        ctx[2]
-      );
-      set_style(
-        div,
-        "justify-content",
-        /*justify*/
-        ctx[0]
-      );
-      set_style(
-        div,
-        "align-items",
-        /*align*/
-        ctx[1]
-      );
-      set_style(
-        div,
-        "column-gap",
-        /*xSpacingPx*/
-        ctx[5] + "px"
-      );
-      set_style(
-        div,
-        "row-gap",
-        /*ySpacingPx*/
-        ctx[6] + "px"
-      );
-      set_style(
-        div,
-        "width",
-        /*width*/
-        ctx[3]
-      );
-      set_style(
-        div,
-        "height",
-        /*height*/
-        ctx[4]
-      );
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      if (default_slot) {
-        default_slot.m(div, null);
-      }
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      if (default_slot) {
-        if (default_slot.p && (!current || dirty & /*$$scope*/
-        512)) {
-          update_slot_base(
-            default_slot,
-            default_slot_template,
-            ctx2,
-            /*$$scope*/
-            ctx2[9],
-            !current ? get_all_dirty_from_scope(
-              /*$$scope*/
-              ctx2[9]
-            ) : get_slot_changes(
-              default_slot_template,
-              /*$$scope*/
-              ctx2[9],
-              dirty,
-              null
-            ),
-            null
-          );
-        }
-      }
-      if (!current || dirty & /*direction*/
-      4) {
-        set_style(
-          div,
-          "flex-direction",
-          /*direction*/
-          ctx2[2]
-        );
-      }
-      if (!current || dirty & /*justify*/
-      1) {
-        set_style(
-          div,
-          "justify-content",
-          /*justify*/
-          ctx2[0]
-        );
-      }
-      if (!current || dirty & /*align*/
-      2) {
-        set_style(
-          div,
-          "align-items",
-          /*align*/
-          ctx2[1]
-        );
-      }
-      if (!current || dirty & /*xSpacingPx*/
-      32) {
-        set_style(
-          div,
-          "column-gap",
-          /*xSpacingPx*/
-          ctx2[5] + "px"
-        );
-      }
-      if (!current || dirty & /*ySpacingPx*/
-      64) {
-        set_style(
-          div,
-          "row-gap",
-          /*ySpacingPx*/
-          ctx2[6] + "px"
-        );
-      }
-      if (!current || dirty & /*width*/
-      8) {
-        set_style(
-          div,
-          "width",
-          /*width*/
-          ctx2[3]
-        );
-      }
-      if (!current || dirty & /*height*/
-      16) {
-        set_style(
-          div,
-          "height",
-          /*height*/
-          ctx2[4]
-        );
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(default_slot, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(default_slot, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      if (default_slot)
-        default_slot.d(detaching);
-    }
-  };
-}
-function instance9($$self, $$props, $$invalidate) {
-  let { $$slots: slots = {}, $$scope } = $$props;
-  let { spacingX = "md" } = $$props;
-  let { spacingY = "md" } = $$props;
-  let { justify = "unset" } = $$props;
-  let { align = "unset" } = $$props;
-  let { direction = "row" } = $$props;
-  let { width = "unset" } = $$props;
-  let { height = "unset" } = $$props;
-  let xSpacingPx = 0;
-  let ySpacingPx = 0;
-  if (spacingX === "xs") {
-    xSpacingPx = 4;
-  } else if (spacingX === "sm") {
-    xSpacingPx = 8;
-  } else if (spacingX === "md") {
-    xSpacingPx = 16;
-  } else if (spacingX === "lg") {
-    xSpacingPx = 24;
-  } else if (spacingX === "xl") {
-    xSpacingPx = 32;
-  }
-  if (spacingY === "xs") {
-    ySpacingPx = 4;
-  } else if (spacingY === "sm") {
-    ySpacingPx = 8;
-  } else if (spacingY === "md") {
-    ySpacingPx = 16;
-  } else if (spacingY === "lg") {
-    ySpacingPx = 24;
-  } else if (spacingY === "xl") {
-    ySpacingPx = 32;
-  }
-  $$self.$$set = ($$props2) => {
-    if ("spacingX" in $$props2)
-      $$invalidate(7, spacingX = $$props2.spacingX);
-    if ("spacingY" in $$props2)
-      $$invalidate(8, spacingY = $$props2.spacingY);
-    if ("justify" in $$props2)
-      $$invalidate(0, justify = $$props2.justify);
-    if ("align" in $$props2)
-      $$invalidate(1, align = $$props2.align);
-    if ("direction" in $$props2)
-      $$invalidate(2, direction = $$props2.direction);
-    if ("width" in $$props2)
-      $$invalidate(3, width = $$props2.width);
-    if ("height" in $$props2)
-      $$invalidate(4, height = $$props2.height);
-    if ("$$scope" in $$props2)
-      $$invalidate(9, $$scope = $$props2.$$scope);
-  };
-  return [
-    justify,
-    align,
-    direction,
-    width,
-    height,
-    xSpacingPx,
-    ySpacingPx,
-    spacingX,
-    spacingY,
-    $$scope,
-    slots
-  ];
-}
-var Wrap = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance9, create_fragment9, safe_not_equal, {
-      spacingX: 7,
-      spacingY: 8,
-      justify: 0,
-      align: 1,
-      direction: 2,
-      width: 3,
-      height: 4
-    });
-  }
-};
-var wrap_default = Wrap;
-
-// src/svelte/properties-filter-app/components/property-filter.svelte
-function get_each_context(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[7] = list[i];
-  return child_ctx;
-}
-function get_each_context_1(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[27] = list[i];
-  return child_ctx;
-}
-function get_each_context_2(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[6] = list[i];
-  return child_ctx;
-}
-function create_if_block_2(ctx) {
-  let select;
-  let option0;
-  let option1;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      select = element("select");
-      option0 = element("option");
-      option0.textContent = "and";
-      option1 = element("option");
-      option1.textContent = "or";
-      option0.__value = "and";
-      set_input_value(option0, option0.__value);
-      option1.__value = "or";
-      set_input_value(option1, option1.__value);
-      attr(select, "class", "vault-explorer-property-filter__operator svelte-yn3u1i");
-    },
-    m(target, anchor) {
-      insert(target, select, anchor);
-      append(select, option0);
-      append(select, option1);
-      select_option(
-        select,
-        /*operator*/
-        ctx[2]
-      );
-      if (!mounted) {
-        dispose = listen(
-          select,
-          "change",
-          /*handleOperatorChange*/
-          ctx[15]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*operator*/
-      4) {
-        select_option(
-          select,
-          /*operator*/
-          ctx2[2]
-        );
-      }
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(select);
-      }
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function create_each_block_2(ctx) {
-  let option;
-  let t_value = (
-    /*type*/
-    ctx[6] + ""
-  );
-  let t;
-  let option_value_value;
-  return {
-    c() {
-      option = element("option");
-      t = text(t_value);
-      option.__value = option_value_value = /*type*/
-      ctx[6];
-      set_input_value(option, option.__value);
-    },
-    m(target, anchor) {
-      insert(target, option, anchor);
-      append(option, t);
-    },
-    p: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(option);
-      }
-    }
-  };
-}
-function create_each_block_1(key_1, ctx) {
-  let option;
-  let t_value = (
-    /*prop*/
-    ctx[27].name + ""
-  );
-  let t;
-  let option_value_value;
-  return {
-    key: key_1,
-    first: null,
-    c() {
-      option = element("option");
-      t = text(t_value);
-      option.__value = option_value_value = /*prop*/
-      ctx[27].name;
-      set_input_value(option, option.__value);
-      this.first = option;
-    },
-    m(target, anchor) {
-      insert(target, option, anchor);
-      append(option, t);
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-      if (dirty[0] & /*filteredObsidianProperties*/
-      256 && t_value !== (t_value = /*prop*/
-      ctx[27].name + ""))
-        set_data(t, t_value);
-      if (dirty[0] & /*filteredObsidianProperties*/
-      256 && option_value_value !== (option_value_value = /*prop*/
-      ctx[27].name)) {
-        option.__value = option_value_value;
-        set_input_value(option, option.__value);
-      }
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(option);
-      }
-    }
-  };
-}
-function create_each_block(ctx) {
-  let option;
-  let t0_value = getDisplayNameForFilterCondition(
-    /*condition*/
-    ctx[7]
-  ) + "";
-  let t0;
-  let t1;
-  let option_value_value;
-  return {
-    c() {
-      option = element("option");
-      t0 = text(t0_value);
-      t1 = space();
-      option.__value = option_value_value = /*condition*/
-      ctx[7];
-      set_input_value(option, option.__value);
-    },
-    m(target, anchor) {
-      insert(target, option, anchor);
-      append(option, t0);
-      append(option, t1);
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*filterConditions*/
-      512 && t0_value !== (t0_value = getDisplayNameForFilterCondition(
-        /*condition*/
-        ctx2[7]
-      ) + ""))
-        set_data(t0, t0_value);
-      if (dirty[0] & /*filterConditions*/
-      512 && option_value_value !== (option_value_value = /*condition*/
-      ctx2[7])) {
-        option.__value = option_value_value;
-        set_input_value(option, option.__value);
-      }
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(option);
-      }
-    }
-  };
-}
-function create_if_block_1(ctx) {
-  let input;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      input = element("input");
-      attr(input, "type", "text");
-      input.value = /*value*/
-      ctx[3];
-      attr(input, "class", "svelte-yn3u1i");
-    },
-    m(target, anchor) {
-      insert(target, input, anchor);
-      if (!mounted) {
-        dispose = listen(
-          input,
-          "change",
-          /*handleValueChange*/
-          ctx[14]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*value*/
-      8 && input.value !== /*value*/
-      ctx2[3]) {
-        input.value = /*value*/
-        ctx2[3];
-      }
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(input);
-      }
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function create_if_block(ctx) {
-  let input;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      input = element("input");
-      attr(input, "aria-label", "Match when property doesn't exist");
-      attr(input, "type", "checkbox");
-      input.checked = /*matchWhenPropertyDNE*/
-      ctx[5];
-      attr(input, "class", "svelte-yn3u1i");
-    },
-    m(target, anchor) {
-      insert(target, input, anchor);
-      if (!mounted) {
-        dispose = listen(
-          input,
-          "change",
-          /*handleMatchWhenDNEChange*/
-          ctx[16]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*matchWhenPropertyDNE*/
-      32) {
-        input.checked = /*matchWhenPropertyDNE*/
-        ctx2[5];
-      }
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(input);
-      }
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function create_default_slot_1(ctx) {
-  let switch_1;
-  let t;
-  let iconbutton;
-  let current;
-  switch_1 = new switch_default({ props: { value: (
-    /*isEnabled*/
-    ctx[4]
-  ) } });
-  switch_1.$on(
-    "change",
-    /*change_handler*/
-    ctx[20]
-  );
-  iconbutton = new icon_button_default({
-    props: {
-      ariaLabel: "Delete property filter",
-      iconId: "trash"
-    }
-  });
-  iconbutton.$on(
-    "click",
-    /*click_handler*/
-    ctx[21]
-  );
-  return {
-    c() {
-      create_component(switch_1.$$.fragment);
-      t = space();
-      create_component(iconbutton.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(switch_1, target, anchor);
-      insert(target, t, anchor);
-      mount_component(iconbutton, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const switch_1_changes = {};
-      if (dirty[0] & /*isEnabled*/
-      16)
-        switch_1_changes.value = /*isEnabled*/
-        ctx2[4];
-      switch_1.$set(switch_1_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(switch_1.$$.fragment, local);
-      transition_in(iconbutton.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(switch_1.$$.fragment, local);
-      transition_out(iconbutton.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(switch_1, detaching);
-      destroy_component(iconbutton, detaching);
-    }
-  };
-}
-function create_default_slot2(ctx) {
-  let t0;
-  let select0;
-  let t1;
-  let select1;
-  let option;
-  let each_blocks_1 = [];
-  let each1_lookup = /* @__PURE__ */ new Map();
-  let t3;
-  let select2;
-  let t4;
-  let t5;
-  let t6;
-  let stack;
-  let current;
-  let mounted;
-  let dispose;
-  let if_block0 = (
-    /*index*/
-    ctx[0] > 0 && create_if_block_2(ctx)
-  );
-  let each_value_2 = ensure_array_like(Object.values(PropertyType));
-  let each_blocks_2 = [];
-  for (let i = 0; i < each_value_2.length; i += 1) {
-    each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
-  }
-  let each_value_1 = ensure_array_like(
-    /*filteredObsidianProperties*/
-    ctx[8]
-  );
-  const get_key = (ctx2) => (
-    /*prop*/
-    ctx2[27].name
-  );
-  for (let i = 0; i < each_value_1.length; i += 1) {
-    let child_ctx = get_each_context_1(ctx, each_value_1, i);
-    let key = get_key(child_ctx);
-    each1_lookup.set(key, each_blocks_1[i] = create_each_block_1(key, child_ctx));
-  }
-  let each_value = ensure_array_like(
-    /*filterConditions*/
-    ctx[9]
-  );
-  let each_blocks = [];
-  for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
-  }
-  let if_block1 = (
-    /*condition*/
-    ctx[7] !== "exists" /* EXISTS */ && /*condition*/
-    ctx[7] !== "does-not-exist" /* DOES_NOT_EXIST */ && create_if_block_1(ctx)
-  );
-  let if_block2 = (
-    /*condition*/
-    ctx[7] !== "exists" /* EXISTS */ && /*condition*/
-    ctx[7] !== "does-not-exist" /* DOES_NOT_EXIST */ && create_if_block(ctx)
-  );
-  stack = new stack_default({
-    props: {
-      spacing: "sm",
-      align: "center",
-      $$slots: { default: [create_default_slot_1] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      if (if_block0)
-        if_block0.c();
-      t0 = space();
-      select0 = element("select");
-      for (let i = 0; i < each_blocks_2.length; i += 1) {
-        each_blocks_2[i].c();
-      }
-      t1 = space();
-      select1 = element("select");
-      option = element("option");
-      option.textContent = "Select a property";
-      for (let i = 0; i < each_blocks_1.length; i += 1) {
-        each_blocks_1[i].c();
-      }
-      t3 = space();
-      select2 = element("select");
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      t4 = space();
-      if (if_block1)
-        if_block1.c();
-      t5 = space();
-      if (if_block2)
-        if_block2.c();
-      t6 = space();
-      create_component(stack.$$.fragment);
-      attr(select0, "class", "svelte-yn3u1i");
-      option.__value = "";
-      set_input_value(option, option.__value);
-      attr(select1, "class", "svelte-yn3u1i");
-      attr(select2, "class", "svelte-yn3u1i");
-    },
-    m(target, anchor) {
-      if (if_block0)
-        if_block0.m(target, anchor);
-      insert(target, t0, anchor);
-      insert(target, select0, anchor);
-      for (let i = 0; i < each_blocks_2.length; i += 1) {
-        if (each_blocks_2[i]) {
-          each_blocks_2[i].m(select0, null);
-        }
-      }
-      select_option(
-        select0,
-        /*type*/
-        ctx[6]
-      );
-      insert(target, t1, anchor);
-      insert(target, select1, anchor);
-      append(select1, option);
-      for (let i = 0; i < each_blocks_1.length; i += 1) {
-        if (each_blocks_1[i]) {
-          each_blocks_1[i].m(select1, null);
-        }
-      }
-      select_option(
-        select1,
-        /*propertyName*/
-        ctx[1]
-      );
-      insert(target, t3, anchor);
-      insert(target, select2, anchor);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(select2, null);
-        }
-      }
-      select_option(
-        select2,
-        /*condition*/
-        ctx[7]
-      );
-      insert(target, t4, anchor);
-      if (if_block1)
-        if_block1.m(target, anchor);
-      insert(target, t5, anchor);
-      if (if_block2)
-        if_block2.m(target, anchor);
-      insert(target, t6, anchor);
-      mount_component(stack, target, anchor);
-      current = true;
-      if (!mounted) {
-        dispose = [
-          listen(
-            select0,
-            "change",
-            /*handleTypeChange*/
-            ctx[12]
-          ),
-          listen(
-            select1,
-            "change",
-            /*handlePropertyNameChange*/
-            ctx[11]
-          ),
-          listen(
-            select2,
-            "change",
-            /*handleConditionChange*/
-            ctx[13]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, dirty) {
-      if (
-        /*index*/
-        ctx2[0] > 0
-      ) {
-        if (if_block0) {
-          if_block0.p(ctx2, dirty);
-        } else {
-          if_block0 = create_if_block_2(ctx2);
-          if_block0.c();
-          if_block0.m(t0.parentNode, t0);
-        }
-      } else if (if_block0) {
-        if_block0.d(1);
-        if_block0 = null;
-      }
-      if (dirty & /*Object*/
-      0) {
-        each_value_2 = ensure_array_like(Object.values(PropertyType));
-        let i;
-        for (i = 0; i < each_value_2.length; i += 1) {
-          const child_ctx = get_each_context_2(ctx2, each_value_2, i);
-          if (each_blocks_2[i]) {
-            each_blocks_2[i].p(child_ctx, dirty);
-          } else {
-            each_blocks_2[i] = create_each_block_2(child_ctx);
-            each_blocks_2[i].c();
-            each_blocks_2[i].m(select0, null);
-          }
-        }
-        for (; i < each_blocks_2.length; i += 1) {
-          each_blocks_2[i].d(1);
-        }
-        each_blocks_2.length = each_value_2.length;
-      }
-      if (!current || dirty[0] & /*type*/
-      64) {
-        select_option(
-          select0,
-          /*type*/
-          ctx2[6]
-        );
-      }
-      if (dirty[0] & /*filteredObsidianProperties*/
-      256) {
-        each_value_1 = ensure_array_like(
-          /*filteredObsidianProperties*/
-          ctx2[8]
-        );
-        each_blocks_1 = update_keyed_each(each_blocks_1, dirty, get_key, 1, ctx2, each_value_1, each1_lookup, select1, destroy_block, create_each_block_1, null, get_each_context_1);
-      }
-      if (!current || dirty[0] & /*propertyName, filteredObsidianProperties*/
-      258) {
-        select_option(
-          select1,
-          /*propertyName*/
-          ctx2[1]
-        );
-      }
-      if (dirty[0] & /*filterConditions*/
-      512) {
-        each_value = ensure_array_like(
-          /*filterConditions*/
-          ctx2[9]
-        );
-        let i;
-        for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context(ctx2, each_value, i);
-          if (each_blocks[i]) {
-            each_blocks[i].p(child_ctx, dirty);
-          } else {
-            each_blocks[i] = create_each_block(child_ctx);
-            each_blocks[i].c();
-            each_blocks[i].m(select2, null);
-          }
-        }
-        for (; i < each_blocks.length; i += 1) {
-          each_blocks[i].d(1);
-        }
-        each_blocks.length = each_value.length;
-      }
-      if (!current || dirty[0] & /*condition, filterConditions*/
-      640) {
-        select_option(
-          select2,
-          /*condition*/
-          ctx2[7]
-        );
-      }
-      if (
-        /*condition*/
-        ctx2[7] !== "exists" /* EXISTS */ && /*condition*/
-        ctx2[7] !== "does-not-exist" /* DOES_NOT_EXIST */
-      ) {
-        if (if_block1) {
-          if_block1.p(ctx2, dirty);
-        } else {
-          if_block1 = create_if_block_1(ctx2);
-          if_block1.c();
-          if_block1.m(t5.parentNode, t5);
-        }
-      } else if (if_block1) {
-        if_block1.d(1);
-        if_block1 = null;
-      }
-      if (
-        /*condition*/
-        ctx2[7] !== "exists" /* EXISTS */ && /*condition*/
-        ctx2[7] !== "does-not-exist" /* DOES_NOT_EXIST */
-      ) {
-        if (if_block2) {
-          if_block2.p(ctx2, dirty);
-        } else {
-          if_block2 = create_if_block(ctx2);
-          if_block2.c();
-          if_block2.m(t6.parentNode, t6);
-        }
-      } else if (if_block2) {
-        if_block2.d(1);
-        if_block2 = null;
-      }
-      const stack_changes = {};
-      if (dirty[0] & /*isEnabled*/
-      16 | dirty[1] & /*$$scope*/
-      2) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(select0);
-        detach(t1);
-        detach(select1);
-        detach(t3);
-        detach(select2);
-        detach(t4);
-        detach(t5);
-        detach(t6);
-      }
-      if (if_block0)
-        if_block0.d(detaching);
-      destroy_each(each_blocks_2, detaching);
-      for (let i = 0; i < each_blocks_1.length; i += 1) {
-        each_blocks_1[i].d();
-      }
-      destroy_each(each_blocks, detaching);
-      if (if_block1)
-        if_block1.d(detaching);
-      if (if_block2)
-        if_block2.d(detaching);
-      destroy_component(stack, detaching);
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-function create_fragment10(ctx) {
-  let div;
-  let wrap;
-  let current;
-  wrap = new wrap_default({
-    props: {
-      spacingX: "sm",
-      spacingY: "sm",
-      align: "center",
-      $$slots: { default: [create_default_slot2] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      div = element("div");
-      create_component(wrap.$$.fragment);
-      attr(div, "class", "vault-explorer-property-filter svelte-yn3u1i");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(wrap, div, null);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const wrap_changes = {};
-      if (dirty[0] & /*isEnabled, matchWhenPropertyDNE, condition, value, filterConditions, propertyName, filteredObsidianProperties, type, operator, index*/
-      1023 | dirty[1] & /*$$scope*/
-      2) {
-        wrap_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      wrap.$set(wrap_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(wrap.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(wrap.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(wrap);
-    }
-  };
-}
-function instance10($$self, $$props, $$invalidate) {
-  let filterConditions;
-  let filteredObsidianProperties;
-  let { index } = $$props;
-  let { id } = $$props;
-  let { propertyName } = $$props;
-  let { type } = $$props;
-  let { operator } = $$props;
-  let { value } = $$props;
-  let { condition } = $$props;
-  let { isEnabled } = $$props;
-  let { matchWhenPropertyDNE } = $$props;
-  let plugin2;
-  let obsidianProperties = [];
+// src/svelte/image-source-app/index.svelte
+var root_1 = template(`<div tabindex="0" role="button" draggable="true" class="vault-explorer-image-source-setting-row svelte-1vi74tp"><div class="vault-explorer-image-source-setting-title svelte-1vi74tp"><!> <div> </div></div> <!></div>`);
+var root2 = template(`<div class="setting-item"><div class="setting-item-info"><div class="setting-item-name">Cover image sources</div> <div class="setting-item-description"><div class="vault-explorer-image-source-setting-container"></div></div></div></div>`);
+function Image_source_app($$anchor, $$props) {
+  push($$props, false);
+  let plugin2 = null;
+  let coverImageSources = mutable_source([]);
   store_default.plugin.subscribe((p) => {
     plugin2 = p;
-    $$invalidate(19, obsidianProperties = getAllObsidianProperties(plugin2.app));
+    set(coverImageSources, p.settings.views.grid.coverImageSources);
   });
-  const dispatch = createEventDispatcher();
-  function handleDeleteClick() {
-    dispatch("filterDeleteClick", { id });
-  }
-  function handlePropertyNameChange(e) {
-    const value2 = e.target.value;
-    dispatch("filterPropertyNameChange", { id, name: value2 });
-  }
-  function handleTypeChange(e) {
-    const value2 = e.target.value;
-    dispatch("filterTypeChange", { id, type: value2 });
-  }
-  function handleConditionChange(e) {
-    const value2 = e.target.value;
-    dispatch("filterConditionChange", { id, condition: value2 });
-  }
-  function handleValueChange(e) {
-    const value2 = e.target.value;
-    dispatch("filterValueChange", { id, value: value2 });
-  }
-  function handleOperatorChange(e) {
-    const value2 = e.target.value;
-    dispatch("filterOperatorChange", { id, operator: value2 });
-  }
-  function handleMatchWhenDNEChange(e) {
-    const value2 = e.target.checked;
-    dispatch("filterMatchWhenPropertyDNEChange", { id, matchWhenDNE: value2 });
-  }
-  function handleToggle() {
-    dispatch("filterToggle", { id });
-  }
-  function findFilterConditions(type2) {
-    if (type2 === "text") {
-      return Object.values(TextFilterCondition);
-    } else if (type2 === "number") {
-      return Object.values(NumberFilterCondition);
-    } else if (type2 === "list") {
-      return Object.values(ListFilterCondition);
-    } else if (type2 === "checkbox") {
-      return Object.values(CheckboxFilterCondition);
-    } else if (type2 === "date" || type2 === "datetime") {
-      return Object.values(DateFilterCondition);
-    } else {
-      throw new Error(`Unknown filter type: ${type2}`);
-    }
-  }
-  const change_handler = () => handleToggle();
-  const click_handler = () => handleDeleteClick();
-  $$self.$$set = ($$props2) => {
-    if ("index" in $$props2)
-      $$invalidate(0, index = $$props2.index);
-    if ("id" in $$props2)
-      $$invalidate(18, id = $$props2.id);
-    if ("propertyName" in $$props2)
-      $$invalidate(1, propertyName = $$props2.propertyName);
-    if ("type" in $$props2)
-      $$invalidate(6, type = $$props2.type);
-    if ("operator" in $$props2)
-      $$invalidate(2, operator = $$props2.operator);
-    if ("value" in $$props2)
-      $$invalidate(3, value = $$props2.value);
-    if ("condition" in $$props2)
-      $$invalidate(7, condition = $$props2.condition);
-    if ("isEnabled" in $$props2)
-      $$invalidate(4, isEnabled = $$props2.isEnabled);
-    if ("matchWhenPropertyDNE" in $$props2)
-      $$invalidate(5, matchWhenPropertyDNE = $$props2.matchWhenPropertyDNE);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*type*/
-    64) {
-      $:
-        $$invalidate(9, filterConditions = findFilterConditions(type));
-    }
-    if ($$self.$$.dirty[0] & /*obsidianProperties, type*/
-    524352) {
-      $:
-        $$invalidate(8, filteredObsidianProperties = obsidianProperties.filter((prop) => {
-          if (type === "list") {
-            return prop.type === "aliases" || prop.type === "tags" || prop.type === "multitext";
-          }
-          return prop.type === type;
-        }));
-    }
-  };
-  return [
-    index,
-    propertyName,
-    operator,
-    value,
-    isEnabled,
-    matchWhenPropertyDNE,
-    type,
-    condition,
-    filteredObsidianProperties,
-    filterConditions,
-    handleDeleteClick,
-    handlePropertyNameChange,
-    handleTypeChange,
-    handleConditionChange,
-    handleValueChange,
-    handleOperatorChange,
-    handleMatchWhenDNEChange,
-    handleToggle,
-    id,
-    obsidianProperties,
-    change_handler,
-    click_handler
-  ];
-}
-var Property_filter = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(
-      this,
-      options,
-      instance10,
-      create_fragment10,
-      safe_not_equal,
-      {
-        index: 0,
-        id: 18,
-        propertyName: 1,
-        type: 6,
-        operator: 2,
-        value: 3,
-        condition: 7,
-        isEnabled: 4,
-        matchWhenPropertyDNE: 5
-      },
-      null,
-      [-1, -1]
-    );
-  }
-};
-var property_filter_default = Property_filter;
-
-// src/svelte/properties-filter-app/components/property-filter-list.svelte
-function get_each_context2(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[10] = list[i];
-  child_ctx[12] = i;
-  return child_ctx;
-}
-function create_each_block2(key_1, ctx) {
-  let first;
-  let propertyfilter;
-  let current;
-  propertyfilter = new property_filter_default({
-    props: {
-      index: (
-        /*index*/
-        ctx[12]
-      ),
-      id: (
-        /*filter*/
-        ctx[10].id
-      ),
-      operator: (
-        /*filter*/
-        ctx[10].operator
-      ),
-      value: (
-        /*filter*/
-        ctx[10].value
-      ),
-      condition: (
-        /*filter*/
-        ctx[10].condition
-      ),
-      matchWhenPropertyDNE: (
-        /*filter*/
-        ctx[10].matchWhenPropertyDNE
-      ),
-      type: (
-        /*filter*/
-        ctx[10].type
-      ),
-      propertyName: (
-        /*filter*/
-        ctx[10].propertyName
-      ),
-      isEnabled: (
-        /*filter*/
-        ctx[10].isEnabled
-      )
-    }
-  });
-  propertyfilter.$on(
-    "groupChange",
-    /*groupChange_handler*/
-    ctx[1]
-  );
-  propertyfilter.$on(
-    "filterConditionChange",
-    /*filterConditionChange_handler*/
-    ctx[2]
-  );
-  propertyfilter.$on(
-    "filterTypeChange",
-    /*filterTypeChange_handler*/
-    ctx[3]
-  );
-  propertyfilter.$on(
-    "filterOperatorChange",
-    /*filterOperatorChange_handler*/
-    ctx[4]
-  );
-  propertyfilter.$on(
-    "filterPropertyNameChange",
-    /*filterPropertyNameChange_handler*/
-    ctx[5]
-  );
-  propertyfilter.$on(
-    "filterValueChange",
-    /*filterValueChange_handler*/
-    ctx[6]
-  );
-  propertyfilter.$on(
-    "filterToggle",
-    /*filterToggle_handler*/
-    ctx[7]
-  );
-  propertyfilter.$on(
-    "filterDeleteClick",
-    /*filterDeleteClick_handler*/
-    ctx[8]
-  );
-  propertyfilter.$on(
-    "filterMatchWhenPropertyDNEChange",
-    /*filterMatchWhenPropertyDNEChange_handler*/
-    ctx[9]
-  );
-  return {
-    key: key_1,
-    first: null,
-    c() {
-      first = empty();
-      create_component(propertyfilter.$$.fragment);
-      this.first = first;
-    },
-    m(target, anchor) {
-      insert(target, first, anchor);
-      mount_component(propertyfilter, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-      const propertyfilter_changes = {};
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.index = /*index*/
-        ctx[12];
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.id = /*filter*/
-        ctx[10].id;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.operator = /*filter*/
-        ctx[10].operator;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.value = /*filter*/
-        ctx[10].value;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.condition = /*filter*/
-        ctx[10].condition;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.matchWhenPropertyDNE = /*filter*/
-        ctx[10].matchWhenPropertyDNE;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.type = /*filter*/
-        ctx[10].type;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.propertyName = /*filter*/
-        ctx[10].propertyName;
-      if (dirty & /*filters*/
-      1)
-        propertyfilter_changes.isEnabled = /*filter*/
-        ctx[10].isEnabled;
-      propertyfilter.$set(propertyfilter_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(propertyfilter.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(propertyfilter.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(first);
+  function handleSourceClick(type) {
+    const updatedSources = get(coverImageSources).map((source2) => {
+      if (source2.type === type) {
+        return Object.assign(Object.assign({}, source2), { isEnabled: !source2.isEnabled });
       }
-      destroy_component(propertyfilter, detaching);
-    }
-  };
-}
-function create_default_slot3(ctx) {
-  let each_blocks = [];
-  let each_1_lookup = /* @__PURE__ */ new Map();
-  let each_1_anchor;
-  let current;
-  let each_value = ensure_array_like(
-    /*filters*/
-    ctx[0]
-  );
-  const get_key = (ctx2) => (
-    /*filter*/
-    ctx2[10].id
-  );
-  for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context2(ctx, each_value, i);
-    let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block2(key, child_ctx));
-  }
-  return {
-    c() {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      each_1_anchor = empty();
-    },
-    m(target, anchor) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(target, anchor);
-        }
-      }
-      insert(target, each_1_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (dirty & /*filters*/
-      1) {
-        each_value = ensure_array_like(
-          /*filters*/
-          ctx2[0]
-        );
-        group_outros();
-        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block2, each_1_anchor, get_each_context2);
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      current = true;
-    },
-    o(local) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(each_1_anchor);
-      }
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].d(detaching);
-      }
-    }
-  };
-}
-function create_fragment11(ctx) {
-  let stack;
-  let current;
-  stack = new stack_default({
-    props: {
-      direction: "column",
-      spacing: "md",
-      width: "100%",
-      $$slots: { default: [create_default_slot3] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      const stack_changes = {};
-      if (dirty & /*$$scope, filters*/
-      8193) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function instance11($$self, $$props, $$invalidate) {
-  let { filters = [] } = $$props;
-  function groupChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterConditionChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterTypeChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterOperatorChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterPropertyNameChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterValueChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterToggle_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterDeleteClick_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterMatchWhenPropertyDNEChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  $$self.$$set = ($$props2) => {
-    if ("filters" in $$props2)
-      $$invalidate(0, filters = $$props2.filters);
-  };
-  return [
-    filters,
-    groupChange_handler,
-    filterConditionChange_handler,
-    filterTypeChange_handler,
-    filterOperatorChange_handler,
-    filterPropertyNameChange_handler,
-    filterValueChange_handler,
-    filterToggle_handler,
-    filterDeleteClick_handler,
-    filterMatchWhenPropertyDNEChange_handler
-  ];
-}
-var Property_filter_list = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance11, create_fragment11, safe_not_equal, { filters: 0 });
-  }
-};
-var property_filter_list_default = Property_filter_list;
-
-// src/svelte/properties-filter-app/utils.ts
-var createPropertyFilter = () => {
-  return {
-    id: generateUUID(),
-    type: "text" /* TEXT */,
-    propertyName: "",
-    operator: "and",
-    isEnabled: true,
-    condition: "is" /* IS */,
-    value: "",
-    matchWhenPropertyDNE: false
-  };
-};
-
-// src/svelte/shared/components/spacer.svelte
-function create_fragment12(ctx) {
-  let div;
-  return {
-    c() {
-      div = element("div");
-      set_style(
-        div,
-        "width",
-        /*width*/
-        ctx[0] + "px"
-      );
-      set_style(
-        div,
-        "height",
-        /*height*/
-        ctx[1] + "px"
-      );
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*width*/
-      1) {
-        set_style(
-          div,
-          "width",
-          /*width*/
-          ctx2[0] + "px"
-        );
-      }
-      if (dirty & /*height*/
-      2) {
-        set_style(
-          div,
-          "height",
-          /*height*/
-          ctx2[1] + "px"
-        );
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-    }
-  };
-}
-function instance12($$self, $$props, $$invalidate) {
-  let { direction = "horizontal" } = $$props;
-  let { size = "" } = $$props;
-  let width = 0;
-  let height = 0;
-  function findDimesions() {
-    switch (size) {
-      case "xs":
-        if (direction == "horizontal")
-          $$invalidate(0, width = 4);
-        if (direction == "vertical")
-          $$invalidate(1, height = 4);
-        break;
-      case "sm":
-        if (direction == "horizontal")
-          $$invalidate(0, width = 8);
-        if (direction == "vertical")
-          $$invalidate(1, height = 8);
-        break;
-      case "md":
-        if (direction == "horizontal")
-          $$invalidate(0, width = 16);
-        if (direction == "vertical")
-          $$invalidate(1, height = 16);
-        break;
-      case "lg":
-        if (direction == "horizontal")
-          $$invalidate(0, width = 24);
-        if (direction == "vertical")
-          $$invalidate(1, height = 24);
-        break;
-      case "xl":
-        if (direction == "horizontal")
-          $$invalidate(0, width = 32);
-        if (direction == "vertical")
-          $$invalidate(1, height = 32);
-        break;
-      case "2xl":
-        if (direction == "horizontal")
-          $$invalidate(0, width = 48);
-        if (direction == "vertical")
-          $$invalidate(1, height = 48);
-        break;
-    }
-  }
-  $$self.$$set = ($$props2) => {
-    if ("direction" in $$props2)
-      $$invalidate(2, direction = $$props2.direction);
-    if ("size" in $$props2)
-      $$invalidate(3, size = $$props2.size);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*size, direction*/
-    12) {
-      $:
-        size, direction, findDimesions();
-    }
-  };
-  return [width, height, direction, size];
-}
-var Spacer = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance12, create_fragment12, safe_not_equal, { direction: 2, size: 3 });
-  }
-};
-var spacer_default = Spacer;
-
-// src/svelte/properties-filter-app/components/group-edit-view.svelte
-function create_if_block2(ctx) {
-  let propertyfilterlist;
-  let t;
-  let spacer;
-  let current;
-  propertyfilterlist = new property_filter_list_default({
-    props: {
-      filters: (
-        /*selectedGroup*/
-        ctx[0].filters
-      )
-    }
-  });
-  propertyfilterlist.$on(
-    "filterConditionChange",
-    /*filterConditionChange_handler*/
-    ctx[3]
-  );
-  propertyfilterlist.$on(
-    "filterTypeChange",
-    /*filterTypeChange_handler*/
-    ctx[4]
-  );
-  propertyfilterlist.$on(
-    "filterPropertyNameChange",
-    /*filterPropertyNameChange_handler*/
-    ctx[5]
-  );
-  propertyfilterlist.$on(
-    "filterOperatorChange",
-    /*filterOperatorChange_handler*/
-    ctx[6]
-  );
-  propertyfilterlist.$on(
-    "filterValueChange",
-    /*filterValueChange_handler*/
-    ctx[7]
-  );
-  propertyfilterlist.$on(
-    "filterToggle",
-    /*filterToggle_handler*/
-    ctx[8]
-  );
-  propertyfilterlist.$on(
-    "filterDeleteClick",
-    /*filterDeleteClick_handler*/
-    ctx[9]
-  );
-  propertyfilterlist.$on(
-    "filterMatchWhenPropertyDNEChange",
-    /*filterMatchWhenPropertyDNEChange_handler*/
-    ctx[10]
-  );
-  spacer = new spacer_default({
-    props: { direction: "vertical", size: "sm" }
-  });
-  return {
-    c() {
-      create_component(propertyfilterlist.$$.fragment);
-      t = space();
-      create_component(spacer.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(propertyfilterlist, target, anchor);
-      insert(target, t, anchor);
-      mount_component(spacer, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const propertyfilterlist_changes = {};
-      if (dirty & /*selectedGroup*/
-      1)
-        propertyfilterlist_changes.filters = /*selectedGroup*/
-        ctx2[0].filters;
-      propertyfilterlist.$set(propertyfilterlist_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(propertyfilterlist.$$.fragment, local);
-      transition_in(spacer.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(propertyfilterlist.$$.fragment, local);
-      transition_out(spacer.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(propertyfilterlist, detaching);
-      destroy_component(spacer, detaching);
-    }
-  };
-}
-function create_default_slot4(ctx) {
-  let div0;
-  let input;
-  let input_value_value;
-  let t0;
-  let divider;
-  let t1;
-  let div1;
-  let t2;
-  let iconbutton;
-  let current;
-  let mounted;
-  let dispose;
-  divider = new divider_default({ props: { borderWidth: "1px" } });
-  let if_block = (
-    /*selectedGroup*/
-    ctx[0].filters.length > 0 && create_if_block2(ctx)
-  );
-  iconbutton = new icon_button_default({
-    props: {
-      ariaLabel: "Add property filter",
-      iconId: "plus"
-    }
-  });
-  iconbutton.$on(
-    "click",
-    /*handleAddFilterClick*/
-    ctx[1]
-  );
-  return {
-    c() {
-      div0 = element("div");
-      input = element("input");
-      t0 = space();
-      create_component(divider.$$.fragment);
-      t1 = space();
-      div1 = element("div");
-      if (if_block)
-        if_block.c();
-      t2 = space();
-      create_component(iconbutton.$$.fragment);
-      attr(input, "type", "text");
-      input.value = input_value_value = /*selectedGroup*/
-      ctx[0].name;
-      attr(div0, "class", "vault-explorer-group-edit-view__header svelte-10vmkqn");
-      attr(div1, "class", "vault-explorer-group-edit-view__body svelte-10vmkqn");
-    },
-    m(target, anchor) {
-      insert(target, div0, anchor);
-      append(div0, input);
-      insert(target, t0, anchor);
-      mount_component(divider, target, anchor);
-      insert(target, t1, anchor);
-      insert(target, div1, anchor);
-      if (if_block)
-        if_block.m(div1, null);
-      append(div1, t2);
-      mount_component(iconbutton, div1, null);
-      current = true;
-      if (!mounted) {
-        dispose = listen(
-          input,
-          "change",
-          /*handleGroupNameChange*/
-          ctx[2]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, dirty) {
-      if (!current || dirty & /*selectedGroup*/
-      1 && input_value_value !== (input_value_value = /*selectedGroup*/
-      ctx2[0].name) && input.value !== input_value_value) {
-        input.value = input_value_value;
-      }
-      if (
-        /*selectedGroup*/
-        ctx2[0].filters.length > 0
-      ) {
-        if (if_block) {
-          if_block.p(ctx2, dirty);
-          if (dirty & /*selectedGroup*/
-          1) {
-            transition_in(if_block, 1);
-          }
-        } else {
-          if_block = create_if_block2(ctx2);
-          if_block.c();
-          transition_in(if_block, 1);
-          if_block.m(div1, t2);
-        }
-      } else if (if_block) {
-        group_outros();
-        transition_out(if_block, 1, 1, () => {
-          if_block = null;
-        });
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(divider.$$.fragment, local);
-      transition_in(if_block);
-      transition_in(iconbutton.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(divider.$$.fragment, local);
-      transition_out(if_block);
-      transition_out(iconbutton.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div0);
-        detach(t0);
-        detach(t1);
-        detach(div1);
-      }
-      destroy_component(divider, detaching);
-      if (if_block)
-        if_block.d();
-      destroy_component(iconbutton);
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function create_fragment13(ctx) {
-  let stack;
-  let current;
-  stack = new stack_default({
-    props: {
-      width: "100%",
-      direction: "column",
-      align: "flex-start",
-      spacing: "sm",
-      $$slots: { default: [create_default_slot4] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      const stack_changes = {};
-      if (dirty & /*$$scope, selectedGroup*/
-      4097) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function instance13($$self, $$props, $$invalidate) {
-  const dispatch = createEventDispatcher();
-  let { selectedGroup } = $$props;
-  function handleAddFilterClick() {
-    const newFilter = createPropertyFilter();
-    dispatch("filterAddClick", { filter: newFilter });
-  }
-  function handleGroupNameChange(e) {
-    const name = e.target.value;
-    dispatch("groupNameChange", { name });
-  }
-  function filterConditionChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterTypeChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterPropertyNameChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterOperatorChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterValueChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterToggle_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterDeleteClick_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function filterMatchWhenPropertyDNEChange_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  $$self.$$set = ($$props2) => {
-    if ("selectedGroup" in $$props2)
-      $$invalidate(0, selectedGroup = $$props2.selectedGroup);
-  };
-  return [
-    selectedGroup,
-    handleAddFilterClick,
-    handleGroupNameChange,
-    filterConditionChange_handler,
-    filterTypeChange_handler,
-    filterPropertyNameChange_handler,
-    filterOperatorChange_handler,
-    filterValueChange_handler,
-    filterToggle_handler,
-    filterDeleteClick_handler,
-    filterMatchWhenPropertyDNEChange_handler
-  ];
-}
-var Group_edit_view = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance13, create_fragment13, safe_not_equal, { selectedGroup: 0 });
-  }
-};
-var group_edit_view_default = Group_edit_view;
-
-// src/svelte/properties-filter-app/components/group-list-item.svelte
-function create_fragment14(ctx) {
-  let div;
-  let t;
-  let div_class_value;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      div = element("div");
-      t = text(
-        /*name*/
-        ctx[0]
-      );
-      attr(div, "tabindex", "0");
-      attr(div, "draggable", "true");
-      attr(div, "role", "button");
-      attr(div, "class", div_class_value = null_to_empty(
-        /*className*/
-        ctx[1]
-      ) + " svelte-lhyt46");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      append(div, t);
-      if (!mounted) {
-        dispose = [
-          listen(
-            div,
-            "dragstart",
-            /*handleDragStart*/
-            ctx[3]
-          ),
-          listen(
-            div,
-            "dragover",
-            /*handleDragOver*/
-            ctx[4]
-          ),
-          listen(
-            div,
-            "drop",
-            /*handleDrop*/
-            ctx[5]
-          ),
-          listen(
-            div,
-            "click",
-            /*handleClick*/
-            ctx[2]
-          ),
-          listen(
-            div,
-            "keydown",
-            /*keydown_handler*/
-            ctx[8]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*name*/
-      1)
-        set_data(
-          t,
-          /*name*/
-          ctx2[0]
-        );
-      if (dirty & /*className*/
-      2 && div_class_value !== (div_class_value = null_to_empty(
-        /*className*/
-        ctx2[1]
-      ) + " svelte-lhyt46")) {
-        attr(div, "class", div_class_value);
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-function instance14($$self, $$props, $$invalidate) {
-  let className;
-  let { id } = $$props;
-  let { name } = $$props;
-  let { isSelected } = $$props;
-  const dispatch = createEventDispatcher();
-  function handleClick() {
-    dispatch("itemClick", { id });
-  }
-  function handleDragStart(event) {
-    dispatch("itemDragStart", { nativeEvent: event, id });
-  }
-  function handleDragOver(event) {
-    dispatch("itemDragOver", { nativeEvent: event, id });
-  }
-  function handleDrop(event) {
-    dispatch("itemDrop", { nativeEvent: event, id });
-  }
-  const keydown_handler = (e) => (e.key === "Enter" || e.key === " ") && handleClick();
-  $$self.$$set = ($$props2) => {
-    if ("id" in $$props2)
-      $$invalidate(6, id = $$props2.id);
-    if ("name" in $$props2)
-      $$invalidate(0, name = $$props2.name);
-    if ("isSelected" in $$props2)
-      $$invalidate(7, isSelected = $$props2.isSelected);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*isSelected*/
-    128) {
-      $:
-        $$invalidate(1, className = "vault-explorer-group-item" + (isSelected ? " vault-explorer-group-item--active" : ""));
-    }
-  };
-  return [
-    name,
-    className,
-    handleClick,
-    handleDragStart,
-    handleDragOver,
-    handleDrop,
-    id,
-    isSelected,
-    keydown_handler
-  ];
-}
-var Group_list_item = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance14, create_fragment14, safe_not_equal, { id: 6, name: 0, isSelected: 7 });
-  }
-};
-var group_list_item_default = Group_list_item;
-
-// src/svelte/properties-filter-app/components/group-list.svelte
-function get_each_context3(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[15] = list[i];
-  return child_ctx;
-}
-function create_default_slot_2(ctx) {
-  let iconbutton0;
-  let t;
-  let iconbutton1;
-  let current;
-  iconbutton0 = new icon_button_default({
-    props: {
-      ariaLabel: "Add property filter group",
-      iconId: "plus"
-    }
-  });
-  iconbutton0.$on(
-    "click",
-    /*click_handler*/
-    ctx[6]
-  );
-  iconbutton1 = new icon_button_default({
-    props: {
-      ariaLabel: "Delete property filter group",
-      iconId: "trash"
-    }
-  });
-  iconbutton1.$on(
-    "click",
-    /*click_handler_1*/
-    ctx[7]
-  );
-  return {
-    c() {
-      create_component(iconbutton0.$$.fragment);
-      t = space();
-      create_component(iconbutton1.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(iconbutton0, target, anchor);
-      insert(target, t, anchor);
-      mount_component(iconbutton1, target, anchor);
-      current = true;
-    },
-    p: noop,
-    i(local) {
-      if (current)
-        return;
-      transition_in(iconbutton0.$$.fragment, local);
-      transition_in(iconbutton1.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(iconbutton0.$$.fragment, local);
-      transition_out(iconbutton1.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(iconbutton0, detaching);
-      destroy_component(iconbutton1, detaching);
-    }
-  };
-}
-function create_each_block3(key_1, ctx) {
-  var _a;
-  let first;
-  let grouplistitem;
-  let current;
-  grouplistitem = new group_list_item_default({
-    props: {
-      id: (
-        /*group*/
-        ctx[15].id
-      ),
-      name: (
-        /*group*/
-        ctx[15].name
-      ),
-      isSelected: (
-        /*selectedGroup*/
-        ((_a = ctx[1]) == null ? void 0 : _a.id) === /*group*/
-        ctx[15].id
-      )
-    }
-  });
-  grouplistitem.$on(
-    "itemClick",
-    /*itemClick_handler*/
-    ctx[8]
-  );
-  grouplistitem.$on(
-    "itemDragStart",
-    /*itemDragStart_handler*/
-    ctx[9]
-  );
-  grouplistitem.$on(
-    "itemDragOver",
-    /*itemDragOver_handler*/
-    ctx[10]
-  );
-  grouplistitem.$on(
-    "itemDrop",
-    /*itemDrop_handler*/
-    ctx[11]
-  );
-  return {
-    key: key_1,
-    first: null,
-    c() {
-      first = empty();
-      create_component(grouplistitem.$$.fragment);
-      this.first = first;
-    },
-    m(target, anchor) {
-      insert(target, first, anchor);
-      mount_component(grouplistitem, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      var _a2;
-      ctx = new_ctx;
-      const grouplistitem_changes = {};
-      if (dirty & /*groups*/
-      1)
-        grouplistitem_changes.id = /*group*/
-        ctx[15].id;
-      if (dirty & /*groups*/
-      1)
-        grouplistitem_changes.name = /*group*/
-        ctx[15].name;
-      if (dirty & /*selectedGroup, groups*/
-      3)
-        grouplistitem_changes.isSelected = /*selectedGroup*/
-        ((_a2 = ctx[1]) == null ? void 0 : _a2.id) === /*group*/
-        ctx[15].id;
-      grouplistitem.$set(grouplistitem_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(grouplistitem.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(grouplistitem.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(first);
-      }
-      destroy_component(grouplistitem, detaching);
-    }
-  };
-}
-function create_default_slot_12(ctx) {
-  let each_blocks = [];
-  let each_1_lookup = /* @__PURE__ */ new Map();
-  let each_1_anchor;
-  let current;
-  let each_value = ensure_array_like(
-    /*groups*/
-    ctx[0]
-  );
-  const get_key = (ctx2) => (
-    /*group*/
-    ctx2[15].id
-  );
-  for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context3(ctx, each_value, i);
-    let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block3(key, child_ctx));
-  }
-  return {
-    c() {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      each_1_anchor = empty();
-    },
-    m(target, anchor) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(target, anchor);
-        }
-      }
-      insert(target, each_1_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (dirty & /*groups, selectedGroup*/
-      3) {
-        each_value = ensure_array_like(
-          /*groups*/
-          ctx2[0]
-        );
-        group_outros();
-        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block3, each_1_anchor, get_each_context3);
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      current = true;
-    },
-    o(local) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(each_1_anchor);
-      }
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].d(detaching);
-      }
-    }
-  };
-}
-function create_default_slot5(ctx) {
-  let stack;
-  let t;
-  let div;
-  let flex;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "sm",
-      $$slots: { default: [create_default_slot_2] },
-      $$scope: { ctx }
-    }
-  });
-  flex = new flex_default({
-    props: {
-      direction: "column",
-      width: "100px",
-      $$slots: { default: [create_default_slot_12] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-      t = space();
-      div = element("div");
-      create_component(flex.$$.fragment);
-      attr(div, "class", "vault-explorer-group-list svelte-puy5zn");
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      insert(target, t, anchor);
-      insert(target, div, anchor);
-      mount_component(flex, div, null);
-      ctx[12](div);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const stack_changes = {};
-      if (dirty & /*$$scope*/
-      262144) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-      const flex_changes = {};
-      if (dirty & /*$$scope, groups, selectedGroup*/
-      262147) {
-        flex_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      flex.$set(flex_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      transition_in(flex.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      transition_out(flex.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-        detach(div);
-      }
-      destroy_component(stack, detaching);
-      destroy_component(flex);
-      ctx[12](null);
-    }
-  };
-}
-function create_fragment15(ctx) {
-  let div;
-  let stack;
-  let current;
-  stack = new stack_default({
-    props: {
-      direction: "column",
-      spacing: "sm",
-      $$slots: { default: [create_default_slot5] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      div = element("div");
-      create_component(stack.$$.fragment);
-      attr(div, "class", "vault-explorer-group-list-container svelte-puy5zn");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(stack, div, null);
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      const stack_changes = {};
-      if (dirty & /*$$scope, listContainerRef, groups, selectedGroup*/
-      262151) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(stack);
-    }
-  };
-}
-function instance15($$self, $$props, $$invalidate) {
-  let { groups } = $$props;
-  let { selectedGroup } = $$props;
-  let listContainerRef;
-  let previousLength = 0;
-  function scrollToBottom() {
-    return __awaiter(this, void 0, void 0, function* () {
-      yield tick();
-      if (listContainerRef) {
-        $$invalidate(2, listContainerRef.scrollTop = listContainerRef.scrollHeight, listContainerRef);
-      }
+      return source2;
     });
+    set(coverImageSources, updatedSources);
   }
-  const dispatch = createEventDispatcher();
-  function handleAddGroupClick() {
-    dispatch("addGroupClick");
-  }
-  function handleDeleteGroupClick() {
-    dispatch("deleteGroupClick");
-  }
-  const click_handler = () => handleAddGroupClick();
-  const click_handler_1 = () => handleDeleteGroupClick();
-  function itemClick_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function itemDragStart_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function itemDragOver_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function itemDrop_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function div_binding($$value) {
-    binding_callbacks[$$value ? "unshift" : "push"](() => {
-      listContainerRef = $$value;
-      $$invalidate(2, listContainerRef);
-    });
-  }
-  $$self.$$set = ($$props2) => {
-    if ("groups" in $$props2)
-      $$invalidate(0, groups = $$props2.groups);
-    if ("selectedGroup" in $$props2)
-      $$invalidate(1, selectedGroup = $$props2.selectedGroup);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*groups, previousLength, listContainerRef*/
-    37) {
-      $:
-        if (groups.length > previousLength) {
-          $$invalidate(5, previousLength = groups.length);
-          if (listContainerRef) {
-            scrollToBottom();
-          }
-        }
-    }
-  };
-  return [
-    groups,
-    selectedGroup,
-    listContainerRef,
-    handleAddGroupClick,
-    handleDeleteGroupClick,
-    previousLength,
-    click_handler,
-    click_handler_1,
-    itemClick_handler,
-    itemDragStart_handler,
-    itemDragOver_handler,
-    itemDrop_handler,
-    div_binding
-  ];
-}
-var Group_list = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance15, create_fragment15, safe_not_equal, { groups: 0, selectedGroup: 1 });
-  }
-};
-var group_list_default = Group_list;
-
-// src/svelte/properties-filter-app/index.svelte
-function create_if_block3(ctx) {
-  let groupeditview;
-  let current;
-  groupeditview = new group_edit_view_default({
-    props: { selectedGroup: (
-      /*selectedGroup*/
-      ctx[1]
-    ) }
-  });
-  groupeditview.$on(
-    "groupNameChange",
-    /*handleGroupNameChange*/
-    ctx[6]
-  );
-  groupeditview.$on(
-    "filterAddClick",
-    /*handleFilterAddClick*/
-    ctx[5]
-  );
-  groupeditview.$on(
-    "filterTypeChange",
-    /*handleFilterTypeChange*/
-    ctx[13]
-  );
-  groupeditview.$on(
-    "filterConditionChange",
-    /*handleFilterConditionChange*/
-    ctx[7]
-  );
-  groupeditview.$on(
-    "filterDeleteClick",
-    /*handleFilterDeleteClick*/
-    ctx[9]
-  );
-  groupeditview.$on(
-    "filterPropertyNameChange",
-    /*handleFilterPropertyNameChange*/
-    ctx[10]
-  );
-  groupeditview.$on(
-    "filterToggle",
-    /*handleFilterToggle*/
-    ctx[11]
-  );
-  groupeditview.$on(
-    "filterOperatorChange",
-    /*handleFilterOperatorChange*/
-    ctx[12]
-  );
-  groupeditview.$on(
-    "filterValueChange",
-    /*handleFilterValueChange*/
-    ctx[14]
-  );
-  groupeditview.$on(
-    "filterMatchWhenPropertyDNEChange",
-    /*handleFilterMatchWhenPropertyDNEChange*/
-    ctx[15]
-  );
-  return {
-    c() {
-      create_component(groupeditview.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(groupeditview, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const groupeditview_changes = {};
-      if (dirty & /*selectedGroup*/
-      2)
-        groupeditview_changes.selectedGroup = /*selectedGroup*/
-        ctx2[1];
-      groupeditview.$set(groupeditview_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(groupeditview.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(groupeditview.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(groupeditview, detaching);
-    }
-  };
-}
-function create_default_slot6(ctx) {
-  let grouplist;
-  let t0;
-  let divider;
-  let t1;
-  let if_block_anchor;
-  let current;
-  grouplist = new group_list_default({
-    props: {
-      groups: (
-        /*groups*/
-        ctx[0]
-      ),
-      selectedGroup: (
-        /*selectedGroup*/
-        ctx[1]
-      )
-    }
-  });
-  grouplist.$on(
-    "itemClick",
-    /*handleGroupClick*/
-    ctx[2]
-  );
-  grouplist.$on("itemDragStart", handleGroupDragStart);
-  grouplist.$on("itemDragOver", handleGroupDragOver);
-  grouplist.$on(
-    "itemDrop",
-    /*handleGroupDrop*/
-    ctx[8]
-  );
-  grouplist.$on(
-    "addGroupClick",
-    /*handleAddGroupClick*/
-    ctx[3]
-  );
-  grouplist.$on(
-    "deleteGroupClick",
-    /*handleDeleteGroupClick*/
-    ctx[4]
-  );
-  divider = new divider_default({ props: { direction: "vertical" } });
-  let if_block = (
-    /*selectedGroup*/
-    ctx[1] !== void 0 && create_if_block3(ctx)
-  );
-  return {
-    c() {
-      create_component(grouplist.$$.fragment);
-      t0 = space();
-      create_component(divider.$$.fragment);
-      t1 = space();
-      if (if_block)
-        if_block.c();
-      if_block_anchor = empty();
-    },
-    m(target, anchor) {
-      mount_component(grouplist, target, anchor);
-      insert(target, t0, anchor);
-      mount_component(divider, target, anchor);
-      insert(target, t1, anchor);
-      if (if_block)
-        if_block.m(target, anchor);
-      insert(target, if_block_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const grouplist_changes = {};
-      if (dirty & /*groups*/
-      1)
-        grouplist_changes.groups = /*groups*/
-        ctx2[0];
-      if (dirty & /*selectedGroup*/
-      2)
-        grouplist_changes.selectedGroup = /*selectedGroup*/
-        ctx2[1];
-      grouplist.$set(grouplist_changes);
-      if (
-        /*selectedGroup*/
-        ctx2[1] !== void 0
-      ) {
-        if (if_block) {
-          if_block.p(ctx2, dirty);
-          if (dirty & /*selectedGroup*/
-          2) {
-            transition_in(if_block, 1);
-          }
-        } else {
-          if_block = create_if_block3(ctx2);
-          if_block.c();
-          transition_in(if_block, 1);
-          if_block.m(if_block_anchor.parentNode, if_block_anchor);
-        }
-      } else if (if_block) {
-        group_outros();
-        transition_out(if_block, 1, 1, () => {
-          if_block = null;
-        });
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(grouplist.$$.fragment, local);
-      transition_in(divider.$$.fragment, local);
-      transition_in(if_block);
-      current = true;
-    },
-    o(local) {
-      transition_out(grouplist.$$.fragment, local);
-      transition_out(divider.$$.fragment, local);
-      transition_out(if_block);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(t1);
-        detach(if_block_anchor);
-      }
-      destroy_component(grouplist, detaching);
-      destroy_component(divider, detaching);
-      if (if_block)
-        if_block.d(detaching);
-    }
-  };
-}
-function create_fragment16(ctx) {
-  let div;
-  let flex;
-  let current;
-  flex = new flex_default({
-    props: {
-      align: "stretch",
-      height: "100%",
-      $$slots: { default: [create_default_slot6] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      div = element("div");
-      create_component(flex.$$.fragment);
-      attr(div, "class", "vault-explorer-property-filter-app svelte-e2cbw8");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(flex, div, null);
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      const flex_changes = {};
-      if (dirty & /*$$scope, selectedGroup, groups*/
-      524291) {
-        flex_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      flex.$set(flex_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(flex.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(flex.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(flex);
-    }
-  };
-}
-function handleGroupDragStart(e) {
-  const { nativeEvent, id } = e.detail;
-  nativeEvent.dataTransfer.setData("text", id);
-  nativeEvent.dataTransfer.effectAllowed = "move";
-}
-function handleGroupDragOver(e) {
-  const { nativeEvent } = e.detail;
-  nativeEvent.preventDefault();
-}
-function instance16($$self, $$props, $$invalidate) {
-  let selectedGroup;
-  let selectedGroupId = "";
-  let groups = [];
-  let plugin2;
   function saveSettings() {
     return __awaiter(this, void 0, void 0, function* () {
-      plugin2.settings.filters.properties.groups = groups;
-      plugin2.settings.filters.properties.selectedGroupId = selectedGroupId;
+      if (!plugin2) return;
+      plugin2.settings.views.grid.coverImageSources = get(coverImageSources);
       yield plugin2.saveSettings();
+      EventManager.getInstance().emit("cover-image-source-setting-change" /* COVER_IMAGE_SOURCE_SETTING_CHANGE */);
     });
   }
-  store_default.plugin.subscribe((p) => {
-    plugin2 = p;
-    $$invalidate(0, groups = plugin2.settings.filters.properties.groups);
-    $$invalidate(16, selectedGroupId = plugin2.settings.filters.properties.selectedGroupId);
+  function handleSourceDragOver(e) {
+    e.preventDefault();
+  }
+  function handleSourceDragStart(e, type) {
+    e.dataTransfer.setData("text", type);
+    e.dataTransfer.effectAllowed = "move";
+  }
+  function handleSourceDrop(e, id) {
+    const dragId = e.dataTransfer.getData("text");
+    e.dataTransfer.dropEffect = "move";
+    const draggedIndex = get(coverImageSources).findIndex((source2) => source2.type === dragId);
+    const dragged = get(coverImageSources).find((source2) => source2.type === dragId);
+    const droppedIndex = get(coverImageSources).findIndex((source2) => source2.type === id);
+    const dropped = get(coverImageSources).find((source2) => source2.type === id);
+    if (!dragged || !dropped || draggedIndex === -1 || droppedIndex === -1) return;
+    let newCoverImageSources = [...get(coverImageSources)];
+    newCoverImageSources[draggedIndex] = dropped;
+    newCoverImageSources[droppedIndex] = dragged;
+    set(coverImageSources, newCoverImageSources);
+  }
+  legacy_pre_effect(() => get(coverImageSources), () => {
+    get(coverImageSources), saveSettings();
   });
-  onMount(() => {
-    return () => {
-      EventManager.getInstance().emit("properties-filter-update");
-    };
-  });
-  function handleGroupClick(e) {
-    const { id } = e.detail;
-    $$invalidate(16, selectedGroupId = id);
-  }
-  function handleAddGroupClick() {
-    const newGroup = {
-      id: generateUUID(),
-      name: `Group ${groups.length + 1}`,
-      filters: [createPropertyFilter()],
-      isEnabled: groups.length === 0
-    };
-    $$invalidate(16, selectedGroupId = newGroup.id);
-    $$invalidate(0, groups = [...groups, newGroup]);
-  }
-  function handleDeleteGroupClick() {
-    const index = groups.findIndex((group) => group.id === selectedGroupId);
-    const newGroups = groups.filter((group) => group.id !== selectedGroupId);
-    let newIndex = index - 1;
-    if (newIndex < 0) {
-      newIndex = 0;
-    }
-    $$invalidate(0, groups = newGroups);
-    if (newGroups.length === 0) {
-      $$invalidate(16, selectedGroupId = "");
-    } else {
-      $$invalidate(16, selectedGroupId = newGroups[newIndex].id);
-    }
-  }
-  function handleFilterAddClick(e) {
-    const { filter } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), { filters: [...group.filters, filter] }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleGroupNameChange(e) {
-    const { name } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), { name }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterConditionChange(e) {
-    const { id, condition } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { condition }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleGroupDrop(e) {
-    const { id, nativeEvent } = e.detail;
-    const dragId = nativeEvent.dataTransfer.getData("text");
-    nativeEvent.dataTransfer.dropEffect = "move";
-    const draggedIndex = groups.findIndex((group) => group.id === dragId);
-    const dragged = groups.find((group) => group.id === dragId);
-    const droppedIndex = groups.findIndex((group) => group.id === id);
-    if (!dragged || draggedIndex === -1 || droppedIndex === -1)
-      return;
-    let newGroups = [...groups];
-    newGroups.splice(draggedIndex, 1);
-    newGroups.splice(droppedIndex, 0, dragged);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterDeleteClick(e) {
-    const { id } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.filter((filter) => filter.id !== id)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterPropertyNameChange(e) {
-    const { id, name } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { propertyName: name }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterToggle(e) {
-    const { id } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { isEnabled: !filter.isEnabled }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterOperatorChange(e) {
-    const { id, operator } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { operator }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterTypeChange(e) {
-    const { id, type } = e.detail;
-    let condition;
-    if (type === "text") {
-      condition = "is" /* IS */;
-    } else if (type === "number") {
-      condition = "is-equal" /* IS_EQUAL */;
-    } else if (type === "checkbox") {
-      condition = "is" /* IS */;
-    } else if (type === "list") {
-      condition = "contains" /* CONTAINS */;
-    } else if (type === "date" || type === "datetime") {
-      condition = "is" /* IS */;
-    } else {
-      throw new Error(`Unhandled filter type: ${type}`);
-    }
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { type, name: "", condition, value: "" }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterValueChange(e) {
-    const { id, value } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { value }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  function handleFilterMatchWhenPropertyDNEChange(e) {
-    const { id, matchWhenDNE } = e.detail;
-    const newGroups = groups.map((group) => group.id === selectedGroupId ? Object.assign(Object.assign({}, group), {
-      filters: group.filters.map((filter) => filter.id === id ? Object.assign(Object.assign({}, filter), { matchWhenPropertyDNE: matchWhenDNE }) : filter)
-    }) : group);
-    $$invalidate(0, groups = newGroups);
-  }
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*groups, selectedGroupId*/
-    65537) {
-      $:
-        $$invalidate(1, selectedGroup = groups.find((group) => group.id === selectedGroupId));
-    }
-    if ($$self.$$.dirty & /*groups, selectedGroupId*/
-    65537) {
-      $:
-        groups, selectedGroupId, saveSettings();
-    }
-  };
-  return [
-    groups,
-    selectedGroup,
-    handleGroupClick,
-    handleAddGroupClick,
-    handleDeleteGroupClick,
-    handleFilterAddClick,
-    handleGroupNameChange,
-    handleFilterConditionChange,
-    handleGroupDrop,
-    handleFilterDeleteClick,
-    handleFilterPropertyNameChange,
-    handleFilterToggle,
-    handleFilterOperatorChange,
-    handleFilterTypeChange,
-    handleFilterValueChange,
-    handleFilterMatchWhenPropertyDNEChange,
-    selectedGroupId
-  ];
-}
-var Properties_filter_app = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance16, create_fragment16, safe_not_equal, {});
-  }
-};
-var properties_filter_app_default = Properties_filter_app;
-
-// src/obsidian/properties-filter-modal.ts
-var PropertiesFilterModal = class extends import_obsidian2.Modal {
-  constructor(plugin2) {
-    super(plugin2.app);
-    this.plugin = plugin2;
-    this.component = null;
-  }
-  onOpen() {
-    const { contentEl } = this;
-    this.component = new properties_filter_app_default({
-      target: contentEl
+  legacy_pre_effect_reset();
+  init();
+  var div = root2();
+  var div_1 = child(div);
+  var div_2 = sibling(child(div_1), 2);
+  var div_3 = child(div_2);
+  each(div_3, 5, () => get(coverImageSources), index, ($$anchor2, source2) => {
+    var div_4 = root_1();
+    var div_5 = child(div_4);
+    var node = child(div_5);
+    const expression = derived_safe_equal(() => get(source2).isEnabled ? "check" : "x");
+    Icon(node, {
+      get iconId() {
+        return get(expression);
+      }
     });
-  }
-  onClose() {
-    var _a;
-    const { contentEl } = this;
-    (_a = this.component) == null ? void 0 : _a.$destroy();
-    contentEl.empty();
-  }
-};
-
-// src/svelte/app/components/grid-card.svelte
-var import_obsidian3 = require("obsidian");
-
-// src/svelte/shared/components/tag.svelte
-function create_fragment17(ctx) {
-  let a;
-  let t0;
-  let t1;
-  let a_href_value;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      a = element("a");
-      t0 = text("#");
-      t1 = text(
-        /*name*/
-        ctx[0]
-      );
-      attr(a, "class", "tag vault-explorer-tag svelte-8oi1fm");
-      attr(a, "href", a_href_value = `#${/*name*/
-      ctx[0]}`);
-      attr(a, "target", "_blank");
-      attr(a, "rel", "noopener");
-    },
-    m(target, anchor) {
-      insert(target, a, anchor);
-      append(a, t0);
-      append(a, t1);
-      if (!mounted) {
-        dispose = listen(
-          a,
-          "click",
-          /*handleClick*/
-          ctx[1]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*name*/
-      1)
-        set_data(
-          t1,
-          /*name*/
-          ctx2[0]
-        );
-      if (dirty & /*name*/
-      1 && a_href_value !== (a_href_value = `#${/*name*/
-      ctx2[0]}`)) {
-        attr(a, "href", a_href_value);
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(a);
-      }
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function instance17($$self, $$props, $$invalidate) {
-  let { name } = $$props;
-  let plugin2;
-  store_default.plugin.subscribe((p) => {
-    plugin2 = p;
-  });
-  function handleClick() {
-    const searchPlugin = plugin2.app.internalPlugins.plugins["global-search"];
-    if (searchPlugin) {
-      searchPlugin.instance.openGlobalSearch(`tag:#${name}`);
-    }
-  }
-  $$self.$$set = ($$props2) => {
-    if ("name" in $$props2)
-      $$invalidate(0, name = $$props2.name);
-  };
-  return [name, handleClick];
-}
-var Tag = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance17, create_fragment17, safe_not_equal, { name: 0 });
-  }
-};
-var tag_default = Tag;
-
-// src/svelte/shared/components/property.svelte
-function create_fragment18(ctx) {
-  let a;
-  let t;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      a = element("a");
-      t = text(
-        /*formattedValue*/
-        ctx[0]
-      );
-      attr(a, "href", "none");
-      attr(a, "class", "tag vault-explorer-property svelte-3natje");
-      attr(a, "target", "_blank");
-      attr(a, "rel", "noopener");
-    },
-    m(target, anchor) {
-      insert(target, a, anchor);
-      append(a, t);
-      if (!mounted) {
-        dispose = listen(
-          a,
-          "click",
-          /*handleClick*/
-          ctx[1]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*formattedValue*/
-      1)
-        set_data(
-          t,
-          /*formattedValue*/
-          ctx2[0]
-        );
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(a);
-      }
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function instance18($$self, $$props, $$invalidate) {
-  let { name } = $$props;
-  let { value } = $$props;
-  let formattedValue;
-  let plugin2;
-  store_default.plugin.subscribe((p) => {
-    plugin2 = p;
-  });
-  function handleClick() {
-    const searchPlugin = plugin2.app.internalPlugins.plugins["global-search"];
-    if (searchPlugin) {
-      searchPlugin.instance.openGlobalSearch(`["${name}":${formattedValue}]`);
-    }
-  }
-  $$self.$$set = ($$props2) => {
-    if ("name" in $$props2)
-      $$invalidate(2, name = $$props2.name);
-    if ("value" in $$props2)
-      $$invalidate(3, value = $$props2.value);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*value, formattedValue*/
-    9) {
-      $: {
-        if (typeof value === "string") {
-          $$invalidate(0, formattedValue = value);
-          $$invalidate(0, formattedValue = formattedValue.replace(/\[/g, ""));
-          $$invalidate(0, formattedValue = formattedValue.replace(/\]/g, ""));
-        }
-      }
-    }
-  };
-  return [formattedValue, handleClick, name, value];
-}
-var Property = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance18, create_fragment18, safe_not_equal, { name: 2, value: 3 });
-  }
-};
-var property_default = Property;
-
-// src/svelte/app/services/scroll-utils.ts
-var getScrollAmount = (containerRef, className, direction, buttonSize) => {
-  const MIN_SCROLL_AMOUNT = 50;
-  const items = containerRef.querySelectorAll(className);
-  let scrollAmount = 0;
-  if (direction === "right") {
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      const itemRight = getItemRight(item);
-      const containerRight = containerRef.scrollLeft + containerRef.clientWidth - buttonSize;
-      if (itemRight > containerRight) {
-        let diff = itemRight - containerRight;
-        if (diff < MIN_SCROLL_AMOUNT) {
-          if (i < items.length - 1) {
-            const nextItem = items[i + 1];
-            const nextItemRight = getItemRight(nextItem);
-            diff = nextItemRight - containerRight;
-          }
-        }
-        scrollAmount = diff;
-        break;
-      }
-    }
-  } else if (direction === "left") {
-    for (let i = items.length - 1; i >= 0; i--) {
-      const item = items[i];
-      const itemLeft = item.offsetLeft;
-      const containerLeft = containerRef.scrollLeft + buttonSize;
-      if (itemLeft < containerLeft) {
-        let diff = containerLeft - itemLeft;
-        if (diff < MIN_SCROLL_AMOUNT) {
-          if (i > 0) {
-            const nextItem = items[i - 1];
-            const nextItemLeft = getItemLeft(nextItem);
-            diff = containerLeft - nextItemLeft;
-          }
-        }
-        scrollAmount = diff;
-        break;
-      }
-    }
-  }
-  return scrollAmount;
-};
-var getItemRight = (item) => item.offsetLeft + item.clientWidth;
-var getItemLeft = (item) => item.offsetLeft;
-
-// src/svelte/app/components/grid-card.svelte
-function get_each_context4(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[19] = list[i];
-  return child_ctx;
-}
-function create_if_block_6(ctx) {
-  let iconbutton;
-  let current;
-  iconbutton = new icon_button_default({ props: { iconId: "external-link" } });
-  iconbutton.$on(
-    "click",
-    /*handleUrlClick*/
-    ctx[13]
-  );
-  return {
-    c() {
-      create_component(iconbutton.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(iconbutton, target, anchor);
-      current = true;
-    },
-    p: noop,
-    i(local) {
-      if (current)
-        return;
-      transition_in(iconbutton.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(iconbutton.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(iconbutton, detaching);
-    }
-  };
-}
-function create_if_block_3(ctx) {
-  let stack;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "xs",
-      $$slots: { default: [create_default_slot_13] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const stack_changes = {};
-      if (dirty & /*$$scope, showScrollRightButton, tagContainerRef, tags, showScrollLeftButton*/
-      4197512) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function create_if_block_5(ctx) {
-  let div;
-  let iconbutton;
-  let current;
-  iconbutton = new icon_button_default({
-    props: {
-      isTabbable: false,
-      ariaLabel: "Scroll left",
-      noPadding: true,
-      iconId: "chevron-left"
-    }
-  });
-  iconbutton.$on(
-    "click",
-    /*handleScrollLeftClick*/
-    ctx[14]
-  );
-  return {
-    c() {
-      div = element("div");
-      create_component(iconbutton.$$.fragment);
-      attr(div, "class", "vault-explorer-scroll-button vault-explorer-scroll-button--left svelte-hwbqj3");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(iconbutton, div, null);
-      current = true;
-    },
-    p: noop,
-    i(local) {
-      if (current)
-        return;
-      transition_in(iconbutton.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(iconbutton.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(iconbutton);
-    }
-  };
-}
-function create_each_block4(ctx) {
-  let tag_1;
-  let current;
-  tag_1 = new tag_default({ props: { name: (
-    /*tag*/
-    ctx[19]
-  ) } });
-  return {
-    c() {
-      create_component(tag_1.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(tag_1, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const tag_1_changes = {};
-      if (dirty & /*tags*/
-      8)
-        tag_1_changes.name = /*tag*/
-        ctx2[19];
-      tag_1.$set(tag_1_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(tag_1.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(tag_1.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(tag_1, detaching);
-    }
-  };
-}
-function create_if_block_4(ctx) {
-  let div;
-  let iconbutton;
-  let current;
-  iconbutton = new icon_button_default({
-    props: {
-      isTabbable: false,
-      ariaLabel: "Scroll right",
-      noPadding: true,
-      iconId: "chevron-right"
-    }
-  });
-  iconbutton.$on(
-    "click",
-    /*handleScrollRightClick*/
-    ctx[15]
-  );
-  return {
-    c() {
-      div = element("div");
-      create_component(iconbutton.$$.fragment);
-      attr(div, "class", "vault-explorer-scroll-button vault-explorer-scroll-button--right svelte-hwbqj3");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(iconbutton, div, null);
-      current = true;
-    },
-    p: noop,
-    i(local) {
-      if (current)
-        return;
-      transition_in(iconbutton.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(iconbutton.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(iconbutton);
-    }
-  };
-}
-function create_default_slot_13(ctx) {
-  let t0;
-  let div;
-  let t1;
-  let if_block1_anchor;
-  let current;
-  let if_block0 = (
-    /*showScrollLeftButton*/
-    ctx[10] && create_if_block_5(ctx)
-  );
-  let each_value = ensure_array_like(
-    /*tags*/
-    ctx[3]
-  );
-  let each_blocks = [];
-  for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block4(get_each_context4(ctx, each_value, i));
-  }
-  const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
-    each_blocks[i] = null;
-  });
-  let if_block1 = (
-    /*showScrollRightButton*/
-    ctx[11] && create_if_block_4(ctx)
-  );
-  return {
-    c() {
-      if (if_block0)
-        if_block0.c();
-      t0 = space();
-      div = element("div");
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      t1 = space();
-      if (if_block1)
-        if_block1.c();
-      if_block1_anchor = empty();
-      attr(div, "class", "vault-explorer-grid-card__tags svelte-hwbqj3");
-    },
-    m(target, anchor) {
-      if (if_block0)
-        if_block0.m(target, anchor);
-      insert(target, t0, anchor);
-      insert(target, div, anchor);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(div, null);
-        }
-      }
-      ctx[18](div);
-      insert(target, t1, anchor);
-      if (if_block1)
-        if_block1.m(target, anchor);
-      insert(target, if_block1_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (
-        /*showScrollLeftButton*/
-        ctx2[10]
-      ) {
-        if (if_block0) {
-          if_block0.p(ctx2, dirty);
-          if (dirty & /*showScrollLeftButton*/
-          1024) {
-            transition_in(if_block0, 1);
-          }
-        } else {
-          if_block0 = create_if_block_5(ctx2);
-          if_block0.c();
-          transition_in(if_block0, 1);
-          if_block0.m(t0.parentNode, t0);
-        }
-      } else if (if_block0) {
-        group_outros();
-        transition_out(if_block0, 1, 1, () => {
-          if_block0 = null;
-        });
-        check_outros();
-      }
-      if (dirty & /*tags*/
-      8) {
-        each_value = ensure_array_like(
-          /*tags*/
-          ctx2[3]
-        );
-        let i;
-        for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context4(ctx2, each_value, i);
-          if (each_blocks[i]) {
-            each_blocks[i].p(child_ctx, dirty);
-            transition_in(each_blocks[i], 1);
-          } else {
-            each_blocks[i] = create_each_block4(child_ctx);
-            each_blocks[i].c();
-            transition_in(each_blocks[i], 1);
-            each_blocks[i].m(div, null);
-          }
-        }
-        group_outros();
-        for (i = each_value.length; i < each_blocks.length; i += 1) {
-          out(i);
-        }
-        check_outros();
-      }
-      if (
-        /*showScrollRightButton*/
-        ctx2[11]
-      ) {
-        if (if_block1) {
-          if_block1.p(ctx2, dirty);
-          if (dirty & /*showScrollRightButton*/
-          2048) {
-            transition_in(if_block1, 1);
-          }
-        } else {
-          if_block1 = create_if_block_4(ctx2);
-          if_block1.c();
-          transition_in(if_block1, 1);
-          if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
-        }
-      } else if (if_block1) {
-        group_outros();
-        transition_out(if_block1, 1, 1, () => {
-          if_block1 = null;
-        });
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(if_block0);
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      transition_in(if_block1);
-      current = true;
-    },
-    o(local) {
-      transition_out(if_block0);
-      each_blocks = each_blocks.filter(Boolean);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      transition_out(if_block1);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(div);
-        detach(t1);
-        detach(if_block1_anchor);
-      }
-      if (if_block0)
-        if_block0.d(detaching);
-      destroy_each(each_blocks, detaching);
-      ctx[18](null);
-      if (if_block1)
-        if_block1.d(detaching);
-    }
-  };
-}
-function create_if_block_22(ctx) {
-  let property;
-  let current;
-  property = new property_default({
-    props: {
-      name: (
-        /*plugin*/
-        ctx[9].settings.properties.custom1
-      ),
-      value: (
-        /*custom1*/
-        ctx[4]
-      )
-    }
-  });
-  return {
-    c() {
-      create_component(property.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(property, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const property_changes = {};
-      if (dirty & /*plugin*/
-      512)
-        property_changes.name = /*plugin*/
-        ctx2[9].settings.properties.custom1;
-      if (dirty & /*custom1*/
-      16)
-        property_changes.value = /*custom1*/
-        ctx2[4];
-      property.$set(property_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(property.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(property.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(property, detaching);
-    }
-  };
-}
-function create_if_block_12(ctx) {
-  let property;
-  let current;
-  property = new property_default({
-    props: {
-      name: (
-        /*plugin*/
-        ctx[9].settings.properties.custom2
-      ),
-      value: (
-        /*custom2*/
-        ctx[5]
-      )
-    }
-  });
-  return {
-    c() {
-      create_component(property.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(property, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const property_changes = {};
-      if (dirty & /*plugin*/
-      512)
-        property_changes.name = /*plugin*/
-        ctx2[9].settings.properties.custom2;
-      if (dirty & /*custom2*/
-      32)
-        property_changes.value = /*custom2*/
-        ctx2[5];
-      property.$set(property_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(property.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(property.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(property, detaching);
-    }
-  };
-}
-function create_if_block4(ctx) {
-  let property;
-  let current;
-  property = new property_default({
-    props: {
-      name: (
-        /*plugin*/
-        ctx[9].settings.properties.custom3
-      ),
-      value: (
-        /*custom3*/
-        ctx[6]
-      )
-    }
-  });
-  return {
-    c() {
-      create_component(property.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(property, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const property_changes = {};
-      if (dirty & /*plugin*/
-      512)
-        property_changes.name = /*plugin*/
-        ctx2[9].settings.properties.custom3;
-      if (dirty & /*custom3*/
-      64)
-        property_changes.value = /*custom3*/
-        ctx2[6];
-      property.$set(property_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(property.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(property.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(property, detaching);
-    }
-  };
-}
-function create_default_slot7(ctx) {
-  let t0;
-  let t1;
-  let if_block2_anchor;
-  let current;
-  let if_block0 = (
-    /*custom1*/
-    ctx[4] !== null && create_if_block_22(ctx)
-  );
-  let if_block1 = (
-    /*custom2*/
-    ctx[5] !== null && create_if_block_12(ctx)
-  );
-  let if_block2 = (
-    /*custom3*/
-    ctx[6] !== null && create_if_block4(ctx)
-  );
-  return {
-    c() {
-      if (if_block0)
-        if_block0.c();
-      t0 = space();
-      if (if_block1)
-        if_block1.c();
-      t1 = space();
-      if (if_block2)
-        if_block2.c();
-      if_block2_anchor = empty();
-    },
-    m(target, anchor) {
-      if (if_block0)
-        if_block0.m(target, anchor);
-      insert(target, t0, anchor);
-      if (if_block1)
-        if_block1.m(target, anchor);
-      insert(target, t1, anchor);
-      if (if_block2)
-        if_block2.m(target, anchor);
-      insert(target, if_block2_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (
-        /*custom1*/
-        ctx2[4] !== null
-      ) {
-        if (if_block0) {
-          if_block0.p(ctx2, dirty);
-          if (dirty & /*custom1*/
-          16) {
-            transition_in(if_block0, 1);
-          }
-        } else {
-          if_block0 = create_if_block_22(ctx2);
-          if_block0.c();
-          transition_in(if_block0, 1);
-          if_block0.m(t0.parentNode, t0);
-        }
-      } else if (if_block0) {
-        group_outros();
-        transition_out(if_block0, 1, 1, () => {
-          if_block0 = null;
-        });
-        check_outros();
-      }
-      if (
-        /*custom2*/
-        ctx2[5] !== null
-      ) {
-        if (if_block1) {
-          if_block1.p(ctx2, dirty);
-          if (dirty & /*custom2*/
-          32) {
-            transition_in(if_block1, 1);
-          }
-        } else {
-          if_block1 = create_if_block_12(ctx2);
-          if_block1.c();
-          transition_in(if_block1, 1);
-          if_block1.m(t1.parentNode, t1);
-        }
-      } else if (if_block1) {
-        group_outros();
-        transition_out(if_block1, 1, 1, () => {
-          if_block1 = null;
-        });
-        check_outros();
-      }
-      if (
-        /*custom3*/
-        ctx2[6] !== null
-      ) {
-        if (if_block2) {
-          if_block2.p(ctx2, dirty);
-          if (dirty & /*custom3*/
-          64) {
-            transition_in(if_block2, 1);
-          }
-        } else {
-          if_block2 = create_if_block4(ctx2);
-          if_block2.c();
-          transition_in(if_block2, 1);
-          if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
-        }
-      } else if (if_block2) {
-        group_outros();
-        transition_out(if_block2, 1, 1, () => {
-          if_block2 = null;
-        });
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(if_block0);
-      transition_in(if_block1);
-      transition_in(if_block2);
-      current = true;
-    },
-    o(local) {
-      transition_out(if_block0);
-      transition_out(if_block1);
-      transition_out(if_block2);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(t1);
-        detach(if_block2_anchor);
-      }
-      if (if_block0)
-        if_block0.d(detaching);
-      if (if_block1)
-        if_block1.d(detaching);
-      if (if_block2)
-        if_block2.d(detaching);
-    }
-  };
-}
-function create_fragment19(ctx) {
-  let div3;
-  let div1;
-  let div0;
-  let t0;
-  let div0_style_value;
-  let t1;
-  let t2;
-  let spacer;
-  let t3;
-  let div2;
-  let t4;
-  let wrap;
-  let current;
-  let mounted;
-  let dispose;
-  let if_block0 = (
-    /*url*/
-    ctx[2] !== null && create_if_block_6(ctx)
-  );
-  spacer = new spacer_default({
-    props: { size: "md", direction: "vertical" }
-  });
-  let if_block1 = (
-    /*tags*/
-    ctx[3] !== null && create_if_block_3(ctx)
-  );
-  wrap = new wrap_default({
-    props: {
-      spacingX: "xs",
-      spacingY: "xs",
-      $$slots: { default: [create_default_slot7] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      div3 = element("div");
-      div1 = element("div");
-      div0 = element("div");
-      t0 = text(
-        /*name*/
-        ctx[0]
-      );
-      t1 = space();
-      if (if_block0)
-        if_block0.c();
-      t2 = space();
-      create_component(spacer.$$.fragment);
-      t3 = space();
-      div2 = element("div");
-      if (if_block1)
-        if_block1.c();
-      t4 = space();
-      create_component(wrap.$$.fragment);
-      attr(div0, "tabindex", "0");
-      attr(div0, "role", "link");
-      attr(div0, "class", "vault-explorer-grid-card__title svelte-hwbqj3");
-      attr(div0, "style", div0_style_value = `word-break: ${/*wordBreak*/
-      ctx[8]};`);
-      attr(div1, "class", "vault-explorer-grid-card__header svelte-hwbqj3");
-      attr(div2, "class", "vault-explorer-grid-card__content svelte-hwbqj3");
-      attr(div3, "class", "vault-explorer-grid-card svelte-hwbqj3");
-    },
-    m(target, anchor) {
-      insert(target, div3, anchor);
-      append(div3, div1);
-      append(div1, div0);
-      append(div0, t0);
-      append(div1, t1);
-      if (if_block0)
-        if_block0.m(div1, null);
-      append(div3, t2);
-      mount_component(spacer, div3, null);
-      append(div3, t3);
-      append(div3, div2);
-      if (if_block1)
-        if_block1.m(div2, null);
-      append(div2, t4);
-      mount_component(wrap, div2, null);
-      current = true;
-      if (!mounted) {
-        dispose = [
-          listen(div0, "focus", focus_handler),
-          listen(
-            div0,
-            "click",
-            /*handleTitleClick*/
-            ctx[12]
-          ),
-          listen(
-            div0,
-            "keydown",
-            /*keydown_handler*/
-            ctx[16]
-          ),
-          listen(
-            div0,
-            "mouseover",
-            /*mouseover_handler*/
-            ctx[17]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (!current || dirty & /*name*/
-      1)
-        set_data(
-          t0,
-          /*name*/
-          ctx2[0]
-        );
-      if (!current || dirty & /*wordBreak*/
-      256 && div0_style_value !== (div0_style_value = `word-break: ${/*wordBreak*/
-      ctx2[8]};`)) {
-        attr(div0, "style", div0_style_value);
-      }
-      if (
-        /*url*/
-        ctx2[2] !== null
-      ) {
-        if (if_block0) {
-          if_block0.p(ctx2, dirty);
-          if (dirty & /*url*/
-          4) {
-            transition_in(if_block0, 1);
-          }
-        } else {
-          if_block0 = create_if_block_6(ctx2);
-          if_block0.c();
-          transition_in(if_block0, 1);
-          if_block0.m(div1, null);
-        }
-      } else if (if_block0) {
-        group_outros();
-        transition_out(if_block0, 1, 1, () => {
-          if_block0 = null;
-        });
-        check_outros();
-      }
-      if (
-        /*tags*/
-        ctx2[3] !== null
-      ) {
-        if (if_block1) {
-          if_block1.p(ctx2, dirty);
-          if (dirty & /*tags*/
-          8) {
-            transition_in(if_block1, 1);
-          }
-        } else {
-          if_block1 = create_if_block_3(ctx2);
-          if_block1.c();
-          transition_in(if_block1, 1);
-          if_block1.m(div2, t4);
-        }
-      } else if (if_block1) {
-        group_outros();
-        transition_out(if_block1, 1, 1, () => {
-          if_block1 = null;
-        });
-        check_outros();
-      }
-      const wrap_changes = {};
-      if (dirty & /*$$scope, plugin, custom3, custom2, custom1*/
-      4194928) {
-        wrap_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      wrap.$set(wrap_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(if_block0);
-      transition_in(spacer.$$.fragment, local);
-      transition_in(if_block1);
-      transition_in(wrap.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(if_block0);
-      transition_out(spacer.$$.fragment, local);
-      transition_out(if_block1);
-      transition_out(wrap.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div3);
-      }
-      if (if_block0)
-        if_block0.d();
-      destroy_component(spacer);
-      if (if_block1)
-        if_block1.d();
-      destroy_component(wrap);
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-var focus_handler = () => {
-};
-function instance19($$self, $$props, $$invalidate) {
-  let { name } = $$props;
-  let { path } = $$props;
-  let { url } = $$props;
-  let { tags } = $$props;
-  let { custom1 } = $$props;
-  let { custom2 } = $$props;
-  let { custom3 } = $$props;
-  let tagContainerRef;
-  let wordBreak = "normal";
-  let plugin2;
-  store_default.plugin.subscribe((p) => {
-    $$invalidate(9, plugin2 = p);
-    $$invalidate(8, wordBreak = plugin2.settings.views.titleWrapping);
-  });
-  onMount(() => {
-    function handleTitleWrappingSettingChange() {
-      $$invalidate(8, wordBreak = plugin2.settings.views.titleWrapping);
-    }
-    EventManager.getInstance().on("title-wrapping-setting-change", handleTitleWrappingSettingChange);
-    return () => {
-      EventManager.getInstance().off("title-wrapping-setting-change", handleTitleWrappingSettingChange);
-    };
-  });
-  function handleTitleClick() {
-    const leaves = plugin2.app.workspace.getLeavesOfType("markdown");
-    const leaf = leaves.find((leaf2) => {
-      var _a, _b;
-      return ((_b = (_a = leaf2.view.file) === null || _a === void 0 ? void 0 : _a.path) !== null && _b !== void 0 ? _b : "") === path;
-    });
-    if (leaf) {
-      plugin2.app.workspace.setActiveLeaf(leaf);
-    } else {
-      plugin2.app.workspace.openLinkText(path, "vault-explorer");
-    }
-  }
-  function handleUrlClick() {
-    if (url != null) {
-      window.open(url, "_blank");
-    }
-  }
-  function handleScrollLeftClick() {
-    if (tagContainerRef) {
-      const scrollAmount = getScrollAmount(tagContainerRef, ".vault-explorer-tag", "left", 20);
-      tagContainerRef.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    }
-  }
-  function handleScrollRightClick() {
-    if (tagContainerRef) {
-      const scrollAmount = getScrollAmount(tagContainerRef, ".vault-explorer-tag", "right", 20);
-      tagContainerRef.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  }
-  let showScrollLeftButton = false;
-  let showScrollRightButton = false;
-  onMount(() => {
-    function handleScroll() {
-      if (!tagContainerRef) {
-        return;
-      }
-      const { scrollLeft, clientWidth, scrollWidth } = tagContainerRef;
-      $$invalidate(10, showScrollLeftButton = scrollLeft > 0);
-      $$invalidate(11, showScrollRightButton = scrollLeft + clientWidth < scrollWidth - 1);
-    }
-    if (tagContainerRef) {
-      tagContainerRef.addEventListener("scroll", handleScroll);
-      setTimeout(handleScroll, 0);
-    }
-    return () => {
-      if (tagContainerRef) {
-        tagContainerRef.removeEventListener("scroll", handleScroll);
-      }
-    };
-  });
-  const keydown_handler = (e) => (e.key === "Enter" || e.key === " ") && handleTitleClick();
-  const mouseover_handler = (event) => {
-    plugin2.app.workspace.trigger("hover-link", {
-      event,
-      linktext: path,
-      source: HOVER_LINK_SOURCE_ID,
-      targetEl: event.currentTarget,
-      hoverParent: event.currentTarget.parentElement
-    });
-  };
-  function div_binding($$value) {
-    binding_callbacks[$$value ? "unshift" : "push"](() => {
-      tagContainerRef = $$value;
-      $$invalidate(7, tagContainerRef);
-    });
-  }
-  $$self.$$set = ($$props2) => {
-    if ("name" in $$props2)
-      $$invalidate(0, name = $$props2.name);
-    if ("path" in $$props2)
-      $$invalidate(1, path = $$props2.path);
-    if ("url" in $$props2)
-      $$invalidate(2, url = $$props2.url);
-    if ("tags" in $$props2)
-      $$invalidate(3, tags = $$props2.tags);
-    if ("custom1" in $$props2)
-      $$invalidate(4, custom1 = $$props2.custom1);
-    if ("custom2" in $$props2)
-      $$invalidate(5, custom2 = $$props2.custom2);
-    if ("custom3" in $$props2)
-      $$invalidate(6, custom3 = $$props2.custom3);
-  };
-  return [
-    name,
-    path,
-    url,
-    tags,
-    custom1,
-    custom2,
-    custom3,
-    tagContainerRef,
-    wordBreak,
-    plugin2,
-    showScrollLeftButton,
-    showScrollRightButton,
-    handleTitleClick,
-    handleUrlClick,
-    handleScrollLeftClick,
-    handleScrollRightClick,
-    keydown_handler,
-    mouseover_handler,
-    div_binding
-  ];
-}
-var Grid_card = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance19, create_fragment19, safe_not_equal, {
-      name: 0,
-      path: 1,
-      url: 2,
-      tags: 3,
-      custom1: 4,
-      custom2: 5,
-      custom3: 6
-    });
-  }
-};
-var grid_card_default = Grid_card;
-
-// src/svelte/app/components/grid-view.svelte
-function get_each_context5(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[4] = list[i];
-  return child_ctx;
-}
-function create_each_block5(key_1, ctx) {
-  let first;
-  let gridcard;
-  let current;
-  gridcard = new grid_card_default({
-    props: {
-      name: (
-        /*file*/
-        ctx[4].name
-      ),
-      path: (
-        /*file*/
-        ctx[4].path
-      ),
-      url: (
-        /*file*/
-        ctx[4].url
-      ),
-      tags: (
-        /*file*/
-        ctx[4].tags
-      ),
-      custom1: (
-        /*file*/
-        ctx[4].custom1
-      ),
-      custom2: (
-        /*file*/
-        ctx[4].custom2
-      ),
-      custom3: (
-        /*file*/
-        ctx[4].custom3
-      )
-    }
-  });
-  return {
-    key: key_1,
-    first: null,
-    c() {
-      first = empty();
-      create_component(gridcard.$$.fragment);
-      this.first = first;
-    },
-    m(target, anchor) {
-      insert(target, first, anchor);
-      mount_component(gridcard, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-      const gridcard_changes = {};
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.name = /*file*/
-        ctx[4].name;
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.path = /*file*/
-        ctx[4].path;
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.url = /*file*/
-        ctx[4].url;
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.tags = /*file*/
-        ctx[4].tags;
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.custom1 = /*file*/
-        ctx[4].custom1;
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.custom2 = /*file*/
-        ctx[4].custom2;
-      if (dirty & /*displayedItems*/
-      1)
-        gridcard_changes.custom3 = /*file*/
-        ctx[4].custom3;
-      gridcard.$set(gridcard_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(gridcard.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(gridcard.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(first);
-      }
-      destroy_component(gridcard, detaching);
-    }
-  };
-}
-function create_fragment20(ctx) {
-  let div1;
-  let div0;
-  let each_blocks = [];
-  let each_1_lookup = /* @__PURE__ */ new Map();
-  let current;
-  let each_value = ensure_array_like(
-    /*displayedItems*/
-    ctx[0]
-  );
-  const get_key = (ctx2) => (
-    /*file*/
-    ctx2[4].path
-  );
-  for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context5(ctx, each_value, i);
-    let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block5(key, child_ctx));
-  }
-  return {
-    c() {
-      div1 = element("div");
-      div0 = element("div");
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      attr(div0, "class", "vault-explorer-grid-view__container svelte-1f8zt7b");
-      attr(div1, "class", "vault-explorer-grid-view");
-    },
-    m(target, anchor) {
-      insert(target, div1, anchor);
-      append(div1, div0);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(div0, null);
-        }
-      }
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*displayedItems*/
-      1) {
-        each_value = ensure_array_like(
-          /*displayedItems*/
-          ctx2[0]
-        );
-        group_outros();
-        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div0, outro_and_destroy_block, create_each_block5, null, get_each_context5);
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      current = true;
-    },
-    o(local) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div1);
-      }
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].d();
-      }
-    }
-  };
-}
-function instance20($$self, $$props, $$invalidate) {
-  let { data } = $$props;
-  let { startIndex } = $$props;
-  let { pageLength } = $$props;
-  let displayedItems = [];
-  $$self.$$set = ($$props2) => {
-    if ("data" in $$props2)
-      $$invalidate(1, data = $$props2.data);
-    if ("startIndex" in $$props2)
-      $$invalidate(2, startIndex = $$props2.startIndex);
-    if ("pageLength" in $$props2)
-      $$invalidate(3, pageLength = $$props2.pageLength);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*startIndex, data, pageLength*/
-    14) {
-      $: {
-        if (startIndex < data.length) {
-          $$invalidate(0, displayedItems = Array.from({ length: pageLength }, (_2, i) => {
-            const index = startIndex + i;
-            return data[index];
-          }));
-        } else {
-          $$invalidate(0, displayedItems = []);
-        }
-      }
-    }
-  };
-  return [displayedItems, data, startIndex, pageLength];
-}
-var Grid_view = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance20, create_fragment20, safe_not_equal, { data: 1, startIndex: 2, pageLength: 3 });
-  }
-};
-var grid_view_default = Grid_view;
-
-// src/svelte/app/components/list-item.svelte
-var import_obsidian4 = require("obsidian");
-function create_fragment21(ctx) {
-  let div1;
-  let div0;
-  let t;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      div1 = element("div");
-      div0 = element("div");
-      t = text(
-        /*name*/
-        ctx[0]
-      );
-      attr(div0, "tabindex", "0");
-      attr(div0, "role", "link");
-      attr(div0, "class", "vault-explorer-list-item__title svelte-1h08iiz");
-      attr(div1, "class", "vault-explorer-list-item svelte-1h08iiz");
-    },
-    m(target, anchor) {
-      insert(target, div1, anchor);
-      append(div1, div0);
-      append(div0, t);
-      if (!mounted) {
-        dispose = [
-          listen(div0, "focus", focus_handler2),
-          listen(
-            div0,
-            "click",
-            /*handleTitleClick*/
-            ctx[3]
-          ),
-          listen(
-            div0,
-            "keydown",
-            /*keydown_handler*/
-            ctx[4]
-          ),
-          listen(
-            div0,
-            "mouseover",
-            /*mouseover_handler*/
-            ctx[5]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*name*/
-      1)
-        set_data(
-          t,
-          /*name*/
-          ctx2[0]
-        );
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div1);
-      }
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-var focus_handler2 = () => {
-};
-function instance21($$self, $$props, $$invalidate) {
-  let { name } = $$props;
-  let { path } = $$props;
-  let plugin2;
-  store_default.plugin.subscribe((p) => {
-    $$invalidate(2, plugin2 = p);
-  });
-  function handleTitleClick() {
-    const leaves = plugin2.app.workspace.getLeavesOfType("markdown");
-    const leaf = leaves.find((leaf2) => {
-      var _a, _b;
-      return ((_b = (_a = leaf2.view.file) === null || _a === void 0 ? void 0 : _a.path) !== null && _b !== void 0 ? _b : "") === path;
-    });
-    if (leaf) {
-      plugin2.app.workspace.setActiveLeaf(leaf);
-    } else {
-      plugin2.app.workspace.openLinkText(path, "vault-explorer");
-    }
-  }
-  const keydown_handler = (e) => (e.key === "Enter" || e.key === " ") && handleTitleClick();
-  const mouseover_handler = (event) => {
-    plugin2.app.workspace.trigger("hover-link", {
-      event,
-      linktext: path,
-      source: HOVER_LINK_SOURCE_ID,
-      targetEl: event.currentTarget,
-      hoverParent: event.currentTarget.parentElement
-    });
-  };
-  $$self.$$set = ($$props2) => {
-    if ("name" in $$props2)
-      $$invalidate(0, name = $$props2.name);
-    if ("path" in $$props2)
-      $$invalidate(1, path = $$props2.path);
-  };
-  return [name, path, plugin2, handleTitleClick, keydown_handler, mouseover_handler];
-}
-var List_item = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance21, create_fragment21, safe_not_equal, { name: 0, path: 1 });
-  }
-};
-var list_item_default = List_item;
-
-// src/svelte/app/components/list-view.svelte
-function get_each_context6(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[4] = list[i];
-  return child_ctx;
-}
-function create_each_block6(key_1, ctx) {
-  let first;
-  let listitem;
-  let current;
-  listitem = new list_item_default({
-    props: {
-      name: (
-        /*file*/
-        ctx[4].name
-      ),
-      path: (
-        /*file*/
-        ctx[4].path
-      )
-    }
-  });
-  return {
-    key: key_1,
-    first: null,
-    c() {
-      first = empty();
-      create_component(listitem.$$.fragment);
-      this.first = first;
-    },
-    m(target, anchor) {
-      insert(target, first, anchor);
-      mount_component(listitem, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-      const listitem_changes = {};
-      if (dirty & /*displayedItems*/
-      1)
-        listitem_changes.name = /*file*/
-        ctx[4].name;
-      if (dirty & /*displayedItems*/
-      1)
-        listitem_changes.path = /*file*/
-        ctx[4].path;
-      listitem.$set(listitem_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(listitem.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(listitem.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(first);
-      }
-      destroy_component(listitem, detaching);
-    }
-  };
-}
-function create_fragment22(ctx) {
-  let div;
-  let each_blocks = [];
-  let each_1_lookup = /* @__PURE__ */ new Map();
-  let current;
-  let each_value = ensure_array_like(
-    /*displayedItems*/
-    ctx[0]
-  );
-  const get_key = (ctx2) => (
-    /*file*/
-    ctx2[4].path
-  );
-  for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context6(ctx, each_value, i);
-    let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block6(key, child_ctx));
-  }
-  return {
-    c() {
-      div = element("div");
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      attr(div, "class", "vault-explorer-list-view");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(div, null);
-        }
-      }
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*displayedItems*/
-      1) {
-        each_value = ensure_array_like(
-          /*displayedItems*/
-          ctx2[0]
-        );
-        group_outros();
-        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, outro_and_destroy_block, create_each_block6, null, get_each_context6);
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      current = true;
-    },
-    o(local) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].d();
-      }
-    }
-  };
-}
-function instance22($$self, $$props, $$invalidate) {
-  let { data } = $$props;
-  let { startIndex } = $$props;
-  let { pageLength } = $$props;
-  let displayedItems = [];
-  $$self.$$set = ($$props2) => {
-    if ("data" in $$props2)
-      $$invalidate(1, data = $$props2.data);
-    if ("startIndex" in $$props2)
-      $$invalidate(2, startIndex = $$props2.startIndex);
-    if ("pageLength" in $$props2)
-      $$invalidate(3, pageLength = $$props2.pageLength);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*startIndex, data, pageLength*/
-    14) {
-      $: {
-        if (startIndex < data.length) {
-          $$invalidate(0, displayedItems = Array.from({ length: pageLength }, (_2, i) => {
-            const index = startIndex + i;
-            return data[index];
-          }));
-        } else {
-          $$invalidate(0, displayedItems = []);
-        }
-      }
-    }
-  };
-  return [displayedItems, data, startIndex, pageLength];
-}
-var List_view = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance22, create_fragment22, safe_not_equal, { data: 1, startIndex: 2, pageLength: 3 });
-  }
-};
-var list_view_default = List_view;
-
-// src/svelte/app/services/filters/favorite-filter.ts
-var filterByFavorites = (file, onlyFavorites) => {
-  if (onlyFavorites) {
-    return file.favorite;
-  }
-  return true;
-};
-
-// src/svelte/app/services/filters/folder-filter.ts
-var filterByFolder = (file, folderPath) => {
-  if (folderPath === "/") {
-    return true;
-  } else if (folderPath) {
-    return file.path.startsWith(folderPath);
-  }
-  return false;
-};
-
-// src/svelte/app/services/filters/search-filter.ts
-var filterBySearch = (file, search) => {
-  if (search === "") {
-    return true;
-  }
-  search = search.toLowerCase().trim();
-  const { name, tags, path, custom1, custom2, custom3 } = file;
-  if (name.toLowerCase().includes(search)) {
-    return true;
-  }
-  if (tags !== null && tags.some(
-    (tag) => tag.toLowerCase().includes(search)
-  )) {
-    return true;
-  }
-  if (path.toLowerCase().includes(search)) {
-    return true;
-  }
-  if (custom1 !== null && custom1.toLowerCase().includes(search)) {
-    return true;
-  }
-  if (custom2 !== null && custom2.toLowerCase().includes(search)) {
-    return true;
-  }
-  if (custom3 !== null && custom3.toLowerCase().includes(search)) {
-    return true;
-  }
-  return false;
-};
-
-// src/svelte/app/services/filters/timestamp-filter.ts
-var filterByTimestamp = ({
-  timestampFilter,
-  createdMillis,
-  modifiedMillis,
-  startOfTodayMillis,
-  startOfThisWeekMillis,
-  startOfLastWeekMillis
-}) => {
-  if (timestampFilter === "modified-this-week") {
-    return modifiedMillis > startOfThisWeekMillis;
-  } else if (timestampFilter === "created-this-week") {
-    return createdMillis > startOfThisWeekMillis;
-  } else if (timestampFilter === "modified-2-weeks") {
-    return modifiedMillis > startOfLastWeekMillis;
-  } else if (timestampFilter === "created-2-weeks") {
-    return createdMillis > startOfLastWeekMillis;
-  } else if (timestampFilter === "modified-today") {
-    return modifiedMillis > startOfTodayMillis;
-  } else if (timestampFilter === "created-today") {
-    return createdMillis > startOfTodayMillis;
-  }
-  return true;
-};
-
-// src/svelte/app/services/filters/property-groups-filter.ts
-var import_js_logger2 = __toESM(require_logger());
-
-// src/svelte/app/services/time-utils.ts
-var import_obsidian5 = require("obsidian");
-var getStartOfTodayMillis = () => {
-  return (0, import_obsidian5.moment)().startOf("day").valueOf();
-};
-var getStartOfDayMillis = (date) => {
-  return (0, import_obsidian5.moment)(date).startOf("day").valueOf();
-};
-var getStartOfThisWeekMillis = () => {
-  return (0, import_obsidian5.moment)().startOf("week").valueOf();
-};
-var getStartOfLastWeekMillis = () => {
-  return (0, import_obsidian5.moment)().subtract(1, "weeks").startOf("week").valueOf();
-};
-var getTimeMillis = (date) => {
-  const formats = ["YYYY-MM-DDTHH:mm:ss", "YYYY-MM-DD"];
-  const momentDate = (0, import_obsidian5.moment)(date, formats, true);
-  if (!momentDate.isValid()) {
-    throw new Error("Invalid date format");
-  }
-  return momentDate.valueOf();
-};
-var getEndOfDayMillis = (date) => {
-  const day = (0, import_obsidian5.moment)(date);
-  day.set({
-    hour: 23,
-    minute: 59,
-    second: 59,
-    millisecond: 999
-  });
-  return day.valueOf();
-};
-
-// src/svelte/app/services/filters/property-groups-filter.ts
-var filterByPropertyGroups = (frontmatter, groups) => {
-  return groups.every((group) => {
-    if (!group.isEnabled)
-      return true;
-    return filterByPropertyGroup(frontmatter, group);
-  });
-};
-var filterByPropertyGroup = (frontmatter, group) => {
-  let result = null;
-  group.filters.forEach((filter, i) => {
-    if (!filter.isEnabled)
-      return;
-    const value = filterByProperty(frontmatter, filter);
-    if (result === null) {
-      result = value;
-    } else {
-      if (filter.operator === "and") {
-        result = result && value;
-      } else {
-        result = result || value;
-      }
-    }
-  });
-  return result != null ? result : true;
-};
-var filterByProperty = (frontmatter, filter) => {
-  var _a;
-  const { propertyName, condition, value, type, matchWhenPropertyDNE } = filter;
-  if (propertyName === "")
-    return true;
-  let propertyValue = (_a = frontmatter == null ? void 0 : frontmatter[propertyName]) != null ? _a : null;
-  if (type === "text") {
-    if (propertyValue !== null && typeof propertyValue !== "string") {
-      import_js_logger2.default.warn(`Property value is not a string: ${propertyValue}`);
-      return true;
-    }
-    const doesMatch = doesTextMatchFilter(propertyValue, value, condition, matchWhenPropertyDNE);
-    return doesMatch;
-  } else if (type === "list") {
-    if (propertyValue !== null && !Array.isArray(propertyValue)) {
-      import_js_logger2.default.warn(`Property value is not an array: ${propertyValue}`);
-      return true;
-    }
-    const compare = value.split(",").map((v) => v.trim()).filter((v) => v !== "");
-    const doesMatch = doesListMatchFilter(propertyValue, compare, condition, matchWhenPropertyDNE);
-    return doesMatch;
-  } else if (type === "number") {
-    if (propertyValue !== null && typeof propertyValue !== "number") {
-      import_js_logger2.default.warn(`Property value is not a number: ${propertyValue}`);
-      return true;
-    }
-    const compare = parseFloat(value);
-    const doesMatch = doesNumberMatchFilter(propertyValue, compare, condition, matchWhenPropertyDNE);
-    return doesMatch;
-  } else if (type === "checkbox") {
-    if (propertyValue !== null && typeof propertyValue !== "boolean") {
-      import_js_logger2.default.warn(`Property value is not a boolean: ${propertyValue}`);
-      return true;
-    }
-    const compare = value === "true";
-    const doesMatch = doesCheckboxMatchFilter(propertyValue, compare, condition, matchWhenPropertyDNE);
-    return doesMatch;
-  } else if (type === "date" || type === "datetime") {
-    if (propertyValue !== null && typeof propertyValue !== "string") {
-      import_js_logger2.default.warn(`Property value is not a string: ${propertyValue}`);
-      return true;
-    }
-    const doesMatch = doesDateMatchFilter(condition, propertyValue, value, matchWhenPropertyDNE);
-    return doesMatch;
-  } else {
-    throw new Error(`Property filter type not supported: ${type}`);
-  }
-};
-var doesTextMatchFilter = (propertyValue, compare, condition, matchIfNull) => {
-  if (propertyValue)
-    propertyValue = propertyValue.toLowerCase().trim();
-  compare = compare.toLowerCase().trim();
-  switch (condition) {
-    case "is" /* IS */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue === compare;
-    case "is-not" /* IS_NOT */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue !== compare;
-    case "contains" /* CONTAINS */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue.includes(compare);
-    case "does-not-contain" /* DOES_NOT_CONTAIN */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return !propertyValue.includes(compare);
-    case "starts-with" /* STARTS_WITH */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue.startsWith(compare);
-    case "ends-with" /* ENDS_WITH */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue.endsWith(compare);
-    case "exists" /* EXISTS */:
-      return propertyValue !== null;
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-      return propertyValue === null;
-    default:
-      throw new Error(`Text filter condition not supported: ${condition}`);
-  }
-};
-var doesListMatchFilter = (propertyValue, compare, condition, matchIfNull) => {
-  switch (condition) {
-    case "contains" /* CONTAINS */:
-      if (propertyValue === null)
-        return matchIfNull;
-      if (compare.length === 0)
-        return true;
-      return compare.every(
-        (c) => propertyValue.some((value) => value.contains(c))
-      );
-    case "does-not-contain" /* DOES_NOT_CONTAIN */:
-      if (propertyValue === null)
-        return matchIfNull;
-      if (compare.length === 0)
-        return true;
-      return compare.every(
-        (c) => propertyValue.every((value) => !value.contains(c))
-      );
-    case "exists" /* EXISTS */:
-      return propertyValue !== null;
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-      return propertyValue === null;
-    default:
-      throw new Error(`List filter condition not supported: ${condition}`);
-  }
-};
-var doesDateMatchFilter = (condition, propertyValue, compare, matchIfNull) => {
-  switch (condition) {
-    case "is" /* IS */: {
-      if (propertyValue === null)
-        return matchIfNull;
-      if (compare === null)
-        return false;
-      const propertyValueTime = getTimeMillis(propertyValue);
-      const dayStartTime = getStartOfDayMillis(compare);
-      const dayEndTime = getEndOfDayMillis(compare);
-      return propertyValueTime >= dayStartTime && propertyValueTime <= dayEndTime;
-    }
-    case "is-after" /* IS_AFTER */: {
-      if (propertyValue === null)
-        return matchIfNull;
-      if (compare === null)
-        return false;
-      const propertyValueTime = getTimeMillis(propertyValue);
-      const dayEndTime = getEndOfDayMillis(compare);
-      return propertyValueTime > dayEndTime;
-    }
-    case "is-before" /* IS_BEFORE */: {
-      if (propertyValue === null)
-        return matchIfNull;
-      if (compare === null)
-        return false;
-      const propertyValueTime = getTimeMillis(propertyValue);
-      const dayStartTime = getStartOfDayMillis(compare);
-      return propertyValueTime < dayStartTime;
-    }
-    case "exists" /* EXISTS */:
-      return propertyValue !== null;
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-      return propertyValue === null;
-    default:
-      throw new Error(`Date filter condition not supported: ${condition}`);
-  }
-};
-var doesNumberMatchFilter = (propertyValue, compare, condition, matchIfNull) => {
-  switch (condition) {
-    case "is-equal" /* IS_EQUAL */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue === compare;
-    case "is-greater" /* IS_GREATER */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue > compare;
-    case "is-greater-or-equal" /* IS_GREATER_OR_EQUAL */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue >= compare;
-    case "is-less" /* IS_LESS */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue < compare;
-    case "is-less-or-equal" /* IS_LESS_OR_EQUAL */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue <= compare;
-    case "is-not-equal" /* IS_NOT_EQUAL */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue !== compare;
-    case "exists" /* EXISTS */:
-      return propertyValue !== null;
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-      return propertyValue === null;
-    default:
-      throw new Error(`Number filter condition not supported: ${condition}`);
-  }
-};
-var doesCheckboxMatchFilter = (propertyValue, compare, condition, matchIfNull) => {
-  switch (condition) {
-    case "is" /* IS */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue === compare;
-    case "is-not" /* IS_NOT */:
-      if (propertyValue === null)
-        return matchIfNull;
-      return propertyValue !== compare;
-    case "exists" /* EXISTS */:
-      return propertyValue !== null;
-    case "does-not-exist" /* DOES_NOT_EXIST */:
-      return propertyValue === null;
-    default:
-      throw new Error(`Checkbox filter condition not supported: ${condition}`);
-  }
-};
-
-// src/svelte/app/services/render-utils.ts
-var formatFileDataForRender = (settings, file, frontmatter) => {
-  const tags = loadPropertyValue(frontmatter, "tags", true);
-  const {
-    createdDate: createdDateProp,
-    modifiedDate: modifiedDateProp,
-    url: urlProp,
-    favorite: favoriteProp,
-    custom1: custom1Prop,
-    custom2: custom2Prop,
-    custom3: custom3Prop
-  } = settings.properties;
-  const url = loadPropertyValue(frontmatter, urlProp);
-  const favorite = loadPropertyValue(frontmatter, favoriteProp);
-  const creationDate = loadPropertyValue(frontmatter, createdDateProp);
-  const modifiedDate = loadPropertyValue(frontmatter, modifiedDateProp);
-  const custom1 = loadPropertyValue(frontmatter, custom1Prop);
-  const custom2 = loadPropertyValue(frontmatter, custom2Prop);
-  const custom3 = loadPropertyValue(frontmatter, custom3Prop);
-  const createdMillis = creationDate != null ? getTimeMillis(creationDate) : file.stat.ctime;
-  const modifiedMillis = modifiedDate != null ? getTimeMillis(modifiedDate) : file.stat.mtime;
-  return {
-    name: file.basename,
-    path: file.path,
-    tags,
-    favorite,
-    url,
-    createdMillis,
-    modifiedMillis,
-    custom1,
-    custom2,
-    custom3
-  };
-};
-var loadPropertyValue = (frontmatter, propertyName, isArray = false) => {
-  if (propertyName === "") {
-    return null;
-  }
-  if (!frontmatter) {
-    return null;
-  }
-  const propertyValue = frontmatter == null ? void 0 : frontmatter[propertyName];
-  if (isArray) {
-    if (propertyValue === void 0 || propertyValue === null) {
-      return null;
-    } else if (Array.isArray(propertyValue)) {
-      return propertyValue;
-    } else {
-      return [propertyValue];
-    }
-  }
-  return propertyValue != null ? propertyValue : null;
-};
-
-// src/svelte/app/index.svelte
-var import_lodash = __toESM(require_lodash());
-
-// src/svelte/app/components/group-tag.svelte
-function create_fragment23(ctx) {
-  let div;
-  let t;
-  let div_class_value;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      div = element("div");
-      t = text(
-        /*name*/
-        ctx[0]
-      );
-      attr(div, "tabindex", "0");
-      attr(div, "role", "button");
-      attr(div, "draggable", "true");
-      attr(div, "class", div_class_value = null_to_empty(
-        /*className*/
-        ctx[1]
-      ) + " svelte-1rjw5cj");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      append(div, t);
-      if (!mounted) {
-        dispose = [
-          listen(
-            div,
-            "dragstart",
-            /*handleDragStart*/
-            ctx[3]
-          ),
-          listen(
-            div,
-            "dragover",
-            /*handleDragOver*/
-            ctx[4]
-          ),
-          listen(
-            div,
-            "drop",
-            /*handleDrop*/
-            ctx[5]
-          ),
-          listen(
-            div,
-            "click",
-            /*handleClick*/
-            ctx[2]
-          ),
-          listen(
-            div,
-            "keydown",
-            /*keydown_handler*/
-            ctx[8]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p(ctx2, [dirty]) {
-      if (dirty & /*name*/
-      1)
-        set_data(
-          t,
-          /*name*/
-          ctx2[0]
-        );
-      if (dirty & /*className*/
-      2 && div_class_value !== (div_class_value = null_to_empty(
-        /*className*/
-        ctx2[1]
-      ) + " svelte-1rjw5cj")) {
-        attr(div, "class", div_class_value);
-      }
-    },
-    i: noop,
-    o: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-function instance23($$self, $$props, $$invalidate) {
-  let className;
-  let { id } = $$props;
-  let { name } = $$props;
-  let { isSelected } = $$props;
-  const dispatch = createEventDispatcher();
-  function handleClick() {
-    dispatch("groupClick", { id });
-  }
-  function handleDragStart(event) {
-    dispatch("groupDragStart", { nativeEvent: event, id });
-  }
-  function handleDragOver(event) {
-    dispatch("groupDragOver", { nativeEvent: event, id });
-  }
-  function handleDrop(event) {
-    dispatch("groupDrop", { nativeEvent: event, id });
-  }
-  const keydown_handler = (e) => (e.key === "Enter" || e.key === " ") && handleClick();
-  $$self.$$set = ($$props2) => {
-    if ("id" in $$props2)
-      $$invalidate(6, id = $$props2.id);
-    if ("name" in $$props2)
-      $$invalidate(0, name = $$props2.name);
-    if ("isSelected" in $$props2)
-      $$invalidate(7, isSelected = $$props2.isSelected);
-  };
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*isSelected*/
-    128) {
-      $:
-        $$invalidate(1, className = "vault-explorer-group-tag" + (isSelected ? " vault-explorer-group-tag--active" : ""));
-    }
-  };
-  return [
-    name,
-    className,
-    handleClick,
-    handleDragStart,
-    handleDragOver,
-    handleDrop,
-    id,
-    isSelected,
-    keydown_handler
-  ];
-}
-var Group_tag = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance23, create_fragment23, safe_not_equal, { id: 6, name: 0, isSelected: 7 });
-  }
-};
-var group_tag_default = Group_tag;
-
-// src/svelte/app/components/group-tag-list.svelte
-function get_each_context7(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[5] = list[i];
-  return child_ctx;
-}
-function create_each_block7(key_1, ctx) {
-  let first;
-  let grouptag;
-  let current;
-  grouptag = new group_tag_default({
-    props: {
-      id: (
-        /*group*/
-        ctx[5].id
-      ),
-      name: (
-        /*group*/
-        ctx[5].name
-      ),
-      isSelected: (
-        /*group*/
-        ctx[5].isEnabled
-      )
-    }
-  });
-  grouptag.$on(
-    "groupClick",
-    /*groupClick_handler*/
-    ctx[1]
-  );
-  grouptag.$on(
-    "groupDrop",
-    /*groupDrop_handler*/
-    ctx[2]
-  );
-  grouptag.$on(
-    "groupDragOver",
-    /*groupDragOver_handler*/
-    ctx[3]
-  );
-  grouptag.$on(
-    "groupDragStart",
-    /*groupDragStart_handler*/
-    ctx[4]
-  );
-  return {
-    key: key_1,
-    first: null,
-    c() {
-      first = empty();
-      create_component(grouptag.$$.fragment);
-      this.first = first;
-    },
-    m(target, anchor) {
-      insert(target, first, anchor);
-      mount_component(grouptag, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-      const grouptag_changes = {};
-      if (dirty & /*groups*/
-      1)
-        grouptag_changes.id = /*group*/
-        ctx[5].id;
-      if (dirty & /*groups*/
-      1)
-        grouptag_changes.name = /*group*/
-        ctx[5].name;
-      if (dirty & /*groups*/
-      1)
-        grouptag_changes.isSelected = /*group*/
-        ctx[5].isEnabled;
-      grouptag.$set(grouptag_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(grouptag.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(grouptag.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(first);
-      }
-      destroy_component(grouptag, detaching);
-    }
-  };
-}
-function create_default_slot8(ctx) {
-  let each_blocks = [];
-  let each_1_lookup = /* @__PURE__ */ new Map();
-  let each_1_anchor;
-  let current;
-  let each_value = ensure_array_like(
-    /*groups*/
-    ctx[0]
-  );
-  const get_key = (ctx2) => (
-    /*group*/
-    ctx2[5].id
-  );
-  for (let i = 0; i < each_value.length; i += 1) {
-    let child_ctx = get_each_context7(ctx, each_value, i);
-    let key = get_key(child_ctx);
-    each_1_lookup.set(key, each_blocks[i] = create_each_block7(key, child_ctx));
-  }
-  return {
-    c() {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      each_1_anchor = empty();
-    },
-    m(target, anchor) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(target, anchor);
-        }
-      }
-      insert(target, each_1_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (dirty & /*groups*/
-      1) {
-        each_value = ensure_array_like(
-          /*groups*/
-          ctx2[0]
-        );
-        group_outros();
-        each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block7, each_1_anchor, get_each_context7);
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      current = true;
-    },
-    o(local) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(each_1_anchor);
-      }
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].d(detaching);
-      }
-    }
-  };
-}
-function create_fragment24(ctx) {
-  let div;
-  let stack;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "sm",
-      $$slots: { default: [create_default_slot8] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      div = element("div");
-      create_component(stack.$$.fragment);
-      attr(div, "class", "vault-explorer-group-tag-list svelte-i8xsbx");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      mount_component(stack, div, null);
-      current = true;
-    },
-    p(ctx2, [dirty]) {
-      const stack_changes = {};
-      if (dirty & /*$$scope, groups*/
-      257) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      destroy_component(stack);
-    }
-  };
-}
-function instance24($$self, $$props, $$invalidate) {
-  let { groups = [] } = $$props;
-  function groupClick_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function groupDrop_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function groupDragOver_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  function groupDragStart_handler(event) {
-    bubble.call(this, $$self, event);
-  }
-  $$self.$$set = ($$props2) => {
-    if ("groups" in $$props2)
-      $$invalidate(0, groups = $$props2.groups);
-  };
-  return [
-    groups,
-    groupClick_handler,
-    groupDrop_handler,
-    groupDragOver_handler,
-    groupDragStart_handler
-  ];
-}
-var Group_tag_list = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance24, create_fragment24, safe_not_equal, { groups: 0 });
-  }
-};
-var group_tag_list_default = Group_tag_list;
-
-// src/svelte/app/services/display-name.ts
-var getDisplayNameForViewType = (viewType) => {
-  switch (viewType) {
-    case "grid" /* GRID */:
-      return "Grid";
-    case "list" /* LIST */:
-      return "List";
-    default:
-      throw new Error(`Unhandled view type: ${viewType}`);
-  }
-};
-
-// src/svelte/app/index.svelte
-function get_each_context8(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[54] = list[i];
-  return child_ctx;
-}
-function create_if_block_32(ctx) {
-  let div;
-  let mounted;
-  let dispose;
-  return {
-    c() {
-      div = element("div");
-      attr(div, "tabindex", "0");
-      attr(div, "role", "button");
-      attr(div, "aria-label", "Clear search");
-      attr(div, "class", "search-input-clear-button");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      if (!mounted) {
-        dispose = [
-          listen(
-            div,
-            "click",
-            /*click_handler*/
-            ctx[39]
-          ),
-          listen(
-            div,
-            "keydown",
-            /*keydown_handler*/
-            ctx[40]
-          )
-        ];
-        mounted = true;
-      }
-    },
-    p: noop,
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      mounted = false;
-      run_all(dispose);
-    }
-  };
-}
-function create_default_slot_122(ctx) {
-  let div;
-  let input;
-  let t;
-  let mounted;
-  let dispose;
-  let if_block = (
-    /*searchFilter*/
-    ctx[0].length > 0 && create_if_block_32(ctx)
-  );
-  return {
-    c() {
-      div = element("div");
-      input = element("input");
-      t = space();
-      if (if_block)
-        if_block.c();
-      attr(input, "type", "text");
-      attr(input, "placeholder", "Search...");
-      input.value = /*searchFilter*/
-      ctx[0];
-      attr(input, "class", "svelte-18q8n70");
-      attr(div, "class", "vault-explorer-search-container svelte-18q8n70");
-    },
-    m(target, anchor) {
-      insert(target, div, anchor);
-      append(div, input);
-      append(div, t);
-      if (if_block)
-        if_block.m(div, null);
-      if (!mounted) {
-        dispose = listen(
-          input,
-          "input",
-          /*debounceSearchFilter*/
-          ctx[11]
-        );
-        mounted = true;
-      }
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*searchFilter*/
-      1 && input.value !== /*searchFilter*/
-      ctx2[0]) {
-        input.value = /*searchFilter*/
-        ctx2[0];
-      }
-      if (
-        /*searchFilter*/
-        ctx2[0].length > 0
-      ) {
-        if (if_block) {
-          if_block.p(ctx2, dirty);
-        } else {
-          if_block = create_if_block_32(ctx2);
-          if_block.c();
-          if_block.m(div, null);
-        }
-      } else if (if_block) {
-        if_block.d(1);
-        if_block = null;
-      }
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div);
-      }
-      if (if_block)
-        if_block.d();
-      mounted = false;
-      dispose();
-    }
-  };
-}
-function create_default_slot_11(ctx) {
-  let iconbutton0;
-  let t0;
-  let iconbutton1;
-  let t1;
-  let iconbutton2;
-  let current;
-  iconbutton0 = new icon_button_default({
-    props: {
-      ariaLabel: "Change folder filter",
-      iconId: "folder"
-    }
-  });
-  iconbutton0.$on(
-    "click",
-    /*openFolderFilterMenu*/
-    ctx[17]
-  );
-  iconbutton1 = new icon_button_default({
-    props: {
-      ariaLabel: "Change timestamp filter",
-      iconId: "clock"
-    }
-  });
-  iconbutton1.$on(
-    "click",
-    /*openListFilterMenu*/
-    ctx[18]
-  );
-  iconbutton2 = new icon_button_default({
-    props: {
-      ariaLabel: "Change sort order",
-      iconId: "arrow-up-narrow-wide"
-    }
-  });
-  iconbutton2.$on(
-    "click",
-    /*openSortMenu*/
-    ctx[16]
-  );
-  return {
-    c() {
-      create_component(iconbutton0.$$.fragment);
-      t0 = space();
-      create_component(iconbutton1.$$.fragment);
-      t1 = space();
-      create_component(iconbutton2.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(iconbutton0, target, anchor);
-      insert(target, t0, anchor);
-      mount_component(iconbutton1, target, anchor);
-      insert(target, t1, anchor);
-      mount_component(iconbutton2, target, anchor);
-      current = true;
-    },
-    p: noop,
-    i(local) {
-      if (current)
-        return;
-      transition_in(iconbutton0.$$.fragment, local);
-      transition_in(iconbutton1.$$.fragment, local);
-      transition_in(iconbutton2.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(iconbutton0.$$.fragment, local);
-      transition_out(iconbutton1.$$.fragment, local);
-      transition_out(iconbutton2.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(t1);
-      }
-      destroy_component(iconbutton0, detaching);
-      destroy_component(iconbutton1, detaching);
-      destroy_component(iconbutton2, detaching);
-    }
-  };
-}
-function create_default_slot_10(ctx) {
-  let checkbox;
-  let t;
-  let flex;
-  let current;
-  checkbox = new checkbox_default({
-    props: {
-      id: "favorites",
-      label: "Favorites",
-      value: (
-        /*onlyFavorites*/
-        ctx[1]
-      )
-    }
-  });
-  checkbox.$on(
-    "change",
-    /*handleOnlyFavoritesChange*/
-    ctx[19]
-  );
-  flex = new flex_default({
-    props: {
-      $$slots: { default: [create_default_slot_11] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(checkbox.$$.fragment);
-      t = space();
-      create_component(flex.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(checkbox, target, anchor);
-      insert(target, t, anchor);
-      mount_component(flex, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const checkbox_changes = {};
-      if (dirty[0] & /*onlyFavorites*/
-      2)
-        checkbox_changes.value = /*onlyFavorites*/
-        ctx2[1];
-      checkbox.$set(checkbox_changes);
-      const flex_changes = {};
-      if (dirty[1] & /*$$scope*/
-      67108864) {
-        flex_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      flex.$set(flex_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(checkbox.$$.fragment, local);
-      transition_in(flex.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(checkbox.$$.fragment, local);
-      transition_out(flex.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(checkbox, detaching);
-      destroy_component(flex, detaching);
-    }
-  };
-}
-function create_default_slot_9(ctx) {
-  let stack;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "sm",
-      $$slots: { default: [create_default_slot_10] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const stack_changes = {};
-      if (dirty[0] & /*onlyFavorites*/
-      2 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function create_if_block_23(ctx) {
-  let grouptaglist;
-  let current;
-  grouptaglist = new group_tag_list_default({
-    props: { groups: (
-      /*propertyFilterGroups*/
-      ctx[4]
-    ) }
-  });
-  grouptaglist.$on(
-    "groupClick",
-    /*handleGroupClick*/
-    ctx[12]
-  );
-  grouptaglist.$on(
-    "groupDrop",
-    /*handleGroupDrop*/
-    ctx[14]
-  );
-  grouptaglist.$on("groupDragOver", handleGroupDragOver2);
-  grouptaglist.$on("groupDragStart", handleGroupDragStart2);
-  return {
-    c() {
-      create_component(grouptaglist.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(grouptaglist, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const grouptaglist_changes = {};
-      if (dirty[0] & /*propertyFilterGroups*/
-      16)
-        grouptaglist_changes.groups = /*propertyFilterGroups*/
-        ctx2[4];
-      grouptaglist.$set(grouptaglist_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(grouptaglist.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(grouptaglist.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(grouptaglist, detaching);
-    }
-  };
-}
-function create_if_block_13(ctx) {
-  let span;
-  return {
-    c() {
-      span = element("span");
-      span.textContent = "No groups";
-      attr(span, "class", "vault-explorer-empty-label svelte-18q8n70");
-    },
-    m(target, anchor) {
-      insert(target, span, anchor);
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(span);
-      }
-    }
-  };
-}
-function create_default_slot_8(ctx) {
-  let t0;
-  let t1;
-  let iconbutton;
-  let current;
-  let if_block0 = (
-    /*propertyFilterGroups*/
-    ctx[4].length > 0 && create_if_block_23(ctx)
-  );
-  let if_block1 = (
-    /*propertyFilterGroups*/
-    ctx[4].length === 0 && create_if_block_13(ctx)
-  );
-  iconbutton = new icon_button_default({
-    props: {
-      ariaLabel: "Change properties filter",
-      iconId: "ellipsis-vertical"
-    }
-  });
-  iconbutton.$on(
-    "click",
-    /*openPropertiesFilterModal*/
-    ctx[15]
-  );
-  return {
-    c() {
-      if (if_block0)
-        if_block0.c();
-      t0 = space();
-      if (if_block1)
-        if_block1.c();
-      t1 = space();
-      create_component(iconbutton.$$.fragment);
-    },
-    m(target, anchor) {
-      if (if_block0)
-        if_block0.m(target, anchor);
-      insert(target, t0, anchor);
-      if (if_block1)
-        if_block1.m(target, anchor);
-      insert(target, t1, anchor);
-      mount_component(iconbutton, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (
-        /*propertyFilterGroups*/
-        ctx2[4].length > 0
-      ) {
-        if (if_block0) {
-          if_block0.p(ctx2, dirty);
-          if (dirty[0] & /*propertyFilterGroups*/
-          16) {
-            transition_in(if_block0, 1);
-          }
-        } else {
-          if_block0 = create_if_block_23(ctx2);
-          if_block0.c();
-          transition_in(if_block0, 1);
-          if_block0.m(t0.parentNode, t0);
-        }
-      } else if (if_block0) {
-        group_outros();
-        transition_out(if_block0, 1, 1, () => {
-          if_block0 = null;
-        });
-        check_outros();
-      }
-      if (
-        /*propertyFilterGroups*/
-        ctx2[4].length === 0
-      ) {
-        if (if_block1) {
-        } else {
-          if_block1 = create_if_block_13(ctx2);
-          if_block1.c();
-          if_block1.m(t1.parentNode, t1);
-        }
-      } else if (if_block1) {
-        if_block1.d(1);
-        if_block1 = null;
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(if_block0);
-      transition_in(iconbutton.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(if_block0);
-      transition_out(iconbutton.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(t1);
-      }
-      if (if_block0)
-        if_block0.d(detaching);
-      if (if_block1)
-        if_block1.d(detaching);
-      destroy_component(iconbutton, detaching);
-    }
-  };
-}
-function create_default_slot_7(ctx) {
-  let flex;
-  let t;
-  let stack;
-  let current;
-  flex = new flex_default({
-    props: {
-      justify: "space-between",
-      $$slots: { default: [create_default_slot_9] },
-      $$scope: { ctx }
-    }
-  });
-  stack = new stack_default({
-    props: {
-      align: "center",
-      spacing: "sm",
-      $$slots: { default: [create_default_slot_8] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(flex.$$.fragment);
-      t = space();
-      create_component(stack.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(flex, target, anchor);
-      insert(target, t, anchor);
-      mount_component(stack, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const flex_changes = {};
-      if (dirty[0] & /*onlyFavorites*/
-      2 | dirty[1] & /*$$scope*/
-      67108864) {
-        flex_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      flex.$set(flex_changes);
-      const stack_changes = {};
-      if (dirty[0] & /*propertyFilterGroups*/
-      16 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(flex.$$.fragment, local);
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(flex.$$.fragment, local);
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(flex, detaching);
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function create_default_slot_6(ctx) {
-  let t_value = getDisplayNameForViewType(
-    /*view*/
-    ctx[54]
-  ) + "";
-  let t;
-  return {
-    c() {
-      t = text(t_value);
-    },
-    m(target, anchor) {
-      insert(target, t, anchor);
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*viewOrder*/
-      4 && t_value !== (t_value = getDisplayNameForViewType(
-        /*view*/
-        ctx2[54]
-      ) + ""))
-        set_data(t, t_value);
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-    }
-  };
-}
-function create_each_block8(ctx) {
-  let tab;
-  let current;
-  function click_handler_1() {
-    return (
-      /*click_handler_1*/
-      ctx[41](
-        /*view*/
-        ctx[54]
-      )
+    var div_6 = sibling(node, 2);
+    var text2 = child(div_6, true);
+    reset(div_6);
+    reset(div_5);
+    var node_1 = sibling(div_5, 2);
+    Icon(node_1, { iconId: "grip-horizontal" });
+    reset(div_4);
+    template_effect(
+      ($0) => set_text(text2, $0),
+      [
+        () => getDisplayNameForImageSource(get(source2).type)
+      ],
+      derived_safe_equal
     );
-  }
-  function dragstart_handler(...args) {
-    return (
-      /*dragstart_handler*/
-      ctx[42](
-        /*view*/
-        ctx[54],
-        ...args
-      )
-    );
-  }
-  function drop_handler(...args) {
-    return (
-      /*drop_handler*/
-      ctx[43](
-        /*view*/
-        ctx[54],
-        ...args
-      )
-    );
-  }
-  tab = new tab_default({
-    props: {
-      draggable: true,
-      $$slots: { default: [create_default_slot_6] },
-      $$scope: { ctx }
-    }
-  });
-  tab.$on("click", click_handler_1);
-  tab.$on("dragstart", dragstart_handler);
-  tab.$on("dragover", handleViewDragOver);
-  tab.$on("drop", drop_handler);
-  return {
-    c() {
-      create_component(tab.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(tab, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-      const tab_changes = {};
-      if (dirty[0] & /*viewOrder*/
-      4 | dirty[1] & /*$$scope*/
-      67108864) {
-        tab_changes.$$scope = { dirty, ctx };
+    event("dragstart", div_4, (e) => handleSourceDragStart(e, get(source2).type));
+    event("dragover", div_4, handleSourceDragOver);
+    event("drop", div_4, (e) => handleSourceDrop(e, get(source2).type));
+    event("click", div_4, () => handleSourceClick(get(source2).type));
+    event("keydown", div_4, (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        handleSourceClick(get(source2).type);
       }
-      tab.$set(tab_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(tab.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(tab.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(tab, detaching);
-    }
-  };
-}
-function create_default_slot_5(ctx) {
-  let each_1_anchor;
-  let current;
-  let each_value = ensure_array_like(
-    /*viewOrder*/
-    ctx[2]
-  );
-  let each_blocks = [];
-  for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block8(get_each_context8(ctx, each_value, i));
-  }
-  const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
-    each_blocks[i] = null;
-  });
-  return {
-    c() {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
-      each_1_anchor = empty();
-    },
-    m(target, anchor) {
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        if (each_blocks[i]) {
-          each_blocks[i].m(target, anchor);
-        }
-      }
-      insert(target, each_1_anchor, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*currentView, viewOrder, handleViewDrop*/
-      8204) {
-        each_value = ensure_array_like(
-          /*viewOrder*/
-          ctx2[2]
-        );
-        let i;
-        for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context8(ctx2, each_value, i);
-          if (each_blocks[i]) {
-            each_blocks[i].p(child_ctx, dirty);
-            transition_in(each_blocks[i], 1);
-          } else {
-            each_blocks[i] = create_each_block8(child_ctx);
-            each_blocks[i].c();
-            transition_in(each_blocks[i], 1);
-            each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-          }
-        }
-        group_outros();
-        for (i = each_value.length; i < each_blocks.length; i += 1) {
-          out(i);
-        }
-        check_outros();
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      for (let i = 0; i < each_value.length; i += 1) {
-        transition_in(each_blocks[i]);
-      }
-      current = true;
-    },
-    o(local) {
-      each_blocks = each_blocks.filter(Boolean);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        transition_out(each_blocks[i]);
-      }
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(each_1_anchor);
-      }
-      destroy_each(each_blocks, detaching);
-    }
-  };
-}
-function create_default_slot_4(ctx) {
-  let span0;
-  let t0_value = (
-    /*startIndex*/
-    ctx[7] + 1 + ""
-  );
-  let t0;
-  let t1;
-  let span1;
-  let t3;
-  let span2;
-  let t4;
-  return {
-    c() {
-      span0 = element("span");
-      t0 = text(t0_value);
-      t1 = space();
-      span1 = element("span");
-      span1.textContent = "-";
-      t3 = space();
-      span2 = element("span");
-      t4 = text(
-        /*endIndex*/
-        ctx[9]
-      );
-    },
-    m(target, anchor) {
-      insert(target, span0, anchor);
-      append(span0, t0);
-      insert(target, t1, anchor);
-      insert(target, span1, anchor);
-      insert(target, t3, anchor);
-      insert(target, span2, anchor);
-      append(span2, t4);
-    },
-    p(ctx2, dirty) {
-      if (dirty[0] & /*startIndex*/
-      128 && t0_value !== (t0_value = /*startIndex*/
-      ctx2[7] + 1 + ""))
-        set_data(t0, t0_value);
-      if (dirty[0] & /*endIndex*/
-      512)
-        set_data(
-          t4,
-          /*endIndex*/
-          ctx2[9]
-        );
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(span0);
-        detach(t1);
-        detach(span1);
-        detach(t3);
-        detach(span2);
-      }
-    }
-  };
-}
-function create_default_slot_3(ctx) {
-  let stack;
-  let t0;
-  let span0;
-  let t2;
-  let span1;
-  let t3_value = (
-    /*renderData*/
-    ctx[8].length + ""
-  );
-  let t3;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "xs",
-      $$slots: { default: [create_default_slot_4] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-      t0 = space();
-      span0 = element("span");
-      span0.textContent = "of";
-      t2 = space();
-      span1 = element("span");
-      t3 = text(t3_value);
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      insert(target, t0, anchor);
-      insert(target, span0, anchor);
-      insert(target, t2, anchor);
-      insert(target, span1, anchor);
-      append(span1, t3);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const stack_changes = {};
-      if (dirty[0] & /*endIndex, startIndex*/
-      640 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-      if ((!current || dirty[0] & /*renderData*/
-      256) && t3_value !== (t3_value = /*renderData*/
-      ctx2[8].length + ""))
-        set_data(t3, t3_value);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(span0);
-        detach(t2);
-        detach(span1);
-      }
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function create_default_slot_22(ctx) {
-  let iconbutton0;
-  let t0;
-  let iconbutton1;
-  let t1;
-  let iconbutton2;
-  let t2;
-  let iconbutton3;
-  let current;
-  iconbutton0 = new icon_button_default({
-    props: {
-      iconId: "chevrons-left",
-      ariaLabel: "First page"
-    }
-  });
-  iconbutton0.$on(
-    "click",
-    /*click_handler_2*/
-    ctx[45]
-  );
-  iconbutton1 = new icon_button_default({
-    props: {
-      iconId: "chevron-left",
-      ariaLabel: "Previous page",
-      disabled: (
-        /*currentPage*/
-        ctx[5] === 1
-      )
-    }
-  });
-  iconbutton1.$on(
-    "click",
-    /*click_handler_3*/
-    ctx[46]
-  );
-  iconbutton2 = new icon_button_default({
-    props: {
-      iconId: "chevron-right",
-      ariaLabel: "Next page",
-      disabled: (
-        /*currentPage*/
-        ctx[5] === /*totalPages*/
-        ctx[10]
-      )
-    }
-  });
-  iconbutton2.$on(
-    "click",
-    /*click_handler_4*/
-    ctx[47]
-  );
-  iconbutton3 = new icon_button_default({
-    props: {
-      iconId: "chevrons-right",
-      ariaLabel: "Last page"
-    }
-  });
-  iconbutton3.$on(
-    "click",
-    /*click_handler_5*/
-    ctx[48]
-  );
-  return {
-    c() {
-      create_component(iconbutton0.$$.fragment);
-      t0 = space();
-      create_component(iconbutton1.$$.fragment);
-      t1 = space();
-      create_component(iconbutton2.$$.fragment);
-      t2 = space();
-      create_component(iconbutton3.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(iconbutton0, target, anchor);
-      insert(target, t0, anchor);
-      mount_component(iconbutton1, target, anchor);
-      insert(target, t1, anchor);
-      mount_component(iconbutton2, target, anchor);
-      insert(target, t2, anchor);
-      mount_component(iconbutton3, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const iconbutton1_changes = {};
-      if (dirty[0] & /*currentPage*/
-      32)
-        iconbutton1_changes.disabled = /*currentPage*/
-        ctx2[5] === 1;
-      iconbutton1.$set(iconbutton1_changes);
-      const iconbutton2_changes = {};
-      if (dirty[0] & /*currentPage, totalPages*/
-      1056)
-        iconbutton2_changes.disabled = /*currentPage*/
-        ctx2[5] === /*totalPages*/
-        ctx2[10];
-      iconbutton2.$set(iconbutton2_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(iconbutton0.$$.fragment, local);
-      transition_in(iconbutton1.$$.fragment, local);
-      transition_in(iconbutton2.$$.fragment, local);
-      transition_in(iconbutton3.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(iconbutton0.$$.fragment, local);
-      transition_out(iconbutton1.$$.fragment, local);
-      transition_out(iconbutton2.$$.fragment, local);
-      transition_out(iconbutton3.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t0);
-        detach(t1);
-        detach(t2);
-      }
-      destroy_component(iconbutton0, detaching);
-      destroy_component(iconbutton1, detaching);
-      destroy_component(iconbutton2, detaching);
-      destroy_component(iconbutton3, detaching);
-    }
-  };
-}
-function create_default_slot_14(ctx) {
-  let stack;
-  let t;
-  let flex;
-  let current;
-  stack = new stack_default({
-    props: {
-      spacing: "xs",
-      $$slots: { default: [create_default_slot_3] },
-      $$scope: { ctx }
-    }
-  });
-  flex = new flex_default({
-    props: {
-      $$slots: { default: [create_default_slot_22] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(stack.$$.fragment);
-      t = space();
-      create_component(flex.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(stack, target, anchor);
-      insert(target, t, anchor);
-      mount_component(flex, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const stack_changes = {};
-      if (dirty[0] & /*renderData, endIndex, startIndex*/
-      896 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-      const flex_changes = {};
-      if (dirty[0] & /*totalPages, currentPage*/
-      1056 | dirty[1] & /*$$scope*/
-      67108864) {
-        flex_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      flex.$set(flex_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack.$$.fragment, local);
-      transition_in(flex.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack.$$.fragment, local);
-      transition_out(flex.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(stack, detaching);
-      destroy_component(flex, detaching);
-    }
-  };
-}
-function create_default_slot9(ctx) {
-  let tablist;
-  let t;
-  let stack;
-  let current;
-  tablist = new tab_list_default({
-    props: {
-      initialSelectedIndex: (
-        /*viewOrder*/
-        ctx[2].findIndex(
-          /*func*/
-          ctx[44]
-        )
-      ),
-      $$slots: { default: [create_default_slot_5] },
-      $$scope: { ctx }
-    }
-  });
-  stack = new stack_default({
-    props: {
-      justify: "flex-end",
-      align: "center",
-      $$slots: { default: [create_default_slot_14] },
-      $$scope: { ctx }
-    }
-  });
-  return {
-    c() {
-      create_component(tablist.$$.fragment);
-      t = space();
-      create_component(stack.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(tablist, target, anchor);
-      insert(target, t, anchor);
-      mount_component(stack, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const tablist_changes = {};
-      if (dirty[0] & /*viewOrder, currentView*/
-      12)
-        tablist_changes.initialSelectedIndex = /*viewOrder*/
-        ctx2[2].findIndex(
-          /*func*/
-          ctx2[44]
-        );
-      if (dirty[0] & /*viewOrder, currentView*/
-      12 | dirty[1] & /*$$scope*/
-      67108864) {
-        tablist_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      tablist.$set(tablist_changes);
-      const stack_changes = {};
-      if (dirty[0] & /*totalPages, currentPage, renderData, endIndex, startIndex*/
-      1952 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack.$set(stack_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(tablist.$$.fragment, local);
-      transition_in(stack.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(tablist.$$.fragment, local);
-      transition_out(stack.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(t);
-      }
-      destroy_component(tablist, detaching);
-      destroy_component(stack, detaching);
-    }
-  };
-}
-function create_else_block(ctx) {
-  let listview;
-  let current;
-  listview = new list_view_default({
-    props: {
-      data: (
-        /*renderData*/
-        ctx[8]
-      ),
-      startIndex: (
-        /*startIndex*/
-        ctx[7]
-      ),
-      pageLength: (
-        /*pageLength*/
-        ctx[6]
-      )
-    }
-  });
-  return {
-    c() {
-      create_component(listview.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(listview, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const listview_changes = {};
-      if (dirty[0] & /*renderData*/
-      256)
-        listview_changes.data = /*renderData*/
-        ctx2[8];
-      if (dirty[0] & /*startIndex*/
-      128)
-        listview_changes.startIndex = /*startIndex*/
-        ctx2[7];
-      if (dirty[0] & /*pageLength*/
-      64)
-        listview_changes.pageLength = /*pageLength*/
-        ctx2[6];
-      listview.$set(listview_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(listview.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(listview.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(listview, detaching);
-    }
-  };
-}
-function create_if_block5(ctx) {
-  let gridview;
-  let current;
-  gridview = new grid_view_default({
-    props: {
-      data: (
-        /*renderData*/
-        ctx[8]
-      ),
-      startIndex: (
-        /*startIndex*/
-        ctx[7]
-      ),
-      pageLength: (
-        /*pageLength*/
-        ctx[6]
-      )
-    }
-  });
-  return {
-    c() {
-      create_component(gridview.$$.fragment);
-    },
-    m(target, anchor) {
-      mount_component(gridview, target, anchor);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const gridview_changes = {};
-      if (dirty[0] & /*renderData*/
-      256)
-        gridview_changes.data = /*renderData*/
-        ctx2[8];
-      if (dirty[0] & /*startIndex*/
-      128)
-        gridview_changes.startIndex = /*startIndex*/
-        ctx2[7];
-      if (dirty[0] & /*pageLength*/
-      64)
-        gridview_changes.pageLength = /*pageLength*/
-        ctx2[6];
-      gridview.$set(gridview_changes);
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(gridview.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(gridview.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(gridview, detaching);
-    }
-  };
-}
-function create_fragment25(ctx) {
-  let div1;
-  let div0;
-  let stack0;
-  let t0;
-  let stack1;
-  let t1;
-  let flex;
-  let t2;
-  let current_block_type_index;
-  let if_block;
-  let current;
-  stack0 = new stack_default({
-    props: {
-      spacing: "md",
-      $$slots: { default: [create_default_slot_122] },
-      $$scope: { ctx }
-    }
-  });
-  stack1 = new stack_default({
-    props: {
-      direction: "column",
-      spacing: "sm",
-      $$slots: { default: [create_default_slot_7] },
-      $$scope: { ctx }
-    }
-  });
-  flex = new flex_default({
-    props: {
-      $$slots: { default: [create_default_slot9] },
-      $$scope: { ctx }
-    }
-  });
-  const if_block_creators = [create_if_block5, create_else_block];
-  const if_blocks = [];
-  function select_block_type(ctx2, dirty) {
-    if (
-      /*currentView*/
-      ctx2[3] === "grid"
-    )
-      return 0;
-    return 1;
-  }
-  current_block_type_index = select_block_type(ctx, [-1, -1]);
-  if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-  return {
-    c() {
-      div1 = element("div");
-      div0 = element("div");
-      create_component(stack0.$$.fragment);
-      t0 = space();
-      create_component(stack1.$$.fragment);
-      t1 = space();
-      create_component(flex.$$.fragment);
-      t2 = space();
-      if_block.c();
-      attr(div0, "class", "vault-explorer-header svelte-18q8n70");
-      attr(div1, "class", "vault-explorer svelte-18q8n70");
-    },
-    m(target, anchor) {
-      insert(target, div1, anchor);
-      append(div1, div0);
-      mount_component(stack0, div0, null);
-      append(div0, t0);
-      mount_component(stack1, div0, null);
-      append(div0, t1);
-      mount_component(flex, div0, null);
-      append(div0, t2);
-      if_blocks[current_block_type_index].m(div0, null);
-      current = true;
-    },
-    p(ctx2, dirty) {
-      const stack0_changes = {};
-      if (dirty[0] & /*searchFilter*/
-      1 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack0_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack0.$set(stack0_changes);
-      const stack1_changes = {};
-      if (dirty[0] & /*propertyFilterGroups, onlyFavorites*/
-      18 | dirty[1] & /*$$scope*/
-      67108864) {
-        stack1_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      stack1.$set(stack1_changes);
-      const flex_changes = {};
-      if (dirty[0] & /*totalPages, currentPage, renderData, endIndex, startIndex, viewOrder, currentView*/
-      1964 | dirty[1] & /*$$scope*/
-      67108864) {
-        flex_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      flex.$set(flex_changes);
-      let previous_block_index = current_block_type_index;
-      current_block_type_index = select_block_type(ctx2, dirty);
-      if (current_block_type_index === previous_block_index) {
-        if_blocks[current_block_type_index].p(ctx2, dirty);
-      } else {
-        group_outros();
-        transition_out(if_blocks[previous_block_index], 1, 1, () => {
-          if_blocks[previous_block_index] = null;
-        });
-        check_outros();
-        if_block = if_blocks[current_block_type_index];
-        if (!if_block) {
-          if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
-          if_block.c();
-        } else {
-          if_block.p(ctx2, dirty);
-        }
-        transition_in(if_block, 1);
-        if_block.m(div0, null);
-      }
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(stack0.$$.fragment, local);
-      transition_in(stack1.$$.fragment, local);
-      transition_in(flex.$$.fragment, local);
-      transition_in(if_block);
-      current = true;
-    },
-    o(local) {
-      transition_out(stack0.$$.fragment, local);
-      transition_out(stack1.$$.fragment, local);
-      transition_out(flex.$$.fragment, local);
-      transition_out(if_block);
-      current = false;
-    },
-    d(detaching) {
-      if (detaching) {
-        detach(div1);
-      }
-      destroy_component(stack0);
-      destroy_component(stack1);
-      destroy_component(flex);
-      if_blocks[current_block_type_index].d();
-    }
-  };
-}
-function handleViewDragOver(e) {
-  const { nativeEvent } = e.detail;
-  nativeEvent.preventDefault();
-}
-function handleViewDragStart(e, id) {
-  const { nativeEvent } = e.detail;
-  nativeEvent.dataTransfer.setData("text", id);
-  nativeEvent.dataTransfer.effectAllowed = "move";
-}
-function handleGroupDragOver2(e) {
-  const { nativeEvent } = e.detail;
-  nativeEvent.preventDefault();
-}
-function handleGroupDragStart2(e) {
-  const { id, nativeEvent } = e.detail;
-  nativeEvent.dataTransfer.setData("text", id);
-  nativeEvent.dataTransfer.effectAllowed = "move";
-  const dragImage = nativeEvent.target.cloneNode(true);
-  const rect = nativeEvent.target.getBoundingClientRect();
-  dragImage.style.position = "absolute";
-  dragImage.style.top = "-9999px";
-  dragImage.style.left = "-9999px";
-  document.body.appendChild(dragImage);
-  nativeEvent.dataTransfer.setDragImage(dragImage, rect.width / 2, rect.height / 2);
-  nativeEvent.target.addEventListener("dragend", () => {
-    dragImage.remove();
-  });
-}
-function instance25($$self, $$props, $$invalidate) {
-  let filteredProperty;
-  let filteredFolder;
-  let formatted;
-  let filteredSearch;
-  let filteredFavorites;
-  let filteredTimestamp;
-  let renderData;
-  let totalItems;
-  let totalPages;
-  let startIndex;
-  let pageLength;
-  let endIndex;
-  let plugin2;
-  let startOfTodayMillis;
-  let startOfThisWeekMillis;
-  let startOfLastWeekMillis;
-  function updateTimeValues() {
-    $$invalidate(22, startOfTodayMillis = getStartOfTodayMillis());
-    $$invalidate(23, startOfThisWeekMillis = getStartOfThisWeekMillis());
-    $$invalidate(24, startOfLastWeekMillis = getStartOfLastWeekMillis());
-  }
-  onMount(() => {
-    updateTimeValues();
-    const interval = setInterval(updateTimeValues, 6e4);
-    return () => {
-      clearInterval(interval);
-    };
-  });
-  let folders = [];
-  let pageSize = 0;
-  let searchFilter = "";
-  let folderFilter = "/";
-  let sortFilter = "file-name-asc";
-  let timestampFilter = "all";
-  let onlyFavorites = false;
-  let viewOrder = [];
-  let currentView = "grid" /* GRID */;
-  let propertyFilterGroups = [];
-  let selectedPropertyFilterGroupId = "";
-  let frontmatterCache = {};
-  let markdownFiles = [];
-  const debounceSearchFilter = import_lodash.default.debounce(
-    (e) => {
-      $$invalidate(0, searchFilter = e.target.value);
-    },
-    300
-  );
-  const debounceFavoriteFilter = import_lodash.default.debounce(
-    (value) => {
-      $$invalidate(1, onlyFavorites = value);
-    },
-    300
-  );
-  function updateFrontmatterCache() {
-    let localCache = {};
-    markdownFiles.forEach((file) => {
-      var _a;
-      const frontmatter = (_a = plugin2.app.metadataCache.getFileCache(file)) === null || _a === void 0 ? void 0 : _a.frontmatter;
-      localCache[file.path] = frontmatter;
     });
-    $$invalidate(30, frontmatterCache = localCache);
-  }
-  store_default.plugin.subscribe((p) => {
-    $$invalidate(21, plugin2 = p);
-    const allFiles = plugin2.app.vault.getAllLoadedFiles();
-    folders = allFiles.filter((file) => file instanceof import_obsidian6.TFolder).map((folder) => folder.path);
-    $$invalidate(31, markdownFiles = plugin2.app.vault.getMarkdownFiles());
-    updateFrontmatterCache();
-    $$invalidate(25, pageSize = plugin2.settings.pageSize);
-    $$invalidate(0, searchFilter = plugin2.settings.filters.search);
-    $$invalidate(26, folderFilter = plugin2.settings.filters.folder);
-    $$invalidate(27, sortFilter = plugin2.settings.filters.sort);
-    $$invalidate(28, timestampFilter = plugin2.settings.filters.timestamp);
-    $$invalidate(1, onlyFavorites = plugin2.settings.filters.onlyFavorites);
-    $$invalidate(3, currentView = plugin2.settings.views.currentView);
-    $$invalidate(2, viewOrder = plugin2.settings.views.order);
-    $$invalidate(4, propertyFilterGroups = plugin2.settings.filters.properties.groups);
-    $$invalidate(29, selectedPropertyFilterGroupId = plugin2.settings.filters.properties.selectedGroupId);
+    append($$anchor2, div_4);
   });
-  onMount(() => {
-    function handlePropertiesFilterUpdate() {
-      $$invalidate(4, propertyFilterGroups = plugin2.settings.filters.properties.groups);
-      $$invalidate(29, selectedPropertyFilterGroupId = plugin2.settings.filters.properties.selectedGroupId);
-    }
-    EventManager.getInstance().on("properties-filter-update", handlePropertiesFilterUpdate);
-    return () => {
-      EventManager.getInstance().off("properties-filter-update", handlePropertiesFilterUpdate);
-    };
-  });
-  onMount(() => {
-    const handleCreateFile = (...data) => {
-      if (data.length > 0 && data[0] instanceof import_obsidian6.TFile) {
-        const newFile = data[0];
-        $$invalidate(31, markdownFiles = [...markdownFiles, newFile]);
-      }
-    };
-    EventManager.getInstance().on("file-create", handleCreateFile);
-    return () => {
-      EventManager.getInstance().off("file-create", handleCreateFile);
-    };
-  });
-  onMount(() => {
-    const handleFolderCreate = (...data) => {
-      if (data.length > 0 && typeof data[0] === "string") {
-        const newFolder = data[0];
-        folders = [...folders, newFolder];
-      }
-    };
-    EventManager.getInstance().on("folder-create", handleFolderCreate);
-    return () => {
-      EventManager.getInstance().off("folder-create", handleFolderCreate);
-    };
-  });
-  onMount(() => {
-    const handleDeleteFile = (...data) => {
-      if (data.length > 0 && typeof data[0] === "string") {
-        const path = data[0];
-        $$invalidate(31, markdownFiles = markdownFiles.filter((file) => file.path !== path));
-      }
-    };
-    EventManager.getInstance().on("file-delete", handleDeleteFile);
-    return () => {
-      EventManager.getInstance().off("file-delete", handleDeleteFile);
-    };
-  });
-  onMount(() => {
-    const handleDeleteFolder = (...data) => {
-      if (data.length > 0 && typeof data[0] === "string") {
-        const path = data[0];
-        folders = folders.filter((folder) => folder !== path);
-        if (folderFilter === path) {
-          $$invalidate(26, folderFilter = "/");
-        }
-      }
-    };
-    EventManager.getInstance().on("folder-delete", handleDeleteFolder);
-    return () => {
-      EventManager.getInstance().off("folder-delete", handleDeleteFolder);
-    };
-  });
-  onMount(() => {
-    const handleFileRename = (...data) => {
-      if (data.length < 2)
-        return;
-      if (typeof data[0] === "string" && data[1] instanceof import_obsidian6.TFile) {
-        const oldPath = data[0];
-        const updatedFile = data[1];
-        $$invalidate(31, markdownFiles = markdownFiles.map((file) => {
-          if (file.path === oldPath) {
-            return updatedFile;
-          }
-          return file;
-        }));
-        if (frontmatterCache[oldPath]) {
-          $$invalidate(30, frontmatterCache = Object.assign(Object.assign({}, frontmatterCache), {
-            [updatedFile.path]: frontmatterCache[oldPath]
-          }));
-        }
-      }
-    };
-    const debounceHandleFileRename = import_lodash.default.debounce(handleFileRename, 300);
-    EventManager.getInstance().on("file-rename", debounceHandleFileRename);
-    return () => {
-      EventManager.getInstance().off("file-rename", debounceHandleFileRename);
-    };
-  });
-  onMount(() => {
-    const handleFolderRename = (...data) => {
-      if (data.length < 2)
-        return;
-      if (typeof data[0] === "string" && data[1] instanceof import_obsidian6.TFolder) {
-        const oldPath = data[0];
-        const updatedFolder = data[1];
-        folders = folders.map((folder) => {
-          if (folder === oldPath) {
-            return updatedFolder.path;
-          }
-          return folder;
-        });
-        if (folderFilter === oldPath) {
-          $$invalidate(26, folderFilter = updatedFolder.path);
-        }
-      }
-    };
-    EventManager.getInstance().on("folder-rename", handleFolderRename);
-    return () => {
-      EventManager.getInstance().off("folder-rename", handleFolderRename);
-    };
-  });
-  onMount(() => {
-    const handleMetadataChange = (...data) => {
-      var _a;
-      if (data.length > 0 && data[0] instanceof import_obsidian6.TFile) {
-        const file = data[0];
-        const frontmatter = (_a = plugin2.app.metadataCache.getFileCache(file)) === null || _a === void 0 ? void 0 : _a.frontmatter;
-        $$invalidate(30, frontmatterCache = Object.assign(Object.assign({}, frontmatterCache), { [file.path]: frontmatter }));
-      }
-    };
-    EventManager.getInstance().on("metadata-change", handleMetadataChange);
-    return () => {
-      EventManager.getInstance().off("metadata-change", handleMetadataChange);
-    };
-  });
-  onMount(() => {
-    function handlePageSizeChange() {
-      $$invalidate(25, pageSize = plugin2.settings.pageSize);
-    }
-    EventManager.getInstance().on("page-size-setting-change", handlePageSizeChange);
-    return () => {
-      EventManager.getInstance().off("page-size-setting-change", handlePageSizeChange);
-    };
-  });
-  onMount(() => {
-    function handlePropertyChange() {
-      updateFrontmatterCache();
-    }
-    EventManager.getInstance().on("property-setting-change", handlePropertyChange);
-    return () => {
-      EventManager.getInstance().off("property-setting-change", handlePropertyChange);
-    };
-  });
-  function saveSettings() {
-    return __awaiter(this, void 0, void 0, function* () {
-      $$invalidate(21, plugin2.settings.filters.search = searchFilter, plugin2);
-      $$invalidate(21, plugin2.settings.filters.folder = folderFilter, plugin2);
-      $$invalidate(21, plugin2.settings.filters.sort = sortFilter, plugin2);
-      $$invalidate(21, plugin2.settings.filters.timestamp = timestampFilter, plugin2);
-      $$invalidate(21, plugin2.settings.filters.onlyFavorites = onlyFavorites, plugin2);
-      $$invalidate(21, plugin2.settings.views.order = viewOrder, plugin2);
-      $$invalidate(21, plugin2.settings.views.currentView = currentView, plugin2);
-      $$invalidate(21, plugin2.settings.filters.properties.groups = propertyFilterGroups, plugin2);
-      $$invalidate(21, plugin2.settings.filters.properties.selectedGroupId = selectedPropertyFilterGroupId, plugin2);
-      yield plugin2.saveSettings();
-    });
-  }
-  function handleGroupClick(e) {
-    const { id } = e.detail;
-    const newGroups = propertyFilterGroups.map((group) => group.id === id ? Object.assign(Object.assign({}, group), { isEnabled: !group.isEnabled }) : Object.assign(Object.assign({}, group), { isEnabled: false }));
-    $$invalidate(29, selectedPropertyFilterGroupId = id);
-    $$invalidate(4, propertyFilterGroups = newGroups);
-  }
-  function handleViewDrop(e, id) {
-    const { nativeEvent } = e.detail;
-    const dragId = nativeEvent.dataTransfer.getData("text");
-    nativeEvent.dataTransfer.dropEffect = "move";
-    const draggedIndex = viewOrder.findIndex((view) => view === dragId);
-    const dragged = viewOrder.find((view) => view === dragId);
-    const droppedIndex = viewOrder.findIndex((view) => view === id);
-    const dropped = viewOrder.find((view) => view === id);
-    if (!dragged || !dropped || draggedIndex === -1 || droppedIndex === -1)
-      return;
-    let newViewOrder = [...viewOrder];
-    newViewOrder[draggedIndex] = dropped;
-    newViewOrder[droppedIndex] = dragged;
-    $$invalidate(2, viewOrder = newViewOrder);
-  }
-  function handleGroupDrop(e) {
-    const { id, nativeEvent } = e.detail;
-    const dragId = nativeEvent.dataTransfer.getData("text");
-    nativeEvent.dataTransfer.dropEffect = "move";
-    const draggedIndex = propertyFilterGroups.findIndex((group) => group.id === dragId);
-    const dragged = propertyFilterGroups.find((group) => group.id === dragId);
-    const droppedIndex = propertyFilterGroups.findIndex((group) => group.id === id);
-    if (!dragged || draggedIndex === -1 || droppedIndex === -1)
-      return;
-    let newGroups = [...propertyFilterGroups];
-    newGroups.splice(draggedIndex, 1);
-    newGroups.splice(droppedIndex, 0, dragged);
-    $$invalidate(4, propertyFilterGroups = newGroups);
-  }
-  function openPropertiesFilterModal() {
-    new PropertiesFilterModal(plugin2).open();
-  }
-  function openSortMenu(e) {
-    const nativeEvent = e.detail.nativeEvent;
-    const menu = new import_obsidian6.Menu();
-    menu.setUseNativeMenu(true);
-    menu.addItem((item) => {
-      item.setTitle("File name (A-Z)");
-      item.setChecked(sortFilter === "file-name-asc");
-      item.onClick(() => $$invalidate(27, sortFilter = "file-name-asc"));
-    });
-    menu.addItem((item) => {
-      item.setTitle("File name (Z-A)");
-      item.setChecked(sortFilter === "file-name-desc");
-      item.onClick(() => $$invalidate(27, sortFilter = "file-name-desc"));
-    });
-    menu.addSeparator();
-    menu.addItem((item) => {
-      item.setTitle("Modified time (new to old)");
-      item.setChecked(sortFilter === "modified-desc");
-      item.onClick(() => $$invalidate(27, sortFilter = "modified-desc"));
-    });
-    menu.addItem((item) => {
-      item.setTitle("Modified time (old to new)");
-      item.setChecked(sortFilter === "modified-asc");
-      item.onClick(() => $$invalidate(27, sortFilter = "modified-asc"));
-    });
-    menu.showAtMouseEvent(nativeEvent);
-  }
-  function openFolderFilterMenu(e) {
-    const nativeEvent = e.detail.nativeEvent;
-    const menu = new import_obsidian6.Menu();
-    menu.setUseNativeMenu(true);
-    for (const folder of folders) {
-      menu.addItem((item) => {
-        item.setTitle(folder === "/" ? "All" : folder);
-        item.setChecked(folderFilter === folder);
-        item.onClick(() => $$invalidate(26, folderFilter = folder));
-      });
-    }
-    menu.showAtMouseEvent(nativeEvent);
-  }
-  function openListFilterMenu(e) {
-    const nativeEvent = e.detail.nativeEvent;
-    const menu = new import_obsidian6.Menu();
-    menu.setUseNativeMenu(true);
-    menu.addItem((item) => {
-      item.setTitle("All");
-      item.setChecked(timestampFilter === "all");
-      item.onClick(() => $$invalidate(28, timestampFilter = "all"));
-    });
-    menu.addSeparator();
-    menu.addItem((item) => {
-      item.setTitle("Modified today");
-      item.setChecked(timestampFilter === "modified-today");
-      item.onClick(() => $$invalidate(28, timestampFilter = "modified-today"));
-    });
-    menu.addItem((item) => {
-      item.setTitle("Created today");
-      item.setChecked(timestampFilter === "created-today");
-      item.onClick(() => $$invalidate(28, timestampFilter = "created-today"));
-    });
-    menu.addSeparator();
-    menu.addItem((item) => {
-      item.setTitle("Modifed this week");
-      item.setChecked(timestampFilter === "modified-this-week");
-      item.onClick(() => $$invalidate(28, timestampFilter = "modified-this-week"));
-    });
-    menu.addItem((item) => {
-      item.setTitle("Created this week");
-      item.setChecked(timestampFilter === "created-this-week");
-      item.onClick(() => $$invalidate(28, timestampFilter = "created-this-week"));
-    });
-    menu.addSeparator();
-    menu.addItem((item) => {
-      item.setTitle("Modifed 2 weeks");
-      item.setChecked(timestampFilter === "modified-2-weeks");
-      item.onClick(() => $$invalidate(28, timestampFilter = "modified-2-weeks"));
-    });
-    menu.addItem((item) => {
-      item.setTitle("Created 2 weeks");
-      item.setChecked(timestampFilter === "created-2-weeks");
-      item.onClick(() => $$invalidate(28, timestampFilter = "created-2-weeks"));
-    });
-    menu.showAtMouseEvent(nativeEvent);
-  }
-  function handleOnlyFavoritesChange(e) {
-    const nativeEvent = e.detail.nativeEvent;
-    const value = nativeEvent.target.checked;
-    debounceFavoriteFilter(value);
-  }
-  let currentPage = 1;
-  function changePage(newPage) {
-    $$invalidate(5, currentPage = newPage);
-  }
-  const click_handler = () => $$invalidate(0, searchFilter = "");
-  const keydown_handler = (e) => {
-    if (e.key === "Enter") {
-      $$invalidate(0, searchFilter = "");
-    }
-  };
-  const click_handler_1 = (view) => $$invalidate(3, currentView = view);
-  const dragstart_handler = (view, e) => handleViewDragStart(e, view);
-  const drop_handler = (view, e) => handleViewDrop(e, view);
-  const func = (view) => view === currentView;
-  const click_handler_2 = () => changePage(1);
-  const click_handler_3 = () => changePage(currentPage - 1);
-  const click_handler_4 = () => changePage(currentPage + 1);
-  const click_handler_5 = () => changePage(totalPages);
-  $$self.$$.update = () => {
-    if ($$self.$$.dirty[0] & /*frontmatterCache, propertyFilterGroups*/
-    1073741840 | $$self.$$.dirty[1] & /*markdownFiles*/
-    1) {
-      $:
-        $$invalidate(38, filteredProperty = [...markdownFiles].filter((file) => {
-          const frontmatter = frontmatterCache[file.path];
-          return filterByPropertyGroups(frontmatter, propertyFilterGroups);
-        }));
-    }
-    if ($$self.$$.dirty[0] & /*folderFilter*/
-    67108864 | $$self.$$.dirty[1] & /*filteredProperty*/
-    128) {
-      $:
-        $$invalidate(37, filteredFolder = filteredProperty.filter((file) => filterByFolder(file, folderFilter)));
-    }
-    if ($$self.$$.dirty[0] & /*frontmatterCache, plugin*/
-    1075838976 | $$self.$$.dirty[1] & /*filteredFolder*/
-    64) {
-      $:
-        $$invalidate(36, formatted = filteredFolder.map((file) => {
-          const frontmatter = frontmatterCache[file.path];
-          return formatFileDataForRender(plugin2.settings, file, frontmatter);
-        }));
-    }
-    if ($$self.$$.dirty[0] & /*searchFilter*/
-    1 | $$self.$$.dirty[1] & /*formatted*/
-    32) {
-      $:
-        $$invalidate(35, filteredSearch = formatted.filter((file) => filterBySearch(file, searchFilter)));
-    }
-    if ($$self.$$.dirty[0] & /*onlyFavorites*/
-    2 | $$self.$$.dirty[1] & /*filteredSearch*/
-    16) {
-      $:
-        $$invalidate(34, filteredFavorites = filteredSearch.filter((file) => filterByFavorites(file, onlyFavorites)));
-    }
-    if ($$self.$$.dirty[0] & /*timestampFilter, startOfTodayMillis, startOfThisWeekMillis, startOfLastWeekMillis*/
-    297795584 | $$self.$$.dirty[1] & /*filteredFavorites*/
-    8) {
-      $:
-        $$invalidate(33, filteredTimestamp = filteredFavorites.filter((file) => {
-          const { modifiedMillis, createdMillis } = file;
-          return filterByTimestamp({
-            createdMillis,
-            modifiedMillis,
-            timestampFilter,
-            startOfTodayMillis,
-            startOfThisWeekMillis,
-            startOfLastWeekMillis
-          });
-        }));
-    }
-    if ($$self.$$.dirty[0] & /*sortFilter*/
-    134217728 | $$self.$$.dirty[1] & /*filteredTimestamp*/
-    4) {
-      $:
-        $$invalidate(8, renderData = [...filteredTimestamp].sort((a, b) => {
-          if (sortFilter === "file-name-asc") {
-            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-          } else if (sortFilter === "file-name-desc") {
-            return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
-          } else if (sortFilter === "modified-asc") {
-            return a.modifiedMillis - b.modifiedMillis;
-          } else if (sortFilter === "modified-desc") {
-            return b.modifiedMillis - a.modifiedMillis;
-          }
-          return 0;
-        }));
-    }
-    if ($$self.$$.dirty[0] & /*searchFilter, folderFilter, sortFilter, timestampFilter, onlyFavorites, currentView, viewOrder, propertyFilterGroups, selectedPropertyFilterGroupId*/
-    1006632991) {
-      $:
-        searchFilter, folderFilter, sortFilter, timestampFilter, onlyFavorites, currentView, viewOrder, propertyFilterGroups, selectedPropertyFilterGroupId, saveSettings();
-    }
-    if ($$self.$$.dirty[0] & /*renderData*/
-    256) {
-      $:
-        $$invalidate(32, totalItems = renderData.length);
-    }
-    if ($$self.$$.dirty[0] & /*pageSize*/
-    33554432 | $$self.$$.dirty[1] & /*totalItems*/
-    2) {
-      $:
-        $$invalidate(10, totalPages = Math.ceil(totalItems / pageSize));
-    }
-    if ($$self.$$.dirty[0] & /*currentPage, pageSize*/
-    33554464) {
-      $:
-        $$invalidate(7, startIndex = (currentPage - 1) * pageSize);
-    }
-    if ($$self.$$.dirty[0] & /*pageSize, renderData, startIndex*/
-    33554816) {
-      $:
-        $$invalidate(6, pageLength = Math.min(pageSize, renderData.length - startIndex));
-    }
-    if ($$self.$$.dirty[0] & /*startIndex, pageLength*/
-    192) {
-      $:
-        $$invalidate(9, endIndex = startIndex + pageLength);
-    }
-  };
-  return [
-    searchFilter,
-    onlyFavorites,
-    viewOrder,
-    currentView,
-    propertyFilterGroups,
-    currentPage,
-    pageLength,
-    startIndex,
-    renderData,
-    endIndex,
-    totalPages,
-    debounceSearchFilter,
-    handleGroupClick,
-    handleViewDrop,
-    handleGroupDrop,
-    openPropertiesFilterModal,
-    openSortMenu,
-    openFolderFilterMenu,
-    openListFilterMenu,
-    handleOnlyFavoritesChange,
-    changePage,
-    plugin2,
-    startOfTodayMillis,
-    startOfThisWeekMillis,
-    startOfLastWeekMillis,
-    pageSize,
-    folderFilter,
-    sortFilter,
-    timestampFilter,
-    selectedPropertyFilterGroupId,
-    frontmatterCache,
-    markdownFiles,
-    totalItems,
-    filteredTimestamp,
-    filteredFavorites,
-    filteredSearch,
-    formatted,
-    filteredFolder,
-    filteredProperty,
-    click_handler,
-    keydown_handler,
-    click_handler_1,
-    dragstart_handler,
-    drop_handler,
-    func,
-    click_handler_2,
-    click_handler_3,
-    click_handler_4,
-    click_handler_5
-  ];
+  reset(div_3);
+  reset(div_2);
+  reset(div_1);
+  reset(div);
+  append($$anchor, div);
+  pop();
 }
-var App = class extends SvelteComponent {
-  constructor(options) {
-    super();
-    init(this, options, instance25, create_fragment25, safe_not_equal, {}, null, [-1, -1]);
+
+// node_modules/idb/build/index.js
+var instanceOfAny = (object, constructors) => constructors.some((c) => object instanceof c);
+var idbProxyableTypes;
+var cursorAdvanceMethods;
+function getIdbProxyableTypes() {
+  return idbProxyableTypes || (idbProxyableTypes = [
+    IDBDatabase,
+    IDBObjectStore,
+    IDBIndex,
+    IDBCursor,
+    IDBTransaction
+  ]);
+}
+function getCursorAdvanceMethods() {
+  return cursorAdvanceMethods || (cursorAdvanceMethods = [
+    IDBCursor.prototype.advance,
+    IDBCursor.prototype.continue,
+    IDBCursor.prototype.continuePrimaryKey
+  ]);
+}
+var transactionDoneMap = /* @__PURE__ */ new WeakMap();
+var transformCache = /* @__PURE__ */ new WeakMap();
+var reverseTransformCache = /* @__PURE__ */ new WeakMap();
+function promisifyRequest(request) {
+  const promise = new Promise((resolve, reject) => {
+    const unlisten = () => {
+      request.removeEventListener("success", success);
+      request.removeEventListener("error", error);
+    };
+    const success = () => {
+      resolve(wrap(request.result));
+      unlisten();
+    };
+    const error = () => {
+      reject(request.error);
+      unlisten();
+    };
+    request.addEventListener("success", success);
+    request.addEventListener("error", error);
+  });
+  reverseTransformCache.set(promise, request);
+  return promise;
+}
+function cacheDonePromiseForTransaction(tx) {
+  if (transactionDoneMap.has(tx))
+    return;
+  const done = new Promise((resolve, reject) => {
+    const unlisten = () => {
+      tx.removeEventListener("complete", complete);
+      tx.removeEventListener("error", error);
+      tx.removeEventListener("abort", error);
+    };
+    const complete = () => {
+      resolve();
+      unlisten();
+    };
+    const error = () => {
+      reject(tx.error || new DOMException("AbortError", "AbortError"));
+      unlisten();
+    };
+    tx.addEventListener("complete", complete);
+    tx.addEventListener("error", error);
+    tx.addEventListener("abort", error);
+  });
+  transactionDoneMap.set(tx, done);
+}
+var idbProxyTraps = {
+  get(target, prop2, receiver) {
+    if (target instanceof IDBTransaction) {
+      if (prop2 === "done")
+        return transactionDoneMap.get(target);
+      if (prop2 === "store") {
+        return receiver.objectStoreNames[1] ? void 0 : receiver.objectStore(receiver.objectStoreNames[0]);
+      }
+    }
+    return wrap(target[prop2]);
+  },
+  set(target, prop2, value) {
+    target[prop2] = value;
+    return true;
+  },
+  has(target, prop2) {
+    if (target instanceof IDBTransaction && (prop2 === "done" || prop2 === "store")) {
+      return true;
+    }
+    return prop2 in target;
   }
 };
-var app_default = App;
-
-// src/obsidian/vault-explorer-view.ts
-var VaultExplorerView = class extends import_obsidian7.ItemView {
-  constructor(leaf, plugin2) {
-    super(leaf);
-    this.component = null;
-    this.plugin = plugin2;
+function replaceTraps(callback) {
+  idbProxyTraps = callback(idbProxyTraps);
+}
+function wrapFunction(func) {
+  if (getCursorAdvanceMethods().includes(func)) {
+    return function(...args) {
+      func.apply(unwrap(this), args);
+      return wrap(this.request);
+    };
   }
-  getIcon() {
-    return "compass";
+  return function(...args) {
+    return wrap(func.apply(unwrap(this), args));
+  };
+}
+function transformCachableValue(value) {
+  if (typeof value === "function")
+    return wrapFunction(value);
+  if (value instanceof IDBTransaction)
+    cacheDonePromiseForTransaction(value);
+  if (instanceOfAny(value, getIdbProxyableTypes()))
+    return new Proxy(value, idbProxyTraps);
+  return value;
+}
+function wrap(value) {
+  if (value instanceof IDBRequest)
+    return promisifyRequest(value);
+  if (transformCache.has(value))
+    return transformCache.get(value);
+  const newValue = transformCachableValue(value);
+  if (newValue !== value) {
+    transformCache.set(value, newValue);
+    reverseTransformCache.set(newValue, value);
   }
-  getViewType() {
-    return VAULT_EXPLORER_VIEW;
-  }
-  getDisplayText() {
-    return "Vault Explorer";
-  }
-  async onOpen() {
-    this.addAction("settings", "Settings", () => {
-      const app = this.plugin.app;
-      app.setting.open();
-      app.setting.openTabById(this.plugin.manifest.id);
+  return newValue;
+}
+var unwrap = (value) => reverseTransformCache.get(value);
+function openDB(name, version, { blocked, upgrade, blocking, terminated } = {}) {
+  const request = indexedDB.open(name, version);
+  const openPromise = wrap(request);
+  if (upgrade) {
+    request.addEventListener("upgradeneeded", (event2) => {
+      upgrade(wrap(request.result), event2.oldVersion, event2.newVersion, wrap(request.transaction), event2);
     });
-    const containerEl = this.containerEl.children[1];
-    store_default.plugin.set(this.plugin);
-    this.component = new app_default({
-      target: containerEl
-    });
   }
-  async onClose() {
-    var _a;
-    (_a = this.component) == null ? void 0 : _a.$destroy();
+  if (blocked) {
+    request.addEventListener("blocked", (event2) => blocked(
+      // Casting due to https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1405
+      event2.oldVersion,
+      event2.newVersion,
+      event2
+    ));
+  }
+  openPromise.then((db) => {
+    if (terminated)
+      db.addEventListener("close", () => terminated());
+    if (blocking) {
+      db.addEventListener("versionchange", (event2) => blocking(event2.oldVersion, event2.newVersion, event2));
+    }
+  }).catch(() => {
+  });
+  return openPromise;
+}
+var readMethods = ["get", "getKey", "getAll", "getAllKeys", "count"];
+var writeMethods = ["put", "add", "delete", "clear"];
+var cachedMethods = /* @__PURE__ */ new Map();
+function getMethod(target, prop2) {
+  if (!(target instanceof IDBDatabase && !(prop2 in target) && typeof prop2 === "string")) {
+    return;
+  }
+  if (cachedMethods.get(prop2))
+    return cachedMethods.get(prop2);
+  const targetFuncName = prop2.replace(/FromIndex$/, "");
+  const useIndex = prop2 !== targetFuncName;
+  const isWrite = writeMethods.includes(targetFuncName);
+  if (
+    // Bail if the target doesn't exist on the target. Eg, getAll isn't in Edge.
+    !(targetFuncName in (useIndex ? IDBIndex : IDBObjectStore).prototype) || !(isWrite || readMethods.includes(targetFuncName))
+  ) {
+    return;
+  }
+  const method = async function(storeName, ...args) {
+    const tx = this.transaction(storeName, isWrite ? "readwrite" : "readonly");
+    let target2 = tx.store;
+    if (useIndex)
+      target2 = target2.index(args.shift());
+    return (await Promise.all([
+      target2[targetFuncName](...args),
+      isWrite && tx.done
+    ]))[0];
+  };
+  cachedMethods.set(prop2, method);
+  return method;
+}
+replaceTraps((oldTraps) => ({
+  ...oldTraps,
+  get: (target, prop2, receiver) => getMethod(target, prop2) || oldTraps.get(target, prop2, receiver),
+  has: (target, prop2) => !!getMethod(target, prop2) || oldTraps.has(target, prop2)
+}));
+var advanceMethodProps = ["continue", "continuePrimaryKey", "advance"];
+var methodMap = {};
+var advanceResults = /* @__PURE__ */ new WeakMap();
+var ittrProxiedCursorToOriginalProxy = /* @__PURE__ */ new WeakMap();
+var cursorIteratorTraps = {
+  get(target, prop2) {
+    if (!advanceMethodProps.includes(prop2))
+      return target[prop2];
+    let cachedFunc = methodMap[prop2];
+    if (!cachedFunc) {
+      cachedFunc = methodMap[prop2] = function(...args) {
+        advanceResults.set(this, ittrProxiedCursorToOriginalProxy.get(this)[prop2](...args));
+      };
+    }
+    return cachedFunc;
   }
 };
+async function* iterate(...args) {
+  let cursor = this;
+  if (!(cursor instanceof IDBCursor)) {
+    cursor = await cursor.openCursor(...args);
+  }
+  if (!cursor)
+    return;
+  cursor = cursor;
+  const proxiedCursor = new Proxy(cursor, cursorIteratorTraps);
+  ittrProxiedCursorToOriginalProxy.set(proxiedCursor, cursor);
+  reverseTransformCache.set(proxiedCursor, unwrap(cursor));
+  while (cursor) {
+    yield proxiedCursor;
+    cursor = await (advanceResults.get(proxiedCursor) || cursor.continue());
+    advanceResults.delete(proxiedCursor);
+  }
+}
+function isIteratorProp(target, prop2) {
+  return prop2 === Symbol.asyncIterator && instanceOfAny(target, [IDBIndex, IDBObjectStore, IDBCursor]) || prop2 === "iterate" && instanceOfAny(target, [IDBIndex, IDBObjectStore]);
+}
+replaceTraps((oldTraps) => ({
+  ...oldTraps,
+  get(target, prop2, receiver) {
+    if (isIteratorProp(target, prop2))
+      return iterate;
+    return oldTraps.get(target, prop2, receiver);
+  },
+  has(target, prop2) {
+    return isIteratorProp(target, prop2) || oldTraps.has(target, prop2);
+  }
+}));
 
-// src/obsidian/vault-explorer-settings-tab.ts
-var import_obsidian8 = require("obsidian");
-var import_js_logger4 = __toESM(require_logger());
-
-// src/logger/index.ts
+// src/svelte/app/services/smi-cache.ts
 var import_js_logger3 = __toESM(require_logger());
-var stringToLogLevel = (value) => {
-  switch (value) {
-    case LOG_LEVEL_OFF:
-      return import_js_logger3.default.OFF;
-    case LOG_LEVEL_ERROR:
-      return import_js_logger3.default.ERROR;
-    case LOG_LEVEL_WARN:
-      return import_js_logger3.default.WARN;
-    case LOG_LEVEL_INFO:
-      return import_js_logger3.default.INFO;
-    case LOG_LEVEL_DEBUG:
-      return import_js_logger3.default.DEBUG;
-    case LOG_LEVEL_TRACE:
-      return import_js_logger3.default.TRACE;
-    default:
-      throw new Error(`Unhandled log level: ${value}`);
+var import_obsidian3 = require("obsidian");
+var DATABASE_NAME = "vaultexplorer";
+var STORE_NAME = "socialMediaImage";
+var ONE_WEEK_MILLIS = 1e3 * 60 * 60 * 24 * 7;
+var ENTRY_EXPIRATION_TIME = ONE_WEEK_MILLIS;
+var isSMICacheEntryExpired = async (entry) => {
+  if (Date.now() - entry.timestamp > ENTRY_EXPIRATION_TIME) {
+    return true;
+  }
+  return false;
+};
+var getSMICacheEntry = async (websiteUrl) => {
+  import_js_logger3.default.trace({
+    fileName: "smi-cache.ts",
+    functionName: "getSMICacheEntry",
+    message: "called"
+  });
+  import_js_logger3.default.debug(
+    {
+      fileName: "grid-card.svelte",
+      functionName: "getCachedSocialMediaUrl",
+      message: "getting cached entry"
+    },
+    {
+      websiteUrl
+    }
+  );
+  const db = await openDatabase();
+  const cachedEntry = await db.get(STORE_NAME, websiteUrl);
+  return cachedEntry != null ? cachedEntry : null;
+};
+var putSMICacheEntry = async (url, smiUrl) => {
+  import_js_logger3.default.trace({
+    fileName: "smi-cache.ts",
+    functionName: "putSMICacheEntry",
+    message: "called"
+  });
+  import_js_logger3.default.debug(
+    {
+      fileName: "smi-cache.ts",
+      functionName: "putSMICacheEntry",
+      message: "putting entry"
+    },
+    {
+      url,
+      smiUrl
+    }
+  );
+  const db = await openDatabase();
+  await db.put(STORE_NAME, {
+    url,
+    smiUrl,
+    timestamp: Date.now()
+  });
+};
+var clearSMICache = async () => {
+  import_js_logger3.default.trace({
+    fileName: "smi-cache.ts",
+    functionName: "clearSMICache",
+    message: "called"
+  });
+  try {
+    const db = await openDatabase();
+    await db.clear(STORE_NAME);
+    new import_obsidian3.Notice("Vault Explorer: Image cache cleared");
+  } catch (err) {
+    new import_obsidian3.Notice("Vault Explorer: Failed to clear image cache");
+    const error = err;
+    import_js_logger3.default.error(
+      {
+        fileName: "smi-cache.ts",
+        functionName: "clearSMICache",
+        message: "failed to clear cache"
+      },
+      error.message
+    );
   }
 };
-var formatMessageForLogger = (...args) => {
-  const head = args[0];
-  const body = args[1];
-  if (typeof args[0] == "object") {
-    const headers = head;
-    const { fileName, functionName, message } = headers;
-    return { message: `[${fileName}:${functionName}] ${message}`, data: body };
-  } else {
-    return { message: String(head), data: body };
-  }
+var openDatabase = () => {
+  return openDB(DATABASE_NAME, 1, {
+    upgrade(db) {
+      db.createObjectStore(STORE_NAME, { keyPath: "url" });
+    }
+  });
 };
 
 // src/obsidian/vault-explorer-settings-tab.ts
-var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
+var VaultExplorerSettingsTab = class extends import_obsidian4.PluginSettingTab {
   constructor(app, plugin2) {
     super(app, plugin2);
     this.plugin = plugin2;
+    this.imageSourceApp = null;
   }
   display() {
     const { containerEl } = this;
     containerEl.empty();
     const textProperties = getObsidianPropertiesByType(this.app, "text");
     const dateProperties = getObsidianPropertiesByType(this.app, "date");
-    const dateTimeProperties = getObsidianPropertiesByType(this.app, "datetime");
-    const checkboxProperties = getObsidianPropertiesByType(this.app, "checkbox");
-    new import_obsidian8.Setting(containerEl).setName("Views").setHeading();
-    new import_obsidian8.Setting(containerEl).setName("Page size").setDesc("The number of items to display per page.").addDropdown((dropdown) => dropdown.addOptions({
-      "10": "10",
-      "25": "25",
-      "50": "50",
-      "100": "100",
-      "250": "250",
-      "500": "500"
-    }).setValue(this.plugin.settings.pageSize.toString()).onChange(async (value) => {
-      this.plugin.settings.pageSize = parseInt(value);
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("page-size-setting-change");
-    }));
-    new import_obsidian8.Setting(containerEl).setName("Title wrapping").setDesc(
-      "Sets the wrapping style for the title."
-    ).addDropdown((cb) => {
-      cb.addOptions({
-        "normal": "Normal",
-        "break-word": "Break Word"
+    const dateTimeProperties = getObsidianPropertiesByType(
+      this.app,
+      "datetime"
+    );
+    new import_obsidian4.Setting(containerEl).setName("General").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("File icons").setDesc("Display an icon next to the file name.").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.enableFileIcons).onChange(async (value) => {
+        this.plugin.settings.enableFileIcons = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Load tags from body").setDesc(
+      "Load tags from the both the tags property and the body of a markdown note."
+    ).addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.loadBodyTags).onChange(async (value) => {
+        this.plugin.settings.loadBodyTags = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "load-body-tags-setting-change" /* LOAD_BODY_TAGS_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Page size").setDesc("Number of items to display per page.").addDropdown(
+      (dropdown) => dropdown.addOptions({
+        "10": "10",
+        "25": "25",
+        "50": "50",
+        "100": "100",
+        "250": "250",
+        "500": "500"
+      }).setValue(this.plugin.settings.pageSize.toString()).onChange(async (value) => {
+        this.plugin.settings.pageSize = parseInt(value);
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "page-size-setting-change" /* PAGE_SIZE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Context menu").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Confirm before delete").setDesc("Ask for confirmation before deleting a file.").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.confirmBeforeDelete).onChange(async (value) => {
+        this.plugin.settings.confirmBeforeDelete = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Filters").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Search filter").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.filters.search.isEnabled).onChange(async (value) => {
+        this.plugin.settings.filters.search.isEnabled = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "filter-toggle-setting-change" /* FILTER_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Sort filter").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.filters.sort.isEnabled).onChange(async (value) => {
+        this.plugin.settings.filters.sort.isEnabled = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "filter-toggle-setting-change" /* FILTER_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Custom filter").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.filters.custom.isEnabled).onChange(async (value) => {
+        this.plugin.settings.filters.custom.isEnabled = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "filter-toggle-setting-change" /* FILTER_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Views").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Grid view").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.views.grid.isEnabled).onChange(async (value) => {
+        this.plugin.settings.views.grid.isEnabled = value;
+        this.updateViewOrder(
+          this.plugin.settings,
+          "grid" /* GRID */,
+          value
+        );
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "view-toggle-setting-change" /* VIEW_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("List view").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.views.list.isEnabled).onChange(async (value) => {
+        this.plugin.settings.views.list.isEnabled = value;
+        this.updateViewOrder(
+          this.plugin.settings,
+          "list" /* LIST */,
+          value
+        );
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "view-toggle-setting-change" /* VIEW_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Feed view").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.views.feed.isEnabled).onChange(async (value) => {
+        this.plugin.settings.views.feed.isEnabled = value;
+        this.updateViewOrder(
+          this.plugin.settings,
+          "feed" /* FEED */,
+          value
+        );
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "view-toggle-setting-change" /* VIEW_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Table view").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.views.table.isEnabled).onChange(async (value) => {
+        this.plugin.settings.views.table.isEnabled = value;
+        this.updateViewOrder(
+          this.plugin.settings,
+          "table" /* TABLE */,
+          value
+        );
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "view-toggle-setting-change" /* VIEW_TOGGLE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Grid view").setHeading();
+    this.imageSourceApp = mount(Image_source_app, {
+      target: containerEl
+    });
+    new import_obsidian4.Setting(containerEl).setName("Load social media image").setDesc(
+      "If a non-image url is found, try to load its social media image"
+    ).addToggle(
+      (toggle) => toggle.setValue(
+        this.plugin.settings.views.grid.loadSocialMediaImage
+      ).onChange(async (value) => {
+        this.plugin.settings.views.grid.loadSocialMediaImage = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "load-social-media-image-setting-change" /* LOAD_SOCIAL_MEDIA_IMAGE_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Cover image fit").setDesc("Set the default cover image fit").addDropdown(
+      (cb) => cb.addOptions({
+        cover: "Cover",
+        contain: "Contain"
+      }).setValue(this.plugin.settings.views.grid.coverImageFit).onChange(async (value) => {
+        this.plugin.settings.views.grid.coverImageFit = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "cover-image-fit-setting-change" /* COVER_IMAGE_FIT_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("List view").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Tags").setDesc("Display tags for each list item").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.views.list.showTags).onChange(async (value) => {
+        this.plugin.settings.views.list.showTags = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "show-tags-setting-change" /* SHOW_TAGS_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Feed view").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Remove H1").setDesc("Remove level 1 headers from feed content").addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.views.feed.removeH1).onChange(async (value) => {
+        this.plugin.settings.views.feed.removeH1 = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Collapse style").setDesc("Set the collapse style for feed content").addDropdown(
+      (cb) => cb.addOptions({
+        "no-new-lines": "No new lines",
+        "no-extra-new-lines": "No extra new lines"
+      }).setValue(this.plugin.settings.views.feed.collapseStyle).onChange(async (value) => {
+        this.plugin.settings.views.feed.collapseStyle = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      })
+    );
+    let largeScreenLineClampSlider = null;
+    new import_obsidian4.Setting(containerEl).setName("Large screen line clamp").setDesc(
+      "Number of lines to clamp on large screens (>= 1024px) (2-8, default 5)"
+    ).addExtraButton(
+      (button) => button.setIcon("reset").setTooltip("Restore default").onClick(async () => {
+        this.plugin.settings.views.feed.lineClampLarge = 5;
+        largeScreenLineClampSlider == null ? void 0 : largeScreenLineClampSlider.setValue(5);
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      })
+    ).addSlider((component2) => {
+      largeScreenLineClampSlider = component2;
+      return component2.setValue(this.plugin.settings.views.feed.lineClampLarge).setLimits(2, 8, 1).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.views.feed.lineClampLarge = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
       });
-      cb.setValue(this.plugin.settings.views.titleWrapping).onChange(
-        async (value) => {
-          this.plugin.settings.views.titleWrapping = value;
-          await this.plugin.saveSettings();
-          EventManager.getInstance().emit("title-wrapping-setting-change");
-        }
-      );
     });
-    new import_obsidian8.Setting(containerEl).setName("Built-in properties").setHeading();
-    new import_obsidian8.Setting(containerEl).setName("Favorite property").setDesc("The property used to mark a note as a favorite. This must be a checkbox property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(checkboxProperties)).setValue(this.plugin.settings.properties.favorite).onChange(async (value) => {
-      this.plugin.settings.properties.favorite = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    new import_obsidian8.Setting(containerEl).setName("URL property").setDesc("The property used to store the URL of the content. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.url).onChange(async (value) => {
-      this.plugin.settings.properties.url = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    const createdDateDesc = new DocumentFragment();
-    createdDateDesc.createDiv({
-      text: "The property containing the creation date. This must be a date or datetime property."
+    let mediumScreenLineClampSlider = null;
+    new import_obsidian4.Setting(containerEl).setName("Medium screen line clamp").setDesc(
+      "Number of lines to clamp on medium screens (>= 600px and < 1024px) (2-8, default 3)"
+    ).addExtraButton(
+      (button) => button.setIcon("reset").setTooltip("Restore default").onClick(async () => {
+        this.plugin.settings.views.feed.lineClampLarge = 3;
+        mediumScreenLineClampSlider == null ? void 0 : mediumScreenLineClampSlider.setValue(3);
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      })
+    ).addSlider((component2) => {
+      mediumScreenLineClampSlider = component2;
+      return component2.setValue(this.plugin.settings.views.feed.lineClampMedium).setLimits(2, 8, 1).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.views.feed.lineClampMedium = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      });
     });
-    createdDateDesc.createDiv({
-      text: "If set to 'Select a property', the file's created at date will be used."
+    let smallScreenLineClampSlider = null;
+    new import_obsidian4.Setting(containerEl).setName("Small screen line clamp").setDesc(
+      "Number of lines to clamp on small screens (< 600px) (2-8, default 2)"
+    ).addExtraButton(
+      (button) => button.setIcon("reset").setTooltip("Restore default").onClick(async () => {
+        this.plugin.settings.views.feed.lineClampLarge = 2;
+        smallScreenLineClampSlider == null ? void 0 : smallScreenLineClampSlider.setValue(2);
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      })
+    ).addSlider((component2) => {
+      smallScreenLineClampSlider = component2;
+      return component2.setValue(this.plugin.settings.views.feed.lineClampSmall).setLimits(2, 8, 1).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.views.feed.lineClampSmall = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */
+        );
+      });
     });
-    new import_obsidian8.Setting(containerEl).setName("Created date property").setDesc(createdDateDesc).addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties([...dateProperties, ...dateTimeProperties])).setValue(this.plugin.settings.properties.createdDate).onChange(async (value) => {
-      this.plugin.settings.properties.createdDate = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    const modifiedDateDesc = new DocumentFragment();
-    modifiedDateDesc.createDiv({
-      text: "The property containing the modification date. This must be a date or datetime property."
+    new import_obsidian4.Setting(containerEl).setName("Built-in properties").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Cover image property").setDesc(
+      "Property used to store a cover image. This must be a text property."
+    ).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        getDropdownOptionsForProperties(textProperties, {
+          image: "image"
+        })
+      ).setValue(this.plugin.settings.properties.image).onChange(async (value) => {
+        this.plugin.settings.properties.image = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Cover image fit property").setDesc(
+      "Property used to store the cover image fit. This must be a text property."
+    ).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        getDropdownOptionsForProperties(textProperties, {
+          "image-fit": "image-fit"
+        })
+      ).setValue(this.plugin.settings.properties.coverImageFit).onChange(async (value) => {
+        this.plugin.settings.properties.coverImageFit = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("URL property").setDesc(
+      "Property used to store a URL. This must be a text property."
+    ).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        getDropdownOptionsForProperties(textProperties, {
+          url: "url"
+        })
+      ).setValue(this.plugin.settings.properties.url).onChange(async (value) => {
+        this.plugin.settings.properties.url = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    const creationDateDesc = new DocumentFragment();
+    creationDateDesc.createDiv({
+      text: "Property used to store a creation date. This must be a date or datetime property."
     });
-    modifiedDateDesc.createDiv({
-      text: "If set to 'Select a property', the file's modified at date will be used."
+    creationDateDesc.createDiv({
+      text: "If set, the property will be preferred over the file's creation date."
     });
-    new import_obsidian8.Setting(containerEl).setName("Modified date property").setDesc(modifiedDateDesc).addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties([...dateProperties, ...dateTimeProperties])).setValue(this.plugin.settings.properties.modifiedDate).onChange(async (value) => {
-      this.plugin.settings.properties.modifiedDate = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    new import_obsidian8.Setting(containerEl).setName("Custom properties").setHeading();
-    new import_obsidian8.Setting(containerEl).setName("Custom property 1").setDesc("The first custom property. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom1).onChange(async (value) => {
-      this.plugin.settings.properties.custom1 = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    new import_obsidian8.Setting(containerEl).setName("Custom property 2").setDesc("The second custom property. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom2).onChange(async (value) => {
-      this.plugin.settings.properties.custom2 = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    new import_obsidian8.Setting(containerEl).setName("Custom property 3").setDesc("The third custom property. This must be a text property.").addDropdown((dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom3).onChange(async (value) => {
-      this.plugin.settings.properties.custom3 = value;
-      await this.plugin.saveSettings();
-      EventManager.getInstance().emit("property-setting-change");
-    }));
-    new import_obsidian8.Setting(containerEl).setName("Debugging").setHeading();
-    new import_obsidian8.Setting(containerEl).setName("Log level").setDesc(
-      "Sets the log level. Please use trace to see all log messages."
+    new import_obsidian4.Setting(containerEl).setName("Creation date property").setDesc(creationDateDesc).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        getDropdownOptionsForProperties([
+          ...dateProperties,
+          ...dateTimeProperties
+        ])
+      ).setValue(this.plugin.settings.properties.createdDate).onChange(async (value) => {
+        this.plugin.settings.properties.createdDate = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    const modificationDateDesc = new DocumentFragment();
+    modificationDateDesc.createDiv({
+      text: "Property used to store a modification date. This must be a date or datetime property."
+    });
+    modificationDateDesc.createDiv({
+      text: "If set, the property will be preferred over the file's modification date."
+    });
+    new import_obsidian4.Setting(containerEl).setName("Modification date property").setDesc(modificationDateDesc).addDropdown(
+      (dropdown) => dropdown.addOptions(
+        getDropdownOptionsForProperties([
+          ...dateProperties,
+          ...dateTimeProperties
+        ])
+      ).setValue(this.plugin.settings.properties.modifiedDate).onChange(async (value) => {
+        this.plugin.settings.properties.modifiedDate = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Custom properties").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Custom property 1").setDesc("First custom property. This must be a text property.").addDropdown(
+      (dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom1).onChange(async (value) => {
+        this.plugin.settings.properties.custom1 = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Custom property 2").setDesc("Second custom property. This must be a text property.").addDropdown(
+      (dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom2).onChange(async (value) => {
+        this.plugin.settings.properties.custom2 = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Custom property 3").setDesc("Third custom property. This must be a text property.").addDropdown(
+      (dropdown) => dropdown.addOptions(getDropdownOptionsForProperties(textProperties)).setValue(this.plugin.settings.properties.custom3).onChange(async (value) => {
+        this.plugin.settings.properties.custom3 = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "property-setting-change" /* PROPERTY_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Updates").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Clock updates").setDesc(
+      "Update time values every minute. This will refresh the Vault Explorer view"
+    ).addToggle(
+      (toggle) => toggle.setValue(this.plugin.settings.enableClockUpdates).onChange(async (value) => {
+        this.plugin.settings.enableClockUpdates = value;
+        await this.plugin.saveSettings();
+        EventManager.getInstance().emit(
+          "clock-updates-setting-change" /* CLOCK_UPDATES_SETTING_CHANGE */
+        );
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Debugging").setHeading();
+    new import_obsidian4.Setting(containerEl).setName("Log level").setDesc(
+      "Set the log level. Please use trace to see all log messages."
     ).addDropdown((cb) => {
       cb.addOptions({
         [LOG_LEVEL_OFF]: "Off",
@@ -15902,6 +11525,7448 @@ var VaultExplorerSettingsTab = class extends import_obsidian8.PluginSettingTab {
         }
       );
     });
+    new import_obsidian4.Setting(containerEl).setName("Data").setHeading();
+    const configFolderDesc = new DocumentFragment();
+    configFolderDesc.createDiv({
+      text: "Set the plugin configuration folder."
+    });
+    configFolderDesc.createDiv({
+      text: "Restart Obsidian after changing this setting.",
+      cls: "mod-warning"
+    });
+    new import_obsidian4.Setting(containerEl).setName("Config folder").setDesc(configFolderDesc).addText(
+      (component2) => component2.setValue(this.plugin.settings.configDir).onChange(async (value) => {
+        this.plugin.settings.configDir = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian4.Setting(containerEl).setName("Image cache").addButton(
+      (button) => button.setClass("mod-destructive").setButtonText("Clear cache").onClick(async () => {
+        await clearSMICache();
+      })
+    );
+  }
+  onClose() {
+    if (this.imageSourceApp) {
+      unmount(this.imageSourceApp);
+    }
+  }
+  updateViewOrder(settings, view, value) {
+    var _a3;
+    const views = {
+      ["grid" /* GRID */]: { ...settings.views.grid },
+      ["list" /* LIST */]: { ...settings.views.list },
+      ["feed" /* FEED */]: { ...settings.views.feed },
+      ["table" /* TABLE */]: { ...settings.views.table }
+    };
+    const maxOrder = Math.max(
+      views["grid" /* GRID */].order,
+      views["list" /* LIST */].order,
+      views["feed" /* FEED */].order,
+      views["table" /* TABLE */].order
+    );
+    const viewToUpdate = views[view];
+    if (value) {
+      viewToUpdate.order = maxOrder + 1;
+    } else {
+      Object.values(views).forEach((view2) => {
+        if (view2.order > viewToUpdate.order) {
+          view2.order--;
+        }
+      });
+      viewToUpdate.order = -1;
+    }
+    const currentViewEntry = Object.entries(views).find(
+      (v) => v[1].order === 0
+    );
+    this.plugin.settings.currentView = (_a3 = currentViewEntry == null ? void 0 : currentViewEntry[0]) != null ? _a3 : null;
+    this.plugin.settings.views.grid = views["grid" /* GRID */];
+    this.plugin.settings.views.list = views["list" /* LIST */];
+    this.plugin.settings.views.feed = views["feed" /* FEED */];
+    this.plugin.settings.views.table = views["table" /* TABLE */];
+  }
+};
+
+// src/obsidian/vault-explorer-view.ts
+var import_obsidian21 = require("obsidian");
+
+// src/constants.ts
+var VAULT_EXPLORER_VIEW = "vault-explorer";
+var HOVER_LINK_SOURCE_ID = "vault-explorer-preview";
+var DEFAULT_SETTINGS = {
+  properties: {
+    url: "url",
+    image: "image",
+    coverImageFit: "image-fit",
+    createdDate: "",
+    modifiedDate: "",
+    custom1: "",
+    custom2: "",
+    custom3: ""
+  },
+  filters: {
+    search: {
+      isEnabled: true,
+      value: ""
+    },
+    sort: {
+      isEnabled: true,
+      value: "file-name-asc"
+    },
+    custom: {
+      isEnabled: true,
+      selectedGroupId: "",
+      groups: []
+    }
+  },
+  views: {
+    grid: {
+      isEnabled: true,
+      order: 0,
+      coverImageFit: "cover",
+      coverImageSources: [
+        {
+          type: "image-property",
+          isEnabled: true
+        },
+        {
+          type: "url-property",
+          isEnabled: true
+        },
+        {
+          type: "frontmatter",
+          isEnabled: true
+        },
+        {
+          type: "body",
+          isEnabled: true
+        }
+      ],
+      loadSocialMediaImage: true
+    },
+    list: {
+      isEnabled: true,
+      order: 1,
+      showTags: true
+    },
+    feed: {
+      isEnabled: true,
+      order: 2,
+      removeH1: true,
+      collapseStyle: "no-new-lines",
+      lineClampLarge: 5,
+      lineClampMedium: 3,
+      lineClampSmall: 2
+    },
+    table: {
+      isEnabled: false,
+      order: 3
+    }
+  },
+  confirmBeforeDelete: true,
+  currentView: "grid" /* GRID */,
+  titleWrapping: "normal",
+  enableClockUpdates: true,
+  enableFileIcons: false,
+  loadBodyTags: true,
+  shouldCollapseFilters: false,
+  pageSize: 25,
+  configDir: ".vaultexplorer",
+  pluginVersion: null,
+  logLevel: LOG_LEVEL_WARN
+};
+
+// src/svelte/app/index.svelte
+var import_js_logger13 = __toESM(require_logger());
+var import_lodash2 = __toESM(require_lodash());
+var import_obsidian20 = require("obsidian");
+
+// src/obsidian/custom-filter-modal.ts
+var import_obsidian7 = require("obsidian");
+
+// src/svelte/custom-filter-app/index.svelte
+var import_js_logger5 = __toESM(require_logger());
+
+// src/svelte/shared/components/divider.svelte
+var root3 = template(`<div></div>`);
+function Divider($$anchor, $$props) {
+  push($$props, false);
+  const className = mutable_source();
+  let direction = prop($$props, "direction", 8, "horizontal");
+  let borderWidth = prop($$props, "borderWidth", 8, "1px");
+  legacy_pre_effect(() => deep_read_state(direction()), () => {
+    set(className, `vault-explorer-divider vault-explorer-divider--${direction()}`);
+  });
+  legacy_pre_effect_reset();
+  var div = root3();
+  template_effect(() => {
+    var _a3;
+    set_class(div, 1, clsx2(get(className)), "svelte-fl8hx7");
+    set_style(div, `border-width: ${(_a3 = borderWidth()) != null ? _a3 : ""}`);
+  });
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/shared/components/icon-button.svelte
+var root_12 = template(`<div class="vault-explorer-icon-button__text svelte-1vmhk7w"><!></div>`);
+var root4 = template(`<button><!> <!></button>`);
+function Icon_button($$anchor, $$props) {
+  const $$slots = sanitize_slots($$props);
+  push($$props, false);
+  const className = mutable_source();
+  const hasSlotContent = mutable_source();
+  let ariaLabel = prop($$props, "ariaLabel", 8, "");
+  let iconId = prop($$props, "iconId", 8, "");
+  let disabled = prop($$props, "disabled", 8, false);
+  let isTabbable = prop($$props, "isTabbable", 8, true);
+  let size = prop($$props, "size", 8, "md");
+  let noPadding = prop($$props, "noPadding", 8, false);
+  const dispatch = createEventDispatcher();
+  function handleClick(event2) {
+    dispatch("click", { nativeEvent: event2 });
+  }
+  function getClassName(noPadding2) {
+    let className2 = "clickable-icon vault-explorer-icon-button";
+    if (noPadding2) {
+      className2 += " vault-explorer-icon-button--no-padding";
+    }
+    return className2;
+  }
+  legacy_pre_effect(() => deep_read_state(noPadding()), () => {
+    set(className, getClassName(noPadding()));
+  });
+  legacy_pre_effect(() => {
+  }, () => {
+    set(hasSlotContent, !!$$slots.default);
+  });
+  legacy_pre_effect_reset();
+  init();
+  var button = root4();
+  var node = child(button);
+  Icon(node, {
+    get iconId() {
+      return iconId();
+    },
+    get size() {
+      return size();
+    }
+  });
+  var node_1 = sibling(node, 2);
+  {
+    var consequent = ($$anchor2) => {
+      var div = root_12();
+      var node_2 = child(div);
+      slot(node_2, $$props, "default", {}, null);
+      reset(div);
+      append($$anchor2, div);
+    };
+    if_block(node_1, ($$render) => {
+      if (get(hasSlotContent)) $$render(consequent);
+    });
+  }
+  reset(button);
+  template_effect(() => {
+    set_class(button, 1, clsx2(get(className)), "svelte-1vmhk7w");
+    set_attribute(button, "tabindex", isTabbable() ? 0 : -1);
+    button.disabled = disabled();
+    set_attribute(button, "aria-label", ariaLabel());
+  });
+  event("click", button, handleClick);
+  append($$anchor, button);
+  pop();
+}
+
+// src/svelte/shared/components/spacer.svelte
+var root5 = template(`<div></div>`);
+function Spacer($$anchor, $$props) {
+  push($$props, false);
+  let direction = prop($$props, "direction", 8, "vertical");
+  let size = prop($$props, "size", 8, "");
+  let width = mutable_source(0);
+  let height = mutable_source(0);
+  function findDimesions() {
+    switch (size()) {
+      case "xs":
+        if (direction() == "horizontal") set(width, 4);
+        if (direction() == "vertical") set(height, 4);
+        break;
+      case "sm":
+        if (direction() == "horizontal") set(width, 8);
+        if (direction() == "vertical") set(height, 8);
+        break;
+      case "md":
+        if (direction() == "horizontal") set(width, 12);
+        if (direction() == "vertical") set(height, 12);
+        break;
+      case "lg":
+        if (direction() == "horizontal") set(width, 16);
+        if (direction() == "vertical") set(height, 16);
+        break;
+      case "xl":
+        if (direction() == "horizontal") set(width, 24);
+        if (direction() == "vertical") set(height, 24);
+        break;
+      case "2xl":
+        if (direction() == "horizontal") set(width, 32);
+        if (direction() == "vertical") set(height, 32);
+        break;
+    }
+  }
+  legacy_pre_effect(
+    () => (deep_read_state(size()), deep_read_state(direction())),
+    () => {
+      size(), direction(), findDimesions();
+    }
+  );
+  legacy_pre_effect_reset();
+  var div = root5();
+  template_effect(() => {
+    var _a3, _b3;
+    return set_style(div, `
+		width: ${(_a3 = get(width)) != null ? _a3 : ""}px;
+		height: ${(_b3 = get(height)) != null ? _b3 : ""}px;
+	`);
+  });
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/shared/components/stack.svelte
+var root6 = template(`<div class="vault-explorer-stack"><!></div>`);
+function Stack($$anchor, $$props) {
+  let spacing = prop($$props, "spacing", 8, "md");
+  let justify = prop($$props, "justify", 8, "unset");
+  let align = prop($$props, "align", 8, "unset");
+  let direction = prop($$props, "direction", 8, "row");
+  let width = prop($$props, "width", 8, "unset");
+  let height = prop($$props, "height", 8, "unset");
+  let spacingPx = mutable_source(0);
+  switch (spacing()) {
+    case "none":
+      set(spacingPx, 0);
+      break;
+    case "xs":
+      set(spacingPx, 4);
+      break;
+    case "sm":
+      set(spacingPx, 8);
+      break;
+    case "md":
+      set(spacingPx, 16);
+      break;
+    case "lg":
+      set(spacingPx, 24);
+      break;
+    case "xl":
+      set(spacingPx, 32);
+      break;
+  }
+  var div = root6();
+  var node = child(div);
+  slot(node, $$props, "default", {}, null);
+  reset(div);
+  template_effect(() => {
+    var _a3, _b3, _c2, _d, _e, _f;
+    return set_style(div, `
+		display: flex;
+		flex-direction: ${(_a3 = direction()) != null ? _a3 : ""};
+		justify-content: ${(_b3 = justify()) != null ? _b3 : ""};
+		align-items: ${(_c2 = align()) != null ? _c2 : ""};
+		${direction() === "row" || direction() === "row-reverse" ? "column-gap" : "row-gap"}: ${(_d = get(spacingPx)) != null ? _d : ""}px;
+		width: ${(_e = width()) != null ? _e : ""};
+		height: ${(_f = height()) != null ? _f : ""};
+	`);
+  });
+  append($$anchor, div);
+}
+
+// node_modules/nanoid/index.browser.js
+var random = (bytes) => crypto.getRandomValues(new Uint8Array(bytes));
+var customRandom = (alphabet, defaultSize, getRandom) => {
+  let mask = (2 << Math.log2(alphabet.length - 1)) - 1;
+  let step = -~(1.6 * mask * defaultSize / alphabet.length);
+  return (size = defaultSize) => {
+    let id = "";
+    while (true) {
+      let bytes = getRandom(step);
+      let j = step | 0;
+      while (j--) {
+        id += alphabet[bytes[j] & mask] || "";
+        if (id.length >= size) return id;
+      }
+    }
+  };
+};
+var customAlphabet = (alphabet, size = 21) => customRandom(alphabet, size | 0, random);
+
+// src/svelte/shared/services/random.ts
+var nanoid = customAlphabet(
+  "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+);
+var generateRandomId = () => {
+  return nanoid(16);
+};
+
+// src/svelte/custom-filter-app/components/filter-rule.svelte
+var import_obsidian5 = require("obsidian");
+
+// src/svelte/shared/components/switch.svelte
+var root7 = template(`<div tabindex="0" role="switch"><input type="checkbox" class="svelte-dc6puo"></div>`);
+function Switch($$anchor, $$props) {
+  push($$props, false);
+  const className = mutable_source();
+  let ariaLabel = prop($$props, "ariaLabel", 8, null);
+  let value = prop($$props, "value", 8, false);
+  let id = prop($$props, "id", 8, null);
+  const dispatch = createEventDispatcher();
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      e.stopPropagation();
+      dispatch("change", { value: !value() });
+    }
+  }
+  function handleClick(e) {
+    e.stopPropagation();
+    dispatch("change", { value: !value() });
+  }
+  legacy_pre_effect(() => deep_read_state(value()), () => {
+    set(className, "checkbox-container vault-explorer-switch" + (value() ? " is-enabled" : ""));
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root7();
+  var input = child(div);
+  reset(div);
+  template_effect(() => {
+    set_attribute(div, "aria-checked", value());
+    set_attribute(div, "aria-label", ariaLabel());
+    set_class(div, 1, clsx2(get(className)), "svelte-dc6puo");
+    set_attribute(input, "id", id());
+  });
+  event("click", div, handleClick);
+  event("keydown", div, handleKeyDown);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/shared/components/wrap.svelte
+var root8 = template(`<div class="vault-explorer-wrap"><!></div>`);
+function Wrap($$anchor, $$props) {
+  let spacingX = prop($$props, "spacingX", 8, "md");
+  let spacingY = prop($$props, "spacingY", 8, "md");
+  let justify = prop($$props, "justify", 8, "unset");
+  let align = prop($$props, "align", 8, "unset");
+  let direction = prop($$props, "direction", 8, "row");
+  let width = prop($$props, "width", 8, "unset");
+  let height = prop($$props, "height", 8, "unset");
+  let wrap2 = prop($$props, "wrap", 8, "wrap");
+  let xSpacingPx = mutable_source(0);
+  let ySpacingPx = mutable_source(0);
+  if (spacingX() === "xs") {
+    set(xSpacingPx, 4);
+  } else if (spacingX() === "sm") {
+    set(xSpacingPx, 8);
+  } else if (spacingX() === "md") {
+    set(xSpacingPx, 16);
+  } else if (spacingX() === "lg") {
+    set(xSpacingPx, 24);
+  } else if (spacingX() === "xl") {
+    set(xSpacingPx, 32);
+  }
+  if (spacingY() === "xs") {
+    set(ySpacingPx, 4);
+  } else if (spacingY() === "sm") {
+    set(ySpacingPx, 8);
+  } else if (spacingY() === "md") {
+    set(ySpacingPx, 16);
+  } else if (spacingY() === "lg") {
+    set(ySpacingPx, 24);
+  } else if (spacingY() === "xl") {
+    set(ySpacingPx, 32);
+  }
+  var div = root8();
+  var node = child(div);
+  slot(node, $$props, "default", {}, null);
+  reset(div);
+  template_effect(() => {
+    var _a3, _b3, _c2, _d, _e, _f, _g, _h;
+    return set_style(div, `
+		display: flex;
+		flex-wrap: ${(_a3 = wrap2()) != null ? _a3 : ""};
+		flex-direction: ${(_b3 = direction()) != null ? _b3 : ""};
+		justify-content: ${(_c2 = justify()) != null ? _c2 : ""};
+		align-items: ${(_d = align()) != null ? _d : ""};
+		column-gap: ${(_e = get(xSpacingPx)) != null ? _e : ""}px;
+		row-gap: ${(_f = get(ySpacingPx)) != null ? _f : ""}px;
+		width: ${(_g = width()) != null ? _g : ""};
+		height: ${(_h = height()) != null ? _h : ""};
+	`);
+  });
+  append($$anchor, div);
+}
+
+// src/svelte/custom-filter-app/services/display-name-utils.ts
+var getDisplayNameForFilterRuleType = (type) => {
+  switch (type) {
+    case "content" /* CONTENT */:
+      return "content";
+    case "file-name" /* FILE_NAME */:
+      return "file name";
+    case "folder" /* FOLDER */:
+      return "folder";
+    case "property" /* PROPERTY */:
+      return "property";
+    default:
+      return "";
+  }
+};
+var getDisplayNameForDatePropertyFilterValue = (value) => {
+  switch (value) {
+    case "today" /* TODAY */:
+      return "today";
+    case "tomorrow" /* TOMORROW */:
+      return "tomorrow";
+    case "yesterday" /* YESTERDAY */:
+      return "yesterday";
+    case "one-week-ago" /* ONE_WEEK_AGO */:
+      return "one week ago";
+    case "one-week-from-now" /* ONE_WEEK_FROM_NOW */:
+      return "one week from now";
+    case "one-month-ago" /* ONE_MONTH_AGO */:
+      return "one month ago";
+    case "one-month-from-now" /* ONE_MONTH_FROM_NOW */:
+      return "one month from now";
+    case "custom" /* CUSTOM */:
+      return "custom";
+    default:
+      return "";
+  }
+};
+var getDisplayNameForFilterCondition = (type) => {
+  switch (type) {
+    case "is" /* IS */:
+    case "is" /* IS */:
+    case "is" /* IS */:
+    case "is" /* IS */:
+    case "is" /* IS */:
+      return "is";
+    case "is-not" /* IS_NOT */:
+    case "is-not" /* IS_NOT */:
+    case "is-not" /* IS_NOT */:
+    case "is-not" /* IS_NOT */:
+      return "is not";
+    case "contains" /* CONTAINS */:
+    case "contains" /* CONTAINS */:
+    case "contains" /* CONTAINS */:
+    case "contains" /* CONTAINS */:
+      return "contains";
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+      return "does not contain";
+    case "starts-with" /* STARTS_WITH */:
+    case "starts-with" /* STARTS_WITH */:
+      return "starts with";
+    case "ends-with" /* ENDS_WITH */:
+    case "ends-with" /* ENDS_WITH */:
+      return "ends with";
+    case "exists" /* EXISTS */:
+    case "exists" /* EXISTS */:
+    case "exists" /* EXISTS */:
+    case "exists" /* EXISTS */:
+    case "exists" /* EXISTS */:
+      return "exists";
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+      return "does not exist";
+    case "is-empty" /* IS_EMPTY */:
+      return "is empty";
+    case "is-not-empty" /* IS_NOT_EMPTY */:
+      return "is not empty";
+    case "is-equal" /* IS_EQUAL */:
+      return "=";
+    case "is-not-equal" /* IS_NOT_EQUAL */:
+      return "!=";
+    case "is-greater" /* IS_GREATER */:
+      return ">";
+    case "is-greater-or-equal" /* IS_GREATER_OR_EQUAL */:
+      return ">=";
+    case "is-less" /* IS_LESS */:
+      return "<";
+    case "is-less-or-equal" /* IS_LESS_OR_EQUAL */:
+      return "<=";
+    case "is-after" /* IS_AFTER */:
+      return "is after";
+    case "is-before" /* IS_BEFORE */:
+      return "is before";
+    case "is-on-or-after" /* IS_ON_OR_AFTER */:
+      return "is on or after";
+    case "is-on-or-before" /* IS_ON_OR_BEFORE */:
+      return "is on or before";
+    default:
+      return "";
+  }
+};
+
+// src/svelte/custom-filter-app/components/filter-rule.svelte
+var root_2 = template(`<select class="vault-explorer-filter-rule__operator svelte-x2ad9x"><option>and</option><option>or</option></select>`);
+var root_3 = template(`<option> </option>`);
+var root_4 = template(`<option> </option>`);
+var root_5 = template(`<!> <!> <!>`, 1);
+var root_13 = template(`<!> <select class="svelte-x2ad9x"></select> <!> <select class="svelte-x2ad9x"></select> <!> <!>`, 1);
+var root9 = template(`<div class="vault-explorer-filter-rule svelte-x2ad9x"><!></div>`);
+function Filter_rule($$anchor, $$props) {
+  push($$props, false);
+  const filterConditions = mutable_source();
+  let index2 = prop($$props, "index", 8);
+  let id = prop($$props, "id", 8);
+  let type = prop($$props, "type", 8);
+  let propertyType = prop($$props, "propertyType", 8);
+  let operator = prop($$props, "operator", 8);
+  let condition = prop($$props, "condition", 8);
+  let isEnabled = prop($$props, "isEnabled", 8);
+  const dispatch = createEventDispatcher();
+  function handleActionsClick(e) {
+    const nativeEvent = e.detail.nativeEvent;
+    const menu = new import_obsidian5.Menu();
+    menu.setUseNativeMenu(true);
+    menu.addItem((item) => {
+      item.setTitle("Duplicate");
+      item.onClick(() => handleDuplicateClick());
+    });
+    menu.addItem((item) => {
+      item.setTitle("Delete");
+      item.onClick(() => handleDeleteClick());
+    });
+    menu.showAtMouseEvent(nativeEvent);
+  }
+  function handleDuplicateClick() {
+    dispatch("ruleDuplicateClick", { id: id() });
+  }
+  function handleDeleteClick() {
+    dispatch("ruleDeleteClick", { id: id() });
+  }
+  function handleTypeChange(e) {
+    const value = e.target.value;
+    dispatch("ruleTypeChange", { id: id(), type: value });
+  }
+  function handleConditionChange(e) {
+    const value = e.target.value;
+    dispatch("ruleConditionChange", { id: id(), condition: value });
+  }
+  function handleOperatorChange(e) {
+    const value = e.target.value;
+    dispatch("ruleOperatorChange", { id: id(), operator: value });
+  }
+  function handleToggle() {
+    dispatch("ruleToggle", { id: id() });
+  }
+  function findFilterConditions(type2, propertyType2) {
+    if (type2 === "property" /* PROPERTY */) {
+      if (propertyType2 === "text") {
+        return Object.values(TextFilterCondition);
+      } else if (propertyType2 === "number") {
+        return Object.values(NumberFilterCondition);
+      } else if (propertyType2 === "list") {
+        return Object.values(ListFilterCondition);
+      } else if (propertyType2 === "checkbox") {
+        return Object.values(CheckboxFilterCondition);
+      } else if (propertyType2 === "date" || propertyType2 === "datetime") {
+        return Object.values(DateFilterCondition);
+      } else {
+        throw new Error(`Unknown PropertyFilterCondition type: ${type2}`);
+      }
+    } else if (type2 === "folder" /* FOLDER */) {
+      return Object.values(FolderFilterCondition);
+    } else if (type2 === "file-name" /* FILE_NAME */) {
+      return Object.values(FileNameFilterCondition);
+    } else if (type2 === "content" /* CONTENT */) {
+      return Object.values(ContentFilterCondition);
+    } else {
+      throw new Error(`Unknown FilterConditionType: ${type2}`);
+    }
+  }
+  legacy_pre_effect(
+    () => (deep_read_state(type()), deep_read_state(propertyType())),
+    () => {
+      set(filterConditions, findFilterConditions(type(), propertyType()));
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root9();
+  var node = child(div);
+  Wrap(node, {
+    spacingX: "sm",
+    spacingY: "sm",
+    align: "center",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_13();
+      var node_1 = first_child(fragment);
+      {
+        var consequent = ($$anchor3) => {
+          var select = root_2();
+          init_select(select, operator);
+          var select_value;
+          var option = child(select);
+          option.value = option.__value = "and";
+          var option_1 = sibling(option);
+          option_1.value = option_1.__value = "or";
+          reset(select);
+          template_effect(() => {
+            var _a3;
+            if (select_value !== (select_value = operator())) {
+              select.value = (_a3 = select.__value = operator()) != null ? _a3 : "", select_option(select, operator());
+            }
+          });
+          event("change", select, handleOperatorChange);
+          append($$anchor3, select);
+        };
+        if_block(node_1, ($$render) => {
+          if (index2() > 0) $$render(consequent);
+        });
+      }
+      var select_1 = sibling(node_1, 2);
+      init_select(select_1, type);
+      var select_1_value;
+      each(select_1, 5, () => Object.values(FilterRuleType), index, ($$anchor3, type2, $$index, $$array) => {
+        var option_2 = root_3();
+        var option_2_value = {};
+        var text2 = child(option_2, true);
+        reset(option_2);
+        template_effect(
+          ($0) => {
+            var _a3;
+            if (option_2_value !== (option_2_value = get(type2))) {
+              option_2.value = (_a3 = option_2.__value = get(type2)) != null ? _a3 : "";
+            }
+            set_text(text2, $0);
+          },
+          [
+            () => getDisplayNameForFilterRuleType(get(type2))
+          ],
+          derived_safe_equal
+        );
+        append($$anchor3, option_2);
+      });
+      reset(select_1);
+      var node_2 = sibling(select_1, 2);
+      slot(node_2, $$props, "before-condition", {}, null);
+      var select_2 = sibling(node_2, 2);
+      init_select(select_2, condition);
+      var select_2_value;
+      each(select_2, 5, () => get(filterConditions), index, ($$anchor3, condition2, $$index_1, $$array_1) => {
+        var option_3 = root_4();
+        var option_3_value = {};
+        var text_1 = child(option_3, true);
+        reset(option_3);
+        template_effect(
+          ($0) => {
+            var _a3;
+            if (option_3_value !== (option_3_value = get(condition2))) {
+              option_3.value = (_a3 = option_3.__value = get(condition2)) != null ? _a3 : "";
+            }
+            set_text(text_1, $0);
+          },
+          [
+            () => getDisplayNameForFilterCondition(get(condition2))
+          ],
+          derived_safe_equal
+        );
+        append($$anchor3, option_3);
+      });
+      reset(select_2);
+      var node_3 = sibling(select_2, 2);
+      slot(node_3, $$props, "after-condition", {}, null);
+      var node_4 = sibling(node_3, 2);
+      Stack(node_4, {
+        spacing: "sm",
+        align: "center",
+        children: ($$anchor3, $$slotProps2) => {
+          var fragment_1 = root_5();
+          var node_5 = first_child(fragment_1);
+          Switch(node_5, {
+            get value() {
+              return isEnabled();
+            },
+            $$events: { change: () => handleToggle() }
+          });
+          var node_6 = sibling(node_5, 2);
+          Icon_button(node_6, {
+            ariaLabel: "Rule actions",
+            iconId: "ellipsis-vertical",
+            $$events: { click: handleActionsClick }
+          });
+          var node_7 = sibling(node_6, 2);
+          slot(node_7, $$props, "after-toggle", {}, null);
+          append($$anchor3, fragment_1);
+        },
+        $$slots: { default: true }
+      });
+      template_effect(() => {
+        var _a3, _b3;
+        if (select_1_value !== (select_1_value = type())) {
+          select_1.value = (_a3 = select_1.__value = type()) != null ? _a3 : "", select_option(select_1, type());
+        }
+        if (select_2_value !== (select_2_value = condition())) {
+          select_2.value = (_b3 = select_2.__value = condition()) != null ? _b3 : "", select_option(select_2, condition());
+        }
+      });
+      event("change", select_1, handleTypeChange);
+      event("change", select_2, handleConditionChange);
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/custom-filter-app/components/content-filter.svelte
+var root_32 = template(`<input type="text" placeholder="value">`);
+function Content_filter($$anchor, $$props) {
+  push($$props, false);
+  let index2 = prop($$props, "index", 8);
+  let id = prop($$props, "id", 8);
+  let type = prop($$props, "type", 8);
+  let value = prop($$props, "value", 8);
+  let operator = prop($$props, "operator", 8);
+  let condition = prop($$props, "condition", 8);
+  let isEnabled = prop($$props, "isEnabled", 8);
+  const dispatch = createEventDispatcher();
+  function handleValueChange(e) {
+    const value2 = e.target.value;
+    dispatch("ruleValueChange", { id: id(), value: value2 });
+  }
+  init();
+  Filter_rule($$anchor, {
+    propertyType: null,
+    get index() {
+      return index2();
+    },
+    get id() {
+      return id();
+    },
+    get type() {
+      return type();
+    },
+    get operator() {
+      return operator();
+    },
+    get condition() {
+      return condition();
+    },
+    get isEnabled() {
+      return isEnabled();
+    },
+    $$events: {
+      ruleDeleteClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleDuplicateClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleTypeChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleConditionChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleOperatorChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleToggle($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      }
+    },
+    $$slots: {
+      "after-condition": ($$anchor2, $$slotProps) => {
+        var fragment_1 = comment();
+        var node = first_child(fragment_1);
+        {
+          var consequent = ($$anchor3) => {
+            var input = root_32();
+            remove_input_defaults(input);
+            template_effect(() => set_value(input, value()));
+            event("input", input, handleValueChange);
+            append($$anchor3, input);
+          };
+          if_block(node, ($$render) => {
+            if (condition() !== "is-empty" /* IS_EMPTY */ && condition() !== "is-not-empty" /* IS_NOT_EMPTY */) $$render(consequent);
+          });
+        }
+        append($$anchor2, fragment_1);
+      }
+    }
+  });
+  pop();
+}
+
+// src/svelte/custom-filter-app/components/file-name-filter.svelte
+var root_14 = template(`<input slot="after-condition" type="text" placeholder="value">`);
+function File_name_filter($$anchor, $$props) {
+  push($$props, false);
+  let index2 = prop($$props, "index", 8);
+  let id = prop($$props, "id", 8);
+  let type = prop($$props, "type", 8);
+  let value = prop($$props, "value", 8);
+  let operator = prop($$props, "operator", 8);
+  let condition = prop($$props, "condition", 8);
+  let isEnabled = prop($$props, "isEnabled", 8);
+  const dispatch = createEventDispatcher();
+  function handleValueChange(e) {
+    const value2 = e.target.value;
+    dispatch("ruleValueChange", { id: id(), value: value2 });
+  }
+  init();
+  Filter_rule($$anchor, {
+    propertyType: null,
+    get index() {
+      return index2();
+    },
+    get id() {
+      return id();
+    },
+    get type() {
+      return type();
+    },
+    get operator() {
+      return operator();
+    },
+    get condition() {
+      return condition();
+    },
+    get isEnabled() {
+      return isEnabled();
+    },
+    $$events: {
+      ruleDeleteClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleDuplicateClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleTypeChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleConditionChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleOperatorChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleToggle($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      }
+    },
+    $$slots: {
+      "after-condition": ($$anchor2, $$slotProps) => {
+        var input = root_14();
+        remove_input_defaults(input);
+        template_effect(() => set_value(input, value()));
+        event("input", input, handleValueChange);
+        append($$anchor2, input);
+      }
+    }
+  });
+  pop();
+}
+
+// src/svelte/custom-filter-app/components/folder-filter.svelte
+var import_obsidian6 = require("obsidian");
+
+// src/svelte/shared/components/search-select.svelte
+var root_22 = template(`<div tabindex="-1" role="option"> </div>`);
+var root_33 = template(`<div class="vault-explorer-search-select__dropdown-item vault-explorer-search-select__dropdown-item--empty svelte-35vrus">No results found</div>`);
+var root_42 = template(`<!> <div tabindex="-1" role="option" aria-selected="false" class="vault-explorer-search-select__dropdown-item svelte-35vrus">Clear</div>`, 1);
+var root_15 = template(`<div class="vault-explorer-search-select__dropdown svelte-35vrus"><div class="vault-explorer-search-select__dropdown-container svelte-35vrus"><!> <!></div> <!></div>`);
+var root10 = template(`<div class="vault-explorer-search-select svelte-35vrus"><input type="text" class="svelte-35vrus"> <span class="vault-explorer-search-select__input-icon svelte-35vrus"><!></span> <!></div>`);
+function Search_select($$anchor, $$props) {
+  push($$props, false);
+  const filteredOptions = mutable_source();
+  let width = prop($$props, "width", 8, "fit-content");
+  let options = prop($$props, "options", 24, () => []);
+  let value = prop($$props, "value", 12, "");
+  let inputValue = mutable_source(value());
+  let isOpen = mutable_source(false);
+  let dropdownRef = mutable_source(null);
+  let currentFocusIndex = mutable_source(0);
+  let inputRef = mutable_source(null);
+  const dispatch = createEventDispatcher();
+  onMount(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      get(dropdownRef) === null || get(dropdownRef) === void 0 ? void 0 : get(dropdownRef).remove();
+    };
+  });
+  function openDropdown() {
+    return __awaiter(this, void 0, void 0, function* () {
+      set(isOpen, true);
+      set(inputValue, "");
+      yield tick();
+      if (get(inputRef) && get(dropdownRef)) {
+        const inputRect = get(inputRef).getBoundingClientRect();
+        mutate(dropdownRef, get(dropdownRef).style.top = `${inputRect.bottom + 6}px`);
+        mutate(dropdownRef, get(dropdownRef).style.left = `${inputRect.left}px`);
+        mutate(dropdownRef, get(dropdownRef).style.width = `${inputRect.width}px`);
+      }
+    });
+  }
+  function closeDropdown() {
+    set(isOpen, false);
+    set(inputValue, value());
+    set(currentFocusIndex, 0);
+  }
+  function handleOptionMouseDown(e) {
+    e.preventDefault();
+  }
+  function handleOptionClearClick() {
+    handleOptionClick("");
+  }
+  function handleOptionClick(option) {
+    closeDropdown();
+    set(inputValue, option);
+    value(option);
+    dispatch("select", { value: option });
+  }
+  function handleInputChange(e) {
+    const value2 = e.target.value;
+    set(inputValue, value2);
+    set(currentFocusIndex, 0);
+  }
+  function handleInputFocus(e) {
+    if (!get(isOpen)) {
+      openDropdown();
+    }
+  }
+  function handleInputClick(e) {
+    if (!get(isOpen)) {
+      openDropdown();
+    }
+  }
+  function handleInputKeyDown(e) {
+    if (e.key === "Tab") {
+      closeDropdown();
+      return;
+    }
+    if (!get(isOpen)) {
+      openDropdown();
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      set(currentFocusIndex, get(currentFocusIndex) + 1);
+      if (get(currentFocusIndex) == get(filteredOptions).length) {
+        set(currentFocusIndex, get(currentFocusIndex) - 1);
+      }
+    } else if (e.key === "ArrowUp") {
+      set(currentFocusIndex, get(currentFocusIndex) - 1);
+      if (get(currentFocusIndex) < 0) {
+        set(currentFocusIndex, set(currentFocusIndex, 0));
+      }
+    } else if (e.key === "Enter") {
+      const option = get(filteredOptions)[get(currentFocusIndex)];
+      if (option) {
+        handleOptionClick(option);
+      }
+    }
+  }
+  function handleClickOutside(e) {
+    const targetEl = e.target;
+    const isInsideClick = targetEl.closest(".vault-explorer-search-select, .vault-explorer-search-select__dropdown-item");
+    if (!isInsideClick && get(isOpen)) {
+      closeDropdown();
+    }
+  }
+  function fuzzySearch(input) {
+    return options().filter((option) => option.toLowerCase().includes(input.toLowerCase()));
+  }
+  function portalAction(node, parent = document.body) {
+    parent = parent || document.body;
+    parent.appendChild(node);
+  }
+  legacy_pre_effect(() => get(inputValue), () => {
+    set(filteredOptions, fuzzySearch(get(inputValue)));
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root10();
+  var input_1 = child(div);
+  remove_input_defaults(input_1);
+  bind_this(input_1, ($$value) => set(inputRef, $$value), () => get(inputRef));
+  var span = sibling(input_1, 2);
+  var node_1 = child(span);
+  Icon(node_1, { iconId: "chevron-down", size: "xs" });
+  reset(span);
+  var node_2 = sibling(span, 2);
+  {
+    var consequent_2 = ($$anchor2) => {
+      var div_1 = root_15();
+      var div_2 = child(div_1);
+      var node_3 = child(div_2);
+      each(node_3, 1, () => get(filteredOptions), index, ($$anchor3, option, i) => {
+        var div_3 = root_22();
+        let classes;
+        var text2 = child(div_3, true);
+        reset(div_3);
+        template_effect(
+          ($0) => {
+            set_attribute(div_3, "aria-selected", get(option) === value());
+            classes = set_class(div_3, 1, "vault-explorer-search-select__dropdown-item svelte-35vrus", null, classes, $0);
+            set_text(text2, get(option));
+          },
+          [
+            () => ({
+              "vault-explorer-search-select__dropdown-item--selected": get(currentFocusIndex) === i
+            })
+          ],
+          derived_safe_equal
+        );
+        event("mousedown", div_3, handleOptionMouseDown);
+        event("click", div_3, (e) => handleOptionClick(get(option)));
+        event("keydown", div_3, () => {
+        });
+        append($$anchor3, div_3);
+      });
+      var node_4 = sibling(node_3, 2);
+      {
+        var consequent = ($$anchor3) => {
+          var div_4 = root_33();
+          append($$anchor3, div_4);
+        };
+        if_block(node_4, ($$render) => {
+          if (get(filteredOptions).length === 0) $$render(consequent);
+        });
+      }
+      reset(div_2);
+      var node_5 = sibling(div_2, 2);
+      {
+        var consequent_1 = ($$anchor3) => {
+          var fragment = root_42();
+          var node_6 = first_child(fragment);
+          Divider(node_6, {});
+          var div_5 = sibling(node_6, 2);
+          event("mousedown", div_5, handleOptionMouseDown);
+          event("click", div_5, (e) => handleOptionClearClick());
+          event("keydown", div_5, () => {
+          });
+          append($$anchor3, fragment);
+        };
+        if_block(node_5, ($$render) => {
+          if (value() !== "") $$render(consequent_1);
+        });
+      }
+      reset(div_1);
+      bind_this(div_1, ($$value) => set(dropdownRef, $$value), () => get(dropdownRef));
+      action(div_1, ($$node) => portalAction == null ? void 0 : portalAction($$node));
+      append($$anchor2, div_1);
+    };
+    if_block(node_2, ($$render) => {
+      if (get(isOpen)) $$render(consequent_2);
+    });
+  }
+  reset(div);
+  template_effect(() => {
+    set_style(div, `width: ${width()}`);
+    set_attribute(input_1, "placeholder", value() || "Search...");
+  });
+  bind_value(input_1, () => get(inputValue), ($$value) => set(inputValue, $$value));
+  event("input", input_1, handleInputChange);
+  event("click", input_1, handleInputClick);
+  event("focus", input_1, handleInputFocus);
+  event("keydown", input_1, handleInputKeyDown);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/custom-filter-app/components/folder-filter.svelte
+var root_23 = template(`<!> <input aria-label="Include subfolders" type="checkbox">`, 1);
+function Folder_filter($$anchor, $$props) {
+  push($$props, false);
+  let index2 = prop($$props, "index", 8);
+  let id = prop($$props, "id", 8);
+  let type = prop($$props, "type", 8);
+  let value = prop($$props, "value", 8);
+  let includeSubfolders = prop($$props, "includeSubfolders", 8);
+  let operator = prop($$props, "operator", 8);
+  let condition = prop($$props, "condition", 8);
+  let isEnabled = prop($$props, "isEnabled", 8);
+  let plugin2;
+  let folders = mutable_source([]);
+  const dispatch = createEventDispatcher();
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+    const allFiles = plugin2.app.vault.getAllLoadedFiles();
+    set(folders, allFiles.filter((file) => file instanceof import_obsidian6.TFolder).map((folder) => folder.path));
+  });
+  onMount(() => {
+    const handleFolderRename = (...data) => {
+      if (data.length < 2) return;
+      if (typeof data[0] === "string" && data[1] instanceof import_obsidian6.TFolder) {
+        const oldPath = data[0];
+        const updatedFolder = data[1];
+        set(folders, get(folders).map((folder) => {
+          if (folder === oldPath) {
+            return updatedFolder.path;
+          }
+          return folder;
+        }));
+        if (oldPath === value()) {
+          dispatch("ruleValueChange", { id: id(), value: updatedFolder.path });
+        }
+      }
+    };
+    EventManager.getInstance().on("folder-rename" /* FOLDER_RENAME */, handleFolderRename);
+    return () => {
+      EventManager.getInstance().off("folder-rename" /* FOLDER_RENAME */, handleFolderRename);
+    };
+  });
+  onMount(() => {
+    const handleFolderCreate = (...data) => {
+      if (data.length > 0 && typeof data[0] === "string") {
+        const newFolder = data[0];
+        set(folders, [...get(folders), newFolder]);
+      }
+    };
+    EventManager.getInstance().on("folder-create" /* FOLDER_CREATE */, handleFolderCreate);
+    return () => {
+      EventManager.getInstance().off("folder-create" /* FOLDER_CREATE */, handleFolderCreate);
+    };
+  });
+  onMount(() => {
+    const handleDeleteFolder = (...data) => {
+      if (data.length > 0 && typeof data[0] === "string") {
+        const path = data[0];
+        set(folders, get(folders).filter((folder) => folder !== path));
+        dispatch("ruleValueChange", { id: id(), value: "" });
+      }
+    };
+    EventManager.getInstance().on("folder-delete" /* FOLDER_DELETE */, handleDeleteFolder);
+    return () => {
+      EventManager.getInstance().off("folder-delete" /* FOLDER_DELETE */, handleDeleteFolder);
+    };
+  });
+  function handleValueChange(e) {
+    const { value: value2 } = e.detail;
+    dispatch("ruleValueChange", { id: id(), value: value2 });
+  }
+  function handleSubFoldersToggle(e) {
+    const value2 = e.target.checked;
+    dispatch("folderSubfoldersToggle", { id: id(), includeSubfolders: value2 });
+  }
+  init();
+  Filter_rule($$anchor, {
+    propertyType: null,
+    get index() {
+      return index2();
+    },
+    get id() {
+      return id();
+    },
+    get type() {
+      return type();
+    },
+    get operator() {
+      return operator();
+    },
+    get condition() {
+      return condition();
+    },
+    get isEnabled() {
+      return isEnabled();
+    },
+    $$events: {
+      ruleDeleteClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleDuplicateClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleTypeChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleConditionChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleOperatorChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleToggle($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      }
+    },
+    $$slots: {
+      "after-condition": ($$anchor2, $$slotProps) => {
+        var fragment_1 = root_23();
+        var node = first_child(fragment_1);
+        Search_select(node, {
+          get value() {
+            return value();
+          },
+          get options() {
+            return get(folders);
+          },
+          $$events: { select: handleValueChange }
+        });
+        var input = sibling(node, 2);
+        remove_input_defaults(input);
+        template_effect(() => set_checked(input, includeSubfolders()));
+        event("change", input, handleSubFoldersToggle);
+        append($$anchor2, fragment_1);
+      }
+    }
+  });
+  pop();
+}
+
+// src/svelte/custom-filter-app/components/property-filter.svelte
+var root_34 = template(`<option> </option>`);
+var root_43 = template(`<option> </option>`);
+var root_24 = template(`<select></select> <select><option>select a property</option><!></select>`, 1);
+var root_7 = template(`<select><option>true</option><option>false</option></select>`);
+var root_9 = template(`<option> </option>`);
+var root_8 = template(`<select></select>`);
+var root_10 = template(`<input>`);
+var root_11 = template(`<input type="date">`);
+var root_122 = template(`<input aria-label="Match when property doesn't exist" type="checkbox">`);
+var root_6 = template(`<!> <!> <!> <!> <!>`, 1);
+function Property_filter($$anchor, $$props) {
+  push($$props, false);
+  const filteredObsidianProperties = mutable_source();
+  let index2 = prop($$props, "index", 8);
+  let id = prop($$props, "id", 8);
+  let type = prop($$props, "type", 8);
+  let propertyName = prop($$props, "propertyName", 8);
+  let propertyType = prop($$props, "propertyType", 8);
+  let operator = prop($$props, "operator", 8);
+  let value = prop($$props, "value", 8);
+  let valueData = prop($$props, "valueData", 8);
+  let condition = prop($$props, "condition", 8);
+  let isEnabled = prop($$props, "isEnabled", 8);
+  let matchWhenPropertyDNE = prop($$props, "matchWhenPropertyDNE", 8);
+  let plugin2;
+  let obsidianProperties = mutable_source([]);
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+    set(obsidianProperties, getAllObsidianProperties(plugin2.app));
+  });
+  const dispatch = createEventDispatcher();
+  function handleValueChange(e) {
+    const value2 = e.target.value;
+    dispatch("ruleValueChange", { id: id(), value: value2 });
+  }
+  function handlePropertyTypeChange(e) {
+    const value2 = e.target.value;
+    dispatch("propertyTypeChange", { id: id(), propertyType: value2 });
+  }
+  function handlePropertyNameChange(e) {
+    const value2 = e.target.value;
+    dispatch("propertyNameChange", { id: id(), name: value2 });
+  }
+  function handleValueDataChange(e) {
+    const value2 = e.target.value;
+    dispatch("propertyValueDataChange", { id: id(), value: value2 });
+  }
+  function handleMatchWhenDNEChange(e) {
+    const value2 = e.target.checked;
+    dispatch("propertyMatchWhenPropertyDNEChange", { id: id(), matchWhenDNE: value2 });
+  }
+  legacy_pre_effect(
+    () => (get(obsidianProperties), deep_read_state(propertyType())),
+    () => {
+      set(filteredObsidianProperties, get(obsidianProperties).filter((prop2) => {
+        if (propertyType() === "list") {
+          return prop2.type === "aliases" || prop2.type === "tags" || prop2.type === "multitext";
+        }
+        return prop2.type === propertyType();
+      }));
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  Filter_rule($$anchor, {
+    get index() {
+      return index2();
+    },
+    get id() {
+      return id();
+    },
+    get propertyType() {
+      return propertyType();
+    },
+    get type() {
+      return type();
+    },
+    get operator() {
+      return operator();
+    },
+    get condition() {
+      return condition();
+    },
+    get isEnabled() {
+      return isEnabled();
+    },
+    $$events: {
+      ruleDeleteClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleDuplicateClick($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleTypeChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleConditionChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleOperatorChange($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      },
+      ruleToggle($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      }
+    },
+    $$slots: {
+      "before-condition": ($$anchor2, $$slotProps) => {
+        var fragment_1 = root_24();
+        var select = first_child(fragment_1);
+        init_select(select, propertyType);
+        var select_value;
+        each(select, 5, () => Object.values(PropertyType), index, ($$anchor3, type2, $$index, $$array) => {
+          var option = root_34();
+          var option_value = {};
+          var text2 = child(option, true);
+          reset(option);
+          template_effect(() => {
+            var _a3;
+            if (option_value !== (option_value = get(type2))) {
+              option.value = (_a3 = option.__value = get(type2)) != null ? _a3 : "";
+            }
+            set_text(text2, get(type2));
+          });
+          append($$anchor3, option);
+        });
+        reset(select);
+        var select_1 = sibling(select, 2);
+        init_select(select_1, propertyName);
+        var select_1_value;
+        var option_1 = child(select_1);
+        option_1.value = option_1.__value = "";
+        var node = sibling(option_1);
+        each(node, 1, () => get(filteredObsidianProperties), (prop2) => prop2.name, ($$anchor3, prop2) => {
+          var option_2 = root_43();
+          var option_2_value = {};
+          var text_1 = child(option_2, true);
+          reset(option_2);
+          template_effect(() => {
+            var _a3;
+            if (option_2_value !== (option_2_value = get(prop2).name)) {
+              option_2.value = (_a3 = option_2.__value = get(prop2).name) != null ? _a3 : "";
+            }
+            set_text(text_1, get(prop2).name);
+          });
+          append($$anchor3, option_2);
+        });
+        reset(select_1);
+        template_effect(() => {
+          var _a3, _b3;
+          if (select_value !== (select_value = propertyType())) {
+            select.value = (_a3 = select.__value = propertyType()) != null ? _a3 : "", select_option(select, propertyType());
+          }
+          if (select_1_value !== (select_1_value = propertyName())) {
+            select_1.value = (_b3 = select_1.__value = propertyName()) != null ? _b3 : "", select_option(select_1, propertyName());
+          }
+        });
+        event("change", select, handlePropertyTypeChange);
+        event("change", select_1, handlePropertyNameChange);
+        append($$anchor2, fragment_1);
+      },
+      "after-condition": ($$anchor2, $$slotProps) => {
+        var fragment_2 = root_6();
+        var node_1 = first_child(fragment_2);
+        {
+          var consequent = ($$anchor3) => {
+            var select_2 = root_7();
+            init_select(select_2, value);
+            var select_2_value;
+            var option_3 = child(select_2);
+            option_3.value = option_3.__value = "true";
+            var option_4 = sibling(option_3);
+            option_4.value = option_4.__value = "false";
+            reset(select_2);
+            template_effect(() => {
+              var _a3;
+              if (select_2_value !== (select_2_value = value())) {
+                select_2.value = (_a3 = select_2.__value = value()) != null ? _a3 : "", select_option(select_2, value());
+              }
+            });
+            event("change", select_2, handleValueChange);
+            append($$anchor3, select_2);
+          };
+          if_block(node_1, ($$render) => {
+            if (propertyType() === "checkbox" /* CHECKBOX */ && condition() !== "exists" /* EXISTS */ && condition() !== "does-not-exist" /* DOES_NOT_EXIST */) $$render(consequent);
+          });
+        }
+        var node_2 = sibling(node_1, 2);
+        {
+          var consequent_1 = ($$anchor3) => {
+            var select_3 = root_8();
+            init_select(select_3, value);
+            var select_3_value;
+            each(select_3, 5, () => Object.values(DatePropertyFilterValue), index, ($$anchor4, value2, $$index_2, $$array_1) => {
+              var option_5 = root_9();
+              var option_5_value = {};
+              var text_2 = child(option_5, true);
+              reset(option_5);
+              template_effect(
+                ($0) => {
+                  var _a3;
+                  if (option_5_value !== (option_5_value = get(value2))) {
+                    option_5.value = (_a3 = option_5.__value = get(value2)) != null ? _a3 : "";
+                  }
+                  set_text(text_2, $0);
+                },
+                [
+                  () => getDisplayNameForDatePropertyFilterValue(get(value2))
+                ],
+                derived_safe_equal
+              );
+              append($$anchor4, option_5);
+            });
+            reset(select_3);
+            template_effect(() => {
+              var _a3;
+              if (select_3_value !== (select_3_value = value())) {
+                select_3.value = (_a3 = select_3.__value = value()) != null ? _a3 : "", select_option(select_3, value());
+              }
+            });
+            event("change", select_3, handleValueChange);
+            append($$anchor3, select_3);
+          };
+          if_block(node_2, ($$render) => {
+            if ((propertyType() === "date" /* DATE */ || propertyType() === "datetime" /* DATETIME */) && condition() !== "exists" /* EXISTS */ && condition() !== "does-not-exist" /* DOES_NOT_EXIST */) $$render(consequent_1);
+          });
+        }
+        var node_3 = sibling(node_2, 2);
+        {
+          var consequent_2 = ($$anchor3) => {
+            var input = root_10();
+            remove_input_defaults(input);
+            template_effect(() => {
+              set_attribute(input, "type", propertyType() === "number" /* NUMBER */ ? "number" : "text");
+              set_attribute(input, "placeholder", propertyType() === "list" /* LIST */ ? "item1,item2,item3" : "value");
+              set_value(input, value());
+            });
+            event("change", input, handleValueChange);
+            append($$anchor3, input);
+          };
+          if_block(node_3, ($$render) => {
+            if (propertyType() !== "checkbox" /* CHECKBOX */ && propertyType() !== "date" /* DATE */ && propertyType() !== "datetime" /* DATETIME */ && condition() !== "exists" /* EXISTS */ && condition() !== "does-not-exist" /* DOES_NOT_EXIST */) $$render(consequent_2);
+          });
+        }
+        var node_4 = sibling(node_3, 2);
+        {
+          var consequent_3 = ($$anchor3) => {
+            var input_1 = root_11();
+            remove_input_defaults(input_1);
+            template_effect(() => set_value(input_1, valueData()));
+            event("change", input_1, handleValueDataChange);
+            append($$anchor3, input_1);
+          };
+          if_block(node_4, ($$render) => {
+            if ((propertyType() === "date" /* DATE */ || propertyType() === "datetime" /* DATETIME */) && value() == "custom" /* CUSTOM */ && condition() !== "exists" /* EXISTS */ && condition() !== "does-not-exist" /* DOES_NOT_EXIST */) $$render(consequent_3);
+          });
+        }
+        var node_5 = sibling(node_4, 2);
+        {
+          var consequent_4 = ($$anchor3) => {
+            var input_2 = root_122();
+            remove_input_defaults(input_2);
+            template_effect(() => set_checked(input_2, matchWhenPropertyDNE()));
+            event("change", input_2, handleMatchWhenDNEChange);
+            append($$anchor3, input_2);
+          };
+          if_block(node_5, ($$render) => {
+            if (condition() !== "exists" /* EXISTS */ && condition() !== "does-not-exist" /* DOES_NOT_EXIST */) $$render(consequent_4);
+          });
+        }
+        append($$anchor2, fragment_2);
+      }
+    }
+  });
+  pop();
+}
+
+// src/svelte/custom-filter-app/components/filter-rule-list.svelte
+var root_16 = template(`<div class="vault-explorer-rule-list__text-empty svelte-2m27f0">No rules to display.</div>`);
+var root_35 = template(`<!> <!> <!> <!>`, 1);
+var root11 = template(`<div class="vault-explorer-rule-list svelte-2m27f0"><!> <!></div>`);
+function Filter_rule_list($$anchor, $$props) {
+  push($$props, false);
+  let rules = prop($$props, "rules", 24, () => []);
+  init();
+  var div = root11();
+  var node = child(div);
+  {
+    var consequent = ($$anchor2) => {
+      var div_1 = root_16();
+      append($$anchor2, div_1);
+    };
+    if_block(node, ($$render) => {
+      if (rules().length === 0) $$render(consequent);
+    });
+  }
+  var node_1 = sibling(node, 2);
+  Stack(node_1, {
+    direction: "column",
+    spacing: "md",
+    width: "100%",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = comment();
+      var node_2 = first_child(fragment);
+      each(node_2, 3, rules, (rule) => rule.id, ($$anchor3, rule, index2) => {
+        var fragment_1 = root_35();
+        var node_3 = first_child(fragment_1);
+        {
+          var consequent_1 = ($$anchor4) => {
+            Property_filter($$anchor4, spread_props(
+              {
+                get index() {
+                  return get(index2);
+                },
+                get id() {
+                  return get(rule).id;
+                },
+                get type() {
+                  return get(rule).type;
+                },
+                get propertyName() {
+                  return get(rule).propertyName;
+                },
+                get operator() {
+                  return get(rule).operator;
+                },
+                get value() {
+                  return get(rule).value;
+                }
+              },
+              () => get(rule).propertyType === "date" /* DATE */ ? { valueData: get(rule).valueData } : { valueData: null },
+              {
+                get condition() {
+                  return get(rule).condition;
+                },
+                get matchWhenPropertyDNE() {
+                  return get(rule).matchWhenPropertyDNE;
+                },
+                get propertyType() {
+                  return get(rule).propertyType;
+                },
+                get isEnabled() {
+                  return get(rule).isEnabled;
+                },
+                $$events: {
+                  ruleTypeChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  ruleConditionChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  ruleOperatorChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  ruleValueChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  ruleToggle($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  ruleDeleteClick($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  ruleDuplicateClick($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  propertyNameChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  propertyTypeChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  propertyValueDataChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  },
+                  propertyMatchWhenPropertyDNEChange($$arg) {
+                    bubble_event.call(this, $$props, $$arg);
+                  }
+                }
+              }
+            ));
+          };
+          if_block(node_3, ($$render) => {
+            if (get(rule).type === "property" /* PROPERTY */) $$render(consequent_1);
+          });
+        }
+        var node_4 = sibling(node_3, 2);
+        {
+          var consequent_2 = ($$anchor4) => {
+            File_name_filter($$anchor4, {
+              get index() {
+                return get(index2);
+              },
+              get id() {
+                return get(rule).id;
+              },
+              get type() {
+                return get(rule).type;
+              },
+              get operator() {
+                return get(rule).operator;
+              },
+              get value() {
+                return get(rule).value;
+              },
+              get condition() {
+                return get(rule).condition;
+              },
+              get isEnabled() {
+                return get(rule).isEnabled;
+              },
+              $$events: {
+                ruleTypeChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleConditionChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleOperatorChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleValueChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleToggle($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleDuplicateClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleDeleteClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                }
+              }
+            });
+          };
+          if_block(node_4, ($$render) => {
+            if (get(rule).type === "file-name" /* FILE_NAME */) $$render(consequent_2);
+          });
+        }
+        var node_5 = sibling(node_4, 2);
+        {
+          var consequent_3 = ($$anchor4) => {
+            Folder_filter($$anchor4, {
+              get index() {
+                return get(index2);
+              },
+              get id() {
+                return get(rule).id;
+              },
+              get type() {
+                return get(rule).type;
+              },
+              get operator() {
+                return get(rule).operator;
+              },
+              get includeSubfolders() {
+                return get(rule).includeSubfolders;
+              },
+              get value() {
+                return get(rule).value;
+              },
+              get condition() {
+                return get(rule).condition;
+              },
+              get isEnabled() {
+                return get(rule).isEnabled;
+              },
+              $$events: {
+                ruleTypeChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleConditionChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleOperatorChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleValueChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleToggle($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleDuplicateClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleDeleteClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                folderSubfoldersToggle($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                }
+              }
+            });
+          };
+          if_block(node_5, ($$render) => {
+            if (get(rule).type === "folder" /* FOLDER */) $$render(consequent_3);
+          });
+        }
+        var node_6 = sibling(node_5, 2);
+        {
+          var consequent_4 = ($$anchor4) => {
+            Content_filter($$anchor4, {
+              get index() {
+                return get(index2);
+              },
+              get id() {
+                return get(rule).id;
+              },
+              get type() {
+                return get(rule).type;
+              },
+              get operator() {
+                return get(rule).operator;
+              },
+              get value() {
+                return get(rule).value;
+              },
+              get condition() {
+                return get(rule).condition;
+              },
+              get isEnabled() {
+                return get(rule).isEnabled;
+              },
+              $$events: {
+                ruleTypeChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleConditionChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleOperatorChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleValueChange($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleToggle($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleDuplicateClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                ruleDeleteClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                }
+              }
+            });
+          };
+          if_block(node_6, ($$render) => {
+            if (get(rule).type === "content" /* CONTENT */) $$render(consequent_4);
+          });
+        }
+        append($$anchor3, fragment_1);
+      });
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/custom-filter-app/services/utils.ts
+var createPropertyFilter = () => {
+  return {
+    id: generateRandomId(),
+    type: "property" /* PROPERTY */,
+    propertyType: "text" /* TEXT */,
+    propertyName: "",
+    operator: "and",
+    isEnabled: true,
+    condition: "is" /* IS */,
+    value: "",
+    matchWhenPropertyDNE: false
+  };
+};
+
+// src/svelte/custom-filter-app/index.svelte
+var root_36 = template(`<option> </option>`);
+var root_44 = template(`<input id="filter-group-name" type="text"> <!>`, 1);
+var root_25 = template(`<select></select> <!>`, 1);
+var root_17 = template(`<!> <!> <!> <!>`, 1);
+var root12 = template(`<div class="vault-explorer-filter-app"><h3>Custom filter</h3> <!> <!> <!> <!> <!> <!> <!> <div class="vault-explorer-filter-app__footer"><!></div></div>`);
+function Custom_filter_app($$anchor, $$props) {
+  push($$props, false);
+  const selectedGroup = mutable_source();
+  let selectedGroupId = mutable_source("");
+  let groups = mutable_source([]);
+  let plugin2;
+  function saveSettings() {
+    return __awaiter(this, void 0, void 0, function* () {
+      plugin2.settings.filters.custom.groups = get(groups);
+      plugin2.settings.filters.custom.selectedGroupId = get(selectedGroupId);
+      yield plugin2.saveSettings();
+    });
+  }
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+    set(groups, plugin2.settings.filters.custom.groups);
+    set(selectedGroupId, plugin2.settings.filters.custom.selectedGroupId);
+  });
+  onMount(() => {
+    return () => {
+      EventManager.getInstance().emit("properties-filter-update" /* PROPERTIES_FILTER_UPDATE */);
+    };
+  });
+  function handleGroupChange(e) {
+    const { value } = e.target;
+    set(selectedGroupId, value);
+  }
+  function handleGroupAddClick() {
+    const newGroup = {
+      id: generateRandomId(),
+      name: `Group ${get(groups).length + 1}`,
+      rules: [createPropertyFilter()],
+      isEnabled: false,
+      isSticky: false
+    };
+    set(selectedGroupId, newGroup.id);
+    set(groups, [...get(groups), newGroup]);
+  }
+  function handleGroupDeleteClick() {
+    const index2 = get(groups).findIndex((group) => group.id === get(selectedGroupId));
+    const newGroups = get(groups).filter((group) => group.id !== get(selectedGroupId));
+    let newIndex = index2 - 1;
+    if (newIndex < 0) {
+      newIndex = 0;
+    }
+    set(groups, newGroups);
+    if (newGroups.length === 0) {
+      set(selectedGroupId, "");
+    } else {
+      set(selectedGroupId, newGroups[newIndex].id);
+    }
+  }
+  function handleRuleAddClick() {
+    const newFilter = createPropertyFilter();
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), { rules: [...group.rules, newFilter] }) : group);
+    set(groups, newGroups);
+  }
+  function handleGroupNameChange(e) {
+    const value = e.target.value;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), { name: value }) : group);
+    set(groups, newGroups);
+  }
+  function handleRuleConditionChange(e) {
+    const { id, condition } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(Object.assign({}, rule), { condition }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handleRuleDeleteClick(e) {
+    const { id } = e.detail;
+    import_js_logger5.default.trace({
+      fileName: "custom-filter-app/index.svelte",
+      functionName: "handleRuleDeleteClick",
+      message: "called"
+    });
+    import_js_logger5.default.debug(
+      {
+        fileName: "custom-filter-app/index.svelte",
+        functionName: "handleRuleDeleteClick",
+        message: "deleting rule"
+      },
+      { id }
+    );
+    const newGroups = get(groups).map((group) => {
+      if (group.id === get(selectedGroupId)) {
+        const newRules = group.rules.filter((rule) => rule.id !== id);
+        return Object.assign(Object.assign({}, group), { rules: newRules });
+      }
+      return group;
+    });
+    set(groups, newGroups);
+  }
+  function handleRuleDuplicateClick(e) {
+    const { id } = e.detail;
+    import_js_logger5.default.trace({
+      fileName: "custom-filter-app/index.svelte",
+      functionName: "handleRuleDuplicateClick",
+      message: "called"
+    });
+    import_js_logger5.default.debug(
+      {
+        fileName: "custom-filter-app/index.svelte",
+        functionName: "handleRuleDuplicateClick",
+        message: "duplicating rule"
+      },
+      { id }
+    );
+    const newGroups = get(groups).map((group) => {
+      if (group.id === get(selectedGroupId)) {
+        const rule = group.rules.find((rule2) => rule2.id === id);
+        if (!rule) {
+          throw new Error(`Rule with id ${id} not found`);
+        }
+        const newRules = [
+          ...group.rules,
+          Object.assign(Object.assign({}, rule), { id: generateRandomId() })
+        ];
+        return Object.assign(Object.assign({}, group), { rules: newRules });
+      }
+      return group;
+    });
+    set(groups, newGroups);
+  }
+  function handlePropertyNameChange(e) {
+    const { id, name } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(Object.assign({}, rule), { propertyName: name }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handleRuleToggle(e) {
+    const { id } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(Object.assign({}, rule), { isEnabled: !rule.isEnabled }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handleRuleOperatorChange(e) {
+    const { id, operator } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(Object.assign({}, rule), { operator }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handleRuleTypeChange(e) {
+    const { id, type } = e.detail;
+    let newCondition;
+    if (type === "property" /* PROPERTY */) {
+      newCondition = "is" /* IS */;
+    } else if (type === "content" /* CONTENT */) {
+      newCondition = "contains" /* CONTAINS */;
+    } else if (type === "folder" /* FOLDER */) {
+      newCondition = "is" /* IS */;
+    } else if (type === "file-name" /* FILE_NAME */) {
+      newCondition = "contains" /* CONTAINS */;
+    } else {
+      throw new Error(`Unhandled filter type: ${type}`);
+    }
+    const newGroups = get(groups).map((group) => {
+      if (group.id === get(selectedGroupId)) {
+        const newRules = group.rules.map((rule) => {
+          if (rule.id === id) {
+            return Object.assign(Object.assign({}, rule), { type, condition: newCondition, value: "" });
+          }
+          return rule;
+        });
+        return Object.assign(Object.assign({}, group), { rules: newRules });
+      }
+      return group;
+    });
+    set(groups, newGroups);
+  }
+  function handlePropertyTypeChange(e) {
+    const { id, propertyType } = e.detail;
+    let newCondition;
+    let newValue = "";
+    if (propertyType === "text") {
+      newCondition = "is" /* IS */;
+    } else if (propertyType === "number") {
+      newCondition = "is-equal" /* IS_EQUAL */;
+    } else if (propertyType === "checkbox") {
+      newCondition = "is" /* IS */;
+      newValue = "true";
+    } else if (propertyType === "list") {
+      newCondition = "contains" /* CONTAINS */;
+    } else if (propertyType === "date" || propertyType === "datetime") {
+      newValue = "today" /* TODAY */;
+      newCondition = "is" /* IS */;
+    } else {
+      throw new Error(`Unhandled filter type: ${propertyType}`);
+    }
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(
+        Object.assign(Object.assign({}, rule), {
+          propertyType,
+          propertyName: "",
+          condition: newCondition,
+          value: newValue
+        }),
+        propertyType === "date" /* DATE */ || propertyType === "datetime" /* DATETIME */ ? { valueData: "" } : {}
+      ) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handleRuleValueChange(e) {
+    const { id, value } = e.detail;
+    const newGroups = get(groups).map((group) => {
+      const { rules } = group;
+      if (group.id === get(selectedGroupId)) {
+        const newRules = rules.map((rule) => {
+          if (rule.id === id) {
+            return Object.assign(Object.assign(Object.assign({}, rule), { value }), rule.type === "property" /* PROPERTY */ && (rule.propertyType === "date" /* DATE */ || rule.propertyType) === "datetime" /* DATETIME */ ? { valueData: "" } : {});
+          }
+          return rule;
+        });
+        return Object.assign(Object.assign({}, group), { rules: newRules });
+      }
+      return group;
+    });
+    set(groups, newGroups);
+  }
+  function handlePropertyValueDataChange(e) {
+    const { id, value } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(Object.assign({}, rule), { valueData: value }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handleFolderSubfoldersToggle(e) {
+    const { id, includeSubfolders } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id && rule.type === "folder" /* FOLDER */ ? Object.assign(Object.assign({}, rule), { includeSubfolders }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  function handlePropertyMatchWhenPropertyDNEChange(e) {
+    const { id, matchWhenDNE } = e.detail;
+    const newGroups = get(groups).map((group) => group.id === get(selectedGroupId) ? Object.assign(Object.assign({}, group), {
+      rules: group.rules.map((rule) => rule.id === id ? Object.assign(Object.assign({}, rule), { matchWhenPropertyDNE: matchWhenDNE }) : rule)
+    }) : group);
+    set(groups, newGroups);
+  }
+  legacy_pre_effect(() => (get(groups), get(selectedGroupId)), () => {
+    set(selectedGroup, get(groups).find((group) => group.id === get(selectedGroupId)));
+  });
+  legacy_pre_effect(() => (get(groups), get(selectedGroupId)), () => {
+    get(groups), get(selectedGroupId), saveSettings();
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root12();
+  var node = sibling(child(div), 2);
+  {
+    var consequent = ($$anchor2) => {
+      var fragment = root_17();
+      var node_1 = first_child(fragment);
+      Stack(node_1, {
+        spacing: "md",
+        align: "flex-end",
+        children: ($$anchor3, $$slotProps) => {
+          var fragment_1 = root_25();
+          var select = first_child(fragment_1);
+          init_select(select, () => get(selectedGroup).id);
+          var select_value;
+          each(select, 5, () => get(groups), index, ($$anchor4, group) => {
+            var option = root_36();
+            var option_value = {};
+            var text2 = child(option, true);
+            reset(option);
+            template_effect(() => {
+              var _a3;
+              if (option_value !== (option_value = get(group).id)) {
+                option.value = (_a3 = option.__value = get(group).id) != null ? _a3 : "";
+              }
+              set_text(text2, get(group).name);
+            });
+            append($$anchor4, option);
+          });
+          reset(select);
+          var node_2 = sibling(select, 2);
+          Stack(node_2, {
+            spacing: "xs",
+            align: "flex-end",
+            children: ($$anchor4, $$slotProps2) => {
+              var fragment_2 = root_44();
+              var input = first_child(fragment_2);
+              remove_input_defaults(input);
+              var node_3 = sibling(input, 2);
+              Icon_button(node_3, {
+                ariaLabel: "Delete group",
+                iconId: "trash",
+                $$events: { click: () => handleGroupDeleteClick() }
+              });
+              template_effect(() => set_value(input, get(selectedGroup).name));
+              event("change", input, handleGroupNameChange);
+              append($$anchor4, fragment_2);
+            },
+            $$slots: { default: true }
+          });
+          template_effect(() => {
+            var _a3;
+            if (select_value !== (select_value = get(selectedGroup).id)) {
+              select.value = (_a3 = select.__value = get(selectedGroup).id) != null ? _a3 : "", select_option(select, get(selectedGroup).id);
+            }
+          });
+          event("change", select, handleGroupChange);
+          append($$anchor3, fragment_1);
+        },
+        $$slots: { default: true }
+      });
+      var node_4 = sibling(node_1, 2);
+      Spacer(node_4, { size: "sm" });
+      var node_5 = sibling(node_4, 2);
+      Divider(node_5, {});
+      var node_6 = sibling(node_5, 2);
+      Spacer(node_6, { size: "sm" });
+      append($$anchor2, fragment);
+    };
+    if_block(node, ($$render) => {
+      if (get(selectedGroup) !== void 0) $$render(consequent);
+    });
+  }
+  var node_7 = sibling(node, 2);
+  Icon_button(node_7, {
+    iconId: "plus",
+    $$events: { click: () => handleGroupAddClick() },
+    children: ($$anchor2, $$slotProps) => {
+      next();
+      var text_1 = text("Add group");
+      append($$anchor2, text_1);
+    },
+    $$slots: { default: true }
+  });
+  var node_8 = sibling(node_7, 2);
+  Spacer(node_8, { size: "sm" });
+  var node_9 = sibling(node_8, 2);
+  Divider(node_9, {});
+  var node_10 = sibling(node_9, 2);
+  const expression = derived_safe_equal(() => {
+    var _a3, _b3;
+    return (_b3 = (_a3 = get(selectedGroup)) == null ? void 0 : _a3.rules) != null ? _b3 : [];
+  });
+  Filter_rule_list(node_10, {
+    get rules() {
+      return get(expression);
+    },
+    $$events: {
+      ruleTypeChange: handleRuleTypeChange,
+      ruleConditionChange: handleRuleConditionChange,
+      ruleDeleteClick: handleRuleDeleteClick,
+      ruleDuplicateClick: handleRuleDuplicateClick,
+      ruleValueChange: handleRuleValueChange,
+      ruleOperatorChange: handleRuleOperatorChange,
+      ruleToggle: handleRuleToggle,
+      groupDeleteClick: handleGroupDeleteClick,
+      groupNameChange: handleGroupNameChange,
+      propertyTypeChange: handlePropertyTypeChange,
+      propertyNameChange: handlePropertyNameChange,
+      propertyValueDataChange: handlePropertyValueDataChange,
+      propertyMatchWhenPropertyDNEChange: handlePropertyMatchWhenPropertyDNEChange,
+      folderSubfoldersToggle: handleFolderSubfoldersToggle
+    }
+  });
+  var node_11 = sibling(node_10, 2);
+  Divider(node_11, {});
+  var node_12 = sibling(node_11, 2);
+  Spacer(node_12, { size: "md" });
+  var div_1 = sibling(node_12, 2);
+  var node_13 = child(div_1);
+  {
+    var consequent_1 = ($$anchor2) => {
+      Icon_button($$anchor2, {
+        iconId: "plus",
+        $$events: { click: handleRuleAddClick },
+        children: ($$anchor3, $$slotProps) => {
+          next();
+          var text_2 = text("Add rule");
+          append($$anchor3, text_2);
+        },
+        $$slots: { default: true }
+      });
+    };
+    if_block(node_13, ($$render) => {
+      if (get(groups).length > 0) $$render(consequent_1);
+    });
+  }
+  reset(div_1);
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/obsidian/custom-filter-modal.ts
+var CustomFilterModal = class extends import_obsidian7.Modal {
+  constructor(plugin2) {
+    super(plugin2.app);
+    this.plugin = plugin2;
+    this.customFilterApp = null;
+  }
+  onOpen() {
+    const { contentEl } = this;
+    this.customFilterApp = mount(Custom_filter_app, {
+      target: contentEl
+    });
+  }
+  onClose() {
+    const { contentEl } = this;
+    if (this.customFilterApp) {
+      unmount(this.customFilterApp);
+    }
+    contentEl.empty();
+  }
+};
+
+// src/svelte/shared/components/flex.svelte
+var root13 = template(`<div class="vault-explorer-flex"><!></div>`);
+function Flex($$anchor, $$props) {
+  let direction = prop($$props, "direction", 8, "row");
+  let justify = prop($$props, "justify", 8, "flex-start");
+  let align = prop($$props, "align", 8, "flex-start");
+  let wrap2 = prop($$props, "wrap", 8, "nowrap");
+  let width = prop($$props, "width", 12, "");
+  let height = prop($$props, "height", 12, "");
+  if (width() === void 0 && direction() === "row") {
+    width("100%");
+  } else if (height() === void 0 && direction() === "column") {
+    height("100%");
+  }
+  var div = root13();
+  var node = child(div);
+  slot(node, $$props, "default", {}, null);
+  reset(div);
+  template_effect(() => {
+    var _a3, _b3, _c2, _d, _e, _f;
+    return set_style(div, `
+		display: flex;
+		flex-direction: ${(_a3 = direction()) != null ? _a3 : ""};
+		justify-content: ${(_b3 = justify()) != null ? _b3 : ""};
+		align-items: ${(_c2 = align()) != null ? _c2 : ""};
+		flex-wrap: ${(_d = wrap2()) != null ? _d : ""};
+		width: ${(_e = width()) != null ? _e : ""};
+		height: ${(_f = height()) != null ? _f : ""};
+	`);
+  });
+  append($$anchor, div);
+}
+
+// src/svelte/shared/components/tab-list.svelte
+var root14 = template(`<div><!></div>`);
+function Tab_list($$anchor, $$props) {
+  push($$props, false);
+  const className = mutable_source();
+  let initialSelectedIndex = prop($$props, "initialSelectedIndex", 8, 0);
+  let variant = prop($$props, "variant", 8, "rounded");
+  let registeredTabs = mutable_source([]);
+  const selectedTab = writable();
+  function registerTab(id) {
+    set(registeredTabs, [...get(registeredTabs), id]);
+  }
+  function unregisterTab(id) {
+    set(registeredTabs, get(registeredTabs).filter((tabId) => tabId !== id));
+  }
+  setContext("selectedTab", selectedTab);
+  setContext("registerTab", registerTab);
+  setContext("unregisterTab", unregisterTab);
+  setContext("variant", variant());
+  legacy_pre_effect(
+    () => (deep_read_state(initialSelectedIndex()), get(registeredTabs)),
+    () => {
+      initialSelectedIndex(), get(registeredTabs).length, selectedTab.set(get(registeredTabs)[initialSelectedIndex()]);
+    }
+  );
+  legacy_pre_effect(() => deep_read_state(variant()), () => {
+    set(className, "vault-explorer-tab-list" + (variant() === "line" ? " vault-explorer-tab-list--line" : ""));
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root14();
+  var node = child(div);
+  Stack(node, {
+    spacing: "sm",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = comment();
+      var node_1 = first_child(fragment);
+      slot(node_1, $$props, "default", {}, null);
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div);
+  template_effect(() => set_class(div, 1, clsx2(get(className)), "svelte-19t7wuc"));
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/shared/components/tab.svelte
+var root15 = template(`<div tabindex="0" role="button"><!></div>`);
+function Tab($$anchor, $$props) {
+  push($$props, false);
+  const [$$stores, $$cleanup] = setup_stores();
+  const $selectedTab = () => store_get(selectedTab, "$selectedTab", $$stores);
+  const isSelected = mutable_source();
+  const className = mutable_source();
+  const dispatch = createEventDispatcher();
+  let draggable = prop($$props, "draggable", 8, false);
+  const id = generateRandomId();
+  const selectedTab = getContext("selectedTab");
+  const registerTab = getContext("registerTab");
+  const unregisterTab = getContext("unregisterTab");
+  const variant = getContext("variant");
+  onMount(() => {
+    registerTab(id);
+    return () => {
+      unregisterTab(id);
+    };
+  });
+  function handleDragStart(event2) {
+    dispatch("dragstart", { nativeEvent: event2 });
+  }
+  function handleDragOver(event2) {
+    dispatch("dragover", { nativeEvent: event2 });
+  }
+  function handleDrop(event2) {
+    dispatch("drop", { nativeEvent: event2 });
+  }
+  function handleClick(event2) {
+    selectedTab.set(id);
+    dispatch("click", { nativeEvent: event2 });
+  }
+  function findClassName(variant2, isSelected2) {
+    let className2 = "vault-explorer-tab";
+    if (variant2 === "line") {
+      className2 += " vault-explorer-tab__line";
+      if (isSelected2) {
+        className2 += "--active";
+      }
+    } else if (variant2 === "rounded") {
+      className2 += " vault-explorer-tab__rounded";
+      if (isSelected2) {
+        className2 += "--active";
+      }
+    }
+    return className2;
+  }
+  legacy_pre_effect(() => $selectedTab(), () => {
+    set(isSelected, $selectedTab() === id);
+  });
+  legacy_pre_effect(() => get(isSelected), () => {
+    set(className, findClassName(variant, get(isSelected)));
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root15();
+  var node = child(div);
+  slot(node, $$props, "default", {}, null);
+  reset(div);
+  template_effect(() => {
+    set_class(div, 1, clsx2(get(className)), "svelte-gy6arn");
+    set_attribute(div, "draggable", draggable());
+  });
+  event("click", div, handleClick);
+  event("dragstart", div, handleDragStart);
+  event("dragover", div, handleDragOver);
+  event("drop", div, handleDrop);
+  event("keydown", div, (e) => (e.key === "Enter" || e.key === " ") && handleClick(e));
+  append($$anchor, div);
+  pop();
+  $$cleanup();
+}
+
+// src/svelte/shared/services/time-utils.ts
+var import_obsidian8 = require("obsidian");
+var moment = import_obsidian8.moment;
+var DATE_FORMATS = ["YYYY-MM-DDTHH:mm:ss", "YYYY-MM-DDTHH:mm", "YYYY-MM-DD"];
+var getStartOfTodayMillis = () => {
+  return moment().startOf("day").valueOf();
+};
+var getStartOfThisWeekMillis = () => {
+  return moment().startOf("week").valueOf();
+};
+var getMomentDate = (date) => {
+  return moment(date, DATE_FORMATS, true);
+};
+var getDateDaysAgo = (daysAgo) => {
+  return moment().subtract(daysAgo, "days").format("YYYY-MM-DD");
+};
+var getDateDaysAhead = (daysAgo) => {
+  return moment().add(daysAgo, "days").format("YYYY-MM-DD");
+};
+var getStartOfLastWeekMillis = () => {
+  return moment().subtract(1, "weeks").startOf("week").valueOf();
+};
+var getTimeMillis = (date) => {
+  const momentDate = moment(date, DATE_FORMATS, true);
+  if (!momentDate.isValid()) {
+    throw new Error(`Date format not handled: ${date}`);
+  }
+  return momentDate.valueOf();
+};
+var isDateSupported = (date) => {
+  const momentDate = moment(date, DATE_FORMATS, true);
+  return momentDate.isValid();
+};
+
+// src/svelte/app/constants.ts
+var DEBOUNCE_INPUT_TIME = 300;
+var SCREEN_SIZE_MD = 600;
+var SCREEN_SIZE_LG = 1024;
+
+// src/svelte/app/services/context-menu.ts
+var import_obsidian9 = require("obsidian");
+var openContextMenu = (e, filePath, app, settings, {
+  coverImageFit,
+  onCoverImageFitChange
+}) => {
+  const { confirmBeforeDelete } = settings;
+  const menu = new import_obsidian9.Menu();
+  menu.setUseNativeMenu(true);
+  menu.addItem((item) => {
+    item.setTitle("Open in new tab");
+    item.onClick(() => openInNewTab(app, filePath));
+  });
+  menu.addItem((item) => {
+    item.setTitle("Open to the right");
+    item.onClick(() => openToTheRight(app, filePath));
+  });
+  menu.addItem((item) => {
+    item.setTitle("Open in new window");
+    item.onClick(() => openInNewWindow(app, filePath));
+  });
+  if (coverImageFit !== void 0 && onCoverImageFitChange !== void 0) {
+    menu.addSeparator();
+    menu.addItem((item) => {
+      item.setTitle("Cover");
+      item.setChecked(coverImageFit === "cover");
+      item.onClick(() => onCoverImageFitChange(filePath, "cover"));
+    });
+    menu.addItem((item) => {
+      item.setTitle("Contain");
+      item.setChecked(coverImageFit === "contain");
+      item.onClick(() => onCoverImageFitChange(filePath, "contain"));
+    });
+  }
+  menu.addSeparator();
+  menu.addItem((item) => {
+    item.setTitle("Delete");
+    item.onClick(async () => {
+      if (confirmBeforeDelete) {
+        if (confirm("Are you sure you want to delete this file?")) {
+          await deleteFile(app, filePath);
+        }
+      } else {
+        await deleteFile(app, filePath);
+      }
+    });
+  });
+  menu.showAtMouseEvent(e);
+};
+var deleteFile = async (app, filePath) => {
+  const file = app.vault.getAbstractFileByPath(filePath);
+  if (!file) return;
+  return app.vault.delete(file);
+};
+var openToTheRight = (app, filePath) => {
+  app.workspace.openLinkText("", filePath, "split", {
+    active: false
+  });
+};
+var openInNewTab = (app, filePath) => {
+  app.workspace.getLeaf().setViewState({
+    type: "markdown",
+    active: false,
+    state: {
+      file: filePath
+    }
+  });
+};
+var openInNewWindow = (app, filePath) => {
+  app.workspace.openLinkText("", filePath, "window");
+};
+
+// src/svelte/app/services/file-icon.ts
+var import_js_logger6 = __toESM(require_logger());
+var getIconIdForFile = (baseName, extension) => {
+  if (baseName.endsWith(".excalidraw")) {
+    return "excalidraw-icon";
+  }
+  switch (extension) {
+    case "md":
+      return "file";
+    case "canvas":
+      return "layout-dashboard";
+    case "zip":
+      return "file-archive";
+    case "png":
+    case "jpg":
+    case "jpeg":
+    case "gif":
+    case "webp":
+    case "svg":
+    case "avif":
+    case "bmp":
+      return "file-image";
+    case "mp3":
+    case "wav":
+    case "aac":
+    case "flac":
+    case "ogg":
+    case "wma":
+    case "alac":
+    case "aiff":
+      return "file-audio";
+    case "mp4":
+    case "avi":
+    case "mkv":
+    case "mov":
+    case "wmv":
+    case "flv":
+    case "webm":
+    case "mpeg":
+    case "m4v":
+    case "3gp":
+      return "file-video";
+    case "xls":
+    case "xlsx":
+      return "file-spreadsheet";
+    case "xml":
+    case "json":
+      return "file-code";
+    case "ppt":
+    case "pptx":
+      return "images";
+    case "doc":
+    case "docx":
+      return "file-type";
+    case "pdf":
+    case "txt":
+      return "file-text";
+    default:
+      import_js_logger6.default.warn(`No icon found for file extension: ${extension}`);
+      return "file";
+  }
+};
+
+// src/svelte/app/services/open-file.ts
+var import_obsidian10 = require("obsidian");
+var openInCurrentTab = (plugin2, filePath) => {
+  const leaves = plugin2.app.workspace.getLeavesOfType("markdown");
+  const leaf = leaves.find((leaf2) => {
+    var _a3, _b3;
+    return ((_b3 = (_a3 = leaf2.view.file) == null ? void 0 : _a3.path) != null ? _b3 : "") === filePath;
+  });
+  if (leaf) {
+    plugin2.app.workspace.setActiveLeaf(leaf);
+  } else {
+    plugin2.app.workspace.openLinkText("", filePath, "tab", {
+      active: true
+    });
+  }
+};
+
+// src/svelte/app/services/time-string.ts
+var import_obsidian11 = require("obsidian");
+var moment2 = import_obsidian11.moment;
+var formatAsBearTimeString = (milliseconds) => {
+  const now = moment2();
+  const time = moment2(milliseconds);
+  const diffInSeconds = now.diff(time, "seconds");
+  const diffInMinutes = now.diff(time, "minutes");
+  const diffInHours = now.diff(time, "hours");
+  const diffInDays = now.diff(time, "days");
+  if (diffInSeconds < 60) {
+    return "Just now";
+  }
+  if (diffInMinutes < 60) {
+    return `${diffInMinutes} minutes ago`;
+  }
+  if (diffInHours < 24) {
+    return `${diffInHours} hours ago`;
+  }
+  if (diffInDays === 1) {
+    return `Yesterday at ${time.format("h:mm A")}`;
+  }
+  if (time.year() === now.year()) {
+    return time.format("MMMM D");
+  }
+  return time.format("MMMM D, YYYY");
+};
+
+// src/svelte/app/services/utils/content-utils.ts
+var removeFrontmatter = (content) => {
+  return content.replace(/^---\n[\s\S]*?\n---/, "");
+};
+var removeEmptyLines = (content) => {
+  const emptyLineRegex = /^\s*[\r\n]/gm;
+  return content.replace(emptyLineRegex, "");
+};
+var removeNewLines = (content) => {
+  return content.replace(/\n/g, " ");
+};
+var removeExtraNewLines = (content) => {
+  return content.split("\n").filter((line) => line.trim() !== "").join("\n");
+};
+var removeMarkdownHashes = (content) => {
+  const headerRegex = /^(#{1,6})\s*(.*)$/gm;
+  return content.replace(headerRegex, (_match, _hashes, text2) => `${text2}`);
+};
+var removeLevel1Headers = (content) => {
+  const header1Regex = /^#\s.*$/gm;
+  return content.replace(header1Regex, "");
+};
+var removeItalicsMarkdown = (content) => {
+  const italicRegex = /\*(.*?)\*/g;
+  return content.replace(italicRegex, "$1");
+};
+var removeBoldMarkdown = (content) => {
+  const boldRegex = /\*\*(.*?)\*\*/g;
+  return content.replace(boldRegex, "$1");
+};
+var removeMarkdownHighlight = (content) => {
+  const highlightRegex = /==(.*?)==/g;
+  return content.replace(highlightRegex, "$1");
+};
+var removeCodeBlocks = (content) => {
+  const codeBlockRegex = /```[\s\S]*?```/g;
+  return content.replace(codeBlockRegex, "");
+};
+var removeMarkdownTables = (content) => {
+  const tableRegex = /\|.*\n\|[-:| ]+\n(\|.*\n)*/g;
+  return content.replace(tableRegex, "");
+};
+var removeWikiLinks = (content) => {
+  const wikiLinkRegex = /\[\[(.*?)\]\]/g;
+  return content.replace(wikiLinkRegex, "$1");
+};
+
+// src/svelte/app/components/feed-card.svelte
+var root_18 = template(`<!> <div class="vault-explorer-feed-card__title-text svelte-fjv237"> </div>`, 1);
+var root_37 = template(`<!> <div class="vault-explorer-feed-card__content svelte-fjv237"><!></div>`, 1);
+var root16 = template(`<div tabindex="0" role="button" class="vault-explorer-feed-card svelte-fjv237"><div tabindex="0" role="link" class="vault-explorer-feed-card__title svelte-fjv237"><!></div> <!> <!> <div class="vault-explorer-feed-card__creation-time svelte-fjv237"></div></div>`);
+function Feed_card($$anchor, $$props) {
+  push($$props, false);
+  const displayContent = mutable_source();
+  let displayName = prop($$props, "displayName", 8);
+  let baseName = prop($$props, "baseName", 8);
+  let extension = prop($$props, "extension", 8);
+  let path = prop($$props, "path", 8);
+  let createdMillis = prop($$props, "createdMillis", 8);
+  let content = prop($$props, "content", 8);
+  let ref = mutable_source(null);
+  let enableFileIcons = mutable_source(false);
+  let removeH1 = mutable_source(true);
+  let lineClampSmall = 2;
+  let lineClampMedium = 3;
+  let lineClampLarge = 5;
+  let collapseStyle = mutable_source("no-new-lines");
+  let currentLineClamp = mutable_source(lineClampLarge);
+  let plugin2;
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+    set(enableFileIcons, plugin2.settings.enableFileIcons);
+    set(removeH1, plugin2.settings.views.feed.removeH1);
+    set(collapseStyle, plugin2.settings.views.feed.collapseStyle);
+    lineClampLarge = plugin2.settings.views.feed.lineClampLarge;
+    lineClampMedium = plugin2.settings.views.feed.lineClampMedium;
+    lineClampSmall = plugin2.settings.views.feed.lineClampSmall;
+  });
+  onMount(() => {
+    function handleFileIconsChange() {
+      set(enableFileIcons, plugin2.settings.enableFileIcons);
+    }
+    EventManager.getInstance().on("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    return () => {
+      EventManager.getInstance().off("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    };
+  });
+  onMount(() => {
+    function handleCollapseFeedContentChange() {
+      set(removeH1, plugin2.settings.views.feed.removeH1);
+      set(collapseStyle, plugin2.settings.views.feed.collapseStyle);
+      lineClampLarge = plugin2.settings.views.feed.lineClampLarge;
+      lineClampMedium = plugin2.settings.views.feed.lineClampMedium;
+      lineClampSmall = plugin2.settings.views.feed.lineClampSmall;
+      const leafEl = get(ref) === null || get(ref) === void 0 ? void 0 : get(ref).closest(".workspace-leaf-content");
+      if (leafEl) {
+        checkLeafWidth(leafEl);
+      }
+    }
+    EventManager.getInstance().on("feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */, handleCollapseFeedContentChange);
+    return () => {
+      EventManager.getInstance().off("feed-content-setting-change" /* FEED_CONTENT_SETTING_CHANGE */, handleCollapseFeedContentChange);
+    };
+  });
+  onMount(() => {
+    let resizeObserver;
+    const leafEl = get(ref) === null || get(ref) === void 0 ? void 0 : get(ref).closest(".workspace-leaf-content");
+    if (leafEl) {
+      checkLeafWidth(leafEl);
+      resizeObserver = new ResizeObserver(() => {
+        checkLeafWidth(leafEl);
+      });
+      resizeObserver.observe(leafEl);
+    }
+    return () => {
+      resizeObserver === null || resizeObserver === void 0 ? void 0 : resizeObserver.disconnect();
+    };
+  });
+  function checkLeafWidth(leafEl) {
+    const { clientWidth } = leafEl;
+    if (clientWidth < SCREEN_SIZE_MD) {
+      set(currentLineClamp, lineClampSmall);
+    } else if (clientWidth >= SCREEN_SIZE_MD && clientWidth < SCREEN_SIZE_LG) {
+      set(currentLineClamp, lineClampMedium);
+    } else {
+      set(currentLineClamp, lineClampLarge);
+    }
+  }
+  function handleTitleClick() {
+    handleCardClick();
+  }
+  function handleCardClick() {
+    openInCurrentTab(plugin2, path());
+  }
+  function handleCardContextMenu(e) {
+    const nativeEvent = e;
+    const { app, settings } = plugin2;
+    openContextMenu(nativeEvent, path(), app, settings, {});
+  }
+  function handleCardMouseOver(e) {
+    const targetEl = e.currentTarget;
+    plugin2.app.workspace.trigger("hover-link", {
+      event: e,
+      linktext: path(),
+      source: HOVER_LINK_SOURCE_ID,
+      targetEl,
+      hoverParent: targetEl.parentElement
+    });
+  }
+  const creationString = formatAsBearTimeString(createdMillis());
+  function getDisplayContent(content2, removeH12, collapseStyle2) {
+    if (content2 != null) {
+      let displayContent2 = content2;
+      displayContent2 = removeFrontmatter(displayContent2);
+      if (removeH12) {
+        displayContent2 = removeLevel1Headers(displayContent2);
+      }
+      displayContent2 = removeMarkdownHashes(displayContent2);
+      displayContent2 = removeMarkdownTables(displayContent2);
+      displayContent2 = removeBoldMarkdown(displayContent2);
+      displayContent2 = removeItalicsMarkdown(displayContent2);
+      displayContent2 = removeMarkdownHighlight(displayContent2);
+      displayContent2 = removeCodeBlocks(displayContent2);
+      displayContent2 = removeWikiLinks(displayContent2);
+      displayContent2 = removeEmptyLines(displayContent2);
+      if (collapseStyle2 === "no-new-lines") {
+        displayContent2 = removeNewLines(displayContent2);
+      } else {
+        displayContent2 = removeExtraNewLines(displayContent2);
+      }
+      return displayContent2;
+    }
+    return content2;
+  }
+  legacy_pre_effect(
+    () => (deep_read_state(content()), get(removeH1), get(collapseStyle)),
+    () => {
+      set(displayContent, getDisplayContent(content(), get(removeH1), get(collapseStyle)));
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root16();
+  var div_1 = child(div);
+  var node = child(div_1);
+  Stack(node, {
+    spacing: "xs",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_18();
+      var node_1 = first_child(fragment);
+      {
+        var consequent = ($$anchor3) => {
+          const expression = derived_safe_equal(() => getIconIdForFile(baseName(), extension()));
+          Icon($$anchor3, {
+            get iconId() {
+              return get(expression);
+            }
+          });
+        };
+        if_block(node_1, ($$render) => {
+          if (get(enableFileIcons)) $$render(consequent);
+        });
+      }
+      var div_2 = sibling(node_1, 2);
+      var text2 = child(div_2, true);
+      reset(div_2);
+      template_effect(() => set_text(text2, displayName()));
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div_1);
+  var node_2 = sibling(div_1, 2);
+  {
+    var consequent_1 = ($$anchor2) => {
+      var fragment_2 = root_37();
+      var node_3 = first_child(fragment_2);
+      Spacer(node_3, { size: "sm" });
+      var div_3 = sibling(node_3, 2);
+      var node_4 = child(div_3);
+      html(node_4, () => get(displayContent));
+      reset(div_3);
+      template_effect(() => {
+        var _a3;
+        return set_style(div_3, `-webkit-line-clamp: ${(_a3 = get(currentLineClamp)) != null ? _a3 : ""};`);
+      });
+      append($$anchor2, fragment_2);
+    };
+    if_block(node_2, ($$render) => {
+      if (get(displayContent) != null && get(displayContent).length > 0) $$render(consequent_1);
+    });
+  }
+  var node_5 = sibling(node_2, 2);
+  {
+    var consequent_2 = ($$anchor2) => {
+      Spacer($$anchor2, { size: "md" });
+    };
+    if_block(node_5, ($$render) => {
+      if (get(displayContent) != null) $$render(consequent_2);
+    });
+  }
+  var div_4 = sibling(node_5, 2);
+  div_4.textContent = creationString;
+  reset(div);
+  bind_this(div, ($$value) => set(ref, $$value), () => get(ref));
+  event("focus", div_1, () => {
+  });
+  event("keydown", div_1, (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleTitleClick();
+    }
+  });
+  event("click", div, handleCardClick);
+  event("keydown", div, (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      handleCardClick();
+    }
+  });
+  event("contextmenu", div, (e) => {
+    e.preventDefault();
+    handleCardContextMenu(e);
+  });
+  event("focus", div, () => {
+  });
+  event("mouseover", div, handleCardMouseOver);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/feed-view.svelte
+var root17 = template(`<div class="vault-explorer-feed-view"></div>`);
+function Feed_view($$anchor, $$props) {
+  push($$props, false);
+  let data = prop($$props, "data", 24, () => []);
+  let startIndex = prop($$props, "startIndex", 8);
+  let pageLength = prop($$props, "pageLength", 8);
+  let filteredItems = mutable_source([]);
+  legacy_pre_effect(
+    () => (deep_read_state(startIndex()), deep_read_state(data()), deep_read_state(pageLength())),
+    () => {
+      if (startIndex() < data().length) {
+        set(filteredItems, Array.from({ length: pageLength() }, (_3, i) => {
+          const index2 = startIndex() + i;
+          return data()[index2];
+        }));
+      } else {
+        set(filteredItems, []);
+      }
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root17();
+  each(div, 5, () => get(filteredItems), (fileRenderData) => fileRenderData.id, ($$anchor2, fileRenderData) => {
+    Feed_card($$anchor2, {
+      get displayName() {
+        return get(fileRenderData).displayName;
+      },
+      get extension() {
+        return get(fileRenderData).extension;
+      },
+      get baseName() {
+        return get(fileRenderData).baseName;
+      },
+      get path() {
+        return get(fileRenderData).path;
+      },
+      get content() {
+        return get(fileRenderData).content;
+      },
+      get createdMillis() {
+        return get(fileRenderData).createdMillis;
+      }
+    });
+  });
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/filter-group.svelte
+var root_26 = template(`<!> <div> </div>`, 1);
+var root18 = template(`<div tabindex="0" role="button" draggable="true"><!> <!></div>`);
+function Filter_group($$anchor, $$props) {
+  push($$props, false);
+  const className = mutable_source();
+  let id = prop($$props, "id", 8);
+  let name = prop($$props, "name", 8);
+  let isSelected = prop($$props, "isSelected", 8);
+  let isSticky = prop($$props, "isSticky", 8);
+  const dispatch = createEventDispatcher();
+  function handleClick(event2) {
+    dispatch("groupClick", { id: id(), nativeEvent: event2 });
+  }
+  function handleContextMenu() {
+    dispatch("groupContextMenu", { id: id() });
+  }
+  function handleDragStart(event2) {
+    dispatch("groupDragStart", { nativeEvent: event2, id: id() });
+  }
+  function handleDragOver(event2) {
+    dispatch("groupDragOver", { nativeEvent: event2, id: id() });
+  }
+  function handleDrop(event2) {
+    dispatch("groupDrop", { nativeEvent: event2, id: id() });
+  }
+  function getClassName(isSelected2) {
+    let className2 = "vault-explorer-filter-group";
+    if (isSelected2) {
+      className2 += " vault-explorer-filter-group--active";
+    }
+    return className2;
+  }
+  legacy_pre_effect(() => deep_read_state(isSelected()), () => {
+    set(className, getClassName(isSelected()));
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root18();
+  var node = child(div);
+  {
+    var consequent = ($$anchor2) => {
+      Stack($$anchor2, {
+        spacing: "xs",
+        align: "center",
+        children: ($$anchor3, $$slotProps) => {
+          var fragment_1 = root_26();
+          var node_1 = first_child(fragment_1);
+          Icon(node_1, { iconId: "pin", size: "xs" });
+          var div_1 = sibling(node_1, 2);
+          var text2 = child(div_1, true);
+          reset(div_1);
+          template_effect(() => set_text(text2, name()));
+          append($$anchor3, fragment_1);
+        },
+        $$slots: { default: true }
+      });
+    };
+    if_block(node, ($$render) => {
+      if (isSticky()) $$render(consequent);
+    });
+  }
+  var node_2 = sibling(node, 2);
+  {
+    var consequent_1 = ($$anchor2) => {
+      var text_1 = text();
+      template_effect(() => set_text(text_1, name()));
+      append($$anchor2, text_1);
+    };
+    if_block(node_2, ($$render) => {
+      if (!isSticky()) $$render(consequent_1);
+    });
+  }
+  reset(div);
+  template_effect(() => set_class(div, 1, clsx2(get(className)), "svelte-177z3ka"));
+  event("dragstart", div, handleDragStart);
+  event("dragover", div, handleDragOver);
+  event("drop", div, handleDrop);
+  event("click", div, handleClick);
+  event("contextmenu", div, handleContextMenu);
+  event("keydown", div, (e) => (e.key === "Enter" || e.key === " ") && handleClick(e));
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/filter-group-list.svelte
+var root_45 = template(`<span class="vault-explorer-empty-label svelte-1p7asts">No groups to display</span>`);
+var root_19 = template(`<!> <!>`, 1);
+var root19 = template(`<div class="vault-explorer-filter-group-list svelte-1p7asts"><!></div>`);
+function Filter_group_list($$anchor, $$props) {
+  push($$props, false);
+  let groups = prop($$props, "groups", 24, () => []);
+  let plugin2;
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+  });
+  init();
+  var div = root19();
+  var node = child(div);
+  Stack(node, {
+    spacing: "md",
+    width: "fit-content",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_19();
+      var node_1 = first_child(fragment);
+      {
+        var consequent = ($$anchor3) => {
+          var fragment_1 = comment();
+          var node_2 = first_child(fragment_1);
+          each(node_2, 1, groups, (group) => group.id, ($$anchor4, group) => {
+            Filter_group($$anchor4, {
+              get id() {
+                return get(group).id;
+              },
+              get name() {
+                return get(group).name;
+              },
+              get isSelected() {
+                return get(group).isEnabled;
+              },
+              get isSticky() {
+                return get(group).isSticky;
+              },
+              $$events: {
+                groupClick($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                groupDrop($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                groupDragOver($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                groupDragStart($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                },
+                groupContextMenu($$arg) {
+                  bubble_event.call(this, $$props, $$arg);
+                }
+              }
+            });
+          });
+          append($$anchor3, fragment_1);
+        };
+        if_block(node_1, ($$render) => {
+          if (groups().length > 0) $$render(consequent);
+        });
+      }
+      var node_3 = sibling(node_1, 2);
+      {
+        var consequent_1 = ($$anchor3) => {
+          var span = root_45();
+          append($$anchor3, span);
+        };
+        if_block(node_3, ($$render) => {
+          if (groups().length === 0) $$render(consequent_1);
+        });
+      }
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/grid-card.svelte
+var import_js_logger8 = __toESM(require_logger());
+
+// src/svelte/shared/components/property.svelte
+var root_110 = template(`<!> <a href="none" target="_blank" rel="noopener" class="svelte-3r43xb"> </a>`, 1);
+var root20 = template(`<div class="vault-explorer-property svelte-3r43xb"><!></div>`);
+function Property($$anchor, $$props) {
+  push($$props, false);
+  let name = prop($$props, "name", 8);
+  let value = prop($$props, "value", 8);
+  let formattedValue = mutable_source();
+  let plugin2;
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+  });
+  function handleClick(e) {
+    e.stopPropagation();
+    const searchPlugin = plugin2.app.internalPlugins.plugins["global-search"];
+    if (searchPlugin) {
+      searchPlugin.instance.openGlobalSearch(`["${name()}":${get(formattedValue)}]`);
+    }
+  }
+  legacy_pre_effect(
+    () => (deep_read_state(value()), get(formattedValue)),
+    () => {
+      if (typeof value() === "string") {
+        set(formattedValue, value());
+        set(formattedValue, get(formattedValue).replace(/\[/g, ""));
+        set(formattedValue, get(formattedValue).replace(/\]/g, ""));
+      }
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root20();
+  var node = child(div);
+  Stack(node, {
+    spacing: "xs",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_110();
+      var node_1 = first_child(fragment);
+      Icon(node_1, { iconId: "text", size: "xs" });
+      var a = sibling(node_1, 2);
+      var text2 = child(a, true);
+      reset(a);
+      template_effect(() => set_text(text2, get(formattedValue)));
+      event("click", a, handleClick);
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/shared/components/tag.svelte
+var root21 = template(`<a target="_blank" rel="noopener"> </a>`);
+function Tag($$anchor, $$props) {
+  push($$props, false);
+  const className = mutable_source();
+  let name = prop($$props, "name", 8);
+  let variant = prop($$props, "variant", 8, "default");
+  let plugin2;
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+  });
+  function handleClick(e) {
+    e.stopPropagation();
+    const searchPlugin = plugin2.app.internalPlugins.plugins["global-search"];
+    if (searchPlugin) {
+      searchPlugin.instance.openGlobalSearch(`tag:#${name()}`);
+    }
+  }
+  legacy_pre_effect(() => deep_read_state(variant()), () => {
+    set(className, `vault-explorer-tag vault-explorer-tag--${variant()}`);
+  });
+  legacy_pre_effect_reset();
+  init();
+  var a = root21();
+  var text2 = child(a);
+  reset(a);
+  template_effect(() => {
+    var _a3;
+    set_class(a, 1, clsx2(get(className)), "svelte-1l9wdx4");
+    set_attribute(a, "href", `#${name()}`);
+    set_text(text2, `#${(_a3 = name()) != null ? _a3 : ""}`);
+  });
+  event("click", a, handleClick);
+  append($$anchor, a);
+  pop();
+}
+
+// src/svelte/app/services/fetch-social-media-image.ts
+var import_js_logger7 = __toESM(require_logger());
+var import_obsidian12 = require("obsidian");
+var fetchSocialMediaImage = async (url) => {
+  import_js_logger7.default.trace({
+    fileName: "fetch-social-media-image.ts",
+    functionName: "fetchSocialMediaImage",
+    message: "called"
+  });
+  try {
+    const response = await (0, import_obsidian12.requestUrl)({
+      url,
+      method: "GET",
+      headers: {
+        Cookie: ""
+        // Clear any cookies
+      }
+    });
+    const html2 = response.text;
+    const parser = new DOMParser();
+    const document2 = parser.parseFromString(html2, "text/html");
+    const ogImage = getMetaTagContent(document2, "og:image");
+    const twitterImage = getMetaTagContent(document2, "twitter:image");
+    let imageUrl = ogImage || twitterImage;
+    if (imageUrl) {
+      if (imageUrl.startsWith("//")) {
+        imageUrl = imageUrl.replace(/^\/+/, "");
+      }
+      if (!imageUrl.startsWith("https://")) {
+        imageUrl = `https://${imageUrl}`;
+      }
+      if (imageUrl.endsWith("@100w_100h_1c.png")) {
+        imageUrl = imageUrl.replace(
+          /@100w_100h_1c.png$/,
+          "@425w_150h_1c.png"
+        );
+      }
+      import_js_logger7.default.debug(
+        {
+          fileName: "social-media-image.ts",
+          functionName: "fetchSocialMediaImage",
+          message: "found image"
+        },
+        { imageUrl }
+      );
+    } else {
+      import_js_logger7.default.debug(
+        {
+          fileName: "social-media-image.ts",
+          functionName: "fetchSocialMediaImage",
+          message: "no image found"
+        },
+        { url }
+      );
+    }
+    return imageUrl != null ? imageUrl : null;
+  } catch (error) {
+    import_js_logger7.default.error(
+      {
+        fileName: "social-media-image.ts",
+        functionName: "fetchSocialMediaImage",
+        message: "failed to fetch"
+      },
+      error
+    );
+    return null;
+  }
+};
+var getMetaTagContent = (document2, property) => {
+  const tag = document2.querySelector(`meta[property='${property}']`) || document2.querySelector(`meta[name='${property}']`);
+  return tag ? tag.getAttribute("content") : null;
+};
+
+// src/svelte/app/services/utils/url-utils.ts
+var getDomainFromUrl = (url) => {
+  try {
+    const parsedUrl = new URL(url);
+    let hostname = parsedUrl.hostname;
+    if (hostname.startsWith("www.")) {
+      hostname = hostname.substring(4);
+    }
+    return hostname;
+  } catch (error) {
+    return "Invalid URL";
+  }
+};
+
+// src/svelte/app/components/grid-card.svelte
+var root_111 = template(`<img class="vault-explorer-grid-card__image svelte-uq88l3">`);
+var root_27 = template(`<div class="vault-explorer-grid-card__image svelte-uq88l3"></div>`);
+var root_38 = template(`<!> <div class="vault-explorer-grid-card__title-text svelte-uq88l3"> </div>`, 1);
+var root_62 = template(`<!><a class="vault-explorer-grid-card__url svelte-uq88l3" target="_blank" rel="noopener"> </a>`, 1);
+var root_52 = template(`<!> <!>`, 1);
+var root_102 = template(`<!> <!> <!>`, 1);
+var root_92 = template(`<div class="vault-explorer-grid-card__properties"><!></div>`);
+var root_152 = template(`<div class="vault-explorer-grid-card__tags"><!></div>`);
+var root_82 = template(`<div class="vault-explorer-grid-card__footer svelte-uq88l3"><!> <!> <!></div>`);
+var root22 = template(`<div tabindex="0" role="button" class="vault-explorer-grid-card vault-explorer-grid-card--interactive svelte-uq88l3"><div class="vault-explorer-grid-card__cover svelte-uq88l3"><!> <!></div> <div class="vault-explorer-grid-card__body svelte-uq88l3"><div tabindex="0" role="link" class="vault-explorer-grid-card__title svelte-uq88l3"><!></div> <!></div> <!> <!></div>`);
+function Grid_card($$anchor, $$props) {
+  push($$props, false);
+  const hasFooterContent = mutable_source();
+  let displayName = prop($$props, "displayName", 8);
+  let path = prop($$props, "path", 8);
+  let baseName = prop($$props, "baseName", 8);
+  let extension = prop($$props, "extension", 8);
+  let url = prop($$props, "url", 8);
+  let imageUrl = prop($$props, "imageUrl", 8);
+  let tags = prop($$props, "tags", 8);
+  let custom1 = prop($$props, "custom1", 8);
+  let custom2 = prop($$props, "custom2", 8);
+  let custom3 = prop($$props, "custom3", 8);
+  let coverImageFit = prop($$props, "coverImageFit", 8);
+  let plugin2 = mutable_source();
+  let enableFileIcons = mutable_source(false);
+  let loadSocialMediaImage = true;
+  let imgSrc = mutable_source(null);
+  let isImageLoaded = mutable_source(false);
+  store_default.plugin.subscribe((p) => {
+    set(plugin2, p);
+    set(enableFileIcons, get(plugin2).settings.enableFileIcons);
+    loadSocialMediaImage = get(plugin2).settings.views.grid.loadSocialMediaImage;
+  });
+  const dispatch = createEventDispatcher();
+  onMount(() => {
+    function handleLoadSocialMediaImageChange() {
+      const newValue = get(plugin2).settings.views.grid.loadSocialMediaImage;
+      loadSocialMediaImage = newValue;
+    }
+    EventManager.getInstance().on("load-social-media-image-setting-change" /* LOAD_SOCIAL_MEDIA_IMAGE_SETTING_CHANGE */, handleLoadSocialMediaImageChange);
+    return () => {
+      EventManager.getInstance().off("load-social-media-image-setting-change" /* LOAD_SOCIAL_MEDIA_IMAGE_SETTING_CHANGE */, handleLoadSocialMediaImageChange);
+    };
+  });
+  onMount(() => {
+    function handleFileIconsChange() {
+      set(enableFileIcons, get(plugin2).settings.enableFileIcons);
+    }
+    EventManager.getInstance().on("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    return () => {
+      EventManager.getInstance().off("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    };
+  });
+  function handleUrlClick(e) {
+    e.stopPropagation();
+  }
+  function handleCardClick() {
+    openInCurrentTab(get(plugin2), path());
+  }
+  function handleCoverImageFitChange(filePath, value) {
+    dispatch("coverImageFitChange", { filePath, value });
+  }
+  function handleCardContextMenu(e) {
+    const nativeEvent = e;
+    const showCoverImageOptions = path().endsWith(".md");
+    const { app, settings } = get(plugin2);
+    openContextMenu(nativeEvent, path(), app, settings, {
+      coverImageFit: showCoverImageOptions ? coverImageFit() : void 0,
+      onCoverImageFitChange: showCoverImageOptions ? handleCoverImageFitChange : void 0
+    });
+  }
+  function handleCardMouseOver(e) {
+    const targetEl = e.currentTarget;
+    get(plugin2).app.workspace.trigger("hover-link", {
+      event: e,
+      linktext: path(),
+      source: HOVER_LINK_SOURCE_ID,
+      targetEl,
+      hoverParent: targetEl.parentElement
+    });
+  }
+  function handleTitleClick() {
+    handleCardClick();
+  }
+  function handleImageLoad() {
+    set(isImageLoaded, true);
+  }
+  function handleImageError(event2) {
+    return __awaiter(this, void 0, void 0, function* () {
+      import_js_logger8.default.trace({
+        fileName: "grid-card.svelte",
+        functionName: "handleImageError",
+        message: "called"
+      });
+      const target = event2.target;
+      target.onerror = null;
+      import_js_logger8.default.debug(
+        {
+          fileName: "grid-card.svelte",
+          functionName: "handleImageError",
+          message: "target.src"
+        },
+        { src: target.src }
+      );
+      if (loadSocialMediaImage) {
+        const socialUrl = yield fetchSocialMediaImage(target.src);
+        if (socialUrl) {
+          yield putSMICacheEntry(target.src, socialUrl);
+          target.src = socialUrl;
+        } else {
+          yield putSMICacheEntry(target.src, null);
+        }
+      }
+    });
+  }
+  function getCachedSocialMediaImageUrl(websiteUrl) {
+    return __awaiter(this, void 0, void 0, function* () {
+      import_js_logger8.default.trace({
+        fileName: "grid-card.svelte",
+        functionName: "getCachedSocialMediaUrl",
+        message: "result"
+      });
+      const url2 = new URL(websiteUrl);
+      const entry = yield getSMICacheEntry(url2.href);
+      if (entry) {
+        const { smiUrl } = entry;
+        if (smiUrl) {
+          const isExpired = yield isSMICacheEntryExpired(entry);
+          if (!isExpired) {
+            return {
+              status: "SUCCESS",
+              websiteUrl: url2.href,
+              smiUrl
+            };
+          } else {
+            return {
+              status: "EXPIRED",
+              websiteUrl: url2.href,
+              smiUrl
+            };
+          }
+        } else {
+          return {
+            status: "NO_IMAGE",
+            websiteUrl: url2.href,
+            smiUrl
+          };
+        }
+      }
+      return {
+        status: "NOT_FOUND",
+        websiteUrl: url2.href,
+        smiUrl: null
+      };
+    });
+  }
+  legacy_pre_effect(() => (deep_read_state(imageUrl()), import_js_logger8.default), () => {
+    if (imageUrl()) {
+      set(isImageLoaded, false);
+      getCachedSocialMediaImageUrl(imageUrl()).then((result) => {
+        import_js_logger8.default.debug(
+          {
+            fileName: "grid-card.svelte",
+            functionName: "getCachedSocialMediaImage",
+            message: "result"
+          },
+          { result }
+        );
+        const { status, smiUrl } = result;
+        if (status === "SUCCESS") {
+          set(imgSrc, smiUrl);
+        } else if (status === "EXPIRED" || status === "NOT_FOUND") {
+          set(imgSrc, imageUrl());
+        } else if (status === "NO_IMAGE") {
+        }
+      });
+    }
+  });
+  legacy_pre_effect(
+    () => (deep_read_state(tags()), deep_read_state(custom1()), deep_read_state(custom2()), deep_read_state(custom3())),
+    () => {
+      set(hasFooterContent, tags() != null || custom1() != null || custom2() != null || custom3() != null);
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root22();
+  var div_1 = child(div);
+  var node = child(div_1);
+  {
+    var consequent = ($$anchor2) => {
+      var img = root_111();
+      template_effect(() => {
+        var _a3;
+        set_attribute(img, "src", get(imgSrc));
+        set_style(img, `display: ${get(isImageLoaded) ? "block" : "none"}; object-fit: ${(_a3 = coverImageFit()) != null ? _a3 : ""};`);
+      });
+      event("load", img, handleImageLoad);
+      event("error", img, handleImageError);
+      append($$anchor2, img);
+    };
+    if_block(node, ($$render) => {
+      if (get(imgSrc) !== null) $$render(consequent);
+    });
+  }
+  var node_1 = sibling(node, 2);
+  {
+    var consequent_1 = ($$anchor2) => {
+      var div_2 = root_27();
+      append($$anchor2, div_2);
+    };
+    if_block(node_1, ($$render) => {
+      if (imageUrl() === null) $$render(consequent_1);
+    });
+  }
+  reset(div_1);
+  var div_3 = sibling(div_1, 2);
+  var div_4 = child(div_3);
+  var node_2 = child(div_4);
+  Stack(node_2, {
+    spacing: "xs",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_38();
+      var node_3 = first_child(fragment);
+      {
+        var consequent_2 = ($$anchor3) => {
+          const expression = derived_safe_equal(() => getIconIdForFile(baseName(), extension()));
+          Icon($$anchor3, {
+            get iconId() {
+              return get(expression);
+            }
+          });
+        };
+        if_block(node_3, ($$render) => {
+          if (get(enableFileIcons)) $$render(consequent_2);
+        });
+      }
+      var div_5 = sibling(node_3, 2);
+      var text2 = child(div_5, true);
+      reset(div_5);
+      template_effect(() => set_text(text2, displayName()));
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div_4);
+  var node_4 = sibling(div_4, 2);
+  {
+    var consequent_3 = ($$anchor2) => {
+      var fragment_2 = root_52();
+      var node_5 = first_child(fragment_2);
+      Spacer(node_5, { size: "xs" });
+      var node_6 = sibling(node_5, 2);
+      Stack(node_6, {
+        spacing: "xs",
+        align: "center",
+        children: ($$anchor3, $$slotProps) => {
+          var fragment_3 = root_62();
+          var node_7 = first_child(fragment_3);
+          Icon(node_7, { iconId: "link", size: "xs" });
+          var a = sibling(node_7);
+          var text_1 = child(a, true);
+          reset(a);
+          template_effect(
+            ($0) => {
+              set_attribute(a, "href", url());
+              set_text(text_1, $0);
+            },
+            [() => getDomainFromUrl(url())],
+            derived_safe_equal
+          );
+          event("click", a, handleUrlClick);
+          append($$anchor3, fragment_3);
+        },
+        $$slots: { default: true }
+      });
+      append($$anchor2, fragment_2);
+    };
+    if_block(node_4, ($$render) => {
+      if (url() !== null) $$render(consequent_3);
+    });
+  }
+  reset(div_3);
+  var node_8 = sibling(div_3, 2);
+  {
+    var consequent_4 = ($$anchor2) => {
+      Divider($$anchor2, {});
+    };
+    if_block(node_8, ($$render) => {
+      if (get(hasFooterContent)) $$render(consequent_4);
+    });
+  }
+  var node_9 = sibling(node_8, 2);
+  {
+    var consequent_11 = ($$anchor2) => {
+      var div_6 = root_82();
+      var node_10 = child(div_6);
+      {
+        var consequent_8 = ($$anchor3) => {
+          var div_7 = root_92();
+          var node_11 = child(div_7);
+          Wrap(node_11, {
+            spacingX: "sm",
+            spacingY: "sm",
+            children: ($$anchor4, $$slotProps) => {
+              var fragment_5 = root_102();
+              var node_12 = first_child(fragment_5);
+              {
+                var consequent_5 = ($$anchor5) => {
+                  Property($$anchor5, {
+                    get name() {
+                      return get(plugin2).settings.properties.custom1;
+                    },
+                    get value() {
+                      return custom1();
+                    }
+                  });
+                };
+                if_block(node_12, ($$render) => {
+                  if (custom1() !== null) $$render(consequent_5);
+                });
+              }
+              var node_13 = sibling(node_12, 2);
+              {
+                var consequent_6 = ($$anchor5) => {
+                  Property($$anchor5, {
+                    get name() {
+                      return get(plugin2).settings.properties.custom2;
+                    },
+                    get value() {
+                      return custom2();
+                    }
+                  });
+                };
+                if_block(node_13, ($$render) => {
+                  if (custom2() !== null) $$render(consequent_6);
+                });
+              }
+              var node_14 = sibling(node_13, 2);
+              {
+                var consequent_7 = ($$anchor5) => {
+                  Property($$anchor5, {
+                    get name() {
+                      return get(plugin2).settings.properties.custom3;
+                    },
+                    get value() {
+                      return custom3();
+                    }
+                  });
+                };
+                if_block(node_14, ($$render) => {
+                  if (custom3() !== null) $$render(consequent_7);
+                });
+              }
+              append($$anchor4, fragment_5);
+            },
+            $$slots: { default: true }
+          });
+          reset(div_7);
+          append($$anchor3, div_7);
+        };
+        if_block(node_10, ($$render) => {
+          if (custom1() !== null || custom2() !== null || custom3() !== null) $$render(consequent_8);
+        });
+      }
+      var node_15 = sibling(node_10, 2);
+      {
+        var consequent_9 = ($$anchor3) => {
+          Spacer($$anchor3, { size: "sm" });
+        };
+        if_block(node_15, ($$render) => {
+          if ((custom1() !== null || custom2() !== null || custom3() !== null) && tags() !== null) $$render(consequent_9);
+        });
+      }
+      var node_16 = sibling(node_15, 2);
+      {
+        var consequent_10 = ($$anchor3) => {
+          var div_8 = root_152();
+          var node_17 = child(div_8);
+          Wrap(node_17, {
+            spacingX: "sm",
+            spacingY: "sm",
+            children: ($$anchor4, $$slotProps) => {
+              var fragment_10 = comment();
+              var node_18 = first_child(fragment_10);
+              each(node_18, 1, tags, index, ($$anchor5, tag) => {
+                Tag($$anchor5, {
+                  get name() {
+                    return get(tag);
+                  },
+                  variant: "unstyled"
+                });
+              });
+              append($$anchor4, fragment_10);
+            },
+            $$slots: { default: true }
+          });
+          reset(div_8);
+          append($$anchor3, div_8);
+        };
+        if_block(node_16, ($$render) => {
+          if (tags() !== null) $$render(consequent_10);
+        });
+      }
+      reset(div_6);
+      append($$anchor2, div_6);
+    };
+    if_block(node_9, ($$render) => {
+      if (get(hasFooterContent)) $$render(consequent_11);
+    });
+  }
+  reset(div);
+  event("focus", div_4, () => {
+  });
+  event("click", div_4, (e) => {
+    e.preventDefault();
+    handleTitleClick();
+  });
+  event("keydown", div_4, (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleTitleClick();
+    }
+  });
+  event("click", div, handleCardClick);
+  event("keydown", div, (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      handleCardClick();
+    }
+  });
+  event("contextmenu", div, (e) => {
+    e.preventDefault();
+    handleCardContextMenu(e);
+  });
+  event("focus", div, () => {
+  });
+  event("mouseover", div, handleCardMouseOver);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/grid-view.svelte
+var root23 = template(`<div class="vault-explorer-grid-view"><div class="vault-explorer-grid-view__container svelte-q9ur25"></div></div>`);
+function Grid_view($$anchor, $$props) {
+  push($$props, false);
+  let data = prop($$props, "data", 8);
+  let startIndex = prop($$props, "startIndex", 8);
+  let pageLength = prop($$props, "pageLength", 8);
+  let filteredItems = mutable_source([]);
+  legacy_pre_effect(
+    () => (deep_read_state(startIndex()), deep_read_state(data()), deep_read_state(pageLength())),
+    () => {
+      if (startIndex() < data().length) {
+        set(filteredItems, Array.from({ length: pageLength() }, (_3, i) => {
+          const index2 = startIndex() + i;
+          return data()[index2];
+        }));
+      } else {
+        set(filteredItems, []);
+      }
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root23();
+  var div_1 = child(div);
+  each(div_1, 5, () => get(filteredItems), (fileRenderData) => fileRenderData.id, ($$anchor2, fileRenderData) => {
+    Grid_card($$anchor2, {
+      get displayName() {
+        return get(fileRenderData).displayName;
+      },
+      get path() {
+        return get(fileRenderData).path;
+      },
+      get coverImageFit() {
+        return get(fileRenderData).coverImageFit;
+      },
+      get baseName() {
+        return get(fileRenderData).baseName;
+      },
+      get extension() {
+        return get(fileRenderData).extension;
+      },
+      get imageUrl() {
+        return get(fileRenderData).imageUrl;
+      },
+      get url() {
+        return get(fileRenderData).url;
+      },
+      get tags() {
+        return get(fileRenderData).tags;
+      },
+      get custom1() {
+        return get(fileRenderData).custom1;
+      },
+      get custom2() {
+        return get(fileRenderData).custom2;
+      },
+      get custom3() {
+        return get(fileRenderData).custom3;
+      },
+      $$events: {
+        coverImageFitChange($$arg) {
+          bubble_event.call(this, $$props, $$arg);
+        }
+      }
+    });
+  });
+  reset(div_1);
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/list-item.svelte
+var root_28 = template(`<!> <div class="vault-explorer-list-item__title-text svelte-1nbkoqv"> </div>`, 1);
+var root_46 = template(`<div><!></div>`);
+var root_112 = template(`<div tabindex="0" role="link"><!></div> <!>`, 1);
+var root24 = template(`<div tabindex="0" role="button" class="vault-explorer-list-item svelte-1nbkoqv"><!></div>`);
+function List_item($$anchor, $$props) {
+  push($$props, false);
+  const tagsClassName = mutable_source();
+  const titleClassName = mutable_source();
+  let displayName = prop($$props, "displayName", 8);
+  let baseName = prop($$props, "baseName", 8);
+  let extension = prop($$props, "extension", 8);
+  let path = prop($$props, "path", 8);
+  let tags = prop($$props, "tags", 8);
+  let showTags = mutable_source();
+  let isSmallScreenSize = prop($$props, "isSmallScreenSize", 8);
+  let enableFileIcons = mutable_source(false);
+  let ref = mutable_source(null);
+  let plugin2;
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+    set(enableFileIcons, plugin2.settings.enableFileIcons);
+    set(showTags, plugin2.settings.views.list.showTags);
+  });
+  onMount(() => {
+    function handleShowTagsChange() {
+      set(showTags, plugin2.settings.views.list.showTags);
+    }
+    EventManager.getInstance().on("show-tags-setting-change" /* SHOW_TAGS_SETTING_CHANGE */, handleShowTagsChange);
+    return () => {
+      EventManager.getInstance().off("show-tags-setting-change" /* SHOW_TAGS_SETTING_CHANGE */, handleShowTagsChange);
+    };
+  });
+  onMount(() => {
+    function handleFileIconsChange() {
+      set(enableFileIcons, plugin2.settings.enableFileIcons);
+    }
+    EventManager.getInstance().on("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    return () => {
+      EventManager.getInstance().off("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    };
+  });
+  function handleTitleClick() {
+    handleItemClick();
+  }
+  function handleItemClick() {
+    openInCurrentTab(plugin2, path());
+  }
+  function handleItemContextMenu(e) {
+    const nativeEvent = e;
+    const { app, settings } = plugin2;
+    openContextMenu(nativeEvent, path(), app, settings, {});
+  }
+  function handleItemMouseOver(e) {
+    const targetEl = e.currentTarget;
+    plugin2.app.workspace.trigger("hover-link", {
+      event: e,
+      linktext: path(),
+      source: HOVER_LINK_SOURCE_ID,
+      targetEl,
+      hoverParent: targetEl.parentElement
+    });
+  }
+  legacy_pre_effect(() => deep_read_state(isSmallScreenSize()), () => {
+    set(tagsClassName, `vault-explorer-list-item__tags ${isSmallScreenSize() ? "vault-explorer-list-item__tags--full" : ""}`);
+  });
+  legacy_pre_effect(
+    () => (deep_read_state(isSmallScreenSize()), get(showTags)),
+    () => {
+      set(titleClassName, `vault-explorer-list-item__title ${isSmallScreenSize() || !get(showTags) ? "vault-explorer-list-item__title--full" : ""}`);
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root24();
+  var node = child(div);
+  const expression = derived_safe_equal(() => isSmallScreenSize() ? "wrap" : "nowrap");
+  Wrap(node, {
+    spacingX: "lg",
+    spacingY: "sm",
+    align: "center",
+    get wrap() {
+      return get(expression);
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_112();
+      var div_1 = first_child(fragment);
+      var node_1 = child(div_1);
+      Stack(node_1, {
+        spacing: "xs",
+        children: ($$anchor3, $$slotProps2) => {
+          var fragment_1 = root_28();
+          var node_2 = first_child(fragment_1);
+          {
+            var consequent = ($$anchor4) => {
+              const expression_1 = derived_safe_equal(() => getIconIdForFile(baseName(), extension()));
+              Icon($$anchor4, {
+                get iconId() {
+                  return get(expression_1);
+                }
+              });
+            };
+            if_block(node_2, ($$render) => {
+              if (get(enableFileIcons)) $$render(consequent);
+            });
+          }
+          var div_2 = sibling(node_2, 2);
+          var text2 = child(div_2, true);
+          reset(div_2);
+          template_effect(() => set_text(text2, displayName()));
+          append($$anchor3, fragment_1);
+        },
+        $$slots: { default: true }
+      });
+      reset(div_1);
+      var node_3 = sibling(div_1, 2);
+      {
+        var consequent_1 = ($$anchor3) => {
+          var div_3 = root_46();
+          var node_4 = child(div_3);
+          const expression_2 = derived_safe_equal(() => isSmallScreenSize() ? "flex-start" : "flex-end");
+          Wrap(node_4, {
+            spacingX: "sm",
+            spacingY: "sm",
+            get justify() {
+              return get(expression_2);
+            },
+            children: ($$anchor4, $$slotProps2) => {
+              var fragment_3 = comment();
+              var node_5 = first_child(fragment_3);
+              each(node_5, 1, tags, index, ($$anchor5, tag) => {
+                Tag($$anchor5, {
+                  get name() {
+                    return get(tag);
+                  },
+                  variant: "unstyled"
+                });
+              });
+              append($$anchor4, fragment_3);
+            },
+            $$slots: { default: true }
+          });
+          reset(div_3);
+          template_effect(() => set_class(div_3, 1, clsx2(get(tagsClassName)), "svelte-1nbkoqv"));
+          append($$anchor3, div_3);
+        };
+        if_block(node_3, ($$render) => {
+          if (get(showTags) && tags() !== null) $$render(consequent_1);
+        });
+      }
+      template_effect(() => set_class(div_1, 1, clsx2(get(titleClassName)), "svelte-1nbkoqv"));
+      event("focus", div_1, () => {
+      });
+      event("keydown", div_1, (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleTitleClick();
+        }
+      });
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div);
+  bind_this(div, ($$value) => set(ref, $$value), () => get(ref));
+  event("click", div, handleItemClick);
+  event("keydown", div, (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      handleItemClick();
+    }
+  });
+  event("contextmenu", div, (e) => {
+    e.preventDefault();
+    handleItemContextMenu(e);
+  });
+  event("focus", div, () => {
+  });
+  event("mouseover", div, handleItemMouseOver);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/list-view.svelte
+var root25 = template(`<div class="vault-explorer-list-view"></div>`);
+function List_view($$anchor, $$props) {
+  push($$props, false);
+  let data = prop($$props, "data", 8);
+  let startIndex = prop($$props, "startIndex", 8);
+  let pageLength = prop($$props, "pageLength", 8);
+  let isSmallScreenSize = prop($$props, "isSmallScreenSize", 8);
+  let filteredItems = mutable_source([]);
+  legacy_pre_effect(
+    () => (deep_read_state(startIndex()), deep_read_state(data()), deep_read_state(pageLength())),
+    () => {
+      if (startIndex() < data().length) {
+        set(filteredItems, Array.from({ length: pageLength() }, (_3, i) => {
+          const index2 = startIndex() + i;
+          return data()[index2];
+        }));
+      } else {
+        set(filteredItems, []);
+      }
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root25();
+  each(div, 5, () => get(filteredItems), (fileRenderData) => fileRenderData.id, ($$anchor2, fileRenderData) => {
+    List_item($$anchor2, {
+      get displayName() {
+        return get(fileRenderData).displayName;
+      },
+      get extension() {
+        return get(fileRenderData).extension;
+      },
+      get baseName() {
+        return get(fileRenderData).baseName;
+      },
+      get isSmallScreenSize() {
+        return isSmallScreenSize();
+      },
+      get path() {
+        return get(fileRenderData).path;
+      },
+      get tags() {
+        return get(fileRenderData).tags;
+      }
+    });
+  });
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/pagination-indicator.svelte
+var root_29 = template(`<!> <!> <!> <!>`, 1);
+var root_47 = template(`<span> </span> <span>-</span> <span> </span>`, 1);
+var root_39 = template(`<!> <span>of</span> <span> </span>`, 1);
+var root_113 = template(`<!> <!>`, 1);
+var root26 = template(`<div class="vault-explorer-pagination-indicator svelte-1avci51"><div class="vault-explorer-pagination-indicator__container svelte-1avci51"><!></div></div>`);
+function Pagination_indicator($$anchor, $$props) {
+  push($$props, false);
+  let startIndex = prop($$props, "startIndex", 8);
+  let endIndex = prop($$props, "endIndex", 8);
+  let currentPage = prop($$props, "currentPage", 8);
+  let totalPages = prop($$props, "totalPages", 8);
+  let totalItems = prop($$props, "totalItems", 8);
+  let isWrapped = mutable_source(false);
+  let ref = mutable_source(null);
+  function checkWrapping() {
+    const parentEl = get(ref) === null || get(ref) === void 0 ? void 0 : get(ref).parentElement;
+    if (parentEl && get(ref)) {
+      if (get(ref).offsetWidth == parentEl.offsetWidth) {
+        set(isWrapped, true);
+      } else {
+        set(isWrapped, false);
+      }
+    }
+  }
+  onMount(() => {
+    let resizeObserver;
+    const leafEl = get(ref) === null || get(ref) === void 0 ? void 0 : get(ref).closest(".workspace-leaf-content");
+    if (leafEl) {
+      checkWrapping();
+      resizeObserver = new ResizeObserver(() => {
+        checkWrapping();
+      });
+      resizeObserver.observe(leafEl);
+    }
+    return () => {
+      resizeObserver === null || resizeObserver === void 0 ? void 0 : resizeObserver.disconnect();
+    };
+  });
+  const dispatch = createEventDispatcher();
+  function handlePageChange(value) {
+    dispatch("change", { value });
+  }
+  init();
+  var div = root26();
+  var div_1 = child(div);
+  var node = child(div_1);
+  const expression = derived_safe_equal(() => get(isWrapped) ? "row-reverse" : "row");
+  Stack(node, {
+    align: "center",
+    get direction() {
+      return get(expression);
+    },
+    justify: "flex-end",
+    spacing: "md",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment = root_113();
+      var node_1 = first_child(fragment);
+      Flex(node_1, {
+        children: ($$anchor3, $$slotProps2) => {
+          var fragment_1 = root_29();
+          var node_2 = first_child(fragment_1);
+          Icon_button(node_2, {
+            iconId: "chevrons-left",
+            ariaLabel: "First page",
+            $$events: { click: () => handlePageChange(1) }
+          });
+          var node_3 = sibling(node_2, 2);
+          const expression_1 = derived_safe_equal(() => currentPage() === 1);
+          Icon_button(node_3, {
+            iconId: "chevron-left",
+            ariaLabel: "Previous page",
+            get disabled() {
+              return get(expression_1);
+            },
+            $$events: {
+              click: () => handlePageChange(currentPage() - 1)
+            }
+          });
+          var node_4 = sibling(node_3, 2);
+          const expression_2 = derived_safe_equal(() => currentPage() === totalPages());
+          Icon_button(node_4, {
+            iconId: "chevron-right",
+            ariaLabel: "Next page",
+            get disabled() {
+              return get(expression_2);
+            },
+            $$events: {
+              click: () => handlePageChange(currentPage() + 1)
+            }
+          });
+          var node_5 = sibling(node_4, 2);
+          Icon_button(node_5, {
+            iconId: "chevrons-right",
+            ariaLabel: "Last page",
+            $$events: {
+              click: () => handlePageChange(totalPages())
+            }
+          });
+          append($$anchor3, fragment_1);
+        },
+        $$slots: { default: true }
+      });
+      var node_6 = sibling(node_1, 2);
+      Stack(node_6, {
+        spacing: "xs",
+        children: ($$anchor3, $$slotProps2) => {
+          var fragment_2 = root_39();
+          var node_7 = first_child(fragment_2);
+          Stack(node_7, {
+            spacing: "xs",
+            children: ($$anchor4, $$slotProps3) => {
+              var fragment_3 = root_47();
+              var span = first_child(fragment_3);
+              var text2 = child(span, true);
+              reset(span);
+              var span_1 = sibling(span, 4);
+              var text_1 = child(span_1, true);
+              reset(span_1);
+              template_effect(() => {
+                set_text(text2, startIndex() + 1);
+                set_text(text_1, endIndex());
+              });
+              append($$anchor4, fragment_3);
+            },
+            $$slots: { default: true }
+          });
+          var span_2 = sibling(node_7, 4);
+          var text_2 = child(span_2, true);
+          reset(span_2);
+          template_effect(() => set_text(text_2, totalItems()));
+          append($$anchor3, fragment_2);
+        },
+        $$slots: { default: true }
+      });
+      append($$anchor2, fragment);
+    },
+    $$slots: { default: true }
+  });
+  reset(div_1);
+  reset(div);
+  bind_this(div, ($$value) => set(ref, $$value), () => get(ref));
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/components/search-filter.svelte
+var root_210 = template(`<div tabindex="0" role="button" aria-label="Clear search" class="search-input-clear-button"></div>`);
+var root_114 = template(`<div class="vault-explorer-search-filter svelte-7spz8q"><input type="text" placeholder="Search..." class="svelte-7spz8q"> <!></div> <!>`, 1);
+function Search_filter($$anchor, $$props) {
+  push($$props, false);
+  let value = prop($$props, "value", 8);
+  let inputRef = mutable_source();
+  let hidden = mutable_source(true);
+  const dispatch = createEventDispatcher();
+  function handleClearClick() {
+    dispatch("clear", { value: "" });
+  }
+  function handleIconClick() {
+    set(hidden, !get(hidden));
+    if (!get(hidden)) {
+      requestAnimationFrame(() => {
+        get(inputRef) === null || get(inputRef) === void 0 ? void 0 : get(inputRef).focus();
+      });
+    }
+  }
+  init();
+  Stack($$anchor, {
+    spacing: "sm",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = root_114();
+      var div = first_child(fragment_1);
+      var input = child(div);
+      remove_input_defaults(input);
+      bind_this(input, ($$value) => set(inputRef, $$value), () => get(inputRef));
+      var node = sibling(input, 2);
+      {
+        var consequent = ($$anchor3) => {
+          var div_1 = root_210();
+          event("click", div_1, () => handleClearClick());
+          event("keydown", div_1, (e) => {
+            if (e.key === "Enter") {
+              handleClearClick();
+            }
+          });
+          append($$anchor3, div_1);
+        };
+        if_block(node, ($$render) => {
+          if (value().length > 0) $$render(consequent);
+        });
+      }
+      reset(div);
+      var node_1 = sibling(div, 2);
+      Icon_button(node_1, {
+        iconId: "search",
+        ariaLabel: "Search",
+        $$events: { click: () => handleIconClick() }
+      });
+      template_effect(() => {
+        set_style(div, `display: ${get(hidden) ? "none" : "block"};`);
+        set_value(input, value());
+      });
+      event("input", input, function($$arg) {
+        bubble_event.call(this, $$props, $$arg);
+      });
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+  pop();
+}
+
+// src/svelte/app/components/sort-filter.svelte
+var import_obsidian13 = require("obsidian");
+function Sort_filter($$anchor, $$props) {
+  push($$props, false);
+  let value = prop($$props, "value", 8);
+  const dispatch = createEventDispatcher();
+  function handleValueChange(value2) {
+    dispatch("change", { value: value2 });
+  }
+  function handleButtonClick(e) {
+    const nativeEvent = e.detail.nativeEvent;
+    const menu = new import_obsidian13.Menu();
+    menu.setUseNativeMenu(true);
+    menu.addItem((item) => {
+      item.setTitle("File name (A-Z)");
+      item.setChecked(value() === "file-name-asc");
+      item.onClick(() => handleValueChange("file-name-asc"));
+    });
+    menu.addItem((item) => {
+      item.setTitle("File name (Z-A)");
+      item.setChecked(value() === "file-name-desc");
+      item.onClick(() => handleValueChange("file-name-desc"));
+    });
+    menu.addSeparator();
+    menu.addItem((item) => {
+      item.setTitle("Modified time (new to old)");
+      item.setChecked(value() === "modified-desc");
+      item.onClick(() => handleValueChange("modified-desc"));
+    });
+    menu.addItem((item) => {
+      item.setTitle("Modified time (old to new)");
+      item.setChecked(value() === "modified-asc");
+      item.onClick(() => handleValueChange("modified-asc"));
+    });
+    menu.addSeparator();
+    menu.addItem((item) => {
+      item.setTitle("Created time (new to old)");
+      item.setChecked(value() === "created-desc");
+      item.onClick(() => handleValueChange("created-desc"));
+    });
+    menu.addItem((item) => {
+      item.setTitle("Created time (old to new)");
+      item.setChecked(value() === "created-asc");
+      item.onClick(() => handleValueChange("created-asc"));
+    });
+    menu.addSeparator();
+    menu.addItem((item) => {
+      item.setTitle("Random");
+      item.setChecked(value() === "random");
+      item.onClick(() => handleValueChange("random"));
+    });
+    menu.showAtMouseEvent(nativeEvent);
+  }
+  init();
+  Icon_button($$anchor, {
+    ariaLabel: "Change sort order",
+    iconId: "arrow-up-narrow-wide",
+    $$events: { click: handleButtonClick }
+  });
+  pop();
+}
+
+// src/svelte/app/components/table-view.svelte
+var root_115 = template(`<th class="svelte-r14v61"> </th>`);
+var root_93 = template(`<!> <div class="vault-explorer-table-view__title-text svelte-r14v61"> </div>`, 1);
+var root_83 = template(`<div class="vault-explorer-table-view__title svelte-r14v61"><!></div>`);
+var root_116 = template(`<div> </div>`);
+var root_310 = template(`<td class="svelte-r14v61"><!></td>`);
+var root_211 = template(`<tr tabindex="0" role="button" class="vault-explorer-list-item svelte-r14v61"></tr>`);
+var root27 = template(`<div class="vault-explorer-table-view svelte-r14v61"><table class="svelte-r14v61"><thead><tr class="svelte-r14v61"></tr></thead><tbody></tbody></table></div>`);
+function Table_view($$anchor, $$props) {
+  push($$props, false);
+  let data = prop($$props, "data", 8);
+  let startIndex = prop($$props, "startIndex", 8);
+  let pageLength = prop($$props, "pageLength", 8);
+  let filteredItems = mutable_source([]);
+  let plugin2 = null;
+  let enableFileIcons = mutable_source(true);
+  let columns = [
+    {
+      key: "baseName",
+      label: "Name",
+      classNames: "vault-explorer-table-view__title-text"
+    },
+    { key: "tags", label: "Tags" }
+    // {
+  ];
+  store_default.plugin.subscribe((p) => {
+    plugin2 = p;
+    set(enableFileIcons, plugin2.settings.enableFileIcons);
+  });
+  onMount(() => {
+    function handleFileIconsChange() {
+      if (plugin2 === null) return;
+      set(enableFileIcons, plugin2.settings.enableFileIcons);
+    }
+    EventManager.getInstance().on("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    return () => {
+      EventManager.getInstance().off("file-icons-setting-change" /* FILE_ICONS_SETTING_CHANGE */, handleFileIconsChange);
+    };
+  });
+  function handleRowClick(path) {
+    if (plugin2 === null) return;
+    openInCurrentTab(plugin2, path);
+  }
+  function handleRowMouseOver(e, path) {
+    if (plugin2 === null) return;
+    const targetEl = e.currentTarget;
+    plugin2.app.workspace.trigger("hover-link", {
+      event: e,
+      linktext: path,
+      source: HOVER_LINK_SOURCE_ID,
+      targetEl,
+      hoverParent: targetEl.parentElement
+    });
+  }
+  function handleRowContextMenu(e, path) {
+    if (plugin2 === null) return;
+    const nativeEvent = e;
+    const { app, settings } = plugin2;
+    openContextMenu(nativeEvent, path, app, settings, {});
+  }
+  function getValue(item, column) {
+    var _a3;
+    const { key, format } = column;
+    const itemValue = (_a3 = item[key]) !== null && _a3 !== void 0 ? _a3 : "";
+    if (format !== void 0) {
+      return format(itemValue);
+    }
+    return itemValue;
+  }
+  function asStringArray(value) {
+    return value;
+  }
+  legacy_pre_effect(
+    () => (deep_read_state(startIndex()), deep_read_state(data()), deep_read_state(pageLength())),
+    () => {
+      if (startIndex() < data().length) {
+        set(filteredItems, Array.from({ length: pageLength() }, (_3, i) => {
+          const index2 = startIndex() + i;
+          return data()[index2];
+        }));
+      } else {
+        set(filteredItems, []);
+      }
+    }
+  );
+  legacy_pre_effect_reset();
+  init();
+  var div = root27();
+  var table = child(div);
+  var thead = child(table);
+  var tr = child(thead);
+  each(tr, 5, () => columns, (column) => column.key, ($$anchor2, column) => {
+    var th = root_115();
+    var text2 = child(th, true);
+    reset(th);
+    template_effect(() => set_text(text2, get(column).label));
+    append($$anchor2, th);
+  });
+  reset(tr);
+  reset(thead);
+  var tbody = sibling(thead);
+  each(tbody, 5, () => get(filteredItems), index, ($$anchor2, filteredItem) => {
+    var tr_1 = root_211();
+    each(tr_1, 5, () => columns, (column) => column.key, ($$anchor3, column) => {
+      var td = root_310();
+      const value = derived_safe_equal(() => getValue(get(filteredItem), get(column)));
+      var node = child(td);
+      {
+        var consequent = ($$anchor4) => {
+          Wrap($$anchor4, {
+            spacingX: "sm",
+            spacingY: "sm",
+            children: ($$anchor5, $$slotProps) => {
+              var fragment_1 = comment();
+              var node_1 = first_child(fragment_1);
+              each(node_1, 1, () => asStringArray(get(value)), index, ($$anchor6, tag) => {
+                Tag($$anchor6, {
+                  get name() {
+                    return get(tag);
+                  }
+                });
+              });
+              append($$anchor5, fragment_1);
+            },
+            $$slots: { default: true }
+          });
+        };
+        var alternate = ($$anchor4, $$elseif) => {
+          {
+            var consequent_2 = ($$anchor5) => {
+              var div_1 = root_83();
+              var node_2 = child(div_1);
+              Stack(node_2, {
+                spacing: "xs",
+                children: ($$anchor6, $$slotProps) => {
+                  var fragment_3 = root_93();
+                  var node_3 = first_child(fragment_3);
+                  {
+                    var consequent_1 = ($$anchor7) => {
+                      const expression = derived_safe_equal(() => getIconIdForFile(get(filteredItem).baseName, get(filteredItem).extension));
+                      Icon($$anchor7, {
+                        get iconId() {
+                          return get(expression);
+                        }
+                      });
+                    };
+                    if_block(node_3, ($$render) => {
+                      if (get(enableFileIcons)) $$render(consequent_1);
+                    });
+                  }
+                  var div_2 = sibling(node_3, 2);
+                  var text_1 = child(div_2, true);
+                  reset(div_2);
+                  template_effect(() => set_text(text_1, get(value)));
+                  append($$anchor6, fragment_3);
+                },
+                $$slots: { default: true }
+              });
+              reset(div_1);
+              append($$anchor5, div_1);
+            };
+            var alternate_1 = ($$anchor5) => {
+              var div_3 = root_116();
+              var text_2 = child(div_3, true);
+              reset(div_3);
+              template_effect(() => set_text(text_2, get(value)));
+              append($$anchor5, div_3);
+            };
+            if_block(
+              $$anchor4,
+              ($$render) => {
+                if (get(column).key == "baseName") $$render(consequent_2);
+                else $$render(alternate_1, false);
+              },
+              $$elseif
+            );
+          }
+        };
+        if_block(node, ($$render) => {
+          if (get(column).key == "tags") $$render(consequent);
+          else $$render(alternate, false);
+        });
+      }
+      reset(td);
+      append($$anchor3, td);
+    });
+    reset(tr_1);
+    event("click", tr_1, () => handleRowClick(get(filteredItem).path));
+    event("keydown", tr_1, (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        handleRowClick(get(filteredItem).path);
+      }
+    });
+    event("focus", tr_1, () => {
+    });
+    event("contextmenu", tr_1, (e) => handleRowContextMenu(e, get(filteredItem).path));
+    event("mouseover", tr_1, (e) => handleRowMouseOver(e, get(filteredItem).path));
+    append($$anchor2, tr_1);
+  });
+  reset(tbody);
+  reset(table);
+  reset(div);
+  append($$anchor, div);
+  pop();
+}
+
+// src/svelte/app/services/display-name.ts
+var getDisplayNameForView = (view) => {
+  switch (view) {
+    case "grid" /* GRID */:
+      return "Grid";
+    case "list" /* LIST */:
+      return "List";
+    case "feed" /* FEED */:
+      return "Feed";
+    case "table" /* TABLE */:
+      return "Table";
+    default:
+      throw new Error(`Unhandled view type: ${TExplorerView}`);
+  }
+};
+
+// src/svelte/app/services/favorites-store.ts
+var import_js_logger9 = __toESM(require_logger());
+var import_lodash = __toESM(require_lodash());
+var import_obsidian14 = require("obsidian");
+
+// src/svelte/app/services/utils/json-utils.ts
+var parseItems = (rawData) => {
+  const json = JSON.parse(rawData);
+  if (!json.items) return [];
+  return json.items;
+};
+var stringifyItems = (items) => {
+  return JSON.stringify(
+    {
+      items
+    },
+    null,
+    2
+  );
+};
+
+// src/svelte/app/services/favorites-store.ts
+var DEBOUNCE_SAVE_MILLIS = 200;
+var FAVORITES_FILE = "favorites.json";
+var FavoritesStore = class {
+  constructor() {
+    this.debounceSave = import_lodash.default.debounce(
+      (cache) => this.save(cache),
+      DEBOUNCE_SAVE_MILLIS
+    );
+    this.store = writable(/* @__PURE__ */ new Map());
+    this.settings = null;
+    this.app = null;
+  }
+  async load(app, settings) {
+    import_js_logger9.default.trace({
+      fileName: "favorites-store.ts",
+      functionName: "load",
+      message: "called"
+    });
+    const directoryExists = await app.vault.adapter.exists(
+      settings.configDir
+    );
+    if (!directoryExists) {
+      const result = this.createConfigDir(app, settings.configDir);
+      if (!result) return;
+    }
+    const filePath = this.getFavoritesFilePath(settings.configDir);
+    const fileExists = await app.vault.adapter.exists(filePath);
+    if (!fileExists) {
+      const result = await this.createFavoritesFile(app, filePath);
+      if (!result) return;
+    }
+    try {
+      const cache = /* @__PURE__ */ new Map();
+      const rawData = await app.vault.adapter.read(filePath);
+      const items = parseItems(rawData);
+      items.forEach((item) => {
+        const { filePath: filePath2, isFavorite } = item;
+        cache.set(filePath2, isFavorite);
+      });
+      this.store.set(cache);
+      this.settings = settings;
+      this.app = app;
+      import_js_logger9.default.debug(
+        {
+          fileName: "favorites-store.ts",
+          functionName: "load",
+          message: "loaded favorites cache"
+        },
+        { cache }
+      );
+    } catch (err) {
+      const error = err;
+      import_js_logger9.default.error(
+        {
+          fileName: "favorites-store.ts",
+          functionName: "load",
+          message: "error loading favorites cache"
+        },
+        error.message
+      );
+      new import_obsidian14.Notice("Vault Explorer: error loading favorites");
+    }
+  }
+  setFavorite(filePath, isFavorite) {
+    import_js_logger9.default.trace({
+      fileName: "favorites-store.ts",
+      functionName: "update",
+      message: "called"
+    });
+    this.store.update((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.set(filePath, isFavorite);
+      this.debounceSave(newCache);
+      return newCache;
+    });
+  }
+  onFileRename(oldPath, newPath) {
+    import_js_logger9.default.trace({
+      fileName: "favorites-store.ts",
+      functionName: "onFileRename",
+      message: "called"
+    });
+    this.store.update((currentCache) => {
+      const isFavorite = currentCache.get(oldPath);
+      if (isFavorite !== void 0) {
+        const newCache = new Map(currentCache);
+        newCache.set(newPath, isFavorite);
+        newCache.delete(oldPath);
+        this.debounceSave(newCache);
+      }
+      return currentCache;
+    });
+  }
+  onFileDelete(path) {
+    import_js_logger9.default.trace({
+      fileName: "favorites-store.ts",
+      functionName: "onFileDelete",
+      message: "called"
+    });
+    this.store.update((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.delete(path);
+      this.debounceSave(newCache);
+      return newCache;
+    });
+  }
+  async save(cache) {
+    import_js_logger9.default.trace({
+      fileName: "favorites-store.ts",
+      functionName: "save",
+      message: "called"
+    });
+    if (!this.app) {
+      throw new Error("App is null. Please call load() first.");
+    }
+    if (!this.settings) {
+      throw new Error("Settings are null. Please call load() first.");
+    }
+    try {
+      const path = this.getFavoritesFilePath(this.settings.configDir);
+      const items = Array.from(cache.entries()).map(
+        ([filePath, isFavorite]) => ({
+          filePath,
+          isFavorite
+        })
+      );
+      const rawData = stringifyItems(items);
+      await this.app.vault.adapter.write(path, rawData);
+    } catch (err) {
+      const error = err;
+      import_js_logger9.default.error(
+        {
+          fileName: "favorites-store.ts",
+          functionName: "save",
+          message: "error saving favorites cache"
+        },
+        error.message
+      );
+      new import_obsidian14.Notice("Vault Explorer: error saving favorites");
+    }
+  }
+  async createConfigDir(app, configDir) {
+    import_js_logger9.default.debug({
+      fileName: "favorites-store.ts",
+      functionName: "createConfigDir",
+      message: "called"
+    });
+    try {
+      await app.vault.adapter.mkdir(configDir);
+      return true;
+    } catch (err) {
+      const error = err;
+      import_js_logger9.default.error(
+        {
+          fileName: "favorites-store.ts",
+          functionName: "load",
+          message: "error creating config directory"
+        },
+        error.message
+      );
+      new import_obsidian14.Notice("Vault Explorer: error creating config directory");
+      return false;
+    }
+  }
+  async createFavoritesFile(app, filePath) {
+    try {
+      import_js_logger9.default.debug({
+        fileName: "favorites-store.ts",
+        functionName: "load",
+        message: "creating new file..."
+      });
+      const rawData = stringifyItems([]);
+      await app.vault.create(filePath, rawData);
+      return true;
+    } catch (err) {
+      const error = err;
+      import_js_logger9.default.error(
+        {
+          fileName: "favorites-store.ts",
+          functionName: "load",
+          message: "error creating favorites file"
+        },
+        error.message
+      );
+      new import_obsidian14.Notice("Vault Explorer: error creating favorites file");
+      return false;
+    }
+  }
+  getFavoritesFilePath(configDir) {
+    return (0, import_obsidian14.normalizePath)(configDir + "/" + FAVORITES_FILE);
+  }
+};
+var favoritesStore = new FavoritesStore();
+
+// src/svelte/app/services/file-content-store.ts
+var import_obsidian15 = require("obsidian");
+function createFileContentStore() {
+  const { subscribe, set: set2, update: update2 } = writable(/* @__PURE__ */ new Map());
+  async function load(app) {
+    const promises = [];
+    const files = app.vault.getMarkdownFiles();
+    for (let file of files) {
+      promises.push(
+        (async () => {
+          const { basename, extension } = file;
+          if (extension === "md" && !basename.endsWith(".excalidraw")) {
+            const content = await app.vault.cachedRead(file);
+            return {
+              path: file.path,
+              content
+            };
+          }
+          return {
+            path: file.path,
+            content: null
+          };
+        })()
+      );
+    }
+    const results = await Promise.all(promises);
+    const contentForFiles = new Map(
+      results.map((file) => [file.path, file.content])
+    );
+    set2(contentForFiles);
+  }
+  async function handleFileCreate(app, file) {
+    let content = null;
+    if (file.extension === "md") {
+      content = await app.vault.cachedRead(file);
+    }
+    update2((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.set(file.path, content);
+      return newCache;
+    });
+  }
+  function handleFileRename(oldPath, newPath) {
+    update2((currentCache) => {
+      const content = currentCache.get(oldPath);
+      if (content !== void 0) {
+        const newCache = new Map(currentCache);
+        newCache.set(newPath, content);
+        newCache.delete(oldPath);
+        return newCache;
+      }
+      return currentCache;
+    });
+  }
+  function handleFileModify(path, newContent) {
+    update2((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.set(path, newContent);
+      return newCache;
+    });
+  }
+  function handleFileDelete(path) {
+    update2((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.delete(path);
+      return newCache;
+    });
+  }
+  return {
+    load,
+    subscribe,
+    onFileCreate: handleFileCreate,
+    onFileModify: handleFileModify,
+    onFileRename: handleFileRename,
+    onFileDelete: handleFileDelete
+  };
+}
+var fileContentStore = createFileContentStore();
+
+// src/svelte/app/services/file-store.ts
+var import_obsidian16 = require("obsidian");
+function createFileStore() {
+  const { subscribe, set: set2, update: update2 } = writable([]);
+  async function load(app) {
+    const files = app.vault.getFiles();
+    const loadedFiles = files.map((file) => ({
+      id: generateRandomId(),
+      file
+    }));
+    set2(loadedFiles);
+  }
+  async function handleFileCreate(file) {
+    const newLoadedFile = {
+      id: generateRandomId(),
+      file
+    };
+    update2((loadedFiles) => {
+      return [...loadedFiles, newLoadedFile];
+    });
+  }
+  function handleFileRename(oldPath, updatedFile) {
+    update2((loadedFiles) => {
+      return loadedFiles.map((loadedFile) => {
+        if (loadedFile.file.path === oldPath) {
+          return {
+            ...loadedFile,
+            file: updatedFile
+          };
+        }
+        return loadedFile;
+      });
+    });
+  }
+  function handleFileDelete(path) {
+    update2((loadedFiles) => {
+      return loadedFiles.filter(
+        (loadedFiles2) => loadedFiles2.file.path !== path
+      );
+    });
+  }
+  return {
+    load,
+    subscribe,
+    onFileCreate: handleFileCreate,
+    onFileRename: handleFileRename,
+    onFileDelete: handleFileDelete
+  };
+}
+var fileStore = createFileStore();
+
+// src/svelte/shared/services/load-property-value.ts
+var import_js_logger10 = __toESM(require_logger());
+var import_obsidian17 = require("obsidian");
+var loadTextProperties = (app, frontmatter) => {
+  if (!frontmatter) {
+    return [];
+  }
+  const allTextProperties = getObsidianPropertiesByType(app, "text");
+  let textProperties = [];
+  for (const entry of Object.entries(frontmatter)) {
+    const [key, value] = entry;
+    if (value === void 0 || value === null) {
+      continue;
+    }
+    const isTextProperty = allTextProperties.find((p) => p.name === key);
+    if (isTextProperty) {
+      if (typeof value !== "string") {
+        import_js_logger10.default.warn(
+          `Property value of type 'text' is not a string: ${value}`
+        );
+        continue;
+      }
+      textProperties.push({
+        name: key,
+        value
+      });
+    }
+  }
+  return textProperties;
+};
+var loadPropertyValue = (frontmatter, propertyName, expectedType) => {
+  if (!frontmatter) {
+    return null;
+  }
+  if (propertyName === "") {
+    return null;
+  }
+  const propertyValue = frontmatter[propertyName];
+  if (propertyValue === void 0 || propertyValue === null) {
+    return null;
+  }
+  if (expectedType === "text" /* TEXT */) {
+    if (typeof propertyValue !== "string") {
+      import_js_logger10.default.warn(
+        `Property value of type 'text' is not a string: ${propertyValue}`
+      );
+      return null;
+    }
+  } else if (expectedType === "number" /* NUMBER */) {
+    if (typeof propertyValue !== "number") {
+      import_js_logger10.default.warn(
+        `Property value of type 'number' is not a number: ${propertyValue}`
+      );
+      return null;
+    }
+  } else if (expectedType === "date" /* DATE */) {
+    if (typeof propertyValue !== "string") {
+      import_js_logger10.default.warn(
+        `Property value of type 'date' is not a string: ${propertyValue}`
+      );
+      return null;
+    }
+  } else if (expectedType === "datetime" /* DATETIME */) {
+    if (typeof propertyValue !== "string") {
+      import_js_logger10.default.warn(
+        `Property value of type 'datetime' is not a string: ${propertyValue}`
+      );
+      return null;
+    }
+  } else if (expectedType === "checkbox" /* CHECKBOX */) {
+    if (typeof propertyValue !== "boolean") {
+      import_js_logger10.default.warn(
+        `Property value of type 'checkbox' is not a boolean: ${propertyValue}`
+      );
+      return null;
+    }
+  } else if (expectedType === "list" /* LIST */) {
+    if (!Array.isArray(propertyValue)) {
+      import_js_logger10.default.warn(
+        `Property value of type 'list' is not an array: ${propertyValue}`
+      );
+    }
+  }
+  if (expectedType === "date" /* DATE */) {
+    if (!isDateSupported(propertyValue)) {
+      import_js_logger10.default.warn(
+        `Property value of type 'date' has unsupported date format: ${propertyValue}`
+      );
+      return null;
+    }
+  } else if (expectedType === "datetime" /* DATETIME */) {
+    if (!isDateSupported(propertyValue)) {
+      import_js_logger10.default.warn(
+        `Property value of type 'datetime' has unsupported date format: ${propertyValue}`
+      );
+      return null;
+    }
+  }
+  if (expectedType === "list" /* LIST */) {
+    if (!Array.isArray(propertyValue)) {
+      if (typeof propertyValue === "string") {
+        return [propertyValue];
+      }
+      return null;
+    }
+    return propertyValue.filter(
+      (v) => typeof v === "string"
+    );
+  }
+  return propertyValue;
+};
+
+// src/svelte/app/services/filters/custom/match-checkbox-property-filter.ts
+var matchCheckboxPropertyFilter = (propertyValue, compare, condition, matchIfNull) => {
+  switch (condition) {
+    case "is" /* IS */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue === compare;
+    case "is-not" /* IS_NOT */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue !== compare;
+    case "exists" /* EXISTS */:
+      return propertyValue !== null;
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+      return propertyValue === null;
+    default:
+      throw new Error(
+        `CheckboxFilterCondition not supported: ${condition}`
+      );
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-content-filter.ts
+var matchContentFilter = (content, compare, condition) => {
+  console.assert(
+    content === content.toLowerCase(),
+    `ContentFilter content "${content}" must be lowercase`
+  );
+  console.assert(
+    /^\s/.test(content) === false,
+    `ContentFilter content "${content}" must not contain whitespace`
+  );
+  console.assert(
+    compare === compare.toLowerCase(),
+    `ContentFilter compare "${compare}" must be lowercase`
+  );
+  console.assert(
+    /\s$/.test(compare) === false,
+    `ContentFilter compare "${compare}" must not contain whitespace`
+  );
+  switch (condition) {
+    case "contains" /* CONTAINS */:
+      return content.includes(compare);
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+      return !content.includes(compare);
+    case "is-empty" /* IS_EMPTY */:
+      return content === "";
+    case "is-not-empty" /* IS_NOT_EMPTY */:
+      return content !== "";
+    default:
+      throw new Error(
+        `ContentFilterCondition not supported: ${condition}`
+      );
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-date-property-filter.ts
+var matchDatePropertyFilter = (propertyValue, compare, condition, matchIfNull) => {
+  if (propertyValue) {
+    console.assert(
+      isDateSupported(propertyValue),
+      `DatePropertyFilter propertyValue "${propertyValue}" must be supported date format`
+    );
+  }
+  console.assert(
+    isDateSupported(compare),
+    `DatePropertyFilter compare "${compare}" must be supported date format`
+  );
+  switch (condition) {
+    case "is" /* IS */: {
+      if (propertyValue === null) return matchIfNull;
+      const propertyValueDate = getMomentDate(propertyValue);
+      const compareDate = getMomentDate(compare);
+      return propertyValueDate.isSame(compareDate, "day");
+    }
+    case "is-after" /* IS_AFTER */: {
+      if (propertyValue === null) return matchIfNull;
+      const propertyValueDate = getMomentDate(propertyValue);
+      const compareDate = getMomentDate(compare);
+      return propertyValueDate.isAfter(compareDate, "day");
+    }
+    case "is-on-or-after" /* IS_ON_OR_AFTER */: {
+      if (propertyValue === null) return matchIfNull;
+      const propertyValueDate = getMomentDate(propertyValue);
+      const compareDate = getMomentDate(compare);
+      return propertyValueDate.isAfter(compareDate, "day") || propertyValueDate.isSame(compareDate, "day");
+    }
+    case "is-before" /* IS_BEFORE */: {
+      if (propertyValue === null) return matchIfNull;
+      const propertyValueDate = getMomentDate(propertyValue);
+      const compareDate = getMomentDate(compare);
+      return propertyValueDate.isBefore(compareDate, "day");
+    }
+    case "is-on-or-before" /* IS_ON_OR_BEFORE */: {
+      if (propertyValue === null) return matchIfNull;
+      const propertyValueDate = getMomentDate(propertyValue);
+      const compareDate = getMomentDate(compare);
+      return propertyValueDate.isBefore(compareDate, "day") || propertyValueDate.isSame(compareDate, "day");
+    }
+    case "exists" /* EXISTS */:
+      return propertyValue !== null;
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+      return propertyValue === null;
+    default:
+      throw new Error(`DateFilterCondition not supported: ${condition}`);
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-file-name-filter.ts
+var matchFileNameFilter = (fileName, compare, condition) => {
+  console.assert(
+    fileName === fileName.toLowerCase(),
+    `FileNameFilter fileName "${fileName}" must be lowercase`
+  );
+  console.assert(
+    /^\s/.test(fileName) === false,
+    `FileNameFilter fileName "${fileName}" must not contain whitespace`
+  );
+  console.assert(
+    compare === compare.toLowerCase(),
+    `FileNameFilter compare "${compare}" must be lowercase`
+  );
+  console.assert(
+    /\s$/.test(compare) === false,
+    `FileNameFilter compare "${compare}" must not contain whitespace`
+  );
+  switch (condition) {
+    case "is" /* IS */:
+      if (compare.length === 0) return true;
+      return fileName === compare;
+    case "is-not" /* IS_NOT */:
+      if (compare.length === 0) return true;
+      return fileName !== compare;
+    case "contains" /* CONTAINS */:
+      return fileName.includes(compare);
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+      return !fileName.includes(compare);
+    case "starts-with" /* STARTS_WITH */:
+      return fileName.startsWith(compare);
+    case "ends-with" /* ENDS_WITH */:
+      return fileName.endsWith(compare);
+    default:
+      throw new Error(
+        `FileNameFilterCondition not supported: ${condition}`
+      );
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-folder-filter.ts
+var matchFolderFilter = (filePath, compare, condition, options) => {
+  console.assert(
+    filePath === filePath.toLowerCase(),
+    `FolderFilter filePath "${filePath}" must be lowercase`
+  );
+  console.assert(
+    /^\s/.test(filePath) === false,
+    `FolderFilter filePath "${filePath}" must not contain whitespace`
+  );
+  console.assert(
+    compare === compare.toLowerCase(),
+    `FolderFilter compare "${compare}" must be lowercase`
+  );
+  console.assert(
+    /\s$/.test(compare) === false,
+    `FolderFilter compare "${compare}" must not contain whitespace`
+  );
+  if (compare === "/") {
+    return true;
+  }
+  const { includeSubfolders } = options;
+  switch (condition) {
+    case "is" /* IS */:
+      if (compare.length === 0) return true;
+      if (includeSubfolders) return filePath.startsWith(compare);
+      return filePath === compare;
+    case "is-not" /* IS_NOT */:
+      if (compare.length === 0) return true;
+      if (includeSubfolders) return !filePath.startsWith(compare);
+      return filePath !== compare;
+    default:
+      throw new Error(
+        `FolderFilterCondition not supported: ${condition}`
+      );
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-list-property-filter.ts
+var matchListPropertyFilter = (propertyValue, compare, condition, matchIfNull) => {
+  if (propertyValue) {
+    console.assert(
+      propertyValue.every((value) => value.length > 0),
+      `ListPropertyFilter propertyValue "${propertyValue}" must not contain empty strings`
+    );
+    console.assert(
+      propertyValue.every((value) => value === value.toLowerCase()),
+      `ListPropertyFilter propertyValue "${propertyValue}" must be lowercase`
+    );
+    console.assert(
+      propertyValue.every((value) => /^\s/.test(value) === false),
+      `ListPropertyFilter propertyValue "${propertyValue}" must not contain whitespace`
+    );
+    console.assert(
+      propertyValue.every((value) => /\s$/.test(value) === false),
+      `ListPropertyFilter propertyValue "${propertyValue}" must not contain whitespace`
+    );
+  }
+  console.assert(
+    compare.every((value) => value === value.toLowerCase()),
+    `ListPropertyFilter compare "${compare}" must be lowercase`
+  );
+  console.assert(
+    compare.every((value) => /^\s/.test(value) === false),
+    `ListPropertyFilter compare "${compare}" must not contain whitespace`
+  );
+  console.assert(
+    compare.every((value) => /\s$/.test(value) === false),
+    `ListPropertyFilter compare "${compare}" must not contain whitespace`
+  );
+  switch (condition) {
+    case "contains" /* CONTAINS */:
+      if (propertyValue === null) return matchIfNull;
+      return compare.every(
+        (c) => propertyValue.some((value) => value.includes(c))
+      );
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+      if (propertyValue === null) return matchIfNull;
+      return compare.every(
+        (c) => propertyValue.every((value) => !value.includes(c))
+      );
+    case "exists" /* EXISTS */:
+      return propertyValue !== null;
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+      return propertyValue === null;
+    default:
+      throw new Error(`ListFilterCondition not supported: ${condition}`);
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-number-property-filter.ts
+var matchNumberPropertyFilter = (propertyValue, compare, condition, matchIfNull) => {
+  switch (condition) {
+    case "is-equal" /* IS_EQUAL */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue === compare;
+    case "is-greater" /* IS_GREATER */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue > compare;
+    case "is-greater-or-equal" /* IS_GREATER_OR_EQUAL */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue >= compare;
+    case "is-less" /* IS_LESS */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue < compare;
+    case "is-less-or-equal" /* IS_LESS_OR_EQUAL */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue <= compare;
+    case "is-not-equal" /* IS_NOT_EQUAL */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare === null) return true;
+      return propertyValue !== compare;
+    case "exists" /* EXISTS */:
+      return propertyValue !== null;
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+      return propertyValue === null;
+    default:
+      throw new Error(
+        `NumberFilterCondition not supported: ${condition}`
+      );
+  }
+};
+
+// src/svelte/app/services/filters/custom/match-text-property-filter.ts
+var matchTextPropertyFilter = (propertyValue, compare, condition, matchIfNull) => {
+  if (propertyValue) {
+    console.assert(
+      propertyValue === propertyValue.toLowerCase(),
+      `TextFilter propertyValue "${propertyValue}" must be lowercase`
+    );
+    console.assert(
+      /^\s/.test(propertyValue) === false,
+      `TextFilter propertyValue "${propertyValue}" must not contain whitespace`
+    );
+    console.assert(
+      /\s$/.test(propertyValue) === false,
+      `TextFilter propertyValue "${propertyValue}" must not contain whitespace`
+    );
+  }
+  console.assert(
+    compare === compare.toLowerCase(),
+    `TextFilter compare "${compare}" must be lowercase`
+  );
+  console.assert(
+    /^\s/.test(compare) === false,
+    `TextFilter compare "${compare}" must not contain whitespace`
+  );
+  console.assert(
+    /\s$/.test(compare) === false,
+    `TextFilter compare "${compare}" must not contain whitespace`
+  );
+  switch (condition) {
+    case "is" /* IS */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare.length === 0) return true;
+      return propertyValue === compare;
+    case "is-not" /* IS_NOT */:
+      if (propertyValue === null) return matchIfNull;
+      if (compare.length === 0) return true;
+      return propertyValue !== compare;
+    case "contains" /* CONTAINS */:
+      if (propertyValue === null) return matchIfNull;
+      return propertyValue.includes(compare);
+    case "does-not-contain" /* DOES_NOT_CONTAIN */:
+      if (propertyValue === null) return matchIfNull;
+      return !propertyValue.includes(compare);
+    case "starts-with" /* STARTS_WITH */:
+      if (propertyValue === null) return matchIfNull;
+      return propertyValue.startsWith(compare);
+    case "ends-with" /* ENDS_WITH */:
+      if (propertyValue === null) return matchIfNull;
+      return propertyValue.endsWith(compare);
+    case "exists" /* EXISTS */:
+      return propertyValue !== null;
+    case "does-not-exist" /* DOES_NOT_EXIST */:
+      return propertyValue === null;
+    default:
+      throw new Error(`TextFilterCondition not supported: ${condition}`);
+  }
+};
+
+// src/svelte/app/services/filters/custom/filter-by-groups.ts
+var filterByGroups = (fileName, filePath, fileFrontmatter, fileContent, groups) => {
+  return groups.every((group) => {
+    if (!group.isEnabled) return true;
+    return filterByGroup(
+      fileName,
+      filePath,
+      fileFrontmatter,
+      fileContent,
+      group
+    );
+  });
+};
+var filterByGroup = (fileName, filePath, fileFrontmatter, fileContent, group) => {
+  let result = null;
+  group.rules.forEach((filter, i) => {
+    if (!filter.isEnabled) return;
+    const doesMatch = filterByRule(
+      fileName,
+      filePath,
+      fileFrontmatter,
+      fileContent,
+      filter
+    );
+    if (result === null) {
+      result = doesMatch;
+    } else {
+      if (filter.operator === "and") {
+        result = result && doesMatch;
+      } else {
+        result = result || doesMatch;
+      }
+    }
+  });
+  return result != null ? result : true;
+};
+var filterByRule = (fileName, filePath, frontmatter, fileContent, filter) => {
+  const { type } = filter;
+  if (type === "property" /* PROPERTY */) {
+    return filterByPropertyType(frontmatter, filter);
+  } else if (type === "file-name" /* FILE_NAME */) {
+    return filterByFileName(fileName, filter);
+  } else if (type === "folder" /* FOLDER */) {
+    return filterByFolder(filePath, filter);
+  } else if (type === "content" /* CONTENT */) {
+    return filterByContent(fileContent, filter);
+  } else {
+    throw new Error(`FilterRuleType not supported: ${type}`);
+  }
+};
+var filterByPropertyType = (frontmatter, filter) => {
+  const {
+    condition,
+    value,
+    type,
+    matchWhenPropertyDNE,
+    propertyType,
+    propertyName
+  } = filter;
+  if (propertyName === "") {
+    return true;
+  }
+  if (propertyType === "text") {
+    let propertyValue = loadPropertyValue(
+      frontmatter,
+      propertyName,
+      propertyType
+    );
+    if (propertyValue) {
+      propertyValue = propertyValue.toLowerCase().trim();
+    }
+    const compare = value.toLowerCase().trim();
+    const doesMatch = matchTextPropertyFilter(
+      propertyValue,
+      compare,
+      condition,
+      matchWhenPropertyDNE
+    );
+    return doesMatch;
+  } else if (propertyType === "number") {
+    const propertyValue = loadPropertyValue(
+      frontmatter,
+      propertyName,
+      propertyType
+    );
+    const compare = parseFloat(value.trim());
+    const doesMatch = matchNumberPropertyFilter(
+      propertyValue,
+      compare,
+      condition,
+      matchWhenPropertyDNE
+    );
+    return doesMatch;
+  } else if (propertyType === "checkbox") {
+    const propertyValue = loadPropertyValue(
+      frontmatter,
+      propertyName,
+      propertyType
+    );
+    let compare = null;
+    if (value === "true") {
+      compare = true;
+    } else if (value === "false") {
+      compare = false;
+    }
+    const doesMatch = matchCheckboxPropertyFilter(
+      propertyValue,
+      compare,
+      condition,
+      matchWhenPropertyDNE
+    );
+    return doesMatch;
+  } else if (propertyType === "date" || propertyType === "datetime") {
+    const propertyValue = loadPropertyValue(
+      frontmatter,
+      propertyName,
+      propertyType
+    );
+    const { valueData } = filter;
+    let compare = valueData;
+    if (value === "today" /* TODAY */) {
+      compare = getDateDaysAgo(0);
+    } else if (value === "yesterday" /* YESTERDAY */) {
+      compare = getDateDaysAgo(1);
+    } else if (value === "tomorrow" /* TOMORROW */) {
+      compare = getDateDaysAhead(1);
+    } else if (value === "one-week-ago" /* ONE_WEEK_AGO */) {
+      compare = getDateDaysAgo(7);
+    } else if (value === "one-week-from-now" /* ONE_WEEK_FROM_NOW */) {
+      compare = getDateDaysAhead(7);
+    } else if (value === "one-month-ago" /* ONE_MONTH_AGO */) {
+      compare = getDateDaysAgo(30);
+    } else if (value === "one-month-from-now" /* ONE_MONTH_FROM_NOW */) {
+      compare = getDateDaysAhead(30);
+    }
+    const doesMatch = matchDatePropertyFilter(
+      propertyValue,
+      compare,
+      condition,
+      matchWhenPropertyDNE
+    );
+    return doesMatch;
+  } else if (propertyType === "list") {
+    let propertyValue = loadPropertyValue(
+      frontmatter,
+      propertyName,
+      propertyType
+    );
+    if (propertyValue) {
+      propertyValue = propertyValue.map((v) => v.toLowerCase().trim());
+    }
+    const compare = value.trim().split(",").map((v) => v.toLowerCase().trim()).filter((v) => v !== "");
+    const doesMatch = matchListPropertyFilter(
+      propertyValue,
+      compare,
+      condition,
+      matchWhenPropertyDNE
+    );
+    return doesMatch;
+  } else {
+    throw new Error(`PropertyFilterType not supported: ${type}`);
+  }
+};
+var filterByFileName = (fileName, filter) => {
+  const value = fileName.toLowerCase();
+  const compare = filter.value.toLowerCase().trim();
+  const doesMatch = matchFileNameFilter(value, compare, filter.condition);
+  return doesMatch;
+};
+var filterByFolder = (filePath, filter) => {
+  const { condition, includeSubfolders } = filter;
+  let value = filePath.toLowerCase();
+  const parts = value.split("/");
+  if (parts.length === 1) {
+    value = "/";
+  } else {
+    value = parts.slice(0, parts.length - 1).join("/");
+  }
+  const compare = filter.value.toLowerCase().trim();
+  const doesMatch = matchFolderFilter(value, compare, condition, {
+    includeSubfolders
+  });
+  return doesMatch;
+};
+var filterByContent = (fileContent, filter) => {
+  if (fileContent === null) {
+    return true;
+  }
+  let value = removeFrontmatter(fileContent);
+  value = value.toLowerCase().trim();
+  const compare = filter.value.toLocaleLowerCase().trim();
+  const doesMatch = matchContentFilter(value, compare, filter.condition);
+  return doesMatch;
+};
+
+// src/svelte/app/services/filters/search-filter.ts
+var filterBySearch = (file, value) => {
+  if (value === "") {
+    return true;
+  }
+  const compare = value.toLowerCase().trim();
+  const { displayName, path, content } = file;
+  if (displayName.toLowerCase().includes(compare)) {
+    return true;
+  }
+  if (path.toLowerCase().includes(compare)) {
+    return true;
+  }
+  if (content !== null && content.toLowerCase().includes(compare)) {
+    return true;
+  }
+  return false;
+};
+
+// src/svelte/app/services/random-file-sort-store.ts
+var import_js_logger11 = __toESM(require_logger());
+function createRandomFileSortStore() {
+  const { subscribe, set: set2, update: update2 } = writable(/* @__PURE__ */ new Map());
+  function load(app) {
+    import_js_logger11.default.trace({
+      fileName: "random-file-sort-store.ts",
+      functionName: "load",
+      message: "called"
+    });
+    const files = app.vault.getFiles();
+    const randomSortFiles = new Map(
+      files.map((file) => [file.path, randomSortKey()])
+    );
+    set2(randomSortFiles);
+  }
+  function handleFileCreate(path) {
+    update2((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.set(path, randomSortKey());
+      return newCache;
+    });
+  }
+  function handleFileRename(oldPath, newPath) {
+    update2((currentCache) => {
+      const sortKey = currentCache.get(oldPath);
+      if (sortKey !== void 0) {
+        const newCache = new Map(currentCache);
+        newCache.set(newPath, sortKey);
+        newCache.delete(oldPath);
+        return newCache;
+      }
+      return currentCache;
+    });
+  }
+  function handleFileDelete(path) {
+    update2((currentCache) => {
+      const newCache = new Map(currentCache);
+      newCache.delete(path);
+      return newCache;
+    });
+  }
+  function randomSortKey() {
+    return Math.random();
+  }
+  return {
+    load,
+    subscribe,
+    onFileCreate: handleFileCreate,
+    onFileRename: handleFileRename,
+    onFileDelete: handleFileDelete
+  };
+}
+var randomFileSortStore = createRandomFileSortStore();
+
+// src/svelte/app/services/render-data.ts
+var import_js_logger12 = __toESM(require_logger());
+var import_obsidian19 = require("obsidian");
+
+// src/svelte/app/services/link-utils/constants.ts
+var WIKI_LINK_REGEX = /\[\[([^\|\]]+)(\|([^\]]+))?\]\]/;
+var INTERNAL_EMBED_REGEX = /!\[\[([^\|\]]+)(\|([^\]]+))?\]\]/;
+var EXTERNAL_EMBED_REGEX = /!\[(.*?)\]\((https?:\/\/[^\s)]+)\)/;
+var URL_REGEX = /^https:\/\/[^\s]+$/;
+
+// src/svelte/app/services/link-utils/link-getters.ts
+var getFirstInternalEmbed = (content) => {
+  const match = content.match(INTERNAL_EMBED_REGEX);
+  if (match) {
+    return match[0];
+  }
+  return null;
+};
+var getFirstExternalEmbed = (content) => {
+  const match = content.match(EXTERNAL_EMBED_REGEX);
+  if (match) {
+    return match[0];
+  }
+  return null;
+};
+
+// src/svelte/app/services/link-utils/link-target-getters.ts
+var getWikiLinkTarget = (value) => {
+  const match = value.match(WIKI_LINK_REGEX);
+  if (match) {
+    return match[1];
+  }
+  return null;
+};
+var getInternalEmbedTarget = (value) => {
+  const match = value.match(INTERNAL_EMBED_REGEX);
+  if (match) {
+    return match[1];
+  }
+  return null;
+};
+var getExternalEmbedTarget = (value) => {
+  const match = value.match(EXTERNAL_EMBED_REGEX);
+  if (match) {
+    return match[2];
+  }
+  return null;
+};
+
+// src/svelte/app/services/link-utils/link-validators.ts
+var isUrl = (content) => {
+  return URL_REGEX.test(content);
+};
+var isWikiLink = (value) => {
+  return WIKI_LINK_REGEX.test(value);
+};
+
+// src/svelte/app/services/utils/image-utils.ts
+var IMAGE_EXTENSIONS = [
+  "png",
+  "jpg",
+  "jpeg",
+  "gif",
+  "webp",
+  "svg",
+  "avif",
+  "bmp"
+];
+var isImageExtension = (extension) => {
+  return IMAGE_EXTENSIONS.includes(extension);
+};
+
+// src/svelte/app/services/utils/wiki-link-utils.ts
+var import_obsidian18 = require("obsidian");
+var getURIForWikiLinkTarget = (app, target, path) => {
+  const linkFile = app.metadataCache.getFirstLinkpathDest(target, path);
+  if (linkFile) {
+    const resourcePath = app.vault.getResourcePath(linkFile);
+    return resourcePath;
+  }
+  return null;
+};
+
+// src/svelte/app/services/render-data.ts
+var formatFileDataForRender = ({
+  app,
+  settings,
+  file,
+  fileId,
+  fileContent
+}) => {
+  var _a3, _b3;
+  const { name, basename, extension, path } = file;
+  const fileFrontmatter = (_a3 = app.metadataCache.getFileCache(file)) == null ? void 0 : _a3.frontmatter;
+  const { loadBodyTags } = settings;
+  const { coverImageSources } = settings.views.grid;
+  const {
+    createdDate: createdDateProp,
+    modifiedDate: modifiedDateProp,
+    url: urlProp,
+    image: imageProp,
+    coverImageFit: coverImageFitProp,
+    custom1: custom1Prop,
+    custom2: custom2Prop,
+    custom3: custom3Prop
+  } = settings.properties;
+  let tags = loadPropertyValue(
+    fileFrontmatter,
+    "tags",
+    "list" /* LIST */
+  );
+  if (loadBodyTags) {
+    const bodyTags = (_b3 = app.metadataCache.getFileCache(file)) == null ? void 0 : _b3.tags;
+    if (bodyTags) {
+      const tagsWithoutHash = bodyTags.map((t) => t.tag.slice(1));
+      tags = Array.from(/* @__PURE__ */ new Set([...tags != null ? tags : [], ...tagsWithoutHash]));
+    }
+  }
+  const url = loadPropertyValue(
+    fileFrontmatter,
+    urlProp,
+    "text" /* TEXT */
+  );
+  let coverImageFit = loadPropertyValue(
+    fileFrontmatter,
+    coverImageFitProp,
+    "text" /* TEXT */
+  );
+  if (coverImageFit === null) {
+    coverImageFit = settings.views.grid.coverImageFit;
+  }
+  const creationDate = loadPropertyValue(
+    fileFrontmatter,
+    createdDateProp,
+    "date" /* DATE */ || "datetime" /* DATETIME */
+  );
+  const modifiedDate = loadPropertyValue(
+    fileFrontmatter,
+    modifiedDateProp,
+    "date" /* DATE */ || "datetime" /* DATETIME */
+  );
+  const custom1 = loadPropertyValue(
+    fileFrontmatter,
+    custom1Prop,
+    "text" /* TEXT */
+  );
+  const custom2 = loadPropertyValue(
+    fileFrontmatter,
+    custom2Prop,
+    "text" /* TEXT */
+  );
+  const custom3 = loadPropertyValue(
+    fileFrontmatter,
+    custom3Prop,
+    "text" /* TEXT */
+  );
+  let createdMillis = file.stat.ctime;
+  if (creationDate != null) {
+    if (isDateSupported(creationDate)) {
+      createdMillis = getTimeMillis(creationDate);
+    } else {
+      import_js_logger12.default.warn(
+        `Property value has unsupported date format: ${creationDate}`
+      );
+    }
+  }
+  let modifiedMillis = file.stat.mtime;
+  if (modifiedDate != null) {
+    if (isDateSupported(modifiedDate)) {
+      modifiedMillis = getTimeMillis(modifiedDate);
+    } else {
+      import_js_logger12.default.warn(
+        `Property value has unsupported date format: ${creationDate}`
+      );
+    }
+  }
+  let imageUrl = null;
+  if (isImageExtension(extension)) {
+    imageUrl = app.vault.getResourcePath(file);
+  }
+  for (const imageSource of coverImageSources) {
+    const { type, isEnabled } = imageSource;
+    if (isEnabled) {
+      switch (type) {
+        case "image-property": {
+          const loadedUrl = handleImagePropertyCoverSource(
+            app,
+            fileFrontmatter,
+            path,
+            imageProp
+          );
+          if (loadedUrl !== null) {
+            imageUrl = loadedUrl;
+          }
+          break;
+        }
+        case "url-property": {
+          const loadedUrl = handleUrlPropertyCoverSource(
+            fileFrontmatter,
+            urlProp
+          );
+          if (loadedUrl !== null) {
+            imageUrl = loadedUrl;
+          }
+          break;
+        }
+        case "frontmatter": {
+          const loadedUrl = handleFrontmatterCoverSource(
+            app,
+            fileFrontmatter,
+            path
+          );
+          if (loadedUrl !== null) {
+            imageUrl = loadedUrl;
+          }
+          break;
+        }
+        case "body": {
+          const loadedUrl = handleBodyCoverSource(
+            app,
+            path,
+            fileContent
+          );
+          if (loadedUrl !== null) {
+            imageUrl = loadedUrl;
+          }
+          break;
+        }
+        default:
+          throw new Error(
+            `Unhandled cover image source type: ${type}`
+          );
+      }
+      if (imageUrl !== null) {
+        break;
+      }
+    }
+  }
+  const displayName = extension === "md" ? basename : name;
+  const basePath = path.includes("/") ? path.substring(0, path.lastIndexOf("/")) : "/";
+  return {
+    id: fileId,
+    displayName,
+    path,
+    baseName: basename,
+    coverImageFit,
+    basePath,
+    extension,
+    url,
+    content: fileContent,
+    tags,
+    imageUrl,
+    createdMillis,
+    modifiedMillis,
+    custom1,
+    custom2,
+    custom3
+  };
+};
+var handleImagePropertyCoverSource = (app, fileFrontmatter, filePath, imageProperty) => {
+  const propertyValue = loadPropertyValue(
+    fileFrontmatter,
+    imageProperty,
+    "text" /* TEXT */
+  );
+  return getImageUrlFromProperty(app, filePath, propertyValue);
+};
+var handleUrlPropertyCoverSource = (fileFrontmatter, urlProperty) => {
+  const propertyValue = loadPropertyValue(
+    fileFrontmatter,
+    urlProperty,
+    "text" /* TEXT */
+  );
+  if (propertyValue !== null) {
+    if (isUrl(propertyValue)) {
+      return propertyValue;
+    }
+  }
+  return null;
+};
+var handleFrontmatterCoverSource = (app, fileFrontmatter, filePath) => {
+  const textProperties = loadTextProperties(
+    app,
+    fileFrontmatter
+  );
+  for (const property of textProperties) {
+    const { value } = property;
+    const imageUrl = getImageUrlFromProperty(app, filePath, value);
+    if (imageUrl) {
+      return imageUrl;
+    }
+  }
+  return null;
+};
+var handleBodyCoverSource = (app, filePath, fileContent) => {
+  if (fileContent === null) return null;
+  const body = removeFrontmatter(fileContent);
+  const firstInternalLink = getFirstInternalEmbed(body);
+  if (firstInternalLink) {
+    const target = getInternalEmbedTarget(firstInternalLink);
+    if (target) {
+      const uri = getURIForWikiLinkTarget(app, target, filePath);
+      if (uri) {
+        return uri;
+      }
+    }
+  }
+  const firstExternalLink = getFirstExternalEmbed(body);
+  if (firstExternalLink) {
+    const target = getExternalEmbedTarget(firstExternalLink);
+    if (target) {
+      return target;
+    }
+  }
+  return null;
+};
+var getImageUrlFromProperty = (app, filePath, propertyValue) => {
+  if (propertyValue === null) return null;
+  if (isWikiLink(propertyValue)) {
+    const target = getWikiLinkTarget(propertyValue);
+    if (target) {
+      const uri = getURIForWikiLinkTarget(app, target, filePath);
+      if (uri) {
+        return uri;
+      }
+    }
+  } else if (isUrl(propertyValue)) {
+    return propertyValue;
+  }
+  return null;
+};
+
+// src/svelte/app/index.svelte
+var root_212 = template(`<!> <div><button class="vault-explorer-button svelte-t1uapq">Configure</button></div>`, 1);
+var root_117 = template(`<div class="vault-explorer-filters"><!> <!></div>`);
+var root_103 = template(`<!> <!> <!>`, 1);
+var root_53 = template(`<div class="vault-explorer-view-select svelte-t1uapq"><!></div> <!>`, 1);
+var root28 = template(`<div class="vault-explorer svelte-t1uapq"><!> <!> <!> <!> <!></div>`);
+function App10($$anchor, $$props) {
+  push($$props, false);
+  const filteredSearch = mutable_source();
+  const renderData = mutable_source();
+  const totalItems = mutable_source();
+  const totalPages = mutable_source();
+  const startIndex = mutable_source();
+  const pageLength = mutable_source();
+  const endIndex = mutable_source();
+  const orderedViews = mutable_source();
+  let plugin2 = mutable_source();
+  let ref = mutable_source(null);
+  let startOfTodayMillis = -1;
+  let startOfThisWeekMillis = -1;
+  let startOfLastWeekMillis = -1;
+  let shouldCollapseFilters = mutable_source(false);
+  let pageSize = mutable_source(0);
+  let searchFilter = mutable_source({ isEnabled: false, value: "" });
+  let sortFilter = mutable_source({ isEnabled: false, value: "file-name-asc" });
+  let customFilter = mutable_source({
+    isEnabled: false,
+    selectedGroupId: "",
+    groups: []
+  });
+  let currentView = mutable_source(null);
+  let frontmatterCacheTime = mutable_source(Date.now());
+  let propertySettingsTime = mutable_source(Date.now());
+  let coverImageSourcesTime = mutable_source(Date.now());
+  let coverImageFitTime = mutable_source(Date.now());
+  let loadBodyTagsTime = mutable_source(Date.now());
+  let loadedFiles = mutable_source([]);
+  let timeValuesUpdateInterval = null;
+  let favoritesCache = /* @__PURE__ */ new Map();
+  let contentCache = mutable_source(/* @__PURE__ */ new Map());
+  let randomSortCache = mutable_source(/* @__PURE__ */ new Map());
+  let isSmallScreenSize = mutable_source(false);
+  let gridView = mutable_source({
+    isEnabled: true,
+    order: 0,
+    coverImageSources: [],
+    coverImageFit: "contain",
+    loadSocialMediaImage: false
+  });
+  let listView = mutable_source({ showTags: false, isEnabled: true, order: 1 });
+  let feedView = mutable_source({
+    isEnabled: true,
+    order: 2,
+    collapseStyle: "no-new-lines",
+    removeH1: true,
+    lineClampSmall: 2,
+    lineClampMedium: 3,
+    lineClampLarge: 5
+  });
+  let tableView = mutable_source({ isEnabled: true, order: 3 });
+  let initialRender = true;
+  onMount(() => {
+    initialRender = false;
+  });
+  randomFileSortStore.subscribe((value) => {
+    set(randomSortCache, value);
+  });
+  favoritesStore.store.subscribe((value) => {
+    favoritesCache = value;
+  });
+  fileContentStore.subscribe((value) => {
+    set(contentCache, value);
+  });
+  fileStore.subscribe((value) => {
+    set(loadedFiles, value);
+  });
+  store_default.plugin.subscribe((p) => {
+    set(plugin2, p);
+    const { app, settings } = get(plugin2);
+    set(shouldCollapseFilters, settings.shouldCollapseFilters);
+    set(pageSize, settings.pageSize);
+    set(searchFilter, settings.filters.search);
+    set(sortFilter, settings.filters.sort);
+    set(currentView, settings.currentView);
+    set(customFilter, settings.filters.custom);
+    set(gridView, settings.views.grid);
+    set(listView, settings.views.list);
+    set(tableView, settings.views.table);
+    set(feedView, settings.views.feed);
+    if (settings.enableClockUpdates) {
+      setTimeValuesUpdateInterval();
+    }
+    favoritesStore.load(app, settings);
+    fileStore.load(app);
+    fileContentStore.load(app);
+    randomFileSortStore.load(app);
+  });
+  onMount(() => {
+    function handleFilterToggleSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleFilterToggleSettingChange",
+        message: "called"
+      });
+      set(searchFilter, get(plugin2).settings.filters.search);
+      set(sortFilter, get(plugin2).settings.filters.sort);
+      set(customFilter, get(plugin2).settings.filters.custom);
+    }
+    EventManager.getInstance().on("filter-toggle-setting-change" /* FILTER_TOGGLE_SETTING_CHANGE */, handleFilterToggleSettingChange);
+    return () => {
+      EventManager.getInstance().off("filter-toggle-setting-change" /* FILTER_TOGGLE_SETTING_CHANGE */, handleFilterToggleSettingChange);
+    };
+  });
+  onMount(() => {
+    function handleClockUpdatesSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleClockUpdatesSettingChange",
+        message: "called"
+      });
+      const isEnabled = get(plugin2).settings.enableClockUpdates;
+      if (isEnabled) {
+        updateTimeValues();
+        setTimeValuesUpdateInterval();
+      } else if (timeValuesUpdateInterval != null) {
+        clearInterval(timeValuesUpdateInterval);
+      }
+    }
+    updateTimeValues();
+    EventManager.getInstance().on("clock-updates-setting-change" /* CLOCK_UPDATES_SETTING_CHANGE */, handleClockUpdatesSettingChange);
+    return () => {
+      if (timeValuesUpdateInterval != null) clearInterval(timeValuesUpdateInterval);
+      EventManager.getInstance().off("clock-updates-setting-change" /* CLOCK_UPDATES_SETTING_CHANGE */, handleClockUpdatesSettingChange);
+    };
+  });
+  onMount(() => {
+    function handleToggleFiltersChange() {
+      set(shouldCollapseFilters, !get(shouldCollapseFilters));
+    }
+    EventManager.getInstance().on("collapse-filters-change" /* COLLAPSE_FILTERS_CHANGE */, handleToggleFiltersChange);
+    return () => {
+      EventManager.getInstance().off("collapse-filters-change" /* COLLAPSE_FILTERS_CHANGE */, handleToggleFiltersChange);
+    };
+  });
+  onMount(() => {
+    function handlePropertiesFilterUpdate() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handlePropertiesFilterUpdate",
+        message: "called"
+      });
+      mutate(customFilter, get(customFilter).groups = get(plugin2).settings.filters.custom.groups);
+    }
+    EventManager.getInstance().on("properties-filter-update" /* PROPERTIES_FILTER_UPDATE */, handlePropertiesFilterUpdate);
+    return () => {
+      EventManager.getInstance().off("properties-filter-update" /* PROPERTIES_FILTER_UPDATE */, handlePropertiesFilterUpdate);
+    };
+  });
+  onMount(() => {
+    const handleCreateFile = (...data) => {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleCreateFile",
+        message: "called"
+      });
+      if (data.length > 0 && data[0] instanceof import_obsidian20.TFile) {
+        const newFile = data[0];
+        fileStore.onFileCreate(newFile);
+        randomFileSortStore.onFileCreate(newFile.path);
+        fileContentStore.onFileCreate(get(plugin2).app, newFile);
+      }
+    };
+    EventManager.getInstance().on("file-create" /* FILE_CREATE */, handleCreateFile);
+    return () => {
+      EventManager.getInstance().off("file-create" /* FILE_CREATE */, handleCreateFile);
+    };
+  });
+  onMount(() => {
+    const handleDeleteFile = (...data) => {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleDeleteFile",
+        message: "called"
+      });
+      if (data.length > 0 && typeof data[0] === "string") {
+        const path = data[0];
+        fileStore.onFileDelete(path);
+        randomFileSortStore.onFileDelete(path);
+        fileContentStore.onFileDelete(path);
+        favoritesStore.onFileDelete(path);
+      }
+    };
+    EventManager.getInstance().on("file-delete" /* FILE_DELETE */, handleDeleteFile);
+    return () => {
+      EventManager.getInstance().off("file-delete" /* FILE_DELETE */, handleDeleteFile);
+    };
+  });
+  onMount(() => {
+    const handleFileRename = (...data) => {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleFileRename",
+        message: "called"
+      });
+      if (data.length < 2) return;
+      if (typeof data[0] === "string" && data[1] instanceof import_obsidian20.TFile) {
+        const oldPath = data[0];
+        const updatedFile = data[1];
+        fileStore.onFileRename(oldPath, updatedFile);
+        randomFileSortStore.onFileRename(oldPath, updatedFile.path);
+        fileContentStore.onFileRename(oldPath, updatedFile.path);
+        favoritesStore.onFileRename(oldPath, updatedFile.path);
+      }
+    };
+    EventManager.getInstance().on("file-rename" /* FILE_RENAME */, handleFileRename);
+    return () => {
+      EventManager.getInstance().off("file-rename" /* FILE_RENAME */, handleFileRename);
+    };
+  });
+  onMount(() => {
+    const handleFileModify = (...data) => __awaiter(void 0, void 0, void 0, function* () {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleFileModify",
+        message: "called"
+      });
+      if (data.length > 0 && data[0] instanceof import_obsidian20.TFile) {
+        const file = data[0];
+        const content = yield get(plugin2).app.vault.cachedRead(file);
+        fileContentStore.onFileModify(file.path, content);
+      }
+    });
+    EventManager.getInstance().on("file-modify" /* FILE_MODIFY */, handleFileModify);
+    return () => {
+      EventManager.getInstance().off("file-modify" /* FILE_MODIFY */, handleFileModify);
+    };
+  });
+  onMount(() => {
+    const handleMetadataChange = (...data) => {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleMetadataChange",
+        message: "called"
+      });
+      if (data.length > 0 && data[0] instanceof import_obsidian20.TFile) {
+        updateFrontmatterCacheTime();
+      }
+    };
+    EventManager.getInstance().on("metadata-change" /* METADATA_CHANGE */, handleMetadataChange);
+    return () => {
+      EventManager.getInstance().off("metadata-change" /* METADATA_CHANGE */, handleMetadataChange);
+    };
+  });
+  onMount(() => {
+    function handleViewToggleSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleViewToggleSettingChange",
+        message: "called"
+      });
+      set(currentView, get(plugin2).settings.currentView);
+      set(gridView, get(plugin2).settings.views.grid);
+      set(listView, get(plugin2).settings.views.list);
+      set(tableView, get(plugin2).settings.views.table);
+      set(feedView, get(plugin2).settings.views.feed);
+    }
+    EventManager.getInstance().on("view-toggle-setting-change" /* VIEW_TOGGLE_SETTING_CHANGE */, handleViewToggleSettingChange);
+    return () => {
+      EventManager.getInstance().off("view-toggle-setting-change" /* VIEW_TOGGLE_SETTING_CHANGE */, handleViewToggleSettingChange);
+    };
+  });
+  onMount(() => {
+    function handlePageSizeSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handlePageSizeSettingChange",
+        message: "called"
+      });
+      set(pageSize, get(plugin2).settings.pageSize);
+    }
+    EventManager.getInstance().on("page-size-setting-change" /* PAGE_SIZE_SETTING_CHANGE */, handlePageSizeSettingChange);
+    return () => {
+      EventManager.getInstance().off("page-size-setting-change" /* PAGE_SIZE_SETTING_CHANGE */, handlePageSizeSettingChange);
+    };
+  });
+  onMount(() => {
+    function handlePropertySettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handlePropertySettingChange",
+        message: "called"
+      });
+      updatePropertySettingTime();
+    }
+    EventManager.getInstance().on("property-setting-change" /* PROPERTY_SETTING_CHANGE */, handlePropertySettingChange);
+    return () => {
+      EventManager.getInstance().off("property-setting-change" /* PROPERTY_SETTING_CHANGE */, handlePropertySettingChange);
+    };
+  });
+  onMount(() => {
+    function handleCoverImageFitSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleCoverImageFitSettingChange",
+        message: "called"
+      });
+      set(coverImageFitTime, Date.now());
+    }
+    EventManager.getInstance().on("cover-image-fit-setting-change" /* COVER_IMAGE_FIT_SETTING_CHANGE */, handleCoverImageFitSettingChange);
+    return () => {
+      EventManager.getInstance().off("cover-image-fit-setting-change" /* COVER_IMAGE_FIT_SETTING_CHANGE */, handleCoverImageFitSettingChange);
+    };
+  });
+  onMount(() => {
+    function handleCoverImageSourceSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleCoverImageSourceSettingChange",
+        message: "called"
+      });
+      set(coverImageSourcesTime, Date.now());
+    }
+    EventManager.getInstance().on("cover-image-source-setting-change" /* COVER_IMAGE_SOURCE_SETTING_CHANGE */, handleCoverImageSourceSettingChange);
+    return () => {
+      EventManager.getInstance().off("cover-image-source-setting-change" /* COVER_IMAGE_SOURCE_SETTING_CHANGE */, handleCoverImageSourceSettingChange);
+    };
+  });
+  onMount(() => {
+    let resizeObserver;
+    function checkLeafWidth(leafEl2) {
+      const { clientWidth } = leafEl2;
+      if (clientWidth < SCREEN_SIZE_MD) {
+        set(isSmallScreenSize, true);
+      } else {
+        set(isSmallScreenSize, false);
+      }
+    }
+    const leafEl = get(ref) === null || get(ref) === void 0 ? void 0 : get(ref).closest(".workspace-leaf-content");
+    if (leafEl) {
+      checkLeafWidth(leafEl);
+      resizeObserver = new ResizeObserver(() => {
+        checkLeafWidth(leafEl);
+      });
+      resizeObserver.observe(leafEl);
+    }
+    return () => {
+      resizeObserver === null || resizeObserver === void 0 ? void 0 : resizeObserver.disconnect();
+    };
+  });
+  onMount(() => {
+    function handleLoadBodyTagsSettingChange() {
+      import_js_logger13.default.trace({
+        fileName: "app/index.svelte",
+        functionName: "handleLoadBodyTagsSettingChange",
+        message: "called"
+      });
+      set(loadBodyTagsTime, Date.now());
+    }
+    EventManager.getInstance().on("load-body-tags-setting-change" /* LOAD_BODY_TAGS_SETTING_CHANGE */, handleLoadBodyTagsSettingChange);
+    return () => {
+      EventManager.getInstance().off("load-body-tags-setting-change" /* LOAD_BODY_TAGS_SETTING_CHANGE */, handleLoadBodyTagsSettingChange);
+    };
+  });
+  const debounceSearchFilterChange = import_lodash2.default.debounce(
+    (e) => {
+      mutate(searchFilter, get(searchFilter).value = e.target.value);
+    },
+    DEBOUNCE_INPUT_TIME
+  );
+  function handleReshuffleClick() {
+    randomFileSortStore.load(get(plugin2).app);
+  }
+  function updateTimeValues() {
+    import_js_logger13.default.trace({
+      fileName: "app/index.svelte",
+      functionName: "updateTimeValues",
+      message: "called"
+    });
+    startOfTodayMillis = getStartOfTodayMillis();
+    startOfThisWeekMillis = getStartOfThisWeekMillis();
+    startOfLastWeekMillis = getStartOfLastWeekMillis();
+  }
+  function setTimeValuesUpdateInterval() {
+    const MILLIS_MINUTE = 6e4;
+    timeValuesUpdateInterval = setInterval(updateTimeValues, MILLIS_MINUTE);
+  }
+  function updateFrontmatterCacheTime() {
+    import_js_logger13.default.trace({
+      fileName: "app/index.svelte",
+      functionName: "updateFrontmatterCacheTime",
+      message: "called"
+    });
+    set(frontmatterCacheTime, Date.now());
+  }
+  function updatePropertySettingTime() {
+    set(propertySettingsTime, Date.now());
+  }
+  function saveSettings() {
+    return __awaiter(this, void 0, void 0, function* () {
+      if (initialRender) return;
+      mutate(plugin2, get(plugin2).settings.filters.search = get(searchFilter));
+      mutate(plugin2, get(plugin2).settings.filters.sort = get(sortFilter));
+      mutate(plugin2, get(plugin2).settings.currentView = get(currentView));
+      mutate(plugin2, get(plugin2).settings.filters.custom = get(customFilter));
+      mutate(plugin2, get(plugin2).settings.shouldCollapseFilters = get(shouldCollapseFilters));
+      mutate(plugin2, get(plugin2).settings.views.list = get(listView));
+      mutate(plugin2, get(plugin2).settings.views.grid = get(gridView));
+      mutate(plugin2, get(plugin2).settings.views.table = get(tableView));
+      mutate(plugin2, get(plugin2).settings.views.feed = get(feedView));
+      yield get(plugin2).saveSettings();
+    });
+  }
+  function handleGroupContextMenu(e) {
+    return __awaiter(this, void 0, void 0, function* () {
+      const { id } = e.detail;
+      mutate(plugin2, get(plugin2).settings.filters.custom.selectedGroupId = id);
+      yield get(plugin2).saveSettings();
+      new CustomFilterModal(get(plugin2)).open();
+    });
+  }
+  function handleGroupClick(e) {
+    const { id, nativeEvent } = e.detail;
+    const ctrlOrMeta = nativeEvent.ctrlKey || nativeEvent.metaKey;
+    const { groups } = get(customFilter);
+    const clickedGroup = groups.find((group) => group.id === id);
+    if (!clickedGroup) {
+      throw new Error(`Group with id ${id} not found`);
+    }
+    const newGroups = groups.map((group) => {
+      if (group.id === id) {
+        if (ctrlOrMeta) {
+          const newSticky = !group.isSticky;
+          return Object.assign(Object.assign({}, group), { isSticky: newSticky, isEnabled: newSticky });
+        } else {
+          return Object.assign(Object.assign({}, group), { isEnabled: !group.isEnabled });
+        }
+      } else {
+        if (group.isSticky || ctrlOrMeta || clickedGroup.isSticky) {
+          return group;
+        } else {
+          return Object.assign(Object.assign({}, group), { isEnabled: false });
+        }
+      }
+    });
+    mutate(customFilter, get(customFilter).selectedGroupId = id);
+    mutate(customFilter, get(customFilter).groups = newGroups);
+  }
+  function handleViewDragOver(e) {
+    const { nativeEvent } = e.detail;
+    nativeEvent.preventDefault();
+  }
+  function handleViewDragStart(e, type) {
+    const { nativeEvent } = e.detail;
+    nativeEvent.dataTransfer.setData("text", type);
+    nativeEvent.dataTransfer.effectAllowed = "move";
+  }
+  function handleViewDrop(e, type) {
+    const { nativeEvent } = e.detail;
+    const dragId = nativeEvent.dataTransfer.getData("text");
+    nativeEvent.dataTransfer.dropEffect = "move";
+    const views2 = {
+      ["grid" /* GRID */]: get(gridView),
+      ["list" /* LIST */]: get(listView),
+      ["feed" /* FEED */]: get(feedView),
+      ["table" /* TABLE */]: get(tableView)
+    };
+    const draggedView = Object.entries(views2).find(([key]) => key === dragId);
+    const droppedView = Object.entries(views2).find(([key]) => key === type);
+    if (!draggedView || !droppedView) return;
+    const tempOrder = draggedView[1].order;
+    draggedView[1].order = droppedView[1].order;
+    droppedView[1].order = tempOrder;
+    set(gridView, views2["grid" /* GRID */]);
+    set(listView, views2["list" /* LIST */]);
+    set(feedView, views2["feed" /* FEED */]);
+    set(tableView, views2["table" /* TABLE */]);
+  }
+  function handleGroupDrop(e) {
+    const { id, nativeEvent } = e.detail;
+    const dragId = nativeEvent.dataTransfer.getData("text");
+    nativeEvent.dataTransfer.dropEffect = "move";
+    const { groups } = get(customFilter);
+    const draggedIndex = groups.findIndex((group) => group.id === dragId);
+    const dragged = groups.find((group) => group.id === dragId);
+    const droppedIndex = groups.findIndex((group) => group.id === id);
+    if (!dragged || draggedIndex === -1 || droppedIndex === -1) return;
+    let newGroups = [...groups];
+    newGroups.splice(draggedIndex, 1);
+    newGroups.splice(droppedIndex, 0, dragged);
+    mutate(customFilter, get(customFilter).groups = newGroups);
+  }
+  function handleGroupDragOver(e) {
+    const { nativeEvent } = e.detail;
+    nativeEvent.preventDefault();
+  }
+  function handleGroupDragStart(e) {
+    const { id, nativeEvent } = e.detail;
+    nativeEvent.dataTransfer.setData("text", id);
+    nativeEvent.dataTransfer.effectAllowed = "move";
+    const dragImage = nativeEvent.target.cloneNode(true);
+    const rect = nativeEvent.target.getBoundingClientRect();
+    dragImage.style.position = "absolute";
+    dragImage.style.top = "-9999px";
+    dragImage.style.left = "-9999px";
+    document.body.appendChild(dragImage);
+    nativeEvent.dataTransfer.setDragImage(dragImage, rect.width / 2, rect.height / 2);
+    nativeEvent.target.addEventListener("dragend", () => {
+      dragImage.remove();
+    });
+  }
+  function handlePageChange(e) {
+    const { value } = e.detail;
+    set(currentPage, value);
+  }
+  function handleSortChange(e) {
+    const { value } = e.detail;
+    mutate(sortFilter, get(sortFilter).value = value);
+  }
+  function handleCoverImageFitChange(e) {
+    const { filePath, value } = e.detail;
+    const { properties } = get(plugin2).settings;
+    const { coverImageFit: coverImageFitProperty } = properties;
+    const file = get(plugin2).app.vault.getFileByPath(filePath);
+    if (!file) {
+      import_js_logger13.default.error({
+        fileName: "app/index.svelte",
+        functionName: "handleCoverImageFitChange",
+        message: "file not found. returning..."
+      });
+      return;
+    }
+    if (file.extension === "md") {
+      get(plugin2).app.fileManager.processFrontMatter(file, (frontmatter) => {
+        frontmatter[coverImageFitProperty] = value;
+        return frontmatter;
+      });
+    }
+  }
+  function handleCustomFilterClick() {
+    new CustomFilterModal(get(plugin2)).open();
+  }
+  let filteredCustom = mutable_source([]);
+  let formatted = mutable_source([]);
+  let currentPage = mutable_source(1);
+  let views = mutable_source();
+  legacy_pre_effect(
+    () => (get(frontmatterCacheTime), get(customFilter), import_js_logger13.default, get(loadedFiles), get(plugin2), get(contentCache), filterByGroups),
+    () => {
+      if (get(frontmatterCacheTime) && get(customFilter).groups) {
+        import_js_logger13.default.debug(`Frontmatter cache time: ${get(frontmatterCacheTime)}`);
+        set(filteredCustom, get(loadedFiles).filter((loadedFile) => {
+          var _a3, _b3;
+          const { file } = loadedFile;
+          const { name, path } = file;
+          const frontmatter = (_a3 = get(plugin2).app.metadataCache.getFileCache(file)) === null || _a3 === void 0 ? void 0 : _a3.frontmatter;
+          const content = (_b3 = get(contentCache).get(path)) !== null && _b3 !== void 0 ? _b3 : null;
+          return filterByGroups(name, path, frontmatter, content, get(customFilter).groups);
+        }));
+      }
+    }
+  );
+  legacy_pre_effect(
+    () => (get(propertySettingsTime), get(coverImageSourcesTime), get(loadBodyTagsTime), get(coverImageFitTime), get(filteredCustom), get(contentCache), formatFileDataForRender, get(plugin2)),
+    () => {
+      if (get(propertySettingsTime) || get(coverImageSourcesTime) || get(loadBodyTagsTime) || get(coverImageFitTime)) {
+        set(formatted, get(filteredCustom).map((loadedFile) => {
+          var _a3;
+          const { id, file } = loadedFile;
+          const content = (_a3 = get(contentCache).get(file.path)) !== null && _a3 !== void 0 ? _a3 : null;
+          return formatFileDataForRender({
+            app: get(plugin2).app,
+            settings: get(plugin2).settings,
+            fileId: id,
+            file,
+            fileContent: content
+          });
+        }));
+      }
+    }
+  );
+  legacy_pre_effect(
+    () => (get(formatted), get(searchFilter), filterBySearch),
+    () => {
+      set(filteredSearch, get(formatted).filter((file) => {
+        const { isEnabled, value } = get(searchFilter);
+        if (isEnabled) {
+          return filterBySearch(file, value);
+        }
+        return true;
+      }));
+    }
+  );
+  legacy_pre_effect(
+    () => (get(filteredSearch), get(sortFilter), get(randomSortCache)),
+    () => {
+      set(renderData, [...get(filteredSearch)].sort((a, b) => {
+        var _a3, _b3;
+        const { value } = get(sortFilter);
+        if (value === "file-name-asc") {
+          return a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase());
+        } else if (value === "file-name-desc") {
+          return b.displayName.toLowerCase().localeCompare(a.displayName.toLowerCase());
+        } else if (value === "modified-asc") {
+          return a.modifiedMillis - b.modifiedMillis;
+        } else if (value === "modified-desc") {
+          return b.modifiedMillis - a.modifiedMillis;
+        } else if (value === "created-asc") {
+          return a.createdMillis - b.createdMillis;
+        } else if (value === "created-desc") {
+          return b.createdMillis - a.createdMillis;
+        } else if (value === "random") {
+          const sortKeyA = (_a3 = get(randomSortCache).get(a.path)) !== null && _a3 !== void 0 ? _a3 : 0;
+          const sortKeyB = (_b3 = get(randomSortCache).get(b.path)) !== null && _b3 !== void 0 ? _b3 : 0;
+          return sortKeyA - sortKeyB;
+        }
+        return 0;
+      }));
+    }
+  );
+  legacy_pre_effect(
+    () => (get(searchFilter), get(sortFilter), get(currentView), get(customFilter), get(listView), get(gridView), get(tableView), get(feedView), get(shouldCollapseFilters)),
+    () => {
+      get(searchFilter), get(sortFilter), get(currentView), get(customFilter), get(listView), get(gridView), get(tableView), get(feedView), get(shouldCollapseFilters), saveSettings();
+    }
+  );
+  legacy_pre_effect(() => get(renderData), () => {
+    set(totalItems, get(renderData).length);
+  });
+  legacy_pre_effect(() => (get(totalItems), get(pageSize)), () => {
+    set(totalPages, Math.ceil(get(totalItems) / get(pageSize)));
+  });
+  legacy_pre_effect(() => (get(totalPages), get(currentPage)), () => {
+    if (get(totalPages) < get(currentPage)) {
+      set(currentPage, 1);
+    }
+  });
+  legacy_pre_effect(() => (get(currentPage), get(pageSize)), () => {
+    set(startIndex, (get(currentPage) - 1) * get(pageSize));
+  });
+  legacy_pre_effect(
+    () => (get(pageSize), get(renderData), get(startIndex)),
+    () => {
+      set(pageLength, Math.min(get(pageSize), get(renderData).length - get(startIndex)));
+    }
+  );
+  legacy_pre_effect(() => (get(startIndex), get(pageLength)), () => {
+    set(endIndex, get(startIndex) + get(pageLength));
+  });
+  legacy_pre_effect(
+    () => (TExplorerView, get(gridView), get(listView), get(feedView), get(tableView)),
+    () => {
+      set(views, {
+        ["grid" /* GRID */]: get(gridView),
+        ["list" /* LIST */]: get(listView),
+        ["feed" /* FEED */]: get(feedView),
+        ["table" /* TABLE */]: get(tableView)
+      });
+    }
+  );
+  legacy_pre_effect(() => get(views), () => {
+    set(orderedViews, Object.entries(get(views)).filter((view) => view[1].order >= 0).sort((a, b) => a[1].order - b[1].order).map((entry) => entry[0]));
+  });
+  legacy_pre_effect_reset();
+  init();
+  var div = root28();
+  var node = child(div);
+  {
+    var consequent_1 = ($$anchor2) => {
+      var div_1 = root_117();
+      var node_1 = child(div_1);
+      Stack(node_1, {
+        spacing: "sm",
+        direction: "column",
+        children: ($$anchor3, $$slotProps) => {
+          var fragment = root_212();
+          var node_2 = first_child(fragment);
+          Flex(node_2, {
+            justify: "space-between",
+            children: ($$anchor4, $$slotProps2) => {
+              var fragment_1 = comment();
+              var node_3 = first_child(fragment_1);
+              {
+                var consequent = ($$anchor5) => {
+                  Filter_group_list($$anchor5, {
+                    get groups() {
+                      return get(customFilter).groups;
+                    },
+                    $$events: {
+                      groupClick: handleGroupClick,
+                      groupContextMenu: handleGroupContextMenu,
+                      groupDrop: handleGroupDrop,
+                      groupDragOver: handleGroupDragOver,
+                      groupDragStart: handleGroupDragStart
+                    }
+                  });
+                };
+                if_block(node_3, ($$render) => {
+                  if (get(customFilter).isEnabled) $$render(consequent);
+                });
+              }
+              append($$anchor4, fragment_1);
+            },
+            $$slots: { default: true }
+          });
+          var div_2 = sibling(node_2, 2);
+          var button = child(div_2);
+          reset(div_2);
+          event("click", button, handleCustomFilterClick);
+          append($$anchor3, fragment);
+        },
+        $$slots: { default: true }
+      });
+      var node_4 = sibling(node_1, 2);
+      Spacer(node_4, { size: "md" });
+      reset(div_1);
+      append($$anchor2, div_1);
+    };
+    if_block(node, ($$render) => {
+      if (get(shouldCollapseFilters) === false) $$render(consequent_1);
+    });
+  }
+  var node_5 = sibling(node, 2);
+  Wrap(node_5, {
+    align: "center",
+    spacingY: "sm",
+    justify: "space-between",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_3 = root_53();
+      var div_3 = first_child(fragment_3);
+      var node_6 = child(div_3);
+      {
+        var consequent_2 = ($$anchor3) => {
+          Tab_list($$anchor3, {
+            get initialSelectedIndex() {
+              return get(views)[get(currentView)].order;
+            },
+            children: ($$anchor4, $$slotProps2) => {
+              var fragment_5 = comment();
+              var node_7 = first_child(fragment_5);
+              each(node_7, 1, () => get(orderedViews), index, ($$anchor5, view) => {
+                Tab($$anchor5, {
+                  draggable: true,
+                  $$events: {
+                    click: () => set(currentView, get(view)),
+                    dragstart: (e) => handleViewDragStart(e, get(view)),
+                    dragover: handleViewDragOver,
+                    drop: (e) => handleViewDrop(e, get(view))
+                  },
+                  children: ($$anchor6, $$slotProps3) => {
+                    next();
+                    var text2 = text();
+                    template_effect(
+                      ($0) => set_text(text2, $0),
+                      [
+                        () => getDisplayNameForView(get(view))
+                      ],
+                      derived_safe_equal
+                    );
+                    append($$anchor6, text2);
+                  },
+                  $$slots: { default: true }
+                });
+              });
+              append($$anchor4, fragment_5);
+            },
+            $$slots: { default: true }
+          });
+        };
+        if_block(node_6, ($$render) => {
+          if (get(currentView) !== null) $$render(consequent_2);
+        });
+      }
+      reset(div_3);
+      var node_8 = sibling(div_3, 2);
+      Flex(node_8, {
+        children: ($$anchor3, $$slotProps2) => {
+          var fragment_8 = root_103();
+          var node_9 = first_child(fragment_8);
+          {
+            var consequent_3 = ($$anchor4) => {
+              Search_filter($$anchor4, {
+                get value() {
+                  return get(searchFilter).value;
+                },
+                $$events: {
+                  input: debounceSearchFilterChange,
+                  clear: () => mutate(searchFilter, get(searchFilter).value = "")
+                }
+              });
+            };
+            if_block(node_9, ($$render) => {
+              if (get(searchFilter).isEnabled) $$render(consequent_3);
+            });
+          }
+          var node_10 = sibling(node_9, 2);
+          {
+            var consequent_4 = ($$anchor4) => {
+              Sort_filter($$anchor4, {
+                get value() {
+                  return get(sortFilter).value;
+                },
+                $$events: { change: handleSortChange }
+              });
+            };
+            if_block(node_10, ($$render) => {
+              if (get(sortFilter).isEnabled) $$render(consequent_4);
+            });
+          }
+          var node_11 = sibling(node_10, 2);
+          {
+            var consequent_5 = ($$anchor4) => {
+              Icon_button($$anchor4, {
+                iconId: "shuffle",
+                ariaLabel: "Reshuffle files",
+                $$events: { click: handleReshuffleClick }
+              });
+            };
+            if_block(node_11, ($$render) => {
+              if (get(sortFilter).value == "random") $$render(consequent_5);
+            });
+          }
+          append($$anchor3, fragment_8);
+        },
+        $$slots: { default: true }
+      });
+      append($$anchor2, fragment_3);
+    },
+    $$slots: { default: true }
+  });
+  var node_12 = sibling(node_5, 2);
+  Spacer(node_12, { size: "md" });
+  var node_13 = sibling(node_12, 2);
+  {
+    var consequent_6 = ($$anchor2) => {
+      Grid_view($$anchor2, {
+        get data() {
+          return get(renderData);
+        },
+        get startIndex() {
+          return get(startIndex);
+        },
+        get pageLength() {
+          return get(pageLength);
+        },
+        $$events: { coverImageFitChange: handleCoverImageFitChange }
+      });
+    };
+    var alternate = ($$anchor2, $$elseif) => {
+      {
+        var consequent_7 = ($$anchor3) => {
+          List_view($$anchor3, {
+            get data() {
+              return get(renderData);
+            },
+            get isSmallScreenSize() {
+              return get(isSmallScreenSize);
+            },
+            get startIndex() {
+              return get(startIndex);
+            },
+            get pageLength() {
+              return get(pageLength);
+            }
+          });
+        };
+        var alternate_1 = ($$anchor3, $$elseif2) => {
+          {
+            var consequent_8 = ($$anchor4) => {
+              Table_view($$anchor4, {
+                get data() {
+                  return get(renderData);
+                },
+                get startIndex() {
+                  return get(startIndex);
+                },
+                get pageLength() {
+                  return get(pageLength);
+                }
+              });
+            };
+            var alternate_2 = ($$anchor4, $$elseif3) => {
+              {
+                var consequent_9 = ($$anchor5) => {
+                  Feed_view($$anchor5, {
+                    get data() {
+                      return get(renderData);
+                    },
+                    get startIndex() {
+                      return get(startIndex);
+                    },
+                    get pageLength() {
+                      return get(pageLength);
+                    }
+                  });
+                };
+                if_block(
+                  $$anchor4,
+                  ($$render) => {
+                    if (get(currentView) === "feed") $$render(consequent_9);
+                  },
+                  $$elseif3
+                );
+              }
+            };
+            if_block(
+              $$anchor3,
+              ($$render) => {
+                if (get(currentView) === "table") $$render(consequent_8);
+                else $$render(alternate_2, false);
+              },
+              $$elseif2
+            );
+          }
+        };
+        if_block(
+          $$anchor2,
+          ($$render) => {
+            if (get(currentView) === "list") $$render(consequent_7);
+            else $$render(alternate_1, false);
+          },
+          $$elseif
+        );
+      }
+    };
+    if_block(node_13, ($$render) => {
+      if (get(currentView) === "grid") $$render(consequent_6);
+      else $$render(alternate, false);
+    });
+  }
+  var node_14 = sibling(node_13, 2);
+  Pagination_indicator(node_14, {
+    get startIndex() {
+      return get(startIndex);
+    },
+    get endIndex() {
+      return get(endIndex);
+    },
+    get currentPage() {
+      return get(currentPage);
+    },
+    get totalPages() {
+      return get(totalPages);
+    },
+    get totalItems() {
+      return get(totalItems);
+    },
+    $$events: { change: handlePageChange }
+  });
+  reset(div);
+  bind_this(div, ($$value) => set(ref, $$value), () => get(ref));
+  append($$anchor, div);
+  pop();
+}
+
+// src/obsidian/vault-explorer-view.ts
+var VaultExplorerView = class extends import_obsidian21.ItemView {
+  constructor(leaf, plugin2) {
+    super(leaf);
+    this.vaultExplorerApp = null;
+    this.plugin = plugin2;
+    this.navigation = true;
+  }
+  getIcon() {
+    return "compass";
+  }
+  getViewType() {
+    return VAULT_EXPLORER_VIEW;
+  }
+  getDisplayText() {
+    return "Vault Explorer";
+  }
+  async onOpen() {
+    this.addAction("settings", "Settings", () => {
+      const app = this.plugin.app;
+      app.setting.open();
+      app.setting.openTabById(this.plugin.manifest.id);
+    });
+    this.addAction("chevrons-down-up", "Collapse filters", () => {
+      EventManager.getInstance().emit(
+        "collapse-filters-change" /* COLLAPSE_FILTERS_CHANGE */
+      );
+    });
+    const containerEl = this.containerEl.children[1];
+    this.vaultExplorerApp = mount(App10, {
+      target: containerEl
+    });
+  }
+  async onClose() {
+    if (this.vaultExplorerApp) {
+      unmount(this.vaultExplorerApp);
+    }
+  }
+};
+
+// src/main.ts
+var import_js_logger14 = __toESM(require_logger());
+
+// src/focus-utils.ts
+var moveFocus = (direction) => {
+  const focusedEl = document.activeElement;
+  if (focusedEl instanceof HTMLElement) {
+    const rootEl = focusedEl.closest(
+      ".vault-explorer, .vault-explorer-property-filter-app"
+    );
+    if (!rootEl) return;
+    const inputEls = rootEl.querySelectorAll(
+      'a, button, input, select, textarea, [role="button"], [role="link"]'
+    );
+    const focusableEls = Array.from(inputEls).filter(isElementTabble);
+    const currentIndex = focusableEls.indexOf(focusedEl);
+    const newIndex = direction === "previous" ? currentIndex - 1 : currentIndex + 1;
+    if (newIndex >= 0 && newIndex < focusableEls.length) {
+      focusableEls[newIndex].focus();
+    } else if (newIndex > focusableEls.length - 1) {
+      focusableEls[0].focus();
+    } else if (newIndex < 0) {
+      focusableEls[focusableEls.length - 1].focus();
+    }
+  }
+  function isElementTabble(element2) {
+    return element2.getAttribute("disabled") == null && element2.getAttribute("tabindex") !== "-1";
+  }
+};
+
+// src/migrations/migrate_0_4_0.ts
+var Migrate_0_4_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      filters: {
+        ...typedData.filters,
+        properties: {
+          ...typedData.filters.properties,
+          groups: []
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_0_0.ts
+var Migrate_1_0_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      logLevel: LOG_LEVEL_WARN,
+      filters: {
+        ...typedData.filters,
+        properties: {
+          ...typedData.filters.properties,
+          groups: typedData.filters.properties.groups.map((group) => {
+            const { id, name, filters, isEnabled } = group;
+            return {
+              id,
+              name,
+              filters,
+              isEnabled
+            };
+          })
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_10_0.ts
+var Migrate_1_10_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      filters: {
+        ...typedData.filters,
+        custom: {
+          ...typedData.filters.custom,
+          groups: typedData.filters.custom.groups.map((group) => {
+            const rules = group.rules.map((rule) => {
+              return {
+                ...rule,
+                type: "property" /* PROPERTY */,
+                propertyType: rule.type
+              };
+            });
+            return {
+              ...group,
+              rules
+            };
+          })
+        }
+      }
+    };
+    delete newData.filters.folder;
+    delete newData.filters.properties;
+    for (const group of newData.filters.custom.groups) {
+      delete group.filters;
+    }
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_13_0.ts
+var Migrate_1_13_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        enableClockUpdates: true
+      },
+      filters: {
+        ...typedData.filters,
+        custom: {
+          ...typedData.filters.custom,
+          groups: typedData.filters.custom.groups.map((group) => {
+            return {
+              ...group,
+              isSticky: false
+            };
+          })
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_14_0.ts
+var Migrate_1_14_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      filters: {
+        ...typedData.filters,
+        search: {
+          isEnabled: true,
+          value: typedData.filters.search
+        },
+        favorites: {
+          isEnabled: true,
+          value: typedData.filters.onlyFavorites
+        },
+        timestamp: {
+          isEnabled: true,
+          value: typedData.filters.timestamp
+        },
+        sort: {
+          isEnabled: true,
+          value: typedData.filters.sort
+        },
+        custom: {
+          isEnabled: true,
+          ...typedData.filters.custom
+        }
+      },
+      enableScrollButtons: true
+    };
+    delete newData.filters.onlyFavorites;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_15_0.ts
+var Migrate_1_15_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        order: [...typedData.views.order, "feed" /* FEED */]
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_17_0.ts
+var Migrate_1_17_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        dashboard: {
+          isEnabled: false
+        },
+        grid: {
+          isEnabled: true
+        },
+        list: {
+          isEnabled: true
+        },
+        table: {
+          isEnabled: false
+        },
+        feed: {
+          isEnabled: true
+        },
+        recommended: {
+          isEnabled: false
+        },
+        related: {
+          isEnabled: false
+        }
+      },
+      viewOrder: typedData.views.order,
+      enableClockUpdates: typedData.views.enableClockUpdates,
+      currentView: typedData.views.currentView,
+      titleWrapping: typedData.views.titleWrapping
+    };
+    delete newData.views.order;
+    delete newData.views.currentView;
+    delete newData.views.enableClockUpdates;
+    delete newData.views.titleWrapping;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_1_0.ts
+var Migrate_1_1_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        currentView: typedData.currentView,
+        order: ["grid" /* GRID */, "list" /* LIST */]
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_21_0.ts
+var Migrate_1_21_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      enableFileIcons: true
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_22_0.ts
+var Migrate_1_22_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      properties: {
+        ...typedData.properties,
+        imageUrl: ""
+      },
+      filterGroupsWidth: 300,
+      filterGroupsWrapping: "nowrap"
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_23_0.ts
+var Migrate_1_23_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        grid: {
+          ...typedData.views.grid,
+          fetchSocialMediaImage: false
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_23_1.ts
+var Migrate_1_23_1 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      filterGroupsWidth: "100%"
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_24_0.ts
+var Migrate_1_24_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        grid: {
+          ...typedData.views.grid,
+          loadSocialMediaImage: typedData.views.grid.fetchSocialMediaImage
+        },
+        feed: {
+          ...typedData.views.feed,
+          collapseContent: true
+        }
+      }
+    };
+    delete newData.views.grid.fetchSocialMediaImage;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_25_0.ts
+var Migrate_1_25_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      fileInteractionStyle: "content"
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_26_0.ts
+var Migrate_1_26_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      configDir: ".vaultexplorer"
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_2_1.ts
+var Migrate_1_2_1 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        titleWrapping: "normal"
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_3_0.ts
+var Migrate_1_3_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const groups = typedData.filters.properties.groups;
+    const updatedGroups = groups.map(
+      (group) => {
+        const updatedFilters = group.filters.map((filter) => {
+          return {
+            ...filter,
+            type: filter.type,
+            matchWhenPropertyDNE: false
+          };
+        });
+        return {
+          ...group,
+          filters: updatedFilters
+        };
+      }
+    );
+    const newData = {
+      ...typedData,
+      filters: {
+        ...typedData.filters,
+        properties: {
+          ...typedData.filters.properties,
+          groups: updatedGroups
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_6_0.ts
+var Migrate_1_6_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      properties: {
+        ...typedData.properties,
+        creationDate: "",
+        modifiedDate: ""
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_6_1.ts
+var Migrate_1_6_1 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      properties: {
+        ...typedData.properties,
+        createdDate: "",
+        modifiedDate: ""
+      }
+    };
+    delete newData.properties.creationDate;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_9_0.ts
+var Migrate_1_9_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      filters: {
+        ...typedData.filters,
+        custom: {
+          selectedGroupId: typedData.filters.properties.selectedGroupId,
+          groups: typedData.filters.properties.groups.map((group) => {
+            const rules = group.filters.map((filter) => {
+              return {
+                ...filter,
+                valueData: "",
+                type: filter.type
+              };
+            });
+            return {
+              ...group,
+              rules
+            };
+          })
+        }
+      }
+    };
+    delete newData.filters.properties;
+    for (const group of newData.filters.custom.groups) {
+      delete group.filters;
+    }
+    return newData;
   }
 };
 
@@ -15922,51 +18987,484 @@ var isVersionLessThan = (oldVersion, newVersion) => {
   return false;
 };
 
-// src/main.ts
-var import_js_logger5 = __toESM(require_logger());
-
-// src/focus-utils.ts
-var moveFocus = (direction) => {
-  const focusedEl = document.activeElement;
-  if (focusedEl instanceof HTMLElement) {
-    const rootEl = focusedEl.closest(".vault-explorer, .vault-explorer-property-filter-app");
-    if (!rootEl)
-      return;
-    const inputEls = rootEl.querySelectorAll('a, button, input, select, textarea, [role="button"], [role="link"]');
-    const focusableEls = Array.from(inputEls).filter(isElementTabble);
-    const currentIndex = focusableEls.indexOf(focusedEl);
-    const newIndex = direction === "previous" ? currentIndex - 1 : currentIndex + 1;
-    if (newIndex >= 0 && newIndex < focusableEls.length) {
-      focusableEls[newIndex].focus();
-    } else if (newIndex > focusableEls.length - 1) {
-      focusableEls[0].focus();
-    } else if (newIndex < 0) {
-      focusableEls[focusableEls.length - 1].focus();
-    }
-  }
-  function isElementTabble(element2) {
-    return element2.getAttribute("disabled") == null && element2.getAttribute("tabindex") !== "-1";
+// src/migrations/migrate_1_27_0.ts
+var Migrate_1_27_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        feed: {
+          ...typedData.views.feed,
+          removeH1: true,
+          collapseStyle: "no-new-lines",
+          lineClampLarge: 5,
+          lineClampMedium: 3,
+          lineClampSmall: 2
+        }
+      }
+    };
+    delete newData.views.feed.collapseContent;
+    return newData;
   }
 };
 
+// src/migrations/migrate_1_29_0.ts
+var Migrate_1_29_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        list: {
+          ...typedData.views.list,
+          showTags: true
+        },
+        grid: {
+          ...typedData.views.grid,
+          loadSocialMediaImage: true
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_30_5.ts
+var Migrate_1_30_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        grid: {
+          ...typedData.views.grid,
+          coverImageSource: "frontmatter-and-body"
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_31_0.ts
+var Migrate_1_31_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      shouldWrapFilterGroups: typedData.filterGroupsWrapping === "wrap"
+    };
+    delete newData.filterGroupsWrapping;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_33_0.ts
+var Migrate_1_33_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData
+    };
+    delete newData.fileInteractionStyle;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_37_0.ts
+var Migrate_1_37_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        grid: {
+          ...typedData.views.grid,
+          coverImageSources: [
+            {
+              type: "image-property",
+              isEnabled: true
+            },
+            {
+              type: "url-property",
+              isEnabled: true
+            },
+            {
+              type: "frontmatter",
+              isEnabled: true
+            },
+            {
+              type: "body",
+              isEnabled: true
+            }
+          ]
+        }
+      },
+      properties: {
+        ...typedData.properties,
+        image: typedData.properties.imageUrl
+      }
+    };
+    delete newData.enableScrollButtons;
+    delete newData.views.grid.coverImageSource;
+    delete newData.properties.imageUrl;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_38_0.ts
+var Migrate_1_38_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      loadBodyTags: true
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_39_0.ts
+var Migrate_1_39_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      viewOrder: [
+        "grid" /* GRID */,
+        "list" /* LIST */,
+        "table" /* TABLE */,
+        "feed" /* FEED */
+      ],
+      views: {
+        ...typedData.views,
+        table: {
+          isEnabled: true
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_40_0.ts
+var Migrate_1_40_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      shouldCollapseFilters: false
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_41_0.ts
+var Migrate_1_41_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      properties: {
+        ...typedData.properties,
+        coverImageFit: ""
+      },
+      views: {
+        ...typedData.views,
+        grid: {
+          ...typedData.views.grid,
+          coverImageFit: "cover"
+        }
+      }
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_42_0.ts
+var Migrate_1_42_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      properties: {
+        ...typedData.properties,
+        image: typedData.properties.image || "image",
+        coverImageFit: typedData.properties.coverImageFit || "image-fit",
+        url: typedData.properties.url || "url"
+      }
+    };
+    delete newData.filterGroupsWidth;
+    delete newData.shouldWrapFilterGroups;
+    delete newData.filters.favorites;
+    delete newData.filters.timestamp;
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_45_0.ts
+var Migrate_1_45_0 = class {
+  migrate(data) {
+    const typedData = data;
+    let viewOrder = [];
+    if (typedData.views.grid.isEnabled) {
+      viewOrder.push("grid" /* GRID */);
+    }
+    if (typedData.views.list.isEnabled) {
+      viewOrder.push("list" /* LIST */);
+    }
+    if (typedData.views.feed.isEnabled) {
+      viewOrder.push("feed" /* FEED */);
+    }
+    if (typedData.views.table.isEnabled) {
+      viewOrder.push("table" /* TABLE */);
+    }
+    const newData = {
+      ...typedData,
+      confirmBeforeDelete: true,
+      viewOrder
+    };
+    return newData;
+  }
+};
+
+// src/migrations/migrate_1_46_0.ts
+var Migrate_1_46_0 = class {
+  migrate(data) {
+    const typedData = data;
+    const newData = {
+      ...typedData,
+      views: {
+        ...typedData.views,
+        grid: {
+          ...typedData.views.grid,
+          isEnabled: true,
+          order: 0
+        },
+        list: {
+          ...typedData.views.list,
+          isEnabled: true,
+          order: 1
+        },
+        feed: {
+          ...typedData.views.feed,
+          isEnabled: true,
+          order: 2
+        },
+        table: {
+          ...typedData.views.table,
+          isEnabled: true,
+          order: 3
+        }
+      },
+      currentView: "grid" /* GRID */
+    };
+    delete newData.views.recommended;
+    delete newData.views.related;
+    delete newData.views.dashboard;
+    delete newData.viewOrder;
+    return newData;
+  }
+};
+
+// src/migrations/index.ts
+var migrations = [
+  {
+    from: "0.3.3",
+    to: "0.4.0",
+    migrate: Migrate_0_4_0
+  },
+  {
+    from: "0.5.5",
+    to: "1.0.0",
+    migrate: Migrate_1_0_0
+  },
+  {
+    from: "1.0.1",
+    to: "1.1.0",
+    migrate: Migrate_1_1_0
+  },
+  {
+    from: "1.2.0",
+    to: "1.2.1",
+    migrate: Migrate_1_2_1
+  },
+  {
+    from: "1.2.1",
+    to: "1.3.0",
+    migrate: Migrate_1_3_0
+  },
+  {
+    from: "1.5.0",
+    to: "1.6.0",
+    migrate: Migrate_1_6_0
+  },
+  {
+    from: "1.6.0",
+    to: "1.6.1",
+    migrate: Migrate_1_6_1
+  },
+  {
+    from: "1.8.1",
+    to: "1.9.0",
+    migrate: Migrate_1_9_0
+  },
+  {
+    from: "1.9.1",
+    to: "1.10.0",
+    migrate: Migrate_1_10_0
+  },
+  {
+    from: "1.12.1",
+    to: "1.13.0",
+    migrate: Migrate_1_13_0
+  },
+  {
+    from: "1.13.1",
+    to: "1.14.0",
+    migrate: Migrate_1_14_0
+  },
+  {
+    from: "1.14.2",
+    to: "1.15.0",
+    migrate: Migrate_1_15_0
+  },
+  {
+    from: "1.16.0",
+    to: "1.17.0",
+    migrate: Migrate_1_17_0
+  },
+  {
+    from: "1.20.0",
+    to: "1.21.0",
+    migrate: Migrate_1_21_0
+  },
+  {
+    from: "1.21.2",
+    to: "1.22.0",
+    migrate: Migrate_1_22_0
+  },
+  {
+    from: "1.22.0",
+    to: "1.23.0",
+    migrate: Migrate_1_23_0
+  },
+  {
+    from: "1.23.0",
+    to: "1.23.1",
+    migrate: Migrate_1_23_1
+  },
+  {
+    from: "1.23.2",
+    to: "1.24.0",
+    migrate: Migrate_1_24_0
+  },
+  {
+    from: "1.24.2",
+    to: "1.25.0",
+    migrate: Migrate_1_25_0
+  },
+  {
+    from: "1.25.2",
+    to: "1.26.0",
+    migrate: Migrate_1_26_0
+  },
+  {
+    from: "1.26.3",
+    to: "1.27.0",
+    migrate: Migrate_1_27_0
+  },
+  {
+    from: "1.28.0",
+    to: "1.29.0",
+    migrate: Migrate_1_29_0
+  },
+  {
+    from: "1.29.0",
+    to: "1.30.0",
+    migrate: Migrate_1_30_0
+  },
+  {
+    from: "1.30.5",
+    to: "1.31.0",
+    migrate: Migrate_1_31_0
+  },
+  {
+    from: "1.32.2",
+    to: "1.33.0",
+    migrate: Migrate_1_33_0
+  },
+  {
+    from: "1.36.3",
+    to: "1.37.0",
+    migrate: Migrate_1_37_0
+  },
+  {
+    from: "1.37.2",
+    to: "1.38.0",
+    migrate: Migrate_1_38_0
+  },
+  {
+    from: "1.38.0",
+    to: "1.39.0",
+    migrate: Migrate_1_39_0
+  },
+  {
+    from: "1.39.0",
+    to: "1.40.0",
+    migrate: Migrate_1_40_0
+  },
+  {
+    from: "1.40.2",
+    to: "1.41.0",
+    migrate: Migrate_1_41_0
+  },
+  {
+    from: "1.41.1",
+    to: "1.42.0",
+    migrate: Migrate_1_42_0
+  },
+  {
+    from: "1.44.6",
+    to: "1.45.0",
+    migrate: Migrate_1_45_0
+  },
+  {
+    from: "1.45.0",
+    to: "1.46.0",
+    migrate: Migrate_1_46_0
+  }
+];
+var preformMigrations = (settingsVersion, data) => {
+  let updatedData = structuredClone(data);
+  for (const migration of migrations) {
+    const { from, to } = migration;
+    if (isVersionLessThan(settingsVersion, to)) {
+      console.log(`Upgrading settings from version ${from} to ${to}`);
+      const migrator = new migration.migrate();
+      const newData = migrator.migrate(updatedData);
+      updatedData = newData;
+    }
+  }
+  return updatedData;
+};
+
 // src/main.ts
-var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
+var VaultExplorerPlugin2 = class extends import_obsidian22.Plugin {
   constructor() {
     super(...arguments);
     this.settings = DEFAULT_SETTINGS;
+    this.layoutReady = false;
   }
   async onload() {
     await this.loadSettings();
-    import_js_logger5.default.useDefaults();
-    import_js_logger5.default.setHandler(function(messages) {
-      const { message, data } = formatMessageForLogger(...messages);
-      console.log(message);
-      if (data) {
-        console.log(data);
-      }
-    });
-    const logLevel = stringToLogLevel(this.settings.logLevel);
-    import_js_logger5.default.setLevel(logLevel);
+    this.setupLogger();
+    store_default.plugin.set(this);
     this.registerView(
       VAULT_EXPLORER_VIEW,
       (leaf) => new VaultExplorerView(leaf, this)
@@ -15982,53 +19480,105 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
       }
     });
     this.registerEvents();
-    this.registerHoverLinkSource(HOVER_LINK_SOURCE_ID, { display: this.manifest.name, defaultMod: true });
+    this.registerHoverLinkSource(HOVER_LINK_SOURCE_ID, {
+      display: this.manifest.name,
+      defaultMod: true
+    });
     this.addSettingTab(new VaultExplorerSettingsTab(this.app, this));
+    this.app.workspace.onLayoutReady(() => {
+      this.layoutReady = true;
+    });
   }
   registerEvents() {
-    this.registerEvent(this.app.vault.on("rename", (file, oldPath) => {
-      if (file instanceof import_obsidian9.TFolder) {
-        EventManager.getInstance().emit("folder-rename", oldPath, file);
-      } else if (file instanceof import_obsidian9.TFile) {
-        if (file.extension !== "md")
-          return;
-        EventManager.getInstance().emit("file-rename", oldPath, file);
-      }
-    }));
-    this.registerEvent(this.app.vault.on("delete", (file) => {
-      if (file instanceof import_obsidian9.TFolder) {
-        EventManager.getInstance().emit("folder-delete", file.path);
-      } else if (file instanceof import_obsidian9.TFile) {
-        if (file.extension !== "md")
-          return;
-        EventManager.getInstance().emit("file-delete", file.path);
-      }
-    }));
-    this.registerEvent(this.app.vault.on("create", (file) => {
-      if (file instanceof import_obsidian9.TFolder) {
-        EventManager.getInstance().emit("folder-create", file);
-      } else if (file instanceof import_obsidian9.TFile) {
-        if (file.extension !== "md")
-          return;
-        EventManager.getInstance().emit("file-create", file);
-      }
-    }));
-    this.registerEvent(this.app.vault.on("modify", (file) => {
-      if (file instanceof import_obsidian9.TFile) {
-        if (file.extension !== "md")
-          return;
-        EventManager.getInstance().emit("file-modify", file);
-      }
-    }));
-    this.registerEvent(this.app.metadataCache.on("changed", (file) => {
-      if (file.extension !== "md")
-        return;
-      EventManager.getInstance().emit("metadata-change", file);
-    }));
-    this.registerDomEvent(document, "keydown", (event) => {
-      if (event.key === "ArrowLeft") {
+    this.registerEvent(
+      this.app.workspace.on("active-leaf-change", () => {
+        const explorerLeaf = this.app.workspace.getActiveViewOfType(VaultExplorerView);
+        const statusBar = document.querySelector(
+          ".status-bar"
+        );
+        if (!statusBar) return;
+        if (explorerLeaf) {
+          statusBar.classList.add("vault-explorer-status-bar");
+        } else {
+          statusBar.classList.remove("vault-explorer-status-bar");
+        }
+      })
+    );
+    this.registerEvent(
+      this.app.vault.on(
+        "rename",
+        (file, oldPath) => {
+          if (file instanceof import_obsidian22.TFolder) {
+            EventManager.getInstance().emit(
+              "folder-rename" /* FOLDER_RENAME */,
+              oldPath,
+              file
+            );
+          } else if (file instanceof import_obsidian22.TFile) {
+            EventManager.getInstance().emit(
+              "file-rename" /* FILE_RENAME */,
+              oldPath,
+              file
+            );
+          }
+        }
+      )
+    );
+    this.registerEvent(
+      this.app.vault.on("delete", (file) => {
+        if (file instanceof import_obsidian22.TFolder) {
+          EventManager.getInstance().emit(
+            "folder-delete" /* FOLDER_DELETE */,
+            file.path
+          );
+        } else if (file instanceof import_obsidian22.TFile) {
+          EventManager.getInstance().emit(
+            "file-delete" /* FILE_DELETE */,
+            file.path
+          );
+        }
+      })
+    );
+    this.registerEvent(
+      this.app.vault.on("create", (file) => {
+        if (!this.layoutReady) return;
+        if (file instanceof import_obsidian22.TFolder) {
+          EventManager.getInstance().emit(
+            "folder-create" /* FOLDER_CREATE */,
+            file
+          );
+        } else if (file instanceof import_obsidian22.TFile) {
+          EventManager.getInstance().emit(
+            "file-create" /* FILE_CREATE */,
+            file
+          );
+        }
+      })
+    );
+    this.registerEvent(
+      this.app.vault.on("modify", (file) => {
+        if (file instanceof import_obsidian22.TFile) {
+          if (file.extension !== "md") return;
+          EventManager.getInstance().emit(
+            "file-modify" /* FILE_MODIFY */,
+            file
+          );
+        }
+      })
+    );
+    this.registerEvent(
+      this.app.metadataCache.on("changed", (file) => {
+        if (file.extension !== "md") return;
+        EventManager.getInstance().emit(
+          "metadata-change" /* METADATA_CHANGE */,
+          file
+        );
+      })
+    );
+    this.registerDomEvent(document, "keydown", (event2) => {
+      if (event2.key === "ArrowLeft") {
         moveFocus("previous");
-      } else if (event.key === "ArrowRight") {
+      } else if (event2.key === "ArrowRight") {
         moveFocus("next");
       }
     });
@@ -16036,138 +19586,49 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
   onunload() {
   }
   async loadSettings() {
-    var _a;
-    let data = await this.loadData();
-    if (data !== null) {
-      const settingsVersion = (_a = data["pluginVersion"]) != null ? _a : null;
-      if (settingsVersion !== null) {
-        if (isVersionLessThan(settingsVersion, "0.4.0")) {
-          console.log("Upgrading settings from version 0.3.3 to 0.4.0");
-          const typedData = data;
-          const newData = {
-            ...typedData,
-            filters: {
-              ...typedData.filters,
-              properties: {
-                ...typedData.filters.properties,
-                groups: []
-              }
-            }
-          };
-          data = newData;
+    var _a3;
+    const loadedData = await this.loadData();
+    let currentData = {};
+    if (loadedData !== null) {
+      const loadedVersion = (_a3 = loadedData["pluginVersion"]) != null ? _a3 : null;
+      if (loadedVersion !== null) {
+        const newData = preformMigrations(loadedVersion, loadedData);
+        currentData = newData;
+        if (isVersionLessThan(loadedVersion, "1.36.0")) {
+          console.log("Cleaning up old keys from local storage");
+          const LOCAL_STORAGE_DEVICE_REGISTERED = "vault-explorer-device-registration";
+          localStorage.removeItem(LOCAL_STORAGE_DEVICE_REGISTERED);
+          const LOCAL_STORAGE_ID = "vault-explorer-id";
+          localStorage.removeItem(LOCAL_STORAGE_ID);
         }
-        if (isVersionLessThan(settingsVersion, "1.0.0")) {
-          console.log("Upgrading settings from version 0.5.5 to 1.0.0");
-          const typedData = data;
-          const newData = {
-            ...typedData,
-            logLevel: LOG_LEVEL_WARN,
-            filters: {
-              ...typedData.filters,
-              properties: {
-                ...typedData.filters.properties,
-                groups: typedData.filters.properties.groups.map((group) => {
-                  const { id, name, filters, isEnabled } = group;
-                  return {
-                    id,
-                    name,
-                    filters,
-                    isEnabled
-                  };
-                })
-              }
-            }
-          };
-          data = newData;
+        if (isVersionLessThan(loadedVersion, "1.37.1")) {
+          console.log("Clearing image cache");
+          await clearSMICache();
         }
-        if (isVersionLessThan(settingsVersion, "1.1.0")) {
-          console.log("Upgrading settings from version 1.0.1 to 1.1.0");
-          const typedData = data;
-          const newData = {
-            ...typedData,
-            views: {
-              currentView: typedData.currentView,
-              order: ["grid" /* GRID */, "list" /* LIST */]
-            }
-          };
-          data = newData;
-        }
-        if (isVersionLessThan(settingsVersion, "1.2.1")) {
-          console.log("Upgrading settings from version 1.2.0 to 1.2.1");
-          const typedData = data;
-          const newData = {
-            ...typedData,
-            views: {
-              ...typedData.views,
-              titleWrapping: "normal"
-            }
-          };
-          data = newData;
-        }
-        if (isVersionLessThan(settingsVersion, "1.3.0")) {
-          console.log("Upgrading settings from version 1.2.1 to 1.3.0");
-          const typedData = data;
-          const groups = typedData.filters.properties.groups;
-          const updatedGroups = groups.map((group) => {
-            const updatedFilters = group.filters.map((filter) => {
-              return {
-                ...filter,
-                type: filter.type,
-                matchWhenPropertyDNE: false
-              };
-            });
-            return {
-              ...group,
-              filters: updatedFilters
-            };
-          });
-          const newData = {
-            ...typedData,
-            filters: {
-              ...typedData.filters,
-              properties: {
-                ...typedData.filters.properties,
-                groups: updatedGroups
-              }
-            }
-          };
-          data = newData;
-        }
-        if (isVersionLessThan(settingsVersion, "1.6.0")) {
-          console.log("Upgrading settings from version 1.5.0 to 1.6.0");
-          const typedData = data;
-          const newData = {
-            ...typedData,
-            properties: {
-              ...typedData.properties,
-              creationDate: "",
-              modifiedDate: ""
-            }
-          };
-          data = newData;
-        }
-        if (isVersionLessThan(settingsVersion, "1.6.1")) {
-          console.log("Upgrading settings from version 1.6.0 to 1.6.1");
-          const typedData = data;
-          const newData = {
-            ...typedData,
-            properties: {
-              ...typedData.properties,
-              createdDate: "",
-              modifiedDate: ""
-            }
-          };
-          data = newData;
+        if (isVersionLessThan(loadedVersion, "1.44.1")) {
+          console.log("Clearing image cache");
+          await clearSMICache();
         }
       }
     }
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, currentData);
     this.settings.pluginVersion = this.manifest.version;
     await this.saveSettings();
   }
   async saveSettings() {
-    import_js_logger5.default.trace({ fileName: "main.ts", functionName: "saveSettings", message: "called" });
-    import_js_logger5.default.debug({ fileName: "main.ts", functionName: "saveSettings", message: "saving settings" }, this.settings);
+    import_js_logger14.default.trace({
+      fileName: "main.ts",
+      functionName: "saveSettings",
+      message: "called"
+    });
+    import_js_logger14.default.debug(
+      {
+        fileName: "main.ts",
+        functionName: "saveSettings",
+        message: "saving settings"
+      },
+      this.settings
+    );
     await this.saveData(this.settings);
   }
   openVaultExplorerView() {
@@ -16176,11 +19637,35 @@ var VaultExplorerPlugin = class extends import_obsidian9.Plugin {
       const leaf = leaves[0];
       this.app.workspace.revealLeaf(leaf);
     } else {
-      this.app.workspace.getLeaf().setViewState({
+      this.app.workspace.getLeaf("tab").setViewState({
         type: VAULT_EXPLORER_VIEW,
         active: true
       });
     }
+  }
+  setupLogger() {
+    import_js_logger14.default.useDefaults();
+    import_js_logger14.default.setHandler(function(messages, context) {
+      const { message, data } = formatMessageForLogger(...messages);
+      if (context.level === import_js_logger14.default.WARN) {
+        console.warn(message);
+        if (data) {
+          console.warn(data);
+        }
+      } else if (context.level === import_js_logger14.default.ERROR) {
+        console.error(message);
+        if (data) {
+          console.error(data);
+        }
+      } else {
+        console.log(message);
+        if (data) {
+          console.log(data);
+        }
+      }
+    });
+    const logLevel = stringToLogLevel(this.settings.logLevel);
+    import_js_logger14.default.setLevel(logLevel);
   }
 };
 /*! Bundled license information:
@@ -16202,3 +19687,5 @@ lodash/lodash.js:
    * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
    *)
 */
+
+/* nosourcemap */

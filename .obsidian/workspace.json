@@ -23,8 +23,23 @@
               "icon": "lucide-file",
               "title": "research"
             }
+          },
+          {
+            "id": "b92839f1af9b39a0",
+            "type": "leaf",
+            "state": {
+              "type": "split-diff-view",
+              "state": {
+                "aFile": ".obsidian/community-plugins.json",
+                "bFile": ".obsidian/community-plugins.json",
+                "aRef": ""
+              },
+              "icon": "diff",
+              "title": "Diff: community-plugins.json"
+            }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -49,21 +64,6 @@
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
-            }
-          },
-          {
-            "id": "85428a7b72a74fb7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Red&Queen/playground/models_queryer/sim_log_11734703000000.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "sim_log_11734703000000"
             }
           },
           {
@@ -94,7 +94,7 @@
             }
           },
           {
-            "id": "732214be9396e61d",
+            "id": "995b1f68ab75b1e9",
             "type": "leaf",
             "state": {
               "type": "file-tree-view",
@@ -104,17 +104,17 @@
             }
           },
           {
-            "id": "b4b0364b3eba5916",
+            "id": "4f814f5e68e20d6c",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
               "state": {},
               "icon": "layout-grid",
-              "title": "Spaces"
+              "title": "Navigator"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -155,16 +155,6 @@
               },
               "icon": "lucide-archive",
               "title": "All properties"
-            }
-          },
-          {
-            "id": "5a8ed2578ceabb73",
-            "type": "leaf",
-            "state": {
-              "type": "todo",
-              "state": {},
-              "icon": "checkmark",
-              "title": "Todo List"
             }
           },
           {
@@ -213,8 +203,8 @@
             "state": {
               "type": "grind-manager-view",
               "state": {},
-              "icon": "list-todo",
-              "title": "Grind Manager"
+              "icon": "lucide-ghost",
+              "title": "grind-manager-view"
             }
           },
           {
@@ -275,16 +265,6 @@
               "state": {},
               "icon": "spreadsheet",
               "title": "Advanced Tables"
-            }
-          },
-          {
-            "id": "8b918b62a1054a23",
-            "type": "leaf",
-            "state": {
-              "type": "timeline",
-              "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Day Planner Timeline"
             }
           },
           {
@@ -381,14 +361,28 @@
             "id": "7c12f86fcd91772f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "card-browser-view",
+              "state": {
+                "path": "/"
+              },
+              "icon": "lucide-ghost",
+              "title": "card-browser-view"
             }
           },
           {
             "id": "9b07dc496de1685d",
+            "type": "leaf",
+            "state": {
+              "type": "card-browser-view",
+              "state": {
+                "path": "/"
+              },
+              "icon": "lucide-ghost",
+              "title": "card-browser-view"
+            }
+          },
+          {
+            "id": "23ab02a5163a6179",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -398,7 +392,37 @@
             }
           },
           {
-            "id": "23ab02a5163a6179",
+            "id": "0d400e1a869bf9ad",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "c4ef3c286f340769",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Timeline"
+            }
+          },
+          {
+            "id": "f407bc9501939830",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {},
+              "icon": "checkmark",
+              "title": "Todo List"
+            }
+          },
+          {
+            "id": "1871466eabf968e6",
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
@@ -408,7 +432,7 @@
             }
           },
           {
-            "id": "0d400e1a869bf9ad",
+            "id": "af85d97fb85ee864",
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
@@ -418,16 +442,15 @@
             }
           }
         ],
-        "currentTab": 27
+        "currentTab": 29
       }
     ],
     "direction": "horizontal",
-    "width": 323.5
+    "width": 463.5
   },
   "left-ribbon": {
     "hiddenItems": {
       "bases:Create new base": false,
-      "webpage-html-export:Export Vault to HTML": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": false,
@@ -435,12 +458,9 @@
       "obsidian-kanban:Create new board": false,
       "big-calendar:Big Calendar": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "project-browser:Open project browser": false,
       "markdown-table-editor:Open Markdown Table Editor": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "grind-manager:Show grind manager": false,
       "timeline-view:Open timeline view": false,
       "obsidian-full-calendar:Open Full Calendar": false,
       "quiz-generator:Open generator": false,
@@ -451,11 +471,8 @@
       "memorization:Memorize Notes": false,
       "select-and-complete:Select and Complete": false,
       "desk:Create new desk": false,
-      "obsidian-day-planner:Timeline": false,
       "task-status:Change Checkbox Status": false,
       "homework-manager:Open homework": false,
-      "file-preview:Refresh preview contents": false,
-      "file-preview:Delete preview contents": false,
       "notes2tweets:Open Notes2Tweets": false,
       "timethings:Activate view": false,
       "laser-beam:Laser beam": false,
@@ -465,44 +482,49 @@
       "quick-tagger:Remove tag from current note": false,
       "obsidian-contacts:Contacts": false,
       "obsidian-projects:Open projects": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "webpage-html-export:Export as HTML": false,
+      "grind-manager:Show gamified tasks": false,
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
-      "card-board:CardBoard": false,
       "periodic-notes:Open today": false,
       "map-of-content:Update Map of Content": false
     }
   },
-  "active": "218e7e8cf09e66ae",
+  "active": "b92839f1af9b39a0",
   "lastOpenFiles": [
-    "axis9/CORE-SSE/notes.md",
-    "notes/notes.md",
-    "notes",
-    "psy-references/patents/unidentified/unidentified.md",
-    "psy-references/patents/stupidd/stupidd.md",
-    "psy-references/patents/funny/funny.md",
-    "psy-references/patents/fake/fake.md",
-    "axis9/CORE-SSE/schedule/schedule.md",
-    "textgenerator/README.md",
-    "textgenerator/templates/huggingface/summarizeBART.md",
-    "textgenerator/templates/huggingface/completeTextBloom.md",
-    "textgenerator/templates/huggingface/classify-bart-large-mnli.md",
-    "textgenerator/textgenerator.md",
-    "indirect/smart-chats/smart-chats.md",
-    "indirect/looms/looms.md",
-    "indirect/garbage/garbage.md",
-    "Red&Queen/playground/models_queryer/sim_log_11734703000000.md",
-    "SKYNET/history Kanban.dll.md",
-    "SKYNET/technology.md",
-    "SKYNET/SKYNET.md",
-    "SKYNET/advisories/advisories.md",
-    "axis9/axis9.md",
-    "axis9/core  country planning.md",
-    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.md",
     "axis9/research/research.md",
+    "indirect/textgenerator/templates/awesomePrompts/hypnotherapistAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/promptgeneratorAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/promptenhancerAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/rapperAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/pythoninterpreterAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/publicspeakingcoachAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/psychologistAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/regexgeneratorAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/recruiterAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/realestateagentAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/salespersonAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/rprogramminginterpreterAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/relationshipcoachAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/selfhelpbookAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/screenwriterAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/scientificdatavisualizerAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/socialmediainfluencerAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/smartdomainnamegeneratorAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/seniorfrontenddeveloperAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/solrsearchengineAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/softwarequalityassurancetesterAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/socraticmethodAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/socratAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/socialmediamanagerAwesome.md",
+    "indirect/textgenerator/templates/awesomePrompts/spokenenglishteacherandimproverAwesome.md",
+    "notes",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
-    "looms/README.md",
-    "looms/looms.md",
     "Untitled.loom",
     "Untitled.canvas",
     "tmp/mathematical_analysis_export.json",

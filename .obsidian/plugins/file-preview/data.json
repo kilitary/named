@@ -3,7 +3,7 @@
   "lineClamp": 2,
   "indents": 0,
   "previewcontentslength": "5",
-  "ispreview": true,
+  "ispreview": false,
   "format": {
     "frontmatter": true,
     "bolditalic": true,
@@ -11,7 +11,13 @@
     "codeblock": true,
     "quote": true,
     "blankline": true,
-    "title": true
+    "title": true,
+    "customregex": []
   },
-  "showImg": true
+  "showImg": true,
+  "showFileProperties": false,
+  "ctimeFormat": "YYYY-MM-DD HH:mm:ss",
+  "mtimeFormat": "YYYY-MM-DD HH:mm:ss",
+  "propertiesFormat": "created at ctime, updated at mtime",
+  "excluded": []
 }

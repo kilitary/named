@@ -102,5 +102,6 @@
   "persistent-graph",
   "obsidian-projects",
   "obsidian-recall",
-  "obsidian-plugin-toc"
+  "obsidian-plugin-toc",
+  "copy-as-html"
 ]

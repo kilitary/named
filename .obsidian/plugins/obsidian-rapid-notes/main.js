@@ -412,15 +412,7 @@ function effect2(_ref2) {
       return;
     }
   }
-  if (true) {
-    if (!isHTMLElement(arrowElement)) {
-      console.error(['Popper: "arrow" element must be an HTMLElement (not an SVGElement).', "To use an SVG arrow, wrap it in an HTMLElement that will be used as", "the arrow."].join(" "));
-    }
-  }
   if (!contains(state.elements.popper, arrowElement)) {
-    if (true) {
-      console.error(['Popper: "arrow" modifier\'s `element` must be a child of the popper', "element."].join(" "));
-    }
     return;
   }
   state.elements.arrow = arrowElement;
@@ -519,14 +511,6 @@ function mapToStyles(_ref2) {
 function computeStyles(_ref5) {
   var state = _ref5.state, options = _ref5.options;
   var _options$gpuAccelerat = options.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive, _options$roundOffsets = options.roundOffsets, roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-  if (true) {
-    var transitionProperty = getComputedStyle(state.elements.popper).transitionProperty || "";
-    if (adaptive && ["transform", "top", "right", "bottom", "left"].some(function(property) {
-      return transitionProperty.indexOf(property) >= 0;
-    })) {
-      console.warn(["Popper: Detected CSS transitions on at least one of the following", 'CSS properties: "transform", "top", "right", "bottom", "left".', "\n\n", 'Disable the "computeStyles" modifier\'s `adaptive` option to allow', "for smooth transitions, or remove these properties from the CSS", "transition declaration on the popper element if only transitioning", "opacity or background-color for example.", "\n\n", "We recommend using the popper element as a wrapper around an inner", "element that can have any CSS property transitioned for animations."].join(" "));
-    }
-  }
   var commonStyles = {
     placement: getBasePlacement(state.placement),
     variation: getVariation(state.placement),
@@ -883,9 +867,6 @@ function computeAutoPlacement(state, options) {
   });
   if (allowedPlacements.length === 0) {
     allowedPlacements = placements2;
-    if (true) {
-      console.error(["Popper: The `allowedAutoPlacements` option did not allow any", "placements. Ensure the `placement` option matches the variation", "of the allowed placements.", 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(" "));
-    }
   }
   var overflows = allowedPlacements.reduce(function(acc, placement2) {
     acc[placement2] = detectOverflow(state, {
@@ -1329,92 +1310,6 @@ function debounce(fn2) {
   };
 }
 
-// node_modules/@popperjs/core/lib/utils/format.js
-function format(str) {
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-  return [].concat(args).reduce(function(p, c) {
-    return p.replace(/%s/, c);
-  }, str);
-}
-
-// node_modules/@popperjs/core/lib/utils/validateModifiers.js
-var INVALID_MODIFIER_ERROR = 'Popper: modifier "%s" provided an invalid %s property, expected %s but got %s';
-var MISSING_DEPENDENCY_ERROR = 'Popper: modifier "%s" requires "%s", but "%s" modifier is not available';
-var VALID_PROPERTIES = ["name", "enabled", "phase", "fn", "effect", "requires", "options"];
-function validateModifiers(modifiers) {
-  modifiers.forEach(function(modifier) {
-    [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index, self) {
-      return self.indexOf(value) === index;
-    }).forEach(function(key) {
-      switch (key) {
-        case "name":
-          if (typeof modifier.name !== "string") {
-            console.error(format(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', '"' + String(modifier.name) + '"'));
-          }
-          break;
-        case "enabled":
-          if (typeof modifier.enabled !== "boolean") {
-            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', '"' + String(modifier.enabled) + '"'));
-          }
-          break;
-        case "phase":
-          if (modifierPhases.indexOf(modifier.phase) < 0) {
-            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + modifierPhases.join(", "), '"' + String(modifier.phase) + '"'));
-          }
-          break;
-        case "fn":
-          if (typeof modifier.fn !== "function") {
-            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', '"' + String(modifier.fn) + '"'));
-          }
-          break;
-        case "effect":
-          if (modifier.effect != null && typeof modifier.effect !== "function") {
-            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', '"' + String(modifier.fn) + '"'));
-          }
-          break;
-        case "requires":
-          if (modifier.requires != null && !Array.isArray(modifier.requires)) {
-            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', '"' + String(modifier.requires) + '"'));
-          }
-          break;
-        case "requiresIfExists":
-          if (!Array.isArray(modifier.requiresIfExists)) {
-            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', '"' + String(modifier.requiresIfExists) + '"'));
-          }
-          break;
-        case "options":
-        case "data":
-          break;
-        default:
-          console.error('PopperJS: an invalid property has been provided to the "' + modifier.name + '" modifier, valid properties are ' + VALID_PROPERTIES.map(function(s) {
-            return '"' + s + '"';
-          }).join(", ") + '; but "' + key + '" was provided.');
-      }
-      modifier.requires && modifier.requires.forEach(function(requirement) {
-        if (modifiers.find(function(mod) {
-          return mod.name === requirement;
-        }) == null) {
-          console.error(format(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
-        }
-      });
-    });
-  });
-}
-
-// node_modules/@popperjs/core/lib/utils/uniqueBy.js
-function uniqueBy(arr, fn2) {
-  var identifiers = /* @__PURE__ */ new Set();
-  return arr.filter(function(item) {
-    var identifier = fn2(item);
-    if (!identifiers.has(identifier)) {
-      identifiers.add(identifier);
-      return true;
-    }
-  });
-}
-
 // node_modules/@popperjs/core/lib/utils/mergeByName.js
 function mergeByName(modifiers) {
   var merged = modifiers.reduce(function(merged2, current) {
@@ -1431,8 +1326,6 @@ function mergeByName(modifiers) {
 }
 
 // node_modules/@popperjs/core/lib/createPopper.js
-var INVALID_ELEMENT_ERROR = "Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.";
-var INFINITE_LOOP_ERROR = "Popper: An infinite loop in the modifiers cycle has been detected! The cycle has been interrupted to prevent a browser crash.";
 var DEFAULT_OPTIONS = {
   placement: "bottom",
   modifiers: [],
@@ -1483,28 +1376,6 @@ function popperGenerator(generatorOptions) {
         state.orderedModifiers = orderedModifiers.filter(function(m) {
           return m.enabled;
         });
-        if (true) {
-          var modifiers = uniqueBy([].concat(orderedModifiers, state.options.modifiers), function(_ref) {
-            var name = _ref.name;
-            return name;
-          });
-          validateModifiers(modifiers);
-          if (getBasePlacement(state.options.placement) === auto) {
-            var flipModifier = state.orderedModifiers.find(function(_ref2) {
-              var name = _ref2.name;
-              return name === "flip";
-            });
-            if (!flipModifier) {
-              console.error(['Popper: "auto" placements require the "flip" modifier be', "present and enabled to work."].join(" "));
-            }
-          }
-          var _getComputedStyle = getComputedStyle(popper2), marginTop = _getComputedStyle.marginTop, marginRight = _getComputedStyle.marginRight, marginBottom = _getComputedStyle.marginBottom, marginLeft = _getComputedStyle.marginLeft;
-          if ([marginTop, marginRight, marginBottom, marginLeft].some(function(margin) {
-            return parseFloat(margin);
-          })) {
-            console.warn(['Popper: CSS "margin" styles cannot be used to apply padding', "between the popper and its reference element or boundary.", "To replicate margin, use the `offset` modifier, as well as", "the `padding` option in the `preventOverflow` and `flip`", "modifiers."].join(" "));
-          }
-        }
         runModifierEffects();
         return instance.update();
       },
@@ -1514,9 +1385,6 @@ function popperGenerator(generatorOptions) {
         }
         var _state$elements = state.elements, reference3 = _state$elements.reference, popper3 = _state$elements.popper;
         if (!areValidElements(reference3, popper3)) {
-          if (true) {
-            console.error(INVALID_ELEMENT_ERROR);
-          }
           return;
         }
         state.rects = {
@@ -1528,15 +1396,7 @@ function popperGenerator(generatorOptions) {
         state.orderedModifiers.forEach(function(modifier) {
           return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
         });
-        var __debug_loops__ = 0;
         for (var index = 0; index < state.orderedModifiers.length; index++) {
-          if (true) {
-            __debug_loops__ += 1;
-            if (__debug_loops__ > 100) {
-              console.error(INFINITE_LOOP_ERROR);
-              break;
-            }
-          }
           if (state.reset === true) {
             state.reset = false;
             index = -1;
@@ -1565,9 +1425,6 @@ function popperGenerator(generatorOptions) {
       }
     };
     if (!areValidElements(reference2, popper2)) {
-      if (true) {
-        console.error(INVALID_ELEMENT_ERROR);
-      }
       return instance;
     }
     instance.setOptions(options).then(function(state2) {
@@ -1576,8 +1433,8 @@ function popperGenerator(generatorOptions) {
       }
     });
     function runModifierEffects() {
-      state.orderedModifiers.forEach(function(_ref3) {
-        var name = _ref3.name, _ref3$options = _ref3.options, options2 = _ref3$options === void 0 ? {} : _ref3$options, effect4 = _ref3.effect;
+      state.orderedModifiers.forEach(function(_ref) {
+        var name = _ref.name, _ref$options = _ref.options, options2 = _ref$options === void 0 ? {} : _ref$options, effect4 = _ref.effect;
         if (typeof effect4 === "function") {
           var cleanupFn = effect4({
             state,
@@ -1677,7 +1534,8 @@ var Suggest = class {
   }
 };
 var TextInputSuggest = class {
-  constructor(inputEl) {
+  constructor(app, inputEl) {
+    this.app = app;
     this.inputEl = inputEl;
     this.scope = new import_obsidian.Scope();
     this.suggestEl = createDiv("suggestion-container");
@@ -1700,13 +1558,13 @@ var TextInputSuggest = class {
     }
     if (suggestions.length > 0) {
       this.suggest.setSuggestions(suggestions);
-      this.open(app.dom.appContainerEl, this.inputEl);
+      this.open(this.app.dom.appContainerEl, this.inputEl);
     } else {
       this.close();
     }
   }
   open(container, inputEl) {
-    app.keymap.pushScope(this.scope);
+    this.app.keymap.pushScope(this.scope);
     container.appendChild(this.suggestEl);
     this.popper = createPopper(inputEl, this.suggestEl, {
       placement: "bottom-start",
@@ -1729,7 +1587,7 @@ var TextInputSuggest = class {
     });
   }
   close() {
-    app.keymap.popScope(this.scope);
+    this.app.keymap.popScope(this.scope);
     this.suggest.setSuggestions([]);
     if (this.popper)
       this.popper.destroy();
@@ -1739,8 +1597,11 @@ var TextInputSuggest = class {
 
 // src/utils/FolderSuggester.ts
 var FolderSuggest = class extends TextInputSuggest {
+  constructor(app, inputEl) {
+    super(app, inputEl);
+  }
   getSuggestions(inputStr) {
-    const abstractFiles = app.vault.getAllLoadedFiles();
+    const abstractFiles = this.app.vault.getAllLoadedFiles();
     const folders = [];
     const lowerCaseInputStr = inputStr.toLowerCase();
     abstractFiles.forEach((folder) => {
@@ -1763,7 +1624,7 @@ var FolderSuggest = class extends TextInputSuggest {
 // src/utils/PromptModal.ts
 var import_obsidian3 = require("obsidian");
 var PromptModal = class extends import_obsidian3.Modal {
-  constructor(placeholder, promptClass, escapeSymbol, instructions) {
+  constructor(app, placeholder, promptClass, escapeSymbol, instructions) {
     super(app);
     this.placeholder = placeholder;
     this.promptClass = promptClass;
@@ -1845,7 +1706,7 @@ var PromptModal = class extends import_obsidian3.Modal {
 // src/utils/SuggesterModal.ts
 var import_obsidian4 = require("obsidian");
 var SuggesterModal = class extends import_obsidian4.FuzzySuggestModal {
-  constructor(text_items, items, placeholder, limit) {
+  constructor(app, text_items, items, placeholder, limit) {
     super(app);
     this.text_items = text_items;
     this.items = items;
@@ -1908,6 +1769,11 @@ var DEFAULT_SETTINGS = {
   escapeSymbol: "/",
   realPrefixSeparator: " "
 };
+var PLACEHOLDER_RESOLVERS = [
+  (string) => string.replace(/\{\{date:([^\}]+)\}\}/gi, (_, format) => {
+    return window.moment().format(format);
+  })
+];
 var RapidNotes = class extends import_obsidian5.Plugin {
   async onload() {
     console.log(`Loading ${this.manifest.name} plugin`);
@@ -2091,12 +1957,12 @@ var RapidNotes = class extends import_obsidian5.Plugin {
     }
     if (showSuggestions) {
       modalSuggestions = this.settings.prefixedFolders.map((item) => {
-        return { "command": item.prefix, "purpose": item.folder };
+        return { "command": item.prefix, "purpose": this.resolvePlaceholderValues(item.folder) };
       });
     }
     const escapeSymbol = this.settings.escapeSymbol || "/";
-    const prompt = new PromptModal(placeholder, "rapid-notes-modal", escapeSymbol, modalSuggestions);
-    let promptValue = await new Promise((resolve) => prompt.openAndGetValue(resolve, () => {
+    const prompt = new PromptModal(this.app, placeholder, "rapid-notes-modal", escapeSymbol, modalSuggestions);
+    const promptValue = await new Promise((resolve) => prompt.openAndGetValue(resolve, () => {
     }));
     return promptValue.trim();
   }
@@ -2126,6 +1992,9 @@ var RapidNotes = class extends import_obsidian5.Plugin {
       filename
     };
   }
+  resolvePlaceholderValues(string) {
+    return PLACEHOLDER_RESOLVERS.reduce((resolved, resolver) => resolver(resolved), string);
+  }
   async parseFilename(filename) {
     var folderPath = "";
     const escapeSymbol = this.settings.escapeSymbol || "/";
@@ -2134,14 +2003,16 @@ var RapidNotes = class extends import_obsidian5.Plugin {
     } else {
       ({ folderPath, filename } = this.checkPrefix(filename));
     }
+    folderPath = this.resolvePlaceholderValues(folderPath);
+    filename = this.resolvePlaceholderValues(filename);
     if (!folderPath) {
       let folders = this.getFolders();
-      const activeFile = app.workspace.getActiveFile();
-      const preferredFolder = app.fileManager.getNewFileParent((activeFile == null ? void 0 : activeFile.path) || "");
+      const activeFile = this.app.workspace.getActiveFile();
+      const preferredFolder = this.app.fileManager.getNewFileParent((activeFile == null ? void 0 : activeFile.path) || "");
       folders = folders.filter((folder) => folder.path !== preferredFolder.path);
       folders.unshift(preferredFolder);
       const folderPaths = folders.map((folder) => folder.path);
-      const suggester = new SuggesterModal(folderPaths, folderPaths, "Choose folder");
+      const suggester = new SuggesterModal(this.app, folderPaths, folderPaths, "Choose folder");
       folderPath = await new Promise((resolve) => suggester.openAndGetValue(resolve, () => {
       }));
     }
@@ -2151,9 +2022,9 @@ var RapidNotes = class extends import_obsidian5.Plugin {
     };
   }
   async openNote(path, filename, placement, active = true) {
-    const folder = this.getFolders().find((folder2) => folder2.path === path) || app.vault.getRoot();
+    const folder = this.getFolders().find((folder2) => folder2.path === path) || await this.app.vault.createFolder(path);
     const fullFilePath = (0, import_obsidian5.normalizePath)(path + "/" + filename + ".md");
-    let file = app.vault.getAbstractFileByPath(fullFilePath);
+    let file = this.app.vault.getAbstractFileByPath(fullFilePath);
     if (file instanceof import_obsidian5.TFolder) {
       new import_obsidian5.Notice(`${fullFilePath} found but it's a folder`);
       return;
@@ -2161,9 +2032,9 @@ var RapidNotes = class extends import_obsidian5.Plugin {
       if (this.settings.capitalizeFilename) {
         filename = filename.split("/").map((substring) => substring.charAt(0).toUpperCase() + substring.slice(1)).join("/");
       }
-      file = await app.fileManager.createNewMarkdownFile(folder, filename);
+      file = await this.app.fileManager.createNewMarkdownFile(folder, filename);
     }
-    app.workspace.getLeaf(placement || false).openFile(file, {
+    this.app.workspace.getLeaf(placement || false).openFile(file, {
       state: { mode: "source" },
       active
     });
@@ -2174,7 +2045,7 @@ var RapidNotes = class extends import_obsidian5.Plugin {
   }
   getFolders() {
     const folders = /* @__PURE__ */ new Set();
-    import_obsidian5.Vault.recurseChildren(app.vault.getRoot(), (file) => {
+    import_obsidian5.Vault.recurseChildren(this.app.vault.getRoot(), (file) => {
       if (file instanceof import_obsidian5.TFolder) {
         folders.add(file);
       }
@@ -2188,7 +2059,7 @@ var RapidNotes = class extends import_obsidian5.Plugin {
       const { folderPath, filename } = await this.parseFilename(selectionFilename);
       const file = await this.openNote(folderPath, filename, notePlacement, active);
       if (file instanceof import_obsidian5.TFile) {
-        const replaceText = app.fileManager.generateMarkdownLink(file, "", "", alias || filename);
+        const replaceText = this.app.fileManager.generateMarkdownLink(file, "", "", alias || filename);
         editor.replaceSelection(replaceText);
       }
     } else {
@@ -2199,7 +2070,7 @@ var RapidNotes = class extends import_obsidian5.Plugin {
         const { folderPath, filename } = await this.parseFilename(match.filename);
         const file = await this.openNote(folderPath, filename, notePlacement, active);
         if (file instanceof import_obsidian5.TFile) {
-          const replaceText = app.fileManager.generateMarkdownLink(file, "", "", match.alias || filename);
+          const replaceText = this.app.fileManager.generateMarkdownLink(file, "", "", match.alias || filename);
           const editorPositionStart = {
             line: range.line,
             ch: match.start
@@ -2236,8 +2107,8 @@ var RapidNotes = class extends import_obsidian5.Plugin {
   }
 };
 var RapidNotesSettingsTab = class extends import_obsidian5.PluginSettingTab {
-  constructor(app2, plugin) {
-    super(app2, plugin);
+  constructor(app, plugin) {
+    super(app, plugin);
     this.plugin = plugin;
   }
   hide() {
@@ -2284,10 +2155,10 @@ var RapidNotesSettingsTab = class extends import_obsidian5.PluginSettingTab {
       el.appendText("Keyword that will trigger the action (single words, case sensitive).");
       el.createEl("br");
       el.createEl("b", { text: "Real prefix (optional): " });
-      el.appendText("Text that will be prepended to the filename.");
+      el.appendText("Text that will be prepended to the filename. Can use placeholders such as {{date:YYYY-MM-DD}} (Moment.js formatting).");
       el.createEl("br");
       el.createEl("b", { text: "Folder: " });
-      el.appendText("Location for the saved note.");
+      el.appendText("Location for the saved note. Can use placeholders such as {{date:YYYY-MM-DD}} (Moment.js formatting).");
       el.createEl("br");
       el.createEl("b", { text: "Toggle: " });
       el.appendText("Create a command to save directly into the folder.");
@@ -2326,7 +2197,7 @@ var RapidNotesSettingsTab = class extends import_obsidian5.PluginSettingTab {
           this.plugin.saveSettings();
         });
       }).addSearch((cb) => {
-        new FolderSuggest(cb.inputEl);
+        new FolderSuggest(this.app, cb.inputEl);
         cb.setPlaceholder("Folder").setValue(prefixedFolder.folder).onChange((newFolder) => {
           if (newFolder && this.plugin.settings.prefixedFolders.some((e) => e.folder == newFolder)) {
             new import_obsidian5.Notice("This folder already has a prefix associated with it.");
@@ -2364,3 +2235,5 @@ var RapidNotesSettingsTab = class extends import_obsidian5.PluginSettingTab {
     });
   }
 };
+
+/* nosourcemap */
