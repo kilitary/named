@@ -30,16 +30,15 @@
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": ".obsidian/community-plugins.json",
-                "bFile": ".obsidian/community-plugins.json",
+                "aFile": ".obsidian/plugins/obsidian-enhancing-export/textemplate/dissertation.tex",
+                "bFile": ".obsidian/plugins/obsidian-enhancing-export/textemplate/dissertation.tex",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: community-plugins.json"
+              "title": "Diff: dissertation.tex"
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -491,10 +490,11 @@
       "html-server:Turn Http Server On": false,
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
-      "map-of-content:Update Map of Content": false
+      "map-of-content:Update Map of Content": false,
+      "card-board:CardBoard": false
     }
   },
-  "active": "b92839f1af9b39a0",
+  "active": "439d07021612da6f",
   "lastOpenFiles": [
     "axis9/research/research.md",
     "indirect/textgenerator/templates/awesomePrompts/hypnotherapistAwesome.md",
