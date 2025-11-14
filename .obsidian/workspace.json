@@ -4,38 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "967d37fa6d79c950",
+        "id": "b00a5656032ff38d",
         "type": "tabs",
         "children": [
           {
-            "id": "439d07021612da6f",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "axis9/research/research.md",
-                "mode": "preview",
-                "source": false,
-                "backlinks": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "research"
-            }
-          },
-          {
-            "id": "b92839f1af9b39a0",
+            "id": "f873123e1ee0ee3c",
             "type": "leaf",
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": ".obsidian/plugins/obsidian-enhancing-export/textemplate/dissertation.tex",
-                "bFile": ".obsidian/plugins/obsidian-enhancing-export/textemplate/dissertation.tex",
+                "aFile": "copilot/copilot-custom-prompts/copilot-custom-prompts.md",
+                "bFile": "copilot/copilot-custom-prompts/copilot-custom-prompts.md",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: dissertation.tex"
+              "title": "Diff: copilot-custom-prompts"
             }
           }
         ],
@@ -227,16 +210,6 @@
             }
           },
           {
-            "id": "2e219f2e1d692087",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
             "id": "b758596992507d2c",
             "type": "leaf",
             "state": {
@@ -264,140 +237,6 @@
               "state": {},
               "icon": "spreadsheet",
               "title": "Advanced Tables"
-            }
-          },
-          {
-            "id": "58379a0e23263e38",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "689584d993ef4d30",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "48f69fb7f2a7e005",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "49914f04a540ecbe",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "4f2cbe85f003efd0",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "aa0b3ab215c0d379",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "952b23cecf7360bc",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "cba424869dbb3c3a",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "96d43c97cbaf93db",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "7c12f86fcd91772f",
-            "type": "leaf",
-            "state": {
-              "type": "card-browser-view",
-              "state": {
-                "path": "/"
-              },
-              "icon": "lucide-ghost",
-              "title": "card-browser-view"
-            }
-          },
-          {
-            "id": "9b07dc496de1685d",
-            "type": "leaf",
-            "state": {
-              "type": "card-browser-view",
-              "state": {
-                "path": "/"
-              },
-              "icon": "lucide-ghost",
-              "title": "card-browser-view"
-            }
-          },
-          {
-            "id": "23ab02a5163a6179",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "0d400e1a869bf9ad",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
             }
           },
           {
@@ -441,7 +280,7 @@
             }
           }
         ],
-        "currentTab": 29
+        "currentTab": 9
       }
     ],
     "direction": "horizontal",
@@ -491,37 +330,40 @@
       "html-server:Turn Http Server Off": false,
       "periodic-notes:Open today": false,
       "map-of-content:Update Map of Content": false,
-      "card-board:CardBoard": false
+      "card-board:CardBoard": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "439d07021612da6f",
+  "active": "f873123e1ee0ee3c",
   "lastOpenFiles": [
+    "SKYNET/SKYNET.md",
+    "indirect/Excalidraw/Drawing 2024-04-22 00.15.47.excalidraw.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot/copilot-custom-prompts/Remove URLs.md",
+    "copilot/copilot-custom-prompts/Generate glossary.md",
+    "copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts/Make longer.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "copilot/copilot-custom-prompts/Emojify.md",
+    "copilot/copilot-custom-prompts/Explain like I am 5.md",
+    "copilot/copilot-custom-prompts/Simplify.md",
+    "copilot/copilot-custom-prompts/Summarize.md",
+    "copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
+    "copilot/copilot-custom-prompts/copilot-custom-prompts.md",
+    "copilot/copilot.md",
+    "copilot/copilot-custom-prompts",
+    "copilot",
+    "SKYNET/research/Research Assistant/and how do you know what.md",
     "axis9/research/research.md",
-    "indirect/textgenerator/templates/awesomePrompts/hypnotherapistAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/promptgeneratorAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/promptenhancerAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/rapperAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/pythoninterpreterAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/publicspeakingcoachAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/psychologistAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/regexgeneratorAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/recruiterAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/realestateagentAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/salespersonAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/rprogramminginterpreterAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/relationshipcoachAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/selfhelpbookAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/screenwriterAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/scientificdatavisualizerAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/socialmediainfluencerAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/smartdomainnamegeneratorAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/seniorfrontenddeveloperAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/solrsearchengineAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/softwarequalityassurancetesterAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/socraticmethodAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/socratAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/socialmediamanagerAwesome.md",
-    "indirect/textgenerator/templates/awesomePrompts/spokenenglishteacherandimproverAwesome.md",
+    "indirect/indirect.md",
+    "indirect/smart-chats/UNTITLED CHAT 2024-04-21 20 29 48.md",
+    "indirect/garbage/garbage.md",
+    "indirect/textgenerator/templates/Experimental/POLL_SYSTEM_GUIDE.md",
+    "indirect/textgenerator/templates/Experimental/discussionEnhancer.md",
+    "indirect/textgenerator/templates/Experimental/conceptLinker.md",
+    "indirect/textgenerator/templates/Experimental/testCustomForm.md",
     "notes",
     "looms/Untitled 2.loom",
     "looms/Untitled 1.loom",
@@ -531,8 +373,6 @@
     "tmp",
     "SKYNET/playground/arduino/scancore.c",
     "SKYNET/playground/arduino/scan.c",
-    "SKYNET/playground/arduino",
-    "team",
     "psy-references/patents/funny/upic6.webp",
     "Untitled 1.canvas",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",
