@@ -191,10 +191,43 @@ Redis AI serves as a powerful integration hub that can connect various AI/LLM/ag
 # Core RedisAI operations that enable integrations
 
 # 1. Model Management
+# Store a machine learning model in Redis for later inference
 AI.MODELSTORE <key> <backend> <device> <tag> <model_blob>
+# Parameters:
+#   - key: Unique identifier for the model (e.g., "sentiment_model")
+#   - backend: Framework type (TORCH, TF, TFLITE, ONNX)
+#   - device: Execution device (CPU, GPU, GPU:0, GPU:1)
+#   - tag: Version tag for model tracking
+#   - model_blob: Binary model data
+
+# Retrieve model metadata or binary blob
 AI.MODELGET <key> [META | BLOB]
+# Returns model configuration or full binary data
+
+# Remove a model from Redis
 AI.MODELDEL <key>
+
+# Execute inference on a stored model
 AI.MODELEXECUTE <key> INPUTS <input_keys...> OUTPUTS <output_keys...>
+# This is the core inference operation that enables AI/LLM/agent integrations
+# Parameters:
+#   - key: The model identifier stored in Redis
+#   - INPUTS: One or more tensor keys containing input data
+#   - OUTPUTS: One or more keys where results will be stored
+# Example: AI.MODELEXECUTE my_model INPUTS input_tensor OUTPUTS prediction
+# 
+# This command executes the model inference operation and is fundamental to:
+#   - Real-time AI/ML predictions in applications
+#   - Low-latency model serving without external dependencies
+#   - Integration with LLM preprocessing/postprocessing pipelines
+#   - Agent decision-making based on ML model outputs
+#   - Multi-step inference pipelines using DAG operations
+#
+# Performance characteristics:
+#   - Latency: 1-100ms depending on model complexity
+#   - Throughput: Can handle 10,000+ inferences/second
+#   - Memory: Models stay in memory for fast execution
+#   - Scalability: Horizontal scaling with Redis Cluster
 
 # 2. Tensor Operations
 AI.TENSORSET <key> <type> <shape...> [BLOB <data> | VALUES <val...>]
