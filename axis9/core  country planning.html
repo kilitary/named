@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>core  country planning</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    <div class="banner-image"><img src="data:image/png;base64,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" alt="Banner"></div>
+    <ol>
+<li>[ ] earn 200k in reserve  [created:: 2024-04-22]</li>
+<li>[x] giveaway 50k  [created:: 2024-04-22]  [completion:: 2025-10-15]</li>
+<li>[x] try suggested country for 1 week  [created:: 2024-04-22]  [completion:: 2025-10-15]</li>
+<li>[ ] visit with mother.  [created:: 2024-04-22]</li>
+<li>[ ] f<span style="color:#000000">inal decision</span>  [created:: 2024-04-22]</li>
+<li>[x] decisions and how much is going to have a great time to do this for a while  [created:: 2024-04-22]  [completion:: 2025-10-15]</li>
+<li>[x] research&amp;coding!  [created:: 2024-04-22]  [completion:: 2025-10-15]</li>
+</ol>
+<!-- F9B4E9EF -->
+</body>
+</html>

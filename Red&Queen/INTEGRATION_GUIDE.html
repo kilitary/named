@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEGRATION_GUIDE</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    
+    <h1 id="compact-evolution-resource-principles-integration-guide">Compact Evolution Resource Principles - Integration Guide</h1>
+<h2 id="quick-start">Quick Start</h2>
+<p>The Compact Evolution Resource Principles system is now implemented and ready for use. It takes English technical words from the same categories and splits them into sub-words matching computer IA architecture to define logic circuits for request processing.</p>
+<h3 id="basic-usage">Basic Usage</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">Red.Queen.compact_evolution</span> <span class="kn">import</span> <span class="n">CompactEvolutionSystem</span>
+
+<span class="c1"># Initialize the system</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">CompactEvolutionSystem</span><span class="p">()</span>
+
+<span class="c1"># Process a request</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">process_request</span><span class="p">(</span><span class="s2">&quot;process neural network with encryption&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;APPROVE&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Compact representation: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;compact_representation&#39;</span><span class="p">][</span><span class="s1">&#39;mathematical_expression&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Logic circuit operations: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;logic_circuit&#39;</span><span class="p">][</span><span class="s1">&#39;operations&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DENY: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;reason&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="integration-with-simulation-logs">Integration with Simulation Logs</h3>
+<p>The system follows patterns observed in existing simulation logs in <code>Red&amp;Queen/playground/models_queryer/</code>:</p>
+<ol>
+<li><strong>Categorization</strong>: Similar to existing patterns like "Labels for physical properties", "Labels for verb", etc.</li>
+<li><strong>Compact Labels</strong>: Uses single letters (A, B, C) and double letters (AA, AB) for compact representation</li>
+<li><strong>Mathematical Operations</strong>: Supports operations like <code>A + A = 2A</code>, <code>2A / 4 = 0.5A</code></li>
+<li><strong>APPROVE/DENY Pattern</strong>: Maintains the same response structure as simulation logs</li>
+</ol>
+<h3 id="categories-implemented">Categories Implemented</h3>
+<ol>
+<li><strong>Physical Properties</strong>: Memory, Bandwidth, Latency, Temperature, etc.</li>
+<li><strong>Computer Verbs</strong>: Execute, Process, Compile, Debug, etc.</li>
+<li><strong>IA Architecture</strong>: NeuralNetwork, Transformer, Encoder, etc.</li>
+<li><strong>Circuit Components</strong>: LogicGate, FlipFlop, Multiplexer, etc.</li>
+<li><strong>Data Structures</strong>: Array, LinkedList, Stack, Tree, etc.</li>
+<li><strong>Algorithms</strong>: BinarySearch, QuickSort, MergeSort, etc.</li>
+<li><strong>Network Protocols</strong>: TCP, HTTP, DNS, SSL, etc.</li>
+<li><strong>Security Concepts</strong>: Encryption, Authentication, Firewall, etc.</li>
+</ol>
+<h2 id="files-created">Files Created</h2>
+<ul>
+<li><code>Red&amp;Queen/compact_evolution.py</code> - Main implementation</li>
+<li><code>Red&amp;Queen/compact_evolution_demo.py</code> - Demonstration script</li>
+<li><code>Red&amp;Queen/test_integration.py</code> - Integration tests</li>
+<li><code>Red&amp;Queen/README_compact_evolution.md</code> - Detailed documentation</li>
+<li><code>Red&amp;Queen/INTEGRATION_GUIDE.md</code> - This guide</li>
+</ul>
+<h2 id="testing">Testing</h2>
+<p>Run the tests to verify functionality:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>Red<span class="p">&amp;</span>Queen
+python3<span class="w"> </span>compact_evolution.py<span class="w">          </span><span class="c1"># Basic test</span>
+python3<span class="w"> </span>compact_evolution_demo.py<span class="w">     </span><span class="c1"># Full demonstration  </span>
+python3<span class="w"> </span>test_integration.py<span class="w">           </span><span class="c1"># Integration test</span>
+</code></pre></div>
+
+<h2 id="sample-output">Sample Output</h2>
+<div class="codehilite"><pre><span></span><code>Input request: process neural network with encryption using memory
+Status: APPROVE
+Compact representation: A + P + CS + AE = 4*AVG(A, P, CS, AE)
+Logic circuit operations:
+  A = Memory
+  P: Process  
+  CS = Encryption
+  AE = IA_PROCESS(NeuralNetwork)
+</code></pre></div>
+
+<p>The system successfully implements the requested "Compact Evolution Resource Principles" by:</p>
+<p>✅ Taking English tech words of same categories<br />
+✅ Splitting them into sub-words<br />
+✅ Matching computer IA architecture concepts<br />
+✅ Defining logic circuits for request processing<br />
+✅ Providing compact evolution through systematic categorization and representation</p>
+<!-- DF278723 -->
+</body>
+</html>

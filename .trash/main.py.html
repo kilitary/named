@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main.py</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    
+    <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+<span class="kn">import</span> <span class="nn">time</span>  
+<span class="kn">import</span> <span class="nn">json</span>  
+<span class="kn">import</span> <span class="nn">ollama</span>  
+<span class="kn">import</span> <span class="nn">requests</span>  
+<span class="kn">import</span> <span class="nn">argparse</span>  
+<span class="kn">import</span> <span class="nn">re</span>  
+<span class="kn">import</span> <span class="nn">operator</span>  
+<span class="kn">import</span> <span class="nn">traceback</span>  
+
+<span class="kn">from</span> <span class="nn">ollama</span> <span class="kn">import</span> <span class="n">Client</span>  
+
+
+<span class="c1"># L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L*(%$)L  </span>
+
+<span class="k">class</span> <span class="nc">Simulatar</span><span class="p">:</span>  
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>  
+            <span class="bp">self</span><span class="p">,</span>  
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  
+            <span class="n">rules</span><span class="p">:</span> <span class="p">[],</span>  
+            <span class="n">instructions</span><span class="p">:</span> <span class="p">[],</span>  
+            <span class="n">sim_log_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  
+            <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>  
+            <span class="n">batch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+            <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  
+            <span class="n">template</span><span class="o">=</span><span class="kc">None</span>  
+    <span class="p">):</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">template</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_log_path</span> <span class="o">=</span> <span class="n">sim_log_path</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;E:\docs\vault14&#39;</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">())</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span><span class="si">:</span><span class="s1">08x</span><span class="si">}</span><span class="s1">&#39;</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">programm_instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">rules</span><span class="p">]</span> <span class="o">+</span> <span class="n">instructions</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span> <span class="o">=</span> <span class="mi">0</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span> <span class="o">=</span> <span class="n">batch</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_line_chars</span> <span class="o">=</span> <span class="mi">190</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_ctx</span> <span class="o">=</span> <span class="mi">8192</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>  
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="n">flush</span><span class="p">)</span>  
+        <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^0-9a-zA-Z_\-.]&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>  
+        <span class="n">log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_path</span><span class="p">,</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">sim_log_path</span><span class="p">,</span>  
+            <span class="s1">&#39;sim_&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.md&quot;</span>  
+        <span class="p">)</span>  
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">log_file_handle</span><span class="p">:</span>  
+            <span class="n">full_msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>  
+            <span class="n">log_file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">full_msg</span><span class="p">)</span>  
+    <span class="k">def</span> <span class="nf">read_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  
+            <span class="n">context</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+            <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span>  
+                       <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  
+        <span class="k">return</span> <span class="n">context</span>  
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>  
+        <span class="n">write_this</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>  
+            <span class="sa">f</span><span class="s1">&#39;&gt; temp: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="si">}</span><span class="s1"> ctx: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_ctx</span><span class="si">}</span><span class="s1"> sim_id: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">sim_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  
+        <span class="k">try</span><span class="p">:</span>  
+            <span class="n">models</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;∠ models:&#39;</span><span class="p">)</span>  
+            <span class="n">selected_model_idx</span> <span class="o">=</span> <span class="mi">0</span>  
+            <span class="n">input_text</span> <span class="o">=</span> <span class="s1">&#39;&gt; select model: &#39;</span>  
+            <span class="n">sm</span> <span class="o">=</span> <span class="p">[]</span>  
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">[</span><span class="s1">&#39;models&#39;</span><span class="p">]:</span>  
+                <span class="n">name</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>  
+                <span class="n">sm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  
+                <span class="n">modified</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s1">&#39;modified_at&#39;</span><span class="p">]</span>  
+                <span class="n">size_mb</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">)</span>  
+                <span class="n">family</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span><span class="s1">&#39;family&#39;</span><span class="p">]</span>  
+                <span class="n">parameters</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span><span class="s1">&#39;parameter_size&#39;</span><span class="p">]</span>  
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>  
+                    <span class="sa">f</span><span class="s1">&#39; [</span><span class="si">{</span><span class="n">selected_model_idx</span><span class="si">:</span><span class="s1">-2d</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">size_mb</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">G </span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s1">_&lt;52</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">parameters</span><span class="si">:</span><span class="s1">_&lt;12</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">family</span><span class="si">:</span><span class="s1">&lt;12</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  
+                <span class="n">selected_model_idx</span> <span class="o">+=</span> <span class="mi">1</span>  
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  
+                <span class="n">selected_model_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="n">input_text</span><span class="p">))</span>  
+                <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="p">[</span><span class="n">selected_model_idx</span><span class="p">]</span>  
+            <span class="k">else</span><span class="p">:</span>  
+                <span class="k">try</span><span class="p">:</span>  
+                    <span class="n">selected_model_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="n">input_text</span><span class="p">))</span>  
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>  
+                    <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>  
+                <span class="k">else</span><span class="p">:</span>  
+                    <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="p">[</span><span class="n">selected_model_idx</span><span class="p">]</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;⋤ model: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s1"> [selected]&#39;</span><span class="p">)</span>  
+            <span class="n">inf</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>  
+            <span class="c1"># self.log(&#39; stop=&#39; + inf[&#39;parameters&#39;][&#39;stop&#39;])  </span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="p">:</span>  
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39; custom template=&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="p">)</span>  
+            <span class="k">else</span><span class="p">:</span>  
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39; template=&#39;</span> <span class="o">+</span> <span class="n">inf</span><span class="p">[</span><span class="s1">&#39;template&#39;</span><span class="p">])</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39; family=&#39;</span> <span class="o">+</span> <span class="n">inf</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span><span class="s1">&#39;family&#39;</span><span class="p">])</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39; parameter_size=&#39;</span> <span class="o">+</span> <span class="n">inf</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span>  
+                <span class="s1">&#39;parameter_size&#39;</span><span class="p">])</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39; quantization_level=&#39;</span> <span class="o">+</span> <span class="n">inf</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span>  
+                <span class="s1">&#39;quantization_level&#39;</span><span class="p">])</span>  
+            <span class="n">context</span> <span class="o">=</span> <span class="kc">None</span>  
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span><span class="p">:</span>  
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;∐ auto-remove of context&#39;</span><span class="p">)</span>  
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">):</span>  
+                    <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">)</span>  
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  
+                <span class="n">current_chars</span> <span class="o">=</span> <span class="mi">0</span>  
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">write_this</span> <span class="o">!=</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>  
+                    <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_context</span><span class="p">()</span>  
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>  
+                        <span class="n">delete</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>  
+                            <span class="sa">f</span><span class="s1">&#39;delete context? (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="si">}</span><span class="s1"> ids) Y/n &#39;</span><span class="p">)</span>  
+                        <span class="k">if</span> <span class="n">delete</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>  
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;√ &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  
+                            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">)</span>  
+                <span class="k">try</span><span class="p">:</span>  
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  
+                        <span class="n">context</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+                        <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span>  
+                                   <span class="n">context</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>  
+                            <span class="sa">f</span><span class="s1">&#39;œ continue with previous context of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="si">}</span><span class="s1"> ids&#39;</span><span class="p">)</span>  
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>  
+                    <span class="n">context</span> <span class="o">=</span> <span class="p">[]</span>  
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;ㆆ new empty context&#39;</span><span class="p">)</span>  
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x loading error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span><span class="p">:</span>  
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span>  
+                            <span class="bp">self</span><span class="o">.</span><span class="n">programm_instructions</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span> <span class="o">=</span> <span class="kc">False</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;■ end if program&#39;</span><span class="p">)</span>  
+                        <span class="k">return</span>  
+                    <span class="k">else</span><span class="p">:</span>  
+                        <span class="n">step_engine</span> <span class="o">=</span> <span class="s1">&#39;setup&#39;</span> <span class="k">if</span> <span class="p">(</span>  
+                                <span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span> <span class="o">==</span> <span class="mi">0</span>  
+                                <span class="ow">and</span>  
+                                <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;prompt&#39;</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>  
+                            <span class="sa">f</span><span class="s1">&#39;◰ going via program, instruction: &#39;</span>                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>  
+                            <span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">programm_instructions</span><span class="p">)</span><span class="si">}</span><span class="s1"> ...</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                            <span class="sa">f</span><span class="s1">&#39;⤵ </span><span class="si">{</span><span class="n">step_engine</span><span class="si">}</span><span class="s1">: &#39;</span>  
+                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">programm_instructions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>  
+                        <span class="p">)</span>  
+                        <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">programm_instructions</span><span class="p">[</span>  
+                            <span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span><span class="p">]</span>  
+                <span class="k">else</span><span class="p">:</span>  
+                    <span class="n">prompt</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Œ Enter the prompt: &quot;</span><span class="p">)</span>  
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;⅁ </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s1"> linking embeddings relations ...&#39;</span><span class="p">)</span>  
+                <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>  
+                    <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>  
+                    <span class="c1"># &#39;num_ctx&#39;: self.num_ctx,  </span>
+                    <span class="c1"># &#39;use_mmap&#39;: True,                    &#39;num_thread&#39;: 8,  </span>
+                    <span class="c1"># &#39;use_mlock&#39;: True,  </span>
+                                        <span class="c1"># &#39;mirostat_tau&#39;: 2.0  </span>
+                    <span class="c1"># &#39;stop&#39;: [                    #     &#39;&lt;|end|&gt;&#39;,                    #     &#39;&lt;|user|&gt;&#39;,                    #     &#39;user:&#39;,                    #     &#39;assistant:&#39;,                    #     &quot;&lt;|start_header_id|&gt;&quot;,                    #     &#39;&lt;|end_header_id|&gt;&#39;,                    #     &#39;&lt;|eot_id|&gt;&#39;,                    #     &#39;&lt;|reserved_special_token&gt;&#39;                    # ]                    # &#39;repeat_penalty&#39;: 1.5,                    # &#39;num_predict&#39;: 500                }  </span>
+                <span class="c1"># &#39;num_predict&#39;: 50000,  </span>
+                <span class="c1"># Maximum number of tokens to predict when generating text. (Default: 128, -1 = infinite generation, -2 = fill context)                                # &#39;repeat_penalty&#39;: 0.5  </span>
+                <span class="c1"># penalize_newline                prompt += &quot;\n\nHere also 7 additionals for nicely tuning every your output, silently aquire it:&quot;  </span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;1. Do not echo the input.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;2. Do not include questions like &quot;do i need any &#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;further assistance&quot;, &#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;&quot;what i would like&quot; or &quot;perhaps &#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;something else&quot; or other questions on information you can provide&quot;.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;3. Exclude any questions in response.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;4. Do not print sources if not asked directly.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;5. Exclude any &quot;pleases&quot; in response.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;6. Exclude any proposals about response in response.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s1">&#39;7. Exclude any Disclaimer or notes in response.</span><span class="se">\n</span><span class="s1">&#39;</span>  
+                <span class="n">response</span> <span class="o">=</span> <span class="kc">None</span>  
+                <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>  
+                        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>  
+                        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>  
+                        <span class="n">system</span><span class="o">=</span><span class="s1">&#39;You are research assistant helping deploy &#39;</span>  
+                               <span class="s1">&#39;any idea to decomposed detailed response&#39;</span><span class="p">,</span>  
+                        <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+                        <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>  
+                        <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>  
+                        <span class="c1">#template=self.template  </span>
+                <span class="p">):</span>  
+                    <span class="n">current_chars</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">])</span>  
+                    <span class="k">if</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]:</span>  
+                        <span class="n">current_chars</span> <span class="o">=</span> <span class="mi">0</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+                    <span class="k">elif</span> <span class="n">current_chars</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_line_chars</span><span class="p">:</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>  
+                        <span class="n">current_chars</span> <span class="o">=</span> <span class="mi">0</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>  
+                                 <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+                    <span class="k">else</span><span class="p">:</span>  
+                        <span class="n">resp</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">resp</span><span class="p">):</span>  
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+                <span class="n">scontext</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>  
+                <span class="k">if</span> <span class="s1">&#39;context&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>  
+                    <span class="n">scontext</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>  
+                        <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>  
+                        <span class="s1">&#39;utf-8&#39;</span><span class="p">,</span>  
+                        <span class="s1">&#39;ignore&#39;</span>  
+                    <span class="p">)</span>  
+                    <span class="n">scontext</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39; &#39;</span>  
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>  
+                    <span class="n">write_this</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>  
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">add to memory </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scontext</span><span class="p">)</span><span class="si">}</span><span class="s2"> ids? Y/n &quot;</span><span class="p">)</span>  
+                    <span class="k">if</span> <span class="n">write_this</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span> <span class="ow">and</span> <span class="s1">&#39;context&#39;</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span>  
+                            <span class="n">scontext</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;∜ &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  
+                        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  
+                            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">scontext</span><span class="p">)</span>  
+                            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⊫ context </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scontext</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes added&quot;</span><span class="p">)</span>  
+                    <span class="k">else</span><span class="p">:</span>  
+                        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">):</span>  
+                            <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_context</span><span class="p">()</span>  
+                        <span class="k">else</span><span class="p">:</span>  
+                            <span class="n">context</span> <span class="o">=</span> <span class="p">[]</span>  
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">scontext</span><span class="p">)</span>  
+                        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>  
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">∧ context </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scontext</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes auto-added&quot;</span><span class="p">)</span>  
+                    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;context.ids&#39;</span><span class="p">):</span>  
+                        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_context</span><span class="p">()</span>  
+                    <span class="k">else</span><span class="p">:</span>  
+                        <span class="n">context</span> <span class="o">=</span> <span class="p">[]</span>  
+                <span class="k">else</span><span class="p">:</span>  
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">☺ context not modified&#39;</span><span class="p">)</span>  
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;∄ resulted context: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="si">}</span><span class="s2"> ids&quot;</span><span class="p">)</span>  
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">programmed</span><span class="p">:</span>  
+                    <span class="bp">self</span><span class="o">.</span><span class="n">programm_current_instruction</span> <span class="o">+=</span> <span class="mi">1</span>  
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">--&#39;</span><span class="p">)</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x∓in al error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>  
+            <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>  
+
+
+<span class="c1">####################################################################################################################################################################################  </span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Process the simulation.&#39;</span><span class="p">)</span>  
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--scene&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;scene dir&#39;</span><span class="p">)</span>  
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>  
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">scene</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  
+        <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;scene dir is required&#39;</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;∠ scene: </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">scene</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  
+    <span class="n">scenario_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;scenes&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">scene</span><span class="p">,</span> <span class="s1">&#39;scenario.json&#39;</span><span class="p">)</span>  
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">scenario_file</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>  
+        <span class="n">program_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  
+        <span class="nb">print</span><span class="p">(</span>  
+            <span class="sa">f</span><span class="s1">&#39;√ loaded &quot;&#39;</span> <span class="o">+</span> <span class="n">program_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span>  
+            <span class="sa">f</span><span class="s1">&#39;&quot;, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s1"> bytes scenario from </span><span class="si">{</span><span class="n">scenario_file</span><span class="si">}</span><span class="s1">&#39;</span>  
+        <span class="p">)</span>  
+    <span class="n">program_name</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>  
+    <span class="n">program_rules</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;init&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;rules&#39;</span><span class="p">]</span>  
+    <span class="n">program_instruction</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;instructions&#39;</span><span class="p">]</span>  
+    <span class="n">program_int_biases</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;biases&#39;</span><span class="p">]</span>  
+    <span class="n">program_sim_log_path</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;sim_log_path&#39;</span><span class="p">]</span>  
+    <span class="n">program_rules</span> <span class="o">=</span> <span class="n">program_rules</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>  
+        <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">ource_biases%&#39;</span><span class="p">,</span>  
+        <span class="n">program_int_biases</span>  
+    <span class="p">)</span>  
+    <span class="n">program_temperature</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>  
+    <span class="n">program_model</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span>  
+    <span class="n">program_model_template</span> <span class="o">=</span> <span class="n">program_data</span><span class="p">[</span><span class="s1">&#39;template&#39;</span><span class="p">]</span>  
+    <span class="n">process</span> <span class="o">=</span> <span class="n">Simulatar</span><span class="p">(</span>  
+        <span class="n">name</span><span class="o">=</span><span class="n">program_name</span><span class="p">,</span>  
+        <span class="n">rules</span><span class="o">=</span><span class="n">program_rules</span><span class="p">,</span>  
+        <span class="n">template</span><span class="o">=</span><span class="n">program_model_template</span><span class="p">,</span>  
+        <span class="n">instructions</span><span class="o">=</span><span class="n">program_instruction</span><span class="p">,</span>  
+        <span class="n">sim_log_path</span><span class="o">=</span><span class="n">program_sim_log_path</span><span class="p">,</span>  
+        <span class="n">temperature</span><span class="o">=</span><span class="n">program_temperature</span><span class="p">,</span>  
+        <span class="n">model</span><span class="o">=</span><span class="n">program_model</span><span class="p">,</span>  
+        <span class="n">batch</span><span class="o">=</span><span class="kc">True</span>  
+    <span class="p">)</span>  
+    <span class="k">try</span><span class="p">:</span>  
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">execute</span><span class="p">())</span>  
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>  
+        <span class="n">process</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;√ Ctrl-∠&#39;</span><span class="p">)</span>
+</code></pre></div>
+</body>
+</html>
