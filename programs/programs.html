@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Programs - Software Tools & Development Utilities"</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    <div class="banner-image"><img src="data:image/png;base64,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" alt="Banner"></div>
+    <h1 id="programs-software-tools-development-utilities">💻 Programs - Software Tools &amp; Development Utilities</h1>
+<p><strong>Repository for software development tools, utilities, and executable programs that support NNAMED research activities.</strong></p>
+<h2 id="overview">📋 Overview</h2>
+<p>The programs directory serves as the central hub for software tools, utilities, and development resources that support various research activities throughout the NNAMED repository. This includes custom tools, development utilities, and supporting software for research automation.</p>
+<h2 id="repository-programs">📂 Repository Programs</h2>
+<h3 id="core-development-tools">🔧 Core Development Tools</h3>
+<h4 id="expandorc-core-system-expander"><strong>expandor.c</strong> - <a href="../expandor.c">Core System Expander</a></h4>
+<p>Located in the repository root, this C program provides core system expansion functionality:
+- <strong>Node Management</strong>: Handles HUMAN_NODE and ELECTRONIC_NODE types
+- <strong>Channel Processing</strong>: Manages HUMAN_CHANNEL and ELECTRONIC_CHANNEL connections
+- <strong>System Integration</strong>: Core functionality for system expansion and networking
+- <strong>Random Processing</strong>: Advanced random number generation for system operations</p>
+<h3 id="python-development-tools">🐍 Python Development Tools</h3>
+<p>Located in <code>.obsidian/scripts/python/</code>:
+- <strong><a href="../.obsidian/scripts/python/main2.py">main2.py</a></strong> - Primary Python automation script for Obsidian integration</p>
+<h3 id="development-infrastructure">⚙️ Development Infrastructure</h3>
+<h4 id="obsidian-plugin-ecosystem">Obsidian Plugin Ecosystem</h4>
+<p>Supporting JavaScript development tools:
+- <strong>Image Management</strong>: <a href="../.obsidian/plugins/obsidian-imgur-plugin/main.js">obsidian-imgur-plugin</a> for image handling
+- <strong>UI Enhancement</strong>: <a href="../.obsidian/plugins/obsidian-focus-mode/main.js">obsidian-focus-mode</a>, <a href="../.obsidian/plugins/editing-toolbar/main.js">editing-toolbar</a> for interface improvements<br />
+- <strong>Visualization</strong>: <a href="../.obsidian/plugins/semantic-canvas/main.js">semantic-canvas</a>, <a href="../.obsidian/plugins/multi-column-markdown/main.js">multi-column-markdown</a> for content presentation
+- <strong>Intelligence</strong>: <a href="../.obsidian/plugins/smart-connections/main.js">smart-connections</a> for content analysis and relationship mapping
+- <strong>Intelligence</strong>: smart-connections for content analysis and relationship mapping
+- <strong>Organization</strong>: obsidian-contacts, janitor for content organization
+- <strong>Navigation</strong>: new-tab-plus for enhanced workspace management</p>
+<h2 id="tool-categories">🎯 Tool Categories</h2>
+<h3 id="research-automation-tools">🔬 Research Automation Tools</h3>
+<ul>
+<li><strong>Data Processing</strong>: Automated data analysis and processing utilities</li>
+<li><strong>Content Generation</strong>: Tools for automated content creation and analysis</li>
+<li><strong>Research Integration</strong>: Utilities that integrate with research workflows</li>
+</ul>
+<h3 id="analysis-utilities">📊 Analysis Utilities</h3>
+<ul>
+<li><strong>Statistical Analysis</strong>: Data analysis and statistical processing tools</li>
+<li><strong>Visualization</strong>: Tools for creating charts, graphs, and visual representations</li>
+<li><strong>Report Generation</strong>: Automated report creation and formatting utilities</li>
+</ul>
+<h3 id="development-support">🛠️ Development Support</h3>
+<ul>
+<li><strong>Build Tools</strong>: Compilation and build automation utilities</li>
+<li><strong>Testing Frameworks</strong>: Tools for testing and validation</li>
+<li><strong>Documentation</strong>: Automated documentation generation tools</li>
+</ul>
+<h2 id="integration-points">🔗 Integration Points</h2>
+<h3 id="nnamed-research-integration">NNAMED Research Integration</h3>
+<ul>
+<li><strong><a href="../SKYNET/SKYNET.html">SKYNET/</a></strong> - Technology research tool support</li>
+<li><strong><a href="../Red&amp;Queen/Red&amp;Queen.html">Red&amp;Queen/</a></strong> - Interdisciplinary analysis tools</li>
+<li><strong><a href="../axis9/axis9.html">axis9/</a></strong> - Strategic analysis automation</li>
+<li><strong><a href="../textgenerator/textgenerator.html">textgenerator/</a></strong> - Text generation and processing tools</li>
+</ul>
+<h3 id="obsidian-vault-integration">Obsidian Vault Integration</h3>
+<ul>
+<li><strong>Plugin Ecosystem</strong>: JavaScript plugins for enhanced functionality</li>
+<li><strong>Python Scripts</strong>: Automation and analysis scripts</li>
+<li><strong>Content Processing</strong>: Tools for markdown and content management</li>
+</ul>
+<h2 id="development-metrics">📈 Development Metrics</h2>
+<ul>
+<li><strong>Core Programs</strong>: C-based system tools</li>
+<li><strong>Python Scripts</strong>: Research automation utilities  </li>
+<li><strong>JavaScript Plugins</strong>: 10+ Obsidian integration tools</li>
+<li><strong>Integration Scope</strong>: Repository-wide tool support</li>
+</ul>
+<h2 id="getting-started">🚀 Getting Started</h2>
+<h3 id="tool-development">Tool Development</h3>
+<ol>
+<li><strong>C Development</strong>: Use expandor.c as foundation for system tools</li>
+<li><strong>Python Scripting</strong>: Extend .obsidian/scripts/python/ for automation</li>
+<li><strong>JavaScript Plugins</strong>: Develop Obsidian plugins for enhanced functionality</li>
+</ol>
+<h3 id="tool-usage">Tool Usage</h3>
+<ol>
+<li><strong>System Tools</strong>: Compile and run expandor.c for system operations</li>
+<li><strong>Research Automation</strong>: Use Python scripts for data processing</li>
+<li><strong>Interface Enhancement</strong>: Leverage Obsidian plugins for improved workflow</li>
+</ol>
+<h2 id="development-standards">🛡️ Development Standards</h2>
+<h3 id="code-quality">Code Quality</h3>
+<ul>
+<li><strong>Documentation</strong>: Comprehensive inline documentation</li>
+<li><strong>Testing</strong>: Thorough testing and validation procedures</li>
+<li><strong>Integration</strong>: Seamless integration with existing research workflows</li>
+</ul>
+<h3 id="tool-categories_1">Tool Categories</h3>
+<ul>
+<li><strong>System Level</strong>: Low-level C programs for core functionality</li>
+<li><strong>Research Level</strong>: Python scripts for data analysis and automation</li>
+<li><strong>Interface Level</strong>: JavaScript tools for user experience enhancement</li>
+</ul>
+<hr />
+<div class="codehilite"><pre><span></span><code>
+</code></pre></div>
+
+<!-- 0246A9CF -->
+</body>
+</html>

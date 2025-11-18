@@ -19,5 +19,7 @@
   "ctimeFormat": "YYYY-MM-DD HH:mm:ss",
   "mtimeFormat": "YYYY-MM-DD HH:mm:ss",
   "propertiesFormat": "created at ctime, updated at mtime",
-  "excluded": []
+  "excluded": [
+    "SKYNET/research/README-redis-ai.md"
+  ]
 }

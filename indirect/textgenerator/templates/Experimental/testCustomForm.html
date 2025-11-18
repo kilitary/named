@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testCustomForm</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    
+    <p>```json:form
+{
+    "title": "Widgets",</p>
+<div class="codehilite"><pre><span></span><code><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;stringFormats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;String formats&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;uri&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uri&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;boolean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Boolean field&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;checkbox (default)&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is the checkbox-description&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;radio&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;radio buttons&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is the radio-description&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select box&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is the select-description&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;String field&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text input (default)&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;textarea&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;textarea&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;placeholder&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;dateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="s2">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date-time&quot;</span><span class="w"> </span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;color picker&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#151ce6&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;secret&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I&#39;m a hidden string.&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;disabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A disabled field&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am disabled.&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;readonly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A readonly field&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am read-only.&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;readonly2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another readonly field&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am also read-only.&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;readOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;widgetOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Custom widget with options&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am yellow&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;selectWidgetOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Custom select widget with options&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+
+<span class="w">        </span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+
+<span class="w">        </span><span class="s2">&quot;bar&quot;</span>
+
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="s2">&quot;selectWidgetOptions2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Custom select widget with options, overriding the enum titles.&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="s2">&quot;oneOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+
+<span class="w">        </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Foo dfdfdfdf&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ba dfdfdfddfdfdfdfdfr&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">},</span>
+
+<span class="n">uiSchema</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="s2">&quot;boolean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;radio&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;ui:widget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;radio&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;ui:widget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="s2">&quot;string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;textarea&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;ui:widget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;textarea&quot;</span><span class="p">,</span>
+
+<span class="w">          </span><span class="s2">&quot;ui:options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="s2">&quot;rows&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;placeholder&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;ui:placeholder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is a placeholder&quot;</span>
+
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="s2">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;ui:widget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;color&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="s2">&quot;secret&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;ui:widget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hidden&quot;</span>
+
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="s2">&quot;disabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;ui:disabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="s2">&quot;readonly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;ui:readonly&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="s2">&quot;widgetOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;ui:options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;backgroundColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yellow&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="s2">&quot;selectWidgetOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="s2">&quot;ui:options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">          </span><span class="s2">&quot;backgroundColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pink&quot;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">}</span>
+<span class="p">},</span>
+
+<span class="n">formData</span><span class="p">:{</span>
+
+<span class="w">  </span><span class="s2">&quot;string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="s2">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#151ce6&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello...&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="s2">&quot;textarea&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;... World&quot;</span>
+
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="s2">&quot;secret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I&#39;m a hidden string.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="s2">&quot;disabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am disabled.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="s2">&quot;readonly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am read-only.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="s2">&quot;readonly2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am also read-only.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="s2">&quot;widgetOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I am yellow&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="s2">&quot;stringFormats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="s2">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chuck@norris.net&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="s2">&quot;uri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://chucknorris.com/&quot;</span>
+
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="s2">&quot;boolean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span><span class="p">,</span>
+
+<span class="w">    </span><span class="s2">&quot;radio&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span><span class="p">,</span>
+
+<span class="w">    </span><span class="s2">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>}</p>
+<div class="codehilite"><pre><span></span><code><span class="x">```handlebars</span>
+<span class="cp">{{</span><span class="nv">log</span> <span class="nv">this</span><span class="cp">}}</span>
+</code></pre></div>
+
+<hr />
+<hr />
+<h1 id="there-is-nothing-here">There is nothing here</h1>
+<p>you can access the variables as usual by referencing them by name like 
+{{stringFormats.email}} <code>{{stringFormats.email}}</code></p>
+<!-- 652F10A6 -->
+</body>
+</html>

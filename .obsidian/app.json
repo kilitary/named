@@ -12,7 +12,7 @@
   "smartIndentList": true,
   "alwaysUpdateLinks": true,
   "showInlineTitle": false,
-  "promptDelete": true,
+  "promptDelete": false,
   "showUnsupportedFiles": true,
   "pdfExportSettings": {
     "includeName": true,

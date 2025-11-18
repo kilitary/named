@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Plugin - Review and check your Statuses 2024-04-19 12-52-18</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    
+    <p>Review and check your Statuses</p>
+<h2 id="about-this-file">About this file</h2>
+<p>This file was created by the Obsidian Tasks plugin (version 7.0.0) to help visualise the task statuses in this vault.</p>
+<p>If you change the Tasks status settings, you can get an updated report by:</p>
+<ul>
+<li>Going to <code>Settings</code> -&gt; <code>Tasks</code>.</li>
+<li>Clicking on <code>Review and check your Statuses</code>.</li>
+</ul>
+<p>You can delete this file any time.</p>
+<h2 id="status-settings">Status Settings</h2>
+<!--
+Switch to Live Preview or Reading Mode to see the table.
+If there are any Markdown formatting characters in status names, such as '*' or '_',
+Obsidian may only render the table correctly in Reading Mode.
+-->
+
+<p>These are the status values in the Core and Custom statuses sections.</p>
+<table>
+<thead>
+<tr>
+<th>Status Symbol</th>
+<th>Next Status Symbol</th>
+<th>Status Name</th>
+<th>Status Type</th>
+<th>Problems (if any)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>space</code></td>
+<td><code>x</code></td>
+<td>Todo</td>
+<td><code>TODO</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td><code>space</code></td>
+<td>Done</td>
+<td><code>DONE</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td><code>x</code></td>
+<td>In Progress</td>
+<td><code>IN_PROGRESS</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td><code>space</code></td>
+<td>Cancelled</td>
+<td><code>CANCELLED</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="loaded-settings">Loaded Settings</h2>
+<!-- Switch to Live Preview or Reading Mode to see the diagram. -->
+
+<p>These are the settings actually used by Tasks.</p>
+<div class="codehilite"><pre><span></span><code><span class="c">flowchart LR</span>
+
+<span class="c">classDef TODO        stroke:#f33</span><span class="nt">,</span><span class="c">stroke</span><span class="nb">-</span><span class="c">width:3px;</span>
+<span class="c">classDef DONE        stroke:#0c0</span><span class="nt">,</span><span class="c">stroke</span><span class="nb">-</span><span class="c">width:3px;</span>
+<span class="c">classDef IN_PROGRESS stroke:#fa0</span><span class="nt">,</span><span class="c">stroke</span><span class="nb">-</span><span class="c">width:3px;</span>
+<span class="c">classDef CANCELLED   stroke:#ddd</span><span class="nt">,</span><span class="c">stroke</span><span class="nb">-</span><span class="c">width:3px;</span>
+<span class="c">classDef NON_TASK    stroke:#99e</span><span class="nt">,</span><span class="c">stroke</span><span class="nb">-</span><span class="c">width:3px;</span>
+
+<span class="c">1</span><span class="k">[</span><span class="c">&quot;&#39;Todo&#39;</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="k">[</span><span class="c"> </span><span class="k">]</span><span class="c"> </span><span class="nb">-</span><span class="nv">&gt;</span><span class="c"> </span><span class="k">[</span><span class="c">x</span><span class="k">]</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="c">(TODO)&quot;</span><span class="k">]</span><span class="c">:::TODO</span>
+<span class="c">2</span><span class="k">[</span><span class="c">&quot;&#39;Done&#39;</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="k">[</span><span class="c">x</span><span class="k">]</span><span class="c"> </span><span class="nb">-</span><span class="nv">&gt;</span><span class="c"> </span><span class="k">[</span><span class="c"> </span><span class="k">]</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="c">(DONE)&quot;</span><span class="k">]</span><span class="c">:::DONE</span>
+<span class="c">3</span><span class="k">[</span><span class="c">&quot;&#39;In Progress&#39;</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="k">[</span><span class="c">/</span><span class="k">]</span><span class="c"> </span><span class="nb">-</span><span class="nv">&gt;</span><span class="c"> </span><span class="k">[</span><span class="c">x</span><span class="k">]</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="c">(IN_PROGRESS)&quot;</span><span class="k">]</span><span class="c">:::IN_PROGRESS</span>
+<span class="c">4</span><span class="k">[</span><span class="c">&quot;&#39;Cancelled&#39;</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="k">[</span><span class="nb">-</span><span class="k">]</span><span class="c"> </span><span class="nb">-</span><span class="nv">&gt;</span><span class="c"> </span><span class="k">[</span><span class="c"> </span><span class="k">]</span><span class="nv">&lt;</span><span class="c">br</span><span class="nv">&gt;</span><span class="c">(CANCELLED)&quot;</span><span class="k">]</span><span class="c">:::CANCELLED</span>
+<span class="c">1 </span><span class="nb">--</span><span class="nv">&gt;</span><span class="c"> 2</span>
+<span class="c">2 </span><span class="nb">--</span><span class="nv">&gt;</span><span class="c"> 1</span>
+<span class="c">3 </span><span class="nb">--</span><span class="nv">&gt;</span><span class="c"> 2</span>
+<span class="c">4 </span><span class="nb">--</span><span class="nv">&gt;</span><span class="c"> 1</span>
+
+<span class="c">linkStyle default stroke:gray</span>
+</code></pre></div>
+
+<!-- 16447A7A -->
+</body>
+</html>

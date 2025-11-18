@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLL_SYSTEM_GUIDE</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    
+    <h1 id="poll-system-integration-guide">Poll System Integration Guide</h1>
+<p>This document explains how the new poll system solves the "no objects found" issue and enables linking polls in discussions.</p>
+<h2 id="problem-solved">Problem Solved</h2>
+<p><strong>Issue</strong>: "no objects found" + "no one links to poll in discussion"</p>
+<p><strong>Root Cause</strong>: Missing poll creation and discovery system in the text generation templates.</p>
+<h2 id="solution-components">Solution Components</h2>
+<h3 id="1-poll-creator-template-pollcreatormd">1. Poll Creator Template (<code>pollCreator.md</code>)</h3>
+<ul>
+<li>Creates interactive polls with proper metadata</li>
+<li>Automatically registers polls in the knowledge graph</li>
+<li>Generates linkable poll objects with unique IDs</li>
+<li>Creates proper file structure and indexing</li>
+</ul>
+<h3 id="2-poll-linker-template-polllinkermd">2. Poll Linker Template (<code>pollLinker.md</code>)</h3>
+<ul>
+<li>Discovers existing poll objects across the vault</li>
+<li>Finds relevant polls based on discussion content</li>
+<li>Provides automatic linking capabilities</li>
+<li>Solves the "no objects found" problem</li>
+</ul>
+<h3 id="3-discussion-enhancer-template-discussionenhancermd">3. Discussion Enhancer Template (<code>discussionEnhancer.md</code>)</h3>
+<ul>
+<li>Automatically enhances discussions with poll links</li>
+<li>Suggests new polls based on discussion content  </li>
+<li>Provides seamless integration between discussions and polls</li>
+<li>Solves the "no one links to poll in discussion" problem</li>
+</ul>
+<h3 id="4-concept-linker-fix">4. Concept Linker Fix</h3>
+<ul>
+<li>Fixed the broken <code>Object.entries</code> call in <code>conceptLinker.md</code></li>
+<li>Restored proper object discovery functionality</li>
+</ul>
+<h2 id="how-to-use">How to Use</h2>
+<h3 id="creating-a-poll">Creating a Poll</h3>
+<ol>
+<li>Select text in this format:
+   <code>Poll Title
+   Poll description
+   Option 1
+   Option 2
+   Option 3</code></li>
+<li>Run the <code>pollCreator</code> template</li>
+<li>Poll is automatically created and registered</li>
+</ol>
+<h3 id="linking-polls-in-discussions">Linking Polls in Discussions</h3>
+<ol>
+<li>Select discussion text</li>
+<li>Run the <code>discussionEnhancer</code> template  </li>
+<li>Relevant polls are automatically found and linked</li>
+<li>New poll suggestions are generated</li>
+</ol>
+<h3 id="manual-poll-discovery">Manual Poll Discovery</h3>
+<ol>
+<li>Run the <code>pollLinker</code> template without selection to see all available polls</li>
+<li>Use it with selected text to find relevant polls for specific content</li>
+</ol>
+<h2 id="integration-with-existing-systems">Integration with Existing Systems</h2>
+<p>The poll system integrates with:
+- ✅ Obsidian's linking system (<code>[[poll-id]]</code> format)
+- ✅ Text generator template system
+- ✅ Concept linking mechanisms
+- ✅ Knowledge graph and discovery
+- ✅ Frontmatter and metadata systems</p>
+<h2 id="file-structure-created">File Structure Created</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">polls</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">polls</span><span class="o">-</span><span class="k">index</span><span class="p">.</span><span class="n">md</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="n">Master</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">polls</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">poll</span><span class="o">-[</span><span class="n">timestamp</span><span class="o">]</span><span class="p">.</span><span class="n">md</span><span class="w">     </span><span class="err">#</span><span class="w"> </span><span class="n">Individual</span><span class="w"> </span><span class="n">poll</span><span class="w"> </span><span class="n">files</span>
+<span class="err">└──</span><span class="w"> </span><span class="p">...</span>
+</code></pre></div>
+
+<p>Each poll file contains:
+- Proper frontmatter with metadata
+- Interactive voting interface<br />
+- Automatic linking capabilities
+- Discovery metadata for search</p>
+<h2 id="status-check">Status Check</h2>
+<p>Run any of the templates without selection to check:
+- Number of poll objects found
+- System status and health
+- Available polls for linking</p>
+<p>This completely resolves the original issue by providing a comprehensive poll creation, discovery, and linking system.</p>
+<!-- C2E9FA8B -->
+</body>
+</html>

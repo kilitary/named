@@ -11,14 +11,15 @@
             "id": "19b0777aaa32f984",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "Red&Queen/playground/models_queryer/sim_log_8323890000000.md",
-                "bFile": "Red&Queen/playground/models_queryer/sim_log_8323890000000.md",
-                "aRef": ""
+                "file": "SKYNET/SKYNET.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": false
               },
-              "icon": "diff",
-              "title": "Diff: sim_log_8323890000000"
+              "icon": "lucide-file",
+              "title": "SKYNET"
             }
           }
         ],
@@ -100,7 +101,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 245.5
+    "width": 330.5
   },
   "right": {
     "id": "408649d3315332a4",
@@ -388,10 +389,27 @@
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
-    "SKYNET/research/redis-ai-quick-reference.md",
+    "SKYNET/technology/technology.md",
+    "SKYNET/research/research.md",
+    "SKYNET/playground/playground.md",
+    "SKYNET/For vacuum divider/For vacuum divider.md",
+    "SKYNET/advisories/advisories.md",
+    "SKYNET/research/README-redis-ai.md",
     "SKYNET/research/redis-ai-integration.md",
     "SKYNET/research/redis-ai-architecture-diagrams.md",
-    "SKYNET/research/README-redis-ai.md",
+    "SKYNET/SKYNET.md",
+    "axis9/research/research.html",
+    "axis9/research/Untitled.html",
+    "axis9/research/Creating a Unique Schematic Relationship with Base English Words.html",
+    "axis9/plans/use obsidian as documene linkage for  private & public advisories.html",
+    "axis9/plans/use GPT to analyze text, syntax, links, relations and semantics between obsidian document objects.html",
+    "axis9/plans/plans.html",
+    "axis9/CORE-SSE/inprogress/inprogress.html",
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.html",
+    "axis9/CORE-SSE/inprogress/Untitled.html",
+    "axis9/CORE-SSE/CORE-SSE.html",
+    "axis9/CORE-SSE/inprogress/ai scenarios simulator.md",
+    "SKYNET/research/redis-ai-quick-reference.md",
     "SKYNET/runavlogsys.md",
     "SKYNET/research/scanning/wirescan_navscan/simulations/simulations.md",
     "SKYNET/research/scanning/wirescan_navscan/environment/laserscan.md",
@@ -399,7 +417,6 @@
     "SKYNET/research/text machine/text machine.md",
     "SKYNET/research/text machine/Creating a Unique Schematic Relationship with Base En1glish Words Quiz.md",
     "SKYNET/research/scanning/wirescan_navscan/wirescan_navscan.md",
-    "SKYNET/technology/technology.md",
     "SKYNET/technology/alarm.png.md",
     "SKYNET/technology/aaa.md",
     "Vault.md",
@@ -408,23 +425,7 @@
     "Tags/Tags.md",
     "Tags/README.md",
     "Tags/$tags/$tags.md",
-    "assets/README.md",
-    "assets/assets.md",
-    "assets/images/images.md",
-    "axis9/CORE-SSE/CORE-SSE.md",
-    "axis9/CORE-SSE/inprogress/Untitled.md",
-    "axis9/CORE-SSE/inprogress/inprogress.md",
-    "Untitled.loom",
-    "copilot/copilot-conversations",
-    "Tags/#electronic-systems",
-    "copilot/copilot-custom-prompts",
-    "copilot",
-    "notes",
-    "looms/Untitled 2.loom",
-    "looms/Untitled 1.loom",
     "Untitled.canvas",
-    "tmp/mathematical_analysis_export.json",
-    "tmp",
     "psy-references/patents/funny/upic6.webp",
     "Untitled 1.canvas",
     "psy-references/banda-p_l-ace4-neXt-w-or-k.jpg",

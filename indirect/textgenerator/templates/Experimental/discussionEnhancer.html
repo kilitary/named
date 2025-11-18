@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>discussionEnhancer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    
+    <h2 id="-generate">- generate</h2>
+<h1 id="discussion-enhancer-template">Discussion Enhancer Template</h1>
+<p>This template automatically enhances discussions by finding and linking relevant polls, creating a seamless integration between discussion content and voting mechanisms.</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">{{</span><span class="m m-Attribute">#script</span><span class="cp">}}</span>
+<span class="x">```js</span>
+<span class="x">    async function enhanceDiscussion(text) </span><span class="err">{</span>
+<span class="x">        try </span><span class="err">{</span>
+<span class="x">            // First, find all available polls</span>
+<span class="x">            const polls = await findPollObjects();</span>
+
+<span class="x">            // Analyze discussion content for poll-worthy topics</span>
+<span class="x">            const pollSuggestions = await suggestNewPolls(text);</span>
+
+<span class="x">            // Find existing relevant polls  </span>
+<span class="x">            const relevantPolls = await findRelevantPolls(text, polls);</span>
+
+<span class="x">            // Enhance the discussion</span>
+<span class="x">            const enhancedText = await addPollInteractions(text, relevantPolls, pollSuggestions);</span>
+
+<span class="x">            return </span><span class="err">{</span>
+<span class="x">                original: text,</span>
+<span class="x">                enhanced: enhancedText,</span>
+<span class="x">                totalPolls: polls.length,</span>
+<span class="x">                relevantPolls: relevantPolls.length,</span>
+<span class="x">                suggestions: pollSuggestions.length,</span>
+<span class="x">                status: polls.length &gt; 0 ? &#39;Objects found&#39; : &#39;No objects found&#39;</span>
+<span class="x">            };</span>
+
+<span class="x">        } catch (error) </span><span class="err">{</span>
+<span class="x">            console.error(&#39;Error enhancing discussion:&#39;, error);</span>
+<span class="x">            return </span><span class="err">{</span>
+<span class="x">                original: text,</span>
+<span class="x">                enhanced: text,</span>
+<span class="x">                error: error.message,</span>
+<span class="x">                status: &#39;Error&#39;</span>
+<span class="x">            };</span>
+<span class="x">        }</span>
+<span class="x">    }</span>
+
+<span class="x">    async function findPollObjects() </span><span class="err">{</span>
+<span class="x">        const polls = [];</span>
+
+<span class="x">        try </span><span class="err">{</span>
+<span class="x">            // Search multiple locations for polls</span>
+<span class="x">            const searchPaths = [&#39;polls&#39;, &#39;polls/&#39;];</span>
+
+<span class="x">            // Also search in current file&#39;s directory</span>
+<span class="x">            const currentFile = app.workspace.getActiveFile();</span>
+<span class="x">            if (currentFile?.parent) </span><span class="err">{</span>
+<span class="x">                searchPaths.push(`$</span><span class="err">{</span><span class="x">currentFile.parent.path}/polls`);</span>
+<span class="x">            }</span>
+
+<span class="x">            for (const searchPath of searchPaths) </span><span class="err">{</span>
+<span class="x">                if (await app.vault.adapter.exists(searchPath)) </span><span class="err">{</span>
+<span class="x">                    const files = await app.vault.adapter.list(searchPath);</span>
+
+<span class="x">                    for (const file of files.files || []) </span><span class="err">{</span>
+<span class="x">                        if (file.endsWith(&#39;.md&#39;) &amp;&amp; !file.includes(&#39;index&#39;)) </span><span class="err">{</span>
+<span class="x">                            try </span><span class="err">{</span>
+<span class="x">                                const content = await app.vault.adapter.read(file);</span>
+<span class="x">                                const poll = parsePollFromContent(content, file);</span>
+<span class="x">                                if (poll) polls.push(poll);</span>
+<span class="x">                            } catch (e) </span><span class="err">{</span>
+<span class="x">                                // Skip files we can&#39;t read</span>
+<span class="x">                            }</span>
+<span class="x">                        }</span>
+<span class="x">                    }</span>
+<span class="x">                }</span>
+<span class="x">            }</span>
+<span class="x">        } catch (error) </span><span class="err">{</span>
+<span class="x">            console.error(&#39;Error finding polls:&#39;, error);</span>
+<span class="x">        }</span>
+
+<span class="x">        return polls;</span>
+<span class="x">    }</span>
+
+<span class="x">    function parsePollFromContent(content, filePath) </span><span class="err">{</span>
+<span class="x">        try </span><span class="err">{</span>
+<span class="x">            const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);</span>
+<span class="x">            if (!frontmatterMatch) return null;</span>
+
+<span class="x">            const frontmatter = frontmatterMatch[1];</span>
+<span class="x">            const pollIdMatch = frontmatter.match(/pollId:\s*(.+)/);</span>
+<span class="x">            const titleMatch = frontmatter.match(/title:\s*(.+)/);</span>
+<span class="x">            const typeMatch = frontmatter.match(/type:\s*(.+)/);</span>
+
+<span class="x">            if (!pollIdMatch || typeMatch?.[1]?.trim() !== &#39;poll&#39;) return null;</span>
+
+<span class="x">            const pollId = pollIdMatch[1].trim();</span>
+<span class="x">            const title = titleMatch?.[1]?.trim() || pollId;</span>
+
+<span class="x">            // Extract description</span>
+<span class="x">            const bodyContent = content.replace(/^---\n[\s\S]*?\n---/, &#39;&#39;).trim();</span>
+<span class="x">            const descriptionMatch = bodyContent.match(/# [^\n]+\n\n([^\n]+)/);</span>
+<span class="x">            const description = descriptionMatch?.[1] || &#39;&#39;;</span>
+
+<span class="x">            return </span><span class="err">{</span>
+<span class="x">                id: pollId,</span>
+<span class="x">                title: title,</span>
+<span class="x">                description: description,</span>
+<span class="x">                filePath: filePath,</span>
+<span class="x">                linkText: `[[$</span><span class="err">{</span><span class="x">pollId}|$</span><span class="err">{</span><span class="x">title}]]`</span>
+<span class="x">            };</span>
+<span class="x">        } catch (error) </span><span class="err">{</span>
+<span class="x">            return null;</span>
+<span class="x">        }</span>
+<span class="x">    }</span>
+
+<span class="x">    async function findRelevantPolls(text, polls) </span><span class="err">{</span>
+<span class="x">        const relevantPolls = [];</span>
+<span class="x">        const textLower = text.toLowerCase();</span>
+
+<span class="x">        for (const poll of polls) </span><span class="err">{</span>
+<span class="x">            let score = 0;</span>
+<span class="x">            const pollText = (poll.title + &#39; &#39; + poll.description).toLowerCase();</span>
+
+<span class="x">            // Check for keyword matches</span>
+<span class="x">            const words = textLower.split(/\W+/).filter(word =&gt; word.length &gt; 3);</span>
+<span class="x">            for (const word of words) </span><span class="err">{</span>
+<span class="x">                if (pollText.includes(word)) </span><span class="err">{</span>
+<span class="x">                    score += 1;</span>
+<span class="x">                }</span>
+<span class="x">            }</span>
+
+<span class="x">            // Boost score for poll-related terms</span>
+<span class="x">            const pollTerms = [&#39;vote&#39;, &#39;poll&#39;, &#39;survey&#39;, &#39;opinion&#39;, &#39;decide&#39;, &#39;choice&#39;, &#39;what do you think&#39;, &#39;thoughts?&#39;, &#39;feedback&#39;, &#39;input&#39;];</span>
+<span class="x">            for (const term of pollTerms) </span><span class="err">{</span>
+<span class="x">                if (textLower.includes(term)) </span><span class="err">{</span>
+<span class="x">                    score += 3;</span>
+<span class="x">                }</span>
+<span class="x">            }</span>
+
+<span class="x">            if (score &gt; 0) </span><span class="err">{</span>
+<span class="x">                relevantPolls.push(</span><span class="err">{</span><span class="x"> ...poll, relevanceScore: score });</span>
+<span class="x">            }</span>
+<span class="x">        }</span>
+
+<span class="x">        return relevantPolls.sort((a, b) =&gt; b.relevanceScore - a.relevanceScore);</span>
+<span class="x">    }</span>
+
+<span class="x">    async function suggestNewPolls(text) </span><span class="err">{</span>
+<span class="x">        const suggestions = [];</span>
+<span class="x">        const textLower = text.toLowerCase();</span>
+
+<span class="x">        // Look for question patterns that could become polls</span>
+<span class="x">        const questionPatterns = [</span>
+<span class="x">            /what do you think about (.+?)\?/gi,</span>
+<span class="x">            /should we (.+?)\?/gi,</span>
+<span class="x">            /which (.+?) do you prefer\?/gi,</span>
+<span class="x">            /what&#39;s your opinion on (.+?)\?/gi,</span>
+<span class="x">            /how do you feel about (.+?)\?/gi,</span>
+<span class="x">            /what would you choose (.+?)\?/gi</span>
+<span class="x">        ];</span>
+
+<span class="x">        for (const pattern of questionPatterns) </span><span class="err">{</span>
+<span class="x">            const matches = text.matchAll(pattern);</span>
+<span class="x">            for (const match of matches) </span><span class="err">{</span>
+<span class="x">                suggestions.push(</span><span class="err">{</span>
+<span class="x">                    topic: match[1],</span>
+<span class="x">                    originalQuestion: match[0],</span>
+<span class="x">                    suggestedTitle: `Poll: $</span><span class="err">{</span><span class="x">match[1]}`,</span>
+<span class="x">                    type: &#39;question-based&#39;</span>
+<span class="x">                });</span>
+<span class="x">            }</span>
+<span class="x">        }</span>
+
+<span class="x">        // Look for either/or patterns</span>
+<span class="x">        const choicePatterns = [</span>
+<span class="x">            /(\w+)\s+or\s+(\w+)/gi,</span>
+<span class="x">            /either\s+(.+?)\s+or\s+(.+?)(?:\s|$|\.|\?)/gi</span>
+<span class="x">        ];</span>
+
+<span class="x">        for (const pattern of choicePatterns) </span><span class="err">{</span>
+<span class="x">            const matches = text.matchAll(pattern);</span>
+<span class="x">            for (const match of matches) </span><span class="err">{</span>
+<span class="x">                suggestions.push(</span><span class="err">{</span>
+<span class="x">                    option1: match[1],</span>
+<span class="x">                    option2: match[2],</span>
+<span class="x">                    suggestedTitle: `Poll: $</span><span class="err">{</span><span class="x">match[1]} vs $</span><span class="err">{</span><span class="x">match[2]}`,</span>
+<span class="x">                    type: &#39;choice-based&#39;</span>
+<span class="x">                });</span>
+<span class="x">            }</span>
+<span class="x">        }</span>
+
+<span class="x">        return suggestions.slice(0, 3); // Limit suggestions</span>
+<span class="x">    }</span>
+
+<span class="x">    async function addPollInteractions(text, relevantPolls, suggestions) </span><span class="err">{</span>
+<span class="x">        let enhanced = text;</span>
+
+<span class="x">        // Add relevant polls section</span>
+<span class="x">        if (relevantPolls.length &gt; 0) </span><span class="err">{</span>
+<span class="x">            enhanced += `</span>
+
+<span class="x">## 📊 Related Polls</span>
+
+<span class="x">$</span><span class="err">{</span><span class="x">relevantPolls.map(poll =&gt; </span>
+<span class="x">    `- $</span><span class="err">{</span><span class="x">poll.linkText} - $</span><span class="err">{</span><span class="x">poll.description} *(relevance: $</span><span class="err">{</span><span class="x">poll.relevanceScore})*`</span>
+<span class="x">).join(&#39;\n&#39;)}`;</span>
+<span class="x">        }</span>
+
+<span class="x">        // Add poll suggestions</span>
+<span class="x">        if (suggestions.length &gt; 0) </span><span class="err">{</span>
+<span class="x">            enhanced += `</span>
+
+<span class="x">## 💡 Poll Suggestions</span>
+
+<span class="x">Based on this discussion, you might want to create polls for:</span>
+
+<span class="x">$</span><span class="err">{</span><span class="x">suggestions.map((suggestion, index) =&gt; </span><span class="err">{</span>
+<span class="x">    if (suggestion.type === &#39;question-based&#39;) </span><span class="err">{</span>
+<span class="x">        return `$</span><span class="err">{</span><span class="x">index + 1}. **$</span><span class="err">{</span><span class="x">suggestion.suggestedTitle}**</span>
+<span class="x">   - Original: &quot;$</span><span class="err">{</span><span class="x">suggestion.originalQuestion}&quot;</span>
+<span class="x">   - Topic: $</span><span class="err">{</span><span class="x">suggestion.topic}`;</span>
+<span class="x">    } else </span><span class="err">{</span>
+<span class="x">        return `$</span><span class="err">{</span><span class="x">index + 1}. **$</span><span class="err">{</span><span class="x">suggestion.suggestedTitle}**</span>
+<span class="x">   - Option A: $</span><span class="err">{</span><span class="x">suggestion.option1}</span>
+<span class="x">   - Option B: $</span><span class="err">{</span><span class="x">suggestion.option2}`;</span>
+<span class="x">    }</span>
+<span class="x">}).join(&#39;\n\n&#39;)}</span>
+
+<span class="x">*Use the pollCreator template to create these polls.*`;</span>
+<span class="x">        }</span>
+
+<span class="x">        // Add footer with instructions</span>
+<span class="x">        enhanced += `</span>
+
+<span class="x">---</span>
+<span class="x">*Discussion enhanced with poll integration. $</span><span class="err">{</span><span class="x">relevantPolls.length} relevant poll(s) found.*`;</span>
+
+<span class="x">        return enhanced;</span>
+<span class="x">    }</span>
+
+<span class="x">    // Main execution</span>
+<span class="x">    async function processDiscussion() </span><span class="err">{</span>
+<span class="x">        const selection = `</span><span class="cp">{{</span><span class="nv">tg_selection</span><span class="cp">}}</span><span class="x">`.trim();</span>
+
+<span class="x">        if (!selection) </span><span class="err">{</span>
+<span class="x">            const polls = await findPollObjects();</span>
+
+<span class="x">            return `# Discussion Enhancer</span>
+
+<span class="x">## Status Check</span>
+
+<span class="x">- **Available Polls**: $</span><span class="err">{</span><span class="x">polls.length}</span>
+<span class="x">- **Poll Discovery**: $</span><span class="err">{</span><span class="x">polls.length &gt; 0 ? &#39;✅ Objects found&#39; : &#39;❌ No objects found&#39;}</span>
+<span class="x">- **Integration**: ✅ Ready</span>
+
+<span class="x">## Usage</span>
+
+<span class="x">1. Select discussion text</span>
+<span class="x">2. Run this template to automatically link relevant polls</span>
+<span class="x">3. Get suggestions for new polls based on discussion content</span>
+
+<span class="x">## Available Polls</span>
+
+<span class="x">$</span><span class="err">{</span><span class="x">polls.length &gt; 0 ? </span>
+<span class="x">    polls.map(poll =&gt; `- $</span><span class="err">{</span><span class="x">poll.linkText}`).join(&#39;\n&#39;) :</span>
+<span class="x">    &#39;No poll objects found. Use pollCreator template to create some.&#39;</span>
+<span class="x">}</span>
+
+<span class="x">## How It Helps</span>
+
+<span class="x">This template solves the &quot;no one links to poll in discussion&quot; problem by:</span>
+<span class="x">- ✅ Automatically finding relevant polls</span>
+<span class="x">- ✅ Suggesting new polls based on discussion content  </span>
+<span class="x">- ✅ Adding proper links and integration</span>
+<span class="x">- ✅ Making polls discoverable in discussions`;</span>
+<span class="x">        }</span>
+
+<span class="x">        const result = await enhanceDiscussion(selection);</span>
+
+<span class="x">        return `# Discussion Enhancement Complete</span>
+
+<span class="x">## Status</span>
+<span class="x">- **Poll Objects**: $</span><span class="err">{</span><span class="x">result.status}</span>
+<span class="x">- **Total Polls Available**: $</span><span class="err">{</span><span class="x">result.totalPolls}</span>
+<span class="x">- **Relevant Polls**: $</span><span class="err">{</span><span class="x">result.relevantPolls}</span>
+<span class="x">- **New Poll Suggestions**: $</span><span class="err">{</span><span class="x">result.suggestions}</span>
+
+<span class="x">## Enhanced Discussion</span>
+
+<span class="x">$</span><span class="err">{</span><span class="x">result.enhanced}</span>
+
+<span class="x">## Summary</span>
+
+<span class="x">$</span><span class="err">{</span><span class="x">result.totalPolls &gt; 0 ? </span>
+<span class="x">    `✅ Successfully enhanced discussion with poll integration. Found $</span><span class="err">{</span><span class="x">result.totalPolls} total polls, $</span><span class="err">{</span><span class="x">result.relevantPolls} relevant to this discussion.` :</span>
+<span class="x">    &#39;❌ No poll objects found. Create polls using the pollCreator template to enable discussion-poll linking.&#39;</span>
+<span class="x">}</span>
+
+<span class="x">$</span><span class="err">{</span><span class="x">result.error ? `❌ Error: $</span><span class="err">{</span><span class="x">result.error}` : &#39;&#39;}`;</span>
+<span class="x">    }</span>
+
+<span class="x">    return await processDiscussion();</span>
+</code></pre></div>
+
+<p>{{/script}}
+```</p>
+<hr />
+<hr />
+<h1 id="output">Output:</h1>
+<p>{{get "script"}}</p>
+<!-- B4501B53 -->
+</body>
+</html>

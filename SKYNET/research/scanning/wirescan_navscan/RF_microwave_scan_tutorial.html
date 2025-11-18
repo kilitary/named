@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RF_microwave_scan_tutorial</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            overflow: auto;
+            border-radius: 3px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #f1f3f5;
+            border-radius: 4px;
+            color: #0366d6;
+        }
+        .back-link:hover {
+            background-color: #e1e4e8;
+            text-decoration: none;
+        }
+        .banner-image {
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Index</a>
+    <div class="banner-image"><img src="data:image/png;base64,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" alt="Banner"></div>
+    <ol>
+<li>Элементарная чпокерия. (с) 2024 Бизминский СимПай Вцентрсрирующи. (c 2049)</li>
+<li></li>
+<li>
+<blockquote>
+<p>начнем с разниц в частотах и <strong>продолжим</strong> резисторы в чулочках (бля сука ну пиздец пидоры этож надо спустя 20 лет в этой квартире у старого кгбшника найти порнуху советскую черно белую и ахуеть от неё снова. небритая пизда,  красная королева грит он ищет клады, да у него и клопы то не задерживаюца долго на новой базе с его похудающей каждые 2 дня стилем. стройненький загорелый метис-сексуашка в 87, (а да и компютеры - говно. ну пушо там уже не лампы, но мы на юай3 и знач ничо лучше нет ибо компы это ересь из транзисторов а что кроме увеличения тока ими можно делать? (прим.пер: ефимов сделалл ссы лку на себя)))</p>
+</blockquote>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>начнем</p>
+</blockquote>
+</li>
+<li>50 ghz - 200 ghz</li>
+<li></li>
+<li>
+<blockquote>
+<p>продолжим частотой ебли зрелого коня когда тебя с ним сжимают и со всех сторон эти трубы и ты такой: о ебать а этот п<em>и</em><strong>доро</strong>к чо прав был. и чо делать. а ничо там нельзя делать. собери все чем ты пугал других людей, потому что ты в памяти этих людей - был изготовителем своего "к<strong>т</strong>бога" и получи пообщайса парку трилиончиков лет со своей лучшей стороной которую ты создал, не учтя что на планете живут и более продвинутые солягой люди у которых чемодан имеет значение только в клипе вуду пиплд.. и я - знаю о че, м говор ю. (прим.ред: идите нахуй)</p>
+</blockquote>
+</li>
+<li></li>
+<li>
+<blockquote>
+<p>обнаружена вывеска "квотоня", нельзя никак, нету?.
+11.</p>
+</blockquote>
+</li>
+<li></li>
+<li>250 ghz - 100000000 ghz</li>
+<li></li>
+<li>may~~b~~e edi~40 on tel line (если вы чуствуюете памехи или зуммер -к вам в базу транзистора спокойно подключаютса,и прослушивают андрейи через торсионку, ширеевой с драйвером 2006 года для новых ссд -&gt; Чтобы применить тероризм к вам и применение его к обществу через вас, (спрашиваеца а за что вы вообще сражаетес? наверно за чемоданчик, так у каждого свой. а уменя - паблик) -&gt;Срочно бегите в cсуд бидца за права упомянуть фсб что вы не из иъ пизды вылазели и не им её представлять (хотя, вы с еб я уже показал и) -&gt;и не забудьте винную карту кноттинга схему принципиальную для скрещивания лошадей и проверка оплодотворенности, ии схемы элементарной чпокерии - разговорник до 39 года про торсионку и их содержащие пивную мочу пивные лица из подкастов трамвая, бегите в мвд по розенштейну в спб в о<strong>тд*~~е</strong>~~*л №34 я мну там привязывали в 17 (около 21), пытали словами и просили сдать эту суку с ребенком на что я сказал что берите сами она с коляской каждую ночь по одному маршруту гуляет. никто из них не догодаеться что там нет ребенка а лежат наркотики на сумма около 300000 зеленских, нихуя я не умел говорить. только спать и слушать этого хача+гретого андрея. а окулич. а окулич ваще слилса из жизни но мы его хотябы от лужи отучили. ато панканнетса и из лужи пить. сделали из него рейвера. короче, идите нахуй.</li>
+<li>
+<ol>
+<li>. (отдельный привет окуличу. (сегодня@1997) телка то выжила) так вот 0 от<strong>куд</strong>а идет контрлол всей рашки, байдена, америки и путей дочерей байдена до пакетиков и их спрячивание в носках (миссия - тест на умолишенного путина на месте с элементами простейшей турционной чпокерии) и его <strong>япона</strong>  ох<em>ран</em><strong>н</strong>и<strong>ка</strong> который себя убивает если настала ситуация защитить президента, этоого мерзского старика который играет  с моими лолями путем завлечения внимания (спс самобут) мерзко-пивного путина и его служителей дьявола - вцентрверующи<strong>х</strong> (вступайте в мои ряды и боженька дарует вам лолю для ваши<strong>х</strong> извращений верно созданных красной королоевой для учета моих лимитов, нежно охраненных стенами скайнета (с цветными дисплеями ))))</li>
+<li>ой, всё заебал или как это сделать &gt; взять 10 листов А4, один А3 и не забыватдь что я это он а</li>
+</ol>
+</li>
+</ol>
+<p>НА М НУЖН А Н О В О Я ВОЙ ННА (РАСШИФРОВКА: хуй вам, МОИ МУНАСКРИПТЫ УЙДУТ СО МНОЙ В М ОЗ И ЛЛ У)</p>
+<!-- B94EDB61 -->
+</body>
+</html>
