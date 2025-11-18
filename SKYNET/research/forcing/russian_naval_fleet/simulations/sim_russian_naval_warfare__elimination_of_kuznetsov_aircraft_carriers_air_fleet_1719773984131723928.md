@@ -1,3 +1,6 @@
+---
+banner: assets/images/1f4d1.png
+---
 * temp: 0.8 ctx: 16394 sim_id: 1719773984131723928
    7723M 7.6B  qwen2              qwen2:7b-instruct-q8_0          
    7723M 7.6B  qwen2              qwen2:7b-text-q8_0              

@@ -1,11 +1,12 @@
 ---
 tags: MOCs, technology, systems-research, skynet, autonomous-systems
-title: "SKYNET - Advanced Technology & Systems Research"
+title: SKYNET - Advanced Technology & Systems Research
 created: 2024-06-08
 updated: 2024-12-08
-summary: "Advanced technology research, autonomous systems analysis, and cutting-edge computational studies"
+summary: Advanced technology research, autonomous systems analysis, and cutting-edge computational studies
 banner: For vacuum divider/39.gif
 sticker: emoji//1f916
+type: chances_overwiev
 ---
 
 # 🦍 SKYNET - Advanced Technology & Systems Research

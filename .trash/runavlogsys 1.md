@@ -1,12 +1,8 @@
 ---
 sticker: emoji//1f3ed
 type: wrapper
-query_variant: directml
-color: var(--mk-color-charcoal)
 ---
-**kuznetsov logging analyze caps bottlenecks using simulation of massive support ship logs updates in**
-
-Title: Identifying Bottlenecks in Russian Naval Situation Awareness Systems
+analyze kuznetsov logging analyze caps using simulation of massive support ships log updates in Title: Identifying Bottlenecks in Russian Naval Situation Awareness Systems
 
 Introduction:
 This article aims to discuss the potential bottlenecks in Russian naval situation awareness systems. Understanding these bottlenecks can help improve the efficiency and effectiveness of these systems.

@@ -15,13 +15,13 @@
   "googleApiKey": "",
   "openRouterAiApiKey": "",
   "xaiApiKey": "",
-  "mistralApiKey": "",
+  "mistralApiKey": "XUO8AySQv3QajDNYVq3Gug0D04lyNOGU",
   "deepseekApiKey": "",
   "amazonBedrockApiKey": "",
   "amazonBedrockRegion": "",
   "siliconflowApiKey": "",
   "defaultChainType": "llm_chain",
-  "defaultModelKey": "google/gemini-2.5-flash|openrouterai",
+  "defaultModelKey": "pixtral-large-latest|mistralai",
   "embeddingModelKey": "text-embedding-3-small|openai",
   "temperature": 0.1,
   "maxTokens": 6000,
@@ -186,8 +186,8 @@
       "enabled": true,
       "isBuiltIn": true,
       "capabilities": [
-        "vision",
-        "reasoning"
+        "reasoning",
+        "vision"
       ]
     },
     {
@@ -257,6 +257,41 @@
       "capabilities": [
         "reasoning"
       ]
+    },
+    {
+      "name": "pixtral-large-latest",
+      "provider": "mistralai",
+      "enabled": true
+    },
+    {
+      "name": "mistral-tiny-latest",
+      "provider": "mistralai",
+      "enabled": true
+    },
+    {
+      "name": "devstral-medium-latest",
+      "provider": "mistralai",
+      "enabled": true
+    },
+    {
+      "name": "codestral-2508",
+      "provider": "mistralai",
+      "enabled": true
+    },
+    {
+      "name": "open-mistral-7b",
+      "provider": "mistralai",
+      "enabled": true
+    },
+    {
+      "name": "open-mistral-nemo-2407",
+      "provider": "mistralai",
+      "enabled": true
+    },
+    {
+      "name": "voxtral-small-latest",
+      "provider": "mistralai",
+      "enabled": true
     }
   ],
   "activeEmbeddingModels": [
@@ -385,5 +420,5 @@
   "maxRecentConversations": 30,
   "enableSavedMemory": true,
   "quickCommandIncludeNoteContext": true,
-  "autoIncludeTextSelection": false
+  "autoIncludeTextSelection": true
 }

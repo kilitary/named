@@ -25,17 +25,17 @@ title:
 - [x] 2 day creatovely extended girl  [completion:: 2025-10-15]
 - [x] olya(naf-naf)  [completion:: 2025-10-15]
 - [ ] naf-naf(olya)
-- [ ] [priority:: high] ultras base]
+- [ ] [priority:: high] ultras base] #diff/hard
 
 
 ## future combat level 7+3
 
-- [ ] newest sync machine
+- [-] newest sync machine
 - [ ] relocation section  [completion:: 2025t scheduled:: dueueue:: priority:: high] dependsOn:: uinwk2]
-- [ ] qnrq system
-- [ ] 49 skynet defense autonomous  bases
+- [ ] qnrq system #diff/medium
+- [/] 49 skynet defense autonomous  bases
 - [x] remote planes dropej  [completion:: 2025-10-15]
-- [ ] import section unprotect
+- [/] import section unprotect
 
 
 

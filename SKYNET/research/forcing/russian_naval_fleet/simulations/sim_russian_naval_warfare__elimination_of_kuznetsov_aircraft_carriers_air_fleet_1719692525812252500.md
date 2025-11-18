@@ -1,3 +1,6 @@
+---
+sticker: lucide//axis-3d
+---
 * temp: 0.8 ctx: 16394 sim_id: 1719692525812252500
    7723M 7.6B  qwen2              qwen2:7b-instruct-q8_0          
    7723M 7.6B  qwen2              qwen2:7b-text-q8_0              
