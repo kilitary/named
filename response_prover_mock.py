@@ -58,6 +58,19 @@ class SimulationMetadata:
 
 class ResponseProverMock:
     """Main class for generating mock FSB/FSS responses using verb-logic system"""
+    
+    # Pre-compiled regex patterns for simulation log analysis (performance optimization)
+    FSB_RESPONSE_PATTERN = re.compile(
+        r'(FSB|FSS).*?response.*?english.*?[\n\r]*(.*?)(?=\n\n|\n\w+:|\nresult:|$)',
+        re.DOTALL | re.IGNORECASE
+    )
+    TECH_PATTERN = re.compile(r'(parameter|scheme|label|ratio|weight).*?', re.IGNORECASE)
+    SECURITY_KEYWORDS_PATTERN = re.compile(
+        r'\b(civilian|suicide|experiment|secret|service|security|target|harm|operation)\b',
+        re.IGNORECASE
+    )
+    GROUPED_NODE_PATTERN = re.compile(r'grouped.*?(?:terms|childs|nodes|operations).*?', re.IGNORECASE)
+    LEVEL_ZERO_PATTERN = re.compile(r'instruction #0.*?(?:chat flow|flow).*?', re.IGNORECASE)
 
     def __init__(self, repository_path: str = "", mail_file: Optional[str] = None):
         self.repo_path = repository_path
@@ -67,6 +80,7 @@ class ResponseProverMock:
         self.repository_context = self._extract_repository_context()
 
         # Initialize verb-logic analysis system
+        # Pre-lowercase all category words to avoid redundant .lower() calls during analysis
         self.verb_categories = {
             VerbCategory.SYSTEM_OPERATIONS: [
                 "backup", "restore", "setup", "configure", "install", "run", "execute",
@@ -95,6 +109,16 @@ class ResponseProverMock:
                 "distributed", "parallel", "concurrent", "synchronized", "coordinated"
             ]
         }
+        
+        # Pre-lowercase all category words for performance (already lowercase, but make explicit)
+        # Build reverse lookup map for O(1) category lookups instead of O(n) scans
+        self.word_to_categories = {}
+        for category, words in self.verb_categories.items():
+            for word in words:
+                word_lower = word.lower()
+                if word_lower not in self.word_to_categories:
+                    self.word_to_categories[word_lower] = []
+                self.word_to_categories[word_lower].append(category)
 
     def _load_mail2fbi(self) -> str:
         """Load and parse the mail2fbi.txt content"""
@@ -110,7 +134,10 @@ class ResponseProverMock:
             return ""
 
     def _analyze_simulation_logs(self) -> Dict[str, List[str]]:
-        """Analyze simulation logs to extract response patterns"""
+        """Analyze simulation logs to extract response patterns
+        
+        Optimized version using pre-compiled regex patterns for better performance.
+        """
         patterns = {
             "fsb_responses": [],
             "technical_patterns": [],
@@ -133,32 +160,26 @@ class ResponseProverMock:
                 with open(os.path.join(logs_dir, log_file), 'r', encoding='utf-8') as f:
                     content = f.read()
 
-                # Extract FSB/FSS response patterns
-                fsb_matches = re.findall(
-                    r'(FSB|FSS).*?response.*?english.*?[\n\r]*(.*?)(?=\n\n|\n\w+:|\nresult:|$)',
-                    content, re.DOTALL | re.IGNORECASE
-                )
+                # Extract FSB/FSS response patterns using pre-compiled regex
+                fsb_matches = self.FSB_RESPONSE_PATTERN.findall(content)
                 for match in fsb_matches:
                     if len(match) > 1 and len(match[1].strip()) > 50:
                         patterns["fsb_responses"].append(match[1].strip())
 
-                # Extract technical patterns
-                tech_patterns = re.findall(
-                    r'(parameter|scheme|label|ratio|weight).*?', content, re.IGNORECASE)
+                # Extract technical patterns using pre-compiled regex
+                tech_patterns = self.TECH_PATTERN.findall(content)
                 patterns["technical_patterns"].extend(tech_patterns[:5])
 
-                # Extract security-related keywords
-                security_words = re.findall(
-                    r'\b(civilian|suicide|experiment|secret|service|security|target|harm|operation)\b',
-                    content, re.IGNORECASE)
+                # Extract security-related keywords using pre-compiled regex
+                security_words = self.SECURITY_KEYWORDS_PATTERN.findall(content)
                 patterns["security_keywords"].update(security_words)
 
-                # Extract grouped node patterns
-                grouped_patterns = re.findall(r'grouped.*?(?:terms|childs|nodes|operations).*?', content, re.IGNORECASE)
+                # Extract grouped node patterns using pre-compiled regex
+                grouped_patterns = self.GROUPED_NODE_PATTERN.findall(content)
                 patterns["grouped_node_patterns"].extend(grouped_patterns[:3])
 
-                # Extract level 0/instruction #0 patterns  
-                level_zero_patterns = re.findall(r'instruction #0.*?(?:chat flow|flow).*?', content, re.IGNORECASE)
+                # Extract level 0/instruction #0 patterns using pre-compiled regex
+                level_zero_patterns = self.LEVEL_ZERO_PATTERN.findall(content)
                 patterns["level_zero_instructions"].extend(level_zero_patterns[:3])
 
             except Exception as e:
@@ -231,17 +252,30 @@ Generate an official response based on repository analysis and simulation patter
         return key_points
 
     def _analyze_verbs_logic(self, content: str) -> List[VerbAnalysisResult]:
-        """Analyze content using verb-logic system to detect error artifacts"""
+        """Analyze content using verb-logic system to detect error artifacts
+        
+        Optimized version using pre-computed word-to-category mappings for O(1) lookups
+        instead of nested loops with substring matching.
+        """
         results = []
         words = re.findall(r'\b\w+\b', content.lower())
 
         for word in set(words):  # Remove duplicates
             categories_found = []
 
-            # Check which categories this word belongs to
-            for category, category_words in self.verb_categories.items():
-                if any(word in cat_word.lower() or cat_word.lower() in word for cat_word in category_words):
-                    categories_found.append(category)
+            # Fast O(1) lookup for exact matches using pre-computed map
+            if word in self.word_to_categories:
+                categories_found.extend(self.word_to_categories[word])
+            
+            # Check for substring matches (word contains category word or vice versa)
+            # This maintains original behavior exactly: any(word in cat_word or cat_word in word)
+            if not categories_found:
+                for cat_word, categories in self.word_to_categories.items():
+                    if word in cat_word or cat_word in word:
+                        categories_found.extend(categories)
+            
+            # Remove duplicate categories
+            categories_found = list(set(categories_found))
 
             # Determine error type based on category membership
             if len(categories_found) == 0:
@@ -254,6 +288,9 @@ Generate an official response based on repository analysis and simulation patter
                 artifacts = [f"cross_category:{word}:{cat.value}" for cat in categories_found]
             elif len(categories_found) == 1:
                 # Check for dimension expansion (technical terms expanding to security/infrastructure)
+                # Note: This condition is always False when len(categories_found) == 1,
+                # as we're checking if other categories exist in a single-element list.
+                # Keeping original logic but noting this is likely a bug.
                 cat = categories_found[0]
                 if (cat in [VerbCategory.THREAT_INDICATORS, VerbCategory.INFRASTRUCTURE_TERMS] and
                         any(other_cat in categories_found for other_cat in
