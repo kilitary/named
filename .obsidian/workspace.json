@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "ce4c210d7f2400c4",
+        "id": "dd17e872dfec59c8",
         "type": "tabs",
         "children": [
           {
-            "id": "19b0777aaa32f984",
+            "id": "362680f283febd1b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKYNET/SKYNET.md",
-                "mode": "preview",
+                "file": "psy-references/psy-references.md",
+                "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "SKYNET"
+              "title": "psy-references"
             }
           }
         ],
@@ -253,16 +253,6 @@
             }
           },
           {
-            "id": "af85d97fb85ee864",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
             "id": "8338fb371c4e0250",
             "type": "leaf",
             "state": {
@@ -283,47 +273,7 @@
             }
           },
           {
-            "id": "1c9c935524ff9eb3",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "cc43dae2ff88d262",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "f6173f3ba68c59e3",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
             "id": "f2b98ad5ba774b9b",
-            "type": "leaf",
-            "state": {
-              "type": "graph-analysis",
-              "state": {},
-              "icon": "GA-ICON",
-              "title": "Graph Analysis"
-            }
-          },
-          {
-            "id": "e0c973bd5ef70b25",
             "type": "leaf",
             "state": {
               "type": "graph-analysis",
@@ -333,11 +283,11 @@
             }
           }
         ],
-        "currentTab": 20
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 301.5
+    "width": 402.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -389,6 +339,8 @@
   },
   "active": "218e7e8cf09e66ae",
   "lastOpenFiles": [
+    "Untitled.base",
+    "SKYNET/SKYNET.md",
     "SKYNET/technology/technology.md",
     "SKYNET/research/research.md",
     "SKYNET/playground/playground.md",
@@ -397,7 +349,6 @@
     "SKYNET/research/README-redis-ai.md",
     "SKYNET/research/redis-ai-integration.md",
     "SKYNET/research/redis-ai-architecture-diagrams.md",
-    "SKYNET/SKYNET.md",
     "axis9/research/research.html",
     "axis9/research/Untitled.html",
     "axis9/research/Creating a Unique Schematic Relationship with Base English Words.html",
@@ -424,7 +375,6 @@
     "Untitled.md",
     "Tags/Tags.md",
     "Tags/README.md",
-    "Tags/$tags/$tags.md",
     "Untitled.canvas",
     "psy-references/patents/funny/upic6.webp",
     "Untitled 1.canvas",

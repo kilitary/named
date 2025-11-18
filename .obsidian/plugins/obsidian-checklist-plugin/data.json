@@ -2,6 +2,7 @@
   "todoPageName": "todo",
   "showChecked": true,
   "showAllTodos": true,
+  "showOnlyActiveFile": false,
   "autoRefresh": true,
   "subGroups": false,
   "groupBy": "page",
