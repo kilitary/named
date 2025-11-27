@@ -1,4 +1,4 @@
-# NAMED - Comprehensive Research & PAPED Documentation Repository of Vijimkins EtAd.
+# NAMED - Comprehensive Research & PAPED Documents that contains partial info for media, especially Russian.
 
 
 changing [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) computer ids, cpu serial number, all hw serials, reformat & wipe hdds&ssds 4 times manually and using sec software, enable uefi. wrote linux into boot code for hardware that is secure. antisecured with 5$ cert, but now.  the [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./version) computer is ready to work on military-grade sector, but still must to interfere with any from any
@@ -13,6 +13,8 @@ changing [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE
 просьба проверить уровень биполярки при чтении и после 2х дней.
 
 спасибо.
+
+
 
 ## Newerview
 
@@ -200,5 +202,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 *This repository represents ongoing research and documentation efforts across multiple scientific and technical domains. Content is continuously updated and expanded based on research findings and analytical developments.*
+
+Written to my english nodes for multiplying.
 
 <!-- 66D472B1 -->
